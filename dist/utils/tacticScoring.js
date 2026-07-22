@@ -39,9 +39,17 @@ function tagIndicationMatchesSession(indication, sessionTags, lookup) {
 // ── Score a single tactic ────────────────────────────────────────────────────
 function scoreTactic(tactic, sessionTags, recentTacticIds, tacticRatings, lookup, context = {}) {
     var _a, _b, _c, _d, _e;
-    const { behaviorIds, behaviorTopicIds, pinnedTacticIds, suppressedTacticIds, } = context;
+    const { behaviorIds, behaviorTopicIds, pinnedTacticIds, suppressedTacticIds, lowSignal, } = context;
     // 1. Hard exclude: user/behavior suppression (human oversight)
     if (suppressedTacticIds === null || suppressedTacticIds === void 0 ? void 0 : suppressedTacticIds.includes(tactic.id)) {
+        return null; // EXCLUDED
+    }
+    // 1b. Hard exclude: presumptuous tactic on a low-signal session. A tactic that
+    //     presumes a physical state we can't verify (e.g. "Stand Up" presumes the
+    //     user is sitting/lying) is only eligible once the session has real
+    //     context — otherwise we'd suggest it on empty tags, where the "choice" is
+    //     arbitrary and may contradict the user's situation.
+    if (tactic.presumesState && lowSignal) {
         return null; // EXCLUDED
     }
     // 2. Hard exclude: tag contraindications

@@ -25,6 +25,13 @@ export interface TacticScoringContext {
     behaviorTopicIds?: string[];
     pinnedTacticIds?: string[];
     suppressedTacticIds?: string[];
+    /**
+     * True when the session carries no primary-tag signal (only a behavior, or
+     * nothing). Used to hard-exclude presumptuous tactics (see `presumesState`)
+     * whose fit we can't justify without context — otherwise they win arbitrary
+     * ties on empty tags and get suggested regardless of the user's situation.
+     */
+    lowSignal?: boolean;
 }
 /** Ranking boost applied to a pinned tactic. Large enough to clear a tactic's
  * recency penalty, small enough that a strong tag/topic match still competes. */
