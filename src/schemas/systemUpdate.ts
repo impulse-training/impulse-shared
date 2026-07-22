@@ -11,6 +11,13 @@ export const otaSystemUpdateSchema = z.object({
   iosUpdateId: z.string(),
   androidUpdateId: z.string().optional(),
   appVersion: z.string().optional(),
+  /**
+   * Monotonic patch number within `appVersion`, assigned by
+   * publish-production.js — the second half of the version the app displays
+   * ("0.2:3" is the third OTA patch on the 0.2 binary). Optional: OTA docs
+   * published before patches were numbered don't have one.
+   */
+  patchNumber: z.number().int().positive().optional(),
   updateGroupId: z.string().nullable().optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
