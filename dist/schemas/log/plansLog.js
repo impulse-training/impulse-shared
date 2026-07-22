@@ -12,6 +12,12 @@ exports.plansLogSchema = base_1.logBaseSchema.extend({
     // written non-displayable, so permit both.
     isDisplayable: zod_1.z.boolean(),
     data: zod_1.z.object({
+        // trigger/behavior = user-owned plans (the plan sheet renders these).
+        // scheduled = scheduled plan sessions.
+        // tags/improvised = DEPRECATED. Engine-matched plans are no longer written
+        // as plans logs — they live on the session as `suggestedPlan` and are
+        // delivered inline as tactic cards. Retained here so historical docs still
+        // validate against `scheduled_validateSchemas`.
         source: zod_1.z.union([
             zod_1.z.literal("trigger"),
             zod_1.z.literal("behavior"),

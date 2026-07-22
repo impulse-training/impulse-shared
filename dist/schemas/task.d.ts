@@ -1827,12 +1827,6 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     title: string;
     debriefOutcome: "acted" | "resisted";
     category: "zara" | "deterministic";
-    instructions: string;
-    impulseSessionId: string;
-    suggestedTrigger: {
-        tags: Record<string, string>;
-        behaviorIds?: string[] | undefined;
-    };
     suggestedPlan: {
         name: string;
         tacticIds?: string[] | undefined;
@@ -1840,6 +1834,12 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
             title: string;
             description?: string | undefined;
         }[] | undefined;
+    };
+    instructions: string;
+    impulseSessionId: string;
+    suggestedTrigger: {
+        tags: Record<string, string>;
+        behaviorIds?: string[] | undefined;
     };
     id?: string | undefined;
     ordinal?: number | undefined;
@@ -1861,12 +1861,6 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     userId: string;
     title: string;
     debriefOutcome: "acted" | "resisted";
-    instructions: string;
-    impulseSessionId: string;
-    suggestedTrigger: {
-        tags: Record<string, string>;
-        behaviorIds?: string[] | undefined;
-    };
     suggestedPlan: {
         name: string;
         tacticIds?: string[] | undefined;
@@ -1874,6 +1868,12 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
             title: string;
             description?: string | undefined;
         }[] | undefined;
+    };
+    instructions: string;
+    impulseSessionId: string;
+    suggestedTrigger: {
+        tags: Record<string, string>;
+        behaviorIds?: string[] | undefined;
     };
     id?: string | undefined;
     status?: "completed" | "dismissed" | "open" | undefined;
@@ -4363,12 +4363,6 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     title: string;
     debriefOutcome: "acted" | "resisted";
     category: "zara" | "deterministic";
-    instructions: string;
-    impulseSessionId: string;
-    suggestedTrigger: {
-        tags: Record<string, string>;
-        behaviorIds?: string[] | undefined;
-    };
     suggestedPlan: {
         name: string;
         tacticIds?: string[] | undefined;
@@ -4376,6 +4370,12 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             title: string;
             description?: string | undefined;
         }[] | undefined;
+    };
+    instructions: string;
+    impulseSessionId: string;
+    suggestedTrigger: {
+        tags: Record<string, string>;
+        behaviorIds?: string[] | undefined;
     };
     id?: string | undefined;
     ordinal?: number | undefined;
@@ -4397,12 +4397,6 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     userId: string;
     title: string;
     debriefOutcome: "acted" | "resisted";
-    instructions: string;
-    impulseSessionId: string;
-    suggestedTrigger: {
-        tags: Record<string, string>;
-        behaviorIds?: string[] | undefined;
-    };
     suggestedPlan: {
         name: string;
         tacticIds?: string[] | undefined;
@@ -4410,6 +4404,12 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             title: string;
             description?: string | undefined;
         }[] | undefined;
+    };
+    instructions: string;
+    impulseSessionId: string;
+    suggestedTrigger: {
+        tags: Record<string, string>;
+        behaviorIds?: string[] | undefined;
     };
     id?: string | undefined;
     status?: "completed" | "dismissed" | "open" | undefined;
