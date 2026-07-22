@@ -109,8 +109,16 @@ export const sessionBaseSchema = z.object({
   // Multi-select tags: tagGroupId → array of selected optionIds
   tags: z.record(z.string(), z.array(z.string())).optional(),
 
-  // Set when the AI calls showCloseButton — indicates the conversation has reached a natural end
+  // Set when the AI calls showCloseButton — indicates the conversation has reached a natural end.
+  // Cleared again if the assistant's next turn asks a question, so the close stays an offer.
   aiFinalizedAt: timestampSchema.optional(),
+
+  // Which stage decided the close. Recaps withhold showCloseButton from the session
+  // AI and route the decision through judgeRecapClose ("reviewer"); every other
+  // session type has the AI call the tool itself ("ai"). Recorded so the agreement
+  // rate between the cheap prefilter and the reviewer stays auditable in Firestore
+  // rather than only for as long as logs are retained.
+  closeDecidedBy: z.enum(["ai", "reviewer"]).optional(),
 
   // Deletion state - set when the user initiates deletion from the UI
   startedDeletingAt: timestampSchema.optional(),
