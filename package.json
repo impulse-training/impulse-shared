@@ -8,7 +8,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf dist && tsc",
     "build:watch": "tsc -w",
     "link:global": "npm link",
     "unlink:global": "npm unlink -g impulse-shared",
