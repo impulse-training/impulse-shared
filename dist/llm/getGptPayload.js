@@ -201,11 +201,28 @@ function getGptPayload(log, isFinalLogInSession, options) {
     }
     if ((0, log_1.logIsDebriefQuestionLog)(log)) {
         const selected = (_e = log.data.selectedResponseText) === null || _e === void 0 ? void 0 : _e.trim();
+        // Weekly-review chips reuse this log type, but there the selection IS the
+        // user's conversational reply and drives the review flow.
+        const isWeeklyReviewChip = log.data.debriefQuestionId.startsWith("weekly_review");
         if (selected) {
+            if (isWeeklyReviewChip) {
+                return [
+                    {
+                        role: "user",
+                        content: selected,
+                    },
+                ];
+            }
+            // User-configured tracking questions are incidental data capture, not a
+            // conversational turn — frame the Q&A so the model doesn't make the
+            // answer the topic of its next message.
+            const capture = `Data capture: after tracking, the user was shown the question "${log.data.question}" and answered "${selected}".`;
             return [
                 {
                     role: "user",
-                    content: selected,
+                    content: isFinalLogInSession && !(options === null || options === void 0 ? void 0 : options.forSummarization)
+                        ? `<SYSTEM>${capture} This is incidental data collection — do not comment on the answer or ask follow-up questions about it. Respond as you would have if the card hadn't appeared, continuing the conversation from where it left off.</SYSTEM>`
+                        : `<SYSTEM>${capture}</SYSTEM>`,
                 },
             ];
         }
