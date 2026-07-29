@@ -288,11 +288,24 @@ function getGptPayload(log, isFinalLogInSession, options) {
         const isCompleted = log.data.completed === true;
         const response = log.data.response;
         const isDebrief = (options === null || options === void 0 ? void 0 : options.sessionPhase) === "debrief";
+        // A completed step of the user's ASSIGNED plan (only plan-sheet
+        // completions carry planId) gets a CHECKPOINT directive when it's the
+        // latest thing in the session: credit the step, then ask how the urge is
+        // doing — never march the user to the next step in the same message. The
+        // plan is a strategy, not a script; if the urge passed, the remaining
+        // steps were never needed (resolvePlanEarly), which is a success.
+        const checkpointDirective = isCompleted &&
+            log.data.planId &&
+            isFinalLogInSession &&
+            !isDebrief &&
+            !(options === null || options === void 0 ? void 0 : options.forSummarization)
+            ? " This was a step of the user's assigned plan. Reply in ONE short message: briefly credit them, then ask how the urge is doing now. Do NOT direct them to the next step of the plan in this message. If the user then says the urge has passed or they feel in control, call resolvePlanEarly and reinforce the win; if the urge is still present or they want to continue, point them to the next step by name."
+            : "";
         if (isCompleted && response) {
             return [
                 {
                     role: "user",
-                    content: `<SYSTEM>User completed tactic: ${tacticTitle}. Response: ${response.formattedValue}</SYSTEM>`,
+                    content: `<SYSTEM>User completed tactic: ${tacticTitle}. Response: ${response.formattedValue}.${checkpointDirective}</SYSTEM>`,
                 },
             ];
         }
@@ -300,7 +313,7 @@ function getGptPayload(log, isFinalLogInSession, options) {
             return [
                 {
                     role: "user",
-                    content: `<SYSTEM>User completed tactic: ${tacticTitle}</SYSTEM>`,
+                    content: `<SYSTEM>User completed tactic: ${tacticTitle}.${checkpointDirective}</SYSTEM>`,
                 },
             ];
         }
