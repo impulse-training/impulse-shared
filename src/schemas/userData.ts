@@ -87,6 +87,10 @@ export const userDataSchema = z.object({
       modelId: z.string().optional(),
       deviceName: z.string().optional(),
       isDevice: z.boolean().optional(),
+      // Marketing version of the binary this real device last booted.
+      // Written only from real hardware (useUserMetadataSync's isDevice
+      // guard); the OTA release gate reads it to decide a binary is live.
+      nativeVersion: z.string().optional(),
     })
     .optional(),
   isAppEnabled: z.boolean().optional(),
