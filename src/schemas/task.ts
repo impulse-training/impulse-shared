@@ -55,6 +55,16 @@ export const taskBaseSchema = z.object({
   dismissedAt: timestampSchema.optional(),
   /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
   dismissedReason: dismissedReasonSchema.optional(),
+  /**
+   * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+   * means "awaiting coach review" and no claim path may present the task to
+   * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+   * Other task types are auto-approved by not being in that set, so they
+   * never carry these fields.
+   */
+  approvedAt: timestampSchema.optional(),
+  /** Why the coach approved it — recorded alongside `approvedAt`. */
+  approvalReason: z.string().optional(),
 });
 
 export const mergeBehaviorsTaskSchema = taskBaseSchema.extend({
@@ -318,6 +328,32 @@ export type ResumeRecapRemindersTask = z.infer<
 export type WeekLookbackTask = z.infer<typeof weekLookbackTaskSchema>;
 export type WeeklyReviewTask = z.infer<typeof weeklyReviewTaskSchema>;
 export type Task = z.infer<typeof taskSchema>;
+
+/**
+ * Task types that must NEVER reach the user without a human (coach) sign-off.
+ * System code may still create these tasks, but every claim path skips them
+ * until a coach sets `approvedAt` (from the dashboard). review_trigger is here
+ * because auto-raised "common trigger" patterns (e.g. tagging "Walking" as a
+ * trigger) need a human sanity check before the AI proposes formalizing them.
+ */
+export const TASK_TYPES_REQUIRING_APPROVAL: ReadonlySet<string> = new Set([
+  "review_trigger",
+]);
+
+/**
+ * True when a task must be held back from claiming because it still needs
+ * coach approval. Takes raw doc data (claim paths work with untyped
+ * snapshots); tasks of types outside TASK_TYPES_REQUIRING_APPROVAL are
+ * implicitly auto-approved. Legacy docs of a gated type predate `approvedAt`
+ * and are treated as awaiting approval — they were never human-reviewed.
+ */
+export const isTaskAwaitingApproval = (task: {
+  type?: unknown;
+  approvedAt?: unknown;
+}): boolean =>
+  typeof task.type === "string" &&
+  TASK_TYPES_REQUIRING_APPROVAL.has(task.type) &&
+  task.approvedAt == null;
 
 export const isTask = (value: unknown): value is Task =>
   taskSchema.safeParse(value).success;

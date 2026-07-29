@@ -47,6 +47,16 @@ export declare const taskBaseSchema: z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -68,6 +78,8 @@ export declare const taskBaseSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -89,6 +101,8 @@ export declare const taskBaseSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }>;
 export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -125,6 +139,16 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"merge_behaviors">;
     sourceBehaviorIds: z.ZodArray<z.ZodString, "many">;
@@ -173,6 +197,8 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -202,6 +228,8 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }>;
 export declare const suggestStrategyTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -238,6 +266,16 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"suggest_strategy">;
     suggestedStrategy: z.ZodObject<{
@@ -810,6 +848,8 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -900,6 +940,8 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }>;
 /**
  * A coach-prepared proposal to change one behavior's goal (e.g. switch to a
@@ -945,6 +987,16 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"propose_goal">;
     behaviorId: z.ZodString;
@@ -1151,6 +1203,8 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -1202,6 +1256,8 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }>;
 export declare const proposedMetricSchema: z.ZodObject<{
     name: z.ZodString;
@@ -1251,6 +1307,16 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"propose_experiment">;
     proposedExperiment: z.ZodObject<{
@@ -1317,6 +1383,8 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -1348,6 +1416,8 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }>;
 export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -1384,6 +1454,16 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"propose_mask_behavior">;
     behaviorId: z.ZodString;
@@ -1410,6 +1490,8 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -1433,6 +1515,8 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }>;
 export declare const createSessionTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -1469,6 +1553,16 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"create_session">;
     lazy: z.ZodDefault<z.ZodBoolean>;
@@ -1605,6 +1699,8 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
     taskIds?: string[] | undefined;
     notification?: {
         title: string;
@@ -1650,6 +1746,8 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
     lazy?: boolean | undefined;
     taskIds?: string[] | undefined;
     notification?: {
@@ -1678,6 +1776,8 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"recap_question">;
     recapQuestionId: z.ZodString;
@@ -1712,6 +1812,8 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
     claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -1739,6 +1841,8 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
     claimedBySessionId?: string | undefined;
 }>;
 export declare const reviewTriggerTaskSchema: z.ZodObject<{
@@ -1776,6 +1880,16 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"review_trigger">;
     impulseSessionId: z.ZodString;
@@ -1854,6 +1968,8 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -1890,6 +2006,8 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }>;
 export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -1926,6 +2044,16 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"toolkit_planning">;
 }, "strip", z.ZodTypeAny, {
@@ -1950,6 +2078,8 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -1972,6 +2102,8 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }>;
 export declare const suggestTacticTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -2008,6 +2140,16 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"suggest_tactic">;
     suggestions: z.ZodArray<z.ZodObject<{
@@ -2050,6 +2192,8 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2077,6 +2221,8 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }>;
 export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -2113,6 +2259,16 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"reflect_on_metrics">;
     behaviorName: z.ZodString;
@@ -2156,6 +2312,8 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
     milestoneRungDays?: number | undefined;
     milestoneRungLabel?: string | undefined;
 }, {
@@ -2185,6 +2343,8 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
     milestoneRungDays?: number | undefined;
     milestoneRungLabel?: string | undefined;
 }>;
@@ -2223,6 +2383,16 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"collect_baseline">;
     behaviorId: z.ZodString;
@@ -2249,6 +2419,8 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2272,6 +2444,8 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }>;
 /**
  * The durable user-scoped "set up in-the-moment access" task — the parent of
@@ -2317,6 +2491,16 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"setup_shortcut">;
     /** Which setup card to show; if absent it is recomputed from behaviors. */
@@ -2347,6 +2531,8 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2371,6 +2557,8 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }>;
 /**
  * Durable user-scoped task for a returning user whose scheduled recap
@@ -2415,6 +2603,16 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"resume_recap_reminders">;
 }, "strip", z.ZodTypeAny, {
@@ -2439,6 +2637,8 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2461,6 +2661,8 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }>;
 /**
  * The weekly review's first beat: reflect on the week just passed as one shape.
@@ -2504,6 +2706,16 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"week_lookback">;
     /** The Sunday review this beat belongs to (the recap dateString). */
@@ -2531,6 +2743,8 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2554,6 +2768,8 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }>;
 /**
  * The weekly review as a claimable token, one per week. Created on the local
@@ -2601,6 +2817,16 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"weekly_review">;
     /** The local Sunday this review week is anchored to (YYYY-MM-DD). */
@@ -2629,6 +2855,8 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
     claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -2653,6 +2881,8 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
     claimedBySessionId?: string | undefined;
 }>;
 export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
@@ -2690,6 +2920,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"merge_behaviors">;
     sourceBehaviorIds: z.ZodArray<z.ZodString, "many">;
@@ -2738,6 +2978,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2767,6 +3009,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -2802,6 +3046,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"suggest_strategy">;
     suggestedStrategy: z.ZodObject<{
@@ -3374,6 +3628,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -3464,6 +3720,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -3499,6 +3757,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"propose_goal">;
     behaviorId: z.ZodString;
@@ -3705,6 +3973,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -3756,6 +4026,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -3791,6 +4063,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"propose_experiment">;
     proposedExperiment: z.ZodObject<{
@@ -3857,6 +4139,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -3888,6 +4172,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -3923,6 +4209,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"propose_mask_behavior">;
     behaviorId: z.ZodString;
@@ -3949,6 +4245,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -3972,6 +4270,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -4007,6 +4307,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"create_session">;
     lazy: z.ZodDefault<z.ZodBoolean>;
@@ -4143,6 +4453,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
     taskIds?: string[] | undefined;
     notification?: {
         title: string;
@@ -4188,6 +4500,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
     lazy?: boolean | undefined;
     taskIds?: string[] | undefined;
     notification?: {
@@ -4215,6 +4529,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"recap_question">;
     recapQuestionId: z.ZodString;
@@ -4249,6 +4565,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
     claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -4276,6 +4594,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
     claimedBySessionId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -4312,6 +4632,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"review_trigger">;
     impulseSessionId: z.ZodString;
@@ -4390,6 +4720,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -4426,6 +4758,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -4461,6 +4795,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"toolkit_planning">;
 }, "strip", z.ZodTypeAny, {
@@ -4485,6 +4829,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -4507,6 +4853,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -4542,6 +4890,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"suggest_tactic">;
     suggestions: z.ZodArray<z.ZodObject<{
@@ -4584,6 +4942,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -4611,6 +4971,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -4646,6 +5008,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"reflect_on_metrics">;
     behaviorName: z.ZodString;
@@ -4689,6 +5061,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
     milestoneRungDays?: number | undefined;
     milestoneRungLabel?: string | undefined;
 }, {
@@ -4718,6 +5092,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
     milestoneRungDays?: number | undefined;
     milestoneRungLabel?: string | undefined;
 }>, z.ZodObject<{
@@ -4755,6 +5131,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"collect_baseline">;
     behaviorId: z.ZodString;
@@ -4781,6 +5167,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -4804,6 +5192,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -4839,6 +5229,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"setup_shortcut">;
     /** Which setup card to show; if absent it is recomputed from behaviors. */
@@ -4869,6 +5269,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -4893,6 +5295,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -4928,6 +5332,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"resume_recap_reminders">;
 }, "strip", z.ZodTypeAny, {
@@ -4952,6 +5366,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -4974,6 +5390,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -5009,6 +5427,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"week_lookback">;
     /** The Sunday review this beat belongs to (the recap dateString). */
@@ -5036,6 +5464,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -5059,6 +5489,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -5094,6 +5526,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"weekly_review">;
     /** The local Sunday this review week is anchored to (YYYY-MM-DD). */
@@ -5122,6 +5564,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
     claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -5146,6 +5590,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
     claimedBySessionId?: string | undefined;
 }>]>;
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
@@ -5169,6 +5615,25 @@ export type ResumeRecapRemindersTask = z.infer<typeof resumeRecapRemindersTaskSc
 export type WeekLookbackTask = z.infer<typeof weekLookbackTaskSchema>;
 export type WeeklyReviewTask = z.infer<typeof weeklyReviewTaskSchema>;
 export type Task = z.infer<typeof taskSchema>;
+/**
+ * Task types that must NEVER reach the user without a human (coach) sign-off.
+ * System code may still create these tasks, but every claim path skips them
+ * until a coach sets `approvedAt` (from the dashboard). review_trigger is here
+ * because auto-raised "common trigger" patterns (e.g. tagging "Walking" as a
+ * trigger) need a human sanity check before the AI proposes formalizing them.
+ */
+export declare const TASK_TYPES_REQUIRING_APPROVAL: ReadonlySet<string>;
+/**
+ * True when a task must be held back from claiming because it still needs
+ * coach approval. Takes raw doc data (claim paths work with untyped
+ * snapshots); tasks of types outside TASK_TYPES_REQUIRING_APPROVAL are
+ * implicitly auto-approved. Legacy docs of a gated type predate `approvedAt`
+ * and are treated as awaiting approval — they were never human-reviewed.
+ */
+export declare const isTaskAwaitingApproval: (task: {
+    type?: unknown;
+    approvedAt?: unknown;
+}) => boolean;
 export declare const isTask: (value: unknown) => value is Task;
 export declare const isMergeBehaviorsTask: (value: unknown) => value is MergeBehaviorsTask;
 export declare const isSuggestStrategyTask: (value: unknown) => value is SuggestStrategyTask;
