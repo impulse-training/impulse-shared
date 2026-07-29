@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isSetupShortcutTask = exports.isReflectOnMetricsTask = exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isProposeGoalTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.taskSchema = exports.weeklyReviewTaskSchema = exports.weekLookbackTaskSchema = exports.resumeRecapRemindersTaskSchema = exports.setupShortcutTaskSchema = exports.collectBaselineTaskSchema = exports.reflectOnMetricsTaskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.proposeGoalTaskSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.claimableSessionTypeSchema = exports.taskCategorySchema = exports.dismissedReasonSchema = exports.taskStatusSchema = void 0;
+exports.isSetupShortcutTask = exports.isReflectOnMetricsTask = exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isProposeGoalTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.isTaskAwaitingApproval = exports.TASK_TYPES_REQUIRING_APPROVAL = exports.taskSchema = exports.weeklyReviewTaskSchema = exports.weekLookbackTaskSchema = exports.resumeRecapRemindersTaskSchema = exports.setupShortcutTaskSchema = exports.collectBaselineTaskSchema = exports.reflectOnMetricsTaskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.proposeGoalTaskSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.claimableSessionTypeSchema = exports.taskCategorySchema = exports.dismissedReasonSchema = exports.taskStatusSchema = void 0;
 const zod_1 = require("zod");
 const goal_1 = require("./goal");
 const proposedStrategyModificationLog_1 = require("./log/proposedStrategyModificationLog");
@@ -53,6 +53,16 @@ exports.taskBaseSchema = zod_1.z.object({
     dismissedAt: timestampSchema_1.timestampSchema.optional(),
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: exports.dismissedReasonSchema.optional(),
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: timestampSchema_1.timestampSchema.optional(),
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: zod_1.z.string().optional(),
 });
 exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema.extend({
     type: zod_1.z.literal("merge_behaviors"),
@@ -272,6 +282,27 @@ exports.taskSchema = zod_1.z.discriminatedUnion("type", [
     exports.weekLookbackTaskSchema,
     exports.weeklyReviewTaskSchema,
 ]);
+/**
+ * Task types that must NEVER reach the user without a human (coach) sign-off.
+ * System code may still create these tasks, but every claim path skips them
+ * until a coach sets `approvedAt` (from the dashboard). review_trigger is here
+ * because auto-raised "common trigger" patterns (e.g. tagging "Walking" as a
+ * trigger) need a human sanity check before the AI proposes formalizing them.
+ */
+exports.TASK_TYPES_REQUIRING_APPROVAL = new Set([
+    "review_trigger",
+]);
+/**
+ * True when a task must be held back from claiming because it still needs
+ * coach approval. Takes raw doc data (claim paths work with untyped
+ * snapshots); tasks of types outside TASK_TYPES_REQUIRING_APPROVAL are
+ * implicitly auto-approved. Legacy docs of a gated type predate `approvedAt`
+ * and are treated as awaiting approval — they were never human-reviewed.
+ */
+const isTaskAwaitingApproval = (task) => typeof task.type === "string" &&
+    exports.TASK_TYPES_REQUIRING_APPROVAL.has(task.type) &&
+    task.approvedAt == null;
+exports.isTaskAwaitingApproval = isTaskAwaitingApproval;
 const isTask = (value) => exports.taskSchema.safeParse(value).success;
 exports.isTask = isTask;
 const isMergeBehaviorsTask = (value) => exports.mergeBehaviorsTaskSchema.safeParse(value).success;
