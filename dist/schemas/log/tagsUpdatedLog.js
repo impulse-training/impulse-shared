@@ -15,8 +15,9 @@ exports.tagsUpdatedLogSchema = base_1.logBaseSchema.extend({
         tags: zod_1.z.record(zod_1.z.union([zod_1.z.string(), zod_1.z.array(zod_1.z.string())])),
         /**
          * The session's behaviors AFTER this update — written only when the update
-         * actually changed them (the tag bar's behavior picker, or a trigger that
-         * brings its own behaviors). Absent for a tags-only edit.
+         * actually changed them, and only by the tag bar's behavior picker. Absent
+         * for a tags-only edit, and absent when a trigger brings its own behaviors
+         * (the trigger's plans log already prompts a reply of its own).
          *
          * Its presence is the signal that the user re-scoped which behaviors this
          * moment is about, which is worth an AI response even mid-debrief; a

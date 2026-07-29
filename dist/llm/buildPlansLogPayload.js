@@ -77,10 +77,17 @@ function buildPlansLogPayload(log, isFinalLogInSession) {
     }
     else if (isUserOwnedPlan) {
         // USER-OWNED plan (source trigger/behavior): the plan sheet — not the
-        // conversation — delivers the tactics. The assistant's job is one short
-        // line pointing at the current step by name.
+        // conversation — delivers the tactics. The plan is a strategy, not a
+        // script: after each step the assistant runs a CHECKPOINT (has the urge
+        // passed?) instead of marching the user to the next step.
         const allTactics = getAllTactics(plan === null || plan === void 0 ? void 0 : plan.tactics, plan === null || plan === void 0 ? void 0 : plan.tacticsByPath);
-        if (isFinalLogInSession) {
+        const outcome = activePlanEntry === null || activePlanEntry === void 0 ? void 0 : activePlanEntry.outcome;
+        if (outcome === "resolved_early" || outcome === "completed_all") {
+            parts.push(outcome === "resolved_early"
+                ? "The user's plan for this session already resolved EARLY: the urge passed before every step was needed. That is a full success — the plan did its job. Do not point the user at remaining steps, do not suggest more tactics, and do not treat unused steps as unfinished business."
+                : "The user completed every step of their plan for this session. Acknowledge it if relevant; do not re-deliver any step.");
+        }
+        else if (isFinalLogInSession) {
             parts.push(`The user's own plan was just assigned. The app is displaying it to them in the plan sheet with its ${tacticsCount} ${tacticsNoun}.`);
             if (firstTacticTitle) {
                 parts.push(`The first tactic in the plan is titled: ${firstTacticTitle}. Point the user to it by name in ONE short sentence, but do not assume they have already started it.`);
@@ -91,7 +98,11 @@ function buildPlansLogPayload(log, isFinalLogInSession) {
             allTactics.forEach((t, i) => {
                 parts.push(`${i + 1}. "${t.title}"`);
             });
-            parts.push("After the user completes a tactic, acknowledge it in one short sentence and point them to the next step of their plan by name — do not ask whether they want to continue. Never tell the user to repeat a tactic they just completed.");
+            parts.push("After the user completes a tactic, acknowledge it in one short sentence and ask how the urge is doing now — a quick checkpoint. Do NOT direct them to the next step in that same message. " +
+                "If the user says the urge has passed or they feel back in control, call resolvePlanEarly and then reinforce the win in one short line — steps they never needed are a success, not a failure. " +
+                "If the urge is still present or they want to keep going, point them to the next step of their plan by name. " +
+                "If they say a step doesn't fit their current situation (wrong place, no privacy, no time), accept that without treating the plan as failed and without scrambling to assign a replacement task — check how the urge is doing instead. " +
+                "Never tell the user to repeat a tactic they just completed.");
         }
         parts.push("Do NOT call suggestTactic for the plan's tactics and do NOT type out their step instructions — the plan sheet already shows them.");
     }

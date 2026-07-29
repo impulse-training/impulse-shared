@@ -38,6 +38,19 @@ exports.plansLogSchema = base_1.logBaseSchema.extend({
             plan: plan_1.planWithIdSchema,
             startedAt: timestampSchema_1.timestampSchema.optional(),
             completedAt: timestampSchema_1.timestampSchema.optional(),
+            // How this plan delivery ended. A plan that resolved the urge before
+            // every step was used is a SUCCESS with steps unspent, not an
+            // incomplete plan:
+            // - resolved_early: user confirmed the urge passed mid-plan
+            // - completed_all: every step was completed
+            // - abandoned: session ended/plan cleared with steps unspent and no
+            //   resolution signal
+            outcome: zod_1.z
+                .enum(["resolved_early", "completed_all", "abandoned"])
+                .optional(),
+            // When the outcome was recorded (resolved_early sets this at the
+            // moment the user confirms the urge passed).
+            resolvedAt: timestampSchema_1.timestampSchema.optional(),
         })),
         // Index of the currently active/selected plan in the carousel
         activeIndex: zod_1.z.number().optional(),

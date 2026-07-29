@@ -22563,6 +22563,8 @@ export declare const logSchemas: {
                 }>>]>;
                 startedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 completedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                outcome: z.ZodOptional<z.ZodEnum<["resolved_early", "completed_all", "abandoned"]>>;
+                resolvedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             }, "strip", z.ZodTypeAny, {
                 plan: ({
                     id: string;
@@ -22757,7 +22759,9 @@ export declare const logSchemas: {
                 });
                 planId: string;
                 startedAt?: import("../../types").Timestamp | undefined;
+                resolvedAt?: import("../../types").Timestamp | undefined;
                 completedAt?: import("../../types").Timestamp | undefined;
+                outcome?: "resolved_early" | "completed_all" | "abandoned" | undefined;
             }, {
                 plan: ({
                     id: string;
@@ -22952,7 +22956,9 @@ export declare const logSchemas: {
                 });
                 planId: string;
                 startedAt?: import("../../types").Timestamp | undefined;
+                resolvedAt?: import("../../types").Timestamp | undefined;
                 completedAt?: import("../../types").Timestamp | undefined;
+                outcome?: "resolved_early" | "completed_all" | "abandoned" | undefined;
             }>, "many">;
             activeIndex: z.ZodOptional<z.ZodNumber>;
             acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -23152,7 +23158,9 @@ export declare const logSchemas: {
                 });
                 planId: string;
                 startedAt?: import("../../types").Timestamp | undefined;
+                resolvedAt?: import("../../types").Timestamp | undefined;
                 completedAt?: import("../../types").Timestamp | undefined;
+                outcome?: "resolved_early" | "completed_all" | "abandoned" | undefined;
             }[];
             behaviorId?: string | null | undefined;
             mode?: "live" | "planning" | undefined;
@@ -23355,7 +23363,9 @@ export declare const logSchemas: {
                 });
                 planId: string;
                 startedAt?: import("../../types").Timestamp | undefined;
+                resolvedAt?: import("../../types").Timestamp | undefined;
                 completedAt?: import("../../types").Timestamp | undefined;
+                outcome?: "resolved_early" | "completed_all" | "abandoned" | undefined;
             }[];
             behaviorId?: string | null | undefined;
             mode?: "live" | "planning" | undefined;
@@ -23568,7 +23578,9 @@ export declare const logSchemas: {
                 });
                 planId: string;
                 startedAt?: import("../../types").Timestamp | undefined;
+                resolvedAt?: import("../../types").Timestamp | undefined;
                 completedAt?: import("../../types").Timestamp | undefined;
+                outcome?: "resolved_early" | "completed_all" | "abandoned" | undefined;
             }[];
             behaviorId?: string | null | undefined;
             mode?: "live" | "planning" | undefined;
@@ -23786,7 +23798,9 @@ export declare const logSchemas: {
                 });
                 planId: string;
                 startedAt?: import("../../types").Timestamp | undefined;
+                resolvedAt?: import("../../types").Timestamp | undefined;
                 completedAt?: import("../../types").Timestamp | undefined;
+                outcome?: "resolved_early" | "completed_all" | "abandoned" | undefined;
             }[];
             behaviorId?: string | null | undefined;
             mode?: "live" | "planning" | undefined;
@@ -51131,6 +51145,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }>>]>;
             startedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             completedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            outcome: z.ZodOptional<z.ZodEnum<["resolved_early", "completed_all", "abandoned"]>>;
+            resolvedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
             plan: ({
                 id: string;
@@ -51325,7 +51341,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             });
             planId: string;
             startedAt?: import("../../types").Timestamp | undefined;
+            resolvedAt?: import("../../types").Timestamp | undefined;
             completedAt?: import("../../types").Timestamp | undefined;
+            outcome?: "resolved_early" | "completed_all" | "abandoned" | undefined;
         }, {
             plan: ({
                 id: string;
@@ -51520,7 +51538,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             });
             planId: string;
             startedAt?: import("../../types").Timestamp | undefined;
+            resolvedAt?: import("../../types").Timestamp | undefined;
             completedAt?: import("../../types").Timestamp | undefined;
+            outcome?: "resolved_early" | "completed_all" | "abandoned" | undefined;
         }>, "many">;
         activeIndex: z.ZodOptional<z.ZodNumber>;
         acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -51720,7 +51740,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             });
             planId: string;
             startedAt?: import("../../types").Timestamp | undefined;
+            resolvedAt?: import("../../types").Timestamp | undefined;
             completedAt?: import("../../types").Timestamp | undefined;
+            outcome?: "resolved_early" | "completed_all" | "abandoned" | undefined;
         }[];
         behaviorId?: string | null | undefined;
         mode?: "live" | "planning" | undefined;
@@ -51923,7 +51945,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             });
             planId: string;
             startedAt?: import("../../types").Timestamp | undefined;
+            resolvedAt?: import("../../types").Timestamp | undefined;
             completedAt?: import("../../types").Timestamp | undefined;
+            outcome?: "resolved_early" | "completed_all" | "abandoned" | undefined;
         }[];
         behaviorId?: string | null | undefined;
         mode?: "live" | "planning" | undefined;
@@ -52136,7 +52160,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             });
             planId: string;
             startedAt?: import("../../types").Timestamp | undefined;
+            resolvedAt?: import("../../types").Timestamp | undefined;
             completedAt?: import("../../types").Timestamp | undefined;
+            outcome?: "resolved_early" | "completed_all" | "abandoned" | undefined;
         }[];
         behaviorId?: string | null | undefined;
         mode?: "live" | "planning" | undefined;
@@ -52354,7 +52380,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             });
             planId: string;
             startedAt?: import("../../types").Timestamp | undefined;
+            resolvedAt?: import("../../types").Timestamp | undefined;
             completedAt?: import("../../types").Timestamp | undefined;
+            outcome?: "resolved_early" | "completed_all" | "abandoned" | undefined;
         }[];
         behaviorId?: string | null | undefined;
         mode?: "live" | "planning" | undefined;
