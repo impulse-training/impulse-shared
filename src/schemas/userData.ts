@@ -91,6 +91,11 @@ export const userDataSchema = z.object({
       // Written only from real hardware (useUserMetadataSync's isDevice
       // guard); the OTA release gate reads it to decide a binary is live.
       nativeVersion: z.string().optional(),
+      // How that binary was installed (InstallSource native module; absent on
+      // binaries that predate it). The OTA gate only counts "appstore" boots.
+      installSource: z
+        .enum(["appstore", "testflight", "development", "simulator"])
+        .optional(),
     })
     .optional(),
   isAppEnabled: z.boolean().optional(),
