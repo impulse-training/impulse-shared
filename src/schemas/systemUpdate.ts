@@ -7,7 +7,9 @@ import { timestampSchema } from "../utils/timestampSchema";
 // the app, so they're declared here too.
 export const otaSystemUpdateSchema = z.object({
   type: z.literal("ota").default("ota"),
-  severity: z.enum(["normal", "severe"]),
+  // "silent" = automated daily OTA: downloads in the background with no popup
+  // or banner, applies on the next cold start.
+  severity: z.enum(["normal", "severe", "silent"]),
   iosUpdateId: z.string(),
   androidUpdateId: z.string().optional(),
   appVersion: z.string().optional(),
