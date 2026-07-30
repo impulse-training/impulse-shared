@@ -1,10 +1,17 @@
 import { z } from "zod";
 export declare const otaSystemUpdateSchema: z.ZodObject<{
     type: z.ZodDefault<z.ZodLiteral<"ota">>;
-    severity: z.ZodEnum<["normal", "severe"]>;
+    severity: z.ZodEnum<["normal", "severe", "silent"]>;
     iosUpdateId: z.ZodString;
     androidUpdateId: z.ZodOptional<z.ZodString>;
     appVersion: z.ZodOptional<z.ZodString>;
+    /**
+     * Monotonic patch number within `appVersion`, assigned by
+     * publish-production.js — the second half of the version the app displays
+     * ("0.2:3" is the third OTA patch on the 0.2 binary). Optional: OTA docs
+     * published before patches were numbered don't have one.
+     */
+    patchNumber: z.ZodOptional<z.ZodNumber>;
     updateGroupId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -12,19 +19,21 @@ export declare const otaSystemUpdateSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "ota";
-    severity: "normal" | "severe";
+    severity: "normal" | "severe" | "silent";
     iosUpdateId: string;
     appVersion?: string | undefined;
     androidUpdateId?: string | undefined;
+    patchNumber?: number | undefined;
     updateGroupId?: string | null | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
-    severity: "normal" | "severe";
+    severity: "normal" | "severe" | "silent";
     iosUpdateId: string;
     type?: "ota" | undefined;
     appVersion?: string | undefined;
     androidUpdateId?: string | undefined;
+    patchNumber?: number | undefined;
     updateGroupId?: string | null | undefined;
 }>;
 export type OtaSystemUpdate = z.infer<typeof otaSystemUpdateSchema>;
@@ -98,10 +107,17 @@ export declare const systemUpdateSchema: z.ZodUnion<[z.ZodObject<{
     androidUpgradeUrl?: string | null | undefined;
 }>, z.ZodObject<{
     type: z.ZodDefault<z.ZodLiteral<"ota">>;
-    severity: z.ZodEnum<["normal", "severe"]>;
+    severity: z.ZodEnum<["normal", "severe", "silent"]>;
     iosUpdateId: z.ZodString;
     androidUpdateId: z.ZodOptional<z.ZodString>;
     appVersion: z.ZodOptional<z.ZodString>;
+    /**
+     * Monotonic patch number within `appVersion`, assigned by
+     * publish-production.js — the second half of the version the app displays
+     * ("0.2:3" is the third OTA patch on the 0.2 binary). Optional: OTA docs
+     * published before patches were numbered don't have one.
+     */
+    patchNumber: z.ZodOptional<z.ZodNumber>;
     updateGroupId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -109,19 +125,21 @@ export declare const systemUpdateSchema: z.ZodUnion<[z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "ota";
-    severity: "normal" | "severe";
+    severity: "normal" | "severe" | "silent";
     iosUpdateId: string;
     appVersion?: string | undefined;
     androidUpdateId?: string | undefined;
+    patchNumber?: number | undefined;
     updateGroupId?: string | null | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
-    severity: "normal" | "severe";
+    severity: "normal" | "severe" | "silent";
     iosUpdateId: string;
     type?: "ota" | undefined;
     appVersion?: string | undefined;
     androidUpdateId?: string | undefined;
+    patchNumber?: number | undefined;
     updateGroupId?: string | null | undefined;
 }>]>;
 export type SystemUpdate = z.infer<typeof systemUpdateSchema>;

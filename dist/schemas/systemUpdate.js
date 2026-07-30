@@ -9,10 +9,19 @@ const timestampSchema_1 = require("../utils/timestampSchema");
 // the app, so they're declared here too.
 exports.otaSystemUpdateSchema = zod_1.z.object({
     type: zod_1.z.literal("ota").default("ota"),
-    severity: zod_1.z.enum(["normal", "severe"]),
+    // "silent" = automated daily OTA: downloads in the background with no popup
+    // or banner, applies on the next cold start.
+    severity: zod_1.z.enum(["normal", "severe", "silent"]),
     iosUpdateId: zod_1.z.string(),
     androidUpdateId: zod_1.z.string().optional(),
     appVersion: zod_1.z.string().optional(),
+    /**
+     * Monotonic patch number within `appVersion`, assigned by
+     * publish-production.js — the second half of the version the app displays
+     * ("0.2:3" is the third OTA patch on the 0.2 binary). Optional: OTA docs
+     * published before patches were numbered don't have one.
+     */
+    patchNumber: zod_1.z.number().int().positive().optional(),
     updateGroupId: zod_1.z.string().nullable().optional(),
     createdAt: timestampSchema_1.timestampSchema,
     updatedAt: timestampSchema_1.timestampSchema,
