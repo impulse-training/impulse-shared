@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getCompletedTacticIds = getCompletedTacticIds;
 exports.buildPlansLogPayload = buildPlansLogPayload;
+const log_1 = require("../schemas/log");
 function getDocPath(value) {
     if (!value || typeof value !== "object")
         return null;
@@ -48,7 +50,27 @@ function getAllTactics(tacticsRefs, tacticsByPath) {
     }
     return results;
 }
-function buildPlansLogPayload(log, isFinalLogInSession) {
+/**
+ * Tactic ids the user has completed in this session, read from its tactic
+ * logs. Feed this to getGptPayload's `completedTacticIds` option so the plan
+ * context reflects out-of-order completions the moment the tactic log exists,
+ * instead of waiting on the client to sync the plans log's outcome field.
+ */
+function getCompletedTacticIds(logs) {
+    var _a;
+    const ids = new Set();
+    for (const log of logs) {
+        if (!(0, log_1.logIsTacticLog)(log))
+            continue;
+        if (log.data.completed !== true)
+            continue;
+        const id = (_a = log.data.tactic) === null || _a === void 0 ? void 0 : _a.id;
+        if (typeof id === "string" && id.length > 0)
+            ids.add(id);
+    }
+    return [...ids];
+}
+function buildPlansLogPayload(log, isFinalLogInSession, completedTacticIds) {
     var _a, _b, _c, _d;
     const activeIndex = (_a = log.data.activeIndex) !== null && _a !== void 0 ? _a : 0;
     const activePlanEntry = log.data.plans[activeIndex];
@@ -82,10 +104,20 @@ function buildPlansLogPayload(log, isFinalLogInSession) {
         // passed?) instead of marching the user to the next step.
         const allTactics = getAllTactics(plan === null || plan === void 0 ? void 0 : plan.tactics, plan === null || plan === void 0 ? void 0 : plan.tacticsByPath);
         const outcome = activePlanEntry === null || activePlanEntry === void 0 ? void 0 : activePlanEntry.outcome;
+        // Completion state comes from the session's tactic logs, not the plans
+        // log's outcome field: the outcome is synced by the client after the
+        // fact, and the user may complete steps OUT OF ORDER (e.g. the second
+        // tactic before the first), so "position in the list" says nothing about
+        // what remains.
+        const completed = new Set(completedTacticIds !== null && completedTacticIds !== void 0 ? completedTacticIds : []);
+        const allTacticsCompleted = allTactics.length > 0 && allTactics.every((t) => completed.has(t.id));
         if (outcome === "resolved_early" || outcome === "completed_all") {
             parts.push(outcome === "resolved_early"
                 ? "The user's plan for this session already resolved EARLY: the urge passed before every step was needed. That is a full success — the plan did its job. Do not point the user at remaining steps, do not suggest more tactics, and do not treat unused steps as unfinished business."
                 : "The user completed every step of their plan for this session. Acknowledge it if relevant; do not re-deliver any step.");
+        }
+        else if (allTacticsCompleted) {
+            parts.push("The user completed EVERY tactic of their plan for this session (possibly out of order). Acknowledge it if relevant; do not re-deliver any step, and never direct the user to a tactic of this plan — there is no next step left.");
         }
         else if (isFinalLogInSession) {
             parts.push(`The user's own plan was just assigned. The app is displaying it to them in the plan sheet with its ${tacticsCount} ${tacticsNoun}.`);
@@ -96,11 +128,11 @@ function buildPlansLogPayload(log, isFinalLogInSession) {
         else {
             parts.push(`The user's own plan is assigned for this session, displayed to them in the plan sheet with ${tacticsCount} ${tacticsNoun}${allTactics.length > 0 ? " (in order):" : "."}`);
             allTactics.forEach((t, i) => {
-                parts.push(`${i + 1}. "${t.title}"`);
+                parts.push(`${i + 1}. "${t.title}"${completed.has(t.id) ? " — ALREADY COMPLETED" : ""}`);
             });
             parts.push("After the user completes a tactic, acknowledge it in one short sentence and ask how the urge is doing now — a quick checkpoint. Do NOT direct them to the next step in that same message. " +
                 "If the user says the urge has passed or they feel back in control, call resolvePlanEarly and then reinforce the win in one short line — steps they never needed are a success, not a failure. " +
-                "If the urge is still present or they want to keep going, point them to the next step of their plan by name. " +
+                "If the urge is still present or they want to keep going, point them to the next tactic of their plan they have NOT yet completed — the user may work steps out of order, so skip any marked ALREADY COMPLETED, and never direct them to one of those. " +
                 "If they say a step doesn't fit their current situation (wrong place, no privacy, no time), accept that without treating the plan as failed and without scrambling to assign a replacement task — check how the urge is doing instead. " +
                 "Never tell the user to repeat a tactic they just completed.");
         }

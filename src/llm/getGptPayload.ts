@@ -26,6 +26,13 @@ interface PayloadOptions {
   forSummarization?: boolean;
   sessionPhase?: SessionPhase;
   sessionType?: string;
+  /**
+   * Tactic ids the user has completed in this session (from its tactic logs).
+   * Lets the plan context mark which plan tactics are already done — the user
+   * may complete steps out of order, and the plans log's own outcome field is
+   * only synced by the client after the fact.
+   */
+  completedTacticIds?: string[];
 }
 
 /**
@@ -319,7 +326,11 @@ export function getGptPayload(
     // Plans logs contain AI instructions that pollute summaries.
     // Actual plan usage is captured by separate tactic logs.
     if (options?.forSummarization) return [];
-    return buildPlansLogPayload(log, isFinalLogInSession);
+    return buildPlansLogPayload(
+      log,
+      isFinalLogInSession,
+      options?.completedTacticIds,
+    );
   }
 
   if (logIsUserMessageLog(log)) {
@@ -406,7 +417,7 @@ export function getGptPayload(
       isFinalLogInSession &&
       !isDebrief &&
       !options?.forSummarization
-        ? " This was a step of the user's assigned plan. Reply in ONE short message: briefly credit them, then ask how the urge is doing now. Do NOT direct them to the next step of the plan in this message. If the user then says the urge has passed or they feel in control, call resolvePlanEarly and reinforce the win; if the urge is still present or they want to continue, point them to the next step by name."
+        ? " This was a step of the user's assigned plan. Reply in ONE short message: briefly credit them, then ask how the urge is doing now. Do NOT direct them to the next step of the plan in this message. If the user then says the urge has passed or they feel in control, call resolvePlanEarly and reinforce the win; if the urge is still present or they want to continue, point them to the next tactic of their plan they have NOT already completed — the user may do steps out of order, and if none remain the plan is simply done: never send them back to a completed tactic."
         : "";
 
     if (isCompleted && response) {
