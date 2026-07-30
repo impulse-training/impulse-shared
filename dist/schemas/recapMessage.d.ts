@@ -6,13 +6,13 @@ export declare const recapMessageSchema: z.ZodObject<{
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../types").Timestamp;
+    role: "user" | "assistant";
     content: string;
-    role: "assistant" | "user";
     id?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
+    role: "user" | "assistant";
     content: string;
-    role: "assistant" | "user";
     id?: string | undefined;
 }>;
 export type RecapMessage = z.infer<typeof recapMessageSchema>;

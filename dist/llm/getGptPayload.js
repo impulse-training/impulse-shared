@@ -89,7 +89,7 @@ function buildBehaviorLogPayload(log, options) {
     return [];
 }
 function getGptPayload(log, isFinalLogInSession, options) {
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
     if (log.type === "proposed_experiment") {
         const behaviorName = "behaviorName" in log
             ? log.behaviorName
@@ -286,10 +286,20 @@ function getGptPayload(log, isFinalLogInSession, options) {
         const messages = [];
         if (!log.data.endedAt)
             return [];
+        const transcriptItems = (_f = log.data.transcriptItems) === null || _f === void 0 ? void 0 : _f.filter((item) => item.type !== "partial" && item.text.trim().length > 0);
         if (log.data.summary) {
             messages.push({
                 role: "user",
                 content: `<SYSTEM>Previous call summary: ${log.data.summary}</SYSTEM>`,
+            });
+        }
+        else if (transcriptItems && transcriptItems.length > 0) {
+            const transcript = transcriptItems
+                .map((item) => `${item.role === "user" ? "User" : "Assistant"}: ${item.text}`)
+                .join("\n");
+            messages.push({
+                role: "user",
+                content: `<SYSTEM>The user had a voice call with the assistant. A summary isn't available yet — full transcript:\n${transcript}</SYSTEM>`,
             });
         }
         else {
@@ -449,12 +459,12 @@ function getGptPayload(log, isFinalLogInSession, options) {
     if (log.type === "tags_updated") {
         if (options === null || options === void 0 ? void 0 : options.forSummarization)
             return [];
-        const tactics = (_f = log.data) === null || _f === void 0 ? void 0 : _f.recommendedTactics;
+        const tactics = (_g = log.data) === null || _g === void 0 ? void 0 : _g.recommendedTactics;
         // `behaviorIds` is only written when the update changed which behaviors
         // the session is about, so its presence means the user flagged a
         // behavior as also relevant — a different event from editing a tag, and
         // the one the reply should acknowledge.
-        const behaviorsChanged = ((_h = (_g = log.data.behaviorIds) === null || _g === void 0 ? void 0 : _g.length) !== null && _h !== void 0 ? _h : 0) > 0;
+        const behaviorsChanged = ((_j = (_h = log.data.behaviorIds) === null || _h === void 0 ? void 0 : _h.length) !== null && _j !== void 0 ? _j : 0) > 0;
         const opener = behaviorsChanged
             ? "The user just flagged another behavior as relevant to this moment using the tag bar. "
             : "The user just updated their session tags using the tag bar. ";
@@ -465,7 +475,7 @@ function getGptPayload(log, isFinalLogInSession, options) {
         // plans are invisible and deliver inline, one suggestTactic card at a
         // time.
         if (tactics && tactics.length > 0) {
-            const planSource = (_j = log.data) === null || _j === void 0 ? void 0 : _j.planSource;
+            const planSource = (_k = log.data) === null || _k === void 0 ? void 0 : _k.planSource;
             const isUserOwnedPlan = planSource === "trigger" || planSource === "behavior";
             if (isUserOwnedPlan) {
                 const lines = tactics.map((t) => `- "${t.title}"${t.phase ? ` (${t.phase})` : ""}${t.description ? ` — ${t.description}` : ""}`);

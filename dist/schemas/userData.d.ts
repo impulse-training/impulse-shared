@@ -35,6 +35,8 @@ export declare const userDataSchema: z.ZodObject<{
         modelId: z.ZodOptional<z.ZodString>;
         deviceName: z.ZodOptional<z.ZodString>;
         isDevice: z.ZodOptional<z.ZodBoolean>;
+        nativeVersion: z.ZodOptional<z.ZodString>;
+        installSource: z.ZodOptional<z.ZodEnum<["appstore", "testflight", "development", "simulator"]>>;
     }, "strip", z.ZodTypeAny, {
         osVersion?: string | undefined;
         osName?: string | undefined;
@@ -44,6 +46,8 @@ export declare const userDataSchema: z.ZodObject<{
         modelId?: string | undefined;
         deviceName?: string | undefined;
         isDevice?: boolean | undefined;
+        nativeVersion?: string | undefined;
+        installSource?: "appstore" | "testflight" | "development" | "simulator" | undefined;
     }, {
         osVersion?: string | undefined;
         osName?: string | undefined;
@@ -53,6 +57,8 @@ export declare const userDataSchema: z.ZodObject<{
         modelId?: string | undefined;
         deviceName?: string | undefined;
         isDevice?: boolean | undefined;
+        nativeVersion?: string | undefined;
+        installSource?: "appstore" | "testflight" | "development" | "simulator" | undefined;
     }>>;
     isAppEnabled: z.ZodOptional<z.ZodBoolean>;
     deletionRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -267,6 +273,8 @@ export declare const userDataSchema: z.ZodObject<{
         modelId?: string | undefined;
         deviceName?: string | undefined;
         isDevice?: boolean | undefined;
+        nativeVersion?: string | undefined;
+        installSource?: "appstore" | "testflight" | "development" | "simulator" | undefined;
     } | undefined;
     isAppEnabled?: boolean | undefined;
     deletionRequestedAt?: import("../types").Timestamp | undefined;
@@ -329,6 +337,7 @@ export declare const userDataSchema: z.ZodObject<{
     updatedAt?: import("../types").Timestamp | undefined;
     country?: string | undefined;
     appVersion?: string | undefined;
+    role?: "user" | "coach" | "support" | undefined;
     behaviorNames?: string[] | undefined;
     emojiId?: {
         emoji: string;
@@ -344,7 +353,6 @@ export declare const userDataSchema: z.ZodObject<{
             minute: number;
         } | undefined;
     } | undefined;
-    role?: "user" | "coach" | "support" | undefined;
     theme?: "system" | "light" | "dark" | undefined;
     notificationsEnabled?: boolean | undefined;
     lastActive?: import("../types").Timestamp | undefined;
@@ -372,6 +380,8 @@ export declare const userDataSchema: z.ZodObject<{
         modelId?: string | undefined;
         deviceName?: string | undefined;
         isDevice?: boolean | undefined;
+        nativeVersion?: string | undefined;
+        installSource?: "appstore" | "testflight" | "development" | "simulator" | undefined;
     } | undefined;
     isAppEnabled?: boolean | undefined;
     deletionRequestedAt?: import("../types").Timestamp | undefined;

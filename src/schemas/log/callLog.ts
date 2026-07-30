@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { timestampSchema } from "../../utils/timestampSchema";
 import { tacticSchema } from "../tactic";
+import { transcriptItemSchema } from "../transcriptItem";
 import { logBaseSchema } from "./base";
 
 // Call log Schema
@@ -19,6 +20,10 @@ export const callLogSchema = logBaseSchema.extend({
     elevenlabsConversationId: z.string().optional(),
     token: z.string().optional(),
     summary: z.string().optional(),
+    // Not persisted on the doc — hydrated at read time from the log's
+    // transcriptItems subcollection when the call ended but the summary
+    // hasn't landed yet, so getGptPayload can fall back to the transcript.
+    transcriptItems: z.array(transcriptItemSchema).optional(),
   }),
 });
 

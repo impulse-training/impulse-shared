@@ -77,6 +77,15 @@ exports.userDataSchema = zod_1.z.object({
         modelId: zod_1.z.string().optional(),
         deviceName: zod_1.z.string().optional(),
         isDevice: zod_1.z.boolean().optional(),
+        // Marketing version of the binary this real device last booted.
+        // Written only from real hardware (useUserMetadataSync's isDevice
+        // guard); the OTA release gate reads it to decide a binary is live.
+        nativeVersion: zod_1.z.string().optional(),
+        // How that binary was installed (InstallSource native module; absent on
+        // binaries that predate it). The OTA gate only counts "appstore" boots.
+        installSource: zod_1.z
+            .enum(["appstore", "testflight", "development", "simulator"])
+            .optional(),
     })
         .optional(),
     isAppEnabled: zod_1.z.boolean().optional(),

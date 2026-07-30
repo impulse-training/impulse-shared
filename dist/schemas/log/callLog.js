@@ -4,6 +4,7 @@ exports.callLogSchema = void 0;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../../utils/timestampSchema");
 const tactic_1 = require("../tactic");
+const transcriptItem_1 = require("../transcriptItem");
 const base_1 = require("./base");
 // Call log Schema
 exports.callLogSchema = base_1.logBaseSchema.extend({
@@ -21,5 +22,9 @@ exports.callLogSchema = base_1.logBaseSchema.extend({
         elevenlabsConversationId: zod_1.z.string().optional(),
         token: zod_1.z.string().optional(),
         summary: zod_1.z.string().optional(),
+        // Not persisted on the doc — hydrated at read time from the log's
+        // transcriptItems subcollection when the call ended but the summary
+        // hasn't landed yet, so getGptPayload can fall back to the transcript.
+        transcriptItems: zod_1.z.array(transcriptItem_1.transcriptItemSchema).optional(),
     }),
 });

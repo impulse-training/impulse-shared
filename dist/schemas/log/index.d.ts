@@ -5823,6 +5823,25 @@ export declare const logSchemas: {
             elevenlabsConversationId: z.ZodOptional<z.ZodString>;
             token: z.ZodOptional<z.ZodString>;
             summary: z.ZodOptional<z.ZodString>;
+            transcriptItems: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                role: z.ZodEnum<["user", "assistant"]>;
+                text: z.ZodString;
+                ts: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+                interrupted: z.ZodOptional<z.ZodBoolean>;
+                type: z.ZodOptional<z.ZodEnum<["final", "partial"]>>;
+            }, "strip", z.ZodTypeAny, {
+                ts: import("../../types").Timestamp;
+                text: string;
+                role: "user" | "assistant";
+                type?: "partial" | "final" | undefined;
+                interrupted?: boolean | undefined;
+            }, {
+                ts: import("../../types").Timestamp;
+                text: string;
+                role: "user" | "assistant";
+                type?: "partial" | "final" | undefined;
+                interrupted?: boolean | undefined;
+            }>, "many">>;
         }, "strip", z.ZodTypeAny, {
             endedAt?: import("../../types").Timestamp | undefined;
             livekitRoomName?: string | undefined;
@@ -6440,6 +6459,13 @@ export declare const logSchemas: {
             elevenlabsConversationId?: string | undefined;
             token?: string | undefined;
             summary?: string | undefined;
+            transcriptItems?: {
+                ts: import("../../types").Timestamp;
+                text: string;
+                role: "user" | "assistant";
+                type?: "partial" | "final" | undefined;
+                interrupted?: boolean | undefined;
+            }[] | undefined;
         }, {
             endedAt?: import("../../types").Timestamp | undefined;
             livekitRoomName?: string | undefined;
@@ -6523,6 +6549,13 @@ export declare const logSchemas: {
             elevenlabsConversationId?: string | undefined;
             token?: string | undefined;
             summary?: string | undefined;
+            transcriptItems?: {
+                ts: import("../../types").Timestamp;
+                text: string;
+                role: "user" | "assistant";
+                type?: "partial" | "final" | undefined;
+                interrupted?: boolean | undefined;
+            }[] | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../../types").Timestamp;
@@ -7150,6 +7183,13 @@ export declare const logSchemas: {
             elevenlabsConversationId?: string | undefined;
             token?: string | undefined;
             summary?: string | undefined;
+            transcriptItems?: {
+                ts: import("../../types").Timestamp;
+                text: string;
+                role: "user" | "assistant";
+                type?: "partial" | "final" | undefined;
+                interrupted?: boolean | undefined;
+            }[] | undefined;
         };
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
@@ -7248,6 +7288,13 @@ export declare const logSchemas: {
             elevenlabsConversationId?: string | undefined;
             token?: string | undefined;
             summary?: string | undefined;
+            transcriptItems?: {
+                ts: import("../../types").Timestamp;
+                text: string;
+                role: "user" | "assistant";
+                type?: "partial" | "final" | undefined;
+                interrupted?: boolean | undefined;
+            }[] | undefined;
         };
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
@@ -7305,7 +7352,7 @@ export declare const logSchemas: {
                 }>, "many">>;
                 name: z.ZodOptional<z.ZodString>;
             }, "strip", z.ZodTypeAny, {
-                role: "assistant" | "user" | "system" | "tool";
+                role: "user" | "assistant" | "system" | "tool";
                 name?: string | undefined;
                 content?: string | any[] | null | undefined;
                 tool_call_id?: string | undefined;
@@ -7318,7 +7365,7 @@ export declare const logSchemas: {
                     type: "function";
                 }[] | undefined;
             }, {
-                role: "assistant" | "user" | "system" | "tool";
+                role: "user" | "assistant" | "system" | "tool";
                 name?: string | undefined;
                 content?: string | any[] | null | undefined;
                 tool_call_id?: string | undefined;
@@ -7334,7 +7381,7 @@ export declare const logSchemas: {
             toolCallResults: z.ZodArray<z.ZodAny, "many">;
         }, "strip", z.ZodTypeAny, {
             message: {
-                role: "assistant" | "user" | "system" | "tool";
+                role: "user" | "assistant" | "system" | "tool";
                 name?: string | undefined;
                 content?: string | any[] | null | undefined;
                 tool_call_id?: string | undefined;
@@ -7350,7 +7397,7 @@ export declare const logSchemas: {
             toolCallResults: any[];
         }, {
             message: {
-                role: "assistant" | "user" | "system" | "tool";
+                role: "user" | "assistant" | "system" | "tool";
                 name?: string | undefined;
                 content?: string | any[] | null | undefined;
                 tool_call_id?: string | undefined;
@@ -7376,7 +7423,7 @@ export declare const logSchemas: {
         isDisplayable: false;
         data: {
             message: {
-                role: "assistant" | "user" | "system" | "tool";
+                role: "user" | "assistant" | "system" | "tool";
                 name?: string | undefined;
                 content?: string | any[] | null | undefined;
                 tool_call_id?: string | undefined;
@@ -7407,7 +7454,7 @@ export declare const logSchemas: {
         isDisplayable: false;
         data: {
             message: {
-                role: "assistant" | "user" | "system" | "tool";
+                role: "user" | "assistant" | "system" | "tool";
                 name?: string | undefined;
                 content?: string | any[] | null | undefined;
                 tool_call_id?: string | undefined;
@@ -41508,6 +41555,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         elevenlabsConversationId: z.ZodOptional<z.ZodString>;
         token: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
+        transcriptItems: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            role: z.ZodEnum<["user", "assistant"]>;
+            text: z.ZodString;
+            ts: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            interrupted: z.ZodOptional<z.ZodBoolean>;
+            type: z.ZodOptional<z.ZodEnum<["final", "partial"]>>;
+        }, "strip", z.ZodTypeAny, {
+            ts: import("../../types").Timestamp;
+            text: string;
+            role: "user" | "assistant";
+            type?: "partial" | "final" | undefined;
+            interrupted?: boolean | undefined;
+        }, {
+            ts: import("../../types").Timestamp;
+            text: string;
+            role: "user" | "assistant";
+            type?: "partial" | "final" | undefined;
+            interrupted?: boolean | undefined;
+        }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         endedAt?: import("../../types").Timestamp | undefined;
         livekitRoomName?: string | undefined;
@@ -42125,6 +42191,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
         summary?: string | undefined;
+        transcriptItems?: {
+            ts: import("../../types").Timestamp;
+            text: string;
+            role: "user" | "assistant";
+            type?: "partial" | "final" | undefined;
+            interrupted?: boolean | undefined;
+        }[] | undefined;
     }, {
         endedAt?: import("../../types").Timestamp | undefined;
         livekitRoomName?: string | undefined;
@@ -42208,6 +42281,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
         summary?: string | undefined;
+        transcriptItems?: {
+            ts: import("../../types").Timestamp;
+            text: string;
+            role: "user" | "assistant";
+            type?: "partial" | "final" | undefined;
+            interrupted?: boolean | undefined;
+        }[] | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -42835,6 +42915,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
         summary?: string | undefined;
+        transcriptItems?: {
+            ts: import("../../types").Timestamp;
+            text: string;
+            role: "user" | "assistant";
+            type?: "partial" | "final" | undefined;
+            interrupted?: boolean | undefined;
+        }[] | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
@@ -42933,6 +43020,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
         summary?: string | undefined;
+        transcriptItems?: {
+            ts: import("../../types").Timestamp;
+            text: string;
+            role: "user" | "assistant";
+            type?: "partial" | "final" | undefined;
+            interrupted?: boolean | undefined;
+        }[] | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
@@ -42989,7 +43083,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }>, "many">>;
             name: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
-            role: "assistant" | "user" | "system" | "tool";
+            role: "user" | "assistant" | "system" | "tool";
             name?: string | undefined;
             content?: string | any[] | null | undefined;
             tool_call_id?: string | undefined;
@@ -43002,7 +43096,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 type: "function";
             }[] | undefined;
         }, {
-            role: "assistant" | "user" | "system" | "tool";
+            role: "user" | "assistant" | "system" | "tool";
             name?: string | undefined;
             content?: string | any[] | null | undefined;
             tool_call_id?: string | undefined;
@@ -43018,7 +43112,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         toolCallResults: z.ZodArray<z.ZodAny, "many">;
     }, "strip", z.ZodTypeAny, {
         message: {
-            role: "assistant" | "user" | "system" | "tool";
+            role: "user" | "assistant" | "system" | "tool";
             name?: string | undefined;
             content?: string | any[] | null | undefined;
             tool_call_id?: string | undefined;
@@ -43034,7 +43128,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         toolCallResults: any[];
     }, {
         message: {
-            role: "assistant" | "user" | "system" | "tool";
+            role: "user" | "assistant" | "system" | "tool";
             name?: string | undefined;
             content?: string | any[] | null | undefined;
             tool_call_id?: string | undefined;
@@ -43060,7 +43154,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: false;
     data: {
         message: {
-            role: "assistant" | "user" | "system" | "tool";
+            role: "user" | "assistant" | "system" | "tool";
             name?: string | undefined;
             content?: string | any[] | null | undefined;
             tool_call_id?: string | undefined;
@@ -43091,7 +43185,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: false;
     data: {
         message: {
-            role: "assistant" | "user" | "system" | "tool";
+            role: "user" | "assistant" | "system" | "tool";
             name?: string | undefined;
             content?: string | any[] | null | undefined;
             tool_call_id?: string | undefined;
