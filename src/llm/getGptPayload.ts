@@ -373,10 +373,25 @@ export function getGptPayload(
 
     if (!log.data.endedAt) return [];
 
+    const transcriptItems = log.data.transcriptItems?.filter(
+      (item) => item.type !== "partial" && item.text.trim().length > 0,
+    );
+
     if (log.data.summary) {
       messages.push({
         role: "user",
         content: `<SYSTEM>Previous call summary: ${log.data.summary}</SYSTEM>`,
+      });
+    } else if (transcriptItems && transcriptItems.length > 0) {
+      const transcript = transcriptItems
+        .map(
+          (item) =>
+            `${item.role === "user" ? "User" : "Assistant"}: ${item.text}`,
+        )
+        .join("\n");
+      messages.push({
+        role: "user",
+        content: `<SYSTEM>The user had a voice call with the assistant. A summary isn't available yet — full transcript:\n${transcript}</SYSTEM>`,
       });
     } else {
       messages.push({

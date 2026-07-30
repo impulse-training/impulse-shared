@@ -8,13 +8,13 @@ export declare const transcriptItemSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     ts: import("../types").Timestamp;
     text: string;
-    role: "assistant" | "user";
+    role: "user" | "assistant";
     type?: "partial" | "final" | undefined;
     interrupted?: boolean | undefined;
 }, {
     ts: import("../types").Timestamp;
     text: string;
-    role: "assistant" | "user";
+    role: "user" | "assistant";
     type?: "partial" | "final" | undefined;
     interrupted?: boolean | undefined;
 }>;

@@ -33,7 +33,7 @@ export declare const chatCompletionMessageSchema: z.ZodObject<{
     }>, "many">>;
     name: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    role: "assistant" | "user" | "system" | "tool";
+    role: "user" | "assistant" | "system" | "tool";
     name?: string | undefined;
     content?: string | any[] | null | undefined;
     tool_call_id?: string | undefined;
@@ -46,7 +46,7 @@ export declare const chatCompletionMessageSchema: z.ZodObject<{
         type: "function";
     }[] | undefined;
 }, {
-    role: "assistant" | "user" | "system" | "tool";
+    role: "user" | "assistant" | "system" | "tool";
     name?: string | undefined;
     content?: string | any[] | null | undefined;
     tool_call_id?: string | undefined;
@@ -109,7 +109,7 @@ export declare const toolCallLogSchema: z.ZodObject<{
             }>, "many">>;
             name: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
-            role: "assistant" | "user" | "system" | "tool";
+            role: "user" | "assistant" | "system" | "tool";
             name?: string | undefined;
             content?: string | any[] | null | undefined;
             tool_call_id?: string | undefined;
@@ -122,7 +122,7 @@ export declare const toolCallLogSchema: z.ZodObject<{
                 type: "function";
             }[] | undefined;
         }, {
-            role: "assistant" | "user" | "system" | "tool";
+            role: "user" | "assistant" | "system" | "tool";
             name?: string | undefined;
             content?: string | any[] | null | undefined;
             tool_call_id?: string | undefined;
@@ -138,7 +138,7 @@ export declare const toolCallLogSchema: z.ZodObject<{
         toolCallResults: z.ZodArray<z.ZodAny, "many">;
     }, "strip", z.ZodTypeAny, {
         message: {
-            role: "assistant" | "user" | "system" | "tool";
+            role: "user" | "assistant" | "system" | "tool";
             name?: string | undefined;
             content?: string | any[] | null | undefined;
             tool_call_id?: string | undefined;
@@ -154,7 +154,7 @@ export declare const toolCallLogSchema: z.ZodObject<{
         toolCallResults: any[];
     }, {
         message: {
-            role: "assistant" | "user" | "system" | "tool";
+            role: "user" | "assistant" | "system" | "tool";
             name?: string | undefined;
             content?: string | any[] | null | undefined;
             tool_call_id?: string | undefined;
@@ -180,7 +180,7 @@ export declare const toolCallLogSchema: z.ZodObject<{
     isDisplayable: false;
     data: {
         message: {
-            role: "assistant" | "user" | "system" | "tool";
+            role: "user" | "assistant" | "system" | "tool";
             name?: string | undefined;
             content?: string | any[] | null | undefined;
             tool_call_id?: string | undefined;
@@ -211,7 +211,7 @@ export declare const toolCallLogSchema: z.ZodObject<{
     isDisplayable: false;
     data: {
         message: {
-            role: "assistant" | "user" | "system" | "tool";
+            role: "user" | "assistant" | "system" | "tool";
             name?: string | undefined;
             content?: string | any[] | null | undefined;
             tool_call_id?: string | undefined;

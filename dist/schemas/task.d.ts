@@ -1590,27 +1590,27 @@ export declare const createSessionTaskSchema: z.ZodObject<{
                 role: z.ZodEnum<["assistant", "user"]>;
                 content: z.ZodString;
             }, "strip", z.ZodTypeAny, {
+                role: "user" | "assistant";
                 content: string;
-                role: "assistant" | "user";
             }, {
+                role: "user" | "assistant";
                 content: string;
-                role: "assistant" | "user";
             }>>;
         }, "strip", z.ZodTypeAny, {
             type: string;
             isDisplayable: true;
             data: Record<string, any>;
             message?: {
+                role: "user" | "assistant";
                 content: string;
-                role: "assistant" | "user";
             } | undefined;
         }, {
             type: string;
             isDisplayable: true;
             data: Record<string, any>;
             message?: {
+                role: "user" | "assistant";
                 content: string;
-                role: "assistant" | "user";
             } | undefined;
         }>, "many">;
         notification: z.ZodOptional<z.ZodObject<{
@@ -1633,8 +1633,8 @@ export declare const createSessionTaskSchema: z.ZodObject<{
             isDisplayable: true;
             data: Record<string, any>;
             message?: {
+                role: "user" | "assistant";
                 content: string;
-                role: "assistant" | "user";
             } | undefined;
         }[];
         notification?: {
@@ -1649,8 +1649,8 @@ export declare const createSessionTaskSchema: z.ZodObject<{
             isDisplayable: true;
             data: Record<string, any>;
             message?: {
+                role: "user" | "assistant";
                 content: string;
-                role: "assistant" | "user";
             } | undefined;
         }[];
         notification?: {
@@ -1680,8 +1680,8 @@ export declare const createSessionTaskSchema: z.ZodObject<{
             isDisplayable: true;
             data: Record<string, any>;
             message?: {
+                role: "user" | "assistant";
                 content: string;
-                role: "assistant" | "user";
             } | undefined;
         }[];
         notification?: {
@@ -1727,8 +1727,8 @@ export declare const createSessionTaskSchema: z.ZodObject<{
             isDisplayable: true;
             data: Record<string, any>;
             message?: {
+                role: "user" | "assistant";
                 content: string;
-                role: "assistant" | "user";
             } | undefined;
         }[];
         notification?: {
@@ -4344,27 +4344,27 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 role: z.ZodEnum<["assistant", "user"]>;
                 content: z.ZodString;
             }, "strip", z.ZodTypeAny, {
+                role: "user" | "assistant";
                 content: string;
-                role: "assistant" | "user";
             }, {
+                role: "user" | "assistant";
                 content: string;
-                role: "assistant" | "user";
             }>>;
         }, "strip", z.ZodTypeAny, {
             type: string;
             isDisplayable: true;
             data: Record<string, any>;
             message?: {
+                role: "user" | "assistant";
                 content: string;
-                role: "assistant" | "user";
             } | undefined;
         }, {
             type: string;
             isDisplayable: true;
             data: Record<string, any>;
             message?: {
+                role: "user" | "assistant";
                 content: string;
-                role: "assistant" | "user";
             } | undefined;
         }>, "many">;
         notification: z.ZodOptional<z.ZodObject<{
@@ -4387,8 +4387,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isDisplayable: true;
             data: Record<string, any>;
             message?: {
+                role: "user" | "assistant";
                 content: string;
-                role: "assistant" | "user";
             } | undefined;
         }[];
         notification?: {
@@ -4403,8 +4403,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isDisplayable: true;
             data: Record<string, any>;
             message?: {
+                role: "user" | "assistant";
                 content: string;
-                role: "assistant" | "user";
             } | undefined;
         }[];
         notification?: {
@@ -4434,8 +4434,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isDisplayable: true;
             data: Record<string, any>;
             message?: {
+                role: "user" | "assistant";
                 content: string;
-                role: "assistant" | "user";
             } | undefined;
         }[];
         notification?: {
@@ -4481,8 +4481,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isDisplayable: true;
             data: Record<string, any>;
             message?: {
+                role: "user" | "assistant";
                 content: string;
-                role: "assistant" | "user";
             } | undefined;
         }[];
         notification?: {
