@@ -4,6 +4,7 @@ import {
   sessionIsOnboardingSession,
   sessionIsTimePlanSession,
 } from "../schemas";
+import { nowMs } from "./clock";
 import { getDateString, getRecapDeadline } from "./dates";
 import {
   Log,
@@ -475,7 +476,14 @@ export function shouldRespondToLogWithAI(
   // Trigger experiment reflection. Only respond if within the recap deadline (10am next day).
   if (isDayTotalsConfirmed && logIsDayTotalsPromptLog(afterData)) {
     const dateStr = afterData.data.targetDateString;
-    const now = new Date();
+    // testNowMs (session tests only) pins "now" to the scenario's own clock, the
+    // same way the recap system prompt does — a scenario seeded on a past recap
+    // day is "today" from its own point of view. Only the scenario runner ever
+    // writes it, so production keeps real wall-clock behavior.
+    const now = new Date(
+      (session as (typeof session & { testNowMs?: number }) | undefined)
+        ?.testNowMs ?? nowMs(),
+    );
     const todayStr = timezone
       ? getDateString(now, timezone)
       : `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;

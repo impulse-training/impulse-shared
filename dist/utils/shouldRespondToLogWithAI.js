@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.shouldRespondToLogWithAI = shouldRespondToLogWithAI;
 const schemas_1 = require("../schemas");
+const clock_1 = require("./clock");
 const dates_1 = require("./dates");
 const log_1 = require("../schemas/log");
 const fields_1 = require("./fields");
@@ -37,7 +38,7 @@ function isTimePlanFullyCompleted(session, plansLog) {
  * @returns True if we should respond with AI, false otherwise
  */
 function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionLog, timezone) {
-    var _a, _b, _c;
+    var _a, _b, _c, _d;
     // Skip the "latest is assistant" guard for inline interactions
     // where the user acts without sending a message
     const isMetricRating = beforeData &&
@@ -345,7 +346,11 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
     // Trigger experiment reflection. Only respond if within the recap deadline (10am next day).
     if (isDayTotalsConfirmed && (0, log_1.logIsDayTotalsPromptLog)(afterData)) {
         const dateStr = afterData.data.targetDateString;
-        const now = new Date();
+        // testNowMs (session tests only) pins "now" to the scenario's own clock, the
+        // same way the recap system prompt does — a scenario seeded on a past recap
+        // day is "today" from its own point of view. Only the scenario runner ever
+        // writes it, so production keeps real wall-clock behavior.
+        const now = new Date((_d = session === null || session === void 0 ? void 0 : session.testNowMs) !== null && _d !== void 0 ? _d : (0, clock_1.nowMs)());
         const todayStr = timezone
             ? (0, dates_1.getDateString)(now, timezone)
             : `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
