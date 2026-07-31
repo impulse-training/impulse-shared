@@ -34,6 +34,7 @@ export * from "./planEffectiveness";
 export * from "./question/answerSpec";
 export * from "./quote";
 export * from "./recapMessage";
+export * from "./outreach";
 export * from "./scheduledCheckIn";
 export * from "./scheduledNotification";
 export * from "./dailyReviewReport";
