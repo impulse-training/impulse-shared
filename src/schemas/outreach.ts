@@ -81,6 +81,19 @@ export type PlannedOutreach = z.infer<typeof plannedOutreachSchema>;
 export const outreachRuleConfigSchema = z.object({
   id: z.string().optional(),
   enabled: z.boolean().optional(),
+  /**
+   * Allowlist. When present and non-empty, the rule only proposes outreach for
+   * these users — everyone else is skipped as if the rule were disabled.
+   * Absent or empty means every user (the normal fleet-wide state).
+   *
+   * This is how a rule is trialled on real accounts before general release:
+   * `enabled: true` plus a one-user allowlist. It is deliberately separate from
+   * `params` — targeting is enforced centrally by the engine, not interpreted
+   * by individual rules — and from
+   * `users/{uid}/outreachRuleSettings/{ruleId}.disabled`, which is the user's
+   * own opt-out and can only ever remove a user, never add one.
+   */
+  userIds: z.array(z.string()).optional(),
   // Rule-specific tuning knobs, merged over the rule's defaults (each rule
   // documents its own params).
   params: z.record(z.string(), z.any()).optional(),
