@@ -48,6 +48,12 @@ exports.sessionBaseSchema = zod_1.z.object({
     // Pre-computed summary data for session cards - updated when session is closed
     summaryData: sessionSummary_1.sessionSummarySchema.optional(),
     behaviorDataTotals: zod_1.z.array(behaviorTrackingData_1.behaviorTrackingDataSchema).optional(),
+    // Context the server stamped on the session when opening it (proactive
+    // outreach, scheduled check-ins). Prepended to the per-type system prompt
+    // on every respond turn — it augments the prompt, it does not replace it.
+    seededInstructions: zod_1.z.string().optional(),
+    // Deprecated pre-2026-08 name for seededInstructions. Old session docs
+    // still carry it and readers fall back to it; never write it.
     defaultSystemPrompt: zod_1.z.string().optional(),
     summary: zod_1.z.string().optional(),
     aiSummary: zod_1.z.string().optional(),

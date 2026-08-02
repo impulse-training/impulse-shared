@@ -52,6 +52,12 @@ export const sessionBaseSchema = z.object({
   // Pre-computed summary data for session cards - updated when session is closed
   summaryData: sessionSummarySchema.optional(),
   behaviorDataTotals: z.array(behaviorTrackingDataSchema).optional(),
+  // Context the server stamped on the session when opening it (proactive
+  // outreach, scheduled check-ins). Prepended to the per-type system prompt
+  // on every respond turn — it augments the prompt, it does not replace it.
+  seededInstructions: z.string().optional(),
+  // Deprecated pre-2026-08 name for seededInstructions. Old session docs
+  // still carry it and readers fall back to it; never write it.
   defaultSystemPrompt: z.string().optional(),
   summary: z.string().optional(),
   aiSummary: z.string().optional(),

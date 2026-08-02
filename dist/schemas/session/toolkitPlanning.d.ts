@@ -5320,6 +5320,7 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
     }>, "many">>;
+    seededInstructions: z.ZodOptional<z.ZodString>;
     defaultSystemPrompt: z.ZodOptional<z.ZodString>;
     summary: z.ZodOptional<z.ZodString>;
     aiSummary: z.ZodOptional<z.ZodString>;
@@ -6031,6 +6032,7 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
     }[] | undefined;
+    seededInstructions?: string | undefined;
     defaultSystemPrompt?: string | undefined;
     aiSummary?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
@@ -6181,6 +6183,7 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
     }[] | undefined;
+    seededInstructions?: string | undefined;
     defaultSystemPrompt?: string | undefined;
     aiSummary?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
