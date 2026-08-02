@@ -56,6 +56,14 @@ export declare const recapDayFactSchema: z.ZodObject<{
      * terms ("day 2 of the slip").
      */
     daysIntoRelapse: z.ZodOptional<z.ZodNumber>;
+    /**
+     * For "relapse_aftermath": the date the current slip began — i.e. the day the
+     * streak actually broke. `daysIntoRelapse` alone can't be turned back into a
+     * date (a frozen, un-recapped day inside the slip isn't counted), so the
+     * recap needs this to place the break in time rather than implying it
+     * happened on the recap day.
+     */
+    relapseStartDate: z.ZodOptional<z.ZodString>;
     /** For "milestone": the rung label reached today (e.g. "7 days"). */
     milestoneLabel: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
@@ -66,6 +74,7 @@ export declare const recapDayFactSchema: z.ZodObject<{
     streakDays?: number | undefined;
     streakStartDate?: string | undefined;
     daysIntoRelapse?: number | undefined;
+    relapseStartDate?: string | undefined;
     milestoneLabel?: string | undefined;
 }, {
     behaviorId: string;
@@ -75,6 +84,7 @@ export declare const recapDayFactSchema: z.ZodObject<{
     streakDays?: number | undefined;
     streakStartDate?: string | undefined;
     daysIntoRelapse?: number | undefined;
+    relapseStartDate?: string | undefined;
     milestoneLabel?: string | undefined;
 }>;
 export type RecapDayFact = z.infer<typeof recapDayFactSchema>;
@@ -5493,6 +5503,14 @@ export declare const recapSessionSchema: z.ZodObject<{
          * terms ("day 2 of the slip").
          */
         daysIntoRelapse: z.ZodOptional<z.ZodNumber>;
+        /**
+         * For "relapse_aftermath": the date the current slip began — i.e. the day the
+         * streak actually broke. `daysIntoRelapse` alone can't be turned back into a
+         * date (a frozen, un-recapped day inside the slip isn't counted), so the
+         * recap needs this to place the break in time rather than implying it
+         * happened on the recap day.
+         */
+        relapseStartDate: z.ZodOptional<z.ZodString>;
         /** For "milestone": the rung label reached today (e.g. "7 days"). */
         milestoneLabel: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
@@ -5503,6 +5521,7 @@ export declare const recapSessionSchema: z.ZodObject<{
         streakDays?: number | undefined;
         streakStartDate?: string | undefined;
         daysIntoRelapse?: number | undefined;
+        relapseStartDate?: string | undefined;
         milestoneLabel?: string | undefined;
     }, {
         behaviorId: string;
@@ -5512,6 +5531,7 @@ export declare const recapSessionSchema: z.ZodObject<{
         streakDays?: number | undefined;
         streakStartDate?: string | undefined;
         daysIntoRelapse?: number | undefined;
+        relapseStartDate?: string | undefined;
         milestoneLabel?: string | undefined;
     }>, "many">>;
     recapSelectedQuestion: z.ZodOptional<z.ZodObject<{
@@ -6235,6 +6255,7 @@ export declare const recapSessionSchema: z.ZodObject<{
         streakDays?: number | undefined;
         streakStartDate?: string | undefined;
         daysIntoRelapse?: number | undefined;
+        relapseStartDate?: string | undefined;
         milestoneLabel?: string | undefined;
     }[] | undefined;
     recapSelectedQuestion?: {
@@ -6416,6 +6437,7 @@ export declare const recapSessionSchema: z.ZodObject<{
         streakDays?: number | undefined;
         streakStartDate?: string | undefined;
         daysIntoRelapse?: number | undefined;
+        relapseStartDate?: string | undefined;
         milestoneLabel?: string | undefined;
     }[] | undefined;
     recapSelectedQuestion?: {
