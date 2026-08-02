@@ -558,6 +558,56 @@ function getGptPayload(log, isFinalLogInSession, options) {
             },
         ];
     }
+    if ((0, log_1.logIsWeekOverviewLog)(log)) {
+        if (options === null || options === void 0 ? void 0 : options.forSummarization)
+            return [];
+        const cards = log.data.behaviors;
+        if (!cards.length)
+            return [];
+        // The weekly review's prompt tells the coach to open on the week "from the
+        // card". Without this branch the card was a pure display artifact — it fell
+        // through to the empty return below, so the coach was told to read numbers
+        // it had never been shown and opened on a generic "how was the week?"
+        // instead. Worse, the week facts it DID get are recomputed from
+        // daySummaries and are a different set (day-by-day met/missed) than the
+        // card's (total, change vs last week), so the two could disagree on screen.
+        const lines = cards.map((card) => {
+            var _a;
+            const parts = [card.weeklyTotalFormatted];
+            if (card.pctChangeFromLastWeek != null) {
+                const pct = Math.round(Math.abs(card.pctChangeFromLastWeek) * 100);
+                // A card only earns a comparison when there IS a prior week, so 0% here
+                // means genuinely level, not missing data.
+                parts.push(pct === 0
+                    ? "level with last week"
+                    : `${card.pctChangeFromLastWeek < 0 ? "down" : "up"} ${pct}% vs last week`);
+            }
+            if (card.trend && card.trend !== "INSUFFICIENT_DATA") {
+                parts.push(card.trend.toLowerCase().replace(/_/g, " "));
+            }
+            if ((_a = card.mainTriggers) === null || _a === void 0 ? void 0 : _a.length) {
+                parts.push(`most-tagged triggers: ${card.mainTriggers.join(", ")}`);
+            }
+            return `- ${card.name}: ${parts.join("; ")}`;
+        });
+        return [
+            {
+                role: "user",
+                content: "<SYSTEM>The user was just shown their week card(s) for " +
+                    `${log.data.weekStartDateString} to ${log.data.weekEndDateString}. ` +
+                    "These are the headline figures on screen in front of them:\n" +
+                    `${lines.join("\n")}\n` +
+                    "These are for CONSISTENCY, not a script: if you cite a total or a " +
+                    "change, use these exact figures so what you say matches the card " +
+                    "they can see. They do not replace the week's shape — still open on " +
+                    "the multi-day pattern (the run of days, where it slipped, where it " +
+                    "recovered) from the week block above. State all of it flatly as " +
+                    "data and never as a verdict: a change vs last week is an " +
+                    "observation, not a win or a setback, and you don't yet know what " +
+                    "the week meant. That is what you're asking them.</SYSTEM>",
+            },
+        ];
+    }
     // Return empty array for other (unsupported) log types
     return [];
 }
