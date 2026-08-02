@@ -546,7 +546,7 @@ export function getGptPayload(
       {
         role: "user",
         content:
-          "<CONTEXT>The user has confirmed their day totals. Open by giving them space to reflect on the day on their own terms. This broad opening YIELDS to anything specific the session is carrying: if the day's FACTS show a significant event (a streak that ended, a relapse, a milestone), acknowledge that warmly as your opening — ignoring it reads as not paying attention; and if an Active Task Override asks you to raise something specific, that still happens at its natural moment. Only on an ordinary day with nothing pressing, open on the DAY AS A WHOLE rather than zeroing in on one behavior. Either way, do NOT fire tonight's recap question as your opening line — weave it in naturally before the conversation closes.</CONTEXT>",
+          "<CONTEXT>The user has confirmed their day totals. Open the reflection. HOW to open tonight is owned by the TONIGHT'S RECAP section of your instructions — follow its guidance for this specific night (a milestone night opens by naming the win; an ordinary night opens broad on the day, not zeroed in on one behavior; a coach-chosen question gets woven in later, never fired as the opening line). Do not recite the user's numbers back to them.</CONTEXT>",
       },
     ];
   }
