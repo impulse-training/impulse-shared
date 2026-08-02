@@ -31,6 +31,7 @@ import {
   logIsWidgetSetupLog,
   PlansLog,
 } from "../schemas/log";
+import { isPostDebriefPhase } from "../schemas/session/phase";
 import { fieldChanged } from "./fields";
 import { WithId } from "./withId";
 
@@ -163,7 +164,7 @@ export function shouldRespondToLogWithAI(
       !(
         session &&
         sessionIsImpulseSession(session) &&
-        session.phase === "debrief"
+        isPostDebriefPhase(session.phase)
       ));
 
   // Completed on update (an inline card's checkbox), OR created already

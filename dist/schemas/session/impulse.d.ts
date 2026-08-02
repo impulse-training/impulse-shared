@@ -6526,7 +6526,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
     mostHelpfulTacticId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     debriefNote: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     generatedPlanId: z.ZodOptional<z.ZodString>;
-    phase: z.ZodOptional<z.ZodEnum<["regulate", "debrief"]>>;
+    phase: z.ZodOptional<z.ZodEnum<["regulate", "debrief", "contain"]>>;
     hasScheduledCheckIn: z.ZodOptional<z.ZodBoolean>;
     recommendedTactics: z.ZodOptional<z.ZodArray<z.ZodObject<{
         tacticId: z.ZodString;
@@ -7682,7 +7682,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     source?: "adjustment" | undefined;
     tags?: Record<string, string[]> | undefined;
-    phase?: "regulate" | "debrief" | undefined;
+    phase?: "contain" | "regulate" | "debrief" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     triggerId?: string | null | undefined;
@@ -8573,7 +8573,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
     source?: "adjustment" | undefined;
     tags?: Record<string, string[]> | undefined;
     mode?: "text" | "voice" | undefined;
-    phase?: "regulate" | "debrief" | undefined;
+    phase?: "contain" | "regulate" | "debrief" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     triggerId?: string | null | undefined;

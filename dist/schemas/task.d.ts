@@ -2448,6 +2448,128 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
 }>;
 /**
+ * Post-lapse containment: created on the impulse session at the moment the
+ * user reports they acted on the urge (the session's phase moves to
+ * "contain"). The task shifts the session objective from debriefing a closed
+ * moment to limiting the blast radius — is it still going, what's left of
+ * the day, protect the next vulnerable window. The computed containment
+ * brief (Nth lapse today, broken streak, related behaviors, local hour) goes
+ * in the base `context` field; completion is credited when the protective
+ * check-in is scheduled (requiredTools: ["scheduleCheckIn"]).
+ */
+export declare const containLapseTaskSchema: z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    userId: z.ZodString;
+    category: z.ZodDefault<z.ZodEnum<["zara", "deterministic"]>>;
+    status: z.ZodDefault<z.ZodEnum<["open", "completed", "dismissed"]>>;
+    title: z.ZodString;
+    instructions: z.ZodString;
+    context: z.ZodOptional<z.ZodString>;
+    ordinal: z.ZodOptional<z.ZodNumber>;
+    minAppVersion: z.ZodOptional<z.ZodString>;
+    requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
+    createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
+    createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"contain_lapse">;
+    behaviorId: z.ZodString;
+    behaviorName: z.ZodOptional<z.ZodString>;
+    /**
+     * first — full flow: assess, protect the window, offer the check-in.
+     * standing_plan — a containment plan already exists today: reference it,
+     *   ask what broke, adjust; no fresh assessment ceremony.
+     * pattern — day ≥2 of a multi-day slip: name the pattern gently, smaller
+     *   ask, lean toward the recap/coach surfaces that own multi-day work.
+     */
+    variant: z.ZodEnum<["first", "standing_plan", "pattern"]>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "contain_lapse";
+    status: "completed" | "dismissed" | "open";
+    userId: string;
+    title: string;
+    behaviorId: string;
+    category: "zara" | "deterministic";
+    instructions: string;
+    variant: "first" | "standing_plan" | "pattern";
+    id?: string | undefined;
+    behaviorName?: string | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
+}, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "contain_lapse";
+    userId: string;
+    title: string;
+    behaviorId: string;
+    instructions: string;
+    variant: "first" | "standing_plan" | "pattern";
+    id?: string | undefined;
+    status?: "completed" | "dismissed" | "open" | undefined;
+    behaviorName?: string | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    category?: "zara" | "deterministic" | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
+}>;
+/**
  * The durable user-scoped "set up in-the-moment access" task — the parent of
  * the concrete install steps (setup_back_tap_shortcut / setup_widget). It is
  * generated up front for a new user, claimed into their onboarding session,
@@ -5240,6 +5362,117 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
 } & {
+    type: z.ZodLiteral<"contain_lapse">;
+    behaviorId: z.ZodString;
+    behaviorName: z.ZodOptional<z.ZodString>;
+    /**
+     * first — full flow: assess, protect the window, offer the check-in.
+     * standing_plan — a containment plan already exists today: reference it,
+     *   ask what broke, adjust; no fresh assessment ceremony.
+     * pattern — day ≥2 of a multi-day slip: name the pattern gently, smaller
+     *   ask, lean toward the recap/coach surfaces that own multi-day work.
+     */
+    variant: z.ZodEnum<["first", "standing_plan", "pattern"]>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "contain_lapse";
+    status: "completed" | "dismissed" | "open";
+    userId: string;
+    title: string;
+    behaviorId: string;
+    category: "zara" | "deterministic";
+    instructions: string;
+    variant: "first" | "standing_plan" | "pattern";
+    id?: string | undefined;
+    behaviorName?: string | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
+}, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "contain_lapse";
+    userId: string;
+    title: string;
+    behaviorId: string;
+    instructions: string;
+    variant: "first" | "standing_plan" | "pattern";
+    id?: string | undefined;
+    status?: "completed" | "dismissed" | "open" | undefined;
+    behaviorName?: string | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    category?: "zara" | "deterministic" | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    userId: z.ZodString;
+    category: z.ZodDefault<z.ZodEnum<["zara", "deterministic"]>>;
+    status: z.ZodDefault<z.ZodEnum<["open", "completed", "dismissed"]>>;
+    title: z.ZodString;
+    instructions: z.ZodString;
+    context: z.ZodOptional<z.ZodString>;
+    ordinal: z.ZodOptional<z.ZodNumber>;
+    minAppVersion: z.ZodOptional<z.ZodString>;
+    requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
+    createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
+    createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
+} & {
     type: z.ZodLiteral<"setup_shortcut">;
     /** Which setup card to show; if absent it is recomputed from behaviors. */
     shortcutType: z.ZodOptional<z.ZodEnum<["back_tap", "lock_screen_widget"]>>;
@@ -5610,6 +5843,7 @@ export type ToolkitPlanningTask = z.infer<typeof toolkitPlanningTaskSchema>;
 export type SuggestTacticTask = z.infer<typeof suggestTacticTaskSchema>;
 export type ReflectOnMetricsTask = z.infer<typeof reflectOnMetricsTaskSchema>;
 export type CollectBaselineTask = z.infer<typeof collectBaselineTaskSchema>;
+export type ContainLapseTask = z.infer<typeof containLapseTaskSchema>;
 export type SetupShortcutTask = z.infer<typeof setupShortcutTaskSchema>;
 export type ResumeRecapRemindersTask = z.infer<typeof resumeRecapRemindersTaskSchema>;
 export type WeekLookbackTask = z.infer<typeof weekLookbackTaskSchema>;

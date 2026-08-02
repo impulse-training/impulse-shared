@@ -4,6 +4,7 @@ exports.getGptPayload = getGptPayload;
 const log_1 = require("../schemas/log");
 const buildPlansLogPayload_1 = require("./buildPlansLogPayload");
 const constants_1 = require("../constants");
+const phase_1 = require("../schemas/session/phase");
 /**
  * Drop the tactic-card `logId` from a replayed tool-call result before it goes
  * back to the model. suggestTactic / findOrCreateTactic return it, but no tool
@@ -314,7 +315,7 @@ function getGptPayload(log, isFinalLogInSession, options) {
         const tacticTitle = log.data.tactic.title;
         const isCompleted = log.data.completed === true;
         const response = log.data.response;
-        const isDebrief = (options === null || options === void 0 ? void 0 : options.sessionPhase) === "debrief";
+        const isPostDebrief = (0, phase_1.isPostDebriefPhase)(options === null || options === void 0 ? void 0 : options.sessionPhase);
         // A completed step of the user's ASSIGNED plan (only plan-sheet
         // completions carry planId) gets a CHECKPOINT directive when it's the
         // latest thing in the session: credit the step, then ask how the urge is
@@ -324,7 +325,7 @@ function getGptPayload(log, isFinalLogInSession, options) {
         const checkpointDirective = isCompleted &&
             log.data.planId &&
             isFinalLogInSession &&
-            !isDebrief &&
+            !isPostDebrief &&
             !(options === null || options === void 0 ? void 0 : options.forSummarization)
             ? " This was a step of the user's assigned plan. Reply in ONE short message: briefly credit them, then ask how the urge is doing now. Do NOT direct them to the next step of the plan in this message. If the user then says the urge has passed or they feel in control, call resolvePlanEarly and reinforce the win; if the urge is still present or they want to continue, point them to the next step by name."
             : "";
@@ -352,7 +353,7 @@ function getGptPayload(log, isFinalLogInSession, options) {
                 },
             ];
         }
-        if (isDebrief) {
+        if (isPostDebrief) {
             return [
                 {
                     role: "user",
