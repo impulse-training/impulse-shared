@@ -233,17 +233,41 @@ export function getGptPayload(
         },
       ];
     }
-    return [];
+    // Pending: the card is on screen awaiting a decision. This used to render
+    // as nothing, so a card surfaced OUTSIDE a reconcile call (e.g. the next
+    // prepared change advancing when a goal card is accepted) was invisible to
+    // the model — it would ask an unrelated question while the user sat in
+    // front of an unexplained card. Phrased as state, not a command: the log
+    // re-renders every turn while pending, and the model may already have said
+    // its one line.
+    return [
+      {
+        role: "user",
+        content:
+          `<SYSTEM>A strategy proposal card "${context}" is in front of the user, awaiting their accept/decline. ` +
+          `If you haven't already, say ONE short line pointing them to it — why it follows from what they said — and then wait. ` +
+          `Do not restate the card's contents, do not explain how to accept or decline, and do not move the conversation onward past an undecided card.</SYSTEM>`,
+      },
+    ];
   }
 
   if (logIsProposedGoalChangeLog(log)) {
-    if (log.data.status !== "accepted" && log.data.status !== "declined") {
-      return [];
-    }
-
     const title = log.data.title.trim();
     const name = log.data.behaviorName?.trim();
     const label = name ? `"${title}" (${name})` : `"${title}"`;
+
+    if (log.data.status !== "accepted" && log.data.status !== "declined") {
+      // Same invisibility fix as the pending strategy card above.
+      return [
+        {
+          role: "user",
+          content:
+            `<SYSTEM>A goal-change proposal card ${label} is in front of the user, awaiting their accept/decline. ` +
+            `If you haven't already, say ONE short line pointing them to it, then wait. ` +
+            `Do not restate the card's contents and do not move the conversation onward past an undecided card.</SYSTEM>`,
+        },
+      ];
+    }
 
     return [
       {
@@ -522,7 +546,7 @@ export function getGptPayload(
       {
         role: "user",
         content:
-          "<CONTEXT>The user has confirmed their day totals. Open by giving them space to reflect on the day on their own terms — do NOT fire tonight's recap question as your opening line. You still need to weave the recap question in naturally before the conversation closes.</CONTEXT>",
+          "<CONTEXT>The user has confirmed their day totals. Open by giving them space to reflect on the DAY AS A WHOLE, on their own terms — not zeroed in on one behavior, and do NOT fire tonight's recap question as your opening line. You still need to weave the recap question in naturally before the conversation closes.</CONTEXT>",
       },
     ];
   }
