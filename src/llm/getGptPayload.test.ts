@@ -183,3 +183,41 @@ describe("getGptPayload — week overview cards", () => {
     expect(getGptPayload(weekOverviewLog([]), false)).toEqual([]);
   });
 });
+
+describe("getGptPayload — pending proposal cards", () => {
+  const strategyCard = (status: string): Log =>
+    ({
+      type: "proposed_strategy_modification",
+      isDisplayable: true,
+      data: { title: "Morning craving plan", summary: "A response for mornings", status },
+    }) as unknown as Log;
+  const goalCard = (status: string): Log =>
+    ({
+      type: "proposed_goal_change",
+      isDisplayable: true,
+      data: { title: "Afternoons only", behaviorName: "Vaping", status },
+    }) as unknown as Log;
+
+  // A pending card used to render as [] — so a card surfaced outside a
+  // reconcile call (the queue advancing on a goal acceptance) was invisible,
+  // and the coach would ask an unrelated question while the user sat in front
+  // of an unexplained card.
+  it("renders a pending strategy card as visible state", () => {
+    const [message] = getGptPayload(strategyCard("pending"), false);
+    expect(message.content).toContain("Morning craving plan");
+    expect(message.content).toContain("awaiting their accept/decline");
+  });
+
+  it("renders a pending goal card as visible state", () => {
+    const [message] = getGptPayload(goalCard("pending"), false);
+    expect(message.content).toContain('"Afternoons only" (Vaping)');
+    expect(message.content).toContain("awaiting their accept/decline");
+  });
+
+  it("keeps the resolved renderings unchanged", () => {
+    expect(getGptPayload(strategyCard("accepted"), false)[0].content).toContain("accepted a suggested strategy");
+    expect(getGptPayload(strategyCard("declined"), false)[0].content).toContain("DECLINED");
+    expect(getGptPayload(goalCard("accepted"), false)[0].content).toContain("ACCEPTED");
+    expect(getGptPayload(goalCard("declined"), false)[0].content).toContain("DECLINED");
+  });
+});
