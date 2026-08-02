@@ -227,6 +227,30 @@ export const collectBaselineTaskSchema = taskBaseSchema.extend({
 });
 
 /**
+ * Post-lapse containment: created on the impulse session at the moment the
+ * user reports they acted on the urge (the session's phase moves to
+ * "contain"). The task shifts the session objective from debriefing a closed
+ * moment to limiting the blast radius — is it still going, what's left of
+ * the day, protect the next vulnerable window. The computed containment
+ * brief (Nth lapse today, broken streak, related behaviors, local hour) goes
+ * in the base `context` field; completion is credited when the protective
+ * check-in is scheduled (requiredTools: ["scheduleCheckIn"]).
+ */
+export const containLapseTaskSchema = taskBaseSchema.extend({
+  type: z.literal("contain_lapse"),
+  behaviorId: z.string().min(1),
+  behaviorName: z.string().optional(),
+  /**
+   * first — full flow: assess, protect the window, offer the check-in.
+   * standing_plan — a containment plan already exists today: reference it,
+   *   ask what broke, adjust; no fresh assessment ceremony.
+   * pattern — day ≥2 of a multi-day slip: name the pattern gently, smaller
+   *   ask, lean toward the recap/coach surfaces that own multi-day work.
+   */
+  variant: z.enum(["first", "standing_plan", "pattern"]),
+});
+
+/**
  * The durable user-scoped "set up in-the-moment access" task — the parent of
  * the concrete install steps (setup_back_tap_shortcut / setup_widget). It is
  * generated up front for a new user, claimed into their onboarding session,
@@ -299,6 +323,7 @@ export const taskSchema = z.discriminatedUnion("type", [
   suggestTacticTaskSchema,
   reflectOnMetricsTaskSchema,
   collectBaselineTaskSchema,
+  containLapseTaskSchema,
   setupShortcutTaskSchema,
   resumeRecapRemindersTaskSchema,
   weekLookbackTaskSchema,
@@ -321,6 +346,7 @@ export type ToolkitPlanningTask = z.infer<typeof toolkitPlanningTaskSchema>;
 export type SuggestTacticTask = z.infer<typeof suggestTacticTaskSchema>;
 export type ReflectOnMetricsTask = z.infer<typeof reflectOnMetricsTaskSchema>;
 export type CollectBaselineTask = z.infer<typeof collectBaselineTaskSchema>;
+export type ContainLapseTask = z.infer<typeof containLapseTaskSchema>;
 export type SetupShortcutTask = z.infer<typeof setupShortcutTaskSchema>;
 export type ResumeRecapRemindersTask = z.infer<
   typeof resumeRecapRemindersTaskSchema

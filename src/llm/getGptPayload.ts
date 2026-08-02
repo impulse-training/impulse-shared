@@ -21,7 +21,7 @@ import {
 } from "../schemas/log";
 import { buildPlansLogPayload } from "./buildPlansLogPayload";
 import { DEFAULT_RECAP_TIME_LABEL } from "../constants";
-import { SessionPhase } from "../schemas/session/phase";
+import { isPostDebriefPhase, SessionPhase } from "../schemas/session/phase";
 
 interface PayloadOptions {
   forSummarization?: boolean;
@@ -408,7 +408,7 @@ export function getGptPayload(
     const tacticTitle = log.data.tactic.title;
     const isCompleted = log.data.completed === true;
     const response = log.data.response;
-    const isDebrief = options?.sessionPhase === "debrief";
+    const isPostDebrief = isPostDebriefPhase(options?.sessionPhase);
 
     // A completed step of the user's ASSIGNED plan (only plan-sheet
     // completions carry planId) gets a CHECKPOINT directive when it's the
@@ -420,7 +420,7 @@ export function getGptPayload(
       isCompleted &&
       log.data.planId &&
       isFinalLogInSession &&
-      !isDebrief &&
+      !isPostDebrief &&
       !options?.forSummarization
         ? " This was a step of the user's assigned plan. Reply in ONE short message: briefly credit them, then ask how the urge is doing now. Do NOT direct them to the next step of the plan in this message. If the user then says the urge has passed or they feel in control, call resolvePlanEarly and reinforce the win; if the urge is still present or they want to continue, point them to the next step by name."
         : "";
@@ -451,7 +451,7 @@ export function getGptPayload(
         },
       ];
     }
-    if (isDebrief) {
+    if (isPostDebrief) {
       return [
         {
           role: "user",

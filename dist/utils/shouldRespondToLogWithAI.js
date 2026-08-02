@@ -5,6 +5,7 @@ const schemas_1 = require("../schemas");
 const clock_1 = require("./clock");
 const dates_1 = require("./dates");
 const log_1 = require("../schemas/log");
+const phase_1 = require("../schemas/session/phase");
 const fields_1 = require("./fields");
 function hasNewlyCompletedPlan(beforeData, afterData) {
     if (!Array.isArray(afterData.data.plans))
@@ -103,7 +104,7 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         (isSessionBehaviorsChanged ||
             !(session &&
                 (0, schemas_1.sessionIsImpulseSession)(session) &&
-                session.phase === "debrief"));
+                (0, phase_1.isPostDebriefPhase)(session.phase)));
     // Completed on update (an inline card's checkbox), OR created already
     // completed — the plan sheet writes a fresh completed tactic log when the
     // tactic never had an inline card, and that completion still needs an AI
