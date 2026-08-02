@@ -76,6 +76,14 @@ exports.recapDayFactSchema = zod_1.z.object({
      * terms ("day 2 of the slip").
      */
     daysIntoRelapse: zod_1.z.number().optional(),
+    /**
+     * For "relapse_aftermath": the date the current slip began — i.e. the day the
+     * streak actually broke. `daysIntoRelapse` alone can't be turned back into a
+     * date (a frozen, un-recapped day inside the slip isn't counted), so the
+     * recap needs this to place the break in time rather than implying it
+     * happened on the recap day.
+     */
+    relapseStartDate: zod_1.z.string().optional(),
     /** For "milestone": the rung label reached today (e.g. "7 days"). */
     milestoneLabel: zod_1.z.string().optional(),
 });

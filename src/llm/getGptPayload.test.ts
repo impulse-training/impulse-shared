@@ -67,3 +67,119 @@ describe("getGptPayload — call logs", () => {
     );
   });
 });
+
+const weekOverviewLog = (
+  behaviors: Array<Record<string, unknown>>,
+  window?: { start?: string; end?: string },
+): Log =>
+  ({
+    type: "week_overview",
+    isDisplayable: true,
+    data: {
+      weekStartDateString: window?.start ?? "2026-05-04",
+      weekEndDateString: window?.end ?? "2026-05-10",
+      behaviors,
+    },
+  }) as unknown as Log;
+
+describe("getGptPayload — week overview cards", () => {
+  // The card is what the user has on screen. Before this branch existed the log
+  // fell through to the unsupported-type return, so the weekly prompt's "name
+  // the week's shape from the card" pointed at numbers the model never saw.
+  it("puts the card's figures in front of the model", () => {
+    const log = weekOverviewLog([
+      {
+        behaviorId: "online-videos",
+        name: "Online videos",
+        weeklyTotal: 120,
+        weeklyTotalFormatted: "2 hrs tracked",
+        pctChangeFromLastWeek: -0.43,
+        trend: "IMPROVING",
+      },
+    ]);
+    const [message] = getGptPayload(log, false);
+    expect(message.content).toContain("2026-05-04 to 2026-05-10");
+    expect(message.content).toContain(
+      "- Online videos: 2 hrs tracked; down 43% vs last week; improving",
+    );
+  });
+
+  it("renders an increase as up, and keeps every card", () => {
+    const log = weekOverviewLog([
+      {
+        behaviorId: "a",
+        name: "Scrolling",
+        weeklyTotal: 10,
+        weeklyTotalFormatted: "10 times",
+        pctChangeFromLastWeek: 0.25,
+      },
+      {
+        behaviorId: "b",
+        name: "Coffee",
+        weeklyTotal: 4,
+        weeklyTotalFormatted: "4 cups",
+      },
+    ]);
+    const [message] = getGptPayload(log, false);
+    expect(message.content).toContain("- Scrolling: 10 times; up 25% vs last week");
+    expect(message.content).toContain("- Coffee: 4 cups");
+  });
+
+  // A comparison is only present when a prior week exists, so 0 is genuinely
+  // level rather than "no data" — saying "down 0%" would misread as a decline.
+  it("calls a zero change level rather than a direction", () => {
+    const log = weekOverviewLog([
+      {
+        behaviorId: "a",
+        name: "Coffee",
+        weeklyTotal: 4,
+        weeklyTotalFormatted: "4 cups",
+        pctChangeFromLastWeek: 0,
+      },
+    ]);
+    const [message] = getGptPayload(log, false);
+    expect(message.content).toContain("- Coffee: 4 cups; level with last week");
+    expect(message.content).not.toContain("down 0%");
+  });
+
+  it("omits a trend the card itself treats as no signal", () => {
+    const log = weekOverviewLog([
+      {
+        behaviorId: "a",
+        name: "Coffee",
+        weeklyTotal: 4,
+        weeklyTotalFormatted: "4 cups",
+        trend: "INSUFFICIENT_DATA",
+      },
+    ]);
+    const [message] = getGptPayload(log, false);
+    expect(message.content).not.toContain("insufficient");
+  });
+
+  it("includes the card's trigger tags when it shows them", () => {
+    const log = weekOverviewLog([
+      {
+        behaviorId: "a",
+        name: "Stress eating",
+        weeklyTotal: 3,
+        weeklyTotalFormatted: "3 times",
+        mainTriggers: ["Stressed", "Bored"],
+      },
+    ]);
+    const [message] = getGptPayload(log, false);
+    expect(message.content).toContain("most-tagged triggers: Stressed, Bored");
+  });
+
+  it("stays out of summarization and out of empty cards", () => {
+    const log = weekOverviewLog([
+      {
+        behaviorId: "a",
+        name: "Coffee",
+        weeklyTotal: 4,
+        weeklyTotalFormatted: "4 cups",
+      },
+    ]);
+    expect(getGptPayload(log, false, { forSummarization: true })).toEqual([]);
+    expect(getGptPayload(weekOverviewLog([]), false)).toEqual([]);
+  });
+});
