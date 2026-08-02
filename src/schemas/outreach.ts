@@ -11,7 +11,7 @@ import { timestampSchema } from "../utils/timestampSchema";
  * delivery engine drains due proposals through one policy chokepoint (quiet
  * hours, daily budget, recent-activity deferral) and delivers the survivors:
  * an LLM-composed opening message in a new `general` session whose
- * `defaultSystemPrompt` is seeded so the conversation continues with context,
+ * `seededInstructions` is stamped so the conversation continues with context,
  * plus a push deep-linking to it.
  *
  * The doc id is deterministic per rule occurrence — its existence is the
@@ -53,7 +53,7 @@ export const plannedOutreachSchema = z.object({
   notificationTitle: z.string(),
   // System prompt for the one-shot LLM compose of the opening message.
   composeInstructions: z.string(),
-  // Seeded into the session's defaultSystemPrompt so the AI has the outreach
+  // Seeded into the session's seededInstructions so the AI has the outreach
   // context when the user replies (same mechanism as scheduled check-ins).
   sessionInstructions: z.string(),
   // Used verbatim when LLM compose fails or is disabled.
