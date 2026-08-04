@@ -227,6 +227,21 @@ export const collectBaselineTaskSchema = taskBaseSchema.extend({
 });
 
 /**
+ * Get to know a behavior created OUTSIDE onboarding (a general chat where the
+ * user mentioned something new and agreed to track it). Onboarding earns this
+ * understanding in the flow itself; a mid-program createBehavior skips all of
+ * that, so this task queues the conversation — when it happens, what it costs
+ * them, what it gives them — for a later session. Completed when the AI saves
+ * what it learned onto the behavior doc via updateBehaviorUnderstanding (its
+ * requiredTool, behaviorId-scoped like other per-behavior task credits).
+ */
+export const understandBehaviorTaskSchema = taskBaseSchema.extend({
+  type: z.literal("understand_behavior"),
+  behaviorId: z.string().min(1),
+  behaviorName: z.string().optional(),
+});
+
+/**
  * Post-lapse containment: created on the impulse session at the moment the
  * user reports they acted on the urge (the session's phase moves to
  * "contain"). The task shifts the session objective from debriefing a closed
@@ -323,6 +338,7 @@ export const taskSchema = z.discriminatedUnion("type", [
   suggestTacticTaskSchema,
   reflectOnMetricsTaskSchema,
   collectBaselineTaskSchema,
+  understandBehaviorTaskSchema,
   containLapseTaskSchema,
   setupShortcutTaskSchema,
   resumeRecapRemindersTaskSchema,
@@ -346,6 +362,9 @@ export type ToolkitPlanningTask = z.infer<typeof toolkitPlanningTaskSchema>;
 export type SuggestTacticTask = z.infer<typeof suggestTacticTaskSchema>;
 export type ReflectOnMetricsTask = z.infer<typeof reflectOnMetricsTaskSchema>;
 export type CollectBaselineTask = z.infer<typeof collectBaselineTaskSchema>;
+export type UnderstandBehaviorTask = z.infer<
+  typeof understandBehaviorTaskSchema
+>;
 export type ContainLapseTask = z.infer<typeof containLapseTaskSchema>;
 export type SetupShortcutTask = z.infer<typeof setupShortcutTaskSchema>;
 export type ResumeRecapRemindersTask = z.infer<

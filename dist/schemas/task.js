@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isSetupShortcutTask = exports.isReflectOnMetricsTask = exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isProposeGoalTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.isTaskAwaitingApproval = exports.TASK_TYPES_REQUIRING_APPROVAL = exports.taskSchema = exports.weeklyReviewTaskSchema = exports.weekLookbackTaskSchema = exports.resumeRecapRemindersTaskSchema = exports.setupShortcutTaskSchema = exports.containLapseTaskSchema = exports.collectBaselineTaskSchema = exports.reflectOnMetricsTaskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.proposeGoalTaskSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.claimableSessionTypeSchema = exports.taskCategorySchema = exports.dismissedReasonSchema = exports.taskStatusSchema = void 0;
+exports.isSetupShortcutTask = exports.isReflectOnMetricsTask = exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isProposeGoalTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.isTaskAwaitingApproval = exports.TASK_TYPES_REQUIRING_APPROVAL = exports.taskSchema = exports.weeklyReviewTaskSchema = exports.weekLookbackTaskSchema = exports.resumeRecapRemindersTaskSchema = exports.setupShortcutTaskSchema = exports.containLapseTaskSchema = exports.understandBehaviorTaskSchema = exports.collectBaselineTaskSchema = exports.reflectOnMetricsTaskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.proposeGoalTaskSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.claimableSessionTypeSchema = exports.taskCategorySchema = exports.dismissedReasonSchema = exports.taskStatusSchema = void 0;
 const zod_1 = require("zod");
 const goal_1 = require("./goal");
 const proposedStrategyModificationLog_1 = require("./log/proposedStrategyModificationLog");
@@ -209,6 +209,20 @@ exports.collectBaselineTaskSchema = exports.taskBaseSchema.extend({
     behaviorId: zod_1.z.string().min(1),
 });
 /**
+ * Get to know a behavior created OUTSIDE onboarding (a general chat where the
+ * user mentioned something new and agreed to track it). Onboarding earns this
+ * understanding in the flow itself; a mid-program createBehavior skips all of
+ * that, so this task queues the conversation — when it happens, what it costs
+ * them, what it gives them — for a later session. Completed when the AI saves
+ * what it learned onto the behavior doc via updateBehaviorUnderstanding (its
+ * requiredTool, behaviorId-scoped like other per-behavior task credits).
+ */
+exports.understandBehaviorTaskSchema = exports.taskBaseSchema.extend({
+    type: zod_1.z.literal("understand_behavior"),
+    behaviorId: zod_1.z.string().min(1),
+    behaviorName: zod_1.z.string().optional(),
+});
+/**
  * Post-lapse containment: created on the impulse session at the moment the
  * user reports they acted on the urge (the session's phase moves to
  * "contain"). The task shifts the session objective from debriefing a closed
@@ -300,6 +314,7 @@ exports.taskSchema = zod_1.z.discriminatedUnion("type", [
     exports.suggestTacticTaskSchema,
     exports.reflectOnMetricsTaskSchema,
     exports.collectBaselineTaskSchema,
+    exports.understandBehaviorTaskSchema,
     exports.containLapseTaskSchema,
     exports.setupShortcutTaskSchema,
     exports.resumeRecapRemindersTaskSchema,
