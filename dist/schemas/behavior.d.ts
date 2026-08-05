@@ -1091,6 +1091,56 @@ export declare const behaviorStateSchema: z.ZodObject<{
 }>;
 export type BehaviorState = z.infer<typeof behaviorStateSchema>;
 export declare function isBehaviorState(value: unknown): value is BehaviorState;
+export declare const benefitNeedSchema: z.ZodEnum<["relaxation", "stimulation", "escape", "connection", "control", "pleasure", "achievement", "boredom_relief", "comfort", "focus"]>;
+export type BenefitNeed = z.infer<typeof benefitNeedSchema>;
+export declare const behaviorBenefitSchema: z.ZodObject<{
+    /** What the behavior gives them, in the user's own words. */
+    text: z.ZodString;
+    need: z.ZodOptional<z.ZodEnum<["relaxation", "stimulation", "escape", "connection", "control", "pleasure", "achievement", "boredom_relief", "comfort", "focus"]>>;
+}, "strip", z.ZodTypeAny, {
+    text: string;
+    need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+}, {
+    text: string;
+    need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+}>;
+export type BehaviorBenefit = z.infer<typeof behaviorBenefitSchema>;
+export declare const behaviorBenefitElementSchema: z.ZodUnion<[z.ZodObject<{
+    /** What the behavior gives them, in the user's own words. */
+    text: z.ZodString;
+    need: z.ZodOptional<z.ZodEnum<["relaxation", "stimulation", "escape", "connection", "control", "pleasure", "achievement", "boredom_relief", "comfort", "focus"]>>;
+}, "strip", z.ZodTypeAny, {
+    text: string;
+    need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+}, {
+    text: string;
+    need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+}>, z.ZodPipeline<z.ZodEffects<z.ZodString, {
+    text: string;
+}, string>, z.ZodObject<{
+    /** What the behavior gives them, in the user's own words. */
+    text: z.ZodString;
+    need: z.ZodOptional<z.ZodEnum<["relaxation", "stimulation", "escape", "connection", "control", "pleasure", "achievement", "boredom_relief", "comfort", "focus"]>>;
+}, "strip", z.ZodTypeAny, {
+    text: string;
+    need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+}, {
+    text: string;
+    need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+}>>]>;
+/**
+ * Normalize a raw `benefits` value (possibly legacy `string[]`, possibly mixed)
+ * into structured entries. Most readers cast Firestore data without zod
+ * parsing, so anything consuming benefits should go through this.
+ */
+export declare const normalizeBehaviorBenefits: (raw: unknown) => BehaviorBenefit[];
+/**
+ * The one shared rendering of benefits/drawbacks for LLM prompts (used by
+ * impulse-tools, impulse-functions and impulse-voice-agent so the framing
+ * never drifts). Returns [] when there is nothing to say; callers join with
+ * newlines at whatever indent suits their prompt.
+ */
+export declare const formatBenefitsForPrompt: (benefits: unknown, drawbacks: string[] | undefined) => string[];
 export declare const streakForgivenessEntrySchema: z.ZodObject<{
     /** Local ISO date (YYYY-MM-DD) of the forgiven day. */
     date: z.ZodString;
@@ -1124,7 +1174,29 @@ export declare const behaviorSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     description: z.ZodString;
     ordinal: z.ZodDefault<z.ZodNumber>;
-    benefits: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+    benefits: z.ZodDefault<z.ZodArray<z.ZodUnion<[z.ZodObject<{
+        /** What the behavior gives them, in the user's own words. */
+        text: z.ZodString;
+        need: z.ZodOptional<z.ZodEnum<["relaxation", "stimulation", "escape", "connection", "control", "pleasure", "achievement", "boredom_relief", "comfort", "focus"]>>;
+    }, "strip", z.ZodTypeAny, {
+        text: string;
+        need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+    }, {
+        text: string;
+        need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+    }>, z.ZodPipeline<z.ZodEffects<z.ZodString, {
+        text: string;
+    }, string>, z.ZodObject<{
+        /** What the behavior gives them, in the user's own words. */
+        text: z.ZodString;
+        need: z.ZodOptional<z.ZodEnum<["relaxation", "stimulation", "escape", "connection", "control", "pleasure", "achievement", "boredom_relief", "comfort", "focus"]>>;
+    }, "strip", z.ZodTypeAny, {
+        text: string;
+        need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+    }, {
+        text: string;
+        need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+    }>>]>, "many">>;
     drawbacks: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
     goal: z.ZodOptional<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         type: z.ZodLiteral<"eliminate">;
@@ -2122,7 +2194,10 @@ export declare const behaviorSchema: z.ZodObject<{
     trackingType: "counter" | "timer" | "scale";
     description: string;
     ordinal: number;
-    benefits: string[];
+    benefits: {
+        text: string;
+        need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+    }[];
     drawbacks: string[];
     masked: boolean;
     needsBaselineData: boolean;
@@ -2366,7 +2441,10 @@ export declare const behaviorSchema: z.ZodObject<{
         }[];
     } | undefined;
     ordinal?: number | undefined;
-    benefits?: string[] | undefined;
+    benefits?: (string | {
+        text: string;
+        need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+    })[] | undefined;
     drawbacks?: string[] | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
     tactics?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;

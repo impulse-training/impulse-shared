@@ -9,7 +9,9 @@ exports.behaviorContextSchema = zod_1.z.object({
     behaviorName: zod_1.z.string(),
     trackingType: zod_1.z.enum(["counter", "timer", "boolean", "scale"]),
     description: zod_1.z.string().optional(),
-    benefits: zod_1.z.array(zod_1.z.string()).optional(),
+    // Tolerant like behaviorSchema.benefits: old denormalized copies hold bare
+    // strings until afterUserBehaviorWrite re-propagates the structured shape.
+    benefits: zod_1.z.array(behavior_1.behaviorBenefitElementSchema).optional(),
     drawbacks: zod_1.z.array(zod_1.z.string()).optional(),
     trackingUnit: zod_1.z.string().optional(),
     goalLabel: zod_1.z.string().optional(),

@@ -1,5 +1,9 @@
 import { z } from "zod";
-import { dataCompletenessSchema, trendSchema } from "./behavior";
+import {
+  behaviorBenefitElementSchema,
+  dataCompletenessSchema,
+  trendSchema,
+} from "./behavior";
 import { timestampSchema } from "../utils/timestampSchema";
 
 export const behaviorContextSchema = z.object({
@@ -7,7 +11,9 @@ export const behaviorContextSchema = z.object({
   behaviorName: z.string(),
   trackingType: z.enum(["counter", "timer", "boolean", "scale"]),
   description: z.string().optional(),
-  benefits: z.array(z.string()).optional(),
+  // Tolerant like behaviorSchema.benefits: old denormalized copies hold bare
+  // strings until afterUserBehaviorWrite re-propagates the structured shape.
+  benefits: z.array(behaviorBenefitElementSchema).optional(),
   drawbacks: z.array(z.string()).optional(),
   trackingUnit: z.string().optional(),
   goalLabel: z.string().optional(),

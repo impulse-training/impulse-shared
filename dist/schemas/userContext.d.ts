@@ -4,7 +4,27 @@ export declare const behaviorContextSchema: z.ZodObject<{
     behaviorName: z.ZodString;
     trackingType: z.ZodEnum<["counter", "timer", "boolean", "scale"]>;
     description: z.ZodOptional<z.ZodString>;
-    benefits: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    benefits: z.ZodOptional<z.ZodArray<z.ZodUnion<[z.ZodObject<{
+        text: z.ZodString;
+        need: z.ZodOptional<z.ZodEnum<["relaxation", "stimulation", "escape", "connection", "control", "pleasure", "achievement", "boredom_relief", "comfort", "focus"]>>;
+    }, "strip", z.ZodTypeAny, {
+        text: string;
+        need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+    }, {
+        text: string;
+        need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+    }>, z.ZodPipeline<z.ZodEffects<z.ZodString, {
+        text: string;
+    }, string>, z.ZodObject<{
+        text: z.ZodString;
+        need: z.ZodOptional<z.ZodEnum<["relaxation", "stimulation", "escape", "connection", "control", "pleasure", "achievement", "boredom_relief", "comfort", "focus"]>>;
+    }, "strip", z.ZodTypeAny, {
+        text: string;
+        need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+    }, {
+        text: string;
+        need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+    }>>]>, "many">>;
     drawbacks: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     trackingUnit: z.ZodOptional<z.ZodString>;
     goalLabel: z.ZodOptional<z.ZodString>;
@@ -15,7 +35,10 @@ export declare const behaviorContextSchema: z.ZodObject<{
     trackingUnit?: string | undefined;
     goalLabel?: string | undefined;
     description?: string | undefined;
-    benefits?: string[] | undefined;
+    benefits?: {
+        text: string;
+        need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+    }[] | undefined;
     drawbacks?: string[] | undefined;
 }, {
     behaviorId: string;
@@ -24,7 +47,10 @@ export declare const behaviorContextSchema: z.ZodObject<{
     trackingUnit?: string | undefined;
     goalLabel?: string | undefined;
     description?: string | undefined;
-    benefits?: string[] | undefined;
+    benefits?: (string | {
+        text: string;
+        need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+    })[] | undefined;
     drawbacks?: string[] | undefined;
 }>;
 export declare const tacticContextSchema: z.ZodObject<{
@@ -342,7 +368,27 @@ export declare const userContextSchema: z.ZodObject<{
         behaviorName: z.ZodString;
         trackingType: z.ZodEnum<["counter", "timer", "boolean", "scale"]>;
         description: z.ZodOptional<z.ZodString>;
-        benefits: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        benefits: z.ZodOptional<z.ZodArray<z.ZodUnion<[z.ZodObject<{
+            text: z.ZodString;
+            need: z.ZodOptional<z.ZodEnum<["relaxation", "stimulation", "escape", "connection", "control", "pleasure", "achievement", "boredom_relief", "comfort", "focus"]>>;
+        }, "strip", z.ZodTypeAny, {
+            text: string;
+            need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+        }, {
+            text: string;
+            need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+        }>, z.ZodPipeline<z.ZodEffects<z.ZodString, {
+            text: string;
+        }, string>, z.ZodObject<{
+            text: z.ZodString;
+            need: z.ZodOptional<z.ZodEnum<["relaxation", "stimulation", "escape", "connection", "control", "pleasure", "achievement", "boredom_relief", "comfort", "focus"]>>;
+        }, "strip", z.ZodTypeAny, {
+            text: string;
+            need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+        }, {
+            text: string;
+            need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+        }>>]>, "many">>;
         drawbacks: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         trackingUnit: z.ZodOptional<z.ZodString>;
         goalLabel: z.ZodOptional<z.ZodString>;
@@ -353,7 +399,10 @@ export declare const userContextSchema: z.ZodObject<{
         trackingUnit?: string | undefined;
         goalLabel?: string | undefined;
         description?: string | undefined;
-        benefits?: string[] | undefined;
+        benefits?: {
+            text: string;
+            need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+        }[] | undefined;
         drawbacks?: string[] | undefined;
     }, {
         behaviorId: string;
@@ -362,7 +411,10 @@ export declare const userContextSchema: z.ZodObject<{
         trackingUnit?: string | undefined;
         goalLabel?: string | undefined;
         description?: string | undefined;
-        benefits?: string[] | undefined;
+        benefits?: (string | {
+            text: string;
+            need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+        })[] | undefined;
         drawbacks?: string[] | undefined;
     }>>;
     tactics: z.ZodRecord<z.ZodString, z.ZodObject<{
@@ -647,7 +699,10 @@ export declare const userContextSchema: z.ZodObject<{
         trackingUnit?: string | undefined;
         goalLabel?: string | undefined;
         description?: string | undefined;
-        benefits?: string[] | undefined;
+        benefits?: {
+            text: string;
+            need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+        }[] | undefined;
         drawbacks?: string[] | undefined;
     }>;
     createdAt?: import("../types").Timestamp | undefined;
@@ -712,7 +767,10 @@ export declare const userContextSchema: z.ZodObject<{
         trackingUnit?: string | undefined;
         goalLabel?: string | undefined;
         description?: string | undefined;
-        benefits?: string[] | undefined;
+        benefits?: (string | {
+            text: string;
+            need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+        })[] | undefined;
         drawbacks?: string[] | undefined;
     }>;
     createdAt?: import("../types").Timestamp | undefined;
