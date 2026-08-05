@@ -35316,7 +35316,7 @@ export declare const logSchemas: {
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodEffects<z.ZodObject<{
             debriefQuestionId: z.ZodString;
-            behaviorId: z.ZodString;
+            behaviorId: z.ZodOptional<z.ZodString>;
             behaviorName: z.ZodOptional<z.ZodString>;
             question: z.ZodString;
             answerSpec: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
@@ -35401,7 +35401,7 @@ export declare const logSchemas: {
                     maxLabel?: string | undefined;
                 } | undefined;
             }>]>;
-            taskId: z.ZodString;
+            taskId: z.ZodOptional<z.ZodString>;
             selectedOptionId: z.ZodOptional<z.ZodString>;
             selectedOptionIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             selectedResponseText: z.ZodOptional<z.ZodString>;
@@ -35409,7 +35409,6 @@ export declare const logSchemas: {
             sliderValue: z.ZodOptional<z.ZodNumber>;
             respondedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
-            behaviorId: string;
             question: string;
             answerSpec: {
                 type: "text";
@@ -35433,17 +35432,17 @@ export declare const logSchemas: {
                     maxLabel?: string | undefined;
                 };
             };
-            taskId: string;
             debriefQuestionId: string;
+            behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             respondedAt?: import("../../types").Timestamp | undefined;
+            taskId?: string | undefined;
             selectedResponseText?: string | undefined;
             selectedOptionId?: string | undefined;
             selectedOptionIds?: string[] | undefined;
             freeTextResponse?: string | undefined;
             sliderValue?: number | undefined;
         }, {
-            behaviorId: string;
             question: string;
             answerSpec: {
                 type: "text";
@@ -35467,17 +35466,17 @@ export declare const logSchemas: {
                     maxLabel?: string | undefined;
                 } | undefined;
             };
-            taskId: string;
             debriefQuestionId: string;
+            behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             respondedAt?: import("../../types").Timestamp | undefined;
+            taskId?: string | undefined;
             selectedResponseText?: string | undefined;
             selectedOptionId?: string | undefined;
             selectedOptionIds?: string[] | undefined;
             freeTextResponse?: string | undefined;
             sliderValue?: number | undefined;
         }>, {
-            behaviorId: string;
             question: string;
             answerSpec: {
                 type: "text";
@@ -35501,10 +35500,11 @@ export declare const logSchemas: {
                     maxLabel?: string | undefined;
                 };
             };
-            taskId: string;
             debriefQuestionId: string;
+            behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             respondedAt?: import("../../types").Timestamp | undefined;
+            taskId?: string | undefined;
             selectedResponseText?: string | undefined;
             selectedOptionId?: string | undefined;
             selectedOptionIds?: string[] | undefined;
@@ -35521,7 +35521,6 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
-            behaviorId: string;
             question: string;
             answerSpec: {
                 type: "text";
@@ -35545,10 +35544,11 @@ export declare const logSchemas: {
                     maxLabel?: string | undefined;
                 };
             };
-            taskId: string;
             debriefQuestionId: string;
+            behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             respondedAt?: import("../../types").Timestamp | undefined;
+            taskId?: string | undefined;
             selectedResponseText?: string | undefined;
             selectedOptionId?: string | undefined;
             selectedOptionIds?: string[] | undefined;
@@ -63851,7 +63851,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodEffects<z.ZodObject<{
         debriefQuestionId: z.ZodString;
-        behaviorId: z.ZodString;
+        behaviorId: z.ZodOptional<z.ZodString>;
         behaviorName: z.ZodOptional<z.ZodString>;
         question: z.ZodString;
         answerSpec: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
@@ -63936,7 +63936,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 maxLabel?: string | undefined;
             } | undefined;
         }>]>;
-        taskId: z.ZodString;
+        taskId: z.ZodOptional<z.ZodString>;
         selectedOptionId: z.ZodOptional<z.ZodString>;
         selectedOptionIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         selectedResponseText: z.ZodOptional<z.ZodString>;
@@ -63944,7 +63944,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         sliderValue: z.ZodOptional<z.ZodNumber>;
         respondedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
-        behaviorId: string;
         question: string;
         answerSpec: {
             type: "text";
@@ -63968,17 +63967,17 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 maxLabel?: string | undefined;
             };
         };
-        taskId: string;
         debriefQuestionId: string;
+        behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         respondedAt?: import("../../types").Timestamp | undefined;
+        taskId?: string | undefined;
         selectedResponseText?: string | undefined;
         selectedOptionId?: string | undefined;
         selectedOptionIds?: string[] | undefined;
         freeTextResponse?: string | undefined;
         sliderValue?: number | undefined;
     }, {
-        behaviorId: string;
         question: string;
         answerSpec: {
             type: "text";
@@ -64002,17 +64001,17 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 maxLabel?: string | undefined;
             } | undefined;
         };
-        taskId: string;
         debriefQuestionId: string;
+        behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         respondedAt?: import("../../types").Timestamp | undefined;
+        taskId?: string | undefined;
         selectedResponseText?: string | undefined;
         selectedOptionId?: string | undefined;
         selectedOptionIds?: string[] | undefined;
         freeTextResponse?: string | undefined;
         sliderValue?: number | undefined;
     }>, {
-        behaviorId: string;
         question: string;
         answerSpec: {
             type: "text";
@@ -64036,10 +64035,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 maxLabel?: string | undefined;
             };
         };
-        taskId: string;
         debriefQuestionId: string;
+        behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         respondedAt?: import("../../types").Timestamp | undefined;
+        taskId?: string | undefined;
         selectedResponseText?: string | undefined;
         selectedOptionId?: string | undefined;
         selectedOptionIds?: string[] | undefined;
@@ -64056,7 +64056,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        behaviorId: string;
         question: string;
         answerSpec: {
             type: "text";
@@ -64080,10 +64079,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 maxLabel?: string | undefined;
             };
         };
-        taskId: string;
         debriefQuestionId: string;
+        behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         respondedAt?: import("../../types").Timestamp | undefined;
+        taskId?: string | undefined;
         selectedResponseText?: string | undefined;
         selectedOptionId?: string | undefined;
         selectedOptionIds?: string[] | undefined;

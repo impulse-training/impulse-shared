@@ -5,12 +5,14 @@ import { answerSpecSchema } from "../question/answerSpec";
 
 const debriefQuestionDataObjectSchema = z.object({
   debriefQuestionId: z.string().min(1),
-  behaviorId: z.string().min(1),
+  // Absent on conversational quick questions (e.g. a tracking offer asked
+  // before the behavior exists); required in spirit everywhere else.
+  behaviorId: z.string().min(1).optional(),
   behaviorName: z.string().optional(),
   question: z.string().min(1),
   // How the user answers — shared with the question config and tactic steps.
   answerSpec: answerSpecSchema,
-  taskId: z.string().min(1),
+  taskId: z.string().min(1).optional(),
   // Choice answers.
   selectedOptionId: z.string().optional(),
   // multiChoice answers (one or more option ids, submitted together).
