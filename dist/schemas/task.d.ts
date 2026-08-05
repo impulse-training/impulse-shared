@@ -57,6 +57,16 @@ export declare const taskBaseSchema: z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -80,6 +90,8 @@ export declare const taskBaseSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -103,6 +115,8 @@ export declare const taskBaseSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>;
 export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -149,6 +163,16 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"merge_behaviors">;
     sourceBehaviorIds: z.ZodArray<z.ZodString, "many">;
@@ -199,6 +223,8 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -230,6 +256,8 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>;
 export declare const suggestStrategyTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -276,6 +304,16 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"suggest_strategy">;
     suggestedStrategy: z.ZodObject<{
@@ -850,6 +888,8 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -942,6 +982,8 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>;
 /**
  * A coach-prepared proposal to change one behavior's goal (e.g. switch to a
@@ -997,6 +1039,16 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"propose_goal">;
     behaviorId: z.ZodString;
@@ -1205,6 +1257,8 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -1258,6 +1312,8 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>;
 export declare const proposedMetricSchema: z.ZodObject<{
     name: z.ZodString;
@@ -1317,6 +1373,16 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"propose_experiment">;
     proposedExperiment: z.ZodObject<{
@@ -1385,6 +1451,8 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -1418,6 +1486,8 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>;
 export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -1464,6 +1534,16 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"propose_mask_behavior">;
     behaviorId: z.ZodString;
@@ -1492,6 +1572,8 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -1517,6 +1599,8 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>;
 export declare const createSessionTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -1563,6 +1647,16 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"create_session">;
     lazy: z.ZodDefault<z.ZodBoolean>;
@@ -1701,6 +1795,8 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
     taskIds?: string[] | undefined;
     notification?: {
         title: string;
@@ -1748,6 +1844,8 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
     lazy?: boolean | undefined;
     taskIds?: string[] | undefined;
     notification?: {
@@ -1778,6 +1876,8 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     approvalReason: z.ZodOptional<z.ZodString>;
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"recap_question">;
     recapQuestionId: z.ZodString;
@@ -1814,6 +1914,8 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
     claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -1843,6 +1945,8 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
     claimedBySessionId?: string | undefined;
 }>;
 export declare const reviewTriggerTaskSchema: z.ZodObject<{
@@ -1890,6 +1994,16 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"review_trigger">;
     impulseSessionId: z.ZodString;
@@ -1970,6 +2084,8 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2008,6 +2124,8 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>;
 export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -2054,6 +2172,16 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"toolkit_planning">;
 }, "strip", z.ZodTypeAny, {
@@ -2080,6 +2208,8 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2104,6 +2234,8 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>;
 export declare const suggestTacticTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -2150,6 +2282,16 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"suggest_tactic">;
     suggestions: z.ZodArray<z.ZodObject<{
@@ -2194,6 +2336,8 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2223,6 +2367,8 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>;
 export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -2269,6 +2415,16 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"reflect_on_metrics">;
     behaviorName: z.ZodString;
@@ -2314,6 +2470,8 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
     milestoneRungDays?: number | undefined;
     milestoneRungLabel?: string | undefined;
 }, {
@@ -2345,6 +2503,8 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
     milestoneRungDays?: number | undefined;
     milestoneRungLabel?: string | undefined;
 }>;
@@ -2393,6 +2553,16 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"collect_baseline">;
     behaviorId: z.ZodString;
@@ -2421,6 +2591,8 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2446,6 +2618,8 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>;
 /**
  * Get to know a behavior created OUTSIDE onboarding (a general chat where the
@@ -2501,6 +2675,16 @@ export declare const understandBehaviorTaskSchema: z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"understand_behavior">;
     behaviorId: z.ZodString;
@@ -2531,6 +2715,8 @@ export declare const understandBehaviorTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2557,6 +2743,8 @@ export declare const understandBehaviorTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>;
 /**
  * Post-lapse containment: created on the impulse session at the moment the
@@ -2613,6 +2801,16 @@ export declare const containLapseTaskSchema: z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"contain_lapse">;
     behaviorId: z.ZodString;
@@ -2652,6 +2850,8 @@ export declare const containLapseTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2679,6 +2879,8 @@ export declare const containLapseTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>;
 /**
  * The durable user-scoped "set up in-the-moment access" task — the parent of
@@ -2734,6 +2936,16 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"setup_shortcut">;
     /** Which setup card to show; if absent it is recomputed from behaviors. */
@@ -2766,6 +2978,8 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2792,6 +3006,8 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>;
 /**
  * Durable user-scoped task for a returning user whose scheduled recap
@@ -2846,6 +3062,16 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"resume_recap_reminders">;
 }, "strip", z.ZodTypeAny, {
@@ -2872,6 +3098,8 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2896,6 +3124,8 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>;
 /**
  * The weekly review's first beat: reflect on the week just passed as one shape.
@@ -2949,6 +3179,16 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"week_lookback">;
     /** The Sunday review this beat belongs to (the recap dateString). */
@@ -2978,6 +3218,8 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -3003,6 +3245,8 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>;
 /**
  * The weekly review as a claimable token, one per week. Created on the local
@@ -3060,6 +3304,16 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"weekly_review">;
     /** The local Sunday this review week is anchored to (YYYY-MM-DD). */
@@ -3090,6 +3344,8 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
     claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -3116,6 +3372,8 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
     claimedBySessionId?: string | undefined;
 }>;
 export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
@@ -3163,6 +3421,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"merge_behaviors">;
     sourceBehaviorIds: z.ZodArray<z.ZodString, "many">;
@@ -3213,6 +3481,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -3244,6 +3514,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -3289,6 +3561,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"suggest_strategy">;
     suggestedStrategy: z.ZodObject<{
@@ -3863,6 +4145,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -3955,6 +4239,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -4000,6 +4286,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"propose_goal">;
     behaviorId: z.ZodString;
@@ -4208,6 +4504,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -4261,6 +4559,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -4306,6 +4606,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"propose_experiment">;
     proposedExperiment: z.ZodObject<{
@@ -4374,6 +4684,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -4407,6 +4719,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -4452,6 +4766,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"propose_mask_behavior">;
     behaviorId: z.ZodString;
@@ -4480,6 +4804,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -4505,6 +4831,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -4550,6 +4878,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"create_session">;
     lazy: z.ZodDefault<z.ZodBoolean>;
@@ -4688,6 +5026,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
     taskIds?: string[] | undefined;
     notification?: {
         title: string;
@@ -4735,6 +5075,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
     lazy?: boolean | undefined;
     taskIds?: string[] | undefined;
     notification?: {
@@ -4764,6 +5106,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     approvalReason: z.ZodOptional<z.ZodString>;
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"recap_question">;
     recapQuestionId: z.ZodString;
@@ -4800,6 +5144,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
     claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -4829,6 +5175,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
     claimedBySessionId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -4875,6 +5223,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"review_trigger">;
     impulseSessionId: z.ZodString;
@@ -4955,6 +5313,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -4993,6 +5353,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -5038,6 +5400,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"toolkit_planning">;
 }, "strip", z.ZodTypeAny, {
@@ -5064,6 +5436,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -5088,6 +5462,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -5133,6 +5509,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"suggest_tactic">;
     suggestions: z.ZodArray<z.ZodObject<{
@@ -5177,6 +5563,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -5206,6 +5594,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -5251,6 +5641,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"reflect_on_metrics">;
     behaviorName: z.ZodString;
@@ -5296,6 +5696,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
     milestoneRungDays?: number | undefined;
     milestoneRungLabel?: string | undefined;
 }, {
@@ -5327,6 +5729,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
     milestoneRungDays?: number | undefined;
     milestoneRungLabel?: string | undefined;
 }>, z.ZodObject<{
@@ -5374,6 +5778,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"collect_baseline">;
     behaviorId: z.ZodString;
@@ -5402,6 +5816,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -5427,6 +5843,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -5472,6 +5890,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"understand_behavior">;
     behaviorId: z.ZodString;
@@ -5502,6 +5930,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -5528,6 +5958,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -5573,6 +6005,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"contain_lapse">;
     behaviorId: z.ZodString;
@@ -5612,6 +6054,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -5639,6 +6083,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -5684,6 +6130,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"setup_shortcut">;
     /** Which setup card to show; if absent it is recomputed from behaviors. */
@@ -5716,6 +6172,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -5742,6 +6200,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -5787,6 +6247,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"resume_recap_reminders">;
 }, "strip", z.ZodTypeAny, {
@@ -5813,6 +6283,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -5837,6 +6309,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -5882,6 +6356,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"week_lookback">;
     /** The Sunday review this beat belongs to (the recap dateString). */
@@ -5911,6 +6395,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -5936,6 +6422,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -5981,6 +6469,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"weekly_review">;
     /** The local Sunday this review week is anchored to (YYYY-MM-DD). */
@@ -6011,6 +6509,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
     claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -6037,6 +6537,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dismissedReason?: "declined" | "ignored" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
     claimedBySessionId?: string | undefined;
 }>]>;
 export type TaskCategory = z.infer<typeof taskCategorySchema>;

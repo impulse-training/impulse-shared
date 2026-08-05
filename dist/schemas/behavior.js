@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isBehavior = exports.behaviorSchema = exports.streakForgivenessEntrySchema = exports.behaviorStateSchema = exports.WINDOW_SIZES = exports.recentSliceSchema = exports.behaviorStateMetaSchema = exports.behaviorStateGoalSchema = exports.trackingWindowSchema = exports.behaviorWindowSchema = exports.behaviorMeaningSchema = exports.globalStreaksSchema = exports.changeStageSchema = exports.streaksSchema = exports.behaviorStateGoalTypeSchema = exports.dataCompletenessSchema = exports.stabilitySchema = exports.trendSchema = exports.behaviorTemplateSchema = exports.streakLabels = exports.baselinePeriods = exports.trackingTypes = void 0;
+exports.isBehavior = exports.behaviorSchema = exports.streakForgivenessEntrySchema = exports.formatBenefitsForPrompt = exports.normalizeBehaviorBenefits = exports.behaviorBenefitElementSchema = exports.behaviorBenefitSchema = exports.benefitNeedSchema = exports.behaviorStateSchema = exports.WINDOW_SIZES = exports.recentSliceSchema = exports.behaviorStateMetaSchema = exports.behaviorStateGoalSchema = exports.trackingWindowSchema = exports.behaviorWindowSchema = exports.behaviorMeaningSchema = exports.globalStreaksSchema = exports.changeStageSchema = exports.streaksSchema = exports.behaviorStateGoalTypeSchema = exports.dataCompletenessSchema = exports.stabilitySchema = exports.trendSchema = exports.behaviorTemplateSchema = exports.streakLabels = exports.baselinePeriods = exports.trackingTypes = void 0;
 exports.isBehaviorState = isBehaviorState;
 const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
@@ -177,6 +177,97 @@ exports.behaviorStateSchema = zod_1.z.object({
 function isBehaviorState(value) {
     return exports.behaviorStateSchema.safeParse(value).success;
 }
+// The normalized "need" a behavior serves — the underlying pull behind a
+// benefit. Deliberately small and closed: it exists so benefits can be matched
+// across behaviors ("things that relax me") when suggesting substitutes.
+// `need` is optional on each benefit — the model tags a need only when
+// confident; absence means "other/unclassified", so there is no "other" value.
+exports.benefitNeedSchema = zod_1.z.enum([
+    "relaxation", // winding down, calming, stress relief
+    "stimulation", // excitement, novelty, the dopamine hit
+    "escape", // numbing / avoiding feelings or situations
+    "connection", // social belonging, intimacy, not feeling alone
+    "control", // sense of agency, order, autonomy
+    "pleasure", // sensory enjoyment (taste, arousal, physical feel)
+    "achievement", // progress, mastery, competence
+    "boredom_relief", // filling empty time
+    "comfort", // self-soothing, familiarity, safety
+    "focus", // concentration, alertness, mental energy
+]);
+// One benefit a behavior gives the user: their own words, plus (when the
+// model/coach is confident) the normalized need it serves.
+exports.behaviorBenefitSchema = zod_1.z.object({
+    /** What the behavior gives them, in the user's own words. */
+    text: zod_1.z.string().min(1),
+    need: exports.benefitNeedSchema.optional(),
+});
+// Tolerant element schema: benefits were historically bare strings, and old
+// docs (and old denormalized userContexts copies) still hold them. Strings
+// parse and normalize to `{ text }`, so schema validation stays green across
+// both shapes and no deploy ordering hinges on the data migration
+// (migrateBehaviorBenefitsShape in impulse-functions is hygiene, not a gate).
+exports.behaviorBenefitElementSchema = zod_1.z.union([
+    exports.behaviorBenefitSchema,
+    zod_1.z
+        .string()
+        .min(1)
+        .transform((text) => ({ text }))
+        .pipe(exports.behaviorBenefitSchema),
+]);
+/**
+ * Normalize a raw `benefits` value (possibly legacy `string[]`, possibly mixed)
+ * into structured entries. Most readers cast Firestore data without zod
+ * parsing, so anything consuming benefits should go through this.
+ */
+const normalizeBehaviorBenefits = (raw) => {
+    if (!Array.isArray(raw))
+        return [];
+    const entries = [];
+    for (const item of raw) {
+        if (typeof item === "string") {
+            const text = item.trim();
+            if (text)
+                entries.push({ text });
+        }
+        else if (item &&
+            typeof item === "object" &&
+            typeof item.text === "string") {
+            const text = item.text.trim();
+            if (!text)
+                continue;
+            const need = item.need;
+            entries.push(exports.benefitNeedSchema.safeParse(need).success
+                ? { text, need: need }
+                : { text });
+        }
+    }
+    return entries;
+};
+exports.normalizeBehaviorBenefits = normalizeBehaviorBenefits;
+/**
+ * The one shared rendering of benefits/drawbacks for LLM prompts (used by
+ * impulse-tools, impulse-functions and impulse-voice-agent so the framing
+ * never drifts). Returns [] when there is nothing to say; callers join with
+ * newlines at whatever indent suits their prompt.
+ */
+const formatBenefitsForPrompt = (benefits, drawbacks) => {
+    const lines = [];
+    const normalized = (0, exports.normalizeBehaviorBenefits)(benefits);
+    if (normalized.length > 0) {
+        const rendered = normalized
+            .map((b) => (b.need ? `${b.need.replace("_", " ")}: "${b.text}"` : `"${b.text}"`))
+            .join("; ");
+        lines.push(`What it gives them: ${rendered}`);
+    }
+    const cleanedDrawbacks = (drawbacks !== null && drawbacks !== void 0 ? drawbacks : [])
+        .map((d) => d.trim())
+        .filter(Boolean);
+    if (cleanedDrawbacks.length > 0) {
+        lines.push(`What it costs them: ${cleanedDrawbacks.join("; ")}`);
+    }
+    return lines;
+};
+exports.formatBenefitsForPrompt = formatBenefitsForPrompt;
 // These are stored at the user-level, as in, users/$userId/behaviors/$behaviorId
 // A coach-granted, retroactive streak rescue: a specific NOT_MET_FAIL day that
 // should NOT break the streak. The usage stays logged and honest — only the
@@ -193,7 +284,13 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
     id: zod_1.z.string().optional(),
     description: zod_1.z.string(),
     ordinal: zod_1.z.number().default(0),
-    benefits: zod_1.z.array(zod_1.z.string()).default([]),
+    // What the behavior gives the user. Structured (see behaviorBenefitSchema);
+    // legacy string entries still parse via the tolerant element schema.
+    // Captured conversationally by the understand_behavior task
+    // (updateBehaviorUnderstanding tool). Drawbacks stay freeform strings —
+    // only benefits need the normalized `need` dimension for substitute
+    // matching.
+    benefits: zod_1.z.array(exports.behaviorBenefitElementSchema).default([]),
     drawbacks: zod_1.z.array(zod_1.z.string()).default([]),
     goal: goal_1.goalSchema.optional(),
     lastTrackedAt: timestampSchema_1.timestampSchema.optional(),

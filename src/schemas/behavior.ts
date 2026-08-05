@@ -232,6 +232,105 @@ export function isBehaviorState(value: unknown): value is BehaviorState {
   return behaviorStateSchema.safeParse(value).success;
 }
 
+// The normalized "need" a behavior serves — the underlying pull behind a
+// benefit. Deliberately small and closed: it exists so benefits can be matched
+// across behaviors ("things that relax me") when suggesting substitutes.
+// `need` is optional on each benefit — the model tags a need only when
+// confident; absence means "other/unclassified", so there is no "other" value.
+export const benefitNeedSchema = z.enum([
+  "relaxation", // winding down, calming, stress relief
+  "stimulation", // excitement, novelty, the dopamine hit
+  "escape", // numbing / avoiding feelings or situations
+  "connection", // social belonging, intimacy, not feeling alone
+  "control", // sense of agency, order, autonomy
+  "pleasure", // sensory enjoyment (taste, arousal, physical feel)
+  "achievement", // progress, mastery, competence
+  "boredom_relief", // filling empty time
+  "comfort", // self-soothing, familiarity, safety
+  "focus", // concentration, alertness, mental energy
+]);
+export type BenefitNeed = z.infer<typeof benefitNeedSchema>;
+
+// One benefit a behavior gives the user: their own words, plus (when the
+// model/coach is confident) the normalized need it serves.
+export const behaviorBenefitSchema = z.object({
+  /** What the behavior gives them, in the user's own words. */
+  text: z.string().min(1),
+  need: benefitNeedSchema.optional(),
+});
+export type BehaviorBenefit = z.infer<typeof behaviorBenefitSchema>;
+
+// Tolerant element schema: benefits were historically bare strings, and old
+// docs (and old denormalized userContexts copies) still hold them. Strings
+// parse and normalize to `{ text }`, so schema validation stays green across
+// both shapes and no deploy ordering hinges on the data migration
+// (migrateBehaviorBenefitsShape in impulse-functions is hygiene, not a gate).
+export const behaviorBenefitElementSchema = z.union([
+  behaviorBenefitSchema,
+  z
+    .string()
+    .min(1)
+    .transform((text) => ({ text }))
+    .pipe(behaviorBenefitSchema),
+]);
+
+/**
+ * Normalize a raw `benefits` value (possibly legacy `string[]`, possibly mixed)
+ * into structured entries. Most readers cast Firestore data without zod
+ * parsing, so anything consuming benefits should go through this.
+ */
+export const normalizeBehaviorBenefits = (raw: unknown): BehaviorBenefit[] => {
+  if (!Array.isArray(raw)) return [];
+  const entries: BehaviorBenefit[] = [];
+  for (const item of raw) {
+    if (typeof item === "string") {
+      const text = item.trim();
+      if (text) entries.push({ text });
+    } else if (
+      item &&
+      typeof item === "object" &&
+      typeof (item as { text?: unknown }).text === "string"
+    ) {
+      const text = (item as { text: string }).text.trim();
+      if (!text) continue;
+      const need = (item as { need?: unknown }).need;
+      entries.push(
+        benefitNeedSchema.safeParse(need).success
+          ? { text, need: need as BenefitNeed }
+          : { text },
+      );
+    }
+  }
+  return entries;
+};
+
+/**
+ * The one shared rendering of benefits/drawbacks for LLM prompts (used by
+ * impulse-tools, impulse-functions and impulse-voice-agent so the framing
+ * never drifts). Returns [] when there is nothing to say; callers join with
+ * newlines at whatever indent suits their prompt.
+ */
+export const formatBenefitsForPrompt = (
+  benefits: unknown,
+  drawbacks: string[] | undefined,
+): string[] => {
+  const lines: string[] = [];
+  const normalized = normalizeBehaviorBenefits(benefits);
+  if (normalized.length > 0) {
+    const rendered = normalized
+      .map((b) => (b.need ? `${b.need.replace("_", " ")}: "${b.text}"` : `"${b.text}"`))
+      .join("; ");
+    lines.push(`What it gives them: ${rendered}`);
+  }
+  const cleanedDrawbacks = (drawbacks ?? [])
+    .map((d) => d.trim())
+    .filter(Boolean);
+  if (cleanedDrawbacks.length > 0) {
+    lines.push(`What it costs them: ${cleanedDrawbacks.join("; ")}`);
+  }
+  return lines;
+};
+
 // These are stored at the user-level, as in, users/$userId/behaviors/$behaviorId
 // A coach-granted, retroactive streak rescue: a specific NOT_MET_FAIL day that
 // should NOT break the streak. The usage stays logged and honest — only the
@@ -250,7 +349,13 @@ export const behaviorSchema = behaviorTemplateBase
     id: z.string().optional(),
     description: z.string(),
     ordinal: z.number().default(0),
-    benefits: z.array(z.string()).default([]),
+    // What the behavior gives the user. Structured (see behaviorBenefitSchema);
+    // legacy string entries still parse via the tolerant element schema.
+    // Captured conversationally by the understand_behavior task
+    // (updateBehaviorUnderstanding tool). Drawbacks stay freeform strings —
+    // only benefits need the normalized `need` dimension for substitute
+    // matching.
+    benefits: z.array(behaviorBenefitElementSchema).default([]),
     drawbacks: z.array(z.string()).default([]),
     goal: goalSchema.optional(),
     lastTrackedAt: timestampSchema.optional(),

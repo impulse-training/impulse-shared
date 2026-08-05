@@ -65,6 +65,16 @@ export const taskBaseSchema = z.object({
   approvedAt: timestampSchema.optional(),
   /** Why the coach approved it — recorded alongside `approvedAt`. */
   approvalReason: z.string().optional(),
+  /**
+   * Opt-in: surface this open user-level task as a card on the native home
+   * screen (below the experiment card). Tapping the card calls
+   * POST app/sessions/ensureTask, which claims the task into a dedicated
+   * `task_<taskId>` session. Set per task at creation — most task types stay
+   * recap/session-claimed only.
+   */
+  showOnHome: z.boolean().optional(),
+  /** Card subtitle when shown on home; the card falls back to generic copy. */
+  homeSubtitle: z.string().optional(),
 });
 
 export const mergeBehaviorsTaskSchema = taskBaseSchema.extend({

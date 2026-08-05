@@ -70,7 +70,27 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         description: z.ZodString;
         ordinal: z.ZodDefault<z.ZodNumber>;
-        benefits: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+        benefits: z.ZodDefault<z.ZodArray<z.ZodUnion<[z.ZodObject<{
+            text: z.ZodString;
+            need: z.ZodOptional<z.ZodEnum<["relaxation", "stimulation", "escape", "connection", "control", "pleasure", "achievement", "boredom_relief", "comfort", "focus"]>>;
+        }, "strip", z.ZodTypeAny, {
+            text: string;
+            need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+        }, {
+            text: string;
+            need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+        }>, z.ZodPipeline<z.ZodEffects<z.ZodString, {
+            text: string;
+        }, string>, z.ZodObject<{
+            text: z.ZodString;
+            need: z.ZodOptional<z.ZodEnum<["relaxation", "stimulation", "escape", "connection", "control", "pleasure", "achievement", "boredom_relief", "comfort", "focus"]>>;
+        }, "strip", z.ZodTypeAny, {
+            text: string;
+            need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+        }, {
+            text: string;
+            need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+        }>>]>, "many">>;
         drawbacks: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
         goal: z.ZodOptional<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: z.ZodLiteral<"eliminate">;
@@ -1067,7 +1087,10 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         trackingType: "counter" | "timer" | "scale";
         description: string;
         ordinal: number;
-        benefits: string[];
+        benefits: {
+            text: string;
+            need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+        }[];
         drawbacks: string[];
         masked: boolean;
         needsBaselineData: boolean;
@@ -1311,7 +1334,10 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             }[];
         } | undefined;
         ordinal?: number | undefined;
-        benefits?: string[] | undefined;
+        benefits?: (string | {
+            text: string;
+            need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+        })[] | undefined;
         drawbacks?: string[] | undefined;
         lastTrackedAt?: import("../types").Timestamp | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
@@ -1502,7 +1528,10 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         trackingType: "counter" | "timer" | "scale";
         description: string;
         ordinal: number;
-        benefits: string[];
+        benefits: {
+            text: string;
+            need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+        }[];
         drawbacks: string[];
         masked: boolean;
         needsBaselineData: boolean;
@@ -1761,7 +1790,10 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             }[];
         } | undefined;
         ordinal?: number | undefined;
-        benefits?: string[] | undefined;
+        benefits?: (string | {
+            text: string;
+            need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+        })[] | undefined;
         drawbacks?: string[] | undefined;
         lastTrackedAt?: import("../types").Timestamp | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
@@ -1979,7 +2011,27 @@ export declare const daySummarySchema: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         description: z.ZodString;
         ordinal: z.ZodDefault<z.ZodNumber>;
-        benefits: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+        benefits: z.ZodDefault<z.ZodArray<z.ZodUnion<[z.ZodObject<{
+            text: z.ZodString;
+            need: z.ZodOptional<z.ZodEnum<["relaxation", "stimulation", "escape", "connection", "control", "pleasure", "achievement", "boredom_relief", "comfort", "focus"]>>;
+        }, "strip", z.ZodTypeAny, {
+            text: string;
+            need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+        }, {
+            text: string;
+            need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+        }>, z.ZodPipeline<z.ZodEffects<z.ZodString, {
+            text: string;
+        }, string>, z.ZodObject<{
+            text: z.ZodString;
+            need: z.ZodOptional<z.ZodEnum<["relaxation", "stimulation", "escape", "connection", "control", "pleasure", "achievement", "boredom_relief", "comfort", "focus"]>>;
+        }, "strip", z.ZodTypeAny, {
+            text: string;
+            need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+        }, {
+            text: string;
+            need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+        }>>]>, "many">>;
         drawbacks: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
         goal: z.ZodOptional<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: z.ZodLiteral<"eliminate">;
@@ -2976,7 +3028,10 @@ export declare const daySummarySchema: z.ZodObject<{
         trackingType: "counter" | "timer" | "scale";
         description: string;
         ordinal: number;
-        benefits: string[];
+        benefits: {
+            text: string;
+            need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+        }[];
         drawbacks: string[];
         masked: boolean;
         needsBaselineData: boolean;
@@ -3220,7 +3275,10 @@ export declare const daySummarySchema: z.ZodObject<{
             }[];
         } | undefined;
         ordinal?: number | undefined;
-        benefits?: string[] | undefined;
+        benefits?: (string | {
+            text: string;
+            need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+        })[] | undefined;
         drawbacks?: string[] | undefined;
         lastTrackedAt?: import("../types").Timestamp | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
@@ -3491,7 +3549,10 @@ export declare const daySummarySchema: z.ZodObject<{
         trackingType: "counter" | "timer" | "scale";
         description: string;
         ordinal: number;
-        benefits: string[];
+        benefits: {
+            text: string;
+            need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+        }[];
         drawbacks: string[];
         masked: boolean;
         needsBaselineData: boolean;
@@ -3778,7 +3839,10 @@ export declare const daySummarySchema: z.ZodObject<{
             }[];
         } | undefined;
         ordinal?: number | undefined;
-        benefits?: string[] | undefined;
+        benefits?: (string | {
+            text: string;
+            need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
+        })[] | undefined;
         drawbacks?: string[] | undefined;
         lastTrackedAt?: import("../types").Timestamp | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
