@@ -224,11 +224,12 @@ function getGptPayload(log, isFinalLogInSession, options) {
     }
     if ((0, log_1.logIsDebriefQuestionLog)(log)) {
         const selected = (_e = log.data.selectedResponseText) === null || _e === void 0 ? void 0 : _e.trim();
-        // Weekly-review chips reuse this log type, but there the selection IS the
-        // user's conversational reply and drives the review flow.
-        const isWeeklyReviewChip = log.data.debriefQuestionId.startsWith("weekly_review");
+        // Weekly-review and quick-question chips reuse this log type, but there
+        // the selection IS the user's conversational reply and drives the flow.
+        const isConversationalChip = log.data.debriefQuestionId.startsWith("weekly_review") ||
+            log.data.debriefQuestionId.startsWith("quick_question");
         if (selected) {
-            if (isWeeklyReviewChip) {
+            if (isConversationalChip) {
                 return [
                     {
                         role: "user",
