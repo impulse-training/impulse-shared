@@ -58,6 +58,8 @@ const tacticSuggestionsLog_1 = require("./tacticSuggestionsLog");
 const coachBookingPromptLog_1 = require("./coachBookingPromptLog");
 const debriefQuestionLog_1 = require("./debriefQuestionLog");
 const planHistoryEntryLog_1 = require("./planHistoryEntryLog");
+const closingReflectionLog_1 = require("./closingReflectionLog");
+const protectNextWindowOutcomeLog_1 = require("./protectNextWindowOutcomeLog");
 exports.logSchemas = {
     user: messageLog_1.userMessageLogSchema,
     assistant_message: messageLog_1.assistantMessageLogSchema,
@@ -103,6 +105,8 @@ exports.logSchemas = {
     coach_booking_prompt: coachBookingPromptLog_1.coachBookingPromptLogSchema,
     debrief_question: debriefQuestionLog_1.debriefQuestionLogSchema,
     plan_history_entry: planHistoryEntryLog_1.planHistoryEntryLogSchema,
+    closing_reflection: closingReflectionLog_1.closingReflectionLogSchema,
+    protect_next_window_outcome: protectNextWindowOutcomeLog_1.protectNextWindowOutcomeLogSchema,
 };
 exports.logTypes = Object.keys(exports.logSchemas);
 __exportStar(require("./behaviorLog"), exports);
@@ -147,6 +151,8 @@ __exportStar(require("./tacticSuggestionsLog"), exports);
 __exportStar(require("./coachBookingPromptLog"), exports);
 __exportStar(require("./debriefQuestionLog"), exports);
 __exportStar(require("./planHistoryEntryLog"), exports);
+__exportStar(require("./closingReflectionLog"), exports);
+__exportStar(require("./protectNextWindowOutcomeLog"), exports);
 // Discriminated union schema across all log variants
 exports.logSchema = zod_1.z.discriminatedUnion("type", [
     messageLog_1.userMessageLogSchema,
@@ -191,6 +197,8 @@ exports.logSchema = zod_1.z.discriminatedUnion("type", [
     coachBookingPromptLog_1.coachBookingPromptLogSchema,
     debriefQuestionLog_1.debriefQuestionLogSchema,
     planHistoryEntryLog_1.planHistoryEntryLogSchema,
+    closingReflectionLog_1.closingReflectionLogSchema,
+    protectNextWindowOutcomeLog_1.protectNextWindowOutcomeLogSchema,
 ]);
 // Export log type guards
 const logIsAssistantMessageLog = (value) => value.type === "assistant_message";

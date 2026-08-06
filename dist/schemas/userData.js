@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isUserData = exports.userDataSchema = void 0;
+exports.isUserData = exports.getActiveClosingReflectionPrompt = exports.userDataSchema = void 0;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../utils/timestampSchema");
 const supportGroup_1 = require("./supportGroup");
@@ -15,6 +15,25 @@ const recapTriggerSchema = zod_1.z.object({
 const recapReminderTimeSchema = zod_1.z.object({
     hour: zod_1.z.number().min(0).max(23),
     minute: zod_1.z.number().min(0).max(59),
+});
+/**
+ * An optional user-authored reflection that closes the recap, asked AFTER the
+ * night's behavior-anchored recap question has run its course.
+ *
+ * The recap is deliberately focused on the behavior the user is trying to
+ * break, which makes it a fairly unsparing ritual by design. This is the one
+ * place the user gets to point it somewhere of their own choosing — gratitude,
+ * what went well, anything. It is a REFLECTION, not a tracked behavior: there
+ * is no streak, goal, or adherence attached to it, which is what keeps it on
+ * the right side of "Impulse only tracks behaviors you want to do less of".
+ *
+ * `prompt` is the user's own words and is handed to the assistant verbatim as
+ * the beat's frame — the AI runs the conversation but never authors the
+ * question.
+ */
+const recapClosingReflectionSchema = zod_1.z.object({
+    enabled: zod_1.z.boolean().default(false),
+    prompt: zod_1.z.string().max(300).optional(),
 });
 const latestSupportGroupMessageSchema = zod_1.z.object({
     senderId: zod_1.z.string(),
@@ -108,6 +127,28 @@ exports.userDataSchema = zod_1.z.object({
         // drafts and on-demand recaps still work. Cleared by the
         // resume_recap_reminders card (or manually).
         paused: zod_1.z.boolean().optional(),
+        // Optional user-authored beat that closes the recap on a note of their
+        // choosing. See recapClosingReflectionSchema.
+        closingReflection: recapClosingReflectionSchema.optional(),
+    })
+        .optional(),
+    /**
+     * protect_next_window — resisted-path containment (see
+     * protectNextWindowTaskSchema): once a resisted urge is debriefed and
+     * settled, the session turns to protecting the next vulnerable window
+     * instead of just closing. The acted path's containment is contain_lapse;
+     * this flag governs only the resisted path. Opt-in (default off) while it's
+     * dogfooded.
+     *
+     * `lastOfferedDateString` is the once-per-local-day cap: stamped when the
+     * protect_next_window task is actually injected, checked before injecting
+     * another. Cap on OFFERS, not completions — a user who said "not now" this
+     * morning shouldn't be re-asked tonight.
+     */
+    protectNextWindow: zod_1.z
+        .object({
+        enabled: zod_1.z.boolean().default(false),
+        lastOfferedDateString: zod_1.z.string().optional(),
     })
         .optional(),
     // If true, this user will be added to the tech support group for all new signups
@@ -207,6 +248,21 @@ exports.userDataSchema = zod_1.z.object({
     })
         .optional(),
 });
+/**
+ * The closing reflection is live only when the user turned it on AND wrote a
+ * prompt — an enabled-but-blank config has nothing to ask, so every caller
+ * (task writer, close guard, prompt builder) must agree it is off. Returns the
+ * trimmed prompt so callers don't each re-trim.
+ */
+const getActiveClosingReflectionPrompt = (userData) => {
+    var _a, _b;
+    const config = (_a = userData === null || userData === void 0 ? void 0 : userData.recap) === null || _a === void 0 ? void 0 : _a.closingReflection;
+    if (!(config === null || config === void 0 ? void 0 : config.enabled))
+        return null;
+    const prompt = (_b = config.prompt) === null || _b === void 0 ? void 0 : _b.trim();
+    return prompt ? prompt : null;
+};
+exports.getActiveClosingReflectionPrompt = getActiveClosingReflectionPrompt;
 // Type guard for User
 const isUserData = (value) => exports.userDataSchema.safeParse(value).success;
 exports.isUserData = isUserData;

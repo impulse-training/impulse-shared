@@ -335,6 +335,76 @@ export const weeklyReviewTaskSchema = taskBaseSchema.extend({
   claimedBySessionId: z.string().optional(),
 });
 
+/**
+ * The user-authored beat that closes a recap (see userData
+ * recap.closingReflection). Injected as a SESSION task, never user-level, and
+ * — unlike every other session task — written LAZILY rather than at session
+ * creation.
+ *
+ * The lazy write is load-bearing. getTaskContext renders the lowest-ordinal
+ * open `zara` task as an Active Task Override that supersedes the session
+ * objective, and a daily recap normally has no open zara task at all. Written
+ * up front this beat would be the only one, so it would take over the recap
+ * from turn one no matter how high its ordinal. Instead judgeRecapClose writes
+ * it at the moment it would otherwise have surfaced "Done for now" — i.e. once
+ * the night's real reflection has actually run its course.
+ *
+ * Completed by the `logClosingReflection` tool, which also records what the
+ * user said as a closing_reflection log.
+ */
+export const closingReflectionTaskSchema = taskBaseSchema.extend({
+  type: z.literal("closing_reflection"),
+  /** The user's own question text, handed to the assistant verbatim. */
+  prompt: z.string().min(1),
+});
+
+/**
+ * Which time-shaped variant of the protect_next_window arc runs. Time alters
+ * the arc rather than suppressing it — containment is immediate risk
+ * management and coexists with the (retrospective) recap:
+ * - daytime   — full arc: what they're moving into, resolve the obstacle,
+ *               settle a next action.
+ * - evening   — the window is the rest of the evening: shape it lightly and
+ *               transition toward winding down/sleep.
+ * - pre_recap — the nightly recap is imminent: keep it to ONE short exchange
+ *               about the next hour; the recap revisits the commitment.
+ */
+export const protectNextWindowVariantSchema = z.enum([
+  "daytime",
+  "evening",
+  "pre_recap",
+]);
+
+/**
+ * Resisted-path CONTAINMENT, on impulse sessions. Containment is the support
+ * that begins once an urge is acknowledged and continues until the user has
+ * safely transitioned into the next part of their day:
+ *
+ *   Containment
+ *   ├── resisted path → protect_next_window (this task)
+ *   └── acted path    → contain_lapse
+ *
+ * Separate task types for now (different entry logic and completion
+ * contracts) sharing the same principles: near-term protection, vetted tactic
+ * access, check-in scheduling, appetite/fatigue controls, structured outcome
+ * logging. The arc: understand what the user is moving into, resolve any
+ * immediate obstacle, settle on a manageable next action, optionally protect
+ * the window (check-in / break tactic).
+ *
+ * One task carries the whole arc (the contain_lapse pattern), with the full
+ * frame written into `instructions` at injection. Injected lazily by the
+ * windDownDebrief tool at the moment the debrief lands — never at session
+ * creation, where it would hijack the urge conversation as the Active Task
+ * Override from turn one. To the user this is ONE continuous conversation:
+ * the debrief is a transition inside containment, never an announced phase
+ * change. Completed by logNextWindowOutcome (which records the outcome + any
+ * commitment); dismissed = the user passed, never re-offered that day.
+ */
+export const protectNextWindowTaskSchema = taskBaseSchema.extend({
+  type: z.literal("protect_next_window"),
+  variant: protectNextWindowVariantSchema,
+});
+
 export const taskSchema = z.discriminatedUnion("type", [
   mergeBehaviorsTaskSchema,
   suggestStrategyTaskSchema,
@@ -354,6 +424,8 @@ export const taskSchema = z.discriminatedUnion("type", [
   resumeRecapRemindersTaskSchema,
   weekLookbackTaskSchema,
   weeklyReviewTaskSchema,
+  closingReflectionTaskSchema,
+  protectNextWindowTaskSchema,
 ]);
 
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
@@ -382,6 +454,11 @@ export type ResumeRecapRemindersTask = z.infer<
 >;
 export type WeekLookbackTask = z.infer<typeof weekLookbackTaskSchema>;
 export type WeeklyReviewTask = z.infer<typeof weeklyReviewTaskSchema>;
+export type ClosingReflectionTask = z.infer<typeof closingReflectionTaskSchema>;
+export type ProtectNextWindowVariant = z.infer<
+  typeof protectNextWindowVariantSchema
+>;
+export type ProtectNextWindowTask = z.infer<typeof protectNextWindowTaskSchema>;
 export type Task = z.infer<typeof taskSchema>;
 
 /**

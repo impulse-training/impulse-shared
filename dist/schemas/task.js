@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isSetupShortcutTask = exports.isReflectOnMetricsTask = exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isProposeGoalTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.isTaskAwaitingApproval = exports.TASK_TYPES_REQUIRING_APPROVAL = exports.taskSchema = exports.weeklyReviewTaskSchema = exports.weekLookbackTaskSchema = exports.resumeRecapRemindersTaskSchema = exports.setupShortcutTaskSchema = exports.containLapseTaskSchema = exports.understandBehaviorTaskSchema = exports.collectBaselineTaskSchema = exports.reflectOnMetricsTaskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.proposeGoalTaskSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.claimableSessionTypeSchema = exports.taskCategorySchema = exports.dismissedReasonSchema = exports.taskStatusSchema = void 0;
+exports.isSetupShortcutTask = exports.isReflectOnMetricsTask = exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isProposeGoalTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.isTaskAwaitingApproval = exports.TASK_TYPES_REQUIRING_APPROVAL = exports.taskSchema = exports.protectNextWindowTaskSchema = exports.protectNextWindowVariantSchema = exports.closingReflectionTaskSchema = exports.weeklyReviewTaskSchema = exports.weekLookbackTaskSchema = exports.resumeRecapRemindersTaskSchema = exports.setupShortcutTaskSchema = exports.containLapseTaskSchema = exports.understandBehaviorTaskSchema = exports.collectBaselineTaskSchema = exports.reflectOnMetricsTaskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.proposeGoalTaskSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.claimableSessionTypeSchema = exports.taskCategorySchema = exports.dismissedReasonSchema = exports.taskStatusSchema = void 0;
 const zod_1 = require("zod");
 const goal_1 = require("./goal");
 const proposedStrategyModificationLog_1 = require("./log/proposedStrategyModificationLog");
@@ -311,6 +311,73 @@ exports.weeklyReviewTaskSchema = exports.taskBaseSchema.extend({
     weekAnchorDateString: zod_1.z.string(),
     claimedBySessionId: zod_1.z.string().optional(),
 });
+/**
+ * The user-authored beat that closes a recap (see userData
+ * recap.closingReflection). Injected as a SESSION task, never user-level, and
+ * — unlike every other session task — written LAZILY rather than at session
+ * creation.
+ *
+ * The lazy write is load-bearing. getTaskContext renders the lowest-ordinal
+ * open `zara` task as an Active Task Override that supersedes the session
+ * objective, and a daily recap normally has no open zara task at all. Written
+ * up front this beat would be the only one, so it would take over the recap
+ * from turn one no matter how high its ordinal. Instead judgeRecapClose writes
+ * it at the moment it would otherwise have surfaced "Done for now" — i.e. once
+ * the night's real reflection has actually run its course.
+ *
+ * Completed by the `logClosingReflection` tool, which also records what the
+ * user said as a closing_reflection log.
+ */
+exports.closingReflectionTaskSchema = exports.taskBaseSchema.extend({
+    type: zod_1.z.literal("closing_reflection"),
+    /** The user's own question text, handed to the assistant verbatim. */
+    prompt: zod_1.z.string().min(1),
+});
+/**
+ * Which time-shaped variant of the protect_next_window arc runs. Time alters
+ * the arc rather than suppressing it — containment is immediate risk
+ * management and coexists with the (retrospective) recap:
+ * - daytime   — full arc: what they're moving into, resolve the obstacle,
+ *               settle a next action.
+ * - evening   — the window is the rest of the evening: shape it lightly and
+ *               transition toward winding down/sleep.
+ * - pre_recap — the nightly recap is imminent: keep it to ONE short exchange
+ *               about the next hour; the recap revisits the commitment.
+ */
+exports.protectNextWindowVariantSchema = zod_1.z.enum([
+    "daytime",
+    "evening",
+    "pre_recap",
+]);
+/**
+ * Resisted-path CONTAINMENT, on impulse sessions. Containment is the support
+ * that begins once an urge is acknowledged and continues until the user has
+ * safely transitioned into the next part of their day:
+ *
+ *   Containment
+ *   ├── resisted path → protect_next_window (this task)
+ *   └── acted path    → contain_lapse
+ *
+ * Separate task types for now (different entry logic and completion
+ * contracts) sharing the same principles: near-term protection, vetted tactic
+ * access, check-in scheduling, appetite/fatigue controls, structured outcome
+ * logging. The arc: understand what the user is moving into, resolve any
+ * immediate obstacle, settle on a manageable next action, optionally protect
+ * the window (check-in / break tactic).
+ *
+ * One task carries the whole arc (the contain_lapse pattern), with the full
+ * frame written into `instructions` at injection. Injected lazily by the
+ * windDownDebrief tool at the moment the debrief lands — never at session
+ * creation, where it would hijack the urge conversation as the Active Task
+ * Override from turn one. To the user this is ONE continuous conversation:
+ * the debrief is a transition inside containment, never an announced phase
+ * change. Completed by logNextWindowOutcome (which records the outcome + any
+ * commitment); dismissed = the user passed, never re-offered that day.
+ */
+exports.protectNextWindowTaskSchema = exports.taskBaseSchema.extend({
+    type: zod_1.z.literal("protect_next_window"),
+    variant: exports.protectNextWindowVariantSchema,
+});
 exports.taskSchema = zod_1.z.discriminatedUnion("type", [
     exports.mergeBehaviorsTaskSchema,
     exports.suggestStrategyTaskSchema,
@@ -330,6 +397,8 @@ exports.taskSchema = zod_1.z.discriminatedUnion("type", [
     exports.resumeRecapRemindersTaskSchema,
     exports.weekLookbackTaskSchema,
     exports.weeklyReviewTaskSchema,
+    exports.closingReflectionTaskSchema,
+    exports.protectNextWindowTaskSchema,
 ]);
 /**
  * Task types that must NEVER reach the user without a human (coach) sign-off.

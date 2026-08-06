@@ -33,4 +33,5 @@ export * from "./utils/walkthroughTasks";
 export * from "./utils/selfHarmKeywords";
 export * from "./utils/milestoneLadder";
 export * from "./utils/engagement";
+export * from "./utils/nextWindowVariant";
 export * from "./utils/winRate";

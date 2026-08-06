@@ -54,4 +54,15 @@ exports.impulseSessionSchema = base_1.sessionBaseSchema.extend({
     hasScheduledCheckIn: zod_1.z.boolean().optional(),
     recommendedTactics: zod_1.z.array(exports.recommendedTacticSchema).optional(),
     suggestedPlan: exports.suggestedPlanSchema.optional(),
+    /**
+     * Set at debrief resolution when this session qualifies for the
+     * protect_next_window arc — resisted-path containment (resisted outcome,
+     * user opted in, daily cap not spent; see
+     * maybeMarkProtectNextWindowEligible). Acted-on urges take the other
+     * containment path (contain_lapse) and never set this. Stamped on the
+     * session rather than read live from userData so tool availability and the
+     * post-debrief prompt stay synchronous, deterministic per session, and
+     * byte-identical for everyone the feature is off for.
+     */
+    protectNextWindowEligible: zod_1.z.boolean().optional(),
 });

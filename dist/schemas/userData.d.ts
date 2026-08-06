@@ -1,4 +1,29 @@
 import { z } from "zod";
+/**
+ * An optional user-authored reflection that closes the recap, asked AFTER the
+ * night's behavior-anchored recap question has run its course.
+ *
+ * The recap is deliberately focused on the behavior the user is trying to
+ * break, which makes it a fairly unsparing ritual by design. This is the one
+ * place the user gets to point it somewhere of their own choosing — gratitude,
+ * what went well, anything. It is a REFLECTION, not a tracked behavior: there
+ * is no streak, goal, or adherence attached to it, which is what keeps it on
+ * the right side of "Impulse only tracks behaviors you want to do less of".
+ *
+ * `prompt` is the user's own words and is handed to the assistant verbatim as
+ * the beat's frame — the AI runs the conversation but never authors the
+ * question.
+ */
+declare const recapClosingReflectionSchema: z.ZodObject<{
+    enabled: z.ZodDefault<z.ZodBoolean>;
+    prompt: z.ZodOptional<z.ZodString>;
+}, "strip", z.ZodTypeAny, {
+    enabled: boolean;
+    prompt?: string | undefined;
+}, {
+    prompt?: string | undefined;
+    enabled?: boolean | undefined;
+}>;
 export declare const userDataSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -87,6 +112,16 @@ export declare const userDataSchema: z.ZodObject<{
             minute: number;
         }>>;
         paused: z.ZodOptional<z.ZodBoolean>;
+        closingReflection: z.ZodOptional<z.ZodObject<{
+            enabled: z.ZodDefault<z.ZodBoolean>;
+            prompt: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            enabled: boolean;
+            prompt?: string | undefined;
+        }, {
+            prompt?: string | undefined;
+            enabled?: boolean | undefined;
+        }>>;
     }, "strip", z.ZodTypeAny, {
         trigger: {
             hour: number;
@@ -96,6 +131,10 @@ export declare const userDataSchema: z.ZodObject<{
         reminderTime?: {
             hour: number;
             minute: number;
+        } | undefined;
+        closingReflection?: {
+            enabled: boolean;
+            prompt?: string | undefined;
         } | undefined;
     }, {
         trigger: {
@@ -107,6 +146,33 @@ export declare const userDataSchema: z.ZodObject<{
             hour: number;
             minute: number;
         } | undefined;
+        closingReflection?: {
+            prompt?: string | undefined;
+            enabled?: boolean | undefined;
+        } | undefined;
+    }>>;
+    /**
+     * protect_next_window — resisted-path containment (see
+     * protectNextWindowTaskSchema): once a resisted urge is debriefed and
+     * settled, the session turns to protecting the next vulnerable window
+     * instead of just closing. The acted path's containment is contain_lapse;
+     * this flag governs only the resisted path. Opt-in (default off) while it's
+     * dogfooded.
+     *
+     * `lastOfferedDateString` is the once-per-local-day cap: stamped when the
+     * protect_next_window task is actually injected, checked before injecting
+     * another. Cap on OFFERS, not completions — a user who said "not now" this
+     * morning shouldn't be re-asked tonight.
+     */
+    protectNextWindow: z.ZodOptional<z.ZodObject<{
+        enabled: z.ZodDefault<z.ZodBoolean>;
+        lastOfferedDateString: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        enabled: boolean;
+        lastOfferedDateString?: string | undefined;
+    }, {
+        enabled?: boolean | undefined;
+        lastOfferedDateString?: string | undefined;
     }>>;
     isImpulseTeam: z.ZodOptional<z.ZodBoolean>;
     addToAccountabilitySupportGroups: z.ZodOptional<z.ZodBoolean>;
@@ -254,6 +320,10 @@ export declare const userDataSchema: z.ZodObject<{
             hour: number;
             minute: number;
         } | undefined;
+        closingReflection?: {
+            enabled: boolean;
+            prompt?: string | undefined;
+        } | undefined;
     } | undefined;
     lastActive?: import("../types").Timestamp | undefined;
     lastLogin?: import("../types").Timestamp | undefined;
@@ -279,6 +349,10 @@ export declare const userDataSchema: z.ZodObject<{
     isAppEnabled?: boolean | undefined;
     deletionRequestedAt?: import("../types").Timestamp | undefined;
     deletionRequestedBy?: "user" | "system" | "admin" | undefined;
+    protectNextWindow?: {
+        enabled: boolean;
+        lastOfferedDateString?: string | undefined;
+    } | undefined;
     isImpulseTeam?: boolean | undefined;
     addToAccountabilitySupportGroups?: boolean | undefined;
     hasSetupExperiment?: boolean | undefined;
@@ -352,6 +426,10 @@ export declare const userDataSchema: z.ZodObject<{
             hour: number;
             minute: number;
         } | undefined;
+        closingReflection?: {
+            prompt?: string | undefined;
+            enabled?: boolean | undefined;
+        } | undefined;
     } | undefined;
     theme?: "system" | "light" | "dark" | undefined;
     notificationsEnabled?: boolean | undefined;
@@ -387,6 +465,10 @@ export declare const userDataSchema: z.ZodObject<{
     deletionRequestedAt?: import("../types").Timestamp | undefined;
     deletionRequestedBy?: "user" | "system" | "admin" | undefined;
     weekStartsOn?: 0 | 1 | undefined;
+    protectNextWindow?: {
+        enabled?: boolean | undefined;
+        lastOfferedDateString?: string | undefined;
+    } | undefined;
     isImpulseTeam?: boolean | undefined;
     addToAccountabilitySupportGroups?: boolean | undefined;
     hasSetupExperiment?: boolean | undefined;
@@ -441,4 +523,17 @@ export declare const userDataSchema: z.ZodObject<{
     } | undefined;
 }>;
 export type UserData = z.infer<typeof userDataSchema>;
+export type RecapClosingReflection = z.infer<typeof recapClosingReflectionSchema>;
+/**
+ * The closing reflection is live only when the user turned it on AND wrote a
+ * prompt — an enabled-but-blank config has nothing to ask, so every caller
+ * (task writer, close guard, prompt builder) must agree it is off. Returns the
+ * trimmed prompt so callers don't each re-trim.
+ */
+export declare const getActiveClosingReflectionPrompt: (userData: {
+    recap?: {
+        closingReflection?: RecapClosingReflection;
+    };
+} | undefined) => string | null;
 export declare const isUserData: (value: unknown) => value is UserData;
+export {};

@@ -71,4 +71,5 @@ __exportStar(require("./utils/walkthroughTasks"), exports);
 __exportStar(require("./utils/selfHarmKeywords"), exports);
 __exportStar(require("./utils/milestoneLadder"), exports);
 __exportStar(require("./utils/engagement"), exports);
+__exportStar(require("./utils/nextWindowVariant"), exports);
 __exportStar(require("./utils/winRate"), exports);
