@@ -73,3 +73,4 @@ __exportStar(require("./utils/milestoneLadder"), exports);
 __exportStar(require("./utils/engagement"), exports);
 __exportStar(require("./utils/nextWindowVariant"), exports);
 __exportStar(require("./utils/winRate"), exports);
+__exportStar(require("./utils/normalizeDashes"), exports);
