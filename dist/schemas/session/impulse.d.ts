@@ -7665,6 +7665,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         planId: string;
         matchedAt: import("../../types").Timestamp;
     }>>;
+    protectNextWindowEligible: z.ZodOptional<z.ZodBoolean>;
 }, "strip", z.ZodTypeAny, {
     type: "impulse";
     date: import("../../types").Timestamp;
@@ -8558,6 +8559,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         planId: string;
         matchedAt: import("../../types").Timestamp;
     } | undefined;
+    protectNextWindowEligible?: boolean | undefined;
 }, {
     type: "impulse";
     date: import("../../types").Timestamp;
@@ -8917,5 +8919,6 @@ export declare const impulseSessionSchema: z.ZodObject<{
         planId: string;
         matchedAt: import("../../types").Timestamp;
     } | undefined;
+    protectNextWindowEligible?: boolean | undefined;
 }>;
 export type ImpulseSession = z.infer<typeof impulseSessionSchema>;

@@ -132,6 +132,14 @@ import {
   PlanHistoryEntryLog,
   planHistoryEntryLogSchema,
 } from "./planHistoryEntryLog";
+import {
+  ClosingReflectionLog,
+  closingReflectionLogSchema,
+} from "./closingReflectionLog";
+import {
+  ProtectNextWindowOutcomeLog,
+  protectNextWindowOutcomeLogSchema,
+} from "./protectNextWindowOutcomeLog";
 
 export const logSchemas = {
   user: userMessageLogSchema,
@@ -178,6 +186,8 @@ export const logSchemas = {
   coach_booking_prompt: coachBookingPromptLogSchema,
   debrief_question: debriefQuestionLogSchema,
   plan_history_entry: planHistoryEntryLogSchema,
+  closing_reflection: closingReflectionLogSchema,
+  protect_next_window_outcome: protectNextWindowOutcomeLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -225,7 +235,9 @@ export type Log =
   | TacticSuggestionsLog
   | CoachBookingPromptLog
   | DebriefQuestionLog
-  | PlanHistoryEntryLog;
+  | PlanHistoryEntryLog
+  | ClosingReflectionLog
+  | ProtectNextWindowOutcomeLog;
 
 export * from "./behaviorLog";
 export * from "./breathingLog";
@@ -269,6 +281,8 @@ export * from "./tacticSuggestionsLog";
 export * from "./coachBookingPromptLog";
 export * from "./debriefQuestionLog";
 export * from "./planHistoryEntryLog";
+export * from "./closingReflectionLog";
+export * from "./protectNextWindowOutcomeLog";
 
 // Discriminated union schema across all log variants
 export const logSchema = z.discriminatedUnion("type", [
@@ -314,6 +328,8 @@ export const logSchema = z.discriminatedUnion("type", [
   coachBookingPromptLogSchema,
   debriefQuestionLogSchema,
   planHistoryEntryLogSchema,
+  closingReflectionLogSchema,
+  protectNextWindowOutcomeLogSchema,
 ]);
 
 // Export log type guards

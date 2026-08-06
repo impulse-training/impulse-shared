@@ -17,6 +17,26 @@ const recapReminderTimeSchema = z.object({
   minute: z.number().min(0).max(59),
 });
 
+/**
+ * An optional user-authored reflection that closes the recap, asked AFTER the
+ * night's behavior-anchored recap question has run its course.
+ *
+ * The recap is deliberately focused on the behavior the user is trying to
+ * break, which makes it a fairly unsparing ritual by design. This is the one
+ * place the user gets to point it somewhere of their own choosing — gratitude,
+ * what went well, anything. It is a REFLECTION, not a tracked behavior: there
+ * is no streak, goal, or adherence attached to it, which is what keeps it on
+ * the right side of "Impulse only tracks behaviors you want to do less of".
+ *
+ * `prompt` is the user's own words and is handed to the assistant verbatim as
+ * the beat's frame — the AI runs the conversation but never authors the
+ * question.
+ */
+const recapClosingReflectionSchema = z.object({
+  enabled: z.boolean().default(false),
+  prompt: z.string().max(300).optional(),
+});
+
 const latestSupportGroupMessageSchema = z.object({
   senderId: z.string(),
   message: z.string(),
@@ -122,6 +142,29 @@ export const userDataSchema = z.object({
       // drafts and on-demand recaps still work. Cleared by the
       // resume_recap_reminders card (or manually).
       paused: z.boolean().optional(),
+      // Optional user-authored beat that closes the recap on a note of their
+      // choosing. See recapClosingReflectionSchema.
+      closingReflection: recapClosingReflectionSchema.optional(),
+    })
+    .optional(),
+
+  /**
+   * protect_next_window — resisted-path containment (see
+   * protectNextWindowTaskSchema): once a resisted urge is debriefed and
+   * settled, the session turns to protecting the next vulnerable window
+   * instead of just closing. The acted path's containment is contain_lapse;
+   * this flag governs only the resisted path. Opt-in (default off) while it's
+   * dogfooded.
+   *
+   * `lastOfferedDateString` is the once-per-local-day cap: stamped when the
+   * protect_next_window task is actually injected, checked before injecting
+   * another. Cap on OFFERS, not completions — a user who said "not now" this
+   * morning shouldn't be re-asked tonight.
+   */
+  protectNextWindow: z
+    .object({
+      enabled: z.boolean().default(false),
+      lastOfferedDateString: z.string().optional(),
     })
     .optional(),
 
@@ -252,6 +295,25 @@ export const userDataSchema = z.object({
 
 // Export User type inferred from schema
 export type UserData = z.infer<typeof userDataSchema>;
+
+export type RecapClosingReflection = z.infer<
+  typeof recapClosingReflectionSchema
+>;
+
+/**
+ * The closing reflection is live only when the user turned it on AND wrote a
+ * prompt — an enabled-but-blank config has nothing to ask, so every caller
+ * (task writer, close guard, prompt builder) must agree it is off. Returns the
+ * trimmed prompt so callers don't each re-trim.
+ */
+export const getActiveClosingReflectionPrompt = (
+  userData: { recap?: { closingReflection?: RecapClosingReflection } } | undefined,
+): string | null => {
+  const config = userData?.recap?.closingReflection;
+  if (!config?.enabled) return null;
+  const prompt = config.prompt?.trim();
+  return prompt ? prompt : null;
+};
 
 // Type guard for User
 export const isUserData = (value: unknown): value is UserData =>

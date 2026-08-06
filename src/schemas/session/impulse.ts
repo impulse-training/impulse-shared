@@ -58,6 +58,17 @@ export const impulseSessionSchema = sessionBaseSchema.extend({
   hasScheduledCheckIn: z.boolean().optional(),
   recommendedTactics: z.array(recommendedTacticSchema).optional(),
   suggestedPlan: suggestedPlanSchema.optional(),
+  /**
+   * Set at debrief resolution when this session qualifies for the
+   * protect_next_window arc — resisted-path containment (resisted outcome,
+   * user opted in, daily cap not spent; see
+   * maybeMarkProtectNextWindowEligible). Acted-on urges take the other
+   * containment path (contain_lapse) and never set this. Stamped on the
+   * session rather than read live from userData so tool availability and the
+   * post-debrief prompt stay synchronous, deterministic per session, and
+   * byte-identical for everyone the feature is off for.
+   */
+  protectNextWindowEligible: z.boolean().optional(),
 });
 
 export type ImpulseSession = z.infer<typeof impulseSessionSchema>;

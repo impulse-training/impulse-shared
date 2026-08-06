@@ -40,6 +40,8 @@ import { TacticSuggestionsLog } from "./tacticSuggestionsLog";
 import { CoachBookingPromptLog } from "./coachBookingPromptLog";
 import { DebriefQuestionLog } from "./debriefQuestionLog";
 import { PlanHistoryEntryLog } from "./planHistoryEntryLog";
+import { ClosingReflectionLog } from "./closingReflectionLog";
+import { ProtectNextWindowOutcomeLog } from "./protectNextWindowOutcomeLog";
 export declare const logSchemas: {
     user: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -35730,10 +35732,154 @@ export declare const logSchemas: {
         impulseId?: string | undefined;
         respondingToLogId?: string | undefined;
     }>;
+    closing_reflection: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        sessionId: z.ZodString;
+        tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        impulseId: z.ZodOptional<z.ZodString>;
+        respondingToLogId: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"closing_reflection">;
+        isDisplayable: z.ZodLiteral<false>;
+        data: z.ZodObject<{
+            prompt: z.ZodString;
+            response: z.ZodString;
+            taskId: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            prompt: string;
+            response: string;
+            taskId?: string | undefined;
+        }, {
+            prompt: string;
+            response: string;
+            taskId?: string | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "closing_reflection";
+        userId: string;
+        sessionId: string;
+        dateString: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: false;
+        data: {
+            prompt: string;
+            response: string;
+            taskId?: string | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "closing_reflection";
+        userId: string;
+        sessionId: string;
+        dateString: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: false;
+        data: {
+            prompt: string;
+            response: string;
+            taskId?: string | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
+    }>;
+    protect_next_window_outcome: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        sessionId: z.ZodString;
+        tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        impulseId: z.ZodOptional<z.ZodString>;
+        respondingToLogId: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"protect_next_window_outcome">;
+        isDisplayable: z.ZodLiteral<false>;
+        data: z.ZodObject<{
+            taskId: z.ZodString;
+            variant: z.ZodOptional<z.ZodString>;
+            outcome: z.ZodString;
+            commitment: z.ZodOptional<z.ZodString>;
+            confidence: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            outcome: string;
+            taskId: string;
+            confidence?: string | undefined;
+            variant?: string | undefined;
+            commitment?: string | undefined;
+        }, {
+            outcome: string;
+            taskId: string;
+            confidence?: string | undefined;
+            variant?: string | undefined;
+            commitment?: string | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "protect_next_window_outcome";
+        userId: string;
+        sessionId: string;
+        dateString: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: false;
+        data: {
+            outcome: string;
+            taskId: string;
+            confidence?: string | undefined;
+            variant?: string | undefined;
+            commitment?: string | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "protect_next_window_outcome";
+        userId: string;
+        sessionId: string;
+        dateString: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: false;
+        data: {
+            outcome: string;
+            taskId: string;
+            confidence?: string | undefined;
+            variant?: string | undefined;
+            commitment?: string | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
+    }>;
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ResumeRecapRemindersCtaLog | HumanSupportEscalationLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | WeekOverviewLog | ProposedGoalChangeLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | ImageLog | PhotoLog | MergeBehaviorsProposalLog | MaskBehaviorProposalLog | ShortcutSetupIntroLog | TacticSuggestionsLog | CoachBookingPromptLog | DebriefQuestionLog | PlanHistoryEntryLog;
+export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ResumeRecapRemindersCtaLog | HumanSupportEscalationLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | WeekOverviewLog | ProposedGoalChangeLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | ImageLog | PhotoLog | MergeBehaviorsProposalLog | MaskBehaviorProposalLog | ShortcutSetupIntroLog | TacticSuggestionsLog | CoachBookingPromptLog | DebriefQuestionLog | PlanHistoryEntryLog | ClosingReflectionLog | ProtectNextWindowOutcomeLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
@@ -35776,6 +35922,8 @@ export * from "./tacticSuggestionsLog";
 export * from "./coachBookingPromptLog";
 export * from "./debriefQuestionLog";
 export * from "./planHistoryEntryLog";
+export * from "./closingReflectionLog";
+export * from "./protectNextWindowOutcomeLog";
 export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -64257,6 +64405,148 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             toDateString: string;
         }[] | undefined;
         weekOfDateString?: string | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    sessionId: z.ZodString;
+    tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    impulseId: z.ZodOptional<z.ZodString>;
+    respondingToLogId: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"closing_reflection">;
+    isDisplayable: z.ZodLiteral<false>;
+    data: z.ZodObject<{
+        prompt: z.ZodString;
+        response: z.ZodString;
+        taskId: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        prompt: string;
+        response: string;
+        taskId?: string | undefined;
+    }, {
+        prompt: string;
+        response: string;
+        taskId?: string | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "closing_reflection";
+    userId: string;
+    sessionId: string;
+    dateString: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: false;
+    data: {
+        prompt: string;
+        response: string;
+        taskId?: string | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
+}, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "closing_reflection";
+    userId: string;
+    sessionId: string;
+    dateString: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: false;
+    data: {
+        prompt: string;
+        response: string;
+        taskId?: string | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    sessionId: z.ZodString;
+    tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    impulseId: z.ZodOptional<z.ZodString>;
+    respondingToLogId: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"protect_next_window_outcome">;
+    isDisplayable: z.ZodLiteral<false>;
+    data: z.ZodObject<{
+        taskId: z.ZodString;
+        variant: z.ZodOptional<z.ZodString>;
+        outcome: z.ZodString;
+        commitment: z.ZodOptional<z.ZodString>;
+        confidence: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        outcome: string;
+        taskId: string;
+        confidence?: string | undefined;
+        variant?: string | undefined;
+        commitment?: string | undefined;
+    }, {
+        outcome: string;
+        taskId: string;
+        confidence?: string | undefined;
+        variant?: string | undefined;
+        commitment?: string | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "protect_next_window_outcome";
+    userId: string;
+    sessionId: string;
+    dateString: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: false;
+    data: {
+        outcome: string;
+        taskId: string;
+        confidence?: string | undefined;
+        variant?: string | undefined;
+        commitment?: string | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
+}, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "protect_next_window_outcome";
+    userId: string;
+    sessionId: string;
+    dateString: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: false;
+    data: {
+        outcome: string;
+        taskId: string;
+        confidence?: string | undefined;
+        variant?: string | undefined;
+        commitment?: string | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;

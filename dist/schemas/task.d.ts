@@ -2831,9 +2831,9 @@ export declare const containLapseTaskSchema: z.ZodObject<{
     userId: string;
     title: string;
     behaviorId: string;
+    variant: "first" | "standing_plan" | "pattern";
     category: "zara" | "deterministic";
     instructions: string;
-    variant: "first" | "standing_plan" | "pattern";
     id?: string | undefined;
     behaviorName?: string | undefined;
     ordinal?: number | undefined;
@@ -2859,8 +2859,8 @@ export declare const containLapseTaskSchema: z.ZodObject<{
     userId: string;
     title: string;
     behaviorId: string;
-    instructions: string;
     variant: "first" | "standing_plan" | "pattern";
+    instructions: string;
     id?: string | undefined;
     status?: "completed" | "dismissed" | "open" | undefined;
     behaviorName?: string | undefined;
@@ -3375,6 +3375,287 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
     claimedBySessionId?: string | undefined;
+}>;
+/**
+ * The user-authored beat that closes a recap (see userData
+ * recap.closingReflection). Injected as a SESSION task, never user-level, and
+ * — unlike every other session task — written LAZILY rather than at session
+ * creation.
+ *
+ * The lazy write is load-bearing. getTaskContext renders the lowest-ordinal
+ * open `zara` task as an Active Task Override that supersedes the session
+ * objective, and a daily recap normally has no open zara task at all. Written
+ * up front this beat would be the only one, so it would take over the recap
+ * from turn one no matter how high its ordinal. Instead judgeRecapClose writes
+ * it at the moment it would otherwise have surfaced "Done for now" — i.e. once
+ * the night's real reflection has actually run its course.
+ *
+ * Completed by the `logClosingReflection` tool, which also records what the
+ * user said as a closing_reflection log.
+ */
+export declare const closingReflectionTaskSchema: z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    userId: z.ZodString;
+    category: z.ZodDefault<z.ZodEnum<["zara", "deterministic"]>>;
+    status: z.ZodDefault<z.ZodEnum<["open", "completed", "dismissed"]>>;
+    title: z.ZodString;
+    instructions: z.ZodString;
+    context: z.ZodOptional<z.ZodString>;
+    ordinal: z.ZodOptional<z.ZodNumber>;
+    minAppVersion: z.ZodOptional<z.ZodString>;
+    requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
+    createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
+    createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"closing_reflection">;
+    /** The user's own question text, handed to the assistant verbatim. */
+    prompt: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "closing_reflection";
+    status: "completed" | "dismissed" | "open";
+    userId: string;
+    title: string;
+    prompt: string;
+    category: "zara" | "deterministic";
+    instructions: string;
+    id?: string | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
+}, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "closing_reflection";
+    userId: string;
+    title: string;
+    prompt: string;
+    instructions: string;
+    id?: string | undefined;
+    status?: "completed" | "dismissed" | "open" | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    category?: "zara" | "deterministic" | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
+}>;
+/**
+ * Which time-shaped variant of the protect_next_window arc runs. Time alters
+ * the arc rather than suppressing it — containment is immediate risk
+ * management and coexists with the (retrospective) recap:
+ * - daytime   — full arc: what they're moving into, resolve the obstacle,
+ *               settle a next action.
+ * - evening   — the window is the rest of the evening: shape it lightly and
+ *               transition toward winding down/sleep.
+ * - pre_recap — the nightly recap is imminent: keep it to ONE short exchange
+ *               about the next hour; the recap revisits the commitment.
+ */
+export declare const protectNextWindowVariantSchema: z.ZodEnum<["daytime", "evening", "pre_recap"]>;
+/**
+ * Resisted-path CONTAINMENT, on impulse sessions. Containment is the support
+ * that begins once an urge is acknowledged and continues until the user has
+ * safely transitioned into the next part of their day:
+ *
+ *   Containment
+ *   ├── resisted path → protect_next_window (this task)
+ *   └── acted path    → contain_lapse
+ *
+ * Separate task types for now (different entry logic and completion
+ * contracts) sharing the same principles: near-term protection, vetted tactic
+ * access, check-in scheduling, appetite/fatigue controls, structured outcome
+ * logging. The arc: understand what the user is moving into, resolve any
+ * immediate obstacle, settle on a manageable next action, optionally protect
+ * the window (check-in / break tactic).
+ *
+ * One task carries the whole arc (the contain_lapse pattern), with the full
+ * frame written into `instructions` at injection. Injected lazily by the
+ * windDownDebrief tool at the moment the debrief lands — never at session
+ * creation, where it would hijack the urge conversation as the Active Task
+ * Override from turn one. To the user this is ONE continuous conversation:
+ * the debrief is a transition inside containment, never an announced phase
+ * change. Completed by logNextWindowOutcome (which records the outcome + any
+ * commitment); dismissed = the user passed, never re-offered that day.
+ */
+export declare const protectNextWindowTaskSchema: z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    userId: z.ZodString;
+    category: z.ZodDefault<z.ZodEnum<["zara", "deterministic"]>>;
+    status: z.ZodDefault<z.ZodEnum<["open", "completed", "dismissed"]>>;
+    title: z.ZodString;
+    instructions: z.ZodString;
+    context: z.ZodOptional<z.ZodString>;
+    ordinal: z.ZodOptional<z.ZodNumber>;
+    minAppVersion: z.ZodOptional<z.ZodString>;
+    requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
+    createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
+    createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"protect_next_window">;
+    variant: z.ZodEnum<["daytime", "evening", "pre_recap"]>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "protect_next_window";
+    status: "completed" | "dismissed" | "open";
+    userId: string;
+    title: string;
+    variant: "daytime" | "evening" | "pre_recap";
+    category: "zara" | "deterministic";
+    instructions: string;
+    id?: string | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
+}, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "protect_next_window";
+    userId: string;
+    title: string;
+    variant: "daytime" | "evening" | "pre_recap";
+    instructions: string;
+    id?: string | undefined;
+    status?: "completed" | "dismissed" | "open" | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    category?: "zara" | "deterministic" | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>;
 export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -6035,9 +6316,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     userId: string;
     title: string;
     behaviorId: string;
+    variant: "first" | "standing_plan" | "pattern";
     category: "zara" | "deterministic";
     instructions: string;
-    variant: "first" | "standing_plan" | "pattern";
     id?: string | undefined;
     behaviorName?: string | undefined;
     ordinal?: number | undefined;
@@ -6063,8 +6344,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     userId: string;
     title: string;
     behaviorId: string;
-    instructions: string;
     variant: "first" | "standing_plan" | "pattern";
+    instructions: string;
     id?: string | undefined;
     status?: "completed" | "dismissed" | "open" | undefined;
     behaviorName?: string | undefined;
@@ -6540,6 +6821,231 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
     claimedBySessionId?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    userId: z.ZodString;
+    category: z.ZodDefault<z.ZodEnum<["zara", "deterministic"]>>;
+    status: z.ZodDefault<z.ZodEnum<["open", "completed", "dismissed"]>>;
+    title: z.ZodString;
+    instructions: z.ZodString;
+    context: z.ZodOptional<z.ZodString>;
+    ordinal: z.ZodOptional<z.ZodNumber>;
+    minAppVersion: z.ZodOptional<z.ZodString>;
+    requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
+    createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
+    createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"closing_reflection">;
+    /** The user's own question text, handed to the assistant verbatim. */
+    prompt: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "closing_reflection";
+    status: "completed" | "dismissed" | "open";
+    userId: string;
+    title: string;
+    prompt: string;
+    category: "zara" | "deterministic";
+    instructions: string;
+    id?: string | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
+}, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "closing_reflection";
+    userId: string;
+    title: string;
+    prompt: string;
+    instructions: string;
+    id?: string | undefined;
+    status?: "completed" | "dismissed" | "open" | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    category?: "zara" | "deterministic" | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    userId: z.ZodString;
+    category: z.ZodDefault<z.ZodEnum<["zara", "deterministic"]>>;
+    status: z.ZodDefault<z.ZodEnum<["open", "completed", "dismissed"]>>;
+    title: z.ZodString;
+    instructions: z.ZodString;
+    context: z.ZodOptional<z.ZodString>;
+    ordinal: z.ZodOptional<z.ZodNumber>;
+    minAppVersion: z.ZodOptional<z.ZodString>;
+    requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
+    createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
+    createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"protect_next_window">;
+    variant: z.ZodEnum<["daytime", "evening", "pre_recap"]>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "protect_next_window";
+    status: "completed" | "dismissed" | "open";
+    userId: string;
+    title: string;
+    variant: "daytime" | "evening" | "pre_recap";
+    category: "zara" | "deterministic";
+    instructions: string;
+    id?: string | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
+}, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "protect_next_window";
+    userId: string;
+    title: string;
+    variant: "daytime" | "evening" | "pre_recap";
+    instructions: string;
+    id?: string | undefined;
+    status?: "completed" | "dismissed" | "open" | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    category?: "zara" | "deterministic" | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
 }>]>;
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
 export type TaskStatus = z.infer<typeof taskStatusSchema>;
@@ -6563,6 +7069,9 @@ export type SetupShortcutTask = z.infer<typeof setupShortcutTaskSchema>;
 export type ResumeRecapRemindersTask = z.infer<typeof resumeRecapRemindersTaskSchema>;
 export type WeekLookbackTask = z.infer<typeof weekLookbackTaskSchema>;
 export type WeeklyReviewTask = z.infer<typeof weeklyReviewTaskSchema>;
+export type ClosingReflectionTask = z.infer<typeof closingReflectionTaskSchema>;
+export type ProtectNextWindowVariant = z.infer<typeof protectNextWindowVariantSchema>;
+export type ProtectNextWindowTask = z.infer<typeof protectNextWindowTaskSchema>;
 export type Task = z.infer<typeof taskSchema>;
 /**
  * Task types that must NEVER reach the user without a human (coach) sign-off.
