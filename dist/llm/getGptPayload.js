@@ -262,7 +262,7 @@ function getGptPayload(log, isFinalLogInSession, options) {
         // Actual plan usage is captured by separate tactic logs.
         if (options === null || options === void 0 ? void 0 : options.forSummarization)
             return [];
-        return (0, buildPlansLogPayload_1.buildPlansLogPayload)(log, isFinalLogInSession);
+        return (0, buildPlansLogPayload_1.buildPlansLogPayload)(log, isFinalLogInSession, options === null || options === void 0 ? void 0 : options.completedTacticIds);
     }
     if ((0, log_1.logIsUserMessageLog)(log)) {
         return [
@@ -350,7 +350,7 @@ function getGptPayload(log, isFinalLogInSession, options) {
             isFinalLogInSession &&
             !isPostDebrief &&
             !(options === null || options === void 0 ? void 0 : options.forSummarization)
-            ? " This was a step of the user's assigned plan. Reply in ONE short message: briefly credit them, then ask how the urge is doing now. Do NOT direct them to the next step of the plan in this message. If the user then says the urge has passed or they feel in control, call resolvePlanEarly and reinforce the win; if the urge is still present or they want to continue, point them to the next step by name."
+            ? " This was a step of the user's assigned plan. Reply in ONE short message: briefly credit them, then ask how the urge is doing now. Do NOT direct them to the next step of the plan in this message. If the user then says the urge has passed or they feel in control, call resolvePlanEarly and reinforce the win; if the urge is still present or they want to continue, point them to the next tactic of their plan they have NOT already completed — the user may do steps out of order, and if none remain the plan is simply done: never send them back to a completed tactic."
             : "";
         if (isCompleted && response) {
             return [
