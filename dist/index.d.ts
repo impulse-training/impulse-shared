@@ -28,6 +28,7 @@ export * from "./utils/tacticFit";
 export * from "./utils/tacticScoring";
 export * from "./utils/planScoring";
 export * from "./utils/behaviorColors";
+export * from "./utils/walkthroughTasks";
 export * from "./utils/selfHarmKeywords";
 export * from "./utils/milestoneLadder";
 export * from "./utils/engagement";
