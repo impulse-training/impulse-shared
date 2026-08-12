@@ -38,6 +38,14 @@ exports.recapStreakContextEntrySchema = zod_1.z.object({
 exports.recapDayEventSchema = zod_1.z.enum([
     // A meaningful streak ended today (the user logged the behavior past goal).
     "relapse",
+    // A SHORT run (1-6 clean days, below the meaningful-relapse threshold) ended
+    // today. Not a "relapse" headline, but it happened on the day being recapped,
+    // which makes it fresher news than any other behavior's ongoing slip. Kept
+    // distinct from "none" so a fresh slip is never invisible to the recap — as
+    // "none" it was filtered out of the facts block entirely, and the commentary
+    // would fixate on an older, still-running slip of another behavior instead of
+    // the thing that actually happened that day.
+    "slip",
     // Today is another miss in the ongoing aftermath of a meaningful streak that
     // broke on an earlier day — i.e. day 2+ of a slip, still not back on track.
     // The break itself was flagged "relapse" on its day; this keeps the recap
@@ -64,7 +72,8 @@ exports.recapDayFactSchema = zod_1.z.object({
     goalStatus: zod_1.z.enum(["met", "missed", "no_goal", "unknown"]),
     event: exports.recapDayEventSchema,
     /**
-     * For "relapse" / "relapse_aftermath": length (days) of the run that broke.
+     * For "relapse" / "slip" / "relapse_aftermath": length (days) of the run
+     * that broke.
      * For "streak_continues" / "milestone": current run length including today.
      */
     streakDays: zod_1.z.number().optional(),
