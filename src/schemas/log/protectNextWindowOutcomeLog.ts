@@ -3,8 +3,9 @@ import { logBaseSchema } from "./base";
 
 /**
  * The durable record of a protect_next_window arc — resisted-path containment
- * (see protectNextWindowTaskSchema) — written by the logNextWindowOutcome tool
- * when the arc settles.
+ * (see protectNextWindowTaskSchema) — extracted from the session transcript in
+ * the background once the arc's task resolves (afterSessionTaskWrite), not
+ * written by any model-called tool.
  *
  * Non-displayable: the conversation itself is already in the thread; this log
  * exists to be queried. `commitment` is the field with a future: it is what

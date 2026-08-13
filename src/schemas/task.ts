@@ -31,6 +31,14 @@ export const taskBaseSchema = z.object({
   ordinal: z.number().int().min(0).optional(),
   minAppVersion: z.string().optional(),
   requiredTools: z.array(z.string()).optional(),
+  /**
+   * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+   * exposes them alongside requiredTools, but creditCalledTools never counts
+   * them, so calling every one of them does not complete the task. For arcs
+   * whose completion is decided elsewhere (e.g. protect_next_window completes
+   * via the showCloseButton gate) but that still need optional in-arc tools.
+   */
+  optionalTools: z.array(z.string()).optional(),
   dependsOnTaskId: z.string().optional(),
   claimableSessionTypes: z.array(claimableSessionTypeSchema).min(1).optional(),
   /**
@@ -400,12 +408,15 @@ export const protectNextWindowVariantSchema = z.enum([
  *
  * One task carries the whole arc (the contain_lapse pattern), with the full
  * frame written into `instructions` at injection. Injected lazily by the
- * windDownDebrief tool at the moment the debrief lands — never at session
- * creation, where it would hijack the urge conversation as the Active Task
- * Override from turn one. To the user this is ONE continuous conversation:
- * the debrief is a transition inside containment, never an announced phase
- * change. Completed by logNextWindowOutcome (which records the outcome + any
- * commitment); dismissed = the user passed, never re-offered that day.
+ * showCloseButton gate at the moment the model first tries to close a settled
+ * resisted debrief — never at session creation, where it would hijack the
+ * urge conversation as the Active Task Override from turn one. To the user
+ * this is ONE continuous conversation: the debrief is a transition inside
+ * containment, never an announced phase change. Completed by the same gate on
+ * the NEXT close attempt once the user has engaged (no model-called outcome
+ * tool — the outcome/commitment log is extracted from the transcript in the
+ * background, see afterSessionTaskWrite); dismissed = the user passed, never
+ * re-offered that day.
  */
 export const protectNextWindowTaskSchema = taskBaseSchema.extend({
   type: z.literal("protect_next_window"),

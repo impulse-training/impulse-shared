@@ -23,6 +23,14 @@ export declare const taskBaseSchema: z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -89,6 +97,7 @@ export declare const taskBaseSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -115,6 +124,7 @@ export declare const taskBaseSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -138,6 +148,14 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -231,6 +249,7 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -265,6 +284,7 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -288,6 +308,14 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -905,6 +933,7 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -1000,6 +1029,7 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -1032,6 +1062,14 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -1283,6 +1321,7 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -1339,6 +1378,7 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -1375,6 +1415,14 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -1486,6 +1534,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -1522,6 +1571,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -1545,6 +1595,14 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -1616,6 +1674,7 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -1644,6 +1703,7 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -1667,6 +1727,14 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -1848,6 +1916,7 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -1898,6 +1967,7 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -1927,6 +1997,7 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     context: z.ZodOptional<z.ZodString>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
@@ -1969,6 +2040,7 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2000,6 +2072,7 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2023,6 +2096,14 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -2146,6 +2227,7 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2187,6 +2269,7 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2210,6 +2293,14 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -2279,6 +2370,7 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2306,6 +2398,7 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2329,6 +2422,14 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -2416,6 +2517,7 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2448,6 +2550,7 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2471,6 +2574,14 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -2559,6 +2670,7 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2593,6 +2705,7 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2618,6 +2731,14 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -2689,6 +2810,7 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2717,6 +2839,7 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2749,6 +2872,14 @@ export declare const understandBehaviorTaskSchema: z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -2822,6 +2953,7 @@ export declare const understandBehaviorTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2851,6 +2983,7 @@ export declare const understandBehaviorTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2884,6 +3017,14 @@ export declare const containLapseTaskSchema: z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -2966,6 +3107,7 @@ export declare const containLapseTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2996,6 +3138,7 @@ export declare const containLapseTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3028,6 +3171,14 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -3103,6 +3254,7 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3132,6 +3284,7 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3163,6 +3316,14 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -3232,6 +3393,7 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3259,6 +3421,7 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3289,6 +3452,14 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -3361,6 +3532,7 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3389,6 +3561,7 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3423,6 +3596,7 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
@@ -3458,6 +3632,7 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3486,6 +3661,7 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3526,6 +3702,14 @@ export declare const closingReflectionTaskSchema: z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -3598,6 +3782,7 @@ export declare const closingReflectionTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3626,6 +3811,7 @@ export declare const closingReflectionTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3668,12 +3854,15 @@ export declare const protectNextWindowVariantSchema: z.ZodEnum<["daytime", "even
  *
  * One task carries the whole arc (the contain_lapse pattern), with the full
  * frame written into `instructions` at injection. Injected lazily by the
- * windDownDebrief tool at the moment the debrief lands — never at session
- * creation, where it would hijack the urge conversation as the Active Task
- * Override from turn one. To the user this is ONE continuous conversation:
- * the debrief is a transition inside containment, never an announced phase
- * change. Completed by logNextWindowOutcome (which records the outcome + any
- * commitment); dismissed = the user passed, never re-offered that day.
+ * showCloseButton gate at the moment the model first tries to close a settled
+ * resisted debrief — never at session creation, where it would hijack the
+ * urge conversation as the Active Task Override from turn one. To the user
+ * this is ONE continuous conversation: the debrief is a transition inside
+ * containment, never an announced phase change. Completed by the same gate on
+ * the NEXT close attempt once the user has engaged (no model-called outcome
+ * tool — the outcome/commitment log is extracted from the transcript in the
+ * background, see afterSessionTaskWrite); dismissed = the user passed, never
+ * re-offered that day.
  */
 export declare const protectNextWindowTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -3686,6 +3875,14 @@ export declare const protectNextWindowTaskSchema: z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -3757,6 +3954,7 @@ export declare const protectNextWindowTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3785,6 +3983,7 @@ export declare const protectNextWindowTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3808,6 +4007,14 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -3901,6 +4108,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3935,6 +4143,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3957,6 +4166,14 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -4574,6 +4791,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -4669,6 +4887,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -4691,6 +4910,14 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -4942,6 +5169,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -4998,6 +5226,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -5020,6 +5249,14 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -5131,6 +5368,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -5167,6 +5405,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -5189,6 +5428,14 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -5260,6 +5507,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -5288,6 +5536,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -5310,6 +5559,14 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -5491,6 +5748,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -5541,6 +5799,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -5569,6 +5828,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context: z.ZodOptional<z.ZodString>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
@@ -5611,6 +5871,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -5642,6 +5903,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -5664,6 +5926,14 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -5787,6 +6057,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -5828,6 +6099,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -5850,6 +6122,14 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -5919,6 +6199,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -5946,6 +6227,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -5968,6 +6250,14 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -6055,6 +6345,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6087,6 +6378,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6109,6 +6401,14 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -6197,6 +6497,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6231,6 +6532,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6255,6 +6557,14 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -6326,6 +6636,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6354,6 +6665,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6376,6 +6688,14 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -6449,6 +6769,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6478,6 +6799,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6500,6 +6822,14 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -6582,6 +6912,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6612,6 +6943,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6634,6 +6966,14 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -6709,6 +7049,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6738,6 +7079,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6760,6 +7102,14 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -6829,6 +7179,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6856,6 +7207,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6878,6 +7230,14 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -6950,6 +7310,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6978,6 +7339,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -7000,6 +7362,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
@@ -7035,6 +7398,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -7063,6 +7427,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -7085,6 +7450,14 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -7157,6 +7530,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -7185,6 +7559,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -7207,6 +7582,14 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -7278,6 +7661,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -7306,6 +7690,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdBy?: string | undefined;
     context?: string | undefined;
     requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
