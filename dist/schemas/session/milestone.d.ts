@@ -5341,6 +5341,8 @@ export declare const milestoneSessionSchema: z.ZodObject<{
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     lastReadAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     unreadSince: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    lastMessageAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    lastMessagePreview: z.ZodOptional<z.ZodString>;
     responseStartedProcessingAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     responseRequestId: z.ZodOptional<z.ZodString>;
     responseError: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -6039,6 +6041,8 @@ export declare const milestoneSessionSchema: z.ZodObject<{
     firstOpenedAt?: import("../../types").Timestamp | undefined;
     lastReadAt?: import("../../types").Timestamp | undefined;
     unreadSince?: import("../../types").Timestamp | undefined;
+    lastMessageAt?: import("../../types").Timestamp | undefined;
+    lastMessagePreview?: string | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
     responseRequestId?: string | undefined;
     responseError?: string | null | undefined;
@@ -6188,6 +6192,8 @@ export declare const milestoneSessionSchema: z.ZodObject<{
     firstOpenedAt?: import("../../types").Timestamp | undefined;
     lastReadAt?: import("../../types").Timestamp | undefined;
     unreadSince?: import("../../types").Timestamp | undefined;
+    lastMessageAt?: import("../../types").Timestamp | undefined;
+    lastMessagePreview?: string | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
     responseRequestId?: string | undefined;
     responseError?: string | null | undefined;

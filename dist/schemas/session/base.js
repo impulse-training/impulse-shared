@@ -84,6 +84,12 @@ exports.sessionBaseSchema = zod_1.z.object({
     createdAt: timestampSchema_1.timestampSchema.optional(),
     lastReadAt: timestampSchema_1.timestampSchema.optional(),
     unreadSince: timestampSchema_1.timestampSchema.optional(),
+    // Denormalized from the newest user/assistant message log by the
+    // afterUserLogWrite trigger. Recency signal for the chats list —
+    // deliberately NOT updatedAt, which any session mutation bumps and which
+    // the summarize cooldown compares against.
+    lastMessageAt: timestampSchema_1.timestampSchema.optional(),
+    lastMessagePreview: zod_1.z.string().optional(),
     responseStartedProcessingAt: timestampSchema_1.timestampSchema.optional(),
     responseRequestId: zod_1.z.string().optional(),
     responseError: zod_1.z.string().nullable().optional(),

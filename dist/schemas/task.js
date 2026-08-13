@@ -73,6 +73,13 @@ exports.taskBaseSchema = zod_1.z.object({
     showOnHome: zod_1.z.boolean().optional(),
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: zod_1.z.string().optional(),
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: zod_1.z.string().optional(),
 });
 exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema.extend({
     type: zod_1.z.literal("merge_behaviors"),

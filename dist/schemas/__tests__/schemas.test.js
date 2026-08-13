@@ -97,6 +97,7 @@ describe("Schema Validation", () => {
         it("should validate a general session", () => {
             const validSession = {
                 type: "general",
+                title: "",
                 date: new Date(),
                 userId: "user123",
                 dateString: "2025-01-01",
@@ -108,9 +109,33 @@ describe("Schema Validation", () => {
             const result = index_1.sessionSchema.safeParse(validSession);
             expect(result.success).toBe(true);
         });
+        it("round-trips lastMessageAt/lastMessagePreview through safeParse", () => {
+            const session = {
+                type: "general",
+                title: "",
+                date: new Date(),
+                userId: "user123",
+                dateString: "2025-01-01",
+                mode: "text",
+                sharedWithUserIds: [],
+                sharedWithSupportGroups: [],
+                emojiId: null,
+                lastMessageAt: new Date(),
+                lastMessagePreview: "sounds like it's how you switch off",
+            };
+            const result = index_1.sessionSchema.safeParse(session);
+            expect(result.success).toBe(true);
+            if (result.success) {
+                // Declared fields must survive a parse-and-write-back cycle — an
+                // undeclared field would be silently stripped here.
+                expect(result.data.lastMessagePreview).toBe(session.lastMessagePreview);
+                expect(result.data.lastMessageAt).toBeDefined();
+            }
+        });
         it("should validate an impulse session", () => {
             const validSession = {
                 type: "impulse",
+                title: "",
                 date: new Date(),
                 userId: "user123",
                 dateString: "2025-01-01",

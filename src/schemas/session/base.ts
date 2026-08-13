@@ -96,6 +96,13 @@ export const sessionBaseSchema = z.object({
   lastReadAt: timestampSchema.optional(),
   unreadSince: timestampSchema.optional(),
 
+  // Denormalized from the newest user/assistant message log by the
+  // afterUserLogWrite trigger. Recency signal for the chats list —
+  // deliberately NOT updatedAt, which any session mutation bumps and which
+  // the summarize cooldown compares against.
+  lastMessageAt: timestampSchema.optional(),
+  lastMessagePreview: z.string().optional(),
+
   responseStartedProcessingAt: timestampSchema.optional(),
   responseRequestId: z.string().optional(),
   responseError: z.string().nullable().optional(),

@@ -67,6 +67,13 @@ export declare const taskBaseSchema: z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -92,6 +99,7 @@ export declare const taskBaseSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -117,6 +125,7 @@ export declare const taskBaseSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>;
 export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -173,6 +182,13 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"merge_behaviors">;
     sourceBehaviorIds: z.ZodArray<z.ZodString, "many">;
@@ -225,6 +241,7 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -258,6 +275,7 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>;
 export declare const suggestStrategyTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -314,6 +332,13 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"suggest_strategy">;
     suggestedStrategy: z.ZodObject<{
@@ -890,6 +915,7 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -984,6 +1010,7 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>;
 /**
  * A coach-prepared proposal to change one behavior's goal (e.g. switch to a
@@ -1049,6 +1076,13 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"propose_goal">;
     behaviorId: z.ZodString;
@@ -1259,6 +1293,7 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -1314,6 +1349,7 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>;
 export declare const proposedMetricSchema: z.ZodObject<{
     name: z.ZodString;
@@ -1383,6 +1419,13 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"propose_experiment">;
     proposedExperiment: z.ZodObject<{
@@ -1453,6 +1496,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -1488,6 +1532,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>;
 export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -1544,6 +1589,13 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"propose_mask_behavior">;
     behaviorId: z.ZodString;
@@ -1574,6 +1626,7 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -1601,6 +1654,7 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>;
 export declare const createSessionTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -1657,6 +1711,13 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"create_session">;
     lazy: z.ZodDefault<z.ZodBoolean>;
@@ -1797,6 +1858,7 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
     taskIds?: string[] | undefined;
     notification?: {
         title: string;
@@ -1846,6 +1908,7 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
     lazy?: boolean | undefined;
     taskIds?: string[] | undefined;
     notification?: {
@@ -2004,6 +2067,13 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"review_trigger">;
     impulseSessionId: z.ZodString;
@@ -2086,6 +2156,7 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2126,6 +2197,7 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>;
 export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -2182,6 +2254,13 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"toolkit_planning">;
 }, "strip", z.ZodTypeAny, {
@@ -2210,6 +2289,7 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2236,6 +2316,7 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>;
 export declare const suggestTacticTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -2292,6 +2373,13 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"suggest_tactic">;
     suggestions: z.ZodArray<z.ZodObject<{
@@ -2338,6 +2426,7 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2369,6 +2458,7 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>;
 export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -2425,6 +2515,13 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"reflect_on_metrics">;
     behaviorName: z.ZodString;
@@ -2472,6 +2569,7 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
     milestoneRungDays?: number | undefined;
     milestoneRungLabel?: string | undefined;
 }, {
@@ -2505,6 +2603,7 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
     milestoneRungDays?: number | undefined;
     milestoneRungLabel?: string | undefined;
 }>;
@@ -2563,6 +2662,13 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"collect_baseline">;
     behaviorId: z.ZodString;
@@ -2593,6 +2699,7 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2620,6 +2727,7 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>;
 /**
  * Get to know a behavior created OUTSIDE onboarding (a general chat where the
@@ -2685,6 +2793,13 @@ export declare const understandBehaviorTaskSchema: z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"understand_behavior">;
     behaviorId: z.ZodString;
@@ -2717,6 +2832,7 @@ export declare const understandBehaviorTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2745,6 +2861,7 @@ export declare const understandBehaviorTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>;
 /**
  * Post-lapse containment: created on the impulse session at the moment the
@@ -2811,6 +2928,13 @@ export declare const containLapseTaskSchema: z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"contain_lapse">;
     behaviorId: z.ZodString;
@@ -2852,6 +2976,7 @@ export declare const containLapseTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2881,6 +3006,7 @@ export declare const containLapseTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>;
 /**
  * The durable user-scoped "set up in-the-moment access" task — the parent of
@@ -2946,6 +3072,13 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"setup_shortcut">;
     /** Which setup card to show; if absent it is recomputed from behaviors. */
@@ -2980,6 +3113,7 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -3008,6 +3142,7 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>;
 /**
  * Durable user-scoped task for a returning user whose scheduled recap
@@ -3072,6 +3207,13 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"resume_recap_reminders">;
 }, "strip", z.ZodTypeAny, {
@@ -3100,6 +3242,7 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -3126,6 +3269,7 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>;
 /**
  * The weekly review's first beat: reflect on the week just passed as one shape.
@@ -3189,6 +3333,13 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"week_lookback">;
     /** The Sunday review this beat belongs to (the recap dateString). */
@@ -3220,6 +3371,7 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -3247,6 +3399,7 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>;
 /**
  * The weekly review as a claimable token, one per week. Created on the local
@@ -3272,51 +3425,20 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
-    /**
-     * Passive-display deterministic tasks: after processing, don't end the turn
-     * — let the AI still respond (see processDeterministicTasks). Copied onto
-     * the session task when claimed.
-     */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
-    /**
-     * How many recap sessions have surfaced this task. Set to 1 on first claim
-     * and incremented each time a fresh recap reclaims it off an earlier,
-     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
-     * after being presented across the cap number of recaps without resolution,
-     * the task is auto-closed (dismissed / `ignored`) instead of following the
-     * user forever. Absent on older tasks — treat missing as 1.
-     */
     presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
-    /**
-     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
-     * means "awaiting coach review" and no claim path may present the task to
-     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
-     * Other task types are auto-approved by not being in that set, so they
-     * never carry these fields.
-     */
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-    /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
-    /**
-     * Opt-in: surface this open user-level task as a card on the native home
-     * screen (below the experiment card). Tapping the card calls
-     * POST app/sessions/ensureTask, which claims the task into a dedicated
-     * `task_<taskId>` session. Set per task at creation — most task types stay
-     * recap/session-claimed only.
-     */
     showOnHome: z.ZodOptional<z.ZodBoolean>;
-    /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"weekly_review">;
-    /** The local Sunday this review week is anchored to (YYYY-MM-DD). */
     weekAnchorDateString: z.ZodString;
     claimedBySessionId: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
@@ -3448,6 +3570,13 @@ export declare const closingReflectionTaskSchema: z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"closing_reflection">;
     /** The user's own question text, handed to the assistant verbatim. */
@@ -3479,6 +3608,7 @@ export declare const closingReflectionTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -3506,6 +3636,7 @@ export declare const closingReflectionTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>;
 /**
  * Which time-shaped variant of the protect_next_window arc runs. Time alters
@@ -3599,6 +3730,13 @@ export declare const protectNextWindowTaskSchema: z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"protect_next_window">;
     variant: z.ZodEnum<["daytime", "evening", "pre_recap"]>;
@@ -3629,6 +3767,7 @@ export declare const protectNextWindowTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -3656,6 +3795,7 @@ export declare const protectNextWindowTaskSchema: z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>;
 export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -3712,6 +3852,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"merge_behaviors">;
     sourceBehaviorIds: z.ZodArray<z.ZodString, "many">;
@@ -3764,6 +3911,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -3797,6 +3945,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -3852,6 +4001,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"suggest_strategy">;
     suggestedStrategy: z.ZodObject<{
@@ -4428,6 +4584,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -4522,6 +4679,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -4577,6 +4735,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"propose_goal">;
     behaviorId: z.ZodString;
@@ -4787,6 +4952,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -4842,6 +5008,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -4897,6 +5064,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"propose_experiment">;
     proposedExperiment: z.ZodObject<{
@@ -4967,6 +5141,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -5002,6 +5177,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -5057,6 +5233,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"propose_mask_behavior">;
     behaviorId: z.ZodString;
@@ -5087,6 +5270,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -5114,6 +5298,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -5169,6 +5354,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"create_session">;
     lazy: z.ZodDefault<z.ZodBoolean>;
@@ -5309,6 +5501,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
     taskIds?: string[] | undefined;
     notification?: {
         title: string;
@@ -5358,6 +5551,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
     lazy?: boolean | undefined;
     taskIds?: string[] | undefined;
     notification?: {
@@ -5514,6 +5708,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"review_trigger">;
     impulseSessionId: z.ZodString;
@@ -5596,6 +5797,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -5636,6 +5838,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -5691,6 +5894,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"toolkit_planning">;
 }, "strip", z.ZodTypeAny, {
@@ -5719,6 +5929,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -5745,6 +5956,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -5800,6 +6012,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"suggest_tactic">;
     suggestions: z.ZodArray<z.ZodObject<{
@@ -5846,6 +6065,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -5877,6 +6097,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -5932,6 +6153,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"reflect_on_metrics">;
     behaviorName: z.ZodString;
@@ -5979,6 +6207,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
     milestoneRungDays?: number | undefined;
     milestoneRungLabel?: string | undefined;
 }, {
@@ -6012,6 +6241,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
     milestoneRungDays?: number | undefined;
     milestoneRungLabel?: string | undefined;
 }>, z.ZodObject<{
@@ -6069,6 +6299,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"collect_baseline">;
     behaviorId: z.ZodString;
@@ -6099,6 +6336,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -6126,6 +6364,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -6181,6 +6420,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"understand_behavior">;
     behaviorId: z.ZodString;
@@ -6213,6 +6459,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -6241,6 +6488,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -6296,6 +6544,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"contain_lapse">;
     behaviorId: z.ZodString;
@@ -6337,6 +6592,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -6366,6 +6622,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -6421,6 +6678,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"setup_shortcut">;
     /** Which setup card to show; if absent it is recomputed from behaviors. */
@@ -6455,6 +6719,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -6483,6 +6748,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -6538,6 +6804,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"resume_recap_reminders">;
 }, "strip", z.ZodTypeAny, {
@@ -6566,6 +6839,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -6592,6 +6866,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -6647,6 +6922,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"week_lookback">;
     /** The Sunday review this beat belongs to (the recap dateString). */
@@ -6678,6 +6960,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -6705,6 +6988,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -6718,51 +7002,20 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
-    /**
-     * Passive-display deterministic tasks: after processing, don't end the turn
-     * — let the AI still respond (see processDeterministicTasks). Copied onto
-     * the session task when claimed.
-     */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
-    /**
-     * How many recap sessions have surfaced this task. Set to 1 on first claim
-     * and incremented each time a fresh recap reclaims it off an earlier,
-     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
-     * after being presented across the cap number of recaps without resolution,
-     * the task is auto-closed (dismissed / `ignored`) instead of following the
-     * user forever. Absent on older tasks — treat missing as 1.
-     */
     presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
     dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
-    /**
-     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
-     * means "awaiting coach review" and no claim path may present the task to
-     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
-     * Other task types are auto-approved by not being in that set, so they
-     * never carry these fields.
-     */
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-    /** Why the coach approved it — recorded alongside `approvedAt`. */
     approvalReason: z.ZodOptional<z.ZodString>;
-    /**
-     * Opt-in: surface this open user-level task as a card on the native home
-     * screen (below the experiment card). Tapping the card calls
-     * POST app/sessions/ensureTask, which claims the task into a dedicated
-     * `task_<taskId>` session. Set per task at creation — most task types stay
-     * recap/session-claimed only.
-     */
     showOnHome: z.ZodOptional<z.ZodBoolean>;
-    /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"weekly_review">;
-    /** The local Sunday this review week is anchored to (YYYY-MM-DD). */
     weekAnchorDateString: z.ZodString;
     claimedBySessionId: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
@@ -6876,6 +7129,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"closing_reflection">;
     /** The user's own question text, handed to the assistant verbatim. */
@@ -6907,6 +7167,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -6934,6 +7195,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -6989,6 +7251,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     showOnHome: z.ZodOptional<z.ZodBoolean>;
     /** Card subtitle when shown on home; the card falls back to generic copy. */
     homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"protect_next_window">;
     variant: z.ZodEnum<["daytime", "evening", "pre_recap"]>;
@@ -7019,6 +7288,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -7046,6 +7316,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
 }>]>;
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
 export type TaskStatus = z.infer<typeof taskStatusSchema>;
