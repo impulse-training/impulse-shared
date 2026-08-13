@@ -81,6 +81,22 @@ export const globalStreaksSchema = z.object({
 });
 export type GlobalStreaks = z.infer<typeof globalStreaksSchema>;
 
+// Sub-day "time without the behavior" stats for eliminate goals. Wall-clock
+// anchored: clients render the live figure as now − currentStartAt.
+export const behaviorStretchesSchema = z.object({
+  longestMs: z.number(),
+  longestStartAt: timestampSchema.optional(),
+  // Null/absent while the longest stretch is the ongoing one. Written as an
+  // explicit null (not omitted) because behavior state is persisted with a
+  // deep merge — omission would leave a stale end time behind.
+  longestEndAt: timestampSchema.nullable().optional(),
+  // When the current stretch began (last occurrence, or a conservative day
+  // boundary when times are unknown). MAY BE IN THE FUTURE (acted today with
+  // unknown last time → end of today) — consumers must clamp elapsed to 0.
+  currentStartAt: timestampSchema.optional(),
+});
+export type BehaviorStretches = z.infer<typeof behaviorStretchesSchema>;
+
 // Rich, reflective meaning associated with a behavior
 export const behaviorMeaningSchema = z.object({
   importance: z.enum(["LOW", "MEDIUM", "HIGH", "CORE"]),
@@ -205,6 +221,9 @@ export const behaviorStateSchema = z.object({
 
   // Global streaks (not limited to any window)
   globalStreaks: globalStreaksSchema.optional(),
+
+  // Sub-day stretch stats (eliminate goals only)
+  stretches: behaviorStretchesSchema.optional(),
 
   windows: z.object({
     short: behaviorWindowSchema,
