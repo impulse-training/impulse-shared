@@ -20,6 +20,29 @@ export declare const goalComparisonEntrySchema: z.ZodObject<{
     targetValue?: number | undefined;
 }>;
 export type GoalComparisonEntry = z.infer<typeof goalComparisonEntrySchema>;
+/**
+ * Per-behavior first/last occurrence times for the day (eliminate-goal stretch
+ * metric). An absent or null field means "unknown" — the stretch engine applies
+ * conservative start-of-day / end-of-day defaults AT COMPUTE TIME; defaults are
+ * never stored here.
+ */
+export declare const behaviorDayBoundsSchema: z.ZodObject<{
+    firstAt: z.ZodOptional<z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>>;
+    lastAt: z.ZodOptional<z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>>;
+    firstAtConfirmed: z.ZodOptional<z.ZodBoolean>;
+    lastAtConfirmed: z.ZodOptional<z.ZodBoolean>;
+}, "strip", z.ZodTypeAny, {
+    firstAt?: import("../types").Timestamp | null | undefined;
+    lastAt?: import("../types").Timestamp | null | undefined;
+    firstAtConfirmed?: boolean | undefined;
+    lastAtConfirmed?: boolean | undefined;
+}, {
+    firstAt?: import("../types").Timestamp | null | undefined;
+    lastAt?: import("../types").Timestamp | null | undefined;
+    firstAtConfirmed?: boolean | undefined;
+    lastAtConfirmed?: boolean | undefined;
+}>;
+export type BehaviorDayBounds = z.infer<typeof behaviorDayBoundsSchema>;
 /** Structured value emitted by the RecapResponseControl when the user confirms totals */
 export declare const recapResponseValueSchema: z.ZodObject<{
     behaviorTotals: z.ZodRecord<z.ZodString, z.ZodObject<{
@@ -382,6 +405,22 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 longestStreak: number;
                 currentStreakStartDate?: string | undefined;
                 longestStreakStartDate?: string | undefined;
+            }>>;
+            stretches: z.ZodOptional<z.ZodObject<{
+                longestMs: z.ZodNumber;
+                longestStartAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                longestEndAt: z.ZodOptional<z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>>;
+                currentStartAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+            }, "strip", z.ZodTypeAny, {
+                longestMs: number;
+                longestStartAt?: import("../types").Timestamp | undefined;
+                longestEndAt?: import("../types").Timestamp | null | undefined;
+                currentStartAt?: import("../types").Timestamp | undefined;
+            }, {
+                longestMs: number;
+                longestStartAt?: import("../types").Timestamp | undefined;
+                longestEndAt?: import("../types").Timestamp | null | undefined;
+                currentStartAt?: import("../types").Timestamp | undefined;
             }>>;
             windows: z.ZodObject<{
                 short: z.ZodObject<{
@@ -904,6 +943,12 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 currentStreakStartDate?: string | undefined;
                 longestStreakStartDate?: string | undefined;
             } | undefined;
+            stretches?: {
+                longestMs: number;
+                longestStartAt?: import("../types").Timestamp | undefined;
+                longestEndAt?: import("../types").Timestamp | null | undefined;
+                currentStartAt?: import("../types").Timestamp | undefined;
+            } | undefined;
             trackingWindows?: {
                 short: {
                     windowSizeDays: 7 | 30 | 90;
@@ -1032,6 +1077,12 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 longestStreak: number;
                 currentStreakStartDate?: string | undefined;
                 longestStreakStartDate?: string | undefined;
+            } | undefined;
+            stretches?: {
+                longestMs: number;
+                longestStartAt?: import("../types").Timestamp | undefined;
+                longestEndAt?: import("../types").Timestamp | null | undefined;
+                currentStartAt?: import("../types").Timestamp | undefined;
             } | undefined;
             trackingWindows?: {
                 short: {
@@ -1246,6 +1297,12 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 currentStreakStartDate?: string | undefined;
                 longestStreakStartDate?: string | undefined;
             } | undefined;
+            stretches?: {
+                longestMs: number;
+                longestStartAt?: import("../types").Timestamp | undefined;
+                longestEndAt?: import("../types").Timestamp | null | undefined;
+                currentStartAt?: import("../types").Timestamp | undefined;
+            } | undefined;
             trackingWindows?: {
                 short: {
                     windowSizeDays: 7 | 30 | 90;
@@ -1458,6 +1515,12 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 longestStreak: number;
                 currentStreakStartDate?: string | undefined;
                 longestStreakStartDate?: string | undefined;
+            } | undefined;
+            stretches?: {
+                longestMs: number;
+                longestStartAt?: import("../types").Timestamp | undefined;
+                longestEndAt?: import("../types").Timestamp | null | undefined;
+                currentStartAt?: import("../types").Timestamp | undefined;
             } | undefined;
             trackingWindows?: {
                 short: {
@@ -1687,6 +1750,12 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 currentStreakStartDate?: string | undefined;
                 longestStreakStartDate?: string | undefined;
             } | undefined;
+            stretches?: {
+                longestMs: number;
+                longestStartAt?: import("../types").Timestamp | undefined;
+                longestEndAt?: import("../types").Timestamp | null | undefined;
+                currentStartAt?: import("../types").Timestamp | undefined;
+            } | undefined;
             trackingWindows?: {
                 short: {
                     windowSizeDays: 7 | 30 | 90;
@@ -1914,6 +1983,12 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 longestStreak: number;
                 currentStreakStartDate?: string | undefined;
                 longestStreakStartDate?: string | undefined;
+            } | undefined;
+            stretches?: {
+                longestMs: number;
+                longestStartAt?: import("../types").Timestamp | undefined;
+                longestEndAt?: import("../types").Timestamp | null | undefined;
+                currentStartAt?: import("../types").Timestamp | undefined;
             } | undefined;
             trackingWindows?: {
                 short: {
@@ -2324,6 +2399,22 @@ export declare const daySummarySchema: z.ZodObject<{
                 currentStreakStartDate?: string | undefined;
                 longestStreakStartDate?: string | undefined;
             }>>;
+            stretches: z.ZodOptional<z.ZodObject<{
+                longestMs: z.ZodNumber;
+                longestStartAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                longestEndAt: z.ZodOptional<z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>>;
+                currentStartAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+            }, "strip", z.ZodTypeAny, {
+                longestMs: number;
+                longestStartAt?: import("../types").Timestamp | undefined;
+                longestEndAt?: import("../types").Timestamp | null | undefined;
+                currentStartAt?: import("../types").Timestamp | undefined;
+            }, {
+                longestMs: number;
+                longestStartAt?: import("../types").Timestamp | undefined;
+                longestEndAt?: import("../types").Timestamp | null | undefined;
+                currentStartAt?: import("../types").Timestamp | undefined;
+            }>>;
             windows: z.ZodObject<{
                 short: z.ZodObject<{
                     windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
@@ -2845,6 +2936,12 @@ export declare const daySummarySchema: z.ZodObject<{
                 currentStreakStartDate?: string | undefined;
                 longestStreakStartDate?: string | undefined;
             } | undefined;
+            stretches?: {
+                longestMs: number;
+                longestStartAt?: import("../types").Timestamp | undefined;
+                longestEndAt?: import("../types").Timestamp | null | undefined;
+                currentStartAt?: import("../types").Timestamp | undefined;
+            } | undefined;
             trackingWindows?: {
                 short: {
                     windowSizeDays: 7 | 30 | 90;
@@ -2973,6 +3070,12 @@ export declare const daySummarySchema: z.ZodObject<{
                 longestStreak: number;
                 currentStreakStartDate?: string | undefined;
                 longestStreakStartDate?: string | undefined;
+            } | undefined;
+            stretches?: {
+                longestMs: number;
+                longestStartAt?: import("../types").Timestamp | undefined;
+                longestEndAt?: import("../types").Timestamp | null | undefined;
+                currentStartAt?: import("../types").Timestamp | undefined;
             } | undefined;
             trackingWindows?: {
                 short: {
@@ -3187,6 +3290,12 @@ export declare const daySummarySchema: z.ZodObject<{
                 currentStreakStartDate?: string | undefined;
                 longestStreakStartDate?: string | undefined;
             } | undefined;
+            stretches?: {
+                longestMs: number;
+                longestStartAt?: import("../types").Timestamp | undefined;
+                longestEndAt?: import("../types").Timestamp | null | undefined;
+                currentStartAt?: import("../types").Timestamp | undefined;
+            } | undefined;
             trackingWindows?: {
                 short: {
                     windowSizeDays: 7 | 30 | 90;
@@ -3400,6 +3509,12 @@ export declare const daySummarySchema: z.ZodObject<{
                 currentStreakStartDate?: string | undefined;
                 longestStreakStartDate?: string | undefined;
             } | undefined;
+            stretches?: {
+                longestMs: number;
+                longestStartAt?: import("../types").Timestamp | undefined;
+                longestEndAt?: import("../types").Timestamp | null | undefined;
+                currentStartAt?: import("../types").Timestamp | undefined;
+            } | undefined;
             trackingWindows?: {
                 short: {
                     windowSizeDays: 7 | 30 | 90;
@@ -3507,6 +3622,22 @@ export declare const daySummarySchema: z.ZodObject<{
     }, {
         behaviorIds: string[];
         actedOnUrge: boolean;
+    }>>>;
+    behaviorDayBoundsByBehaviorId: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodObject<{
+        firstAt: z.ZodOptional<z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>>;
+        lastAt: z.ZodOptional<z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>>;
+        firstAtConfirmed: z.ZodOptional<z.ZodBoolean>;
+        lastAtConfirmed: z.ZodOptional<z.ZodBoolean>;
+    }, "strip", z.ZodTypeAny, {
+        firstAt?: import("../types").Timestamp | null | undefined;
+        lastAt?: import("../types").Timestamp | null | undefined;
+        firstAtConfirmed?: boolean | undefined;
+        lastAtConfirmed?: boolean | undefined;
+    }, {
+        firstAt?: import("../types").Timestamp | null | undefined;
+        lastAt?: import("../types").Timestamp | null | undefined;
+        firstAtConfirmed?: boolean | undefined;
+        lastAtConfirmed?: boolean | undefined;
     }>>>;
     dayTotalsConfirmedAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     recapStartedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -3708,6 +3839,12 @@ export declare const daySummarySchema: z.ZodObject<{
                 currentStreakStartDate?: string | undefined;
                 longestStreakStartDate?: string | undefined;
             } | undefined;
+            stretches?: {
+                longestMs: number;
+                longestStartAt?: import("../types").Timestamp | undefined;
+                longestEndAt?: import("../types").Timestamp | null | undefined;
+                currentStartAt?: import("../types").Timestamp | undefined;
+            } | undefined;
             trackingWindows?: {
                 short: {
                     windowSizeDays: 7 | 30 | 90;
@@ -3767,6 +3904,12 @@ export declare const daySummarySchema: z.ZodObject<{
     impulsesBySessionId?: Record<string, {
         behaviorIds: string[];
         actedOnUrge: boolean;
+    }> | undefined;
+    behaviorDayBoundsByBehaviorId?: Record<string, {
+        firstAt?: import("../types").Timestamp | null | undefined;
+        lastAt?: import("../types").Timestamp | null | undefined;
+        firstAtConfirmed?: boolean | undefined;
+        lastAtConfirmed?: boolean | undefined;
     }> | undefined;
     recapStartedAt?: import("../types").Timestamp | undefined;
     recapCutoffTime?: import("../types").Timestamp | undefined;
@@ -3964,6 +4107,12 @@ export declare const daySummarySchema: z.ZodObject<{
                 currentStreakStartDate?: string | undefined;
                 longestStreakStartDate?: string | undefined;
             } | undefined;
+            stretches?: {
+                longestMs: number;
+                longestStartAt?: import("../types").Timestamp | undefined;
+                longestEndAt?: import("../types").Timestamp | null | undefined;
+                currentStartAt?: import("../types").Timestamp | undefined;
+            } | undefined;
             trackingWindows?: {
                 short: {
                     windowSizeDays: 7 | 30 | 90;
@@ -4024,6 +4173,12 @@ export declare const daySummarySchema: z.ZodObject<{
     impulsesBySessionId?: Record<string, {
         behaviorIds: string[];
         actedOnUrge: boolean;
+    }> | undefined;
+    behaviorDayBoundsByBehaviorId?: Record<string, {
+        firstAt?: import("../types").Timestamp | null | undefined;
+        lastAt?: import("../types").Timestamp | null | undefined;
+        firstAtConfirmed?: boolean | undefined;
+        lastAtConfirmed?: boolean | undefined;
     }> | undefined;
     recapStartedAt?: import("../types").Timestamp | undefined;
     recapCutoffTime?: import("../types").Timestamp | undefined;

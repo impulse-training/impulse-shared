@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isBehavior = exports.behaviorSchema = exports.streakForgivenessEntrySchema = exports.formatBenefitsForPrompt = exports.normalizeBehaviorBenefits = exports.behaviorBenefitElementSchema = exports.behaviorBenefitSchema = exports.benefitNeedSchema = exports.behaviorStateSchema = exports.WINDOW_SIZES = exports.recentSliceSchema = exports.behaviorStateMetaSchema = exports.behaviorStateGoalSchema = exports.trackingWindowSchema = exports.behaviorWindowSchema = exports.behaviorMeaningSchema = exports.globalStreaksSchema = exports.changeStageSchema = exports.streaksSchema = exports.behaviorStateGoalTypeSchema = exports.dataCompletenessSchema = exports.stabilitySchema = exports.trendSchema = exports.behaviorTemplateSchema = exports.streakLabels = exports.baselinePeriods = exports.trackingTypes = void 0;
+exports.isBehavior = exports.behaviorSchema = exports.streakForgivenessEntrySchema = exports.formatBenefitsForPrompt = exports.normalizeBehaviorBenefits = exports.behaviorBenefitElementSchema = exports.behaviorBenefitSchema = exports.benefitNeedSchema = exports.behaviorStateSchema = exports.WINDOW_SIZES = exports.recentSliceSchema = exports.behaviorStateMetaSchema = exports.behaviorStateGoalSchema = exports.trackingWindowSchema = exports.behaviorWindowSchema = exports.behaviorMeaningSchema = exports.behaviorStretchesSchema = exports.globalStreaksSchema = exports.changeStageSchema = exports.streaksSchema = exports.behaviorStateGoalTypeSchema = exports.dataCompletenessSchema = exports.stabilitySchema = exports.trendSchema = exports.behaviorTemplateSchema = exports.streakLabels = exports.baselinePeriods = exports.trackingTypes = void 0;
 exports.isBehaviorState = isBehaviorState;
 const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
@@ -63,6 +63,20 @@ exports.globalStreaksSchema = zod_1.z.object({
     currentStreakStartDate: zod_1.z.string().optional(),
     // Date when the longest streak started (ISO date string)
     longestStreakStartDate: zod_1.z.string().optional(),
+});
+// Sub-day "time without the behavior" stats for eliminate goals. Wall-clock
+// anchored: clients render the live figure as now − currentStartAt.
+exports.behaviorStretchesSchema = zod_1.z.object({
+    longestMs: zod_1.z.number(),
+    longestStartAt: timestampSchema_1.timestampSchema.optional(),
+    // Null/absent while the longest stretch is the ongoing one. Written as an
+    // explicit null (not omitted) because behavior state is persisted with a
+    // deep merge — omission would leave a stale end time behind.
+    longestEndAt: timestampSchema_1.timestampSchema.nullable().optional(),
+    // When the current stretch began (last occurrence, or a conservative day
+    // boundary when times are unknown). MAY BE IN THE FUTURE (acted today with
+    // unknown last time → end of today) — consumers must clamp elapsed to 0.
+    currentStartAt: timestampSchema_1.timestampSchema.optional(),
 });
 // Rich, reflective meaning associated with a behavior
 exports.behaviorMeaningSchema = zod_1.z.object({
@@ -158,6 +172,8 @@ exports.behaviorStateSchema = zod_1.z.object({
     meaning: exports.behaviorMeaningSchema.optional(),
     // Global streaks (not limited to any window)
     globalStreaks: exports.globalStreaksSchema.optional(),
+    // Sub-day stretch stats (eliminate goals only)
+    stretches: exports.behaviorStretchesSchema.optional(),
     windows: zod_1.z.object({
         short: exports.behaviorWindowSchema,
         medium: exports.behaviorWindowSchema,

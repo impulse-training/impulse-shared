@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.daySummarySchema = exports.recapResponseValueSchema = exports.goalComparisonEntrySchema = void 0;
+exports.daySummarySchema = exports.recapResponseValueSchema = exports.behaviorDayBoundsSchema = exports.goalComparisonEntrySchema = void 0;
 exports.isValidDaySummary = isValidDaySummary;
 const zod_1 = require("zod");
 const objectOf_1 = require("../utils/objectOf");
@@ -18,6 +18,20 @@ exports.goalComparisonEntrySchema = zod_1.z.object({
     measured: zod_1.z.number(),
     targetValue: zod_1.z.number().optional(),
     status: zod_1.z.enum(["MET", "NOT_MET_FAIL", "UNSPECIFIED_FOR_DAY", "NO_GOAL"]),
+});
+/**
+ * Per-behavior first/last occurrence times for the day (eliminate-goal stretch
+ * metric). An absent or null field means "unknown" — the stretch engine applies
+ * conservative start-of-day / end-of-day defaults AT COMPUTE TIME; defaults are
+ * never stored here.
+ */
+exports.behaviorDayBoundsSchema = zod_1.z.object({
+    firstAt: timestampSchema_1.timestampSchema.nullable().optional(),
+    lastAt: timestampSchema_1.timestampSchema.nullable().optional(),
+    // true = the user attested this field at recap; server-side derivation from
+    // timed logs must not overwrite a confirmed field.
+    firstAtConfirmed: zod_1.z.boolean().optional(),
+    lastAtConfirmed: zod_1.z.boolean().optional(),
 });
 /** Structured value emitted by the RecapResponseControl when the user confirms totals */
 exports.recapResponseValueSchema = zod_1.z.object({
@@ -56,6 +70,8 @@ exports.daySummarySchema = zod_1.z.object({
         actedOnUrge: zod_1.z.boolean(),
     }))
         .optional(),
+    // Per-behavior first/last occurrence times (eliminate-goal stretch metric)
+    behaviorDayBoundsByBehaviorId: (0, objectOf_1.optionalObjectOf)(exports.behaviorDayBoundsSchema),
     // When the user confirms their day totals
     dayTotalsConfirmedAt: timestampSchema_1.timestampSchema.nullable(),
     // When the user confirms totals and starts the recap flow
