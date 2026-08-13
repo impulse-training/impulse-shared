@@ -81,7 +81,9 @@ export function formatBehaviorGoal(
     ? "level"
     : behavior.trackingType === "counter"
       ? behavior.trackingUnit || "times"
-      : "minutes";
+      : behavior.trackingType === "occurrence"
+        ? "times"
+        : "minutes";
   return formatRichGoal(effectiveGoal, unitPlural, isScale);
 }
 

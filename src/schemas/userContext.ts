@@ -9,7 +9,7 @@ import { timestampSchema } from "../utils/timestampSchema";
 export const behaviorContextSchema = z.object({
   behaviorId: z.string(),
   behaviorName: z.string(),
-  trackingType: z.enum(["counter", "timer", "boolean", "scale"]),
+  trackingType: z.enum(["counter", "timer", "boolean", "scale", "occurrence"]),
   description: z.string().optional(),
   // Tolerant like behaviorSchema.benefits: old denormalized copies hold bare
   // strings until afterUserBehaviorWrite re-propagates the structured shape.

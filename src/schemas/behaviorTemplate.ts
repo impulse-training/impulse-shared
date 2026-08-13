@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { timestampSchema } from "../utils/timestampSchema";
 
-export const trackingTypes = ["counter", "timer", "scale"] as const;
+export const trackingTypes = ["counter", "timer", "scale", "occurrence"] as const;
 export type TrackingType = (typeof trackingTypes)[number];
 
 export const baselinePeriods = ["daily", "weekly"] as const;

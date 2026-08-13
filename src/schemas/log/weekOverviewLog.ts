@@ -10,7 +10,7 @@ import { trendSchema } from "../behavior";
 export const weekOverviewBehaviorCardSchema = z.object({
   behaviorId: z.string(),
   name: z.string(),
-  trackingType: z.enum(["counter", "timer", "scale"]).optional(),
+  trackingType: z.enum(["counter", "timer", "scale", "occurrence"]).optional(),
   unit: z.string().optional(),
   /** Summed measured value across the week (minutes for timers, count for counters). */
   weeklyTotal: z.number(),
