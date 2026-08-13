@@ -98,7 +98,7 @@ export const mergeBehaviorsTaskSchema = taskBaseSchema.extend({
   targetBehavior: z.object({
     name: z.string().min(1),
     description: z.string().optional(),
-    trackingType: z.enum(["counter", "timer", "scale"]).optional(),
+    trackingType: z.enum(["counter", "timer", "scale", "occurrence"]).optional(),
     synonyms: z.array(z.string()).optional(),
   }),
 });

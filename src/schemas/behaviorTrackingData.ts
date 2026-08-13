@@ -4,7 +4,7 @@ export const behaviorTrackingDataSchema = z.object({
   behaviorId: z.string().optional(),
   behaviorName: z.string().optional(),
   behaviorTrackingUnit: z.string().optional(),
-  trackingType: z.enum(["counter", "timer", "scale"]).optional(),
+  trackingType: z.enum(["counter", "timer", "scale", "occurrence"]).optional(),
   // Raw behaviour logs: seconds for timer, count for counter, level for scale.
   // daySummary.behaviorDataTotalByBehaviorId: MINUTES for timer (canonical).
   value: z.number().optional(),

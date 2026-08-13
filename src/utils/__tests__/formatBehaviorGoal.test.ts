@@ -65,3 +65,19 @@ describe("formatBehaviorGoal — contain goals", () => {
     expect(formatBehaviorGoal(behavior(), goal)).toBe("Eliminate");
   });
 });
+
+describe("occurrence tracking type", () => {
+  it("uses 'times' as the unit, never 'minutes'", () => {
+    const goal: Goal = { type: "reduceEveryDay", target: 3 };
+    expect(
+      formatBehaviorGoal(behavior({ trackingType: "occurrence" }), goal),
+    ).toBe("At most 3 times daily");
+  });
+
+  it("formats eliminate goals unchanged", () => {
+    const goal: Goal = { type: "eliminate" };
+    expect(
+      formatBehaviorGoal(behavior({ trackingType: "occurrence" }), goal),
+    ).toBe("Eliminate");
+  });
+});
