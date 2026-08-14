@@ -372,10 +372,15 @@ export function shouldRespondToLogWithAI(
     return true;
   }
 
-  // Case: A trigger plan is added to the session
+  // Case: A trigger plan is added to the session.
+  // `shouldZaraRespond: false` opts a writer out — background writers (the
+  // impulse assessor) match plans alongside a turn the assistant is already
+  // taking, and a second turn for one user message is the double-invocation
+  // class that has the model acting on state it never saw.
   if (
     isCreating &&
     logIsPlansLog(afterData) &&
+    afterData.shouldZaraRespond !== false &&
     afterData.data.plans[0]?.plan.type === "trigger"
   ) {
     console.log("Trigger plan was added. Responding with AI.");

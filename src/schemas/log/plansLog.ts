@@ -6,6 +6,14 @@ import { logBaseSchema } from "./base";
 // Plans Log Schema - supports multiple plans (for behaviors or scheduled plans)
 export const plansLogSchema = logBaseSchema.extend({
   type: z.literal("plans"),
+  /**
+   * Set to false by a writer that must not wake the assistant. A newly created
+   * trigger-sourced plans log normally earns an AI turn; background writers
+   * (the impulse assessor) match plans alongside a turn already in flight, and
+   * a second turn for one user message makes the model act on state it has not
+   * seen. Same opt-out shape as behaviorLog's.
+   */
+  shouldZaraRespond: z.boolean().optional(),
   // Usually displayed, but "planning"-mode plans logs (recap planning phase) are
   // written non-displayable, so permit both.
   isDisplayable: z.boolean(),

@@ -13,6 +13,14 @@ export declare const plansLogSchema: z.ZodObject<{
     respondingToLogId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"plans">;
+    /**
+     * Set to false by a writer that must not wake the assistant. A newly created
+     * trigger-sourced plans log normally earns an AI turn; background writers
+     * (the impulse assessor) match plans alongside a turn already in flight, and
+     * a second turn for one user message makes the model act on state it has not
+     * seen. Same opt-out shape as behaviorLog's.
+     */
+    shouldZaraRespond: z.ZodOptional<z.ZodBoolean>;
     isDisplayable: z.ZodBoolean;
     data: z.ZodObject<{
         source: z.ZodUnion<[z.ZodLiteral<"trigger">, z.ZodLiteral<"behavior">, z.ZodLiteral<"scheduled">, z.ZodLiteral<"tags">, z.ZodLiteral<"improvised">]>;
@@ -1772,6 +1780,7 @@ export declare const plansLogSchema: z.ZodObject<{
     tacticId?: string | undefined;
     impulseId?: string | undefined;
     respondingToLogId?: string | undefined;
+    shouldZaraRespond?: boolean | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
@@ -1992,5 +2001,6 @@ export declare const plansLogSchema: z.ZodObject<{
     tacticId?: string | undefined;
     impulseId?: string | undefined;
     respondingToLogId?: string | undefined;
+    shouldZaraRespond?: boolean | undefined;
 }>;
 export type PlansLog = z.infer<typeof plansLogSchema>;
