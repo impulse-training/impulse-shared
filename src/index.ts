@@ -11,6 +11,7 @@ export * from "./llm";
 export * from "./schemas";
 export * from "./utils/attachments";
 export * from "./utils/behaviorData";
+export * from "./utils/behaviorSalience";
 export * from "./utils/clock";
 export * from "./utils/dates";
 export * from "./utils/days";

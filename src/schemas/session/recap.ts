@@ -74,6 +74,14 @@ export type RecapDayEvent = z.infer<typeof recapDayEventSchema>;
 export const recapDayFactSchema = z.object({
   behaviorId: z.string(),
   behaviorName: z.string(),
+  /**
+   * How much this behavior matters to this user (0..1), snapshotted at
+   * fact-build time via effectiveBehaviorSalience (explicit importance
+   * override, else derived struggle weight). The facts block orders and
+   * headlines by it: a modest event on the behavior that owns the user's
+   * struggle outranks a bigger structural event on a side experiment.
+   */
+  salience: z.number().min(0).max(1).optional(),
   /** How today's logged total compared to this behavior's goal. */
   goalStatus: z.enum(["met", "missed", "no_goal", "unknown"]),
   event: recapDayEventSchema,

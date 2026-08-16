@@ -29,11 +29,11 @@ export declare const behaviorTopicIndicationSchema: z.ZodObject<{
     behaviorTopicId: z.ZodString;
     weight: z.ZodNumber;
 }, "strip", z.ZodTypeAny, {
-    behaviorTopicId: string;
     weight: number;
+    behaviorTopicId: string;
 }, {
-    behaviorTopicId: string;
     weight: number;
+    behaviorTopicId: string;
 }>;
 export declare const indicationSchema: z.ZodObject<{
     behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
@@ -53,11 +53,11 @@ export declare const indicationSchema: z.ZodObject<{
         behaviorTopicId: z.ZodString;
         weight: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
-        behaviorTopicId: string;
         weight: number;
+        behaviorTopicId: string;
     }, {
-        behaviorTopicId: string;
         weight: number;
+        behaviorTopicId: string;
     }>, "many">>;
     tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
         tagGroupName: z.ZodString;
@@ -84,8 +84,8 @@ export declare const indicationSchema: z.ZodObject<{
         weight: number;
     }[] | undefined;
     behaviorTopics?: {
-        behaviorTopicId: string;
         weight: number;
+        behaviorTopicId: string;
     }[] | undefined;
 }, {
     tags?: {
@@ -99,8 +99,8 @@ export declare const indicationSchema: z.ZodObject<{
         weight: number;
     }[] | undefined;
     behaviorTopics?: {
-        behaviorTopicId: string;
         weight: number;
+        behaviorTopicId: string;
     }[] | undefined;
 }>;
 export declare const tacticPhaseSchema: z.ZodEnum<["regulate", "shift", "reengage"]>;
@@ -4556,11 +4556,11 @@ export declare const tacticSchema: z.ZodObject<{
             behaviorTopicId: z.ZodString;
             weight: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
-            behaviorTopicId: string;
             weight: number;
+            behaviorTopicId: string;
         }, {
-            behaviorTopicId: string;
             weight: number;
+            behaviorTopicId: string;
         }>, "many">>;
         tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
             tagGroupName: z.ZodString;
@@ -4587,8 +4587,8 @@ export declare const tacticSchema: z.ZodObject<{
             weight: number;
         }[] | undefined;
         behaviorTopics?: {
-            behaviorTopicId: string;
             weight: number;
+            behaviorTopicId: string;
         }[] | undefined;
     }, {
         tags?: {
@@ -4602,8 +4602,8 @@ export declare const tacticSchema: z.ZodObject<{
             weight: number;
         }[] | undefined;
         behaviorTopics?: {
-            behaviorTopicId: string;
             weight: number;
+            behaviorTopicId: string;
         }[] | undefined;
     }>>;
     contraindications: z.ZodOptional<z.ZodObject<{
@@ -4624,11 +4624,11 @@ export declare const tacticSchema: z.ZodObject<{
             behaviorTopicId: z.ZodString;
             weight: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
-            behaviorTopicId: string;
             weight: number;
+            behaviorTopicId: string;
         }, {
-            behaviorTopicId: string;
             weight: number;
+            behaviorTopicId: string;
         }>, "many">>;
         tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
             tagGroupName: z.ZodString;
@@ -4655,8 +4655,8 @@ export declare const tacticSchema: z.ZodObject<{
             weight: number;
         }[] | undefined;
         behaviorTopics?: {
-            behaviorTopicId: string;
             weight: number;
+            behaviorTopicId: string;
         }[] | undefined;
     }, {
         tags?: {
@@ -4670,8 +4670,8 @@ export declare const tacticSchema: z.ZodObject<{
             weight: number;
         }[] | undefined;
         behaviorTopics?: {
-            behaviorTopicId: string;
             weight: number;
+            behaviorTopicId: string;
         }[] | undefined;
     }>>;
     completionTrigger: z.ZodOptional<z.ZodEnum<["device-restart"]>>;
@@ -5271,8 +5271,8 @@ export declare const tacticSchema: z.ZodObject<{
             weight: number;
         }[] | undefined;
         behaviorTopics?: {
-            behaviorTopicId: string;
             weight: number;
+            behaviorTopicId: string;
         }[] | undefined;
     } | undefined;
     contraindications?: {
@@ -5287,8 +5287,8 @@ export declare const tacticSchema: z.ZodObject<{
             weight: number;
         }[] | undefined;
         behaviorTopics?: {
-            behaviorTopicId: string;
             weight: number;
+            behaviorTopicId: string;
         }[] | undefined;
     } | undefined;
     completionTrigger?: "device-restart" | undefined;
@@ -5344,8 +5344,8 @@ export declare const tacticSchema: z.ZodObject<{
             weight: number;
         }[] | undefined;
         behaviorTopics?: {
-            behaviorTopicId: string;
             weight: number;
+            behaviorTopicId: string;
         }[] | undefined;
     } | undefined;
     contraindications?: {
@@ -5360,8 +5360,8 @@ export declare const tacticSchema: z.ZodObject<{
             weight: number;
         }[] | undefined;
         behaviorTopics?: {
-            behaviorTopicId: string;
             weight: number;
+            behaviorTopicId: string;
         }[] | undefined;
     } | undefined;
     completionTrigger?: "device-restart" | undefined;

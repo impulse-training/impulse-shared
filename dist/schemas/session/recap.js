@@ -68,6 +68,14 @@ exports.recapDayEventSchema = zod_1.z.enum([
 exports.recapDayFactSchema = zod_1.z.object({
     behaviorId: zod_1.z.string(),
     behaviorName: zod_1.z.string(),
+    /**
+     * How much this behavior matters to this user (0..1), snapshotted at
+     * fact-build time via effectiveBehaviorSalience (explicit importance
+     * override, else derived struggle weight). The facts block orders and
+     * headlines by it: a modest event on the behavior that owns the user's
+     * struggle outranks a bigger structural event on a side experiment.
+     */
+    salience: zod_1.z.number().min(0).max(1).optional(),
     /** How today's logged total compared to this behavior's goal. */
     goalStatus: zod_1.z.enum(["met", "missed", "no_goal", "unknown"]),
     event: exports.recapDayEventSchema,

@@ -319,8 +319,8 @@ export declare const impulseUsageStatsSchema: z.ZodObject<{
     impulseActivations: number;
     directLogs: number;
     catchRateLifetime: number | null;
-    firstImpulseAt?: import("../types").Timestamp | null | undefined;
     lastImpulseAt?: import("../types").Timestamp | null | undefined;
+    firstImpulseAt?: import("../types").Timestamp | null | undefined;
     computedDateString?: string | undefined;
     computedAt?: import("../types").Timestamp | undefined;
 }, {
@@ -356,8 +356,8 @@ export declare const impulseUsageStatsSchema: z.ZodObject<{
     impulseActivations: number;
     directLogs: number;
     catchRateLifetime: number | null;
-    firstImpulseAt?: import("../types").Timestamp | null | undefined;
     lastImpulseAt?: import("../types").Timestamp | null | undefined;
+    firstImpulseAt?: import("../types").Timestamp | null | undefined;
     computedDateString?: string | undefined;
     computedAt?: import("../types").Timestamp | undefined;
 }>;
@@ -641,8 +641,8 @@ export declare const userContextSchema: z.ZodObject<{
         impulseActivations: number;
         directLogs: number;
         catchRateLifetime: number | null;
-        firstImpulseAt?: import("../types").Timestamp | null | undefined;
         lastImpulseAt?: import("../types").Timestamp | null | undefined;
+        firstImpulseAt?: import("../types").Timestamp | null | undefined;
         computedDateString?: string | undefined;
         computedAt?: import("../types").Timestamp | undefined;
     }, {
@@ -678,8 +678,8 @@ export declare const userContextSchema: z.ZodObject<{
         impulseActivations: number;
         directLogs: number;
         catchRateLifetime: number | null;
-        firstImpulseAt?: import("../types").Timestamp | null | undefined;
         lastImpulseAt?: import("../types").Timestamp | null | undefined;
+        firstImpulseAt?: import("../types").Timestamp | null | undefined;
         computedDateString?: string | undefined;
         computedAt?: import("../types").Timestamp | undefined;
     }>>;
@@ -748,8 +748,8 @@ export declare const userContextSchema: z.ZodObject<{
         impulseActivations: number;
         directLogs: number;
         catchRateLifetime: number | null;
-        firstImpulseAt?: import("../types").Timestamp | null | undefined;
         lastImpulseAt?: import("../types").Timestamp | null | undefined;
+        firstImpulseAt?: import("../types").Timestamp | null | undefined;
         computedDateString?: string | undefined;
         computedAt?: import("../types").Timestamp | undefined;
     } | undefined;
@@ -816,8 +816,8 @@ export declare const userContextSchema: z.ZodObject<{
         impulseActivations: number;
         directLogs: number;
         catchRateLifetime: number | null;
-        firstImpulseAt?: import("../types").Timestamp | null | undefined;
         lastImpulseAt?: import("../types").Timestamp | null | undefined;
+        firstImpulseAt?: import("../types").Timestamp | null | undefined;
         computedDateString?: string | undefined;
         computedAt?: import("../types").Timestamp | undefined;
     } | undefined;

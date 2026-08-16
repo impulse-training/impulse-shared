@@ -237,6 +237,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
         }>>;
+        importance: z.ZodOptional<z.ZodNumber>;
         masked: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         behaviorTemplateId: z.ZodOptional<z.ZodString>;
         color: z.ZodOptional<z.ZodString>;
@@ -389,6 +390,28 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                     commonTriggers?: string[] | undefined;
                     highRiskContexts?: string[] | undefined;
                 } | undefined;
+            }>>;
+            struggle: z.ZodOptional<z.ZodObject<{
+                impulseCount90d: z.ZodNumber;
+                impulseCount7d: z.ZodNumber;
+                lapseCount90d: z.ZodNumber;
+                recencyWeighted: z.ZodNumber;
+                weight: z.ZodNumber;
+                lastImpulseAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+            }, "strip", z.ZodTypeAny, {
+                impulseCount90d: number;
+                impulseCount7d: number;
+                lapseCount90d: number;
+                recencyWeighted: number;
+                weight: number;
+                lastImpulseAt?: import("../types").Timestamp | undefined;
+            }, {
+                impulseCount90d: number;
+                impulseCount7d: number;
+                lapseCount90d: number;
+                recencyWeighted: number;
+                weight: number;
+                lastImpulseAt?: import("../types").Timestamp | undefined;
             }>>;
             globalStreaks: z.ZodOptional<z.ZodObject<{
                 currentStreak: z.ZodNumber;
@@ -937,6 +960,14 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                     highRiskContexts?: string[] | undefined;
                 } | undefined;
             } | undefined;
+            struggle?: {
+                impulseCount90d: number;
+                impulseCount7d: number;
+                lapseCount90d: number;
+                recencyWeighted: number;
+                weight: number;
+                lastImpulseAt?: import("../types").Timestamp | undefined;
+            } | undefined;
             globalStreaks?: {
                 currentStreak: number;
                 longestStreak: number;
@@ -1072,6 +1103,14 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                     highRiskContexts?: string[] | undefined;
                 } | undefined;
             } | undefined;
+            struggle?: {
+                impulseCount90d: number;
+                impulseCount7d: number;
+                lapseCount90d: number;
+                recencyWeighted: number;
+                weight: number;
+                lastImpulseAt?: import("../types").Timestamp | undefined;
+            } | undefined;
             globalStreaks?: {
                 currentStreak: number;
                 longestStreak: number;
@@ -1155,6 +1194,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         streakLabel?: "clean" | "free" | "sober" | undefined;
         defaultTolerance?: number | undefined;
         recapQuestionSequence?: string[] | undefined;
+        importance?: number | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -1291,6 +1331,14 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                     highRiskContexts?: string[] | undefined;
                 } | undefined;
             } | undefined;
+            struggle?: {
+                impulseCount90d: number;
+                impulseCount7d: number;
+                lapseCount90d: number;
+                recencyWeighted: number;
+                weight: number;
+                lastImpulseAt?: import("../types").Timestamp | undefined;
+            } | undefined;
             globalStreaks?: {
                 currentStreak: number;
                 longestStreak: number;
@@ -1366,6 +1414,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         streakLabel?: "clean" | "free" | "sober" | undefined;
         defaultTolerance?: number | undefined;
         recapQuestionSequence?: string[] | undefined;
+        importance?: number | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -1509,6 +1558,14 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                     commonTriggers?: string[] | undefined;
                     highRiskContexts?: string[] | undefined;
                 } | undefined;
+            } | undefined;
+            struggle?: {
+                impulseCount90d: number;
+                impulseCount7d: number;
+                lapseCount90d: number;
+                recencyWeighted: number;
+                weight: number;
+                lastImpulseAt?: import("../types").Timestamp | undefined;
             } | undefined;
             globalStreaks?: {
                 currentStreak: number;
@@ -1608,6 +1665,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         streakLabel?: "clean" | "free" | "sober" | undefined;
         defaultTolerance?: number | undefined;
         recapQuestionSequence?: string[] | undefined;
+        importance?: number | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -1744,6 +1802,14 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                     highRiskContexts?: string[] | undefined;
                 } | undefined;
             } | undefined;
+            struggle?: {
+                impulseCount90d: number;
+                impulseCount7d: number;
+                lapseCount90d: number;
+                recencyWeighted: number;
+                weight: number;
+                lastImpulseAt?: import("../types").Timestamp | undefined;
+            } | undefined;
             globalStreaks?: {
                 currentStreak: number;
                 longestStreak: number;
@@ -1834,6 +1900,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         streakLabel?: "clean" | "free" | "sober" | undefined;
         defaultTolerance?: number | undefined;
         recapQuestionSequence?: string[] | undefined;
+        importance?: number | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -1977,6 +2044,14 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                     commonTriggers?: string[] | undefined;
                     highRiskContexts?: string[] | undefined;
                 } | undefined;
+            } | undefined;
+            struggle?: {
+                impulseCount90d: number;
+                impulseCount7d: number;
+                lapseCount90d: number;
+                recencyWeighted: number;
+                weight: number;
+                lastImpulseAt?: import("../types").Timestamp | undefined;
             } | undefined;
             globalStreaks?: {
                 currentStreak: number;
@@ -2230,6 +2305,7 @@ export declare const daySummarySchema: z.ZodObject<{
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
         }>>;
+        importance: z.ZodOptional<z.ZodNumber>;
         masked: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         behaviorTemplateId: z.ZodOptional<z.ZodString>;
         color: z.ZodOptional<z.ZodString>;
@@ -2382,6 +2458,28 @@ export declare const daySummarySchema: z.ZodObject<{
                     commonTriggers?: string[] | undefined;
                     highRiskContexts?: string[] | undefined;
                 } | undefined;
+            }>>;
+            struggle: z.ZodOptional<z.ZodObject<{
+                impulseCount90d: z.ZodNumber;
+                impulseCount7d: z.ZodNumber;
+                lapseCount90d: z.ZodNumber;
+                recencyWeighted: z.ZodNumber;
+                weight: z.ZodNumber;
+                lastImpulseAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+            }, "strip", z.ZodTypeAny, {
+                impulseCount90d: number;
+                impulseCount7d: number;
+                lapseCount90d: number;
+                recencyWeighted: number;
+                weight: number;
+                lastImpulseAt?: import("../types").Timestamp | undefined;
+            }, {
+                impulseCount90d: number;
+                impulseCount7d: number;
+                lapseCount90d: number;
+                recencyWeighted: number;
+                weight: number;
+                lastImpulseAt?: import("../types").Timestamp | undefined;
             }>>;
             globalStreaks: z.ZodOptional<z.ZodObject<{
                 currentStreak: z.ZodNumber;
@@ -2930,6 +3028,14 @@ export declare const daySummarySchema: z.ZodObject<{
                     highRiskContexts?: string[] | undefined;
                 } | undefined;
             } | undefined;
+            struggle?: {
+                impulseCount90d: number;
+                impulseCount7d: number;
+                lapseCount90d: number;
+                recencyWeighted: number;
+                weight: number;
+                lastImpulseAt?: import("../types").Timestamp | undefined;
+            } | undefined;
             globalStreaks?: {
                 currentStreak: number;
                 longestStreak: number;
@@ -3065,6 +3171,14 @@ export declare const daySummarySchema: z.ZodObject<{
                     highRiskContexts?: string[] | undefined;
                 } | undefined;
             } | undefined;
+            struggle?: {
+                impulseCount90d: number;
+                impulseCount7d: number;
+                lapseCount90d: number;
+                recencyWeighted: number;
+                weight: number;
+                lastImpulseAt?: import("../types").Timestamp | undefined;
+            } | undefined;
             globalStreaks?: {
                 currentStreak: number;
                 longestStreak: number;
@@ -3148,6 +3262,7 @@ export declare const daySummarySchema: z.ZodObject<{
         streakLabel?: "clean" | "free" | "sober" | undefined;
         defaultTolerance?: number | undefined;
         recapQuestionSequence?: string[] | undefined;
+        importance?: number | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -3284,6 +3399,14 @@ export declare const daySummarySchema: z.ZodObject<{
                     highRiskContexts?: string[] | undefined;
                 } | undefined;
             } | undefined;
+            struggle?: {
+                impulseCount90d: number;
+                impulseCount7d: number;
+                lapseCount90d: number;
+                recencyWeighted: number;
+                weight: number;
+                lastImpulseAt?: import("../types").Timestamp | undefined;
+            } | undefined;
             globalStreaks?: {
                 currentStreak: number;
                 longestStreak: number;
@@ -3359,6 +3482,7 @@ export declare const daySummarySchema: z.ZodObject<{
         streakLabel?: "clean" | "free" | "sober" | undefined;
         defaultTolerance?: number | undefined;
         recapQuestionSequence?: string[] | undefined;
+        importance?: number | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -3502,6 +3626,14 @@ export declare const daySummarySchema: z.ZodObject<{
                     commonTriggers?: string[] | undefined;
                     highRiskContexts?: string[] | undefined;
                 } | undefined;
+            } | undefined;
+            struggle?: {
+                impulseCount90d: number;
+                impulseCount7d: number;
+                lapseCount90d: number;
+                recencyWeighted: number;
+                weight: number;
+                lastImpulseAt?: import("../types").Timestamp | undefined;
             } | undefined;
             globalStreaks?: {
                 currentStreak: number;
@@ -3697,6 +3829,7 @@ export declare const daySummarySchema: z.ZodObject<{
         streakLabel?: "clean" | "free" | "sober" | undefined;
         defaultTolerance?: number | undefined;
         recapQuestionSequence?: string[] | undefined;
+        importance?: number | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -3833,6 +3966,14 @@ export declare const daySummarySchema: z.ZodObject<{
                     highRiskContexts?: string[] | undefined;
                 } | undefined;
             } | undefined;
+            struggle?: {
+                impulseCount90d: number;
+                impulseCount7d: number;
+                lapseCount90d: number;
+                recencyWeighted: number;
+                weight: number;
+                lastImpulseAt?: import("../types").Timestamp | undefined;
+            } | undefined;
             globalStreaks?: {
                 currentStreak: number;
                 longestStreak: number;
@@ -3957,6 +4098,7 @@ export declare const daySummarySchema: z.ZodObject<{
         streakLabel?: "clean" | "free" | "sober" | undefined;
         defaultTolerance?: number | undefined;
         recapQuestionSequence?: string[] | undefined;
+        importance?: number | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -4100,6 +4242,14 @@ export declare const daySummarySchema: z.ZodObject<{
                     commonTriggers?: string[] | undefined;
                     highRiskContexts?: string[] | undefined;
                 } | undefined;
+            } | undefined;
+            struggle?: {
+                impulseCount90d: number;
+                impulseCount7d: number;
+                lapseCount90d: number;
+                recencyWeighted: number;
+                weight: number;
+                lastImpulseAt?: import("../types").Timestamp | undefined;
             } | undefined;
             globalStreaks?: {
                 currentStreak: number;
