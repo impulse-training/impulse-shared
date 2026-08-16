@@ -2,7 +2,7 @@ import { z } from "zod";
 export declare const behaviorContextSchema: z.ZodObject<{
     behaviorId: z.ZodString;
     behaviorName: z.ZodString;
-    trackingType: z.ZodEnum<["counter", "timer", "boolean", "scale"]>;
+    trackingType: z.ZodEnum<["counter", "timer", "boolean", "scale", "occurrence"]>;
     description: z.ZodOptional<z.ZodString>;
     benefits: z.ZodOptional<z.ZodArray<z.ZodUnion<[z.ZodObject<{
         text: z.ZodString;
@@ -31,7 +31,7 @@ export declare const behaviorContextSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     behaviorId: string;
     behaviorName: string;
-    trackingType: "boolean" | "counter" | "timer" | "scale";
+    trackingType: "boolean" | "counter" | "timer" | "scale" | "occurrence";
     trackingUnit?: string | undefined;
     goalLabel?: string | undefined;
     description?: string | undefined;
@@ -43,7 +43,7 @@ export declare const behaviorContextSchema: z.ZodObject<{
 }, {
     behaviorId: string;
     behaviorName: string;
-    trackingType: "boolean" | "counter" | "timer" | "scale";
+    trackingType: "boolean" | "counter" | "timer" | "scale" | "occurrence";
     trackingUnit?: string | undefined;
     goalLabel?: string | undefined;
     description?: string | undefined;
@@ -366,7 +366,7 @@ export declare const userContextSchema: z.ZodObject<{
     behaviors: z.ZodRecord<z.ZodString, z.ZodObject<{
         behaviorId: z.ZodString;
         behaviorName: z.ZodString;
-        trackingType: z.ZodEnum<["counter", "timer", "boolean", "scale"]>;
+        trackingType: z.ZodEnum<["counter", "timer", "boolean", "scale", "occurrence"]>;
         description: z.ZodOptional<z.ZodString>;
         benefits: z.ZodOptional<z.ZodArray<z.ZodUnion<[z.ZodObject<{
             text: z.ZodString;
@@ -395,7 +395,7 @@ export declare const userContextSchema: z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         behaviorId: string;
         behaviorName: string;
-        trackingType: "boolean" | "counter" | "timer" | "scale";
+        trackingType: "boolean" | "counter" | "timer" | "scale" | "occurrence";
         trackingUnit?: string | undefined;
         goalLabel?: string | undefined;
         description?: string | undefined;
@@ -407,7 +407,7 @@ export declare const userContextSchema: z.ZodObject<{
     }, {
         behaviorId: string;
         behaviorName: string;
-        trackingType: "boolean" | "counter" | "timer" | "scale";
+        trackingType: "boolean" | "counter" | "timer" | "scale" | "occurrence";
         trackingUnit?: string | undefined;
         goalLabel?: string | undefined;
         description?: string | undefined;
@@ -695,7 +695,7 @@ export declare const userContextSchema: z.ZodObject<{
     behaviors: Record<string, {
         behaviorId: string;
         behaviorName: string;
-        trackingType: "boolean" | "counter" | "timer" | "scale";
+        trackingType: "boolean" | "counter" | "timer" | "scale" | "occurrence";
         trackingUnit?: string | undefined;
         goalLabel?: string | undefined;
         description?: string | undefined;
@@ -763,7 +763,7 @@ export declare const userContextSchema: z.ZodObject<{
     behaviors: Record<string, {
         behaviorId: string;
         behaviorName: string;
-        trackingType: "boolean" | "counter" | "timer" | "scale";
+        trackingType: "boolean" | "counter" | "timer" | "scale" | "occurrence";
         trackingUnit?: string | undefined;
         goalLabel?: string | undefined;
         description?: string | undefined;

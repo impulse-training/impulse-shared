@@ -40,6 +40,12 @@ function getFormattedValue({ trackingType, value, behaviorTrackingUnit, compact,
     if (trackingType === "scale") {
         return getScaleLabel(value);
     }
+    // Occurrence: one-tap timestamped events; counts are informational and the
+    // behavior carries no trackingUnit. Explicit branch so a stray unit on a
+    // migrated doc can never produce "1 puffs".
+    if (trackingType === "occurrence") {
+        return `${value} ${value === 1 ? "time" : "times"}`;
+    }
     const unit = pluralize(behaviorTrackingUnit || "times", value);
     const displayUnit = compact ? ((_a = COMPACT_UNITS[unit.toLowerCase()]) !== null && _a !== void 0 ? _a : unit) : unit;
     return `${value} ${displayUnit}`;

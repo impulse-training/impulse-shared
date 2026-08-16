@@ -21694,7 +21694,7 @@ export declare const logSchemas: {
             behaviorId: z.ZodOptional<z.ZodString>;
             behaviorName: z.ZodOptional<z.ZodString>;
             behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
-            trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale"]>>;
+            trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale", "occurrence"]>>;
             value: z.ZodOptional<z.ZodNumber>;
             formattedValue: z.ZodOptional<z.ZodString>;
             period: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
@@ -21708,7 +21708,7 @@ export declare const logSchemas: {
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | "scale" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
             source?: "scheduled" | "manual" | undefined;
@@ -21720,7 +21720,7 @@ export declare const logSchemas: {
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | "scale" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
             source?: "scheduled" | "manual" | undefined;
@@ -21743,7 +21743,7 @@ export declare const logSchemas: {
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | "scale" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
             source?: "scheduled" | "manual" | undefined;
@@ -21771,7 +21771,7 @@ export declare const logSchemas: {
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | "scale" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
             source?: "scheduled" | "manual" | undefined;
@@ -21883,6 +21883,7 @@ export declare const logSchemas: {
         respondingToLogId: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"plans">;
+        shouldZaraRespond: z.ZodOptional<z.ZodBoolean>;
         isDisplayable: z.ZodBoolean;
         data: z.ZodObject<{
             source: z.ZodUnion<[z.ZodLiteral<"trigger">, z.ZodLiteral<"behavior">, z.ZodLiteral<"scheduled">, z.ZodLiteral<"tags">, z.ZodLiteral<"improvised">]>;
@@ -23642,6 +23643,7 @@ export declare const logSchemas: {
         tacticId?: string | undefined;
         impulseId?: string | undefined;
         respondingToLogId?: string | undefined;
+        shouldZaraRespond?: boolean | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -23862,6 +23864,7 @@ export declare const logSchemas: {
         tacticId?: string | undefined;
         impulseId?: string | undefined;
         respondingToLogId?: string | undefined;
+        shouldZaraRespond?: boolean | undefined;
     }>;
     summary: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -25872,7 +25875,7 @@ export declare const logSchemas: {
             behaviors: z.ZodArray<z.ZodObject<{
                 behaviorId: z.ZodString;
                 name: z.ZodString;
-                trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale"]>>;
+                trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale", "occurrence"]>>;
                 unit: z.ZodOptional<z.ZodString>;
                 weeklyTotal: z.ZodNumber;
                 weeklyTotalFormatted: z.ZodString;
@@ -25884,7 +25887,7 @@ export declare const logSchemas: {
                 behaviorId: string;
                 weeklyTotal: number;
                 weeklyTotalFormatted: string;
-                trackingType?: "counter" | "timer" | "scale" | undefined;
+                trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
                 trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
                 unit?: string | undefined;
                 pctChangeFromLastWeek?: number | null | undefined;
@@ -25894,7 +25897,7 @@ export declare const logSchemas: {
                 behaviorId: string;
                 weeklyTotal: number;
                 weeklyTotalFormatted: string;
-                trackingType?: "counter" | "timer" | "scale" | undefined;
+                trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
                 trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
                 unit?: string | undefined;
                 pctChangeFromLastWeek?: number | null | undefined;
@@ -25906,7 +25909,7 @@ export declare const logSchemas: {
                 behaviorId: string;
                 weeklyTotal: number;
                 weeklyTotalFormatted: string;
-                trackingType?: "counter" | "timer" | "scale" | undefined;
+                trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
                 trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
                 unit?: string | undefined;
                 pctChangeFromLastWeek?: number | null | undefined;
@@ -25920,7 +25923,7 @@ export declare const logSchemas: {
                 behaviorId: string;
                 weeklyTotal: number;
                 weeklyTotalFormatted: string;
-                trackingType?: "counter" | "timer" | "scale" | undefined;
+                trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
                 trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
                 unit?: string | undefined;
                 pctChangeFromLastWeek?: number | null | undefined;
@@ -25944,7 +25947,7 @@ export declare const logSchemas: {
                 behaviorId: string;
                 weeklyTotal: number;
                 weeklyTotalFormatted: string;
-                trackingType?: "counter" | "timer" | "scale" | undefined;
+                trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
                 trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
                 unit?: string | undefined;
                 pctChangeFromLastWeek?: number | null | undefined;
@@ -25973,7 +25976,7 @@ export declare const logSchemas: {
                 behaviorId: string;
                 weeklyTotal: number;
                 weeklyTotalFormatted: string;
-                trackingType?: "counter" | "timer" | "scale" | undefined;
+                trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
                 trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
                 unit?: string | undefined;
                 pctChangeFromLastWeek?: number | null | undefined;
@@ -50471,7 +50474,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorId: z.ZodOptional<z.ZodString>;
         behaviorName: z.ZodOptional<z.ZodString>;
         behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
-        trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale"]>>;
+        trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale", "occurrence"]>>;
         value: z.ZodOptional<z.ZodNumber>;
         formattedValue: z.ZodOptional<z.ZodString>;
         period: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
@@ -50485,7 +50488,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | "scale" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
         source?: "scheduled" | "manual" | undefined;
@@ -50497,7 +50500,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | "scale" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
         source?: "scheduled" | "manual" | undefined;
@@ -50520,7 +50523,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | "scale" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
         source?: "scheduled" | "manual" | undefined;
@@ -50548,7 +50551,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | "scale" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
         source?: "scheduled" | "manual" | undefined;
@@ -50658,6 +50661,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     respondingToLogId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"plans">;
+    shouldZaraRespond: z.ZodOptional<z.ZodBoolean>;
     isDisplayable: z.ZodBoolean;
     data: z.ZodObject<{
         source: z.ZodUnion<[z.ZodLiteral<"trigger">, z.ZodLiteral<"behavior">, z.ZodLiteral<"scheduled">, z.ZodLiteral<"tags">, z.ZodLiteral<"improvised">]>;
@@ -52417,6 +52421,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     tacticId?: string | undefined;
     impulseId?: string | undefined;
     respondingToLogId?: string | undefined;
+    shouldZaraRespond?: boolean | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
@@ -52637,6 +52642,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     tacticId?: string | undefined;
     impulseId?: string | undefined;
     respondingToLogId?: string | undefined;
+    shouldZaraRespond?: boolean | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -54630,7 +54636,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviors: z.ZodArray<z.ZodObject<{
             behaviorId: z.ZodString;
             name: z.ZodString;
-            trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale"]>>;
+            trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale", "occurrence"]>>;
             unit: z.ZodOptional<z.ZodString>;
             weeklyTotal: z.ZodNumber;
             weeklyTotalFormatted: z.ZodString;
@@ -54642,7 +54648,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             behaviorId: string;
             weeklyTotal: number;
             weeklyTotalFormatted: string;
-            trackingType?: "counter" | "timer" | "scale" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
             trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
             unit?: string | undefined;
             pctChangeFromLastWeek?: number | null | undefined;
@@ -54652,7 +54658,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             behaviorId: string;
             weeklyTotal: number;
             weeklyTotalFormatted: string;
-            trackingType?: "counter" | "timer" | "scale" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
             trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
             unit?: string | undefined;
             pctChangeFromLastWeek?: number | null | undefined;
@@ -54664,7 +54670,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             behaviorId: string;
             weeklyTotal: number;
             weeklyTotalFormatted: string;
-            trackingType?: "counter" | "timer" | "scale" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
             trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
             unit?: string | undefined;
             pctChangeFromLastWeek?: number | null | undefined;
@@ -54678,7 +54684,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             behaviorId: string;
             weeklyTotal: number;
             weeklyTotalFormatted: string;
-            trackingType?: "counter" | "timer" | "scale" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
             trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
             unit?: string | undefined;
             pctChangeFromLastWeek?: number | null | undefined;
@@ -54702,7 +54708,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             behaviorId: string;
             weeklyTotal: number;
             weeklyTotalFormatted: string;
-            trackingType?: "counter" | "timer" | "scale" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
             trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
             unit?: string | undefined;
             pctChangeFromLastWeek?: number | null | undefined;
@@ -54731,7 +54737,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             behaviorId: string;
             weeklyTotal: number;
             weeklyTotalFormatted: string;
-            trackingType?: "counter" | "timer" | "scale" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
             trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
             unit?: string | undefined;
             pctChangeFromLastWeek?: number | null | undefined;
