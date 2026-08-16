@@ -5299,7 +5299,7 @@ export declare const adjustmentSessionSchema: z.ZodObject<{
         behaviorId: z.ZodOptional<z.ZodString>;
         behaviorName: z.ZodOptional<z.ZodString>;
         behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
-        trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale"]>>;
+        trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale", "occurrence"]>>;
         value: z.ZodOptional<z.ZodNumber>;
         formattedValue: z.ZodOptional<z.ZodString>;
         period: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
@@ -5308,7 +5308,7 @@ export declare const adjustmentSessionSchema: z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | "scale" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
     }, {
@@ -5316,7 +5316,7 @@ export declare const adjustmentSessionSchema: z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | "scale" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
     }>, "many">>;
@@ -6017,7 +6017,7 @@ export declare const adjustmentSessionSchema: z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | "scale" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
     }[] | undefined;
@@ -6164,7 +6164,7 @@ export declare const adjustmentSessionSchema: z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | "scale" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
     }[] | undefined;

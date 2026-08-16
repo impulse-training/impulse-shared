@@ -62,7 +62,9 @@ function formatBehaviorGoal(behavior, goal) {
         ? "level"
         : behavior.trackingType === "counter"
             ? behavior.trackingUnit || "times"
-            : "minutes";
+            : behavior.trackingType === "occurrence"
+                ? "times"
+                : "minutes";
     return formatRichGoal(effectiveGoal, unitPlural, isScale);
 }
 // Original rich formatter, now factored so we can reuse with or without units

@@ -213,16 +213,16 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     targetBehavior: z.ZodObject<{
         name: z.ZodString;
         description: z.ZodOptional<z.ZodString>;
-        trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale"]>>;
+        trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale", "occurrence"]>>;
         synonyms: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     }, "strip", z.ZodTypeAny, {
         name: string;
-        trackingType?: "counter" | "timer" | "scale" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         synonyms?: string[] | undefined;
         description?: string | undefined;
     }, {
         name: string;
-        trackingType?: "counter" | "timer" | "scale" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         synonyms?: string[] | undefined;
         description?: string | undefined;
     }>;
@@ -238,7 +238,7 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     sourceBehaviorIds: string[];
     targetBehavior: {
         name: string;
-        trackingType?: "counter" | "timer" | "scale" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         synonyms?: string[] | undefined;
         description?: string | undefined;
     };
@@ -271,7 +271,7 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     sourceBehaviorIds: string[];
     targetBehavior: {
         name: string;
-        trackingType?: "counter" | "timer" | "scale" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         synonyms?: string[] | undefined;
         description?: string | undefined;
     };
@@ -4072,16 +4072,16 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     targetBehavior: z.ZodObject<{
         name: z.ZodString;
         description: z.ZodOptional<z.ZodString>;
-        trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale"]>>;
+        trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale", "occurrence"]>>;
         synonyms: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     }, "strip", z.ZodTypeAny, {
         name: string;
-        trackingType?: "counter" | "timer" | "scale" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         synonyms?: string[] | undefined;
         description?: string | undefined;
     }, {
         name: string;
-        trackingType?: "counter" | "timer" | "scale" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         synonyms?: string[] | undefined;
         description?: string | undefined;
     }>;
@@ -4097,7 +4097,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     sourceBehaviorIds: string[];
     targetBehavior: {
         name: string;
-        trackingType?: "counter" | "timer" | "scale" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         synonyms?: string[] | undefined;
         description?: string | undefined;
     };
@@ -4130,7 +4130,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     sourceBehaviorIds: string[];
     targetBehavior: {
         name: string;
-        trackingType?: "counter" | "timer" | "scale" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         synonyms?: string[] | undefined;
         description?: string | undefined;
     };

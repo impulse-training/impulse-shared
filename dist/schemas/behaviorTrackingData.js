@@ -6,7 +6,7 @@ exports.behaviorTrackingDataSchema = zod_1.z.object({
     behaviorId: zod_1.z.string().optional(),
     behaviorName: zod_1.z.string().optional(),
     behaviorTrackingUnit: zod_1.z.string().optional(),
-    trackingType: zod_1.z.enum(["counter", "timer", "scale"]).optional(),
+    trackingType: zod_1.z.enum(["counter", "timer", "scale", "occurrence"]).optional(),
     // Raw behaviour logs: seconds for timer, count for counter, level for scale.
     // daySummary.behaviorDataTotalByBehaviorId: MINUTES for timer (canonical).
     value: zod_1.z.number().optional(),

@@ -6450,7 +6450,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         behaviorId: z.ZodOptional<z.ZodString>;
         behaviorName: z.ZodOptional<z.ZodString>;
         behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
-        trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale"]>>;
+        trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale", "occurrence"]>>;
         value: z.ZodOptional<z.ZodNumber>;
         formattedValue: z.ZodOptional<z.ZodString>;
         period: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
@@ -6459,7 +6459,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | "scale" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
     }, {
@@ -6467,7 +6467,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | "scale" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
     }>, "many">>;
@@ -7668,6 +7668,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         matchedAt: import("../../types").Timestamp;
     }>>;
     protectNextWindowEligible: z.ZodOptional<z.ZodBoolean>;
+    planPresentation: z.ZodOptional<z.ZodEnum<["pending", "presented"]>>;
 }, "strip", z.ZodTypeAny, {
     type: "impulse";
     date: import("../../types").Timestamp;
@@ -8318,7 +8319,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | "scale" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
     }[] | undefined;
@@ -8564,6 +8565,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         matchedAt: import("../../types").Timestamp;
     } | undefined;
     protectNextWindowEligible?: boolean | undefined;
+    planPresentation?: "pending" | "presented" | undefined;
 }, {
     type: "impulse";
     date: import("../../types").Timestamp;
@@ -8680,7 +8682,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | "scale" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
     }[] | undefined;
@@ -8926,5 +8928,6 @@ export declare const impulseSessionSchema: z.ZodObject<{
         matchedAt: import("../../types").Timestamp;
     } | undefined;
     protectNextWindowEligible?: boolean | undefined;
+    planPresentation?: "pending" | "presented" | undefined;
 }>;
 export type ImpulseSession = z.infer<typeof impulseSessionSchema>;

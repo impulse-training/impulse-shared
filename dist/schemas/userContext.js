@@ -7,7 +7,7 @@ const timestampSchema_1 = require("../utils/timestampSchema");
 exports.behaviorContextSchema = zod_1.z.object({
     behaviorId: zod_1.z.string(),
     behaviorName: zod_1.z.string(),
-    trackingType: zod_1.z.enum(["counter", "timer", "boolean", "scale"]),
+    trackingType: zod_1.z.enum(["counter", "timer", "boolean", "scale", "occurrence"]),
     description: zod_1.z.string().optional(),
     // Tolerant like behaviorSchema.benefits: old denormalized copies hold bare
     // strings until afterUserBehaviorWrite re-propagates the structured shape.

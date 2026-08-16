@@ -65,4 +65,24 @@ exports.impulseSessionSchema = base_1.sessionBaseSchema.extend({
      * byte-identical for everyone the feature is off for.
      */
     protectNextWindowEligible: zod_1.z.boolean().optional(),
+    /**
+     * Presentation state of the user-owned plan the engine matched for this
+     * session (the plans log the plan sheet renders).
+     *
+     * - "pending": the plan is resolved and its plans log exists, but the
+     *   conversation has not presented it yet — the client keeps the sheet
+     *   collapsed with a subtle indication. Written by setSessionTags when a
+     *   user-owned match lands via the conversational thread, so the model can
+     *   spend a beat or two understanding the moment before pointing at the
+     *   plan (exploration is part of the intervention, not a delay before it).
+     * - "presented": the plan has been surfaced — by the model's explicit
+     *   presentation act (offerRecommendedTactic) or by the user expanding the
+     *   sheet themselves. The client shows the sheet expanded.
+     * - absent: legacy sessions and non-conversational paths (the client's own
+     *   tag bar): the sheet behaves as it always has (shown on plans log).
+     *
+     * Presentation is a UI fact set by the act itself — never inferred from
+     * the transcript (see the protect_next_window post-mortem for why).
+     */
+    planPresentation: zod_1.z.enum(["pending", "presented"]).optional(),
 });

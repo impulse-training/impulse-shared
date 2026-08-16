@@ -1206,7 +1206,7 @@ export declare const streakForgivenessEntrySchema: z.ZodObject<{
 export type StreakForgivenessEntry = z.infer<typeof streakForgivenessEntrySchema>;
 export declare const behaviorSchema: z.ZodObject<{
     name: z.ZodString;
-    trackingType: z.ZodEnum<["counter", "timer", "scale"]>;
+    trackingType: z.ZodEnum<["counter", "timer", "scale", "occurrence"]>;
     trackingUnit: z.ZodOptional<z.ZodString>;
     baselinePeriod: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
     synonyms: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -1344,7 +1344,7 @@ export declare const behaviorSchema: z.ZodObject<{
         behaviorId: z.ZodOptional<z.ZodString>;
         behaviorName: z.ZodOptional<z.ZodString>;
         behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
-        trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale"]>>;
+        trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale", "occurrence"]>>;
         value: z.ZodOptional<z.ZodNumber>;
         formattedValue: z.ZodOptional<z.ZodString>;
         period: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
@@ -1353,7 +1353,7 @@ export declare const behaviorSchema: z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | "scale" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
     }, {
@@ -1361,7 +1361,7 @@ export declare const behaviorSchema: z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | "scale" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
     }>>;
@@ -2264,7 +2264,7 @@ export declare const behaviorSchema: z.ZodObject<{
     maxTrackedPerDay: z.ZodOptional<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
     name: string;
-    trackingType: "counter" | "timer" | "scale";
+    trackingType: "counter" | "timer" | "scale" | "occurrence";
     description: string;
     ordinal: number;
     benefits: {
@@ -2316,7 +2316,7 @@ export declare const behaviorSchema: z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | "scale" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
     } | undefined;
@@ -2483,7 +2483,7 @@ export declare const behaviorSchema: z.ZodObject<{
     maxTrackedPerDay?: number | undefined;
 }, {
     name: string;
-    trackingType: "counter" | "timer" | "scale";
+    trackingType: "counter" | "timer" | "scale" | "occurrence";
     description: string;
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
@@ -2533,7 +2533,7 @@ export declare const behaviorSchema: z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | "scale" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
     } | undefined;

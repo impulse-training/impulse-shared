@@ -95,7 +95,7 @@ exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema.extend({
     targetBehavior: zod_1.z.object({
         name: zod_1.z.string().min(1),
         description: zod_1.z.string().optional(),
-        trackingType: zod_1.z.enum(["counter", "timer", "scale"]).optional(),
+        trackingType: zod_1.z.enum(["counter", "timer", "scale", "occurrence"]).optional(),
         synonyms: zod_1.z.array(zod_1.z.string()).optional(),
     }),
 });

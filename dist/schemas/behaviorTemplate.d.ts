@@ -1,5 +1,5 @@
 import { z } from "zod";
-export declare const trackingTypes: readonly ["counter", "timer", "scale"];
+export declare const trackingTypes: readonly ["counter", "timer", "scale", "occurrence"];
 export type TrackingType = (typeof trackingTypes)[number];
 export declare const baselinePeriods: readonly ["daily", "weekly"];
 export type BaselinePeriod = (typeof baselinePeriods)[number];
@@ -7,7 +7,7 @@ export declare const streakLabels: readonly ["clean", "free", "sober"];
 export type StreakLabel = (typeof streakLabels)[number];
 declare const behaviorTemplateBase: z.ZodObject<{
     name: z.ZodString;
-    trackingType: z.ZodEnum<["counter", "timer", "scale"]>;
+    trackingType: z.ZodEnum<["counter", "timer", "scale", "occurrence"]>;
     trackingUnit: z.ZodOptional<z.ZodString>;
     baselinePeriod: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
     color: z.ZodOptional<z.ZodString>;
@@ -19,7 +19,7 @@ declare const behaviorTemplateBase: z.ZodObject<{
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
     name: string;
-    trackingType: "counter" | "timer" | "scale";
+    trackingType: "counter" | "timer" | "scale" | "occurrence";
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     trackingUnit?: string | undefined;
@@ -31,7 +31,7 @@ declare const behaviorTemplateBase: z.ZodObject<{
     recapQuestionSequence?: string[] | undefined;
 }, {
     name: string;
-    trackingType: "counter" | "timer" | "scale";
+    trackingType: "counter" | "timer" | "scale" | "occurrence";
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     trackingUnit?: string | undefined;
@@ -44,7 +44,7 @@ declare const behaviorTemplateBase: z.ZodObject<{
 }>;
 export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
     name: z.ZodString;
-    trackingType: z.ZodEnum<["counter", "timer", "scale"]>;
+    trackingType: z.ZodEnum<["counter", "timer", "scale", "occurrence"]>;
     trackingUnit: z.ZodOptional<z.ZodString>;
     baselinePeriod: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
     color: z.ZodOptional<z.ZodString>;
@@ -56,7 +56,7 @@ export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
     name: string;
-    trackingType: "counter" | "timer" | "scale";
+    trackingType: "counter" | "timer" | "scale" | "occurrence";
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     trackingUnit?: string | undefined;
@@ -68,7 +68,7 @@ export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
     recapQuestionSequence?: string[] | undefined;
 }, {
     name: string;
-    trackingType: "counter" | "timer" | "scale";
+    trackingType: "counter" | "timer" | "scale" | "occurrence";
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     trackingUnit?: string | undefined;
@@ -80,7 +80,7 @@ export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
     recapQuestionSequence?: string[] | undefined;
 }>, {
     name: string;
-    trackingType: "counter" | "timer" | "scale";
+    trackingType: "counter" | "timer" | "scale" | "occurrence";
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     trackingUnit?: string | undefined;
@@ -92,7 +92,7 @@ export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
     recapQuestionSequence?: string[] | undefined;
 }, {
     name: string;
-    trackingType: "counter" | "timer" | "scale";
+    trackingType: "counter" | "timer" | "scale" | "occurrence";
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     trackingUnit?: string | undefined;

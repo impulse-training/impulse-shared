@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.behaviorTemplateBase = exports.behaviorTemplateSchema = exports.streakLabels = exports.baselinePeriods = exports.trackingTypes = void 0;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../utils/timestampSchema");
-exports.trackingTypes = ["counter", "timer", "scale"];
+exports.trackingTypes = ["counter", "timer", "scale", "occurrence"];
 exports.baselinePeriods = ["daily", "weekly"];
 exports.streakLabels = ["clean", "free", "sober"];
 // These are foundational attributes, and correspond to documents in a top-level behaviorTemplates
