@@ -212,12 +212,33 @@ export type WindowKey = keyof typeof WINDOW_SIZES;
 
 // BehaviorState represents the embedded state for a single behavior at
 // users/{userId}/behaviors/{behaviorId}.state
+// How much this behavior actually figures in the user's struggle, derived
+// from what the logs prove rather than declared: impulse-session mass over the
+// trailing 90 days, recency-weighted (30-day half-life, acted-on urges count
+// double), normalized to 0..1 via rw/(rw+K). Computed by updateBehaviorState
+// alongside the windows, from the same daySummaries. Consumers should read
+// salience through `effectiveBehaviorSalience` (utils), which lets the
+// behavior's explicit `importance` override this derived weight.
+export const behaviorStruggleSchema = z.object({
+  impulseCount90d: z.number(),
+  impulseCount7d: z.number(),
+  lapseCount90d: z.number(),
+  /** Recency-weighted impulse mass the weight was normalized from. */
+  recencyWeighted: z.number(),
+  /** Normalized 0..1 struggle weight. */
+  weight: z.number().min(0).max(1),
+  lastImpulseAt: timestampSchema.optional(),
+});
+export type BehaviorStruggle = z.infer<typeof behaviorStruggleSchema>;
+
 export const behaviorStateSchema = z.object({
   behaviorId: z.string(),
 
   goal: behaviorStateGoalSchema.optional(),
 
   meaning: behaviorMeaningSchema.optional(),
+
+  struggle: behaviorStruggleSchema.optional(),
 
   // Global streaks (not limited to any window)
   globalStreaks: globalStreaksSchema.optional(),
@@ -386,6 +407,13 @@ export const behaviorSchema = behaviorTemplateBase
     // tactic is a poor fit for this behavior (e.g. cold-water for arousal urges).
     suppressedTacticIds: z.array(z.string()).optional(),
     initialUsage: behaviorTrackingDataSchema.optional(),
+    // The user's (or coach's) explicit statement of how much this behavior
+    // matters to their struggle, 1 (peripheral) to 5 (the core of why they're
+    // here). Optional: absent means "let the data speak" — the derived
+    // state.struggle.weight carries salience instead. Read through
+    // `effectiveBehaviorSalience` (utils), never directly, so the override
+    // and the derived weight stay interchangeable to consumers.
+    importance: z.number().int().min(1).max(5).optional(),
     masked: z.boolean().optional().default(false),
     behaviorTemplateId: z.string().optional(),
     // Display color for this behavior (hex string, e.g. "#C4362C")

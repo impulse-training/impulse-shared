@@ -40,6 +40,14 @@ export type RecapDayEvent = z.infer<typeof recapDayEventSchema>;
 export declare const recapDayFactSchema: z.ZodObject<{
     behaviorId: z.ZodString;
     behaviorName: z.ZodString;
+    /**
+     * How much this behavior matters to this user (0..1), snapshotted at
+     * fact-build time via effectiveBehaviorSalience (explicit importance
+     * override, else derived struggle weight). The facts block orders and
+     * headlines by it: a modest event on the behavior that owns the user's
+     * struggle outranks a bigger structural event on a side experiment.
+     */
+    salience: z.ZodOptional<z.ZodNumber>;
     /** How today's logged total compared to this behavior's goal. */
     goalStatus: z.ZodEnum<["met", "missed", "no_goal", "unknown"]>;
     event: z.ZodEnum<["relapse", "slip", "relapse_aftermath", "milestone", "streak_continues", "none"]>;
@@ -72,6 +80,7 @@ export declare const recapDayFactSchema: z.ZodObject<{
     behaviorName: string;
     goalStatus: "unknown" | "missed" | "met" | "no_goal";
     event: "relapse" | "milestone" | "slip" | "relapse_aftermath" | "streak_continues" | "none";
+    salience?: number | undefined;
     streakDays?: number | undefined;
     streakStartDate?: string | undefined;
     daysIntoRelapse?: number | undefined;
@@ -82,6 +91,7 @@ export declare const recapDayFactSchema: z.ZodObject<{
     behaviorName: string;
     goalStatus: "unknown" | "missed" | "met" | "no_goal";
     event: "relapse" | "milestone" | "slip" | "relapse_aftermath" | "streak_continues" | "none";
+    salience?: number | undefined;
     streakDays?: number | undefined;
     streakStartDate?: string | undefined;
     daysIntoRelapse?: number | undefined;
@@ -4524,11 +4534,11 @@ export declare const recapSessionSchema: z.ZodObject<{
                 behaviorTopicId: z.ZodString;
                 weight: z.ZodNumber;
             }, "strip", z.ZodTypeAny, {
-                behaviorTopicId: string;
                 weight: number;
+                behaviorTopicId: string;
             }, {
-                behaviorTopicId: string;
                 weight: number;
+                behaviorTopicId: string;
             }>, "many">>;
             tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
                 tagGroupName: z.ZodString;
@@ -4555,8 +4565,8 @@ export declare const recapSessionSchema: z.ZodObject<{
                 weight: number;
             }[] | undefined;
             behaviorTopics?: {
-                behaviorTopicId: string;
                 weight: number;
+                behaviorTopicId: string;
             }[] | undefined;
         }, {
             tags?: {
@@ -4570,8 +4580,8 @@ export declare const recapSessionSchema: z.ZodObject<{
                 weight: number;
             }[] | undefined;
             behaviorTopics?: {
-                behaviorTopicId: string;
                 weight: number;
+                behaviorTopicId: string;
             }[] | undefined;
         }>>;
         contraindications: z.ZodOptional<z.ZodObject<{
@@ -4592,11 +4602,11 @@ export declare const recapSessionSchema: z.ZodObject<{
                 behaviorTopicId: z.ZodString;
                 weight: z.ZodNumber;
             }, "strip", z.ZodTypeAny, {
-                behaviorTopicId: string;
                 weight: number;
+                behaviorTopicId: string;
             }, {
-                behaviorTopicId: string;
                 weight: number;
+                behaviorTopicId: string;
             }>, "many">>;
             tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
                 tagGroupName: z.ZodString;
@@ -4623,8 +4633,8 @@ export declare const recapSessionSchema: z.ZodObject<{
                 weight: number;
             }[] | undefined;
             behaviorTopics?: {
-                behaviorTopicId: string;
                 weight: number;
+                behaviorTopicId: string;
             }[] | undefined;
         }, {
             tags?: {
@@ -4638,8 +4648,8 @@ export declare const recapSessionSchema: z.ZodObject<{
                 weight: number;
             }[] | undefined;
             behaviorTopics?: {
-                behaviorTopicId: string;
                 weight: number;
+                behaviorTopicId: string;
             }[] | undefined;
         }>>;
         completionTrigger: z.ZodOptional<z.ZodEnum<["device-restart"]>>;
@@ -5239,8 +5249,8 @@ export declare const recapSessionSchema: z.ZodObject<{
                 weight: number;
             }[] | undefined;
             behaviorTopics?: {
-                behaviorTopicId: string;
                 weight: number;
+                behaviorTopicId: string;
             }[] | undefined;
         } | undefined;
         contraindications?: {
@@ -5255,8 +5265,8 @@ export declare const recapSessionSchema: z.ZodObject<{
                 weight: number;
             }[] | undefined;
             behaviorTopics?: {
-                behaviorTopicId: string;
                 weight: number;
+                behaviorTopicId: string;
             }[] | undefined;
         } | undefined;
         completionTrigger?: "device-restart" | undefined;
@@ -5312,8 +5322,8 @@ export declare const recapSessionSchema: z.ZodObject<{
                 weight: number;
             }[] | undefined;
             behaviorTopics?: {
-                behaviorTopicId: string;
                 weight: number;
+                behaviorTopicId: string;
             }[] | undefined;
         } | undefined;
         contraindications?: {
@@ -5328,8 +5338,8 @@ export declare const recapSessionSchema: z.ZodObject<{
                 weight: number;
             }[] | undefined;
             behaviorTopics?: {
-                behaviorTopicId: string;
                 weight: number;
+                behaviorTopicId: string;
             }[] | undefined;
         } | undefined;
         completionTrigger?: "device-restart" | undefined;
@@ -5491,6 +5501,14 @@ export declare const recapSessionSchema: z.ZodObject<{
     recapDayFacts: z.ZodOptional<z.ZodArray<z.ZodObject<{
         behaviorId: z.ZodString;
         behaviorName: z.ZodString;
+        /**
+         * How much this behavior matters to this user (0..1), snapshotted at
+         * fact-build time via effectiveBehaviorSalience (explicit importance
+         * override, else derived struggle weight). The facts block orders and
+         * headlines by it: a modest event on the behavior that owns the user's
+         * struggle outranks a bigger structural event on a side experiment.
+         */
+        salience: z.ZodOptional<z.ZodNumber>;
         /** How today's logged total compared to this behavior's goal. */
         goalStatus: z.ZodEnum<["met", "missed", "no_goal", "unknown"]>;
         event: z.ZodEnum<["relapse", "slip", "relapse_aftermath", "milestone", "streak_continues", "none"]>;
@@ -5523,6 +5541,7 @@ export declare const recapSessionSchema: z.ZodObject<{
         behaviorName: string;
         goalStatus: "unknown" | "missed" | "met" | "no_goal";
         event: "relapse" | "milestone" | "slip" | "relapse_aftermath" | "streak_continues" | "none";
+        salience?: number | undefined;
         streakDays?: number | undefined;
         streakStartDate?: string | undefined;
         daysIntoRelapse?: number | undefined;
@@ -5533,6 +5552,7 @@ export declare const recapSessionSchema: z.ZodObject<{
         behaviorName: string;
         goalStatus: "unknown" | "missed" | "met" | "no_goal";
         event: "relapse" | "milestone" | "slip" | "relapse_aftermath" | "streak_continues" | "none";
+        salience?: number | undefined;
         streakDays?: number | undefined;
         streakStartDate?: string | undefined;
         daysIntoRelapse?: number | undefined;
@@ -6148,8 +6168,8 @@ export declare const recapSessionSchema: z.ZodObject<{
                 weight: number;
             }[] | undefined;
             behaviorTopics?: {
-                behaviorTopicId: string;
                 weight: number;
+                behaviorTopicId: string;
             }[] | undefined;
         } | undefined;
         contraindications?: {
@@ -6164,8 +6184,8 @@ export declare const recapSessionSchema: z.ZodObject<{
                 weight: number;
             }[] | undefined;
             behaviorTopics?: {
-                behaviorTopicId: string;
                 weight: number;
+                behaviorTopicId: string;
             }[] | undefined;
         } | undefined;
         completionTrigger?: "device-restart" | undefined;
@@ -6260,6 +6280,7 @@ export declare const recapSessionSchema: z.ZodObject<{
         behaviorName: string;
         goalStatus: "unknown" | "missed" | "met" | "no_goal";
         event: "relapse" | "milestone" | "slip" | "relapse_aftermath" | "streak_continues" | "none";
+        salience?: number | undefined;
         streakDays?: number | undefined;
         streakStartDate?: string | undefined;
         daysIntoRelapse?: number | undefined;
@@ -6332,8 +6353,8 @@ export declare const recapSessionSchema: z.ZodObject<{
                 weight: number;
             }[] | undefined;
             behaviorTopics?: {
-                behaviorTopicId: string;
                 weight: number;
+                behaviorTopicId: string;
             }[] | undefined;
         } | undefined;
         contraindications?: {
@@ -6348,8 +6369,8 @@ export declare const recapSessionSchema: z.ZodObject<{
                 weight: number;
             }[] | undefined;
             behaviorTopics?: {
-                behaviorTopicId: string;
                 weight: number;
+                behaviorTopicId: string;
             }[] | undefined;
         } | undefined;
         completionTrigger?: "device-restart" | undefined;
@@ -6445,6 +6466,7 @@ export declare const recapSessionSchema: z.ZodObject<{
         behaviorName: string;
         goalStatus: "unknown" | "missed" | "met" | "no_goal";
         event: "relapse" | "milestone" | "slip" | "relapse_aftermath" | "streak_continues" | "none";
+        salience?: number | undefined;
         streakDays?: number | undefined;
         streakStartDate?: string | undefined;
         daysIntoRelapse?: number | undefined;

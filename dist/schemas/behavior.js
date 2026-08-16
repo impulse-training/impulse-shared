@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isBehavior = exports.behaviorSchema = exports.streakForgivenessEntrySchema = exports.formatBenefitsForPrompt = exports.normalizeBehaviorBenefits = exports.behaviorBenefitElementSchema = exports.behaviorBenefitSchema = exports.benefitNeedSchema = exports.behaviorStateSchema = exports.WINDOW_SIZES = exports.recentSliceSchema = exports.behaviorStateMetaSchema = exports.behaviorStateGoalSchema = exports.trackingWindowSchema = exports.behaviorWindowSchema = exports.behaviorMeaningSchema = exports.behaviorStretchesSchema = exports.globalStreaksSchema = exports.changeStageSchema = exports.streaksSchema = exports.behaviorStateGoalTypeSchema = exports.dataCompletenessSchema = exports.stabilitySchema = exports.trendSchema = exports.behaviorTemplateSchema = exports.streakLabels = exports.baselinePeriods = exports.trackingTypes = void 0;
+exports.isBehavior = exports.behaviorSchema = exports.streakForgivenessEntrySchema = exports.formatBenefitsForPrompt = exports.normalizeBehaviorBenefits = exports.behaviorBenefitElementSchema = exports.behaviorBenefitSchema = exports.benefitNeedSchema = exports.behaviorStateSchema = exports.behaviorStruggleSchema = exports.WINDOW_SIZES = exports.recentSliceSchema = exports.behaviorStateMetaSchema = exports.behaviorStateGoalSchema = exports.trackingWindowSchema = exports.behaviorWindowSchema = exports.behaviorMeaningSchema = exports.behaviorStretchesSchema = exports.globalStreaksSchema = exports.changeStageSchema = exports.streaksSchema = exports.behaviorStateGoalTypeSchema = exports.dataCompletenessSchema = exports.stabilitySchema = exports.trendSchema = exports.behaviorTemplateSchema = exports.streakLabels = exports.baselinePeriods = exports.trackingTypes = void 0;
 exports.isBehaviorState = isBehaviorState;
 const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
@@ -166,10 +166,28 @@ exports.WINDOW_SIZES = {
 };
 // BehaviorState represents the embedded state for a single behavior at
 // users/{userId}/behaviors/{behaviorId}.state
+// How much this behavior actually figures in the user's struggle, derived
+// from what the logs prove rather than declared: impulse-session mass over the
+// trailing 90 days, recency-weighted (30-day half-life, acted-on urges count
+// double), normalized to 0..1 via rw/(rw+K). Computed by updateBehaviorState
+// alongside the windows, from the same daySummaries. Consumers should read
+// salience through `effectiveBehaviorSalience` (utils), which lets the
+// behavior's explicit `importance` override this derived weight.
+exports.behaviorStruggleSchema = zod_1.z.object({
+    impulseCount90d: zod_1.z.number(),
+    impulseCount7d: zod_1.z.number(),
+    lapseCount90d: zod_1.z.number(),
+    /** Recency-weighted impulse mass the weight was normalized from. */
+    recencyWeighted: zod_1.z.number(),
+    /** Normalized 0..1 struggle weight. */
+    weight: zod_1.z.number().min(0).max(1),
+    lastImpulseAt: timestampSchema_1.timestampSchema.optional(),
+});
 exports.behaviorStateSchema = zod_1.z.object({
     behaviorId: zod_1.z.string(),
     goal: exports.behaviorStateGoalSchema.optional(),
     meaning: exports.behaviorMeaningSchema.optional(),
+    struggle: exports.behaviorStruggleSchema.optional(),
     // Global streaks (not limited to any window)
     globalStreaks: exports.globalStreaksSchema.optional(),
     // Sub-day stretch stats (eliminate goals only)
@@ -318,6 +336,13 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
     // tactic is a poor fit for this behavior (e.g. cold-water for arousal urges).
     suppressedTacticIds: zod_1.z.array(zod_1.z.string()).optional(),
     initialUsage: behaviorTrackingData_1.behaviorTrackingDataSchema.optional(),
+    // The user's (or coach's) explicit statement of how much this behavior
+    // matters to their struggle, 1 (peripheral) to 5 (the core of why they're
+    // here). Optional: absent means "let the data speak" — the derived
+    // state.struggle.weight carries salience instead. Read through
+    // `effectiveBehaviorSalience` (utils), never directly, so the override
+    // and the derived weight stay interchangeable to consumers.
+    importance: zod_1.z.number().int().min(1).max(5).optional(),
     masked: zod_1.z.boolean().optional().default(false),
     behaviorTemplateId: zod_1.z.string().optional(),
     // Display color for this behavior (hex string, e.g. "#C4362C")

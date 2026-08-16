@@ -290,6 +290,31 @@ export declare const WINDOW_SIZES: {
     readonly long: 90;
 };
 export type WindowKey = keyof typeof WINDOW_SIZES;
+export declare const behaviorStruggleSchema: z.ZodObject<{
+    impulseCount90d: z.ZodNumber;
+    impulseCount7d: z.ZodNumber;
+    lapseCount90d: z.ZodNumber;
+    /** Recency-weighted impulse mass the weight was normalized from. */
+    recencyWeighted: z.ZodNumber;
+    /** Normalized 0..1 struggle weight. */
+    weight: z.ZodNumber;
+    lastImpulseAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+}, "strip", z.ZodTypeAny, {
+    impulseCount90d: number;
+    impulseCount7d: number;
+    lapseCount90d: number;
+    recencyWeighted: number;
+    weight: number;
+    lastImpulseAt?: import("../types").Timestamp | undefined;
+}, {
+    impulseCount90d: number;
+    impulseCount7d: number;
+    lapseCount90d: number;
+    recencyWeighted: number;
+    weight: number;
+    lastImpulseAt?: import("../types").Timestamp | undefined;
+}>;
+export type BehaviorStruggle = z.infer<typeof behaviorStruggleSchema>;
 export declare const behaviorStateSchema: z.ZodObject<{
     behaviorId: z.ZodString;
     goal: z.ZodOptional<z.ZodObject<{
@@ -391,6 +416,30 @@ export declare const behaviorStateSchema: z.ZodObject<{
             commonTriggers?: string[] | undefined;
             highRiskContexts?: string[] | undefined;
         } | undefined;
+    }>>;
+    struggle: z.ZodOptional<z.ZodObject<{
+        impulseCount90d: z.ZodNumber;
+        impulseCount7d: z.ZodNumber;
+        lapseCount90d: z.ZodNumber;
+        /** Recency-weighted impulse mass the weight was normalized from. */
+        recencyWeighted: z.ZodNumber;
+        /** Normalized 0..1 struggle weight. */
+        weight: z.ZodNumber;
+        lastImpulseAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    }, "strip", z.ZodTypeAny, {
+        impulseCount90d: number;
+        impulseCount7d: number;
+        lapseCount90d: number;
+        recencyWeighted: number;
+        weight: number;
+        lastImpulseAt?: import("../types").Timestamp | undefined;
+    }, {
+        impulseCount90d: number;
+        impulseCount7d: number;
+        lapseCount90d: number;
+        recencyWeighted: number;
+        weight: number;
+        lastImpulseAt?: import("../types").Timestamp | undefined;
     }>>;
     globalStreaks: z.ZodOptional<z.ZodObject<{
         currentStreak: z.ZodNumber;
@@ -939,6 +988,14 @@ export declare const behaviorStateSchema: z.ZodObject<{
             highRiskContexts?: string[] | undefined;
         } | undefined;
     } | undefined;
+    struggle?: {
+        impulseCount90d: number;
+        impulseCount7d: number;
+        lapseCount90d: number;
+        recencyWeighted: number;
+        weight: number;
+        lastImpulseAt?: import("../types").Timestamp | undefined;
+    } | undefined;
     globalStreaks?: {
         currentStreak: number;
         longestStreak: number;
@@ -1073,6 +1130,14 @@ export declare const behaviorStateSchema: z.ZodObject<{
             commonTriggers?: string[] | undefined;
             highRiskContexts?: string[] | undefined;
         } | undefined;
+    } | undefined;
+    struggle?: {
+        impulseCount90d: number;
+        impulseCount7d: number;
+        lapseCount90d: number;
+        recencyWeighted: number;
+        weight: number;
+        lastImpulseAt?: import("../types").Timestamp | undefined;
     } | undefined;
     globalStreaks?: {
         currentStreak: number;
@@ -1365,6 +1430,7 @@ export declare const behaviorSchema: z.ZodObject<{
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
     }>>;
+    importance: z.ZodOptional<z.ZodNumber>;
     masked: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     behaviorTemplateId: z.ZodOptional<z.ZodString>;
     color: z.ZodOptional<z.ZodString>;
@@ -1518,6 +1584,30 @@ export declare const behaviorSchema: z.ZodObject<{
                 commonTriggers?: string[] | undefined;
                 highRiskContexts?: string[] | undefined;
             } | undefined;
+        }>>;
+        struggle: z.ZodOptional<z.ZodObject<{
+            impulseCount90d: z.ZodNumber;
+            impulseCount7d: z.ZodNumber;
+            lapseCount90d: z.ZodNumber;
+            /** Recency-weighted impulse mass the weight was normalized from. */
+            recencyWeighted: z.ZodNumber;
+            /** Normalized 0..1 struggle weight. */
+            weight: z.ZodNumber;
+            lastImpulseAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        }, "strip", z.ZodTypeAny, {
+            impulseCount90d: number;
+            impulseCount7d: number;
+            lapseCount90d: number;
+            recencyWeighted: number;
+            weight: number;
+            lastImpulseAt?: import("../types").Timestamp | undefined;
+        }, {
+            impulseCount90d: number;
+            impulseCount7d: number;
+            lapseCount90d: number;
+            recencyWeighted: number;
+            weight: number;
+            lastImpulseAt?: import("../types").Timestamp | undefined;
         }>>;
         globalStreaks: z.ZodOptional<z.ZodObject<{
             currentStreak: z.ZodNumber;
@@ -2066,6 +2156,14 @@ export declare const behaviorSchema: z.ZodObject<{
                 highRiskContexts?: string[] | undefined;
             } | undefined;
         } | undefined;
+        struggle?: {
+            impulseCount90d: number;
+            impulseCount7d: number;
+            lapseCount90d: number;
+            recencyWeighted: number;
+            weight: number;
+            lastImpulseAt?: import("../types").Timestamp | undefined;
+        } | undefined;
         globalStreaks?: {
             currentStreak: number;
             longestStreak: number;
@@ -2201,6 +2299,14 @@ export declare const behaviorSchema: z.ZodObject<{
                 highRiskContexts?: string[] | undefined;
             } | undefined;
         } | undefined;
+        struggle?: {
+            impulseCount90d: number;
+            impulseCount7d: number;
+            lapseCount90d: number;
+            recencyWeighted: number;
+            weight: number;
+            lastImpulseAt?: import("../types").Timestamp | undefined;
+        } | undefined;
         globalStreaks?: {
             currentStreak: number;
             longestStreak: number;
@@ -2284,6 +2390,7 @@ export declare const behaviorSchema: z.ZodObject<{
     streakLabel?: "clean" | "free" | "sober" | undefined;
     defaultTolerance?: number | undefined;
     recapQuestionSequence?: string[] | undefined;
+    importance?: number | undefined;
     goal?: {
         type: "eliminate";
     } | {
@@ -2420,6 +2527,14 @@ export declare const behaviorSchema: z.ZodObject<{
                 highRiskContexts?: string[] | undefined;
             } | undefined;
         } | undefined;
+        struggle?: {
+            impulseCount90d: number;
+            impulseCount7d: number;
+            lapseCount90d: number;
+            recencyWeighted: number;
+            weight: number;
+            lastImpulseAt?: import("../types").Timestamp | undefined;
+        } | undefined;
         globalStreaks?: {
             currentStreak: number;
             longestStreak: number;
@@ -2495,6 +2610,7 @@ export declare const behaviorSchema: z.ZodObject<{
     streakLabel?: "clean" | "free" | "sober" | undefined;
     defaultTolerance?: number | undefined;
     recapQuestionSequence?: string[] | undefined;
+    importance?: number | undefined;
     goal?: {
         type: "eliminate";
     } | {
@@ -2638,6 +2754,14 @@ export declare const behaviorSchema: z.ZodObject<{
                 commonTriggers?: string[] | undefined;
                 highRiskContexts?: string[] | undefined;
             } | undefined;
+        } | undefined;
+        struggle?: {
+            impulseCount90d: number;
+            impulseCount7d: number;
+            lapseCount90d: number;
+            recencyWeighted: number;
+            weight: number;
+            lastImpulseAt?: import("../types").Timestamp | undefined;
         } | undefined;
         globalStreaks?: {
             currentStreak: number;

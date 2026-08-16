@@ -4441,11 +4441,11 @@ export declare const callLogSchema: z.ZodObject<{
                     behaviorTopicId: z.ZodString;
                     weight: z.ZodNumber;
                 }, "strip", z.ZodTypeAny, {
-                    behaviorTopicId: string;
                     weight: number;
+                    behaviorTopicId: string;
                 }, {
-                    behaviorTopicId: string;
                     weight: number;
+                    behaviorTopicId: string;
                 }>, "many">>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
                     tagGroupName: z.ZodString;
@@ -4472,8 +4472,8 @@ export declare const callLogSchema: z.ZodObject<{
                     weight: number;
                 }[] | undefined;
                 behaviorTopics?: {
-                    behaviorTopicId: string;
                     weight: number;
+                    behaviorTopicId: string;
                 }[] | undefined;
             }, {
                 tags?: {
@@ -4487,8 +4487,8 @@ export declare const callLogSchema: z.ZodObject<{
                     weight: number;
                 }[] | undefined;
                 behaviorTopics?: {
-                    behaviorTopicId: string;
                     weight: number;
+                    behaviorTopicId: string;
                 }[] | undefined;
             }>>;
             contraindications: z.ZodOptional<z.ZodObject<{
@@ -4509,11 +4509,11 @@ export declare const callLogSchema: z.ZodObject<{
                     behaviorTopicId: z.ZodString;
                     weight: z.ZodNumber;
                 }, "strip", z.ZodTypeAny, {
-                    behaviorTopicId: string;
                     weight: number;
+                    behaviorTopicId: string;
                 }, {
-                    behaviorTopicId: string;
                     weight: number;
+                    behaviorTopicId: string;
                 }>, "many">>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
                     tagGroupName: z.ZodString;
@@ -4540,8 +4540,8 @@ export declare const callLogSchema: z.ZodObject<{
                     weight: number;
                 }[] | undefined;
                 behaviorTopics?: {
-                    behaviorTopicId: string;
                     weight: number;
+                    behaviorTopicId: string;
                 }[] | undefined;
             }, {
                 tags?: {
@@ -4555,8 +4555,8 @@ export declare const callLogSchema: z.ZodObject<{
                     weight: number;
                 }[] | undefined;
                 behaviorTopics?: {
-                    behaviorTopicId: string;
                     weight: number;
+                    behaviorTopicId: string;
                 }[] | undefined;
             }>>;
             completionTrigger: z.ZodOptional<z.ZodEnum<["device-restart"]>>;
@@ -5156,8 +5156,8 @@ export declare const callLogSchema: z.ZodObject<{
                     weight: number;
                 }[] | undefined;
                 behaviorTopics?: {
-                    behaviorTopicId: string;
                     weight: number;
+                    behaviorTopicId: string;
                 }[] | undefined;
             } | undefined;
             contraindications?: {
@@ -5172,8 +5172,8 @@ export declare const callLogSchema: z.ZodObject<{
                     weight: number;
                 }[] | undefined;
                 behaviorTopics?: {
-                    behaviorTopicId: string;
                     weight: number;
+                    behaviorTopicId: string;
                 }[] | undefined;
             } | undefined;
             completionTrigger?: "device-restart" | undefined;
@@ -5229,8 +5229,8 @@ export declare const callLogSchema: z.ZodObject<{
                     weight: number;
                 }[] | undefined;
                 behaviorTopics?: {
-                    behaviorTopicId: string;
                     weight: number;
+                    behaviorTopicId: string;
                 }[] | undefined;
             } | undefined;
             contraindications?: {
@@ -5245,8 +5245,8 @@ export declare const callLogSchema: z.ZodObject<{
                     weight: number;
                 }[] | undefined;
                 behaviorTopics?: {
-                    behaviorTopicId: string;
                     weight: number;
+                    behaviorTopicId: string;
                 }[] | undefined;
             } | undefined;
             completionTrigger?: "device-restart" | undefined;
@@ -5867,8 +5867,8 @@ export declare const callLogSchema: z.ZodObject<{
                     weight: number;
                 }[] | undefined;
                 behaviorTopics?: {
-                    behaviorTopicId: string;
                     weight: number;
+                    behaviorTopicId: string;
                 }[] | undefined;
             } | undefined;
             contraindications?: {
@@ -5883,8 +5883,8 @@ export declare const callLogSchema: z.ZodObject<{
                     weight: number;
                 }[] | undefined;
                 behaviorTopics?: {
-                    behaviorTopicId: string;
                     weight: number;
+                    behaviorTopicId: string;
                 }[] | undefined;
             } | undefined;
             completionTrigger?: "device-restart" | undefined;
@@ -5957,8 +5957,8 @@ export declare const callLogSchema: z.ZodObject<{
                     weight: number;
                 }[] | undefined;
                 behaviorTopics?: {
-                    behaviorTopicId: string;
                     weight: number;
+                    behaviorTopicId: string;
                 }[] | undefined;
             } | undefined;
             contraindications?: {
@@ -5973,8 +5973,8 @@ export declare const callLogSchema: z.ZodObject<{
                     weight: number;
                 }[] | undefined;
                 behaviorTopics?: {
-                    behaviorTopicId: string;
                     weight: number;
+                    behaviorTopicId: string;
                 }[] | undefined;
             } | undefined;
             completionTrigger?: "device-restart" | undefined;
@@ -6591,8 +6591,8 @@ export declare const callLogSchema: z.ZodObject<{
                     weight: number;
                 }[] | undefined;
                 behaviorTopics?: {
-                    behaviorTopicId: string;
                     weight: number;
+                    behaviorTopicId: string;
                 }[] | undefined;
             } | undefined;
             contraindications?: {
@@ -6607,8 +6607,8 @@ export declare const callLogSchema: z.ZodObject<{
                     weight: number;
                 }[] | undefined;
                 behaviorTopics?: {
-                    behaviorTopicId: string;
                     weight: number;
+                    behaviorTopicId: string;
                 }[] | undefined;
             } | undefined;
             completionTrigger?: "device-restart" | undefined;
@@ -6696,8 +6696,8 @@ export declare const callLogSchema: z.ZodObject<{
                     weight: number;
                 }[] | undefined;
                 behaviorTopics?: {
-                    behaviorTopicId: string;
                     weight: number;
+                    behaviorTopicId: string;
                 }[] | undefined;
             } | undefined;
             contraindications?: {
@@ -6712,8 +6712,8 @@ export declare const callLogSchema: z.ZodObject<{
                     weight: number;
                 }[] | undefined;
                 behaviorTopics?: {
-                    behaviorTopicId: string;
                     weight: number;
+                    behaviorTopicId: string;
                 }[] | undefined;
             } | undefined;
             completionTrigger?: "device-restart" | undefined;
