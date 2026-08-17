@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { documentReferenceSchema } from "../utils/documentReferenceSchema";
+import { timestampSchema } from "../utils/timestampSchema";
 
 /**
  * Represents the outcome data for a single session where a plan was used.
@@ -9,6 +10,11 @@ export const planEffectivenessSessionOutcomeSchema = z.object({
   started: z.boolean(),
   completed: z.boolean(),
   actedOnUrge: z.boolean().nullable().optional(),
+  // When the impulse moment happened (the session's `date`). Lets the client
+  // render a dated usage history straight from the aggregate doc without
+  // fetching each session. Optional: docs written before this field existed
+  // lack it until backfilled.
+  sessionDate: timestampSchema.optional(),
 });
 
 export type PlanEffectivenessSessionOutcome = z.infer<

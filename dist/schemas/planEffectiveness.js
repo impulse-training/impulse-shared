@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.userPlanEffectivenessSchema = exports.planEffectivenessSchema = exports.planEffectivenessSessionOutcomeSchema = void 0;
 const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
+const timestampSchema_1 = require("../utils/timestampSchema");
 /**
  * Represents the outcome data for a single session where a plan was used.
  */
@@ -11,6 +12,11 @@ exports.planEffectivenessSessionOutcomeSchema = zod_1.z.object({
     started: zod_1.z.boolean(),
     completed: zod_1.z.boolean(),
     actedOnUrge: zod_1.z.boolean().nullable().optional(),
+    // When the impulse moment happened (the session's `date`). Lets the client
+    // render a dated usage history straight from the aggregate doc without
+    // fetching each session. Optional: docs written before this field existed
+    // lack it until backfilled.
+    sessionDate: timestampSchema_1.timestampSchema.optional(),
 });
 /**
  * PlanEffectiveness document schema.

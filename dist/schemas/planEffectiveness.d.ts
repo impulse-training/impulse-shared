@@ -7,16 +7,19 @@ export declare const planEffectivenessSessionOutcomeSchema: z.ZodObject<{
     started: z.ZodBoolean;
     completed: z.ZodBoolean;
     actedOnUrge: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+    sessionDate: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
     completed: boolean;
     behaviorDocs: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
     started: boolean;
     actedOnUrge?: boolean | null | undefined;
+    sessionDate?: import("../types").Timestamp | undefined;
 }, {
     completed: boolean;
     behaviorDocs: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
     started: boolean;
     actedOnUrge?: boolean | null | undefined;
+    sessionDate?: import("../types").Timestamp | undefined;
 }>;
 export type PlanEffectivenessSessionOutcome = z.infer<typeof planEffectivenessSessionOutcomeSchema>;
 /**
@@ -32,16 +35,19 @@ export declare const planEffectivenessSchema: z.ZodObject<{
         started: z.ZodBoolean;
         completed: z.ZodBoolean;
         actedOnUrge: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        sessionDate: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
         completed: boolean;
         behaviorDocs: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
         started: boolean;
         actedOnUrge?: boolean | null | undefined;
+        sessionDate?: import("../types").Timestamp | undefined;
     }, {
         completed: boolean;
         behaviorDocs: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
         started: boolean;
         actedOnUrge?: boolean | null | undefined;
+        sessionDate?: import("../types").Timestamp | undefined;
     }>>;
 }, "strip", z.ZodTypeAny, {
     planId: string;
@@ -50,6 +56,7 @@ export declare const planEffectivenessSchema: z.ZodObject<{
         behaviorDocs: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
         started: boolean;
         actedOnUrge?: boolean | null | undefined;
+        sessionDate?: import("../types").Timestamp | undefined;
     }>;
 }, {
     planId: string;
@@ -58,6 +65,7 @@ export declare const planEffectivenessSchema: z.ZodObject<{
         behaviorDocs: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
         started: boolean;
         actedOnUrge?: boolean | null | undefined;
+        sessionDate?: import("../types").Timestamp | undefined;
     }>;
 }>;
 export type PlanEffectiveness = z.infer<typeof planEffectivenessSchema>;
@@ -76,16 +84,19 @@ export declare const userPlanEffectivenessSchema: z.ZodObject<{
             started: z.ZodBoolean;
             completed: z.ZodBoolean;
             actedOnUrge: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+            sessionDate: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
             completed: boolean;
             behaviorDocs: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
             started: boolean;
             actedOnUrge?: boolean | null | undefined;
+            sessionDate?: import("../types").Timestamp | undefined;
         }, {
             completed: boolean;
             behaviorDocs: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
             started: boolean;
             actedOnUrge?: boolean | null | undefined;
+            sessionDate?: import("../types").Timestamp | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
         planId: string;
@@ -94,6 +105,7 @@ export declare const userPlanEffectivenessSchema: z.ZodObject<{
             behaviorDocs: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
             started: boolean;
             actedOnUrge?: boolean | null | undefined;
+            sessionDate?: import("../types").Timestamp | undefined;
         }>;
     }, {
         planId: string;
@@ -102,6 +114,7 @@ export declare const userPlanEffectivenessSchema: z.ZodObject<{
             behaviorDocs: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
             started: boolean;
             actedOnUrge?: boolean | null | undefined;
+            sessionDate?: import("../types").Timestamp | undefined;
         }>;
     }>>;
 }, "strip", z.ZodTypeAny, {
@@ -112,6 +125,7 @@ export declare const userPlanEffectivenessSchema: z.ZodObject<{
             behaviorDocs: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
             started: boolean;
             actedOnUrge?: boolean | null | undefined;
+            sessionDate?: import("../types").Timestamp | undefined;
         }>;
     }>;
 }, {
@@ -122,6 +136,7 @@ export declare const userPlanEffectivenessSchema: z.ZodObject<{
             behaviorDocs: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
             started: boolean;
             actedOnUrge?: boolean | null | undefined;
+            sessionDate?: import("../types").Timestamp | undefined;
         }>;
     }>;
 }>;
