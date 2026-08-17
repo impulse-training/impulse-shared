@@ -299,6 +299,7 @@ export declare const plansLogSchema: z.ZodObject<{
                 hour: z.ZodNumber;
                 minute: z.ZodNumber;
                 weekdays: z.ZodArray<z.ZodNumber, "many">;
+                enabled: z.ZodOptional<z.ZodBoolean>;
             }, z.UnknownKeysParam, z.ZodTypeAny, {
                 type: "scheduled";
                 name: string;
@@ -323,6 +324,7 @@ export declare const plansLogSchema: z.ZodObject<{
                     behaviorTemplateNames?: string[] | undefined;
                 } | undefined;
                 summary?: string | undefined;
+                enabled?: boolean | undefined;
                 isTemplate?: boolean | undefined;
                 notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
                 notificationBodyCustomText?: string | undefined;
@@ -368,6 +370,7 @@ export declare const plansLogSchema: z.ZodObject<{
                     behaviorTemplateNames?: string[] | undefined;
                 } | undefined;
                 summary?: string | undefined;
+                enabled?: boolean | undefined;
                 isTemplate?: boolean | undefined;
                 notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
                 notificationBodyCustomText?: string | undefined;
@@ -827,6 +830,7 @@ export declare const plansLogSchema: z.ZodObject<{
                     behaviorTemplateNames?: string[] | undefined;
                 } | undefined;
                 summary?: string | undefined;
+                enabled?: boolean | undefined;
                 isTemplate?: boolean | undefined;
                 notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
                 notificationBodyCustomText?: string | undefined;
@@ -1023,6 +1027,7 @@ export declare const plansLogSchema: z.ZodObject<{
                     behaviorTemplateNames?: string[] | undefined;
                 } | undefined;
                 summary?: string | undefined;
+                enabled?: boolean | undefined;
                 isTemplate?: boolean | undefined;
                 notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
                 notificationBodyCustomText?: string | undefined;
@@ -1226,6 +1231,7 @@ export declare const plansLogSchema: z.ZodObject<{
                     behaviorTemplateNames?: string[] | undefined;
                 } | undefined;
                 summary?: string | undefined;
+                enabled?: boolean | undefined;
                 isTemplate?: boolean | undefined;
                 notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
                 notificationBodyCustomText?: string | undefined;
@@ -1430,6 +1436,7 @@ export declare const plansLogSchema: z.ZodObject<{
                     behaviorTemplateNames?: string[] | undefined;
                 } | undefined;
                 summary?: string | undefined;
+                enabled?: boolean | undefined;
                 isTemplate?: boolean | undefined;
                 notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
                 notificationBodyCustomText?: string | undefined;
@@ -1646,6 +1653,7 @@ export declare const plansLogSchema: z.ZodObject<{
                     behaviorTemplateNames?: string[] | undefined;
                 } | undefined;
                 summary?: string | undefined;
+                enabled?: boolean | undefined;
                 isTemplate?: boolean | undefined;
                 notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
                 notificationBodyCustomText?: string | undefined;
@@ -1866,6 +1874,7 @@ export declare const plansLogSchema: z.ZodObject<{
                     behaviorTemplateNames?: string[] | undefined;
                 } | undefined;
                 summary?: string | undefined;
+                enabled?: boolean | undefined;
                 isTemplate?: boolean | undefined;
                 notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
                 notificationBodyCustomText?: string | undefined;

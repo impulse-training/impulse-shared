@@ -1242,8 +1242,8 @@ export declare const supportGroupSchema: z.ZodObject<{
         } | undefined;
     } | undefined;
     description?: string | undefined;
-    isTemplate?: boolean | undefined;
     archivedAt?: import("../types").Timestamp | undefined;
+    isTemplate?: boolean | undefined;
     coverPhoto?: {
         uri: string;
         storagePath: string;

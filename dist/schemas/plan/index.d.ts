@@ -260,6 +260,7 @@ export declare const planSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     hour: z.ZodNumber;
     minute: z.ZodNumber;
     weekdays: z.ZodArray<z.ZodNumber, "many">;
+    enabled: z.ZodOptional<z.ZodBoolean>;
 }, "strip", z.ZodTypeAny, {
     type: "scheduled";
     name: string;
@@ -284,6 +285,7 @@ export declare const planSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorTemplateNames?: string[] | undefined;
     } | undefined;
     summary?: string | undefined;
+    enabled?: boolean | undefined;
     isTemplate?: boolean | undefined;
     notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
     notificationBodyCustomText?: string | undefined;
@@ -329,6 +331,7 @@ export declare const planSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorTemplateNames?: string[] | undefined;
     } | undefined;
     summary?: string | undefined;
+    enabled?: boolean | undefined;
     isTemplate?: boolean | undefined;
     notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
     notificationBodyCustomText?: string | undefined;
@@ -962,6 +965,7 @@ export declare const planWithIdSchema: z.ZodUnion<[z.ZodIntersection<z.ZodObject
     hour: z.ZodNumber;
     minute: z.ZodNumber;
     weekdays: z.ZodArray<z.ZodNumber, "many">;
+    enabled: z.ZodOptional<z.ZodBoolean>;
 }, z.UnknownKeysParam, z.ZodTypeAny, {
     type: "scheduled";
     name: string;
@@ -986,6 +990,7 @@ export declare const planWithIdSchema: z.ZodUnion<[z.ZodIntersection<z.ZodObject
         behaviorTemplateNames?: string[] | undefined;
     } | undefined;
     summary?: string | undefined;
+    enabled?: boolean | undefined;
     isTemplate?: boolean | undefined;
     notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
     notificationBodyCustomText?: string | undefined;
@@ -1031,6 +1036,7 @@ export declare const planWithIdSchema: z.ZodUnion<[z.ZodIntersection<z.ZodObject
         behaviorTemplateNames?: string[] | undefined;
     } | undefined;
     summary?: string | undefined;
+    enabled?: boolean | undefined;
     isTemplate?: boolean | undefined;
     notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
     notificationBodyCustomText?: string | undefined;

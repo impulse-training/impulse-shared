@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isBehavior = exports.behaviorSchema = exports.streakForgivenessEntrySchema = exports.formatBenefitsForPrompt = exports.normalizeBehaviorBenefits = exports.behaviorBenefitElementSchema = exports.behaviorBenefitSchema = exports.benefitNeedSchema = exports.behaviorStateSchema = exports.behaviorStruggleSchema = exports.WINDOW_SIZES = exports.recentSliceSchema = exports.behaviorStateMetaSchema = exports.behaviorStateGoalSchema = exports.trackingWindowSchema = exports.behaviorWindowSchema = exports.behaviorMeaningSchema = exports.behaviorStretchesSchema = exports.globalStreaksSchema = exports.changeStageSchema = exports.streaksSchema = exports.behaviorStateGoalTypeSchema = exports.dataCompletenessSchema = exports.stabilitySchema = exports.trendSchema = exports.behaviorTemplateSchema = exports.streakLabels = exports.baselinePeriods = exports.trackingTypes = void 0;
+exports.behaviorIsActive = exports.isBehavior = exports.behaviorSchema = exports.streakForgivenessEntrySchema = exports.formatBenefitsForPrompt = exports.normalizeBehaviorBenefits = exports.behaviorBenefitElementSchema = exports.behaviorBenefitSchema = exports.benefitNeedSchema = exports.behaviorStateSchema = exports.behaviorStruggleSchema = exports.WINDOW_SIZES = exports.recentSliceSchema = exports.behaviorStateMetaSchema = exports.behaviorStateGoalSchema = exports.trackingWindowSchema = exports.behaviorWindowSchema = exports.behaviorMeaningSchema = exports.behaviorStretchesSchema = exports.globalStreaksSchema = exports.changeStageSchema = exports.streaksSchema = exports.behaviorStateGoalTypeSchema = exports.dataCompletenessSchema = exports.stabilitySchema = exports.trendSchema = exports.behaviorTemplateSchema = exports.streakLabels = exports.baselinePeriods = exports.trackingTypes = void 0;
 exports.isBehaviorState = isBehaviorState;
 const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
@@ -362,6 +362,11 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
     mergedIntoBehaviorId: zod_1.z.string().optional(),
     mergedFromBehaviorIds: zod_1.z.array(zod_1.z.string()).optional(),
     mergedAt: timestampSchema_1.timestampSchema.optional(),
+    // Set when the user archives the behavior: it stays on record (history,
+    // logs, plans) but leaves the active set the app and the assistant work
+    // with. Distinct from merge (which folds it into another behavior) and
+    // from delete. Read through `behaviorIsActive`.
+    archivedAt: timestampSchema_1.timestampSchema.optional(),
     // User-confirmed streak start date (ISO string), set when backdating a streak after a goal change
     streakOverrideStartDate: zod_1.z.string().optional(),
     // Coach-granted retroactive streak rescues (per-day). A forgiven NOT_MET_FAIL
@@ -405,3 +410,6 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
 });
 const isBehavior = (value) => exports.behaviorSchema.safeParse(value).success;
 exports.isBehavior = isBehavior;
+/** Neither merged away nor archived: the set the app and assistant act on. */
+const behaviorIsActive = (behavior) => !behavior.mergedIntoBehaviorId && !behavior.archivedAt;
+exports.behaviorIsActive = behaviorIsActive;
