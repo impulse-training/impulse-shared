@@ -1393,16 +1393,14 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
 }>;
 export declare const proposedMetricSchema: z.ZodObject<{
     name: z.ZodString;
-    minLabel: z.ZodOptional<z.ZodString>;
-    maxLabel: z.ZodOptional<z.ZodString>;
+    /** The three scale labels the metric should use, ordered low → high */
+    scaleLabels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodString], null>>;
 }, "strip", z.ZodTypeAny, {
     name: string;
-    minLabel?: string | undefined;
-    maxLabel?: string | undefined;
+    scaleLabels?: [string, string, string] | undefined;
 }, {
     name: string;
-    minLabel?: string | undefined;
-    maxLabel?: string | undefined;
+    scaleLabels?: [string, string, string] | undefined;
 }>;
 export declare const proposeExperimentTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -1480,32 +1478,28 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
         behaviorId: z.ZodString;
         metrics: z.ZodArray<z.ZodObject<{
             name: z.ZodString;
-            minLabel: z.ZodOptional<z.ZodString>;
-            maxLabel: z.ZodOptional<z.ZodString>;
+            /** The three scale labels the metric should use, ordered low → high */
+            scaleLabels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodString], null>>;
         }, "strip", z.ZodTypeAny, {
             name: string;
-            minLabel?: string | undefined;
-            maxLabel?: string | undefined;
+            scaleLabels?: [string, string, string] | undefined;
         }, {
             name: string;
-            minLabel?: string | undefined;
-            maxLabel?: string | undefined;
+            scaleLabels?: [string, string, string] | undefined;
         }>, "many">;
         experimentQuestion: z.ZodString;
     }, "strip", z.ZodTypeAny, {
         behaviorId: string;
         metrics: {
             name: string;
-            minLabel?: string | undefined;
-            maxLabel?: string | undefined;
+            scaleLabels?: [string, string, string] | undefined;
         }[];
         experimentQuestion: string;
     }, {
         behaviorId: string;
         metrics: {
             name: string;
-            minLabel?: string | undefined;
-            maxLabel?: string | undefined;
+            scaleLabels?: [string, string, string] | undefined;
         }[];
         experimentQuestion: string;
     }>;
@@ -1522,8 +1516,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
         behaviorId: string;
         metrics: {
             name: string;
-            minLabel?: string | undefined;
-            maxLabel?: string | undefined;
+            scaleLabels?: [string, string, string] | undefined;
         }[];
         experimentQuestion: string;
     };
@@ -1557,8 +1550,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
         behaviorId: string;
         metrics: {
             name: string;
-            minLabel?: string | undefined;
-            maxLabel?: string | undefined;
+            scaleLabels?: [string, string, string] | undefined;
         }[];
         experimentQuestion: string;
     };
@@ -5314,32 +5306,28 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorId: z.ZodString;
         metrics: z.ZodArray<z.ZodObject<{
             name: z.ZodString;
-            minLabel: z.ZodOptional<z.ZodString>;
-            maxLabel: z.ZodOptional<z.ZodString>;
+            /** The three scale labels the metric should use, ordered low → high */
+            scaleLabels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodString], null>>;
         }, "strip", z.ZodTypeAny, {
             name: string;
-            minLabel?: string | undefined;
-            maxLabel?: string | undefined;
+            scaleLabels?: [string, string, string] | undefined;
         }, {
             name: string;
-            minLabel?: string | undefined;
-            maxLabel?: string | undefined;
+            scaleLabels?: [string, string, string] | undefined;
         }>, "many">;
         experimentQuestion: z.ZodString;
     }, "strip", z.ZodTypeAny, {
         behaviorId: string;
         metrics: {
             name: string;
-            minLabel?: string | undefined;
-            maxLabel?: string | undefined;
+            scaleLabels?: [string, string, string] | undefined;
         }[];
         experimentQuestion: string;
     }, {
         behaviorId: string;
         metrics: {
             name: string;
-            minLabel?: string | undefined;
-            maxLabel?: string | undefined;
+            scaleLabels?: [string, string, string] | undefined;
         }[];
         experimentQuestion: string;
     }>;
@@ -5356,8 +5344,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorId: string;
         metrics: {
             name: string;
-            minLabel?: string | undefined;
-            maxLabel?: string | undefined;
+            scaleLabels?: [string, string, string] | undefined;
         }[];
         experimentQuestion: string;
     };
@@ -5391,8 +5378,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorId: string;
         metrics: {
             name: string;
-            minLabel?: string | undefined;
-            maxLabel?: string | undefined;
+            scaleLabels?: [string, string, string] | undefined;
         }[];
         experimentQuestion: string;
     };

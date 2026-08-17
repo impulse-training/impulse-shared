@@ -4,6 +4,7 @@ exports.getGptPayload = getGptPayload;
 const log_1 = require("../schemas/log");
 const buildPlansLogPayload_1 = require("./buildPlansLogPayload");
 const constants_1 = require("../constants");
+const metric_1 = require("../schemas/metric");
 const phase_1 = require("../schemas/session/phase");
 /**
  * Drop the tactic-card `logId` from a replayed tool-call result before it goes
@@ -445,37 +446,41 @@ function getGptPayload(log, isFinalLogInSession, options) {
     }
     // Handle MetricLog
     if ((0, log_1.logIsMetricLog)(log)) {
-        const { metricName, value, minLabel, maxLabel, quadrant } = log.data;
-        const scaleDesc = minLabel && maxLabel ? ` (${minLabel} to ${maxLabel})` : "";
+        const { metricName, value, scaleLabels, quadrant } = log.data;
+        // Metrics are ordered states, so give the AI the state's NAME. "2/3" invites
+        // it to talk in scores; "Okay" is what the user actually chose.
+        const options3 = scaleLabels !== null && scaleLabels !== void 0 ? scaleLabels : metric_1.DEFAULT_METRIC_SCALE_LABELS;
+        const scaleDesc = ` (${options3.join(" / ")})`;
         if (value == null) {
             return [
                 {
                     role: "user",
-                    content: `<CONTEXT>Metric "${metricName}"${scaleDesc} is awaiting user rating (1-5 scale).</CONTEXT>`,
+                    content: `<CONTEXT>Metric "${metricName}"${scaleDesc} is awaiting the user's observation.</CONTEXT>`,
                 },
             ];
         }
+        const stateLabel = (0, metric_1.metricValueLabel)(value, scaleLabels);
         // Feeling metric (has quadrant) — use feeling-specific wording
         if (quadrant) {
             if (isFinalLogInSession && log.shouldZaraRespond) {
                 return [
                     {
                         role: "user",
-                        content: `<CONTEXT>The user is feeling ${metricName} (${quadrant}), rated ${value}/5${scaleDesc}. They want to discuss this feeling.</CONTEXT>`,
+                        content: `<CONTEXT>The user is feeling ${metricName} (${quadrant}): ${stateLabel}${scaleDesc}. They want to discuss this feeling.</CONTEXT>`,
                     },
                 ];
             }
             return [
                 {
                     role: "user",
-                    content: `<CONTEXT>User is feeling "${metricName}" (${quadrant}): ${value}/5${scaleDesc}.</CONTEXT>`,
+                    content: `<CONTEXT>User is feeling "${metricName}" (${quadrant}): ${stateLabel}${scaleDesc}.</CONTEXT>`,
                 },
             ];
         }
         return [
             {
                 role: "user",
-                content: `<CONTEXT>User rated "${metricName}": ${value}/5${scaleDesc}.</CONTEXT>`,
+                content: `<CONTEXT>User recorded "${metricName}": ${stateLabel}${scaleDesc}.</CONTEXT>`,
             },
         ];
     }

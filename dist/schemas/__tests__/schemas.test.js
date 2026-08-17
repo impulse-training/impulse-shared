@@ -109,7 +109,7 @@ describe("Schema Validation", () => {
             const result = index_1.sessionSchema.safeParse(validSession);
             expect(result.success).toBe(true);
         });
-        it("round-trips lastMessageAt/lastMessagePreview through safeParse", () => {
+        it("round-trips the chats-list fields through safeParse", () => {
             const session = {
                 type: "general",
                 title: "",
@@ -122,6 +122,7 @@ describe("Schema Validation", () => {
                 emojiId: null,
                 lastMessageAt: new Date(),
                 lastMessagePreview: "sounds like it's how you switch off",
+                hiddenFromHomeAt: new Date(),
             };
             const result = index_1.sessionSchema.safeParse(session);
             expect(result.success).toBe(true);
@@ -130,6 +131,7 @@ describe("Schema Validation", () => {
                 // undeclared field would be silently stripped here.
                 expect(result.data.lastMessagePreview).toBe(session.lastMessagePreview);
                 expect(result.data.lastMessageAt).toBeDefined();
+                expect(result.data.hiddenFromHomeAt).toBeDefined();
             }
         });
         it("should validate an impulse session", () => {

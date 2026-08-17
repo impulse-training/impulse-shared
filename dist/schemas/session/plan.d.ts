@@ -5343,6 +5343,7 @@ export declare const timePlanSessionSchema: z.ZodObject<{
     unreadSince: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     lastMessageAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     lastMessagePreview: z.ZodOptional<z.ZodString>;
+    hiddenFromHomeAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     responseStartedProcessingAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     responseRequestId: z.ZodOptional<z.ZodString>;
     responseError: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -5391,6 +5392,7 @@ export declare const timePlanSessionSchema: z.ZodObject<{
     tags?: Record<string, string[]> | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    startedDeletingAt?: import("../../types").Timestamp | undefined;
     triggerId?: string | null | undefined;
     voiceEnabled?: boolean | undefined;
     currentTactic?: {
@@ -6037,6 +6039,7 @@ export declare const timePlanSessionSchema: z.ZodObject<{
     unreadSince?: import("../../types").Timestamp | undefined;
     lastMessageAt?: import("../../types").Timestamp | undefined;
     lastMessagePreview?: string | undefined;
+    hiddenFromHomeAt?: import("../../types").Timestamp | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
     responseRequestId?: string | undefined;
     responseError?: string | null | undefined;
@@ -6051,7 +6054,6 @@ export declare const timePlanSessionSchema: z.ZodObject<{
     }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     closeDecidedBy?: "ai" | "reviewer" | undefined;
-    startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
 }, {
     type: "timePlan";
@@ -6072,6 +6074,7 @@ export declare const timePlanSessionSchema: z.ZodObject<{
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    startedDeletingAt?: import("../../types").Timestamp | undefined;
     triggerId?: string | null | undefined;
     voiceEnabled?: boolean | undefined;
     currentTactic?: {
@@ -6185,6 +6188,7 @@ export declare const timePlanSessionSchema: z.ZodObject<{
     unreadSince?: import("../../types").Timestamp | undefined;
     lastMessageAt?: import("../../types").Timestamp | undefined;
     lastMessagePreview?: string | undefined;
+    hiddenFromHomeAt?: import("../../types").Timestamp | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
     responseRequestId?: string | undefined;
     responseError?: string | null | undefined;
@@ -6199,7 +6203,6 @@ export declare const timePlanSessionSchema: z.ZodObject<{
     }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     closeDecidedBy?: "ai" | "reviewer" | undefined;
-    startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
 }>;
 export declare const locationPlanSessionSchema: z.ZodObject<{
@@ -11546,6 +11549,7 @@ export declare const locationPlanSessionSchema: z.ZodObject<{
     unreadSince: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     lastMessageAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     lastMessagePreview: z.ZodOptional<z.ZodString>;
+    hiddenFromHomeAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     responseStartedProcessingAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     responseRequestId: z.ZodOptional<z.ZodString>;
     responseError: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -11594,6 +11598,7 @@ export declare const locationPlanSessionSchema: z.ZodObject<{
     tags?: Record<string, string[]> | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    startedDeletingAt?: import("../../types").Timestamp | undefined;
     triggerId?: string | null | undefined;
     voiceEnabled?: boolean | undefined;
     currentTactic?: {
@@ -12240,6 +12245,7 @@ export declare const locationPlanSessionSchema: z.ZodObject<{
     unreadSince?: import("../../types").Timestamp | undefined;
     lastMessageAt?: import("../../types").Timestamp | undefined;
     lastMessagePreview?: string | undefined;
+    hiddenFromHomeAt?: import("../../types").Timestamp | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
     responseRequestId?: string | undefined;
     responseError?: string | null | undefined;
@@ -12254,7 +12260,6 @@ export declare const locationPlanSessionSchema: z.ZodObject<{
     }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     closeDecidedBy?: "ai" | "reviewer" | undefined;
-    startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
 }, {
     type: "locationPlan";
@@ -12275,6 +12280,7 @@ export declare const locationPlanSessionSchema: z.ZodObject<{
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    startedDeletingAt?: import("../../types").Timestamp | undefined;
     triggerId?: string | null | undefined;
     voiceEnabled?: boolean | undefined;
     currentTactic?: {
@@ -12388,6 +12394,7 @@ export declare const locationPlanSessionSchema: z.ZodObject<{
     unreadSince?: import("../../types").Timestamp | undefined;
     lastMessageAt?: import("../../types").Timestamp | undefined;
     lastMessagePreview?: string | undefined;
+    hiddenFromHomeAt?: import("../../types").Timestamp | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
     responseRequestId?: string | undefined;
     responseError?: string | null | undefined;
@@ -12402,7 +12409,6 @@ export declare const locationPlanSessionSchema: z.ZodObject<{
     }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     closeDecidedBy?: "ai" | "reviewer" | undefined;
-    startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
 }>;
 export type TimePlanSession = z.infer<typeof timePlanSessionSchema>;

@@ -1,12 +1,67 @@
 import { z } from "zod";
 /**
+ * A metric observation. An ORDERED STATE, not a quantity — so it is compared and
+ * counted, never averaged in anything user-facing.
+ *
+ * A literal union rather than `number().min(1).max(3)` on purpose: narrowing a
+ * numeric range produces zero compile errors at assignment sites, so a literal
+ * union is the only version of this that the type checker can police.
+ *
+ * Higher always means MORE OF THE NAMED METRIC, never "better". High Stress and
+ * High Energy are both 3. Never invert a negatively valenced metric — use
+ * `desiredDirection` to decide whether rising is good.
+ */
+export declare const metricValueSchema: z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>;
+export type MetricValue = z.infer<typeof metricValueSchema>;
+/**
+ * The three labels for a metric's scale, ordered low → high, e.g.
+ * ["Poor", "Okay", "Good"] for Sleep quality. Index = value - 1.
+ */
+export declare const metricScaleLabelsSchema: z.ZodTuple<[z.ZodString, z.ZodString, z.ZodString], null>;
+export type MetricScaleLabels = z.infer<typeof metricScaleLabelsSchema>;
+/** Resolve the user-facing label for an observation. */
+export declare function metricValueLabel(value: MetricValue, scaleLabels?: MetricScaleLabels): string;
+/** Fallback for metrics that predate `scaleLabels`. */
+export declare const DEFAULT_METRIC_SCALE_LABELS: MetricScaleLabels;
+/**
+ * Coerce untrusted input (an AI tool argument, a form field) into scale labels,
+ * or undefined if it isn't exactly three non-empty strings. Returning undefined
+ * rather than padding is deliberate: a partial set would silently mislabel a
+ * state, and `DEFAULT_METRIC_SCALE_LABELS` is a safer read than a wrong label.
+ */
+export declare function normalizeScaleLabels(input: unknown): MetricScaleLabels | undefined;
+/**
+ * Longest metric name that still fits the Home matrix's fixed label column
+ * without truncation. Enforced at creation rather than truncated at render, so
+ * the constraint is visible once instead of degrading every surface.
+ */
+export declare const METRIC_NAME_MAX_LENGTH = 24;
+/**
  * Computed metrics for a specific time window (7, 30, or 90 days).
- * Analogous to BehaviorWindow, but for continuous 1-5 scale values.
+ * Analogous to BehaviorWindow, but over ordered 3-point observations.
  */
 export declare const metricWindowSchema: z.ZodObject<{
     windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
-    /** Average measured value across the window */
-    averageMeasured: z.ZodOptional<z.ZodNumber>;
+    /**
+     * How the window's observations were distributed across the three states.
+     * A distribution rather than a mean: averaging ordinal states invents a
+     * precision the data does not have ("2.4 energy" means nothing to a user).
+     */
+    distribution: z.ZodOptional<z.ZodObject<{
+        low: z.ZodNumber;
+        okay: z.ZodNumber;
+        high: z.ZodNumber;
+    }, "strip", z.ZodTypeAny, {
+        low: number;
+        high: number;
+        okay: number;
+    }, {
+        low: number;
+        high: number;
+        okay: number;
+    }>>;
+    /** The most frequently observed state in the window, if any. */
+    modal: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>>;
     /**
      * Direction of change over the window (IMPROVING = rising score,
      * DECLINING = falling score). Note: whether rising is "good" depends
@@ -20,13 +75,23 @@ export declare const metricWindowSchema: z.ZodObject<{
     trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
     stability: "HIGH" | "MEDIUM" | "LOW";
     sampleCount: number;
-    averageMeasured?: number | undefined;
+    distribution?: {
+        low: number;
+        high: number;
+        okay: number;
+    } | undefined;
+    modal?: 1 | 2 | 3 | undefined;
 }, {
     windowSizeDays: 7 | 30 | 90;
     trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
     stability: "HIGH" | "MEDIUM" | "LOW";
     sampleCount: number;
-    averageMeasured?: number | undefined;
+    distribution?: {
+        low: number;
+        high: number;
+        okay: number;
+    } | undefined;
+    modal?: 1 | 2 | 3 | undefined;
 }>;
 export type MetricWindow = z.infer<typeof metricWindowSchema>;
 /**
@@ -37,12 +102,12 @@ export declare const metricRecentSliceSchema: z.ZodObject<{
     /** Most-recent entries, newest first. offset=0 is today, offset=1 is yesterday, … */
     days: z.ZodArray<z.ZodObject<{
         offset: z.ZodNumber;
-        value: z.ZodNumber;
+        value: z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>;
     }, "strip", z.ZodTypeAny, {
-        value: number;
+        value: 1 | 2 | 3;
         offset: number;
     }, {
-        value: number;
+        value: 1 | 2 | 3;
         offset: number;
     }>, "many">;
     /** Direction of change across this slice */
@@ -53,7 +118,7 @@ export declare const metricRecentSliceSchema: z.ZodObject<{
     salience: z.ZodEnum<["LOW", "MEDIUM", "HIGH"]>;
 }, "strip", z.ZodTypeAny, {
     days: {
-        value: number;
+        value: 1 | 2 | 3;
         offset: number;
     }[];
     direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
@@ -61,7 +126,7 @@ export declare const metricRecentSliceSchema: z.ZodObject<{
     salience: "HIGH" | "MEDIUM" | "LOW";
 }, {
     days: {
-        value: number;
+        value: 1 | 2 | 3;
         offset: number;
     }[];
     direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
@@ -79,8 +144,26 @@ export declare const metricStateSchema: z.ZodObject<{
     windows: z.ZodObject<{
         short: z.ZodObject<{
             windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
-            /** Average measured value across the window */
-            averageMeasured: z.ZodOptional<z.ZodNumber>;
+            /**
+             * How the window's observations were distributed across the three states.
+             * A distribution rather than a mean: averaging ordinal states invents a
+             * precision the data does not have ("2.4 energy" means nothing to a user).
+             */
+            distribution: z.ZodOptional<z.ZodObject<{
+                low: z.ZodNumber;
+                okay: z.ZodNumber;
+                high: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                low: number;
+                high: number;
+                okay: number;
+            }, {
+                low: number;
+                high: number;
+                okay: number;
+            }>>;
+            /** The most frequently observed state in the window, if any. */
+            modal: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>>;
             /**
              * Direction of change over the window (IMPROVING = rising score,
              * DECLINING = falling score). Note: whether rising is "good" depends
@@ -94,18 +177,46 @@ export declare const metricStateSchema: z.ZodObject<{
             trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
             stability: "HIGH" | "MEDIUM" | "LOW";
             sampleCount: number;
-            averageMeasured?: number | undefined;
+            distribution?: {
+                low: number;
+                high: number;
+                okay: number;
+            } | undefined;
+            modal?: 1 | 2 | 3 | undefined;
         }, {
             windowSizeDays: 7 | 30 | 90;
             trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
             stability: "HIGH" | "MEDIUM" | "LOW";
             sampleCount: number;
-            averageMeasured?: number | undefined;
+            distribution?: {
+                low: number;
+                high: number;
+                okay: number;
+            } | undefined;
+            modal?: 1 | 2 | 3 | undefined;
         }>;
         medium: z.ZodObject<{
             windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
-            /** Average measured value across the window */
-            averageMeasured: z.ZodOptional<z.ZodNumber>;
+            /**
+             * How the window's observations were distributed across the three states.
+             * A distribution rather than a mean: averaging ordinal states invents a
+             * precision the data does not have ("2.4 energy" means nothing to a user).
+             */
+            distribution: z.ZodOptional<z.ZodObject<{
+                low: z.ZodNumber;
+                okay: z.ZodNumber;
+                high: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                low: number;
+                high: number;
+                okay: number;
+            }, {
+                low: number;
+                high: number;
+                okay: number;
+            }>>;
+            /** The most frequently observed state in the window, if any. */
+            modal: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>>;
             /**
              * Direction of change over the window (IMPROVING = rising score,
              * DECLINING = falling score). Note: whether rising is "good" depends
@@ -119,18 +230,46 @@ export declare const metricStateSchema: z.ZodObject<{
             trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
             stability: "HIGH" | "MEDIUM" | "LOW";
             sampleCount: number;
-            averageMeasured?: number | undefined;
+            distribution?: {
+                low: number;
+                high: number;
+                okay: number;
+            } | undefined;
+            modal?: 1 | 2 | 3 | undefined;
         }, {
             windowSizeDays: 7 | 30 | 90;
             trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
             stability: "HIGH" | "MEDIUM" | "LOW";
             sampleCount: number;
-            averageMeasured?: number | undefined;
+            distribution?: {
+                low: number;
+                high: number;
+                okay: number;
+            } | undefined;
+            modal?: 1 | 2 | 3 | undefined;
         }>;
         long: z.ZodObject<{
             windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
-            /** Average measured value across the window */
-            averageMeasured: z.ZodOptional<z.ZodNumber>;
+            /**
+             * How the window's observations were distributed across the three states.
+             * A distribution rather than a mean: averaging ordinal states invents a
+             * precision the data does not have ("2.4 energy" means nothing to a user).
+             */
+            distribution: z.ZodOptional<z.ZodObject<{
+                low: z.ZodNumber;
+                okay: z.ZodNumber;
+                high: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                low: number;
+                high: number;
+                okay: number;
+            }, {
+                low: number;
+                high: number;
+                okay: number;
+            }>>;
+            /** The most frequently observed state in the window, if any. */
+            modal: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>>;
             /**
              * Direction of change over the window (IMPROVING = rising score,
              * DECLINING = falling score). Note: whether rising is "good" depends
@@ -144,13 +283,23 @@ export declare const metricStateSchema: z.ZodObject<{
             trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
             stability: "HIGH" | "MEDIUM" | "LOW";
             sampleCount: number;
-            averageMeasured?: number | undefined;
+            distribution?: {
+                low: number;
+                high: number;
+                okay: number;
+            } | undefined;
+            modal?: 1 | 2 | 3 | undefined;
         }, {
             windowSizeDays: 7 | 30 | 90;
             trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
             stability: "HIGH" | "MEDIUM" | "LOW";
             sampleCount: number;
-            averageMeasured?: number | undefined;
+            distribution?: {
+                low: number;
+                high: number;
+                okay: number;
+            } | undefined;
+            modal?: 1 | 2 | 3 | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         short: {
@@ -158,21 +307,36 @@ export declare const metricStateSchema: z.ZodObject<{
             trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
             stability: "HIGH" | "MEDIUM" | "LOW";
             sampleCount: number;
-            averageMeasured?: number | undefined;
+            distribution?: {
+                low: number;
+                high: number;
+                okay: number;
+            } | undefined;
+            modal?: 1 | 2 | 3 | undefined;
         };
         medium: {
             windowSizeDays: 7 | 30 | 90;
             trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
             stability: "HIGH" | "MEDIUM" | "LOW";
             sampleCount: number;
-            averageMeasured?: number | undefined;
+            distribution?: {
+                low: number;
+                high: number;
+                okay: number;
+            } | undefined;
+            modal?: 1 | 2 | 3 | undefined;
         };
         long: {
             windowSizeDays: 7 | 30 | 90;
             trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
             stability: "HIGH" | "MEDIUM" | "LOW";
             sampleCount: number;
-            averageMeasured?: number | undefined;
+            distribution?: {
+                low: number;
+                high: number;
+                okay: number;
+            } | undefined;
+            modal?: 1 | 2 | 3 | undefined;
         };
     }, {
         short: {
@@ -180,33 +344,48 @@ export declare const metricStateSchema: z.ZodObject<{
             trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
             stability: "HIGH" | "MEDIUM" | "LOW";
             sampleCount: number;
-            averageMeasured?: number | undefined;
+            distribution?: {
+                low: number;
+                high: number;
+                okay: number;
+            } | undefined;
+            modal?: 1 | 2 | 3 | undefined;
         };
         medium: {
             windowSizeDays: 7 | 30 | 90;
             trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
             stability: "HIGH" | "MEDIUM" | "LOW";
             sampleCount: number;
-            averageMeasured?: number | undefined;
+            distribution?: {
+                low: number;
+                high: number;
+                okay: number;
+            } | undefined;
+            modal?: 1 | 2 | 3 | undefined;
         };
         long: {
             windowSizeDays: 7 | 30 | 90;
             trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
             stability: "HIGH" | "MEDIUM" | "LOW";
             sampleCount: number;
-            averageMeasured?: number | undefined;
+            distribution?: {
+                low: number;
+                high: number;
+                okay: number;
+            } | undefined;
+            modal?: 1 | 2 | 3 | undefined;
         };
     }>;
     recentSlice: z.ZodOptional<z.ZodObject<{
         /** Most-recent entries, newest first. offset=0 is today, offset=1 is yesterday, … */
         days: z.ZodArray<z.ZodObject<{
             offset: z.ZodNumber;
-            value: z.ZodNumber;
+            value: z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>;
         }, "strip", z.ZodTypeAny, {
-            value: number;
+            value: 1 | 2 | 3;
             offset: number;
         }, {
-            value: number;
+            value: 1 | 2 | 3;
             offset: number;
         }>, "many">;
         /** Direction of change across this slice */
@@ -217,7 +396,7 @@ export declare const metricStateSchema: z.ZodObject<{
         salience: z.ZodEnum<["LOW", "MEDIUM", "HIGH"]>;
     }, "strip", z.ZodTypeAny, {
         days: {
-            value: number;
+            value: 1 | 2 | 3;
             offset: number;
         }[];
         direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
@@ -225,7 +404,7 @@ export declare const metricStateSchema: z.ZodObject<{
         salience: "HIGH" | "MEDIUM" | "LOW";
     }, {
         days: {
-            value: number;
+            value: 1 | 2 | 3;
             offset: number;
         }[];
         direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
@@ -233,8 +412,10 @@ export declare const metricStateSchema: z.ZodObject<{
         salience: "HIGH" | "MEDIUM" | "LOW";
     }>>;
     /**
-     * A pre-generated natural-language summary for the AI, e.g.
-     * "The user has been scoring low energy lately (avg 3.4/5), and this has been declining."
+     * A pre-generated natural-language summary for the AI. State it as a
+     * distribution over the three states, e.g. "Energy has been high on 4 of the
+     * last 7 tracked days and low on 1, up from mostly-okay the week before."
+     * Never as a mean — "avg 3.4/5" is not a thing a 3-point ordinal supports.
      */
     textSummary: z.ZodString;
     meta: z.ZodObject<{
@@ -254,21 +435,36 @@ export declare const metricStateSchema: z.ZodObject<{
             trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
             stability: "HIGH" | "MEDIUM" | "LOW";
             sampleCount: number;
-            averageMeasured?: number | undefined;
+            distribution?: {
+                low: number;
+                high: number;
+                okay: number;
+            } | undefined;
+            modal?: 1 | 2 | 3 | undefined;
         };
         medium: {
             windowSizeDays: 7 | 30 | 90;
             trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
             stability: "HIGH" | "MEDIUM" | "LOW";
             sampleCount: number;
-            averageMeasured?: number | undefined;
+            distribution?: {
+                low: number;
+                high: number;
+                okay: number;
+            } | undefined;
+            modal?: 1 | 2 | 3 | undefined;
         };
         long: {
             windowSizeDays: 7 | 30 | 90;
             trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
             stability: "HIGH" | "MEDIUM" | "LOW";
             sampleCount: number;
-            averageMeasured?: number | undefined;
+            distribution?: {
+                low: number;
+                high: number;
+                okay: number;
+            } | undefined;
+            modal?: 1 | 2 | 3 | undefined;
         };
     };
     meta: {
@@ -279,7 +475,7 @@ export declare const metricStateSchema: z.ZodObject<{
     textSummary: string;
     recentSlice?: {
         days: {
-            value: number;
+            value: 1 | 2 | 3;
             offset: number;
         }[];
         direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
@@ -293,21 +489,36 @@ export declare const metricStateSchema: z.ZodObject<{
             trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
             stability: "HIGH" | "MEDIUM" | "LOW";
             sampleCount: number;
-            averageMeasured?: number | undefined;
+            distribution?: {
+                low: number;
+                high: number;
+                okay: number;
+            } | undefined;
+            modal?: 1 | 2 | 3 | undefined;
         };
         medium: {
             windowSizeDays: 7 | 30 | 90;
             trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
             stability: "HIGH" | "MEDIUM" | "LOW";
             sampleCount: number;
-            averageMeasured?: number | undefined;
+            distribution?: {
+                low: number;
+                high: number;
+                okay: number;
+            } | undefined;
+            modal?: 1 | 2 | 3 | undefined;
         };
         long: {
             windowSizeDays: 7 | 30 | 90;
             trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
             stability: "HIGH" | "MEDIUM" | "LOW";
             sampleCount: number;
-            averageMeasured?: number | undefined;
+            distribution?: {
+                low: number;
+                high: number;
+                okay: number;
+            } | undefined;
+            modal?: 1 | 2 | 3 | undefined;
         };
     };
     meta: {
@@ -318,7 +529,7 @@ export declare const metricStateSchema: z.ZodObject<{
     textSummary: string;
     recentSlice?: {
         days: {
-            value: number;
+            value: 1 | 2 | 3;
             offset: number;
         }[];
         direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
@@ -331,8 +542,10 @@ export type MetricState = z.infer<typeof metricStateSchema>;
  * A user-level metric document.
  * Path: users/{userId}/metrics/{metricId}
  *
- * Metrics are lightweight self-report scales (1-5) that users track
- * during experiments to measure how a behavior change affects them.
+ * Metrics are repeated day-scoped state observations on an ordered 3-point
+ * scale — "how I was", as opposed to behaviors' "what I did". One observation
+ * per metric per day. Event-scoped measurements (e.g. urge intensity) belong to
+ * the impulse/moment model, not here.
  */
 export declare const metricSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -340,10 +553,12 @@ export declare const metricSchema: z.ZodObject<{
     name: z.ZodString;
     /** Prompt shown when tracking, e.g. "How clear is your thinking?" */
     description: z.ZodOptional<z.ZodString>;
-    /** Label for the low end of the 1-5 scale, e.g. "Very foggy" */
-    minLabel: z.ZodOptional<z.ZodString>;
-    /** Label for the high end of the 1-5 scale, e.g. "Very clear" */
-    maxLabel: z.ZodOptional<z.ZodString>;
+    /**
+     * The three scale labels, ordered low → high, e.g.
+     * ["Very foggy", "Okay", "Very clear"]. Optional only for metrics created
+     * before the 3-point migration; use `metricValueLabel` to read it.
+     */
+    scaleLabels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodString], null>>;
     /** If created from METRIC_REGISTRY, stores the registry id for dedup */
     metricRegistryId: z.ZodOptional<z.ZodString>;
     /** Circumplex quadrant — present only on pre-seeded feeling metrics */
@@ -361,8 +576,26 @@ export declare const metricSchema: z.ZodObject<{
         windows: z.ZodObject<{
             short: z.ZodObject<{
                 windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
-                /** Average measured value across the window */
-                averageMeasured: z.ZodOptional<z.ZodNumber>;
+                /**
+                 * How the window's observations were distributed across the three states.
+                 * A distribution rather than a mean: averaging ordinal states invents a
+                 * precision the data does not have ("2.4 energy" means nothing to a user).
+                 */
+                distribution: z.ZodOptional<z.ZodObject<{
+                    low: z.ZodNumber;
+                    okay: z.ZodNumber;
+                    high: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    low: number;
+                    high: number;
+                    okay: number;
+                }, {
+                    low: number;
+                    high: number;
+                    okay: number;
+                }>>;
+                /** The most frequently observed state in the window, if any. */
+                modal: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>>;
                 /**
                  * Direction of change over the window (IMPROVING = rising score,
                  * DECLINING = falling score). Note: whether rising is "good" depends
@@ -376,18 +609,46 @@ export declare const metricSchema: z.ZodObject<{
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
                 stability: "HIGH" | "MEDIUM" | "LOW";
                 sampleCount: number;
-                averageMeasured?: number | undefined;
+                distribution?: {
+                    low: number;
+                    high: number;
+                    okay: number;
+                } | undefined;
+                modal?: 1 | 2 | 3 | undefined;
             }, {
                 windowSizeDays: 7 | 30 | 90;
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
                 stability: "HIGH" | "MEDIUM" | "LOW";
                 sampleCount: number;
-                averageMeasured?: number | undefined;
+                distribution?: {
+                    low: number;
+                    high: number;
+                    okay: number;
+                } | undefined;
+                modal?: 1 | 2 | 3 | undefined;
             }>;
             medium: z.ZodObject<{
                 windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
-                /** Average measured value across the window */
-                averageMeasured: z.ZodOptional<z.ZodNumber>;
+                /**
+                 * How the window's observations were distributed across the three states.
+                 * A distribution rather than a mean: averaging ordinal states invents a
+                 * precision the data does not have ("2.4 energy" means nothing to a user).
+                 */
+                distribution: z.ZodOptional<z.ZodObject<{
+                    low: z.ZodNumber;
+                    okay: z.ZodNumber;
+                    high: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    low: number;
+                    high: number;
+                    okay: number;
+                }, {
+                    low: number;
+                    high: number;
+                    okay: number;
+                }>>;
+                /** The most frequently observed state in the window, if any. */
+                modal: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>>;
                 /**
                  * Direction of change over the window (IMPROVING = rising score,
                  * DECLINING = falling score). Note: whether rising is "good" depends
@@ -401,18 +662,46 @@ export declare const metricSchema: z.ZodObject<{
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
                 stability: "HIGH" | "MEDIUM" | "LOW";
                 sampleCount: number;
-                averageMeasured?: number | undefined;
+                distribution?: {
+                    low: number;
+                    high: number;
+                    okay: number;
+                } | undefined;
+                modal?: 1 | 2 | 3 | undefined;
             }, {
                 windowSizeDays: 7 | 30 | 90;
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
                 stability: "HIGH" | "MEDIUM" | "LOW";
                 sampleCount: number;
-                averageMeasured?: number | undefined;
+                distribution?: {
+                    low: number;
+                    high: number;
+                    okay: number;
+                } | undefined;
+                modal?: 1 | 2 | 3 | undefined;
             }>;
             long: z.ZodObject<{
                 windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
-                /** Average measured value across the window */
-                averageMeasured: z.ZodOptional<z.ZodNumber>;
+                /**
+                 * How the window's observations were distributed across the three states.
+                 * A distribution rather than a mean: averaging ordinal states invents a
+                 * precision the data does not have ("2.4 energy" means nothing to a user).
+                 */
+                distribution: z.ZodOptional<z.ZodObject<{
+                    low: z.ZodNumber;
+                    okay: z.ZodNumber;
+                    high: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    low: number;
+                    high: number;
+                    okay: number;
+                }, {
+                    low: number;
+                    high: number;
+                    okay: number;
+                }>>;
+                /** The most frequently observed state in the window, if any. */
+                modal: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>>;
                 /**
                  * Direction of change over the window (IMPROVING = rising score,
                  * DECLINING = falling score). Note: whether rising is "good" depends
@@ -426,13 +715,23 @@ export declare const metricSchema: z.ZodObject<{
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
                 stability: "HIGH" | "MEDIUM" | "LOW";
                 sampleCount: number;
-                averageMeasured?: number | undefined;
+                distribution?: {
+                    low: number;
+                    high: number;
+                    okay: number;
+                } | undefined;
+                modal?: 1 | 2 | 3 | undefined;
             }, {
                 windowSizeDays: 7 | 30 | 90;
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
                 stability: "HIGH" | "MEDIUM" | "LOW";
                 sampleCount: number;
-                averageMeasured?: number | undefined;
+                distribution?: {
+                    low: number;
+                    high: number;
+                    okay: number;
+                } | undefined;
+                modal?: 1 | 2 | 3 | undefined;
             }>;
         }, "strip", z.ZodTypeAny, {
             short: {
@@ -440,21 +739,36 @@ export declare const metricSchema: z.ZodObject<{
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
                 stability: "HIGH" | "MEDIUM" | "LOW";
                 sampleCount: number;
-                averageMeasured?: number | undefined;
+                distribution?: {
+                    low: number;
+                    high: number;
+                    okay: number;
+                } | undefined;
+                modal?: 1 | 2 | 3 | undefined;
             };
             medium: {
                 windowSizeDays: 7 | 30 | 90;
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
                 stability: "HIGH" | "MEDIUM" | "LOW";
                 sampleCount: number;
-                averageMeasured?: number | undefined;
+                distribution?: {
+                    low: number;
+                    high: number;
+                    okay: number;
+                } | undefined;
+                modal?: 1 | 2 | 3 | undefined;
             };
             long: {
                 windowSizeDays: 7 | 30 | 90;
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
                 stability: "HIGH" | "MEDIUM" | "LOW";
                 sampleCount: number;
-                averageMeasured?: number | undefined;
+                distribution?: {
+                    low: number;
+                    high: number;
+                    okay: number;
+                } | undefined;
+                modal?: 1 | 2 | 3 | undefined;
             };
         }, {
             short: {
@@ -462,33 +776,48 @@ export declare const metricSchema: z.ZodObject<{
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
                 stability: "HIGH" | "MEDIUM" | "LOW";
                 sampleCount: number;
-                averageMeasured?: number | undefined;
+                distribution?: {
+                    low: number;
+                    high: number;
+                    okay: number;
+                } | undefined;
+                modal?: 1 | 2 | 3 | undefined;
             };
             medium: {
                 windowSizeDays: 7 | 30 | 90;
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
                 stability: "HIGH" | "MEDIUM" | "LOW";
                 sampleCount: number;
-                averageMeasured?: number | undefined;
+                distribution?: {
+                    low: number;
+                    high: number;
+                    okay: number;
+                } | undefined;
+                modal?: 1 | 2 | 3 | undefined;
             };
             long: {
                 windowSizeDays: 7 | 30 | 90;
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
                 stability: "HIGH" | "MEDIUM" | "LOW";
                 sampleCount: number;
-                averageMeasured?: number | undefined;
+                distribution?: {
+                    low: number;
+                    high: number;
+                    okay: number;
+                } | undefined;
+                modal?: 1 | 2 | 3 | undefined;
             };
         }>;
         recentSlice: z.ZodOptional<z.ZodObject<{
             /** Most-recent entries, newest first. offset=0 is today, offset=1 is yesterday, … */
             days: z.ZodArray<z.ZodObject<{
                 offset: z.ZodNumber;
-                value: z.ZodNumber;
+                value: z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>;
             }, "strip", z.ZodTypeAny, {
-                value: number;
+                value: 1 | 2 | 3;
                 offset: number;
             }, {
-                value: number;
+                value: 1 | 2 | 3;
                 offset: number;
             }>, "many">;
             /** Direction of change across this slice */
@@ -499,7 +828,7 @@ export declare const metricSchema: z.ZodObject<{
             salience: z.ZodEnum<["LOW", "MEDIUM", "HIGH"]>;
         }, "strip", z.ZodTypeAny, {
             days: {
-                value: number;
+                value: 1 | 2 | 3;
                 offset: number;
             }[];
             direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
@@ -507,7 +836,7 @@ export declare const metricSchema: z.ZodObject<{
             salience: "HIGH" | "MEDIUM" | "LOW";
         }, {
             days: {
-                value: number;
+                value: 1 | 2 | 3;
                 offset: number;
             }[];
             direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
@@ -515,8 +844,10 @@ export declare const metricSchema: z.ZodObject<{
             salience: "HIGH" | "MEDIUM" | "LOW";
         }>>;
         /**
-         * A pre-generated natural-language summary for the AI, e.g.
-         * "The user has been scoring low energy lately (avg 3.4/5), and this has been declining."
+         * A pre-generated natural-language summary for the AI. State it as a
+         * distribution over the three states, e.g. "Energy has been high on 4 of the
+         * last 7 tracked days and low on 1, up from mostly-okay the week before."
+         * Never as a mean — "avg 3.4/5" is not a thing a 3-point ordinal supports.
          */
         textSummary: z.ZodString;
         meta: z.ZodObject<{
@@ -536,21 +867,36 @@ export declare const metricSchema: z.ZodObject<{
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
                 stability: "HIGH" | "MEDIUM" | "LOW";
                 sampleCount: number;
-                averageMeasured?: number | undefined;
+                distribution?: {
+                    low: number;
+                    high: number;
+                    okay: number;
+                } | undefined;
+                modal?: 1 | 2 | 3 | undefined;
             };
             medium: {
                 windowSizeDays: 7 | 30 | 90;
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
                 stability: "HIGH" | "MEDIUM" | "LOW";
                 sampleCount: number;
-                averageMeasured?: number | undefined;
+                distribution?: {
+                    low: number;
+                    high: number;
+                    okay: number;
+                } | undefined;
+                modal?: 1 | 2 | 3 | undefined;
             };
             long: {
                 windowSizeDays: 7 | 30 | 90;
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
                 stability: "HIGH" | "MEDIUM" | "LOW";
                 sampleCount: number;
-                averageMeasured?: number | undefined;
+                distribution?: {
+                    low: number;
+                    high: number;
+                    okay: number;
+                } | undefined;
+                modal?: 1 | 2 | 3 | undefined;
             };
         };
         meta: {
@@ -561,7 +907,7 @@ export declare const metricSchema: z.ZodObject<{
         textSummary: string;
         recentSlice?: {
             days: {
-                value: number;
+                value: 1 | 2 | 3;
                 offset: number;
             }[];
             direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
@@ -575,21 +921,36 @@ export declare const metricSchema: z.ZodObject<{
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
                 stability: "HIGH" | "MEDIUM" | "LOW";
                 sampleCount: number;
-                averageMeasured?: number | undefined;
+                distribution?: {
+                    low: number;
+                    high: number;
+                    okay: number;
+                } | undefined;
+                modal?: 1 | 2 | 3 | undefined;
             };
             medium: {
                 windowSizeDays: 7 | 30 | 90;
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
                 stability: "HIGH" | "MEDIUM" | "LOW";
                 sampleCount: number;
-                averageMeasured?: number | undefined;
+                distribution?: {
+                    low: number;
+                    high: number;
+                    okay: number;
+                } | undefined;
+                modal?: 1 | 2 | 3 | undefined;
             };
             long: {
                 windowSizeDays: 7 | 30 | 90;
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
                 stability: "HIGH" | "MEDIUM" | "LOW";
                 sampleCount: number;
-                averageMeasured?: number | undefined;
+                distribution?: {
+                    low: number;
+                    high: number;
+                    okay: number;
+                } | undefined;
+                modal?: 1 | 2 | 3 | undefined;
             };
         };
         meta: {
@@ -600,7 +961,7 @@ export declare const metricSchema: z.ZodObject<{
         textSummary: string;
         recentSlice?: {
             days: {
-                value: number;
+                value: 1 | 2 | 3;
                 offset: number;
             }[];
             direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
@@ -621,21 +982,36 @@ export declare const metricSchema: z.ZodObject<{
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
                 stability: "HIGH" | "MEDIUM" | "LOW";
                 sampleCount: number;
-                averageMeasured?: number | undefined;
+                distribution?: {
+                    low: number;
+                    high: number;
+                    okay: number;
+                } | undefined;
+                modal?: 1 | 2 | 3 | undefined;
             };
             medium: {
                 windowSizeDays: 7 | 30 | 90;
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
                 stability: "HIGH" | "MEDIUM" | "LOW";
                 sampleCount: number;
-                averageMeasured?: number | undefined;
+                distribution?: {
+                    low: number;
+                    high: number;
+                    okay: number;
+                } | undefined;
+                modal?: 1 | 2 | 3 | undefined;
             };
             long: {
                 windowSizeDays: 7 | 30 | 90;
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
                 stability: "HIGH" | "MEDIUM" | "LOW";
                 sampleCount: number;
-                averageMeasured?: number | undefined;
+                distribution?: {
+                    low: number;
+                    high: number;
+                    okay: number;
+                } | undefined;
+                modal?: 1 | 2 | 3 | undefined;
             };
         };
         meta: {
@@ -646,7 +1022,7 @@ export declare const metricSchema: z.ZodObject<{
         textSummary: string;
         recentSlice?: {
             days: {
-                value: number;
+                value: 1 | 2 | 3;
                 offset: number;
             }[];
             direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
@@ -654,12 +1030,11 @@ export declare const metricSchema: z.ZodObject<{
             salience: "HIGH" | "MEDIUM" | "LOW";
         } | undefined;
     } | undefined;
-    minLabel?: string | undefined;
-    maxLabel?: string | undefined;
-    quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
-    startedDeletingAt?: import("../types").Timestamp | undefined;
+    scaleLabels?: [string, string, string] | undefined;
     metricRegistryId?: string | undefined;
+    quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     desiredDirection?: "higher" | "lower" | undefined;
+    startedDeletingAt?: import("../types").Timestamp | undefined;
 }, {
     name: string;
     id?: string | undefined;
@@ -673,21 +1048,36 @@ export declare const metricSchema: z.ZodObject<{
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
                 stability: "HIGH" | "MEDIUM" | "LOW";
                 sampleCount: number;
-                averageMeasured?: number | undefined;
+                distribution?: {
+                    low: number;
+                    high: number;
+                    okay: number;
+                } | undefined;
+                modal?: 1 | 2 | 3 | undefined;
             };
             medium: {
                 windowSizeDays: 7 | 30 | 90;
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
                 stability: "HIGH" | "MEDIUM" | "LOW";
                 sampleCount: number;
-                averageMeasured?: number | undefined;
+                distribution?: {
+                    low: number;
+                    high: number;
+                    okay: number;
+                } | undefined;
+                modal?: 1 | 2 | 3 | undefined;
             };
             long: {
                 windowSizeDays: 7 | 30 | 90;
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
                 stability: "HIGH" | "MEDIUM" | "LOW";
                 sampleCount: number;
-                averageMeasured?: number | undefined;
+                distribution?: {
+                    low: number;
+                    high: number;
+                    okay: number;
+                } | undefined;
+                modal?: 1 | 2 | 3 | undefined;
             };
         };
         meta: {
@@ -698,7 +1088,7 @@ export declare const metricSchema: z.ZodObject<{
         textSummary: string;
         recentSlice?: {
             days: {
-                value: number;
+                value: 1 | 2 | 3;
                 offset: number;
             }[];
             direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
@@ -706,12 +1096,11 @@ export declare const metricSchema: z.ZodObject<{
             salience: "HIGH" | "MEDIUM" | "LOW";
         } | undefined;
     } | undefined;
-    minLabel?: string | undefined;
-    maxLabel?: string | undefined;
-    quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
-    startedDeletingAt?: import("../types").Timestamp | undefined;
+    scaleLabels?: [string, string, string] | undefined;
     metricRegistryId?: string | undefined;
+    quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     desiredDirection?: "higher" | "lower" | undefined;
+    startedDeletingAt?: import("../types").Timestamp | undefined;
 }>;
 export type Metric = z.infer<typeof metricSchema>;
 export declare const isMetric: (value: unknown) => value is Metric;

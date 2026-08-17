@@ -4,10 +4,11 @@ exports.proposedExperimentLogSchema = exports.proposedExperimentMetricSchema = v
 const zod_1 = require("zod");
 const base_1 = require("./base");
 const timestampSchema_1 = require("../../utils/timestampSchema");
+const metric_1 = require("../metric");
 exports.proposedExperimentMetricSchema = zod_1.z.object({
-    name: zod_1.z.string().min(1),
-    minLabel: zod_1.z.string().optional(),
-    maxLabel: zod_1.z.string().optional(),
+    name: zod_1.z.string().min(1).max(metric_1.METRIC_NAME_MAX_LENGTH),
+    /** The three scale labels the metric should use, ordered low → high */
+    scaleLabels: metric_1.metricScaleLabelsSchema.optional(),
 });
 exports.proposedExperimentLogSchema = base_1.logBaseSchema.extend({
     type: zod_1.z.literal("proposed_experiment"),
