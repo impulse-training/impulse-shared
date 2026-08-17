@@ -391,8 +391,9 @@ export const behaviorSchema = behaviorTemplateBase
     ordinal: z.number().default(0),
     // What the behavior gives the user. Structured (see behaviorBenefitSchema);
     // legacy string entries still parse via the tolerant element schema.
-    // Captured conversationally by the understand_behavior task
-    // (updateBehaviorUnderstanding tool). Drawbacks stay freeform strings —
+    // Captured conversationally by the understand_behavior task, extracted
+    // from the transcript when it resolves (see extractBehaviorUnderstanding
+    // in impulse-functions). Drawbacks stay freeform strings —
     // only benefits need the normalized `need` dimension for substitute
     // matching.
     benefits: z.array(behaviorBenefitElementSchema).default([]),
