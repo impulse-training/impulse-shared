@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { timestampSchema } from "../utils/timestampSchema";
+import { metricValueSchema } from "./metric";
 
 const experimentMemoryNotesEntrySchema = z.object({
   behaviorIds: z.array(z.string()),
@@ -48,7 +49,8 @@ export const experimentSchema = z.object({
   goal: z
     .object({
       metricId: z.string(),
-      target: z.number(),
+      /** The state being aimed for, on the metric's ordered 3-point scale */
+      target: metricValueSchema,
       direction: z.enum(["increase", "decrease"]),
     })
     .optional(),

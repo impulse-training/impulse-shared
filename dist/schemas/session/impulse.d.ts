@@ -7795,6 +7795,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
     phase?: "contain" | "regulate" | "debrief" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    startedDeletingAt?: import("../../types").Timestamp | undefined;
     triggerId?: string | null | undefined;
     actedOnUrge?: boolean | null | undefined;
     voiceEnabled?: boolean | undefined;
@@ -8468,7 +8469,6 @@ export declare const impulseSessionSchema: z.ZodObject<{
     }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     closeDecidedBy?: "ai" | "reviewer" | undefined;
-    startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
     debriefAfter?: import("../../types").Timestamp | undefined;
     debriefBefore?: import("../../types").Timestamp | undefined;
@@ -8712,6 +8712,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
     phase?: "contain" | "regulate" | "debrief" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    startedDeletingAt?: import("../../types").Timestamp | undefined;
     triggerId?: string | null | undefined;
     actedOnUrge?: boolean | null | undefined;
     voiceEnabled?: boolean | undefined;
@@ -8852,7 +8853,6 @@ export declare const impulseSessionSchema: z.ZodObject<{
     }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     closeDecidedBy?: "ai" | "reviewer" | undefined;
-    startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
     debriefAfter?: import("../../types").Timestamp | undefined;
     debriefBefore?: import("../../types").Timestamp | undefined;

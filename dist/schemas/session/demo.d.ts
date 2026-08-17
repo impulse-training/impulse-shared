@@ -5434,6 +5434,7 @@ export declare const demoSessionSchema: z.ZodObject<{
     tags?: Record<string, string[]> | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    startedDeletingAt?: import("../../types").Timestamp | undefined;
     triggerId?: string | null | undefined;
     voiceEnabled?: boolean | undefined;
     currentTactic?: {
@@ -6106,7 +6107,6 @@ export declare const demoSessionSchema: z.ZodObject<{
     }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     closeDecidedBy?: "ai" | "reviewer" | undefined;
-    startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
     demoVisitorIp?: string | undefined;
     demoVisitorFingerprint?: string | undefined;
@@ -6129,6 +6129,7 @@ export declare const demoSessionSchema: z.ZodObject<{
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    startedDeletingAt?: import("../../types").Timestamp | undefined;
     triggerId?: string | null | undefined;
     voiceEnabled?: boolean | undefined;
     currentTactic?: {
@@ -6268,7 +6269,6 @@ export declare const demoSessionSchema: z.ZodObject<{
     }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     closeDecidedBy?: "ai" | "reviewer" | undefined;
-    startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
     demoVisitorIp?: string | undefined;
     demoVisitorFingerprint?: string | undefined;

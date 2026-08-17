@@ -5433,6 +5433,7 @@ export declare const timePlanSessionSchema: z.ZodObject<{
     tags?: Record<string, string[]> | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    startedDeletingAt?: import("../../types").Timestamp | undefined;
     triggerId?: string | null | undefined;
     voiceEnabled?: boolean | undefined;
     currentTactic?: {
@@ -6105,7 +6106,6 @@ export declare const timePlanSessionSchema: z.ZodObject<{
     }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     closeDecidedBy?: "ai" | "reviewer" | undefined;
-    startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
 }, {
     type: "timePlan";
@@ -6126,6 +6126,7 @@ export declare const timePlanSessionSchema: z.ZodObject<{
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    startedDeletingAt?: import("../../types").Timestamp | undefined;
     triggerId?: string | null | undefined;
     voiceEnabled?: boolean | undefined;
     currentTactic?: {
@@ -6265,7 +6266,6 @@ export declare const timePlanSessionSchema: z.ZodObject<{
     }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     closeDecidedBy?: "ai" | "reviewer" | undefined;
-    startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
 }>;
 export declare const locationPlanSessionSchema: z.ZodObject<{
@@ -11702,6 +11702,7 @@ export declare const locationPlanSessionSchema: z.ZodObject<{
     tags?: Record<string, string[]> | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    startedDeletingAt?: import("../../types").Timestamp | undefined;
     triggerId?: string | null | undefined;
     voiceEnabled?: boolean | undefined;
     currentTactic?: {
@@ -12374,7 +12375,6 @@ export declare const locationPlanSessionSchema: z.ZodObject<{
     }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     closeDecidedBy?: "ai" | "reviewer" | undefined;
-    startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
 }, {
     type: "locationPlan";
@@ -12395,6 +12395,7 @@ export declare const locationPlanSessionSchema: z.ZodObject<{
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    startedDeletingAt?: import("../../types").Timestamp | undefined;
     triggerId?: string | null | undefined;
     voiceEnabled?: boolean | undefined;
     currentTactic?: {
@@ -12534,7 +12535,6 @@ export declare const locationPlanSessionSchema: z.ZodObject<{
     }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     closeDecidedBy?: "ai" | "reviewer" | undefined;
-    startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
 }>;
 export type TimePlanSession = z.infer<typeof timePlanSessionSchema>;

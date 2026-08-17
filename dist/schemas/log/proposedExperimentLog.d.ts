@@ -1,16 +1,14 @@
 import { z } from "zod";
 export declare const proposedExperimentMetricSchema: z.ZodObject<{
     name: z.ZodString;
-    minLabel: z.ZodOptional<z.ZodString>;
-    maxLabel: z.ZodOptional<z.ZodString>;
+    /** The three scale labels the metric should use, ordered low → high */
+    scaleLabels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodString], null>>;
 }, "strip", z.ZodTypeAny, {
     name: string;
-    minLabel?: string | undefined;
-    maxLabel?: string | undefined;
+    scaleLabels?: [string, string, string] | undefined;
 }, {
     name: string;
-    minLabel?: string | undefined;
-    maxLabel?: string | undefined;
+    scaleLabels?: [string, string, string] | undefined;
 }>;
 export declare const proposedExperimentLogSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -30,16 +28,14 @@ export declare const proposedExperimentLogSchema: z.ZodObject<{
     behaviorNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     metrics: z.ZodOptional<z.ZodArray<z.ZodObject<{
         name: z.ZodString;
-        minLabel: z.ZodOptional<z.ZodString>;
-        maxLabel: z.ZodOptional<z.ZodString>;
+        /** The three scale labels the metric should use, ordered low → high */
+        scaleLabels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodString], null>>;
     }, "strip", z.ZodTypeAny, {
         name: string;
-        minLabel?: string | undefined;
-        maxLabel?: string | undefined;
+        scaleLabels?: [string, string, string] | undefined;
     }, {
         name: string;
-        minLabel?: string | undefined;
-        maxLabel?: string | undefined;
+        scaleLabels?: [string, string, string] | undefined;
     }>, "many">>;
     metricLabels: z.ZodArray<z.ZodString, "many">;
     experimentQuestion: z.ZodOptional<z.ZodString>;
@@ -76,8 +72,7 @@ export declare const proposedExperimentLogSchema: z.ZodObject<{
     behaviorNames?: string[] | undefined;
     metrics?: {
         name: string;
-        minLabel?: string | undefined;
-        maxLabel?: string | undefined;
+        scaleLabels?: [string, string, string] | undefined;
     }[] | undefined;
     experimentQuestion?: string | undefined;
     confirmedAt?: import("../../types").Timestamp | undefined;
@@ -105,8 +100,7 @@ export declare const proposedExperimentLogSchema: z.ZodObject<{
     behaviorNames?: string[] | undefined;
     metrics?: {
         name: string;
-        minLabel?: string | undefined;
-        maxLabel?: string | undefined;
+        scaleLabels?: [string, string, string] | undefined;
     }[] | undefined;
     experimentQuestion?: string | undefined;
     confirmedAt?: import("../../types").Timestamp | undefined;

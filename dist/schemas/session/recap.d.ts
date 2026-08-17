@@ -5639,6 +5639,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     tags?: Record<string, string[]> | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    startedDeletingAt?: import("../../types").Timestamp | undefined;
     triggerId?: string | null | undefined;
     completedAt?: import("../../types").Timestamp | null | undefined;
     voiceEnabled?: boolean | undefined;
@@ -6312,7 +6313,6 @@ export declare const recapSessionSchema: z.ZodObject<{
     }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     closeDecidedBy?: "ai" | "reviewer" | undefined;
-    startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
     recapMode?: "daily" | "weekly" | undefined;
     recapPromptNotifiedAt?: import("../../types").Timestamp | null | undefined;
@@ -6371,6 +6371,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    startedDeletingAt?: import("../../types").Timestamp | undefined;
     triggerId?: string | null | undefined;
     completedAt?: import("../../types").Timestamp | null | undefined;
     voiceEnabled?: boolean | undefined;
@@ -6511,7 +6512,6 @@ export declare const recapSessionSchema: z.ZodObject<{
     }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     closeDecidedBy?: "ai" | "reviewer" | undefined;
-    startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
     recapMode?: "daily" | "weekly" | undefined;
     recapPromptNotifiedAt?: import("../../types").Timestamp | null | undefined;

@@ -5443,6 +5443,7 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
     tags?: Record<string, string[]> | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    startedDeletingAt?: import("../../types").Timestamp | undefined;
     triggerId?: string | null | undefined;
     taskId?: string | undefined;
     voiceEnabled?: boolean | undefined;
@@ -6116,7 +6117,6 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
     }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     closeDecidedBy?: "ai" | "reviewer" | undefined;
-    startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
     entryPoint?: "plan" | "discover" | undefined;
     triggerContext?: {
@@ -6141,6 +6141,7 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    startedDeletingAt?: import("../../types").Timestamp | undefined;
     triggerId?: string | null | undefined;
     taskId?: string | undefined;
     voiceEnabled?: boolean | undefined;
@@ -6281,7 +6282,6 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
     }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     closeDecidedBy?: "ai" | "reviewer" | undefined;
-    startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
     entryPoint?: "plan" | "discover" | undefined;
     triggerContext?: {
