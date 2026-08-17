@@ -90,6 +90,7 @@ export declare const experimentSchema: z.ZodObject<{
         direction: "increase" | "decrease";
         metricId: string;
     } | undefined;
+    archivedAt?: import("../types").Timestamp | undefined;
     insights?: {
         body: string;
         heading: string;
@@ -101,7 +102,6 @@ export declare const experimentSchema: z.ZodObject<{
         }>;
     } | undefined;
     resultsSummary?: string | undefined;
-    archivedAt?: import("../types").Timestamp | undefined;
     stageChangedAt?: import("../types").Timestamp | undefined;
     hypothesis?: string | undefined;
     chartUnlocked?: boolean | undefined;
@@ -115,6 +115,7 @@ export declare const experimentSchema: z.ZodObject<{
         direction: "increase" | "decrease";
         metricId: string;
     } | undefined;
+    archivedAt?: import("../types").Timestamp | undefined;
     insights?: {
         body: string;
         heading: string;
@@ -128,7 +129,6 @@ export declare const experimentSchema: z.ZodObject<{
         }> | undefined;
     } | undefined;
     resultsSummary?: string | undefined;
-    archivedAt?: import("../types").Timestamp | undefined;
     stageChangedAt?: import("../types").Timestamp | undefined;
     stageHistory?: {
         stage: "observe" | "intervene" | "maintain";
