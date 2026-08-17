@@ -779,10 +779,10 @@ export function getGptPayload(
           "change, use these exact figures so what you say matches the card " +
           "they can see. They do not replace the week's shape — still open on " +
           "the multi-day pattern (the run of days, where it slipped, where it " +
-          "recovered) from the week block above. State all of it flatly as " +
-          "data and never as a verdict: a change vs last week is an " +
-          "observation, not a win or a setback, and you don't yet know what " +
-          "the week meant. That is what you're asking them.</SYSTEM>",
+          "recovered) from the week block above. Say what it shows plainly " +
+          "— up, down, heavier, cleaner — without inventing more than the " +
+          "figures support — then ask how the week went for them; that " +
+          "question is the point of the opener.</SYSTEM>",
       },
     ];
   }
