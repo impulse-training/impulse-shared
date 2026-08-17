@@ -5,6 +5,7 @@ const zod_1 = require("zod");
 const goal_1 = require("./goal");
 const proposedStrategyModificationLog_1 = require("./log/proposedStrategyModificationLog");
 const timestampSchema_1 = require("../utils/timestampSchema");
+const metric_1 = require("./metric");
 exports.taskStatusSchema = zod_1.z.enum(["open", "completed", "dismissed"]);
 /**
  * Why a task reached the terminal `dismissed` status, when the distinction
@@ -128,9 +129,9 @@ exports.proposeGoalTaskSchema = exports.taskBaseSchema.extend({
     }),
 });
 exports.proposedMetricSchema = zod_1.z.object({
-    name: zod_1.z.string().min(1),
-    minLabel: zod_1.z.string().optional(),
-    maxLabel: zod_1.z.string().optional(),
+    name: zod_1.z.string().min(1).max(metric_1.METRIC_NAME_MAX_LENGTH),
+    /** The three scale labels the metric should use, ordered low → high */
+    scaleLabels: metric_1.metricScaleLabelsSchema.optional(),
 });
 exports.proposeExperimentTaskSchema = exports.taskBaseSchema.extend({
     type: zod_1.z.literal("propose_experiment"),

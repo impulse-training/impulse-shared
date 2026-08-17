@@ -7,6 +7,7 @@ exports.maxConfidence = maxConfidence;
 exports.metricConfidenceFromReadings = metricConfidenceFromReadings;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../utils/timestampSchema");
+const metric_1 = require("./metric");
 /**
  * Overall behavior summary from BigQuery (impulse session counts).
  */
@@ -25,12 +26,25 @@ const behaviorSummarySchema = zod_1.z.object({
     daysWithData: zod_1.z.number(),
 });
 /**
- * Overall metric summary (average of 1-5 scale ratings).
+ * Overall metric summary across the observations in scope.
+ *
+ * `distribution` is the user-facing shape — experiment results compare how
+ * observations were spread across the three states between conditions ("high
+ * energy 62% vs 38%"), which is what an ordinal scale actually supports.
+ * `average` is retained for internal statistics only; never surface it.
  */
 const metricSummarySchema = zod_1.z.object({
-    /** Average rating across all measurements */
+    /** Count of observations in each state, low → high */
+    distribution: zod_1.z
+        .object({
+        low: zod_1.z.number().int().min(0),
+        okay: zod_1.z.number().int().min(0),
+        high: zod_1.z.number().int().min(0),
+    })
+        .optional(),
+    /** Mean of the ordinal values — for analysis only, not for display */
     average: zod_1.z.number(),
-    /** Number of individual ratings recorded */
+    /** Number of individual observations recorded */
     count: zod_1.z.number(),
 });
 /**
@@ -105,8 +119,8 @@ function metricConfidenceFromReadings(input) {
 const metricResultSchema = zod_1.z.object({
     metricId: zod_1.z.string(),
     metricName: zod_1.z.string(),
-    minLabel: zod_1.z.string().optional(),
-    maxLabel: zod_1.z.string().optional(),
+    /** The metric's three scale labels, low → high */
+    scaleLabels: metric_1.metricScaleLabelsSchema.optional(),
     summary: metricSummarySchema.optional(),
     /** Daily time series for charts */
     dailySeries: zod_1.z.array(dailyDataPointSchema).optional(),

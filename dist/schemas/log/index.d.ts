@@ -24772,16 +24772,13 @@ export declare const logSchemas: {
         behaviorNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         metrics: z.ZodOptional<z.ZodArray<z.ZodObject<{
             name: z.ZodString;
-            minLabel: z.ZodOptional<z.ZodString>;
-            maxLabel: z.ZodOptional<z.ZodString>;
+            scaleLabels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodString], null>>;
         }, "strip", z.ZodTypeAny, {
             name: string;
-            minLabel?: string | undefined;
-            maxLabel?: string | undefined;
+            scaleLabels?: [string, string, string] | undefined;
         }, {
             name: string;
-            minLabel?: string | undefined;
-            maxLabel?: string | undefined;
+            scaleLabels?: [string, string, string] | undefined;
         }>, "many">>;
         metricLabels: z.ZodArray<z.ZodString, "many">;
         experimentQuestion: z.ZodOptional<z.ZodString>;
@@ -24818,8 +24815,7 @@ export declare const logSchemas: {
         behaviorNames?: string[] | undefined;
         metrics?: {
             name: string;
-            minLabel?: string | undefined;
-            maxLabel?: string | undefined;
+            scaleLabels?: [string, string, string] | undefined;
         }[] | undefined;
         experimentQuestion?: string | undefined;
         confirmedAt?: import("../../types").Timestamp | undefined;
@@ -24847,8 +24843,7 @@ export declare const logSchemas: {
         behaviorNames?: string[] | undefined;
         metrics?: {
             name: string;
-            minLabel?: string | undefined;
-            maxLabel?: string | undefined;
+            scaleLabels?: [string, string, string] | undefined;
         }[] | undefined;
         experimentQuestion?: string | undefined;
         confirmedAt?: import("../../types").Timestamp | undefined;
@@ -25653,26 +25648,23 @@ export declare const logSchemas: {
         data: z.ZodObject<{
             metricId: z.ZodString;
             metricName: z.ZodString;
-            value: z.ZodNullable<z.ZodNumber>;
-            minLabel: z.ZodOptional<z.ZodString>;
-            maxLabel: z.ZodOptional<z.ZodString>;
+            value: z.ZodNullable<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>>;
+            scaleLabels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodString], null>>;
             text: z.ZodOptional<z.ZodString>;
             quadrant: z.ZodOptional<z.ZodEnum<["activated", "stressed", "calm", "low"]>>;
         }, "strip", z.ZodTypeAny, {
-            value: number | null;
+            value: 1 | 2 | 3 | null;
             metricId: string;
             metricName: string;
             text?: string | undefined;
-            minLabel?: string | undefined;
-            maxLabel?: string | undefined;
+            scaleLabels?: [string, string, string] | undefined;
             quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
         }, {
-            value: number | null;
+            value: 1 | 2 | 3 | null;
             metricId: string;
             metricName: string;
             text?: string | undefined;
-            minLabel?: string | undefined;
-            maxLabel?: string | undefined;
+            scaleLabels?: [string, string, string] | undefined;
             quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
@@ -25685,12 +25677,11 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
-            value: number | null;
+            value: 1 | 2 | 3 | null;
             metricId: string;
             metricName: string;
             text?: string | undefined;
-            minLabel?: string | undefined;
-            maxLabel?: string | undefined;
+            scaleLabels?: [string, string, string] | undefined;
             quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
         };
         id?: string | undefined;
@@ -25709,12 +25700,11 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
-            value: number | null;
+            value: 1 | 2 | 3 | null;
             metricId: string;
             metricName: string;
             text?: string | undefined;
-            minLabel?: string | undefined;
-            maxLabel?: string | undefined;
+            scaleLabels?: [string, string, string] | undefined;
             quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
         };
         id?: string | undefined;
@@ -53548,16 +53538,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     behaviorNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     metrics: z.ZodOptional<z.ZodArray<z.ZodObject<{
         name: z.ZodString;
-        minLabel: z.ZodOptional<z.ZodString>;
-        maxLabel: z.ZodOptional<z.ZodString>;
+        scaleLabels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodString], null>>;
     }, "strip", z.ZodTypeAny, {
         name: string;
-        minLabel?: string | undefined;
-        maxLabel?: string | undefined;
+        scaleLabels?: [string, string, string] | undefined;
     }, {
         name: string;
-        minLabel?: string | undefined;
-        maxLabel?: string | undefined;
+        scaleLabels?: [string, string, string] | undefined;
     }>, "many">>;
     metricLabels: z.ZodArray<z.ZodString, "many">;
     experimentQuestion: z.ZodOptional<z.ZodString>;
@@ -53594,8 +53581,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     behaviorNames?: string[] | undefined;
     metrics?: {
         name: string;
-        minLabel?: string | undefined;
-        maxLabel?: string | undefined;
+        scaleLabels?: [string, string, string] | undefined;
     }[] | undefined;
     experimentQuestion?: string | undefined;
     confirmedAt?: import("../../types").Timestamp | undefined;
@@ -53623,8 +53609,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     behaviorNames?: string[] | undefined;
     metrics?: {
         name: string;
-        minLabel?: string | undefined;
-        maxLabel?: string | undefined;
+        scaleLabels?: [string, string, string] | undefined;
     }[] | undefined;
     experimentQuestion?: string | undefined;
     confirmedAt?: import("../../types").Timestamp | undefined;
@@ -54426,26 +54411,23 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: z.ZodObject<{
         metricId: z.ZodString;
         metricName: z.ZodString;
-        value: z.ZodNullable<z.ZodNumber>;
-        minLabel: z.ZodOptional<z.ZodString>;
-        maxLabel: z.ZodOptional<z.ZodString>;
+        value: z.ZodNullable<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>>;
+        scaleLabels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodString], null>>;
         text: z.ZodOptional<z.ZodString>;
         quadrant: z.ZodOptional<z.ZodEnum<["activated", "stressed", "calm", "low"]>>;
     }, "strip", z.ZodTypeAny, {
-        value: number | null;
+        value: 1 | 2 | 3 | null;
         metricId: string;
         metricName: string;
         text?: string | undefined;
-        minLabel?: string | undefined;
-        maxLabel?: string | undefined;
+        scaleLabels?: [string, string, string] | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     }, {
-        value: number | null;
+        value: 1 | 2 | 3 | null;
         metricId: string;
         metricName: string;
         text?: string | undefined;
-        minLabel?: string | undefined;
-        maxLabel?: string | undefined;
+        scaleLabels?: [string, string, string] | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -54458,12 +54440,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        value: number | null;
+        value: 1 | 2 | 3 | null;
         metricId: string;
         metricName: string;
         text?: string | undefined;
-        minLabel?: string | undefined;
-        maxLabel?: string | undefined;
+        scaleLabels?: [string, string, string] | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     };
     id?: string | undefined;
@@ -54482,12 +54463,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        value: number | null;
+        value: 1 | 2 | 3 | null;
         metricId: string;
         metricName: string;
         text?: string | undefined;
-        minLabel?: string | undefined;
-        maxLabel?: string | undefined;
+        scaleLabels?: [string, string, string] | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     };
     id?: string | undefined;

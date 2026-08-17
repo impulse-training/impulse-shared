@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { timestampSchema } from "../utils/timestampSchema";
+import { metricScaleLabelsSchema } from "./metric";
 
 /**
  * Overall behavior summary from BigQuery (impulse session counts).
@@ -20,12 +21,25 @@ const behaviorSummarySchema = z.object({
 });
 
 /**
- * Overall metric summary (average of 1-5 scale ratings).
+ * Overall metric summary across the observations in scope.
+ *
+ * `distribution` is the user-facing shape — experiment results compare how
+ * observations were spread across the three states between conditions ("high
+ * energy 62% vs 38%"), which is what an ordinal scale actually supports.
+ * `average` is retained for internal statistics only; never surface it.
  */
 const metricSummarySchema = z.object({
-  /** Average rating across all measurements */
+  /** Count of observations in each state, low → high */
+  distribution: z
+    .object({
+      low: z.number().int().min(0),
+      okay: z.number().int().min(0),
+      high: z.number().int().min(0),
+    })
+    .optional(),
+  /** Mean of the ordinal values — for analysis only, not for display */
   average: z.number(),
-  /** Number of individual ratings recorded */
+  /** Number of individual observations recorded */
   count: z.number(),
 });
 
@@ -116,8 +130,8 @@ export function metricConfidenceFromReadings(input: {
 const metricResultSchema = z.object({
   metricId: z.string(),
   metricName: z.string(),
-  minLabel: z.string().optional(),
-  maxLabel: z.string().optional(),
+  /** The metric's three scale labels, low → high */
+  scaleLabels: metricScaleLabelsSchema.optional(),
   summary: metricSummarySchema.optional(),
   /** Daily time series for charts */
   dailySeries: z.array(dailyDataPointSchema).optional(),

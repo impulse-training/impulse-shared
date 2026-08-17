@@ -50,14 +50,15 @@ export declare const experimentSchema: z.ZodObject<{
     hypothesis: z.ZodOptional<z.ZodString>;
     goal: z.ZodOptional<z.ZodObject<{
         metricId: z.ZodString;
-        target: z.ZodNumber;
+        /** The state being aimed for, on the metric's ordered 3-point scale */
+        target: z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>;
         direction: z.ZodEnum<["increase", "decrease"]>;
     }, "strip", z.ZodTypeAny, {
-        target: number;
+        target: 1 | 2 | 3;
         direction: "increase" | "decrease";
         metricId: string;
     }, {
-        target: number;
+        target: 1 | 2 | 3;
         direction: "increase" | "decrease";
         metricId: string;
     }>>;
@@ -86,7 +87,7 @@ export declare const experimentSchema: z.ZodObject<{
     }[];
     startedAt?: import("../types").Timestamp | undefined;
     goal?: {
-        target: number;
+        target: 1 | 2 | 3;
         direction: "increase" | "decrease";
         metricId: string;
     } | undefined;
@@ -111,7 +112,7 @@ export declare const experimentSchema: z.ZodObject<{
     experimentQuestion: string;
     startedAt?: import("../types").Timestamp | undefined;
     goal?: {
-        target: number;
+        target: 1 | 2 | 3;
         direction: "increase" | "decrease";
         metricId: string;
     } | undefined;

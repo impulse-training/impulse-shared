@@ -3,9 +3,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.metricLogSchema = void 0;
 const zod_1 = require("zod");
 const base_1 = require("./base");
+const metric_1 = require("../metric");
 /**
- * A metric measurement log.
- * Records a single 1-5 scale rating for a metric, with optional supporting text.
+ * A metric observation log — one ordered day-scoped state observation.
+ *
+ * The day the observation is ABOUT is `dateString` (inherited from
+ * logBaseSchema); when it was actually recorded is `createdAt`. Those differ on
+ * a backfill, and the gap is deliberately preserved so experiment analysis can
+ * later distinguish a contemporaneous observation from a later recollection.
+ * Do not collapse them by passing the backdated timestamp as `createdAt`.
+ *
+ * One observation per metric per day: these are written with the deterministic
+ * id `metric_{metricId}_{dateString}`, so re-recording a day edits in place
+ * rather than appending a second observation.
  */
 exports.metricLogSchema = base_1.logBaseSchema.extend({
     type: zod_1.z.literal("metric"),
@@ -17,12 +27,13 @@ exports.metricLogSchema = base_1.logBaseSchema.extend({
         metricId: zod_1.z.string(),
         /** Denormalized metric name for display */
         metricName: zod_1.z.string(),
-        /** 1–5 scale rating, null when awaiting user input */
-        value: zod_1.z.number().int().min(1).max(5).nullable(),
-        /** Denormalized label for the low end of the scale */
-        minLabel: zod_1.z.string().optional(),
-        /** Denormalized label for the high end of the scale */
-        maxLabel: zod_1.z.string().optional(),
+        /** Ordered 3-point observation, null when awaiting user input */
+        value: metric_1.metricValueSchema.nullable(),
+        /**
+         * Denormalized scale labels, so a log renders ("Energy: High") without
+         * loading the metric document.
+         */
+        scaleLabels: metric_1.metricScaleLabelsSchema.optional(),
         /** Optional supporting text / note */
         text: zod_1.z.string().optional(),
         /** Denormalized circumplex quadrant — present only on feeling-type metrics */

@@ -5343,6 +5343,7 @@ export declare const generalSessionSchema: z.ZodObject<{
     unreadSince: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     lastMessageAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     lastMessagePreview: z.ZodOptional<z.ZodString>;
+    hiddenFromHomeAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     responseStartedProcessingAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     responseRequestId: z.ZodOptional<z.ZodString>;
     responseError: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -5390,6 +5391,7 @@ export declare const generalSessionSchema: z.ZodObject<{
     tags?: Record<string, string[]> | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    startedDeletingAt?: import("../../types").Timestamp | undefined;
     triggerId?: string | null | undefined;
     voiceEnabled?: boolean | undefined;
     currentTactic?: {
@@ -6036,6 +6038,7 @@ export declare const generalSessionSchema: z.ZodObject<{
     unreadSince?: import("../../types").Timestamp | undefined;
     lastMessageAt?: import("../../types").Timestamp | undefined;
     lastMessagePreview?: string | undefined;
+    hiddenFromHomeAt?: import("../../types").Timestamp | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
     responseRequestId?: string | undefined;
     responseError?: string | null | undefined;
@@ -6050,7 +6053,6 @@ export declare const generalSessionSchema: z.ZodObject<{
     }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     closeDecidedBy?: "ai" | "reviewer" | undefined;
-    startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
     intensity?: number | undefined;
 }, {
@@ -6071,6 +6073,7 @@ export declare const generalSessionSchema: z.ZodObject<{
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    startedDeletingAt?: import("../../types").Timestamp | undefined;
     triggerId?: string | null | undefined;
     voiceEnabled?: boolean | undefined;
     currentTactic?: {
@@ -6184,6 +6187,7 @@ export declare const generalSessionSchema: z.ZodObject<{
     unreadSince?: import("../../types").Timestamp | undefined;
     lastMessageAt?: import("../../types").Timestamp | undefined;
     lastMessagePreview?: string | undefined;
+    hiddenFromHomeAt?: import("../../types").Timestamp | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
     responseRequestId?: string | undefined;
     responseError?: string | null | undefined;
@@ -6198,7 +6202,6 @@ export declare const generalSessionSchema: z.ZodObject<{
     }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     closeDecidedBy?: "ai" | "reviewer" | undefined;
-    startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
     intensity?: number | undefined;
 }>;

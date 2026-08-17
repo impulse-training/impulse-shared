@@ -15,6 +15,7 @@ import { DemoSession, demoSessionSchema } from "./demo";
 import { MilestoneSession, milestoneSessionSchema } from "./milestone";
 import { ToolkitPlanningSession, toolkitPlanningSessionSchema } from "./toolkitPlanning";
 import { coachCheckInSessionSchema } from "./coachCheckIn";
+import { MetricSession, metricSessionSchema } from "./metric";
 export * from "../sessionSummary";
 export * from "./adjustment";
 export * from "./behavior";
@@ -33,6 +34,7 @@ export * from "./demo";
 export * from "./milestone";
 export * from "./toolkitPlanning";
 export * from "./coachCheckIn";
+export * from "./metric";
 export declare const sessionSchemas: Record<string, z.ZodTypeAny>;
 export declare const sessionSchema: z.ZodDiscriminatedUnion<"type", [
     typeof generalSessionSchema,
@@ -51,7 +53,8 @@ export declare const sessionSchema: z.ZodDiscriminatedUnion<"type", [
     typeof demoSessionSchema,
     typeof milestoneSessionSchema,
     typeof toolkitPlanningSessionSchema,
-    typeof coachCheckInSessionSchema
+    typeof coachCheckInSessionSchema,
+    typeof metricSessionSchema
 ]>;
 export declare const sessionIsGeneralSession: (value: Session) => value is GeneralSession;
 export declare const isValidGeneralSession: (value: unknown) => value is GeneralSession;
@@ -67,6 +70,8 @@ export declare const sessionIsLocationPlanSession: (value: Session) => value is 
 export declare const isValidLocationPlanSession: (value: unknown) => value is LocationPlanSession;
 export declare const sessionIsBehaviorSession: (value: Session) => value is BehaviorSession;
 export declare const isValidBehaviorSession: (value: unknown) => value is BehaviorSession;
+export declare const sessionIsMetricSession: (value: Session) => value is MetricSession;
+export declare const isValidMetricSession: (value: unknown) => value is MetricSession;
 export declare const sessionIsAdjustmentSession: (value: Session) => value is AdjustmentSession;
 export declare const isValidAdjustmentSession: (value: unknown) => value is AdjustmentSession;
 export declare const sessionIsTacticSession: (value: Session) => value is TacticSession;
