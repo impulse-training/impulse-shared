@@ -84,6 +84,61 @@ export const impulseUsageStatsSchema = z.object({
 
 export type ImpulseUsageStats = z.infer<typeof impulseUsageStatsSchema>;
 
+
+/**
+ * Category of a durable brain memory. The first five are what the weekly
+ * insight extraction emits; `self_report` is a captured answer to a recap
+ * reflection question, in the user's own words (see
+ * impulse-functions/src/brain/captureRecapAnswer.ts).
+ */
+export const brainMemoryCategorySchema = z.enum([
+  "trigger",
+  "what_works",
+  "what_doesnt",
+  "pattern",
+  "context",
+  "self_report",
+]);
+export type BrainMemoryCategory = z.infer<typeof brainMemoryCategorySchema>;
+
+/** One durable memory about the user, mirrored from the impulse-brain. */
+export const brainMemorySchema = z.object({
+  /** Thought id in the brain (for traceability / edits). */
+  id: z.string(),
+  /** Second-person, standalone statement ("You tend to…"). */
+  statement: z.string(),
+  category: brainMemoryCategorySchema,
+  /** Behavior this memory is about; absent for general memories. */
+  behaviorId: z.string().optional(),
+  behaviorName: z.string().optional(),
+  /** For self_report: the recap question node this answered. */
+  questionId: z.string().optional(),
+  /** For self_report: the question as it was asked. */
+  question: z.string().optional(),
+  /** ISO date-time the memory was captured in the brain. */
+  createdAt: z.string(),
+});
+export type BrainMemory = z.infer<typeof brainMemorySchema>;
+
+/**
+ * Firestore mirror of what the impulse-brain holds about this user — the
+ * living profile summary plus the active insights — so every prompt can inject
+ * durable memory without a network hop to the brain at prompt-build time.
+ * The brain (Supabase) remains the store of record; this is rewritten whole
+ * by syncBrainToUserContext after every derivation / capture.
+ */
+export const userBrainMirrorSchema = z.object({
+  /** The living "what we know about this user" profile, second person. */
+  summary: z.string(),
+  /** Active (non-superseded) memories, newest first, capped. */
+  memories: z.array(brainMemorySchema),
+  /** When the mirror was last rewritten from the brain. */
+  syncedAt: timestampSchema,
+  /** ISO date-time of the last completed insight derivation, if known. */
+  derivedAt: z.string().optional(),
+});
+export type UserBrainMirror = z.infer<typeof userBrainMirrorSchema>;
+
 export const userContextSchema = z.object({
   behaviors: z.record(behaviorContextSchema),
   tactics: z.record(tacticContextSchema),
@@ -91,6 +146,7 @@ export const userContextSchema = z.object({
   communicationProfile: z.string().optional(),
   communicationProfileVersion: z.number().optional(),
   usage: impulseUsageStatsSchema.optional(),
+  brain: userBrainMirrorSchema.optional(),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
 });

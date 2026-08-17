@@ -362,6 +362,129 @@ export declare const impulseUsageStatsSchema: z.ZodObject<{
     computedAt?: import("../types").Timestamp | undefined;
 }>;
 export type ImpulseUsageStats = z.infer<typeof impulseUsageStatsSchema>;
+/**
+ * Category of a durable brain memory. The first five are what the weekly
+ * insight extraction emits; `self_report` is a captured answer to a recap
+ * reflection question, in the user's own words (see
+ * impulse-functions/src/brain/captureRecapAnswer.ts).
+ */
+export declare const brainMemoryCategorySchema: z.ZodEnum<["trigger", "what_works", "what_doesnt", "pattern", "context", "self_report"]>;
+export type BrainMemoryCategory = z.infer<typeof brainMemoryCategorySchema>;
+/** One durable memory about the user, mirrored from the impulse-brain. */
+export declare const brainMemorySchema: z.ZodObject<{
+    /** Thought id in the brain (for traceability / edits). */
+    id: z.ZodString;
+    /** Second-person, standalone statement ("You tend to…"). */
+    statement: z.ZodString;
+    category: z.ZodEnum<["trigger", "what_works", "what_doesnt", "pattern", "context", "self_report"]>;
+    /** Behavior this memory is about; absent for general memories. */
+    behaviorId: z.ZodOptional<z.ZodString>;
+    behaviorName: z.ZodOptional<z.ZodString>;
+    /** For self_report: the recap question node this answered. */
+    questionId: z.ZodOptional<z.ZodString>;
+    /** For self_report: the question as it was asked. */
+    question: z.ZodOptional<z.ZodString>;
+    /** ISO date-time the memory was captured in the brain. */
+    createdAt: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    id: string;
+    createdAt: string;
+    category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+    statement: string;
+    behaviorId?: string | undefined;
+    behaviorName?: string | undefined;
+    question?: string | undefined;
+    questionId?: string | undefined;
+}, {
+    id: string;
+    createdAt: string;
+    category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+    statement: string;
+    behaviorId?: string | undefined;
+    behaviorName?: string | undefined;
+    question?: string | undefined;
+    questionId?: string | undefined;
+}>;
+export type BrainMemory = z.infer<typeof brainMemorySchema>;
+/**
+ * Firestore mirror of what the impulse-brain holds about this user — the
+ * living profile summary plus the active insights — so every prompt can inject
+ * durable memory without a network hop to the brain at prompt-build time.
+ * The brain (Supabase) remains the store of record; this is rewritten whole
+ * by syncBrainToUserContext after every derivation / capture.
+ */
+export declare const userBrainMirrorSchema: z.ZodObject<{
+    /** The living "what we know about this user" profile, second person. */
+    summary: z.ZodString;
+    /** Active (non-superseded) memories, newest first, capped. */
+    memories: z.ZodArray<z.ZodObject<{
+        /** Thought id in the brain (for traceability / edits). */
+        id: z.ZodString;
+        /** Second-person, standalone statement ("You tend to…"). */
+        statement: z.ZodString;
+        category: z.ZodEnum<["trigger", "what_works", "what_doesnt", "pattern", "context", "self_report"]>;
+        /** Behavior this memory is about; absent for general memories. */
+        behaviorId: z.ZodOptional<z.ZodString>;
+        behaviorName: z.ZodOptional<z.ZodString>;
+        /** For self_report: the recap question node this answered. */
+        questionId: z.ZodOptional<z.ZodString>;
+        /** For self_report: the question as it was asked. */
+        question: z.ZodOptional<z.ZodString>;
+        /** ISO date-time the memory was captured in the brain. */
+        createdAt: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        id: string;
+        createdAt: string;
+        category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+        statement: string;
+        behaviorId?: string | undefined;
+        behaviorName?: string | undefined;
+        question?: string | undefined;
+        questionId?: string | undefined;
+    }, {
+        id: string;
+        createdAt: string;
+        category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+        statement: string;
+        behaviorId?: string | undefined;
+        behaviorName?: string | undefined;
+        question?: string | undefined;
+        questionId?: string | undefined;
+    }>, "many">;
+    /** When the mirror was last rewritten from the brain. */
+    syncedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    /** ISO date-time of the last completed insight derivation, if known. */
+    derivedAt: z.ZodOptional<z.ZodString>;
+}, "strip", z.ZodTypeAny, {
+    summary: string;
+    memories: {
+        id: string;
+        createdAt: string;
+        category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+        statement: string;
+        behaviorId?: string | undefined;
+        behaviorName?: string | undefined;
+        question?: string | undefined;
+        questionId?: string | undefined;
+    }[];
+    syncedAt: import("../types").Timestamp;
+    derivedAt?: string | undefined;
+}, {
+    summary: string;
+    memories: {
+        id: string;
+        createdAt: string;
+        category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+        statement: string;
+        behaviorId?: string | undefined;
+        behaviorName?: string | undefined;
+        question?: string | undefined;
+        questionId?: string | undefined;
+    }[];
+    syncedAt: import("../types").Timestamp;
+    derivedAt?: string | undefined;
+}>;
+export type UserBrainMirror = z.infer<typeof userBrainMirrorSchema>;
 export declare const userContextSchema: z.ZodObject<{
     behaviors: z.ZodRecord<z.ZodString, z.ZodObject<{
         behaviorId: z.ZodString;
@@ -683,6 +806,77 @@ export declare const userContextSchema: z.ZodObject<{
         computedDateString?: string | undefined;
         computedAt?: import("../types").Timestamp | undefined;
     }>>;
+    brain: z.ZodOptional<z.ZodObject<{
+        /** The living "what we know about this user" profile, second person. */
+        summary: z.ZodString;
+        /** Active (non-superseded) memories, newest first, capped. */
+        memories: z.ZodArray<z.ZodObject<{
+            /** Thought id in the brain (for traceability / edits). */
+            id: z.ZodString;
+            /** Second-person, standalone statement ("You tend to…"). */
+            statement: z.ZodString;
+            category: z.ZodEnum<["trigger", "what_works", "what_doesnt", "pattern", "context", "self_report"]>;
+            /** Behavior this memory is about; absent for general memories. */
+            behaviorId: z.ZodOptional<z.ZodString>;
+            behaviorName: z.ZodOptional<z.ZodString>;
+            /** For self_report: the recap question node this answered. */
+            questionId: z.ZodOptional<z.ZodString>;
+            /** For self_report: the question as it was asked. */
+            question: z.ZodOptional<z.ZodString>;
+            /** ISO date-time the memory was captured in the brain. */
+            createdAt: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            id: string;
+            createdAt: string;
+            category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+            statement: string;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            question?: string | undefined;
+            questionId?: string | undefined;
+        }, {
+            id: string;
+            createdAt: string;
+            category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+            statement: string;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            question?: string | undefined;
+            questionId?: string | undefined;
+        }>, "many">;
+        /** When the mirror was last rewritten from the brain. */
+        syncedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+        /** ISO date-time of the last completed insight derivation, if known. */
+        derivedAt: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        summary: string;
+        memories: {
+            id: string;
+            createdAt: string;
+            category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+            statement: string;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            question?: string | undefined;
+            questionId?: string | undefined;
+        }[];
+        syncedAt: import("../types").Timestamp;
+        derivedAt?: string | undefined;
+    }, {
+        summary: string;
+        memories: {
+            id: string;
+            createdAt: string;
+            category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+            statement: string;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            question?: string | undefined;
+            questionId?: string | undefined;
+        }[];
+        syncedAt: import("../types").Timestamp;
+        derivedAt?: string | undefined;
+    }>>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
@@ -707,6 +901,21 @@ export declare const userContextSchema: z.ZodObject<{
     }>;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
+    brain?: {
+        summary: string;
+        memories: {
+            id: string;
+            createdAt: string;
+            category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+            statement: string;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            question?: string | undefined;
+            questionId?: string | undefined;
+        }[];
+        syncedAt: import("../types").Timestamp;
+        derivedAt?: string | undefined;
+    } | undefined;
     activeExperiment?: {
         behaviorIds: string[];
         behaviorNames: string[];
@@ -775,6 +984,21 @@ export declare const userContextSchema: z.ZodObject<{
     }>;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
+    brain?: {
+        summary: string;
+        memories: {
+            id: string;
+            createdAt: string;
+            category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+            statement: string;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            question?: string | undefined;
+            questionId?: string | undefined;
+        }[];
+        syncedAt: import("../types").Timestamp;
+        derivedAt?: string | undefined;
+    } | undefined;
     activeExperiment?: {
         behaviorIds: string[];
         behaviorNames: string[];
