@@ -103,6 +103,14 @@ export const sessionBaseSchema = z.object({
   lastMessageAt: timestampSchema.optional(),
   lastMessagePreview: z.string().optional(),
 
+  // "Hide from home" watermark, set client-side from the chats rail. The rail
+  // shows a thread only while `lastMessageAt > hiddenFromHomeAt`, so hiding
+  // retires the thread AS IT STANDS rather than flagging it forever: the next
+  // message moves lastMessageAt past the mark and the thread returns on its
+  // own. A boolean would suppress a conversation the user had gone back to.
+  // Home-rail only — the all-chats screen ignores it.
+  hiddenFromHomeAt: timestampSchema.optional(),
+
   responseStartedProcessingAt: timestampSchema.optional(),
   responseRequestId: z.string().optional(),
   responseError: z.string().nullable().optional(),
