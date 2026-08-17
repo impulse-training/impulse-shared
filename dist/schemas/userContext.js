@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isUserContext = exports.isTacticContext = exports.isBehaviorContext = exports.userContextSchema = exports.impulseUsageStatsSchema = exports.catchRateWindowSchema = exports.activeExperimentContextSchema = exports.tacticContextSchema = exports.behaviorContextSchema = void 0;
+exports.isUserContext = exports.isTacticContext = exports.isBehaviorContext = exports.userContextSchema = exports.userBrainMirrorSchema = exports.brainMemorySchema = exports.brainMemoryCategorySchema = exports.impulseUsageStatsSchema = exports.catchRateWindowSchema = exports.activeExperimentContextSchema = exports.tacticContextSchema = exports.behaviorContextSchema = void 0;
 const zod_1 = require("zod");
 const behavior_1 = require("./behavior");
 const timestampSchema_1 = require("../utils/timestampSchema");
@@ -73,6 +73,54 @@ exports.impulseUsageStatsSchema = zod_1.z.object({
     computedDateString: zod_1.z.string().optional(),
     computedAt: timestampSchema_1.timestampSchema.optional(),
 });
+/**
+ * Category of a durable brain memory. The first five are what the weekly
+ * insight extraction emits; `self_report` is a captured answer to a recap
+ * reflection question, in the user's own words (see
+ * impulse-functions/src/brain/captureRecapAnswer.ts).
+ */
+exports.brainMemoryCategorySchema = zod_1.z.enum([
+    "trigger",
+    "what_works",
+    "what_doesnt",
+    "pattern",
+    "context",
+    "self_report",
+]);
+/** One durable memory about the user, mirrored from the impulse-brain. */
+exports.brainMemorySchema = zod_1.z.object({
+    /** Thought id in the brain (for traceability / edits). */
+    id: zod_1.z.string(),
+    /** Second-person, standalone statement ("You tend to…"). */
+    statement: zod_1.z.string(),
+    category: exports.brainMemoryCategorySchema,
+    /** Behavior this memory is about; absent for general memories. */
+    behaviorId: zod_1.z.string().optional(),
+    behaviorName: zod_1.z.string().optional(),
+    /** For self_report: the recap question node this answered. */
+    questionId: zod_1.z.string().optional(),
+    /** For self_report: the question as it was asked. */
+    question: zod_1.z.string().optional(),
+    /** ISO date-time the memory was captured in the brain. */
+    createdAt: zod_1.z.string(),
+});
+/**
+ * Firestore mirror of what the impulse-brain holds about this user — the
+ * living profile summary plus the active insights — so every prompt can inject
+ * durable memory without a network hop to the brain at prompt-build time.
+ * The brain (Supabase) remains the store of record; this is rewritten whole
+ * by syncBrainToUserContext after every derivation / capture.
+ */
+exports.userBrainMirrorSchema = zod_1.z.object({
+    /** The living "what we know about this user" profile, second person. */
+    summary: zod_1.z.string(),
+    /** Active (non-superseded) memories, newest first, capped. */
+    memories: zod_1.z.array(exports.brainMemorySchema),
+    /** When the mirror was last rewritten from the brain. */
+    syncedAt: timestampSchema_1.timestampSchema,
+    /** ISO date-time of the last completed insight derivation, if known. */
+    derivedAt: zod_1.z.string().optional(),
+});
 exports.userContextSchema = zod_1.z.object({
     behaviors: zod_1.z.record(exports.behaviorContextSchema),
     tactics: zod_1.z.record(exports.tacticContextSchema),
@@ -80,6 +128,7 @@ exports.userContextSchema = zod_1.z.object({
     communicationProfile: zod_1.z.string().optional(),
     communicationProfileVersion: zod_1.z.number().optional(),
     usage: exports.impulseUsageStatsSchema.optional(),
+    brain: exports.userBrainMirrorSchema.optional(),
     createdAt: timestampSchema_1.timestampSchema.optional(),
     updatedAt: timestampSchema_1.timestampSchema.optional(),
 });
