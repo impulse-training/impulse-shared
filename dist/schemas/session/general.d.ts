@@ -5343,6 +5343,7 @@ export declare const generalSessionSchema: z.ZodObject<{
     unreadSince: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     lastMessageAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     lastMessagePreview: z.ZodOptional<z.ZodString>;
+    hiddenFromHomeAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     responseStartedProcessingAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     responseRequestId: z.ZodOptional<z.ZodString>;
     responseError: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -6036,6 +6037,7 @@ export declare const generalSessionSchema: z.ZodObject<{
     unreadSince?: import("../../types").Timestamp | undefined;
     lastMessageAt?: import("../../types").Timestamp | undefined;
     lastMessagePreview?: string | undefined;
+    hiddenFromHomeAt?: import("../../types").Timestamp | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
     responseRequestId?: string | undefined;
     responseError?: string | null | undefined;
@@ -6184,6 +6186,7 @@ export declare const generalSessionSchema: z.ZodObject<{
     unreadSince?: import("../../types").Timestamp | undefined;
     lastMessageAt?: import("../../types").Timestamp | undefined;
     lastMessagePreview?: string | undefined;
+    hiddenFromHomeAt?: import("../../types").Timestamp | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
     responseRequestId?: string | undefined;
     responseError?: string | null | undefined;

@@ -37,6 +37,17 @@ exports.taskBaseSchema = zod_1.z.object({
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: zod_1.z.array(zod_1.z.string()).optional(),
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: zod_1.z.boolean().optional(),
     dependsOnTaskId: zod_1.z.string().optional(),
     claimableSessionTypes: zod_1.z.array(exports.claimableSessionTypeSchema).min(1).optional(),
     /**
@@ -237,10 +248,16 @@ exports.collectBaselineTaskSchema = exports.taskBaseSchema.extend({
  * Get to know a behavior created OUTSIDE onboarding (a general chat where the
  * user mentioned something new and agreed to track it). Onboarding earns this
  * understanding in the flow itself; a mid-program createBehavior skips all of
- * that, so this task queues the conversation — when it happens, what it costs
- * them, what it gives them — for a later session. Completed when the AI saves
- * what it learned onto the behavior doc via updateBehaviorUnderstanding (its
- * requiredTool, behaviorId-scoped like other per-behavior task credits).
+ * that, so this task queues the conversation — the pull first (what it gives
+ * them, and the need that serves), then what it costs them, plus when it
+ * happens — for a later session. It has NO requiredTools: the model writes no
+ * structured data mid-conversation. It resolves through dismissTask
+ * (successful: true once both sides are on the table, false if the user
+ * declines); on the successful path the tool extracts description /
+ * benefits / drawbacks from the transcript onto the behavior doc and refuses
+ * — with a corrective result naming the missing side — while the picture is
+ * still one-sided. Marked `foundational`, so completion also ingests the
+ * transcript into the brain immediately.
  */
 exports.understandBehaviorTaskSchema = exports.taskBaseSchema.extend({
     type: zod_1.z.literal("understand_behavior"),
