@@ -31,6 +31,17 @@ export declare const taskBaseSchema: z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -98,6 +109,7 @@ export declare const taskBaseSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -125,6 +137,7 @@ export declare const taskBaseSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -156,6 +169,17 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -250,6 +274,7 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -285,6 +310,7 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -316,6 +342,17 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -934,6 +971,7 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -1030,6 +1068,7 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -1070,6 +1109,17 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -1322,6 +1372,7 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -1379,6 +1430,7 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -1423,6 +1475,17 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -1535,6 +1598,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -1572,6 +1636,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -1603,6 +1668,17 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -1675,6 +1751,7 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -1704,6 +1781,7 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -1735,6 +1813,17 @@ export declare const createSessionTaskSchema: z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -1917,6 +2006,7 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -1968,6 +2058,7 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -1998,6 +2089,7 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
@@ -2041,6 +2133,7 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2073,6 +2166,7 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2104,6 +2198,17 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -2228,6 +2333,7 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2270,6 +2376,7 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2301,6 +2408,17 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -2371,6 +2489,7 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2399,6 +2518,7 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2430,6 +2550,17 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -2518,6 +2649,7 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2551,6 +2683,7 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2582,6 +2715,17 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -2671,6 +2815,7 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2706,6 +2851,7 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2739,6 +2885,17 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -2811,6 +2968,7 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2840,6 +2998,7 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2856,10 +3015,16 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
  * Get to know a behavior created OUTSIDE onboarding (a general chat where the
  * user mentioned something new and agreed to track it). Onboarding earns this
  * understanding in the flow itself; a mid-program createBehavior skips all of
- * that, so this task queues the conversation — when it happens, what it costs
- * them, what it gives them — for a later session. Completed when the AI saves
- * what it learned onto the behavior doc via updateBehaviorUnderstanding (its
- * requiredTool, behaviorId-scoped like other per-behavior task credits).
+ * that, so this task queues the conversation — the pull first (what it gives
+ * them, and the need that serves), then what it costs them, plus when it
+ * happens — for a later session. It has NO requiredTools: the model writes no
+ * structured data mid-conversation. It resolves through dismissTask
+ * (successful: true once both sides are on the table, false if the user
+ * declines); on the successful path the tool extracts description /
+ * benefits / drawbacks from the transcript onto the behavior doc and refuses
+ * — with a corrective result naming the missing side — while the picture is
+ * still one-sided. Marked `foundational`, so completion also ingests the
+ * transcript into the brain immediately.
  */
 export declare const understandBehaviorTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -2880,6 +3045,17 @@ export declare const understandBehaviorTaskSchema: z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -2954,6 +3130,7 @@ export declare const understandBehaviorTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -2984,6 +3161,7 @@ export declare const understandBehaviorTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3025,6 +3203,17 @@ export declare const containLapseTaskSchema: z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -3108,6 +3297,7 @@ export declare const containLapseTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3139,6 +3329,7 @@ export declare const containLapseTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3179,6 +3370,17 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -3255,6 +3457,7 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3285,6 +3488,7 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3324,6 +3528,17 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -3394,6 +3609,7 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3422,6 +3638,7 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3460,6 +3677,17 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -3533,6 +3761,7 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3562,6 +3791,7 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3597,6 +3827,7 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
@@ -3633,6 +3864,7 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3662,6 +3894,7 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3710,6 +3943,17 @@ export declare const closingReflectionTaskSchema: z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -3783,6 +4027,7 @@ export declare const closingReflectionTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3812,6 +4057,7 @@ export declare const closingReflectionTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3883,6 +4129,17 @@ export declare const protectNextWindowTaskSchema: z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -3955,6 +4212,7 @@ export declare const protectNextWindowTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -3984,6 +4242,7 @@ export declare const protectNextWindowTaskSchema: z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -4015,6 +4274,17 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -4109,6 +4379,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -4144,6 +4415,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -4174,6 +4446,17 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -4792,6 +5075,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -4888,6 +5172,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -4918,6 +5203,17 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -5170,6 +5466,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -5227,6 +5524,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -5257,6 +5555,17 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -5369,6 +5678,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -5406,6 +5716,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -5436,6 +5747,17 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -5508,6 +5830,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -5537,6 +5860,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -5567,6 +5891,17 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -5749,6 +6084,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -5800,6 +6136,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -5829,6 +6166,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
@@ -5872,6 +6210,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -5904,6 +6243,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -5934,6 +6274,17 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -6058,6 +6409,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6100,6 +6452,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6130,6 +6483,17 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -6200,6 +6564,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6228,6 +6593,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6258,6 +6624,17 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -6346,6 +6723,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6379,6 +6757,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6409,6 +6788,17 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -6498,6 +6888,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6533,6 +6924,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6565,6 +6957,17 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -6637,6 +7040,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6666,6 +7070,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6696,6 +7101,17 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -6770,6 +7186,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6800,6 +7217,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6830,6 +7248,17 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -6913,6 +7342,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6944,6 +7374,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -6974,6 +7405,17 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -7050,6 +7492,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -7080,6 +7523,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -7110,6 +7554,17 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -7180,6 +7635,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -7208,6 +7664,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -7238,6 +7695,17 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -7311,6 +7779,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -7340,6 +7809,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -7363,6 +7833,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
@@ -7399,6 +7870,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -7428,6 +7900,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -7458,6 +7931,17 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -7531,6 +8015,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -7560,6 +8045,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -7590,6 +8076,17 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      * via the showCloseButton gate) but that still need optional in-arc tools.
      */
     optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     /**
@@ -7662,6 +8159,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
@@ -7691,6 +8189,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     context?: string | undefined;
     requiredTools?: string[] | undefined;
     optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
