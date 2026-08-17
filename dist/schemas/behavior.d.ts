@@ -1454,6 +1454,7 @@ export declare const behaviorSchema: z.ZodObject<{
     mergedIntoBehaviorId: z.ZodOptional<z.ZodString>;
     mergedFromBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     mergedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    archivedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     streakOverrideStartDate: z.ZodOptional<z.ZodString>;
     streakForgiveness: z.ZodOptional<z.ZodArray<z.ZodObject<{
         /** Local ISO date (YYYY-MM-DD) of the forgiven day. */
@@ -2439,6 +2440,7 @@ export declare const behaviorSchema: z.ZodObject<{
     mergedIntoBehaviorId?: string | undefined;
     mergedFromBehaviorIds?: string[] | undefined;
     mergedAt?: import("../types").Timestamp | undefined;
+    archivedAt?: import("../types").Timestamp | undefined;
     streakOverrideStartDate?: string | undefined;
     streakForgiveness?: {
         at: import("../types").Timestamp;
@@ -2667,6 +2669,7 @@ export declare const behaviorSchema: z.ZodObject<{
     mergedIntoBehaviorId?: string | undefined;
     mergedFromBehaviorIds?: string[] | undefined;
     mergedAt?: import("../types").Timestamp | undefined;
+    archivedAt?: import("../types").Timestamp | undefined;
     streakOverrideStartDate?: string | undefined;
     streakForgiveness?: {
         at: import("../types").Timestamp;
@@ -2827,3 +2830,5 @@ export declare const behaviorSchema: z.ZodObject<{
 }>;
 export type Behavior = z.infer<typeof behaviorSchema>;
 export declare const isBehavior: (value: unknown) => value is Behavior;
+/** Neither merged away nor archived: the set the app and assistant act on. */
+export declare const behaviorIsActive: (behavior: Pick<Behavior, "mergedIntoBehaviorId" | "archivedAt">) => boolean;

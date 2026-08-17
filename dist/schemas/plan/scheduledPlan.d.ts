@@ -82,6 +82,7 @@ export declare const scheduledPlanSchema: z.ZodObject<{
     hour: z.ZodNumber;
     minute: z.ZodNumber;
     weekdays: z.ZodArray<z.ZodNumber, "many">;
+    enabled: z.ZodOptional<z.ZodBoolean>;
 }, "strip", z.ZodTypeAny, {
     type: "scheduled";
     name: string;
@@ -106,6 +107,7 @@ export declare const scheduledPlanSchema: z.ZodObject<{
         behaviorTemplateNames?: string[] | undefined;
     } | undefined;
     summary?: string | undefined;
+    enabled?: boolean | undefined;
     isTemplate?: boolean | undefined;
     notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
     notificationBodyCustomText?: string | undefined;
@@ -151,6 +153,7 @@ export declare const scheduledPlanSchema: z.ZodObject<{
         behaviorTemplateNames?: string[] | undefined;
     } | undefined;
     summary?: string | undefined;
+    enabled?: boolean | undefined;
     isTemplate?: boolean | undefined;
     notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
     notificationBodyCustomText?: string | undefined;
@@ -176,3 +179,4 @@ export declare const scheduledPlanSchema: z.ZodObject<{
     deletedAt?: import("../../types").Timestamp | undefined;
 }>;
 export type ScheduledPlan = z.infer<typeof scheduledPlanSchema>;
+export declare const scheduledPlanIsEnabled: (plan: Pick<ScheduledPlan, "enabled">) => boolean;

@@ -433,6 +433,11 @@ export const behaviorSchema = behaviorTemplateBase
     mergedIntoBehaviorId: z.string().optional(),
     mergedFromBehaviorIds: z.array(z.string()).optional(),
     mergedAt: timestampSchema.optional(),
+    // Set when the user archives the behavior: it stays on record (history,
+    // logs, plans) but leaves the active set the app and the assistant work
+    // with. Distinct from merge (which folds it into another behavior) and
+    // from delete. Read through `behaviorIsActive`.
+    archivedAt: timestampSchema.optional(),
     // User-confirmed streak start date (ISO string), set when backdating a streak after a goal change
     streakOverrideStartDate: z.string().optional(),
     // Coach-granted retroactive streak rescues (per-day). A forgiven NOT_MET_FAIL
@@ -480,3 +485,8 @@ export type Behavior = z.infer<typeof behaviorSchema>;
 
 export const isBehavior = (value: unknown): value is Behavior =>
   behaviorSchema.safeParse(value).success;
+
+/** Neither merged away nor archived: the set the app and assistant act on. */
+export const behaviorIsActive = (
+  behavior: Pick<Behavior, "mergedIntoBehaviorId" | "archivedAt">,
+): boolean => !behavior.mergedIntoBehaviorId && !behavior.archivedAt;
