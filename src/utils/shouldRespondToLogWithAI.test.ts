@@ -173,6 +173,53 @@ describe("shouldRespondToLogWithAI — debrief question", () => {
   });
 });
 
+// manageBehaviorLogs writes behavior logs from INSIDE a turn the assistant is
+// already taking, and stamps shouldZaraRespond: false to say so. Without that
+// opt-out being honoured, such a log starts a second, concurrent turn: `value`
+// defaults to 0 when the model omits it on a timer behavior (and 0 is a real
+// value — "Zero" — on a scale behavior), which lands squarely on the
+// resisted-behavior branch. The only other thing in the way is the
+// latest-log-is-assistant guard, and that is a race — the behavior log is
+// written before the tool_call log that would trip it.
+describe("shouldRespondToLogWithAI — assistant-written behavior log", () => {
+  const session = {
+    id: "session1",
+    type: "general",
+  } as unknown as WithId<Session>;
+
+  const aiBehaviorLog = (value: number, shouldZaraRespond?: boolean) =>
+    ({
+      type: "behavior",
+      isAdjustment: true,
+      ...(shouldZaraRespond !== undefined ? { shouldZaraRespond } : {}),
+      data: {
+        behaviorId: "b1",
+        behaviorName: "Social media & videos",
+        trackingType: "timer",
+        value,
+        formattedValue: value === 0 ? "0m" : "30m",
+      },
+    }) as unknown as Log;
+
+  it("does not start a second turn for a value-0 log the assistant wrote", () => {
+    expect(
+      shouldRespondToLogWithAI(session, undefined, aiBehaviorLog(0, false)),
+    ).toBe(false);
+  });
+
+  it("still responds when the USER logs a resisted (value 0) behavior", () => {
+    expect(shouldRespondToLogWithAI(session, undefined, aiBehaviorLog(0))).toBe(
+      true,
+    );
+  });
+
+  it("does not respond to an assistant-written log with a non-zero value", () => {
+    expect(
+      shouldRespondToLogWithAI(session, undefined, aiBehaviorLog(1800, false)),
+    ).toBe(false);
+  });
+});
+
 describe("shouldRespondToLogWithAI — impulse button re-press", () => {
   const repressLog = {
     type: "impulse_started",
