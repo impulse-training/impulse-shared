@@ -22,6 +22,7 @@ __exportStar(require("./answeredRecapQuestion"), exports);
 __exportStar(require("./attachment"), exports);
 __exportStar(require("./audit"), exports);
 __exportStar(require("./behavior"), exports);
+__exportStar(require("./behaviorDayHistory"), exports);
 __exportStar(require("./behaviorPatternsCache"), exports);
 __exportStar(require("./behaviorState"), exports);
 __exportStar(require("./behaviorTemplate"), exports);

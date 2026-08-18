@@ -150,7 +150,7 @@ export declare const experimentProposalSchema: z.ZodObject<{
     respondedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     declineNote: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    status: "declined" | "pending" | "accepted" | "superseded";
+    status: "pending" | "accepted" | "declined" | "superseded";
     proposedBy: "admin" | "ai";
     proposedAt: import("../types").Timestamp;
     changes: Record<string, unknown>;
@@ -159,7 +159,7 @@ export declare const experimentProposalSchema: z.ZodObject<{
     rationale?: string | undefined;
     declineNote?: string | undefined;
 }, {
-    status: "declined" | "pending" | "accepted" | "superseded";
+    status: "pending" | "accepted" | "declined" | "superseded";
     proposedBy: "admin" | "ai";
     proposedAt: import("../types").Timestamp;
     changes: Record<string, unknown>;

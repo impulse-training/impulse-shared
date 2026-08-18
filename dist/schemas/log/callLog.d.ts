@@ -1144,8 +1144,8 @@ export declare const callLogSchema: z.ZodObject<{
                 text: z.ZodString;
             }, "strip", z.ZodTypeAny, {
                 text: string;
-                groupId: string;
                 mode: "notifySupport";
+                groupId: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1183,8 +1183,8 @@ export declare const callLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             }, {
                 text: string;
-                groupId: string;
                 mode: "notifySupport";
+                groupId: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -4240,8 +4240,8 @@ export declare const callLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                groupId: string;
                 mode: "notifySupport";
+                groupId: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -4945,8 +4945,8 @@ export declare const callLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                groupId: string;
                 mode: "notifySupport";
+                groupId: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -5187,7 +5187,7 @@ export declare const callLogSchema: z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -5260,7 +5260,7 @@ export declare const callLogSchema: z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -5297,7 +5297,6 @@ export declare const callLogSchema: z.ZodObject<{
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         endedAt?: import("../../types").Timestamp | undefined;
-        livekitRoomName?: string | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -5656,8 +5655,8 @@ export declare const callLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                groupId: string;
                 mode: "notifySupport";
+                groupId: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -5898,7 +5897,7 @@ export declare const callLogSchema: z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -5908,6 +5907,7 @@ export declare const callLogSchema: z.ZodObject<{
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         livekitSessionId?: string | undefined;
+        livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
@@ -5921,7 +5921,6 @@ export declare const callLogSchema: z.ZodObject<{
         }[] | undefined;
     }, {
         endedAt?: import("../../types").Timestamp | undefined;
-        livekitRoomName?: string | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -5988,7 +5987,7 @@ export declare const callLogSchema: z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -5998,6 +5997,7 @@ export declare const callLogSchema: z.ZodObject<{
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         livekitSessionId?: string | undefined;
+        livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
@@ -6021,7 +6021,6 @@ export declare const callLogSchema: z.ZodObject<{
     isDisplayable: true;
     data: {
         endedAt?: import("../../types").Timestamp | undefined;
-        livekitRoomName?: string | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -6380,8 +6379,8 @@ export declare const callLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                groupId: string;
                 mode: "notifySupport";
+                groupId: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -6622,7 +6621,7 @@ export declare const callLogSchema: z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -6632,6 +6631,7 @@ export declare const callLogSchema: z.ZodObject<{
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         livekitSessionId?: string | undefined;
+        livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
@@ -6660,7 +6660,6 @@ export declare const callLogSchema: z.ZodObject<{
     isDisplayable: true;
     data: {
         endedAt?: import("../../types").Timestamp | undefined;
-        livekitRoomName?: string | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -6727,7 +6726,7 @@ export declare const callLogSchema: z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -6737,6 +6736,7 @@ export declare const callLogSchema: z.ZodObject<{
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         livekitSessionId?: string | undefined;
+        livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;

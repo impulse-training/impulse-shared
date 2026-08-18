@@ -1137,8 +1137,8 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
             text: z.ZodString;
         }, "strip", z.ZodTypeAny, {
             text: string;
-            groupId: string;
             mode: "notifySupport";
+            groupId: string;
             backgroundImage?: {
                 uri: string;
                 storagePath: string;
@@ -1176,8 +1176,8 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
             tags?: string[] | undefined;
         }, {
             text: string;
-            groupId: string;
             mode: "notifySupport";
+            groupId: string;
             backgroundImage?: {
                 uri: string;
                 storagePath: string;
@@ -4233,8 +4233,8 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
             tags?: string[] | undefined;
         } | {
             text: string;
-            groupId: string;
             mode: "notifySupport";
+            groupId: string;
             backgroundImage?: {
                 uri: string;
                 storagePath: string;
@@ -4938,8 +4938,8 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
             tags?: string[] | undefined;
         } | {
             text: string;
-            groupId: string;
             mode: "notifySupport";
+            groupId: string;
             backgroundImage?: {
                 uri: string;
                 storagePath: string;
@@ -5180,7 +5180,7 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
             defaultConversationMode?: "text" | "voice" | undefined;
             prompt?: string | undefined;
         } | undefined;
-        generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+        generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
         generationError?: string | undefined;
         generationProvider?: string | undefined;
         generationProviderJobId?: string | undefined;
@@ -5253,7 +5253,7 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
             defaultConversationMode?: "text" | "voice" | undefined;
             prompt?: string | undefined;
         } | undefined;
-        generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+        generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
         generationError?: string | undefined;
         generationProvider?: string | undefined;
         generationProviderJobId?: string | undefined;
@@ -5763,8 +5763,8 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
             tags?: string[] | undefined;
         } | {
             text: string;
-            groupId: string;
             mode: "notifySupport";
+            groupId: string;
             backgroundImage?: {
                 uri: string;
                 storagePath: string;
@@ -6005,7 +6005,7 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
             defaultConversationMode?: "text" | "voice" | undefined;
             prompt?: string | undefined;
         } | undefined;
-        generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+        generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
         generationError?: string | undefined;
         generationProvider?: string | undefined;
         generationProviderJobId?: string | undefined;
@@ -6158,7 +6158,7 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
             defaultConversationMode?: "text" | "voice" | undefined;
             prompt?: string | undefined;
         } | undefined;
-        generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+        generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
         generationError?: string | undefined;
         generationProvider?: string | undefined;
         generationProviderJobId?: string | undefined;

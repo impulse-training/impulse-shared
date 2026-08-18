@@ -5,6 +5,7 @@ export * from "./answeredRecapQuestion";
 export * from "./attachment";
 export * from "./audit";
 export * from "./behavior";
+export * from "./behaviorDayHistory";
 export * from "./behaviorPatternsCache";
 export * from "./behaviorState";
 export * from "./behaviorTemplate";
