@@ -181,6 +181,13 @@ exports.recapSessionSchema = base_1.sessionBaseSchema.extend({
      */
     weeklyReviewVersion: zod_1.z.number().optional(),
     /**
+     * Set when this session hosts a weekly review that was started, but not
+     * finished, in an earlier session (the review's unfinished behavior beats
+     * were carried forward within the token's resume window). Points at that
+     * earlier session.
+     */
+    weeklyReviewResumedFromSessionId: zod_1.z.string().optional(),
+    /**
      * Behaviors whose review beat has completed this session (appended by
      * completeBehaviorReview). Progress/debugging aid, not a control surface.
      */

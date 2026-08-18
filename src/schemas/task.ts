@@ -13,8 +13,12 @@ export const taskStatusSchema = z.enum(["open", "completed", "dismissed"]);
  *   without ever being engaged/resolved. Not the same as a deliberate no; a
  *   coach reading the dashboard should be able to tell "he passed on it" from
  *   "he never actually saw/acted on it".
+ * - `resumed`  — a session task that was carried forward into a later session
+ *   (an unfinished weekly-review beat picked up the next day). Not a decision
+ *   about the task at all: the live copy lives in `resumedInSessionId`, and
+ *   the source-task status sync must ignore it.
  */
-export const dismissedReasonSchema = z.enum(["ignored", "declined"]);
+export const dismissedReasonSchema = z.enum(["ignored", "declined", "resumed"]);
 
 export const taskCategorySchema = z.enum(["zara", "deterministic"]);
 
@@ -365,6 +369,16 @@ export const weeklyReviewTaskSchema = taskBaseSchema.extend({
   /** The local Sunday this review week is anchored to (YYYY-MM-DD). */
   weekAnchorDateString: z.string(),
   claimedBySessionId: z.string().optional(),
+  /**
+   * Validity window for carrying an UNFINISHED review forward: a recap opened
+   * on or before this local date (YYYY-MM-DD) whose claiming session still has
+   * open review_behavior beats adopts them and runs in weekly mode. Past it,
+   * the half-done review is left where it stopped. Absent on tokens minted
+   * before the window existed; readers fall back to the day after the anchor.
+   */
+  resumeUntilDateString: z.string().optional(),
+  /** Set when the review moved sessions: the session that first claimed it. */
+  resumedFromSessionId: z.string().optional(),
 });
 
 /**

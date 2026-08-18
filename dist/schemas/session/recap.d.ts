@@ -5577,6 +5577,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     recapPresentableProposalLogIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     recapUserRaisedIdeas: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     weeklyReviewVersion: z.ZodOptional<z.ZodNumber>;
+    weeklyReviewResumedFromSessionId: z.ZodOptional<z.ZodString>;
     recapReviewedBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
 }, "strip", z.ZodTypeAny, {
     type: "recap";
@@ -6298,6 +6299,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     recapPresentableProposalLogIds?: string[] | undefined;
     recapUserRaisedIdeas?: string[] | undefined;
     weeklyReviewVersion?: number | undefined;
+    weeklyReviewResumedFromSessionId?: string | undefined;
     recapReviewedBehaviorIds?: string[] | undefined;
 }, {
     type: "recap";
@@ -6485,6 +6487,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     recapPresentableProposalLogIds?: string[] | undefined;
     recapUserRaisedIdeas?: string[] | undefined;
     weeklyReviewVersion?: number | undefined;
+    weeklyReviewResumedFromSessionId?: string | undefined;
     recapReviewedBehaviorIds?: string[] | undefined;
 }>;
 export type RecapSession = z.infer<typeof recapSessionSchema>;
