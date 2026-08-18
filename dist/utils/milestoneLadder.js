@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.buildLadder = buildLadder;
+exports.buildExperimentLadder = buildExperimentLadder;
 exports.computeMilestoneProgress = computeMilestoneProgress;
 const RUNG_LABELS = {
     1: "1 day",
@@ -47,6 +48,24 @@ function buildLadder(goalType, customRungs) {
     ];
     merged.sort((a, b) => a.days - b.days);
     return merged;
+}
+/**
+ * The ladder an experiment card shows: the behavior's rungs up to and
+ * including the experiment's target, with the target itself as the final rung
+ * (added when it isn't already a rung, so a 21-day target still gets a flag).
+ */
+function buildExperimentLadder(goalType, customRungs, targetDays) {
+    var _a;
+    const rungs = buildLadder(goalType, customRungs).filter((r) => r.days <= targetDays);
+    if (rungs.length === 0)
+        return [];
+    if (rungs[rungs.length - 1].days !== targetDays) {
+        rungs.push({
+            days: targetDays,
+            label: (_a = RUNG_LABELS[targetDays]) !== null && _a !== void 0 ? _a : `${targetDays} days`,
+        });
+    }
+    return rungs;
 }
 function computeMilestoneProgress(currentStreakDays, ladder) {
     let lastAchievedRung = null;

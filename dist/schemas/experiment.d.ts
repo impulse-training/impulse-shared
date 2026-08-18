@@ -48,6 +48,7 @@ export declare const experimentSchema: z.ZodObject<{
         exitedAt?: import("../types").Timestamp | undefined;
     }>, "many">>;
     hypothesis: z.ZodOptional<z.ZodString>;
+    targetDays: z.ZodOptional<z.ZodNumber>;
     goal: z.ZodOptional<z.ZodObject<{
         metricId: z.ZodString;
         target: z.ZodNumber;
@@ -104,6 +105,7 @@ export declare const experimentSchema: z.ZodObject<{
     resultsSummary?: string | undefined;
     stageChangedAt?: import("../types").Timestamp | undefined;
     hypothesis?: string | undefined;
+    targetDays?: number | undefined;
     chartUnlocked?: boolean | undefined;
 }, {
     name: string;
@@ -137,9 +139,14 @@ export declare const experimentSchema: z.ZodObject<{
         exitedAt?: import("../types").Timestamp | undefined;
     }[] | undefined;
     hypothesis?: string | undefined;
+    targetDays?: number | undefined;
     chartUnlocked?: boolean | undefined;
 }>;
 export type Experiment = z.infer<typeof experimentSchema>;
+/** The target the milestone ladder assumed before `targetDays` existed. */
+export declare const DEFAULT_EXPERIMENT_TARGET_DAYS = 30;
+/** The experiment's target run of compliant days, defaulting for older docs. */
+export declare function getExperimentTargetDays(experiment: Pick<Experiment, "targetDays"> | null | undefined): number;
 export declare const experimentProposalSchema: z.ZodObject<{
     proposedBy: z.ZodEnum<["admin", "ai"]>;
     proposedByUid: z.ZodOptional<z.ZodString>;

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.experimentProposalSchema = exports.experimentSchema = void 0;
+exports.experimentProposalSchema = exports.DEFAULT_EXPERIMENT_TARGET_DAYS = exports.experimentSchema = void 0;
+exports.getExperimentTargetDays = getExperimentTargetDays;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../utils/timestampSchema");
 const experimentMemoryNotesEntrySchema = zod_1.z.object({
@@ -32,6 +33,11 @@ exports.experimentSchema = zod_1.z.object({
     stageChangedAt: timestampSchema_1.timestampSchema.optional(),
     stageHistory: zod_1.z.array(stageHistoryEntrySchema).default([]),
     hypothesis: zod_1.z.string().optional(),
+    // How many compliant (clean / within-goal) days the experiment is aiming
+    // for. Not a fixed length: the streak counts consecutive compliant days and
+    // resets, so the experiment runs until the run reaches this. Absent means
+    // DEFAULT_EXPERIMENT_TARGET_DAYS — see getExperimentTargetDays.
+    targetDays: zod_1.z.number().int().positive().optional(),
     goal: zod_1.z
         .object({
         metricId: zod_1.z.string(),
@@ -47,6 +53,15 @@ exports.experimentSchema = zod_1.z.object({
     }))
         .optional(),
 });
+/** The target the milestone ladder assumed before `targetDays` existed. */
+exports.DEFAULT_EXPERIMENT_TARGET_DAYS = 30;
+/** The experiment's target run of compliant days, defaulting for older docs. */
+function getExperimentTargetDays(experiment) {
+    const t = experiment === null || experiment === void 0 ? void 0 : experiment.targetDays;
+    return typeof t === "number" && Number.isInteger(t) && t > 0
+        ? t
+        : exports.DEFAULT_EXPERIMENT_TARGET_DAYS;
+}
 exports.experimentProposalSchema = zod_1.z.object({
     proposedBy: zod_1.z.enum(["admin", "ai"]),
     proposedByUid: zod_1.z.string().optional(),
