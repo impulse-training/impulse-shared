@@ -1693,8 +1693,8 @@ export declare const logSchemas: {
                     text: z.ZodString;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
-                    groupId: string;
                     mode: "notifySupport";
+                    groupId: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -1732,8 +1732,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 }, {
                     text: string;
-                    groupId: string;
                     mode: "notifySupport";
+                    groupId: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -4789,8 +4789,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    groupId: string;
                     mode: "notifySupport";
+                    groupId: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -5494,8 +5494,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    groupId: string;
                     mode: "notifySupport";
+                    groupId: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -5736,7 +5736,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -5809,7 +5809,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -5846,7 +5846,6 @@ export declare const logSchemas: {
             }>, "many">>;
         }, "strip", z.ZodTypeAny, {
             endedAt?: import("../../types").Timestamp | undefined;
-            livekitRoomName?: string | undefined;
             tactic?: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
@@ -6205,8 +6204,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    groupId: string;
                     mode: "notifySupport";
+                    groupId: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -6447,7 +6446,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -6457,6 +6456,7 @@ export declare const logSchemas: {
             } | undefined;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             livekitSessionId?: string | undefined;
+            livekitRoomName?: string | undefined;
             elevenlabsAgentId?: string | undefined;
             elevenlabsConversationId?: string | undefined;
             token?: string | undefined;
@@ -6470,7 +6470,6 @@ export declare const logSchemas: {
             }[] | undefined;
         }, {
             endedAt?: import("../../types").Timestamp | undefined;
-            livekitRoomName?: string | undefined;
             tactic?: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
@@ -6537,7 +6536,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -6547,6 +6546,7 @@ export declare const logSchemas: {
             } | undefined;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             livekitSessionId?: string | undefined;
+            livekitRoomName?: string | undefined;
             elevenlabsAgentId?: string | undefined;
             elevenlabsConversationId?: string | undefined;
             token?: string | undefined;
@@ -6570,7 +6570,6 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             endedAt?: import("../../types").Timestamp | undefined;
-            livekitRoomName?: string | undefined;
             tactic?: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
@@ -6929,8 +6928,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    groupId: string;
                     mode: "notifySupport";
+                    groupId: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -7171,7 +7170,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -7181,6 +7180,7 @@ export declare const logSchemas: {
             } | undefined;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             livekitSessionId?: string | undefined;
+            livekitRoomName?: string | undefined;
             elevenlabsAgentId?: string | undefined;
             elevenlabsConversationId?: string | undefined;
             token?: string | undefined;
@@ -7209,7 +7209,6 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             endedAt?: import("../../types").Timestamp | undefined;
-            livekitRoomName?: string | undefined;
             tactic?: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
@@ -7276,7 +7275,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -7286,6 +7285,7 @@ export declare const logSchemas: {
             } | undefined;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             livekitSessionId?: string | undefined;
+            livekitRoomName?: string | undefined;
             elevenlabsAgentId?: string | undefined;
             elevenlabsConversationId?: string | undefined;
             token?: string | undefined;
@@ -8622,8 +8622,8 @@ export declare const logSchemas: {
                     text: z.ZodString;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
-                    groupId: string;
                     mode: "notifySupport";
+                    groupId: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -8661,8 +8661,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 }, {
                     text: string;
-                    groupId: string;
                     mode: "notifySupport";
+                    groupId: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -11718,8 +11718,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    groupId: string;
                     mode: "notifySupport";
+                    groupId: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -12423,8 +12423,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    groupId: string;
                     mode: "notifySupport";
+                    groupId: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -12665,7 +12665,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -12738,7 +12738,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -13330,8 +13330,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    groupId: string;
                     mode: "notifySupport";
+                    groupId: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -13572,7 +13572,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -13698,7 +13698,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -14126,8 +14126,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    groupId: string;
                     mode: "notifySupport";
+                    groupId: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -14368,7 +14368,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -14509,7 +14509,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -15720,8 +15720,8 @@ export declare const logSchemas: {
                     text: z.ZodString;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
-                    groupId: string;
                     mode: "notifySupport";
+                    groupId: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -15759,8 +15759,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 }, {
                     text: string;
-                    groupId: string;
                     mode: "notifySupport";
+                    groupId: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -18816,8 +18816,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    groupId: string;
                     mode: "notifySupport";
+                    groupId: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -19521,8 +19521,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    groupId: string;
                     mode: "notifySupport";
+                    groupId: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -19763,7 +19763,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -19836,7 +19836,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -20428,8 +20428,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    groupId: string;
                     mode: "notifySupport";
+                    groupId: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -20670,7 +20670,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -20796,7 +20796,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -21224,8 +21224,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    groupId: string;
                     mode: "notifySupport";
+                    groupId: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -21466,7 +21466,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -21607,7 +21607,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -23018,7 +23018,7 @@ export declare const logSchemas: {
             activeIndex: z.ZodOptional<z.ZodNumber>;
             acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
-            source: "scheduled" | "behavior" | "tags" | "trigger" | "improvised";
+            source: "behavior" | "scheduled" | "tags" | "trigger" | "improvised";
             plans: {
                 plan: ({
                     id: string;
@@ -23224,7 +23224,7 @@ export declare const logSchemas: {
             triggerId?: string | null | undefined;
             activeIndex?: number | undefined;
         }, {
-            source: "scheduled" | "behavior" | "tags" | "trigger" | "improvised";
+            source: "behavior" | "scheduled" | "tags" | "trigger" | "improvised";
             plans: {
                 plan: ({
                     id: string;
@@ -23440,7 +23440,7 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         isDisplayable: boolean;
         data: {
-            source: "scheduled" | "behavior" | "tags" | "trigger" | "improvised";
+            source: "behavior" | "scheduled" | "tags" | "trigger" | "improvised";
             plans: {
                 plan: ({
                     id: string;
@@ -23662,7 +23662,7 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         isDisplayable: boolean;
         data: {
-            source: "scheduled" | "behavior" | "tags" | "trigger" | "improvised";
+            source: "behavior" | "scheduled" | "tags" | "trigger" | "improvised";
             plans: {
                 plan: ({
                     id: string;
@@ -25229,7 +25229,7 @@ export declare const logSchemas: {
             createdPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             updatedBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         }, "strip", z.ZodTypeAny, {
-            status: "declined" | "pending" | "accepted" | "superseded";
+            status: "pending" | "accepted" | "declined" | "superseded";
             title: string;
             operations: ({
                 type: "create_trigger";
@@ -25372,7 +25372,7 @@ export declare const logSchemas: {
                     }[];
                 };
             })[];
-            status?: "declined" | "pending" | "accepted" | "superseded" | undefined;
+            status?: "pending" | "accepted" | "declined" | "superseded" | undefined;
             summary?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
@@ -25395,7 +25395,7 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
-            status: "declined" | "pending" | "accepted" | "superseded";
+            status: "pending" | "accepted" | "declined" | "superseded";
             title: string;
             operations: ({
                 type: "create_trigger";
@@ -25553,7 +25553,7 @@ export declare const logSchemas: {
                     }[];
                 };
             })[];
-            status?: "declined" | "pending" | "accepted" | "superseded" | undefined;
+            status?: "pending" | "accepted" | "declined" | "superseded" | undefined;
             summary?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
@@ -26214,7 +26214,7 @@ export declare const logSchemas: {
             }>]>>;
             appliedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
-            status: "declined" | "pending" | "accepted";
+            status: "pending" | "accepted" | "declined";
             title: string;
             behaviorId: string;
             goal: {
@@ -26298,7 +26298,7 @@ export declare const logSchemas: {
                     endTime: string;
                 }[];
             };
-            status?: "declined" | "pending" | "accepted" | undefined;
+            status?: "pending" | "accepted" | "declined" | undefined;
             behaviorName?: string | undefined;
             summary?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
@@ -26340,7 +26340,7 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
-            status: "declined" | "pending" | "accepted";
+            status: "pending" | "accepted" | "declined";
             title: string;
             behaviorId: string;
             goal: {
@@ -26439,7 +26439,7 @@ export declare const logSchemas: {
                     endTime: string;
                 }[];
             };
-            status?: "declined" | "pending" | "accepted" | undefined;
+            status?: "pending" | "accepted" | "declined" | undefined;
             behaviorName?: string | undefined;
             summary?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
@@ -27809,8 +27809,8 @@ export declare const logSchemas: {
                         text: z.ZodString;
                     }, "strip", z.ZodTypeAny, {
                         text: string;
-                        groupId: string;
                         mode: "notifySupport";
+                        groupId: string;
                         backgroundImage?: {
                             uri: string;
                             storagePath: string;
@@ -27848,8 +27848,8 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                     }, {
                         text: string;
-                        groupId: string;
                         mode: "notifySupport";
+                        groupId: string;
                         backgroundImage?: {
                             uri: string;
                             storagePath: string;
@@ -30905,8 +30905,8 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                     } | {
                         text: string;
-                        groupId: string;
                         mode: "notifySupport";
+                        groupId: string;
                         backgroundImage?: {
                             uri: string;
                             storagePath: string;
@@ -31610,8 +31610,8 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                     } | {
                         text: string;
-                        groupId: string;
                         mode: "notifySupport";
+                        groupId: string;
                         backgroundImage?: {
                             uri: string;
                             storagePath: string;
@@ -31852,7 +31852,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
-                    generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                    generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                     generationError?: string | undefined;
                     generationProvider?: string | undefined;
                     generationProviderJobId?: string | undefined;
@@ -31925,7 +31925,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
-                    generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                    generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                     generationError?: string | undefined;
                     generationProvider?: string | undefined;
                     generationProviderJobId?: string | undefined;
@@ -32295,8 +32295,8 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                     } | {
                         text: string;
-                        groupId: string;
                         mode: "notifySupport";
+                        groupId: string;
                         backgroundImage?: {
                             uri: string;
                             storagePath: string;
@@ -32537,7 +32537,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
-                    generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                    generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                     generationError?: string | undefined;
                     generationProvider?: string | undefined;
                     generationProviderJobId?: string | undefined;
@@ -32615,7 +32615,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
-                    generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                    generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                     generationError?: string | undefined;
                     generationProvider?: string | undefined;
                     generationProviderJobId?: string | undefined;
@@ -32988,8 +32988,8 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                     } | {
                         text: string;
-                        groupId: string;
                         mode: "notifySupport";
+                        groupId: string;
                         backgroundImage?: {
                             uri: string;
                             storagePath: string;
@@ -33230,7 +33230,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
-                    generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                    generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                     generationError?: string | undefined;
                     generationProvider?: string | undefined;
                     generationProviderJobId?: string | undefined;
@@ -33311,7 +33311,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
-                    generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                    generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                     generationError?: string | undefined;
                     generationProvider?: string | undefined;
                     generationProviderJobId?: string | undefined;
@@ -33694,8 +33694,8 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                     } | {
                         text: string;
-                        groupId: string;
                         mode: "notifySupport";
+                        groupId: string;
                         backgroundImage?: {
                             uri: string;
                             storagePath: string;
@@ -33936,7 +33936,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
-                    generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                    generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                     generationError?: string | undefined;
                     generationProvider?: string | undefined;
                     generationProviderJobId?: string | undefined;
@@ -34032,7 +34032,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
-                    generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                    generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                     generationError?: string | undefined;
                     generationProvider?: string | undefined;
                     generationProviderJobId?: string | undefined;
@@ -35638,7 +35638,7 @@ export declare const logSchemas: {
             weekOfDateString: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
             note: string;
-            kind: "note" | "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined";
+            kind: "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined" | "note";
             behaviorIds?: string[] | undefined;
             planId?: string | undefined;
             planPath?: string | undefined;
@@ -35657,7 +35657,7 @@ export declare const logSchemas: {
             weekOfDateString?: string | undefined;
         }, {
             note: string;
-            kind: "note" | "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined";
+            kind: "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined" | "note";
             behaviorIds?: string[] | undefined;
             planId?: string | undefined;
             planPath?: string | undefined;
@@ -35686,7 +35686,7 @@ export declare const logSchemas: {
         isDisplayable: false;
         data: {
             note: string;
-            kind: "note" | "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined";
+            kind: "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined" | "note";
             behaviorIds?: string[] | undefined;
             planId?: string | undefined;
             planPath?: string | undefined;
@@ -35720,7 +35720,7 @@ export declare const logSchemas: {
         isDisplayable: false;
         data: {
             note: string;
-            kind: "note" | "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined";
+            kind: "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined" | "note";
             behaviorIds?: string[] | undefined;
             planId?: string | undefined;
             planPath?: string | undefined;
@@ -37583,8 +37583,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 text: z.ZodString;
             }, "strip", z.ZodTypeAny, {
                 text: string;
-                groupId: string;
                 mode: "notifySupport";
+                groupId: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -37622,8 +37622,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             }, {
                 text: string;
-                groupId: string;
                 mode: "notifySupport";
+                groupId: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -40679,8 +40679,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                groupId: string;
                 mode: "notifySupport";
+                groupId: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -41384,8 +41384,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                groupId: string;
                 mode: "notifySupport";
+                groupId: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -41626,7 +41626,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -41699,7 +41699,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -41736,7 +41736,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         endedAt?: import("../../types").Timestamp | undefined;
-        livekitRoomName?: string | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -42095,8 +42094,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                groupId: string;
                 mode: "notifySupport";
+                groupId: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -42337,7 +42336,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -42347,6 +42346,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         livekitSessionId?: string | undefined;
+        livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
@@ -42360,7 +42360,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }[] | undefined;
     }, {
         endedAt?: import("../../types").Timestamp | undefined;
-        livekitRoomName?: string | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -42427,7 +42426,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -42437,6 +42436,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         livekitSessionId?: string | undefined;
+        livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
@@ -42460,7 +42460,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: true;
     data: {
         endedAt?: import("../../types").Timestamp | undefined;
-        livekitRoomName?: string | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -42819,8 +42818,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                groupId: string;
                 mode: "notifySupport";
+                groupId: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -43061,7 +43060,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -43071,6 +43070,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         livekitSessionId?: string | undefined;
+        livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
@@ -43099,7 +43099,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: true;
     data: {
         endedAt?: import("../../types").Timestamp | undefined;
-        livekitRoomName?: string | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -43166,7 +43165,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -43176,6 +43175,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         livekitSessionId?: string | undefined;
+        livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
@@ -44510,8 +44510,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 text: z.ZodString;
             }, "strip", z.ZodTypeAny, {
                 text: string;
-                groupId: string;
                 mode: "notifySupport";
+                groupId: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -44549,8 +44549,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             }, {
                 text: string;
-                groupId: string;
                 mode: "notifySupport";
+                groupId: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -47606,8 +47606,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                groupId: string;
                 mode: "notifySupport";
+                groupId: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -48311,8 +48311,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                groupId: string;
                 mode: "notifySupport";
+                groupId: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -48553,7 +48553,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -48626,7 +48626,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -49218,8 +49218,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                groupId: string;
                 mode: "notifySupport";
+                groupId: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -49460,7 +49460,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -49586,7 +49586,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -50014,8 +50014,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                groupId: string;
                 mode: "notifySupport";
+                groupId: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -50256,7 +50256,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -50397,7 +50397,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -51805,7 +51805,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         activeIndex: z.ZodOptional<z.ZodNumber>;
         acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
-        source: "scheduled" | "behavior" | "tags" | "trigger" | "improvised";
+        source: "behavior" | "scheduled" | "tags" | "trigger" | "improvised";
         plans: {
             plan: ({
                 id: string;
@@ -52011,7 +52011,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         triggerId?: string | null | undefined;
         activeIndex?: number | undefined;
     }, {
-        source: "scheduled" | "behavior" | "tags" | "trigger" | "improvised";
+        source: "behavior" | "scheduled" | "tags" | "trigger" | "improvised";
         plans: {
             plan: ({
                 id: string;
@@ -52227,7 +52227,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: boolean;
     data: {
-        source: "scheduled" | "behavior" | "tags" | "trigger" | "improvised";
+        source: "behavior" | "scheduled" | "tags" | "trigger" | "improvised";
         plans: {
             plan: ({
                 id: string;
@@ -52449,7 +52449,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: boolean;
     data: {
-        source: "scheduled" | "behavior" | "tags" | "trigger" | "improvised";
+        source: "behavior" | "scheduled" | "tags" | "trigger" | "improvised";
         plans: {
             plan: ({
                 id: string;
@@ -54004,7 +54004,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         createdPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         updatedBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     }, "strip", z.ZodTypeAny, {
-        status: "declined" | "pending" | "accepted" | "superseded";
+        status: "pending" | "accepted" | "declined" | "superseded";
         title: string;
         operations: ({
             type: "create_trigger";
@@ -54147,7 +54147,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[];
             };
         })[];
-        status?: "declined" | "pending" | "accepted" | "superseded" | undefined;
+        status?: "pending" | "accepted" | "declined" | "superseded" | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
@@ -54170,7 +54170,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        status: "declined" | "pending" | "accepted" | "superseded";
+        status: "pending" | "accepted" | "declined" | "superseded";
         title: string;
         operations: ({
             type: "create_trigger";
@@ -54328,7 +54328,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[];
             };
         })[];
-        status?: "declined" | "pending" | "accepted" | "superseded" | undefined;
+        status?: "pending" | "accepted" | "declined" | "superseded" | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
@@ -54983,7 +54983,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }>]>>;
         appliedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
-        status: "declined" | "pending" | "accepted";
+        status: "pending" | "accepted" | "declined";
         title: string;
         behaviorId: string;
         goal: {
@@ -55067,7 +55067,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 endTime: string;
             }[];
         };
-        status?: "declined" | "pending" | "accepted" | undefined;
+        status?: "pending" | "accepted" | "declined" | undefined;
         behaviorName?: string | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
@@ -55109,7 +55109,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        status: "declined" | "pending" | "accepted";
+        status: "pending" | "accepted" | "declined";
         title: string;
         behaviorId: string;
         goal: {
@@ -55208,7 +55208,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 endTime: string;
             }[];
         };
-        status?: "declined" | "pending" | "accepted" | undefined;
+        status?: "pending" | "accepted" | "declined" | undefined;
         behaviorName?: string | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
@@ -56575,8 +56575,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     text: z.ZodString;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
-                    groupId: string;
                     mode: "notifySupport";
+                    groupId: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -56614,8 +56614,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                 }, {
                     text: string;
-                    groupId: string;
                     mode: "notifySupport";
+                    groupId: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -59671,8 +59671,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    groupId: string;
                     mode: "notifySupport";
+                    groupId: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -60376,8 +60376,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    groupId: string;
                     mode: "notifySupport";
+                    groupId: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -60618,7 +60618,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -60691,7 +60691,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -61061,8 +61061,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    groupId: string;
                     mode: "notifySupport";
+                    groupId: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -61303,7 +61303,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -61381,7 +61381,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -61754,8 +61754,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    groupId: string;
                     mode: "notifySupport";
+                    groupId: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -61996,7 +61996,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -62077,7 +62077,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -62460,8 +62460,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    groupId: string;
                     mode: "notifySupport";
+                    groupId: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -62702,7 +62702,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -62798,7 +62798,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
+                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -64330,7 +64330,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         weekOfDateString: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         note: string;
-        kind: "note" | "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined";
+        kind: "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined" | "note";
         behaviorIds?: string[] | undefined;
         planId?: string | undefined;
         planPath?: string | undefined;
@@ -64349,7 +64349,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         weekOfDateString?: string | undefined;
     }, {
         note: string;
-        kind: "note" | "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined";
+        kind: "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined" | "note";
         behaviorIds?: string[] | undefined;
         planId?: string | undefined;
         planPath?: string | undefined;
@@ -64378,7 +64378,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: false;
     data: {
         note: string;
-        kind: "note" | "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined";
+        kind: "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined" | "note";
         behaviorIds?: string[] | undefined;
         planId?: string | undefined;
         planPath?: string | undefined;
@@ -64412,7 +64412,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: false;
     data: {
         note: string;
-        kind: "note" | "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined";
+        kind: "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined" | "note";
         behaviorIds?: string[] | undefined;
         planId?: string | undefined;
         planPath?: string | undefined;

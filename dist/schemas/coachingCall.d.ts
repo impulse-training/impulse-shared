@@ -30,10 +30,10 @@ export declare const coachingCallSchema: z.ZodObject<{
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
-    status: "scheduled" | "active" | "completed" | "missed" | "cancelled";
+    status: "scheduled" | "completed" | "active" | "missed" | "cancelled";
+    groupId: string;
     livekitRoomName: string;
     durationMinutes: number;
-    groupId: string;
     scheduledAt: import("../types").Timestamp;
     participantIds: string[];
     joinedByIds: string[];
@@ -53,14 +53,14 @@ export declare const coachingCallSchema: z.ZodObject<{
     } | undefined;
     notifiedAt?: import("../types").Timestamp | undefined;
 }, {
-    livekitRoomName: string;
     groupId: string;
+    livekitRoomName: string;
     scheduledAt: import("../types").Timestamp;
     participantIds: string[];
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
-    status?: "scheduled" | "active" | "completed" | "missed" | "cancelled" | undefined;
+    status?: "scheduled" | "completed" | "active" | "missed" | "cancelled" | undefined;
     startedAt?: import("../types").Timestamp | undefined;
     endedAt?: import("../types").Timestamp | undefined;
     durationMinutes?: number | undefined;

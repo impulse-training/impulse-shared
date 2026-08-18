@@ -1120,8 +1120,8 @@ export declare const tacticStepSchema: z.ZodEffects<z.ZodDiscriminatedUnion<"mod
     text: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     text: string;
-    groupId: string;
     mode: "notifySupport";
+    groupId: string;
     backgroundImage?: {
         uri: string;
         storagePath: string;
@@ -1159,8 +1159,8 @@ export declare const tacticStepSchema: z.ZodEffects<z.ZodDiscriminatedUnion<"mod
     tags?: string[] | undefined;
 }, {
     text: string;
-    groupId: string;
     mode: "notifySupport";
+    groupId: string;
     backgroundImage?: {
         uri: string;
         storagePath: string;
@@ -4216,8 +4216,8 @@ export declare const tacticStepSchema: z.ZodEffects<z.ZodDiscriminatedUnion<"mod
     tags?: string[] | undefined;
 } | {
     text: string;
-    groupId: string;
     mode: "notifySupport";
+    groupId: string;
     backgroundImage?: {
         uri: string;
         storagePath: string;

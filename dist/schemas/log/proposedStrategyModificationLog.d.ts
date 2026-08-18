@@ -1178,7 +1178,7 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
         createdPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         updatedBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     }, "strip", z.ZodTypeAny, {
-        status: "declined" | "pending" | "accepted" | "superseded";
+        status: "pending" | "accepted" | "declined" | "superseded";
         title: string;
         operations: ({
             type: "create_trigger";
@@ -1321,7 +1321,7 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                 }[];
             };
         })[];
-        status?: "declined" | "pending" | "accepted" | "superseded" | undefined;
+        status?: "pending" | "accepted" | "declined" | "superseded" | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
@@ -1344,7 +1344,7 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        status: "declined" | "pending" | "accepted" | "superseded";
+        status: "pending" | "accepted" | "declined" | "superseded";
         title: string;
         operations: ({
             type: "create_trigger";
@@ -1502,7 +1502,7 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                 }[];
             };
         })[];
-        status?: "declined" | "pending" | "accepted" | "superseded" | undefined;
+        status?: "pending" | "accepted" | "declined" | "superseded" | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;

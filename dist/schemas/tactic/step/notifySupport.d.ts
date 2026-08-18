@@ -207,8 +207,8 @@ export declare const notifySupportStepSchema: z.ZodObject<{
     text: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     text: string;
-    groupId: string;
     mode: "notifySupport";
+    groupId: string;
     backgroundImage?: {
         uri: string;
         storagePath: string;
@@ -246,8 +246,8 @@ export declare const notifySupportStepSchema: z.ZodObject<{
     tags?: string[] | undefined;
 }, {
     text: string;
-    groupId: string;
     mode: "notifySupport";
+    groupId: string;
     backgroundImage?: {
         uri: string;
         storagePath: string;

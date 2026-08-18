@@ -109,7 +109,6 @@ export declare const coachBookingTaskSchema: z.ZodObject<{
     type: "coach_booking";
     status: "completed" | "open";
     title: string;
-    groupId: string;
     data: {
         slots: {
             dayOfWeek: number;
@@ -124,6 +123,7 @@ export declare const coachBookingTaskSchema: z.ZodObject<{
             endTime: string;
         } | null | undefined;
     };
+    groupId: string;
     createdBy: string;
     assignedTo: string;
     id?: string | undefined;
@@ -134,7 +134,6 @@ export declare const coachBookingTaskSchema: z.ZodObject<{
     updatedAt: import("../types").Timestamp;
     type: "coach_booking";
     title: string;
-    groupId: string;
     data: {
         slots: {
             dayOfWeek: number;
@@ -149,6 +148,7 @@ export declare const coachBookingTaskSchema: z.ZodObject<{
             endTime: string;
         } | null | undefined;
     };
+    groupId: string;
     createdBy: string;
     assignedTo: string;
     id?: string | undefined;
@@ -231,7 +231,6 @@ export declare const supportGroupTaskSchema: z.ZodDiscriminatedUnion<"type", [z.
     type: "coach_booking";
     status: "completed" | "open";
     title: string;
-    groupId: string;
     data: {
         slots: {
             dayOfWeek: number;
@@ -246,6 +245,7 @@ export declare const supportGroupTaskSchema: z.ZodDiscriminatedUnion<"type", [z.
             endTime: string;
         } | null | undefined;
     };
+    groupId: string;
     createdBy: string;
     assignedTo: string;
     id?: string | undefined;
@@ -256,7 +256,6 @@ export declare const supportGroupTaskSchema: z.ZodDiscriminatedUnion<"type", [z.
     updatedAt: import("../types").Timestamp;
     type: "coach_booking";
     title: string;
-    groupId: string;
     data: {
         slots: {
             dayOfWeek: number;
@@ -271,6 +270,7 @@ export declare const supportGroupTaskSchema: z.ZodDiscriminatedUnion<"type", [z.
             endTime: string;
         } | null | undefined;
     };
+    groupId: string;
     createdBy: string;
     assignedTo: string;
     id?: string | undefined;
