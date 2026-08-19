@@ -40,6 +40,7 @@ export * from "./outreach";
 export * from "./scheduledCheckIn";
 export * from "./scheduledNotification";
 export * from "./dailyReviewReport";
+export * from "./brainHealthReport";
 export * from "./schemaValidationReport";
 export * from "./session";
 export * from "./slot";
