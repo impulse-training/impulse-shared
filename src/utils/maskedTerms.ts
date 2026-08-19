@@ -105,6 +105,9 @@ export function splitTermWords(term: string): string[] {
 function stem(word: string): string {
   if (word.length >= 6 && word.endsWith("ing")) return word.slice(0, -3);
   if (word.length >= 5 && word.endsWith("ed")) return word.slice(0, -2);
+  // The noun form of an act is often what a behavior gets named — masturbation,
+  // rumination — while the coach writes the verb.
+  if (word.length >= 7 && /ions?$/.test(word)) return word.replace(/ions?$/, "");
   if (word.length >= 5 && word.endsWith("ies")) return `${word.slice(0, -3)}y`;
   if (word.length >= 5 && /(?:s|sh|ch|x|z)es$/.test(word))
     return word.slice(0, -2);
@@ -131,7 +134,18 @@ function wordPattern(word: string): string {
   }
   if (base.length < 3) return escapeRegExp(word);
 
-  return `${escapeRegExp(base)}${doubledConsonant}(?:e?[sd]|ing|in['’]|e|)`;
+  const SUFFIXES = "e?[sd]|ing|in['’]|ions?";
+
+  // A silent final "e" is dropped before a vowel suffix: masturbate →
+  // masturbating, vape → vaping. Match on the shortened stem, but require a
+  // suffix so the truncation isn't a word in its own right — "nose" must not
+  // leave a bare "nos" lying around to match.
+  if (!doubledConsonant && base.length >= 4 && base.endsWith("e")) {
+    return `${escapeRegExp(base.slice(0, -1))}(?:${SUFFIXES}|e)`;
+  }
+
+  // The bare "e" covers a stem that lost its own: vaping → vap → vape.
+  return `${escapeRegExp(base)}${doubledConsonant}(?:${SUFFIXES}|e|)`;
 }
 
 /** A term's words in sequence, separator- and filler-tolerant. */
