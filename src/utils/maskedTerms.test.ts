@@ -69,12 +69,25 @@ describe("buildMaskedTermRegex", () => {
       ["Hair pulling", "you pulled your hair"],
       ["Nail biting", "you bit— sorry, you were biting nails"],
       ["Binge watching", "a binge watch last night"],
+      // A silent "e" is dropped before a vowel suffix.
+      ["Masturbate", "masturbating again"],
+      ["Vaping", "reached for the vape"],
+      // The behavior is named as a noun; the coach writes the verb.
+      ["Masturbation", "you masturbated twice"],
+      ["Rumination", "you were ruminating on it"],
     ])("%p matches %p", (term, text) => {
       expect(matches([term], text)).toBe(true);
     });
   });
 
   describe("word boundaries", () => {
+    it("does not match a truncated stem as a word of its own", () => {
+      // "nose" stems to "nos" before vowel suffixes — which is a word in
+      // Spanish, and must not be masked on its own.
+      expect(matches(["Picking nose"], "nos vemos")).toBe(false);
+      expect(matches(["Nose"], "nos vemos")).toBe(false);
+    });
+
     it("does not match inside a longer word", () => {
       expect(matches(["Porn"], "a bowl of popcorn")).toBe(false);
       expect(matches(["Gaming"], "the programming session")).toBe(false);
