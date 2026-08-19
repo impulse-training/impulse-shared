@@ -1,5 +1,6 @@
 import {
   PINNED_TACTIC_BONUS,
+  buildTagGroupLookup,
   TacticScoringContext,
   TacticWithMeta,
   scoreTactic,
@@ -133,5 +134,127 @@ describe("scoreTactic – pinning (boost)", () => {
         suppressedTacticIds: ["conflict"],
       }),
     ).toBeNull();
+  });
+});
+
+describe("buildTagGroupLookup – resolving a group by id or name", () => {
+  // The Feeling group's id is "emotion"; seeded tactics and plans were authored
+  // against the id, so a name-only lookup silently dropped every one of them.
+  const tagGroups = [
+    {
+      id: "emotion",
+      data: {
+        name: "Feeling",
+        options: [
+          { id: "bored", label: "Bored" },
+          { id: "just_woke_up", label: "Just woke up" },
+        ],
+      } as any,
+    },
+    {
+      id: "activity",
+      data: {
+        name: "Activity",
+        options: [{ id: "bathroom", label: "Bathroom" }],
+      } as any,
+    },
+  ];
+
+  const lookup = buildTagGroupLookup(tagGroups);
+  const scoreWithTags = (
+    tactic: TacticWithMeta,
+    sessionTags: Record<string, string[]>,
+  ) => scoreTactic(tactic, sessionTags, [], new Map(), lookup);
+
+  const boredTactic = makeTactic({
+    id: "stand-up",
+    indications: {
+      tags: [
+        { tagGroupName: "emotion", optionLabels: ["bored"], weight: 1.25 },
+      ],
+    },
+  });
+
+  it("matches an indication keyed on the group id", () => {
+    expect(scoreWithTags(boredTactic, { emotion: ["bored"] })).toBe(2.25);
+  });
+
+  it("matches an indication keyed on the group's display name", () => {
+    const byDisplayName = makeTactic({
+      id: "stand-up-by-name",
+      indications: {
+        tags: [
+          { tagGroupName: "Feeling", optionLabels: ["Bored"], weight: 1.25 },
+        ],
+      },
+    });
+
+    expect(scoreWithTags(byDisplayName, { emotion: ["bored"] })).toBe(2.25);
+  });
+
+  it("matches an option named by its id as well as its label", () => {
+    const byOptionId = makeTactic({
+      id: "morning-tactic",
+      indications: {
+        tags: [
+          { tagGroupName: "Feeling", optionLabels: ["just_woke_up"], weight: 2 },
+        ],
+      },
+    });
+
+    expect(scoreWithTags(byOptionId, { emotion: ["just_woke_up"] })).toBe(3);
+    // The label form still resolves to the same option
+    const byOptionLabel = makeTactic({
+      id: "morning-tactic-label",
+      indications: {
+        tags: [
+          { tagGroupName: "Feeling", optionLabels: ["Just woke up"], weight: 2 },
+        ],
+      },
+    });
+    expect(scoreWithTags(byOptionLabel, { emotion: ["just_woke_up"] })).toBe(3);
+  });
+
+  it("hard-excludes on a contraindication keyed on the group id", () => {
+    const standUp = makeTactic({
+      id: "stand-up-contra",
+      contraindications: {
+        tags: [
+          { tagGroupName: "activity", optionLabels: ["Bathroom"], weight: 1 },
+        ],
+      },
+    });
+
+    expect(scoreWithTags(standUp, { activity: ["bathroom"] })).toBeNull();
+    expect(scoreWithTags(standUp, { activity: [] })).toBe(1);
+  });
+
+  it("does not match a group name that belongs to no group", () => {
+    const unknownGroup = makeTactic({
+      id: "unknown-group",
+      indications: {
+        tags: [{ tagGroupName: "vibes", optionLabels: ["bored"], weight: 5 }],
+      },
+    });
+
+    expect(scoreWithTags(unknownGroup, { emotion: ["bored"] })).toBe(1);
+  });
+
+  it("lets a group's display name win over another group's id", () => {
+    // A user group literally named "emotion" must not hijack indications
+    // written against the seeded Feeling group's id.
+    const collided = buildTagGroupLookup([
+      ...tagGroups,
+      {
+        id: "custom123",
+        data: {
+          name: "emotion",
+          options: [{ id: "spicy", label: "Spicy" }],
+        } as any,
+      },
+    ]);
+
+    expect(collided.byName.get("emotion")?.groupId).toBe("custom123");
+    expect(collided.byName.get("feeling")?.groupId).toBe("emotion");
   });
 });
