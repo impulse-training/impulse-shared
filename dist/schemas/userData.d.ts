@@ -210,6 +210,16 @@ export declare const userDataSchema: z.ZodObject<{
     country: z.ZodOptional<z.ZodString>;
     recoveryKeySaved: z.ZodOptional<z.ZodBoolean>;
     disclaimerAcceptedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    aiDataConsent: z.ZodOptional<z.ZodObject<{
+        acceptedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+        version: z.ZodNumber;
+    }, "strip", z.ZodTypeAny, {
+        acceptedAt: import("../types").Timestamp;
+        version: number;
+    }, {
+        acceptedAt: import("../types").Timestamp;
+        version: number;
+    }>>;
     migrations: z.ZodOptional<z.ZodObject<{
         recommendedLibraryDone: z.ZodOptional<z.ZodBoolean>;
         starterLibraryDone: z.ZodOptional<z.ZodBoolean>;
@@ -372,6 +382,10 @@ export declare const userDataSchema: z.ZodObject<{
     }>> | undefined;
     recoveryKeySaved?: boolean | undefined;
     disclaimerAcceptedAt?: import("../types").Timestamp | undefined;
+    aiDataConsent?: {
+        acceptedAt: import("../types").Timestamp;
+        version: number;
+    } | undefined;
     migrations?: {
         recommendedLibraryDone?: boolean | undefined;
         starterLibraryDone?: boolean | undefined;
@@ -488,6 +502,10 @@ export declare const userDataSchema: z.ZodObject<{
     }>> | undefined;
     recoveryKeySaved?: boolean | undefined;
     disclaimerAcceptedAt?: import("../types").Timestamp | undefined;
+    aiDataConsent?: {
+        acceptedAt: import("../types").Timestamp;
+        version: number;
+    } | undefined;
     migrations?: {
         recommendedLibraryDone?: boolean | undefined;
         starterLibraryDone?: boolean | undefined;

@@ -215,6 +215,17 @@ export const userDataSchema = z.object({
   // Disclaimer acceptance
   disclaimerAcceptedAt: timestampSchema.optional(),
 
+  // Consent to send session content to the third-party AI provider (OpenAI).
+  // Absent means never asked or declined; either way the AI coach is gated off
+  // both in the app and on the server. `version` is AI_DATA_CONSENT_VERSION at
+  // the time of acceptance, so a material change to what we send can re-ask.
+  aiDataConsent: z
+    .object({
+      acceptedAt: timestampSchema,
+      version: z.number(),
+    })
+    .optional(),
+
   // One-time migration flags
   migrations: z
     .object({

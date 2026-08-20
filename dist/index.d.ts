@@ -37,4 +37,5 @@ export * from "./utils/engagement";
 export * from "./utils/nextWindowVariant";
 export * from "./utils/winRate";
 export * from "./utils/normalizeDashes";
+export * from "./utils/maskedTerms";
 export * from "./utils/formatBrainMemory";

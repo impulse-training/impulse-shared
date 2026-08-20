@@ -4,7 +4,19 @@ export interface TacticWithMeta extends Tactic {
     path: string;
 }
 export interface TagGroupLookup {
-    /** Map from lowercase group name -> { groupId, options: Map<lowercaseLabel, optionId> } */
+    /**
+     * Map from lowercase group NAME **or** group ID -> { groupId, options }.
+     *
+     * Indications name their group in free text (see `tagIndicationSchema`), and
+     * both forms occur in the wild: seeded tactics/plans were authored against
+     * group ids ("emotion", "activity") while the group's display name is
+     * "Feeling"/"Activity". Keying on the name alone silently dropped every
+     * id-keyed indication — they never matched, and a dead indication looks
+     * exactly like a tactic that simply didn't rank. So accept either, with the
+     * name taking precedence if some other group's id ever collides with it.
+     *
+     * `options` is keyed the same way: lowercase option label or option id.
+     */
     byName: Map<string, {
         groupId: string;
         options: Map<string, string>;

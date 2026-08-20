@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const planScoring_1 = require("./planScoring");
+const tacticScoring_1 = require("./tacticScoring");
 /**
  * Minimal plan stub for testing ranking behavior.
  * Includes one tactic so nextTacticScore is non-null.
@@ -198,5 +199,36 @@ describe("eligibleTacticPaths excludes contraindicated/suppressed tactics", () =
         });
         expect(result.eligibleTacticPaths).toContain("tactics/q-keep");
         expect(result.eligibleTacticPaths).toContain("tactics/q-drop");
+    });
+});
+describe("scorePlanAffinity – group named by id", () => {
+    // Seeded plans in defaultPlans.ts key their tag indications on the Feeling
+    // group's id ("emotion"), not its display name — the lookup has to resolve
+    // both or every seeded plan affinity scores zero.
+    const lookup = (0, tacticScoring_1.buildTagGroupLookup)([
+        {
+            id: "emotion",
+            data: {
+                name: "Feeling",
+                options: [
+                    { id: "stressed", label: "Stressed" },
+                    { id: "bored", label: "Bored" },
+                ],
+            },
+        },
+    ]);
+    const plan = makePlan({
+        id: "stress-plan",
+        indications: {
+            tags: [
+                { tagGroupName: "emotion", optionLabels: ["stressed"], weight: 2 },
+            ],
+        },
+    });
+    it("scores the affinity when the indication names the group by id", () => {
+        expect((0, planScoring_1.scorePlanAffinity)(plan, { emotion: ["stressed"] }, lookup, [])).toBe(2);
+    });
+    it("scores zero when the session tag does not match", () => {
+        expect((0, planScoring_1.scorePlanAffinity)(plan, { emotion: ["bored"] }, lookup, [])).toBe(0);
     });
 });
