@@ -11,12 +11,24 @@ exports.PINNED_TACTIC_BONUS = 3;
 // ── Tag group lookup builder ─────────────────────────────────────────────────
 function buildTagGroupLookup(tagGroups) {
     const byName = new Map();
-    for (const { id, data } of tagGroups) {
+    const entries = tagGroups.map(({ id, data }) => {
         const optionsMap = new Map();
+        // Ids first, labels second: a label wins any collision with an unrelated
+        // option's id within the same group.
+        for (const opt of data.options)
+            optionsMap.set(opt.id.toLowerCase(), opt.id);
         for (const opt of data.options) {
             optionsMap.set(opt.label.toLowerCase(), opt.id);
         }
-        byName.set(data.name.toLowerCase(), { groupId: id, options: optionsMap });
+        return { id, data, entry: { groupId: id, options: optionsMap } };
+    });
+    // Two passes rather than one, so a group's display name always beats some
+    // OTHER group's id — with a single pass the winner would depend on the order
+    // the groups came back from Firestore.
+    for (const { id, entry } of entries)
+        byName.set(id.toLowerCase(), entry);
+    for (const { data, entry } of entries) {
+        byName.set(data.name.toLowerCase(), entry);
     }
     return { byName };
 }

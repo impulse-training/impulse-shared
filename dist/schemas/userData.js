@@ -186,6 +186,16 @@ exports.userDataSchema = zod_1.z.object({
     recoveryKeySaved: zod_1.z.boolean().optional(),
     // Disclaimer acceptance
     disclaimerAcceptedAt: timestampSchema_1.timestampSchema.optional(),
+    // Consent to send session content to the third-party AI provider (OpenAI).
+    // Absent means never asked or declined; either way the AI coach is gated off
+    // both in the app and on the server. `version` is AI_DATA_CONSENT_VERSION at
+    // the time of acceptance, so a material change to what we send can re-ask.
+    aiDataConsent: zod_1.z
+        .object({
+        acceptedAt: timestampSchema_1.timestampSchema,
+        version: zod_1.z.number(),
+    })
+        .optional(),
     // One-time migration flags
     migrations: zod_1.z
         .object({

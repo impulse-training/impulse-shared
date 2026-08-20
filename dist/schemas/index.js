@@ -57,6 +57,7 @@ __exportStar(require("./outreach"), exports);
 __exportStar(require("./scheduledCheckIn"), exports);
 __exportStar(require("./scheduledNotification"), exports);
 __exportStar(require("./dailyReviewReport"), exports);
+__exportStar(require("./brainHealthReport"), exports);
 __exportStar(require("./schemaValidationReport"), exports);
 __exportStar(require("./session"), exports);
 __exportStar(require("./slot"), exports);
