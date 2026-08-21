@@ -14,8 +14,8 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.logIsImpulseStartedLog = exports.isValidProposedGoalChangeLog = exports.logIsProposedGoalChangeLog = exports.isValidWeekOverviewLog = exports.logIsWeekOverviewLog = exports.isValidDayTotalsPromptLog = exports.logIsDayTotalsPromptLog = exports.isValidRecapTimePreferenceLog = exports.logIsRecapTimePreferenceLog = exports.isValidMetricLog = exports.logIsMetricLog = exports.isValidHumanSupportEscalationLog = exports.logIsHumanSupportEscalationLog = exports.isValidResumeRecapRemindersCtaLog = exports.logIsResumeRecapRemindersCtaLog = exports.isValidEnableNotificationsCtaLog = exports.logIsEnableNotificationsCtaLog = exports.isValidSupportGroupDaySummaryLog = exports.logIsSupportGroupDaySummaryLog = exports.isValidBreathingLog = exports.logIsBreathingLog = exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlansLog = exports.logIsPlansLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidSharedMomentLog = exports.logIsSharedMomentLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidSystemMessageLog = exports.logIsSystemMessageLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
-exports.logIsPlanHistoryEntryLog = exports.logIsDebriefQuestionLog = exports.logIsCoachBookingPromptLog = exports.logIsTacticSuggestionsLog = exports.logIsShortcutSetupIntroLog = exports.logIsMaskBehaviorProposalLog = exports.logIsMergeBehaviorsProposalLog = exports.logIsPhotoLog = exports.logIsImageLog = exports.logIsRecoveryKeyLog = exports.logIsCrisisResourceLog = exports.logIsTagsUpdatedLog = exports.logIsProposedStrategyModificationLog = exports.logIsSetupModeChoiceLog = exports.isValidTacticReviewLog = exports.logIsTacticReviewLog = exports.isValidTriggerSelectionLog = exports.logIsTriggerSelectionLog = exports.isValidRequestPermissionsLog = exports.logIsRequestPermissionsLog = exports.isValidImpulseStartedLog = void 0;
+exports.logIsProposedGoalChangeLog = exports.isValidWeekOverviewLog = exports.logIsWeekOverviewLog = exports.isValidDayTotalsPromptLog = exports.logIsDayTotalsPromptLog = exports.isValidRecapTimePreferenceLog = exports.logIsRecapTimePreferenceLog = exports.isValidMetricLog = exports.logIsMetricLog = exports.isValidHumanSupportEscalationLog = exports.logIsHumanSupportEscalationLog = exports.isValidResumeRecapRemindersCtaLog = exports.logIsResumeRecapRemindersCtaLog = exports.isValidEnableNotificationsCtaLog = exports.logIsEnableNotificationsCtaLog = exports.isValidSupportGroupDaySummaryLog = exports.logIsSupportGroupDaySummaryLog = exports.isValidBreathingLog = exports.logIsBreathingLog = exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlansLog = exports.logIsPlansLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidSharedMomentLog = exports.logIsSharedMomentLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidSystemMessageLog = exports.logIsSystemMessageLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.isValidVoiceOfferLog = exports.logIsVoiceOfferLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
+exports.logIsPlanHistoryEntryLog = exports.logIsDebriefQuestionLog = exports.logIsCoachBookingPromptLog = exports.logIsTacticSuggestionsLog = exports.logIsShortcutSetupIntroLog = exports.logIsMaskBehaviorProposalLog = exports.logIsMergeBehaviorsProposalLog = exports.logIsPhotoLog = exports.logIsImageLog = exports.logIsRecoveryKeyLog = exports.logIsCrisisResourceLog = exports.logIsTagsUpdatedLog = exports.logIsProposedStrategyModificationLog = exports.logIsSetupModeChoiceLog = exports.isValidTacticReviewLog = exports.logIsTacticReviewLog = exports.isValidTriggerSelectionLog = exports.logIsTriggerSelectionLog = exports.isValidRequestPermissionsLog = exports.logIsRequestPermissionsLog = exports.isValidImpulseStartedLog = exports.logIsImpulseStartedLog = exports.isValidProposedGoalChangeLog = void 0;
 const zod_1 = require("zod");
 const behaviorLog_1 = require("./behaviorLog");
 const breathingLog_1 = require("./breathingLog");
@@ -60,6 +60,7 @@ const debriefQuestionLog_1 = require("./debriefQuestionLog");
 const planHistoryEntryLog_1 = require("./planHistoryEntryLog");
 const closingReflectionLog_1 = require("./closingReflectionLog");
 const protectNextWindowOutcomeLog_1 = require("./protectNextWindowOutcomeLog");
+const voiceOfferLog_1 = require("./voiceOfferLog");
 exports.logSchemas = {
     user: messageLog_1.userMessageLogSchema,
     assistant_message: messageLog_1.assistantMessageLogSchema,
@@ -107,6 +108,7 @@ exports.logSchemas = {
     plan_history_entry: planHistoryEntryLog_1.planHistoryEntryLogSchema,
     closing_reflection: closingReflectionLog_1.closingReflectionLogSchema,
     protect_next_window_outcome: protectNextWindowOutcomeLog_1.protectNextWindowOutcomeLogSchema,
+    voice_offer: voiceOfferLog_1.voiceOfferLogSchema,
 };
 exports.logTypes = Object.keys(exports.logSchemas);
 __exportStar(require("./behaviorLog"), exports);
@@ -153,6 +155,7 @@ __exportStar(require("./debriefQuestionLog"), exports);
 __exportStar(require("./planHistoryEntryLog"), exports);
 __exportStar(require("./closingReflectionLog"), exports);
 __exportStar(require("./protectNextWindowOutcomeLog"), exports);
+__exportStar(require("./voiceOfferLog"), exports);
 // Discriminated union schema across all log variants
 exports.logSchema = zod_1.z.discriminatedUnion("type", [
     messageLog_1.userMessageLogSchema,
@@ -199,8 +202,15 @@ exports.logSchema = zod_1.z.discriminatedUnion("type", [
     planHistoryEntryLog_1.planHistoryEntryLogSchema,
     closingReflectionLog_1.closingReflectionLogSchema,
     protectNextWindowOutcomeLog_1.protectNextWindowOutcomeLogSchema,
+    voiceOfferLog_1.voiceOfferLogSchema,
 ]);
 // Export log type guards
+const logIsVoiceOfferLog = (value) => value.type === "voice_offer";
+exports.logIsVoiceOfferLog = logIsVoiceOfferLog;
+const isValidVoiceOfferLog = (value) => {
+    return voiceOfferLog_1.voiceOfferLogSchema.safeParse(value).success;
+};
+exports.isValidVoiceOfferLog = isValidVoiceOfferLog;
 const logIsAssistantMessageLog = (value) => value.type === "assistant_message";
 exports.logIsAssistantMessageLog = logIsAssistantMessageLog;
 const isValidAssistantMessageLog = (value) => {
