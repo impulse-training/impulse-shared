@@ -16,6 +16,9 @@ export const recommendedTacticSchema = z.object({
   phase: tacticPhaseSchema.optional().catch(undefined),
   firstStepText: z.string().optional(),
   tacticRefPath: z.string().optional(),
+  /** One-line rendering of the tactic's per-user understanding (note +
+   * avoidWhen), denormalised at extraction time for prompt display. */
+  forUser: z.string().optional(),
 });
 
 export type RecommendedTactic = z.infer<typeof recommendedTacticSchema>;
