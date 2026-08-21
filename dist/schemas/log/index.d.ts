@@ -22134,6 +22134,7 @@ export declare const logSchemas: {
                     numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
                     numberOfSetbacks: z.ZodOptional<z.ZodNumber>;
                     lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    affirmedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -22181,6 +22182,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 }, {
@@ -22225,6 +22227,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 }>>, z.ZodIntersection<z.ZodObject<{
@@ -22312,6 +22315,7 @@ export declare const logSchemas: {
                     numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
                     numberOfSetbacks: z.ZodOptional<z.ZodNumber>;
                     lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    affirmedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -22366,6 +22370,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                 }, {
                     type: "scheduled";
@@ -22413,6 +22418,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                 }>>, z.ZodIntersection<z.ZodObject<{
                     id: z.ZodString;
@@ -22495,6 +22501,7 @@ export declare const logSchemas: {
                         label?: string | undefined;
                     }>]>, "many">>;
                     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                    affirmedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -22546,6 +22553,7 @@ export declare const logSchemas: {
                         label?: string | undefined;
                     })[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 }, {
@@ -22590,6 +22598,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 }>>, z.ZodIntersection<z.ZodObject<{
@@ -22677,6 +22686,7 @@ export declare const logSchemas: {
                     numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
                     numberOfSetbacks: z.ZodOptional<z.ZodNumber>;
                     lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    affirmedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -22724,6 +22734,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 }, {
@@ -22768,6 +22779,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 }>>]>;
@@ -22821,6 +22833,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 }) | ({
@@ -22872,6 +22885,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                 }) | ({
                     id: string;
@@ -22918,6 +22932,7 @@ export declare const logSchemas: {
                         label?: string | undefined;
                     })[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 }) | ({
@@ -22965,6 +22980,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 });
@@ -23019,6 +23035,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 }) | ({
@@ -23070,6 +23087,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                 }) | ({
                     id: string;
@@ -23116,6 +23134,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 }) | ({
@@ -23163,6 +23182,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 });
@@ -23222,6 +23242,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 }) | ({
@@ -23273,6 +23294,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                 }) | ({
                     id: string;
@@ -23319,6 +23341,7 @@ export declare const logSchemas: {
                         label?: string | undefined;
                     })[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 }) | ({
@@ -23366,6 +23389,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 });
@@ -23428,6 +23452,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 }) | ({
@@ -23479,6 +23504,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                 }) | ({
                     id: string;
@@ -23525,6 +23551,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 }) | ({
@@ -23572,6 +23599,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 });
@@ -23644,6 +23672,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 }) | ({
@@ -23695,6 +23724,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                 }) | ({
                     id: string;
@@ -23741,6 +23771,7 @@ export declare const logSchemas: {
                         label?: string | undefined;
                     })[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 }) | ({
@@ -23788,6 +23819,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 });
@@ -23866,6 +23898,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 }) | ({
@@ -23917,6 +23950,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                 }) | ({
                     id: string;
@@ -23963,6 +23997,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 }) | ({
@@ -24010,6 +24045,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
+                    affirmedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 });
@@ -51162,6 +51198,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
                 numberOfSetbacks: z.ZodOptional<z.ZodNumber>;
                 lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                affirmedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -51209,6 +51246,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             }, {
@@ -51253,6 +51291,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             }>>, z.ZodIntersection<z.ZodObject<{
@@ -51340,6 +51379,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
                 numberOfSetbacks: z.ZodOptional<z.ZodNumber>;
                 lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                affirmedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -51394,6 +51434,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             }, {
                 type: "scheduled";
@@ -51441,6 +51482,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             }>>, z.ZodIntersection<z.ZodObject<{
                 id: z.ZodString;
@@ -51523,6 +51565,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     label?: string | undefined;
                 }>]>, "many">>;
                 behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                affirmedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -51574,6 +51617,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     label?: string | undefined;
                 })[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             }, {
@@ -51618,6 +51662,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             }>>, z.ZodIntersection<z.ZodObject<{
@@ -51705,6 +51750,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
                 numberOfSetbacks: z.ZodOptional<z.ZodNumber>;
                 lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                affirmedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -51752,6 +51798,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             }, {
@@ -51796,6 +51843,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             }>>]>;
@@ -51849,6 +51897,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             }) | ({
@@ -51900,6 +51949,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             }) | ({
                 id: string;
@@ -51946,6 +51996,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     label?: string | undefined;
                 })[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             }) | ({
@@ -51993,6 +52044,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             });
@@ -52047,6 +52099,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             }) | ({
@@ -52098,6 +52151,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             }) | ({
                 id: string;
@@ -52144,6 +52198,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             }) | ({
@@ -52191,6 +52246,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             });
@@ -52250,6 +52306,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             }) | ({
@@ -52301,6 +52358,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             }) | ({
                 id: string;
@@ -52347,6 +52405,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     label?: string | undefined;
                 })[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             }) | ({
@@ -52394,6 +52453,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             });
@@ -52456,6 +52516,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             }) | ({
@@ -52507,6 +52568,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             }) | ({
                 id: string;
@@ -52553,6 +52615,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             }) | ({
@@ -52600,6 +52663,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             });
@@ -52672,6 +52736,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             }) | ({
@@ -52723,6 +52788,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             }) | ({
                 id: string;
@@ -52769,6 +52835,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     label?: string | undefined;
                 })[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             }) | ({
@@ -52816,6 +52883,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             });
@@ -52894,6 +52962,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             }) | ({
@@ -52945,6 +53014,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             }) | ({
                 id: string;
@@ -52991,6 +53061,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             }) | ({
@@ -53038,6 +53109,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
+                affirmedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             });

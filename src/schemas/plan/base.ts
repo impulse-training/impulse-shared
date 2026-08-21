@@ -59,6 +59,12 @@ export function planBaseSchema<T extends string>(type: T) {
     numberOfSuccesses: z.number().int().nonnegative().optional(),
     numberOfSetbacks: z.number().int().nonnegative().optional(),
     lastUsedAt: timestampSchema.optional(),
+    // When the USER last stood behind this plan: content edit, activating it,
+    // or a successful use (all stamped server-side, never by the model).
+    // Plans older than PLAN_AFFIRMATION_DECAY_DAYS since this read as stale
+    // and are delivered as one option among many, not "your plan" (see
+    // planIsStale). Absent falls back to createdAt.
+    affirmedAt: timestampSchema.optional(),
     createdAt: timestampSchema.optional(),
     updatedAt: timestampSchema.optional(),
     deletedAt: timestampSchema.optional(),

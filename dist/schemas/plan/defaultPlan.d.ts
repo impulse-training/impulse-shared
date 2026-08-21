@@ -71,6 +71,7 @@ export declare const defaultPlanSchema: z.ZodObject<{
         label?: string | undefined;
     }>]>, "many">>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    affirmedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -122,6 +123,7 @@ export declare const defaultPlanSchema: z.ZodObject<{
         label?: string | undefined;
     })[] | undefined;
     lastUsedAt?: import("../../types").Timestamp | undefined;
+    affirmedAt?: import("../../types").Timestamp | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
     isActive?: boolean | undefined;
 }, {
@@ -166,6 +168,7 @@ export declare const defaultPlanSchema: z.ZodObject<{
     numberOfSuccesses?: number | undefined;
     numberOfSetbacks?: number | undefined;
     lastUsedAt?: import("../../types").Timestamp | undefined;
+    affirmedAt?: import("../../types").Timestamp | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
     isActive?: boolean | undefined;
 }>;

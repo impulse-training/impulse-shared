@@ -55,6 +55,10 @@ exports.impulseSessionSchema = base_1.sessionBaseSchema.extend({
     // context for tactic/behavior logs so the AI grounds its responses correctly.
     phase: phase_1.sessionPhaseSchema.optional(),
     hasScheduledCheckIn: zod_1.z.boolean().optional(),
+    // Stamped by setSessionTags when the session's resolved user-owned plan is
+    // stale (planIsStale), so every later prompt build frames the plan as an
+    // option among many rather than the script.
+    planStale: zod_1.z.boolean().optional(),
     recommendedTactics: zod_1.z.array(exports.recommendedTacticSchema).optional(),
     suggestedPlan: exports.suggestedPlanSchema.optional(),
     /**

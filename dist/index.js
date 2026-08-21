@@ -51,6 +51,7 @@ __exportStar(require("./utils/attachments"), exports);
 __exportStar(require("./utils/behaviorData"), exports);
 __exportStar(require("./utils/behaviorSalience"), exports);
 __exportStar(require("./utils/clock"), exports);
+__exportStar(require("./utils/planFreshness"), exports);
 __exportStar(require("./utils/dates"), exports);
 __exportStar(require("./utils/days"), exports);
 __exportStar(require("./utils/documentReferenceSchema"), exports);

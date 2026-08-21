@@ -59,6 +59,10 @@ export const impulseSessionSchema = sessionBaseSchema.extend({
   // context for tactic/behavior logs so the AI grounds its responses correctly.
   phase: sessionPhaseSchema.optional(),
   hasScheduledCheckIn: z.boolean().optional(),
+  // Stamped by setSessionTags when the session's resolved user-owned plan is
+  // stale (planIsStale), so every later prompt build frames the plan as an
+  // option among many rather than the script.
+  planStale: z.boolean().optional(),
   recommendedTactics: z.array(recommendedTacticSchema).optional(),
   suggestedPlan: suggestedPlanSchema.optional(),
   /**
