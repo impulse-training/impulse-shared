@@ -1,4 +1,33 @@
 import { z } from "zod";
+/**
+ * What the AI has learned about how this tactic works FOR THIS USER, captured
+ * from their own words via the updateTacticUnderstanding tool (never
+ * inferred). Lives only on library copies (users/{uid}/tactics) — catalog
+ * tactics are shared and carry no personal knowledge.
+ *
+ * `satisfies` uses the same closed need vocabulary as behavior benefits, so
+ * recommendation can join them: a tactic that satisfies the need a behavior
+ * serves ("podcasts also give novelty/escape") is a grounded substitute.
+ */
+export declare const tacticUnderstandingSchema: z.ZodObject<{
+    satisfies: z.ZodOptional<z.ZodArray<z.ZodEnum<["relaxation", "stimulation", "escape", "connection", "control", "pleasure", "achievement", "boredom_relief", "comfort", "focus"]>, "many">>;
+    /** How and when it works for this user, close to their own words. */
+    note: z.ZodOptional<z.ZodString>;
+    /** Conditions where it doesn't work or shouldn't be offered. */
+    avoidWhen: z.ZodOptional<z.ZodString>;
+    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+}, "strip", z.ZodTypeAny, {
+    updatedAt?: import("../../types").Timestamp | undefined;
+    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
+    note?: string | undefined;
+    avoidWhen?: string | undefined;
+}, {
+    updatedAt?: import("../../types").Timestamp | undefined;
+    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
+    note?: string | undefined;
+    avoidWhen?: string | undefined;
+}>;
+export type TacticUnderstanding = z.infer<typeof tacticUnderstandingSchema>;
 export declare const behaviorIndicationSchema: z.ZodObject<{
     behaviorId: z.ZodString;
     behaviorName: z.ZodString;
@@ -158,6 +187,24 @@ export declare const tacticSchema: z.ZodObject<{
         text: string;
     }>, "many">>;
     aiInstructions: z.ZodOptional<z.ZodString>;
+    understanding: z.ZodOptional<z.ZodObject<{
+        satisfies: z.ZodOptional<z.ZodArray<z.ZodEnum<["relaxation", "stimulation", "escape", "connection", "control", "pleasure", "achievement", "boredom_relief", "comfort", "focus"]>, "many">>;
+        /** How and when it works for this user, close to their own words. */
+        note: z.ZodOptional<z.ZodString>;
+        /** Conditions where it doesn't work or shouldn't be offered. */
+        avoidWhen: z.ZodOptional<z.ZodString>;
+        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    }, "strip", z.ZodTypeAny, {
+        updatedAt?: import("../../types").Timestamp | undefined;
+        satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
+        note?: string | undefined;
+        avoidWhen?: string | undefined;
+    }, {
+        updatedAt?: import("../../types").Timestamp | undefined;
+        satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
+        note?: string | undefined;
+        avoidWhen?: string | undefined;
+    }>>;
     createdByUid: z.ZodOptional<z.ZodString>;
     recommended: z.ZodOptional<z.ZodBoolean>;
     phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
@@ -5255,6 +5302,12 @@ export declare const tacticSchema: z.ZodObject<{
         text: string;
     }[] | undefined;
     aiInstructions?: string | undefined;
+    understanding?: {
+        updatedAt?: import("../../types").Timestamp | undefined;
+        satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
+        note?: string | undefined;
+        avoidWhen?: string | undefined;
+    } | undefined;
     createdByUid?: string | undefined;
     recommended?: boolean | undefined;
     phase?: "shift" | "regulate" | "reengage" | undefined;
@@ -5328,6 +5381,12 @@ export declare const tacticSchema: z.ZodObject<{
         text: string;
     }[] | undefined;
     aiInstructions?: string | undefined;
+    understanding?: {
+        updatedAt?: import("../../types").Timestamp | undefined;
+        satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
+        note?: string | undefined;
+        avoidWhen?: string | undefined;
+    } | undefined;
     createdByUid?: string | undefined;
     recommended?: boolean | undefined;
     phase?: "shift" | "regulate" | "reengage" | undefined;

@@ -18,6 +18,9 @@ exports.recommendedTacticSchema = zod_1.z.object({
     phase: tactic_1.tacticPhaseSchema.optional().catch(undefined),
     firstStepText: zod_1.z.string().optional(),
     tacticRefPath: zod_1.z.string().optional(),
+    /** One-line rendering of the tactic's per-user understanding (note +
+     * avoidWhen), denormalised at extraction time for prompt display. */
+    forUser: zod_1.z.string().optional(),
 });
 /**
  * An ENGINE-MATCHED plan for this session — the backend saying "this is a good

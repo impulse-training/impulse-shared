@@ -6,6 +6,9 @@ export declare const recommendedTacticSchema: z.ZodObject<{
     phase: z.ZodCatch<z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>>;
     firstStepText: z.ZodOptional<z.ZodString>;
     tacticRefPath: z.ZodOptional<z.ZodString>;
+    /** One-line rendering of the tactic's per-user understanding (note +
+     * avoidWhen), denormalised at extraction time for prompt display. */
+    forUser: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     title: string;
     tacticId: string;
@@ -13,6 +16,7 @@ export declare const recommendedTacticSchema: z.ZodObject<{
     phase?: "shift" | "regulate" | "reengage" | undefined;
     tacticRefPath?: string | undefined;
     firstStepText?: string | undefined;
+    forUser?: string | undefined;
 }, {
     title: string;
     tacticId: string;
@@ -20,6 +24,7 @@ export declare const recommendedTacticSchema: z.ZodObject<{
     phase?: unknown;
     tacticRefPath?: string | undefined;
     firstStepText?: string | undefined;
+    forUser?: string | undefined;
 }>;
 export type RecommendedTactic = z.infer<typeof recommendedTacticSchema>;
 /**
@@ -1192,6 +1197,22 @@ export declare const impulseSessionSchema: z.ZodObject<{
             text: string;
         }>, "many">>;
         aiInstructions: z.ZodOptional<z.ZodString>;
+        understanding: z.ZodOptional<z.ZodObject<{
+            satisfies: z.ZodOptional<z.ZodArray<z.ZodEnum<["relaxation", "stimulation", "escape", "connection", "control", "pleasure", "achievement", "boredom_relief", "comfort", "focus"]>, "many">>;
+            note: z.ZodOptional<z.ZodString>;
+            avoidWhen: z.ZodOptional<z.ZodString>;
+            updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        }, "strip", z.ZodTypeAny, {
+            updatedAt?: import("../../types").Timestamp | undefined;
+            satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
+            note?: string | undefined;
+            avoidWhen?: string | undefined;
+        }, {
+            updatedAt?: import("../../types").Timestamp | undefined;
+            satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
+            note?: string | undefined;
+            avoidWhen?: string | undefined;
+        }>>;
         createdByUid: z.ZodOptional<z.ZodString>;
         recommended: z.ZodOptional<z.ZodBoolean>;
         phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
@@ -6289,6 +6310,12 @@ export declare const impulseSessionSchema: z.ZodObject<{
             text: string;
         }[] | undefined;
         aiInstructions?: string | undefined;
+        understanding?: {
+            updatedAt?: import("../../types").Timestamp | undefined;
+            satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
+            note?: string | undefined;
+            avoidWhen?: string | undefined;
+        } | undefined;
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
         phase?: "shift" | "regulate" | "reengage" | undefined;
@@ -6362,6 +6389,12 @@ export declare const impulseSessionSchema: z.ZodObject<{
             text: string;
         }[] | undefined;
         aiInstructions?: string | undefined;
+        understanding?: {
+            updatedAt?: import("../../types").Timestamp | undefined;
+            satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
+            note?: string | undefined;
+            avoidWhen?: string | undefined;
+        } | undefined;
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
         phase?: "shift" | "regulate" | "reengage" | undefined;
@@ -6544,6 +6577,9 @@ export declare const impulseSessionSchema: z.ZodObject<{
         phase: z.ZodCatch<z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>>;
         firstStepText: z.ZodOptional<z.ZodString>;
         tacticRefPath: z.ZodOptional<z.ZodString>;
+        /** One-line rendering of the tactic's per-user understanding (note +
+         * avoidWhen), denormalised at extraction time for prompt display. */
+        forUser: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         title: string;
         tacticId: string;
@@ -6551,6 +6587,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         phase?: "shift" | "regulate" | "reengage" | undefined;
         tacticRefPath?: string | undefined;
         firstStepText?: string | undefined;
+        forUser?: string | undefined;
     }, {
         title: string;
         tacticId: string;
@@ -6558,6 +6595,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         phase?: unknown;
         tacticRefPath?: string | undefined;
         firstStepText?: string | undefined;
+        forUser?: string | undefined;
     }>, "many">>;
     suggestedPlan: z.ZodOptional<z.ZodObject<{
         planId: z.ZodString;
@@ -8257,6 +8295,12 @@ export declare const impulseSessionSchema: z.ZodObject<{
             text: string;
         }[] | undefined;
         aiInstructions?: string | undefined;
+        understanding?: {
+            updatedAt?: import("../../types").Timestamp | undefined;
+            satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
+            note?: string | undefined;
+            avoidWhen?: string | undefined;
+        } | undefined;
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
         phase?: "shift" | "regulate" | "reengage" | undefined;
@@ -8379,6 +8423,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         phase?: "shift" | "regulate" | "reengage" | undefined;
         tacticRefPath?: string | undefined;
         firstStepText?: string | undefined;
+        forUser?: string | undefined;
     }[] | undefined;
     suggestedPlan?: {
         source: "tags" | "improvised";
@@ -8621,6 +8666,12 @@ export declare const impulseSessionSchema: z.ZodObject<{
             text: string;
         }[] | undefined;
         aiInstructions?: string | undefined;
+        understanding?: {
+            updatedAt?: import("../../types").Timestamp | undefined;
+            satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
+            note?: string | undefined;
+            avoidWhen?: string | undefined;
+        } | undefined;
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
         phase?: "shift" | "regulate" | "reengage" | undefined;
@@ -8744,6 +8795,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         phase?: unknown;
         tacticRefPath?: string | undefined;
         firstStepText?: string | undefined;
+        forUser?: string | undefined;
     }[] | undefined;
     suggestedPlan?: {
         source: "tags" | "improvised";

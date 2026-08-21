@@ -1,6 +1,27 @@
 import { z } from "zod";
+import { benefitNeedSchema } from "../behavior";
 import { timestampSchema } from "../../utils/timestampSchema";
 import { tacticStepSchema } from "./step";
+
+/**
+ * What the AI has learned about how this tactic works FOR THIS USER, captured
+ * from their own words via the updateTacticUnderstanding tool (never
+ * inferred). Lives only on library copies (users/{uid}/tactics) — catalog
+ * tactics are shared and carry no personal knowledge.
+ *
+ * `satisfies` uses the same closed need vocabulary as behavior benefits, so
+ * recommendation can join them: a tactic that satisfies the need a behavior
+ * serves ("podcasts also give novelty/escape") is a grounded substitute.
+ */
+export const tacticUnderstandingSchema = z.object({
+  satisfies: z.array(benefitNeedSchema).optional(),
+  /** How and when it works for this user, close to their own words. */
+  note: z.string().optional(),
+  /** Conditions where it doesn't work or shouldn't be offered. */
+  avoidWhen: z.string().optional(),
+  updatedAt: timestampSchema.optional(),
+});
+export type TacticUnderstanding = z.infer<typeof tacticUnderstandingSchema>;
 
 export const behaviorIndicationSchema = z.object({
   // Reference to the behavior this indication relates to
@@ -65,6 +86,7 @@ export const tacticSchema = z.object({
   links: z.array(tacticLinkSchema).optional(),
   notes: z.array(tacticNoteSchema).optional(),
   aiInstructions: z.string().optional(),
+  understanding: tacticUnderstandingSchema.optional(),
   createdByUid: z.string().optional(),
   recommended: z.boolean().optional(),
   phase: tacticPhaseSchema.optional(),

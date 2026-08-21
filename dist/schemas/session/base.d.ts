@@ -37,6 +37,22 @@ export declare const sessionBaseSchema: z.ZodObject<{
             text: string;
         }>, "many">>;
         aiInstructions: z.ZodOptional<z.ZodString>;
+        understanding: z.ZodOptional<z.ZodObject<{
+            satisfies: z.ZodOptional<z.ZodArray<z.ZodEnum<["relaxation", "stimulation", "escape", "connection", "control", "pleasure", "achievement", "boredom_relief", "comfort", "focus"]>, "many">>;
+            note: z.ZodOptional<z.ZodString>;
+            avoidWhen: z.ZodOptional<z.ZodString>;
+            updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        }, "strip", z.ZodTypeAny, {
+            updatedAt?: import("../../types").Timestamp | undefined;
+            satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
+            note?: string | undefined;
+            avoidWhen?: string | undefined;
+        }, {
+            updatedAt?: import("../../types").Timestamp | undefined;
+            satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
+            note?: string | undefined;
+            avoidWhen?: string | undefined;
+        }>>;
         createdByUid: z.ZodOptional<z.ZodString>;
         recommended: z.ZodOptional<z.ZodBoolean>;
         phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
@@ -5134,6 +5150,12 @@ export declare const sessionBaseSchema: z.ZodObject<{
             text: string;
         }[] | undefined;
         aiInstructions?: string | undefined;
+        understanding?: {
+            updatedAt?: import("../../types").Timestamp | undefined;
+            satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
+            note?: string | undefined;
+            avoidWhen?: string | undefined;
+        } | undefined;
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
         phase?: "shift" | "regulate" | "reengage" | undefined;
@@ -5207,6 +5229,12 @@ export declare const sessionBaseSchema: z.ZodObject<{
             text: string;
         }[] | undefined;
         aiInstructions?: string | undefined;
+        understanding?: {
+            updatedAt?: import("../../types").Timestamp | undefined;
+            satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
+            note?: string | undefined;
+            avoidWhen?: string | undefined;
+        } | undefined;
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
         phase?: "shift" | "regulate" | "reengage" | undefined;
@@ -5944,6 +5972,12 @@ export declare const sessionBaseSchema: z.ZodObject<{
             text: string;
         }[] | undefined;
         aiInstructions?: string | undefined;
+        understanding?: {
+            updatedAt?: import("../../types").Timestamp | undefined;
+            satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
+            note?: string | undefined;
+            avoidWhen?: string | undefined;
+        } | undefined;
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
         phase?: "shift" | "regulate" | "reengage" | undefined;
@@ -6091,6 +6125,12 @@ export declare const sessionBaseSchema: z.ZodObject<{
             text: string;
         }[] | undefined;
         aiInstructions?: string | undefined;
+        understanding?: {
+            updatedAt?: import("../../types").Timestamp | undefined;
+            satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
+            note?: string | undefined;
+            avoidWhen?: string | undefined;
+        } | undefined;
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
         phase?: "shift" | "regulate" | "reengage" | undefined;

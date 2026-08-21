@@ -1,9 +1,28 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.tacticSchema = exports.tacticNoteSchema = exports.tacticLinkSchema = exports.tacticPhaseSchema = exports.indicationSchema = exports.behaviorTopicIndicationSchema = exports.tagIndicationSchema = exports.behaviorIndicationSchema = void 0;
+exports.tacticSchema = exports.tacticNoteSchema = exports.tacticLinkSchema = exports.tacticPhaseSchema = exports.indicationSchema = exports.behaviorTopicIndicationSchema = exports.tagIndicationSchema = exports.behaviorIndicationSchema = exports.tacticUnderstandingSchema = void 0;
 const zod_1 = require("zod");
+const behavior_1 = require("../behavior");
 const timestampSchema_1 = require("../../utils/timestampSchema");
 const step_1 = require("./step");
+/**
+ * What the AI has learned about how this tactic works FOR THIS USER, captured
+ * from their own words via the updateTacticUnderstanding tool (never
+ * inferred). Lives only on library copies (users/{uid}/tactics) — catalog
+ * tactics are shared and carry no personal knowledge.
+ *
+ * `satisfies` uses the same closed need vocabulary as behavior benefits, so
+ * recommendation can join them: a tactic that satisfies the need a behavior
+ * serves ("podcasts also give novelty/escape") is a grounded substitute.
+ */
+exports.tacticUnderstandingSchema = zod_1.z.object({
+    satisfies: zod_1.z.array(behavior_1.benefitNeedSchema).optional(),
+    /** How and when it works for this user, close to their own words. */
+    note: zod_1.z.string().optional(),
+    /** Conditions where it doesn't work or shouldn't be offered. */
+    avoidWhen: zod_1.z.string().optional(),
+    updatedAt: timestampSchema_1.timestampSchema.optional(),
+});
 exports.behaviorIndicationSchema = zod_1.z.object({
     // Reference to the behavior this indication relates to
     behaviorId: zod_1.z.string(),
@@ -55,6 +74,7 @@ exports.tacticSchema = zod_1.z.object({
     links: zod_1.z.array(exports.tacticLinkSchema).optional(),
     notes: zod_1.z.array(exports.tacticNoteSchema).optional(),
     aiInstructions: zod_1.z.string().optional(),
+    understanding: exports.tacticUnderstandingSchema.optional(),
     createdByUid: zod_1.z.string().optional(),
     recommended: zod_1.z.boolean().optional(),
     phase: exports.tacticPhaseSchema.optional(),
