@@ -15,7 +15,7 @@ export const voiceOfferLogSchema = logBaseSchema.extend({
   type: z.literal("voice_offer"),
   isDisplayable: z.literal(true),
   data: z.object({
-    source: z.enum(["containLapse", "scheduledCheckIn"]),
+    source: z.enum(["containLapse", "scheduledCheckIn", "planFatigue"]),
     /** The offer line shown on the card. */
     prompt: z.string(),
     respondedWith: z.enum(["call", "text"]).optional(),

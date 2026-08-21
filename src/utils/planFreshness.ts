@@ -32,3 +32,40 @@ export function planIsStale(
   if (!anchor || typeof anchor.toMillis !== "function") return false;
   return atMs - anchor.toMillis() > DECAY_MS;
 }
+
+/**
+ * Decay by outcome: a plan whose recent record is bad is delivered as an
+ * option among many NOW, without waiting out the time window. Fatigued when,
+ * walking the resolved outcomes newest-first, the run since the last success
+ * holds at least PLAN_FATIGUE_THRESHOLD non-successes — a use that did not
+ * hold (actedOnUrge true while started) or an offer the user ignored in a
+ * session that ended acted. Unresolved sessions count neither way, and any
+ * success ends the run.
+ */
+export const PLAN_FATIGUE_THRESHOLD = 2;
+
+export interface PlanFatigueOutcome {
+  started: boolean;
+  offered?: boolean;
+  actedOnUrge?: boolean | null;
+  sessionDate?: TimestampLike | null;
+}
+
+export function planIsFatigued(
+  outcomes: PlanFatigueOutcome[],
+  threshold: number = PLAN_FATIGUE_THRESHOLD,
+): boolean {
+  const relevant = outcomes
+    .filter((o) => (o.started || o.offered) && o.actedOnUrge != null)
+    .sort(
+      (a, b) => (b.sessionDate?.toMillis?.() ?? 0) - (a.sessionDate?.toMillis?.() ?? 0),
+    );
+
+  let streak = 0;
+  for (const outcome of relevant) {
+    if (outcome.actedOnUrge === false) return false; // success ends the run
+    streak++;
+    if (streak >= threshold) return true;
+  }
+  return false;
+}

@@ -6591,6 +6591,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
     phase: z.ZodOptional<z.ZodEnum<["regulate", "debrief", "contain"]>>;
     hasScheduledCheckIn: z.ZodOptional<z.ZodBoolean>;
     planStale: z.ZodOptional<z.ZodBoolean>;
+    resolvedPlanId: z.ZodOptional<z.ZodString>;
     recommendedTactics: z.ZodOptional<z.ZodArray<z.ZodObject<{
         tacticId: z.ZodString;
         title: z.ZodString;
@@ -8458,6 +8459,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
     generatedPlanId?: string | undefined;
     hasScheduledCheckIn?: boolean | undefined;
     planStale?: boolean | undefined;
+    resolvedPlanId?: string | undefined;
     recommendedTactics?: {
         title: string;
         tacticId: string;
@@ -8835,6 +8837,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
     generatedPlanId?: string | undefined;
     hasScheduledCheckIn?: boolean | undefined;
     planStale?: boolean | undefined;
+    resolvedPlanId?: string | undefined;
     recommendedTactics?: {
         title: string;
         tacticId: string;
