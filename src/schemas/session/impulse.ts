@@ -63,6 +63,10 @@ export const impulseSessionSchema = sessionBaseSchema.extend({
   // stale (planIsStale), so every later prompt build frames the plan as an
   // option among many rather than the script.
   planStale: z.boolean().optional(),
+  // Which user-owned plan setSessionTags resolved for this session - lets
+  // syncPlanEffectiveness record an "offered" outcome even when the plan was
+  // never started (fatigue counts ignored offers).
+  resolvedPlanId: z.string().optional(),
   recommendedTactics: z.array(recommendedTacticSchema).optional(),
   suggestedPlan: suggestedPlanSchema.optional(),
   /**

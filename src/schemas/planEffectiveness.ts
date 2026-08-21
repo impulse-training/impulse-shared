@@ -8,6 +8,9 @@ import { timestampSchema } from "../utils/timestampSchema";
 export const planEffectivenessSessionOutcomeSchema = z.object({
   behaviorDocs: z.array(documentReferenceSchema),
   started: z.boolean(),
+  // The plan was RESOLVED for the session (on the sheet / in context) even if
+  // never started - lets fatigue count "offered but ignored" sessions.
+  offered: z.boolean().optional(),
   completed: z.boolean(),
   actedOnUrge: z.boolean().nullable().optional(),
   // When the impulse moment happened (the session's `date`). Lets the client

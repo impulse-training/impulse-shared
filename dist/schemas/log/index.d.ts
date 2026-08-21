@@ -36161,17 +36161,17 @@ export declare const logSchemas: {
         type: z.ZodLiteral<"voice_offer">;
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
-            source: z.ZodEnum<["containLapse", "scheduledCheckIn"]>;
+            source: z.ZodEnum<["containLapse", "scheduledCheckIn", "planFatigue"]>;
             prompt: z.ZodString;
             respondedWith: z.ZodOptional<z.ZodEnum<["call", "text"]>>;
             respondedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
-            source: "containLapse" | "scheduledCheckIn";
+            source: "containLapse" | "scheduledCheckIn" | "planFatigue";
             prompt: string;
             respondedAt?: import("../../types").Timestamp | undefined;
             respondedWith?: "text" | "call" | undefined;
         }, {
-            source: "containLapse" | "scheduledCheckIn";
+            source: "containLapse" | "scheduledCheckIn" | "planFatigue";
             prompt: string;
             respondedAt?: import("../../types").Timestamp | undefined;
             respondedWith?: "text" | "call" | undefined;
@@ -36186,7 +36186,7 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
-            source: "containLapse" | "scheduledCheckIn";
+            source: "containLapse" | "scheduledCheckIn" | "planFatigue";
             prompt: string;
             respondedAt?: import("../../types").Timestamp | undefined;
             respondedWith?: "text" | "call" | undefined;
@@ -36206,7 +36206,7 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
-            source: "containLapse" | "scheduledCheckIn";
+            source: "containLapse" | "scheduledCheckIn" | "planFatigue";
             prompt: string;
             respondedAt?: import("../../types").Timestamp | undefined;
             respondedWith?: "text" | "call" | undefined;
@@ -65127,17 +65127,17 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     type: z.ZodLiteral<"voice_offer">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
-        source: z.ZodEnum<["containLapse", "scheduledCheckIn"]>;
+        source: z.ZodEnum<["containLapse", "scheduledCheckIn", "planFatigue"]>;
         prompt: z.ZodString;
         respondedWith: z.ZodOptional<z.ZodEnum<["call", "text"]>>;
         respondedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
-        source: "containLapse" | "scheduledCheckIn";
+        source: "containLapse" | "scheduledCheckIn" | "planFatigue";
         prompt: string;
         respondedAt?: import("../../types").Timestamp | undefined;
         respondedWith?: "text" | "call" | undefined;
     }, {
-        source: "containLapse" | "scheduledCheckIn";
+        source: "containLapse" | "scheduledCheckIn" | "planFatigue";
         prompt: string;
         respondedAt?: import("../../types").Timestamp | undefined;
         respondedWith?: "text" | "call" | undefined;
@@ -65152,7 +65152,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        source: "containLapse" | "scheduledCheckIn";
+        source: "containLapse" | "scheduledCheckIn" | "planFatigue";
         prompt: string;
         respondedAt?: import("../../types").Timestamp | undefined;
         respondedWith?: "text" | "call" | undefined;
@@ -65172,7 +65172,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        source: "containLapse" | "scheduledCheckIn";
+        source: "containLapse" | "scheduledCheckIn" | "planFatigue";
         prompt: string;
         respondedAt?: import("../../types").Timestamp | undefined;
         respondedWith?: "text" | "call" | undefined;

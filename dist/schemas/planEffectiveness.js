@@ -10,6 +10,9 @@ const timestampSchema_1 = require("../utils/timestampSchema");
 exports.planEffectivenessSessionOutcomeSchema = zod_1.z.object({
     behaviorDocs: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema),
     started: zod_1.z.boolean(),
+    // The plan was RESOLVED for the session (on the sheet / in context) even if
+    // never started - lets fatigue count "offered but ignored" sessions.
+    offered: zod_1.z.boolean().optional(),
     completed: zod_1.z.boolean(),
     actedOnUrge: zod_1.z.boolean().nullable().optional(),
     // When the impulse moment happened (the session's `date`). Lets the client

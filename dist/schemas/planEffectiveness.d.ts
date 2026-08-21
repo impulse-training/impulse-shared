@@ -5,6 +5,7 @@ import { z } from "zod";
 export declare const planEffectivenessSessionOutcomeSchema: z.ZodObject<{
     behaviorDocs: z.ZodArray<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
     started: z.ZodBoolean;
+    offered: z.ZodOptional<z.ZodBoolean>;
     completed: z.ZodBoolean;
     actedOnUrge: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     sessionDate: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -13,12 +14,14 @@ export declare const planEffectivenessSessionOutcomeSchema: z.ZodObject<{
     behaviorDocs: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
     started: boolean;
     actedOnUrge?: boolean | null | undefined;
+    offered?: boolean | undefined;
     sessionDate?: import("../types").Timestamp | undefined;
 }, {
     completed: boolean;
     behaviorDocs: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
     started: boolean;
     actedOnUrge?: boolean | null | undefined;
+    offered?: boolean | undefined;
     sessionDate?: import("../types").Timestamp | undefined;
 }>;
 export type PlanEffectivenessSessionOutcome = z.infer<typeof planEffectivenessSessionOutcomeSchema>;
@@ -33,6 +36,7 @@ export declare const planEffectivenessSchema: z.ZodObject<{
     outcomesBySession: z.ZodRecord<z.ZodString, z.ZodObject<{
         behaviorDocs: z.ZodArray<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
         started: z.ZodBoolean;
+        offered: z.ZodOptional<z.ZodBoolean>;
         completed: z.ZodBoolean;
         actedOnUrge: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         sessionDate: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -41,12 +45,14 @@ export declare const planEffectivenessSchema: z.ZodObject<{
         behaviorDocs: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
         started: boolean;
         actedOnUrge?: boolean | null | undefined;
+        offered?: boolean | undefined;
         sessionDate?: import("../types").Timestamp | undefined;
     }, {
         completed: boolean;
         behaviorDocs: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
         started: boolean;
         actedOnUrge?: boolean | null | undefined;
+        offered?: boolean | undefined;
         sessionDate?: import("../types").Timestamp | undefined;
     }>>;
 }, "strip", z.ZodTypeAny, {
@@ -56,6 +62,7 @@ export declare const planEffectivenessSchema: z.ZodObject<{
         behaviorDocs: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
         started: boolean;
         actedOnUrge?: boolean | null | undefined;
+        offered?: boolean | undefined;
         sessionDate?: import("../types").Timestamp | undefined;
     }>;
 }, {
@@ -65,6 +72,7 @@ export declare const planEffectivenessSchema: z.ZodObject<{
         behaviorDocs: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
         started: boolean;
         actedOnUrge?: boolean | null | undefined;
+        offered?: boolean | undefined;
         sessionDate?: import("../types").Timestamp | undefined;
     }>;
 }>;
@@ -82,6 +90,7 @@ export declare const userPlanEffectivenessSchema: z.ZodObject<{
         outcomesBySession: z.ZodRecord<z.ZodString, z.ZodObject<{
             behaviorDocs: z.ZodArray<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
             started: z.ZodBoolean;
+            offered: z.ZodOptional<z.ZodBoolean>;
             completed: z.ZodBoolean;
             actedOnUrge: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
             sessionDate: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -90,12 +99,14 @@ export declare const userPlanEffectivenessSchema: z.ZodObject<{
             behaviorDocs: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
             started: boolean;
             actedOnUrge?: boolean | null | undefined;
+            offered?: boolean | undefined;
             sessionDate?: import("../types").Timestamp | undefined;
         }, {
             completed: boolean;
             behaviorDocs: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
             started: boolean;
             actedOnUrge?: boolean | null | undefined;
+            offered?: boolean | undefined;
             sessionDate?: import("../types").Timestamp | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
@@ -105,6 +116,7 @@ export declare const userPlanEffectivenessSchema: z.ZodObject<{
             behaviorDocs: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
             started: boolean;
             actedOnUrge?: boolean | null | undefined;
+            offered?: boolean | undefined;
             sessionDate?: import("../types").Timestamp | undefined;
         }>;
     }, {
@@ -114,6 +126,7 @@ export declare const userPlanEffectivenessSchema: z.ZodObject<{
             behaviorDocs: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
             started: boolean;
             actedOnUrge?: boolean | null | undefined;
+            offered?: boolean | undefined;
             sessionDate?: import("../types").Timestamp | undefined;
         }>;
     }>>;
@@ -125,6 +138,7 @@ export declare const userPlanEffectivenessSchema: z.ZodObject<{
             behaviorDocs: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
             started: boolean;
             actedOnUrge?: boolean | null | undefined;
+            offered?: boolean | undefined;
             sessionDate?: import("../types").Timestamp | undefined;
         }>;
     }>;
@@ -136,6 +150,7 @@ export declare const userPlanEffectivenessSchema: z.ZodObject<{
             behaviorDocs: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
             started: boolean;
             actedOnUrge?: boolean | null | undefined;
+            offered?: boolean | undefined;
             sessionDate?: import("../types").Timestamp | undefined;
         }>;
     }>;
