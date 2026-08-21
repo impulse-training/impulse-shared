@@ -140,6 +140,7 @@ import {
   ProtectNextWindowOutcomeLog,
   protectNextWindowOutcomeLogSchema,
 } from "./protectNextWindowOutcomeLog";
+import { VoiceOfferLog, voiceOfferLogSchema } from "./voiceOfferLog";
 
 export const logSchemas = {
   user: userMessageLogSchema,
@@ -188,6 +189,7 @@ export const logSchemas = {
   plan_history_entry: planHistoryEntryLogSchema,
   closing_reflection: closingReflectionLogSchema,
   protect_next_window_outcome: protectNextWindowOutcomeLogSchema,
+  voice_offer: voiceOfferLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -237,7 +239,8 @@ export type Log =
   | DebriefQuestionLog
   | PlanHistoryEntryLog
   | ClosingReflectionLog
-  | ProtectNextWindowOutcomeLog;
+  | ProtectNextWindowOutcomeLog
+  | VoiceOfferLog;
 
 export * from "./behaviorLog";
 export * from "./breathingLog";
@@ -283,6 +286,7 @@ export * from "./debriefQuestionLog";
 export * from "./planHistoryEntryLog";
 export * from "./closingReflectionLog";
 export * from "./protectNextWindowOutcomeLog";
+export * from "./voiceOfferLog";
 
 // Discriminated union schema across all log variants
 export const logSchema = z.discriminatedUnion("type", [
@@ -330,9 +334,19 @@ export const logSchema = z.discriminatedUnion("type", [
   planHistoryEntryLogSchema,
   closingReflectionLogSchema,
   protectNextWindowOutcomeLogSchema,
+  voiceOfferLogSchema,
 ]);
 
 // Export log type guards
+
+export const logIsVoiceOfferLog = (
+  value: Omit<Log, "id">,
+): value is VoiceOfferLog => value.type === "voice_offer";
+export const isValidVoiceOfferLog = (
+  value: unknown,
+): value is VoiceOfferLog => {
+  return voiceOfferLogSchema.safeParse(value).success;
+};
 
 export const logIsAssistantMessageLog = (
   value: Omit<Log, "id">,
