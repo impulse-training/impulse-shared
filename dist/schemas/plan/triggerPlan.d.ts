@@ -75,6 +75,7 @@ export declare const triggerPlanSchema: z.ZodObject<{
     numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
     numberOfSetbacks: z.ZodOptional<z.ZodNumber>;
     lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    affirmedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -122,6 +123,7 @@ export declare const triggerPlanSchema: z.ZodObject<{
     numberOfSuccesses?: number | undefined;
     numberOfSetbacks?: number | undefined;
     lastUsedAt?: import("../../types").Timestamp | undefined;
+    affirmedAt?: import("../../types").Timestamp | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
     isActive?: boolean | undefined;
 }, {
@@ -166,6 +168,7 @@ export declare const triggerPlanSchema: z.ZodObject<{
     numberOfSuccesses?: number | undefined;
     numberOfSetbacks?: number | undefined;
     lastUsedAt?: import("../../types").Timestamp | undefined;
+    affirmedAt?: import("../../types").Timestamp | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
     isActive?: boolean | undefined;
 }>;
