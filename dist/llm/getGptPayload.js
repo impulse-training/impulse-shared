@@ -5,6 +5,8 @@ const log_1 = require("../schemas/log");
 const buildPlansLogPayload_1 = require("./buildPlansLogPayload");
 const constants_1 = require("../constants");
 const phase_1 = require("../schemas/session/phase");
+const clock_1 = require("../utils/clock");
+const formatRecentBehaviorTracking_1 = require("../utils/formatRecentBehaviorTracking");
 /**
  * Drop the tactic-card `logId` from a replayed tool-call result before it goes
  * back to the model. suggestTactic / findOrCreateTactic return it, but no tool
@@ -33,7 +35,7 @@ function stripReplayedToolResultIds(result) {
     return result;
 }
 function buildBehaviorLogPayload(log, options) {
-    var _a, _b, _c;
+    var _a, _b, _c, _d, _e;
     const { behaviorName, formattedValue, source, debriefOutcome } = log.data;
     const parts = [];
     if (debriefOutcome) {
@@ -61,29 +63,28 @@ function buildBehaviorLogPayload(log, options) {
             }
         }
     }
+    // When it happened, on every tracked behavior rather than only the ones with
+    // no outcome. The time used to sit exclusively on the outcome-less fallback,
+    // so the logs that matter most — the ones the user answered a debrief on —
+    // were the ones that lost it, and the model had nothing but transcript
+    // position to tell a lapse logged seconds ago from one logged hours ago.
+    //
+    // Relative, not a clock time: this module has no user timezone, so the old
+    // `toLocaleTimeString` rendered the server's zone and would tell a Mexico
+    // City user their 8:39 AM lapse happened at 2:39 PM. "15 minutes ago" is
+    // both timezone-free and the thing we actually want the model to notice.
+    const trackedMs = (_c = (_b = (_a = log.timestamp) === null || _a === void 0 ? void 0 : _a.toMillis) === null || _b === void 0 ? void 0 : _b.call(_a)) !== null && _c !== void 0 ? _c : (_e = (_d = log.timestamp) === null || _d === void 0 ? void 0 : _d.toDate) === null || _e === void 0 ? void 0 : _e.call(_d).getTime();
+    const timeAgo = typeof trackedMs === "number" ? (0, formatRecentBehaviorTracking_1.formatTimeAgo)((0, clock_1.nowMs)() - trackedMs) : null;
     if (behaviorName && formattedValue) {
-        parts.push(`<CONTEXT>Behavior tracked: ${behaviorName} - ${formattedValue}.</CONTEXT>`);
+        parts.push(timeAgo
+            ? `<CONTEXT>Behavior tracked: ${behaviorName} - ${formattedValue} (${timeAgo}).</CONTEXT>`
+            : `<CONTEXT>Behavior tracked: ${behaviorName} - ${formattedValue}.</CONTEXT>`);
     }
     if (parts.length > 0) {
         return [
             {
                 role: "user",
                 content: parts.join(" "),
-            },
-        ];
-    }
-    // Fallback: regular behavior tracking message without explicit debrief context
-    const timestamp = (_c = (_b = (_a = log.timestamp) === null || _a === void 0 ? void 0 : _a.toDate) === null || _b === void 0 ? void 0 : _b.call(_a)) !== null && _c !== void 0 ? _c : new Date();
-    const timeStr = timestamp.toLocaleTimeString("en-US", {
-        hour: "numeric",
-        minute: "2-digit",
-        hour12: true,
-    });
-    if (behaviorName && formattedValue) {
-        return [
-            {
-                role: "user",
-                content: `<CONTEXT>The user has tracked a behavior: ${behaviorName} - ${formattedValue} at ${timeStr}.</CONTEXT>`,
             },
         ];
     }

@@ -41,3 +41,4 @@ export * from "./utils/winRate";
 export * from "./utils/normalizeDashes";
 export * from "./utils/maskedTerms";
 export * from "./utils/formatBrainMemory";
+export * from "./utils/formatRecentBehaviorTracking";
