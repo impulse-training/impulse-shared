@@ -22,6 +22,8 @@ import {
 import { buildPlansLogPayload } from "./buildPlansLogPayload";
 import { DEFAULT_RECAP_TIME_LABEL } from "../constants";
 import { isPostDebriefPhase, SessionPhase } from "../schemas/session/phase";
+import { nowMs } from "../utils/clock";
+import { formatTimeAgo } from "../utils/formatRecentBehaviorTracking";
 
 interface PayloadOptions {
   forSummarization?: boolean;
@@ -108,9 +110,25 @@ function buildBehaviorLogPayload(
     }
   }
 
+  // When it happened, on every tracked behavior rather than only the ones with
+  // no outcome. The time used to sit exclusively on the outcome-less fallback,
+  // so the logs that matter most — the ones the user answered a debrief on —
+  // were the ones that lost it, and the model had nothing but transcript
+  // position to tell a lapse logged seconds ago from one logged hours ago.
+  //
+  // Relative, not a clock time: this module has no user timezone, so the old
+  // `toLocaleTimeString` rendered the server's zone and would tell a Mexico
+  // City user their 8:39 AM lapse happened at 2:39 PM. "15 minutes ago" is
+  // both timezone-free and the thing we actually want the model to notice.
+  const trackedMs = log.timestamp?.toMillis?.() ?? log.timestamp?.toDate?.().getTime();
+  const timeAgo =
+    typeof trackedMs === "number" ? formatTimeAgo(nowMs() - trackedMs) : null;
+
   if (behaviorName && formattedValue) {
     parts.push(
-      `<CONTEXT>Behavior tracked: ${behaviorName} - ${formattedValue}.</CONTEXT>`,
+      timeAgo
+        ? `<CONTEXT>Behavior tracked: ${behaviorName} - ${formattedValue} (${timeAgo}).</CONTEXT>`
+        : `<CONTEXT>Behavior tracked: ${behaviorName} - ${formattedValue}.</CONTEXT>`,
     );
   }
 
@@ -119,23 +137,6 @@ function buildBehaviorLogPayload(
       {
         role: "user",
         content: parts.join(" "),
-      },
-    ];
-  }
-
-  // Fallback: regular behavior tracking message without explicit debrief context
-  const timestamp = log.timestamp?.toDate?.() ?? new Date();
-  const timeStr = timestamp.toLocaleTimeString("en-US", {
-    hour: "numeric",
-    minute: "2-digit",
-    hour12: true,
-  });
-
-  if (behaviorName && formattedValue) {
-    return [
-      {
-        role: "user",
-        content: `<CONTEXT>The user has tracked a behavior: ${behaviorName} - ${formattedValue} at ${timeStr}.</CONTEXT>`,
       },
     ];
   }

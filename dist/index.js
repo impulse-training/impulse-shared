@@ -79,3 +79,4 @@ __exportStar(require("./utils/winRate"), exports);
 __exportStar(require("./utils/normalizeDashes"), exports);
 __exportStar(require("./utils/maskedTerms"), exports);
 __exportStar(require("./utils/formatBrainMemory"), exports);
+__exportStar(require("./utils/formatRecentBehaviorTracking"), exports);
