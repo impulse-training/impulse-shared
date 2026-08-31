@@ -72,6 +72,7 @@ __exportStar(require("./transcriptItem"), exports);
 __exportStar(require("./utils/supportGroupSummary"), exports);
 __exportStar(require("./tactic"), exports);
 __exportStar(require("./tacticCollection"), exports);
+__exportStar(require("./tacticEffectiveness"), exports);
 __exportStar(require("./tacticPreferences"), exports);
 __exportStar(require("./session"), exports);
 __exportStar(require("./trigger"), exports);

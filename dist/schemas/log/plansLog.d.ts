@@ -23,7 +23,7 @@ export declare const plansLogSchema: z.ZodObject<{
     shouldZaraRespond: z.ZodOptional<z.ZodBoolean>;
     isDisplayable: z.ZodBoolean;
     data: z.ZodObject<{
-        source: z.ZodUnion<[z.ZodLiteral<"trigger">, z.ZodLiteral<"behavior">, z.ZodLiteral<"scheduled">, z.ZodLiteral<"tags">, z.ZodLiteral<"improvised">]>;
+        source: z.ZodUnion<[z.ZodLiteral<"trigger">, z.ZodLiteral<"behavior">, z.ZodLiteral<"composed">, z.ZodLiteral<"scheduled">, z.ZodLiteral<"tags">, z.ZodLiteral<"improvised">]>;
         mode: z.ZodOptional<z.ZodEnum<["live", "planning"]>>;
         triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         behaviorId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -1175,7 +1175,7 @@ export declare const plansLogSchema: z.ZodObject<{
         activeIndex: z.ZodOptional<z.ZodNumber>;
         acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
-        source: "behavior" | "scheduled" | "tags" | "trigger" | "improvised";
+        source: "behavior" | "scheduled" | "tags" | "trigger" | "composed" | "improvised";
         plans: {
             plan: ({
                 id: string;
@@ -1385,7 +1385,7 @@ export declare const plansLogSchema: z.ZodObject<{
         triggerId?: string | null | undefined;
         activeIndex?: number | undefined;
     }, {
-        source: "behavior" | "scheduled" | "tags" | "trigger" | "improvised";
+        source: "behavior" | "scheduled" | "tags" | "trigger" | "composed" | "improvised";
         plans: {
             plan: ({
                 id: string;
@@ -1605,7 +1605,7 @@ export declare const plansLogSchema: z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: boolean;
     data: {
-        source: "behavior" | "scheduled" | "tags" | "trigger" | "improvised";
+        source: "behavior" | "scheduled" | "tags" | "trigger" | "composed" | "improvised";
         plans: {
             plan: ({
                 id: string;
@@ -1831,7 +1831,7 @@ export declare const plansLogSchema: z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: boolean;
     data: {
-        source: "behavior" | "scheduled" | "tags" | "trigger" | "improvised";
+        source: "behavior" | "scheduled" | "tags" | "trigger" | "composed" | "improvised";
         plans: {
             plan: ({
                 id: string;

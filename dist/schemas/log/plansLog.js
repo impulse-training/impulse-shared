@@ -21,6 +21,9 @@ exports.plansLogSchema = base_1.logBaseSchema.extend({
     isDisplayable: zod_1.z.boolean(),
     data: zod_1.z.object({
         // trigger/behavior = user-owned plans (the plan sheet renders these).
+        // composed = a situational plan the AI assembled for this moment from
+        // real catalog/library tactics (composePlan tool); rendered and
+        // progressed like a user-owned plan.
         // scheduled = scheduled plan sessions.
         // tags/improvised = DEPRECATED. Engine-matched plans are no longer written
         // as plans logs — they live on the session as `suggestedPlan` and are
@@ -29,6 +32,7 @@ exports.plansLogSchema = base_1.logBaseSchema.extend({
         source: zod_1.z.union([
             zod_1.z.literal("trigger"),
             zod_1.z.literal("behavior"),
+            zod_1.z.literal("composed"),
             zod_1.z.literal("scheduled"),
             zod_1.z.literal("tags"),
             zod_1.z.literal("improvised"),
