@@ -86,9 +86,12 @@ function buildPlansLogPayload(log, isFinalLogInSession, completedTacticIds) {
     const parts = [];
     const tacticsNoun = tacticsCount === 1 ? "tactic" : "tactics";
     const isPlanning = log.data.mode === "planning";
-    // trigger/behavior = a plan the user authored (shown in the plan sheet);
+    // trigger/behavior = a plan the user authored; composed = a situational
+    // plan the AI assembled for this moment. All three live in the plan sheet.
     // tags/improvised = engine matchmaking (delivered inline as cards).
-    const isUserOwnedPlan = log.data.source === "trigger" || log.data.source === "behavior";
+    const isUserOwnedPlan = log.data.source === "trigger" ||
+        log.data.source === "behavior" ||
+        log.data.source === "composed";
     if (isPlanning) {
         // Planning mode framing (recap session — proposing a plan for next time)
         parts.push(`A plan has been proposed for this trigger. It includes ${tacticsCount} ${tacticsNoun}.`);
