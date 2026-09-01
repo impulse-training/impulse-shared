@@ -3,6 +3,7 @@ import { documentReferenceSchema } from "../utils/documentReferenceSchema";
 import { timestampSchema } from "../utils/timestampSchema";
 import { supportGroupTypeSchema } from "./supportGroup";
 import { firstsSchema } from "./first";
+import { tacticPreferencesSchema } from "./tacticPreferences";
 
 // Inline recap trigger schema (time-based). Recaps are daily — they fire
 // every day at this time (Sunday additionally runs the weekly review). There
@@ -81,6 +82,10 @@ export const userDataSchema = z.object({
   notifyOnSignUp: z.boolean().optional(),
   notifyOnCoachingApplication: z.boolean().optional(),
   expoPushToken: z.string().nullable().default(null),
+  // User-level tactic controls (suppression/pins/hidden mixes) - see
+  // tacticPreferences.ts. Written by the user and by coaches via the
+  // dashboard; previously present on docs but untyped here.
+  tacticPreferences: tacticPreferencesSchema.optional(),
   // Device-specific tokens for native incoming-call pushes (coach "call now").
   // Distinct from expoPushToken because VoIP/CallKit and Android full-screen
   // call notifications cannot be delivered through Expo's push service.
