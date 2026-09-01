@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { documentReferenceSchema } from "../utils/documentReferenceSchema";
+import { documentReferenceSchema } from "../../utils/documentReferenceSchema";
 import { timestampSchema } from "../../utils/timestampSchema";
 import { withIdSchema } from "../../utils/withId";
 

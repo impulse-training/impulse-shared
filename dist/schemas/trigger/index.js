@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.triggerHasLocation = exports.isValidTrigger = exports.triggerWithIdSchema = exports.triggerSchema = exports.triggerLocationSchema = void 0;
 const zod_1 = require("zod");
+const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
 const timestampSchema_1 = require("../../utils/timestampSchema");
 const withId_1 = require("../../utils/withId");
 // Optional location reference for location-based triggers. Coordinates and
@@ -22,6 +23,11 @@ exports.triggerSchema = zod_1.z.object({
     ordinal: zod_1.z.number().optional(),
     // Arrival/departure for location-based auto-triggering (coordinates are resolved locally)
     triggerType: zod_1.z.enum(["arrival", "departure"]).optional(),
+    // Agreed go-to order for this situation (plans-to-routines): ordered
+    // tactic refs, the trigger analogue of behavior.tactics pins. Displayed
+    // as the "Next time" card and read by the AI as evidence - never
+    // deterministically injected.
+    tactics: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema).optional(),
     /** @deprecated Use triggerType + location tag group option localLocationRef instead */
     location: exports.triggerLocationSchema.optional(),
     lastOccurredAt: timestampSchema_1.timestampSchema.nullable(),
