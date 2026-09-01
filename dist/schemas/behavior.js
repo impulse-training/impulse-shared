@@ -332,6 +332,8 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
     // Tactics pinned to this behavior. Surfaced as a ranking boost for
     // in-the-moment recommendations on sessions involving this behavior.
     tactics: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema).optional(),
+    // When the user last stood behind the go-to order (see trigger's twin).
+    tacticsAgreedAt: timestampSchema_1.timestampSchema.optional(),
     // Tactic IDs to never recommend in-the-moment for this behavior. Applied as
     // a hard exclude in the scoring engine. Set by the user or a coach when a
     // tactic is a poor fit for this behavior (e.g. cold-water for arousal urges).

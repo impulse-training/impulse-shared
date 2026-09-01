@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { documentReferenceSchema } from "../../utils/documentReferenceSchema";
 import { timestampSchema } from "../../utils/timestampSchema";
 import { withIdSchema } from "../../utils/withId";
 
@@ -23,6 +24,15 @@ export const triggerSchema = z.object({
   ordinal: z.number().optional(),
   // Arrival/departure for location-based auto-triggering (coordinates are resolved locally)
   triggerType: z.enum(["arrival", "departure"]).optional(),
+  // Agreed go-to order for this situation (plans-to-routines): ordered
+  // tactic refs, the trigger analogue of behavior.tactics pins. Displayed
+  // as the "Next time" card and read by the AI as evidence - never
+  // deterministically injected.
+  tactics: z.array(documentReferenceSchema).optional(),
+  // When the user last stood behind the go-to order (set/reorder/re-agree).
+  // Drives freshness framing ("Agreed 12 Aug", aging nudges) - never
+  // deletion; a rehearsed plan is the win, not the bug.
+  tacticsAgreedAt: timestampSchema.optional(),
   /** @deprecated Use triggerType + location tag group option localLocationRef instead */
   location: triggerLocationSchema.optional(),
   lastOccurredAt: timestampSchema.nullable(),

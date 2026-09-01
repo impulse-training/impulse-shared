@@ -5,6 +5,7 @@ const zod_1 = require("zod");
 const timestampSchema_1 = require("../utils/timestampSchema");
 const supportGroup_1 = require("./supportGroup");
 const first_1 = require("./first");
+const tacticPreferences_1 = require("./tacticPreferences");
 // Inline recap trigger schema (time-based). Recaps are daily — they fire
 // every day at this time (Sunday additionally runs the weekly review). There
 // is no per-weekday cadence; any legacy `weekdays` on old docs is ignored.
@@ -71,6 +72,10 @@ exports.userDataSchema = zod_1.z.object({
     notifyOnSignUp: zod_1.z.boolean().optional(),
     notifyOnCoachingApplication: zod_1.z.boolean().optional(),
     expoPushToken: zod_1.z.string().nullable().default(null),
+    // User-level tactic controls (suppression/pins/hidden mixes) - see
+    // tacticPreferences.ts. Written by the user and by coaches via the
+    // dashboard; previously present on docs but untyped here.
+    tacticPreferences: tacticPreferences_1.tacticPreferencesSchema.optional(),
     // Device-specific tokens for native incoming-call pushes (coach "call now").
     // Distinct from expoPushToken because VoIP/CallKit and Android full-screen
     // call notifications cannot be delivered through Expo's push service.
