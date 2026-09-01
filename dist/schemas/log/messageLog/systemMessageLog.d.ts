@@ -40,6 +40,19 @@ export declare const systemMessageLogSchema: z.ZodObject<{
     impulseId: z.ZodOptional<z.ZodString>;
     respondingToLogId: z.ZodOptional<z.ZodString>;
     isDisplayable: z.ZodLiteral<true>;
+    voice: z.ZodOptional<z.ZodObject<{
+        callLogId: z.ZodString;
+        interrupted: z.ZodOptional<z.ZodBoolean>;
+        backfilled: z.ZodOptional<z.ZodBoolean>;
+    }, "strip", z.ZodTypeAny, {
+        callLogId: string;
+        interrupted?: boolean | undefined;
+        backfilled?: boolean | undefined;
+    }, {
+        callLogId: string;
+        interrupted?: boolean | undefined;
+        backfilled?: boolean | undefined;
+    }>>;
 } & {
     type: z.ZodLiteral<"system_message">;
     data: z.ZodObject<{
@@ -120,6 +133,11 @@ export declare const systemMessageLogSchema: z.ZodObject<{
     tacticId?: string | undefined;
     impulseId?: string | undefined;
     respondingToLogId?: string | undefined;
+    voice?: {
+        callLogId: string;
+        interrupted?: boolean | undefined;
+        backfilled?: boolean | undefined;
+    } | undefined;
 }, {
     createdAt: import("../../../types").Timestamp;
     updatedAt: import("../../../types").Timestamp;
@@ -146,5 +164,10 @@ export declare const systemMessageLogSchema: z.ZodObject<{
     tacticId?: string | undefined;
     impulseId?: string | undefined;
     respondingToLogId?: string | undefined;
+    voice?: {
+        callLogId: string;
+        interrupted?: boolean | undefined;
+        backfilled?: boolean | undefined;
+    } | undefined;
 }>;
 export type SystemMessageLog = z.infer<typeof systemMessageLogSchema>;

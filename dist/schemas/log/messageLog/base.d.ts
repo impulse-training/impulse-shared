@@ -1,4 +1,17 @@
 import { z } from "zod";
+export declare const voiceTurnSchema: z.ZodObject<{
+    callLogId: z.ZodString;
+    interrupted: z.ZodOptional<z.ZodBoolean>;
+    backfilled: z.ZodOptional<z.ZodBoolean>;
+}, "strip", z.ZodTypeAny, {
+    callLogId: string;
+    interrupted?: boolean | undefined;
+    backfilled?: boolean | undefined;
+}, {
+    callLogId: string;
+    interrupted?: boolean | undefined;
+    backfilled?: boolean | undefined;
+}>;
 export declare const messageBaseLogSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../../types").Timestamp, z.ZodTypeDef, import("../../../types").Timestamp>;
@@ -21,6 +34,19 @@ export declare const messageBaseLogSchema: z.ZodObject<{
     }, {
         message?: any;
     }>;
+    voice: z.ZodOptional<z.ZodObject<{
+        callLogId: z.ZodString;
+        interrupted: z.ZodOptional<z.ZodBoolean>;
+        backfilled: z.ZodOptional<z.ZodBoolean>;
+    }, "strip", z.ZodTypeAny, {
+        callLogId: string;
+        interrupted?: boolean | undefined;
+        backfilled?: boolean | undefined;
+    }, {
+        callLogId: string;
+        interrupted?: boolean | undefined;
+        backfilled?: boolean | undefined;
+    }>>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../../types").Timestamp;
     updatedAt: import("../../../types").Timestamp;
@@ -38,6 +64,11 @@ export declare const messageBaseLogSchema: z.ZodObject<{
     tacticId?: string | undefined;
     impulseId?: string | undefined;
     respondingToLogId?: string | undefined;
+    voice?: {
+        callLogId: string;
+        interrupted?: boolean | undefined;
+        backfilled?: boolean | undefined;
+    } | undefined;
 }, {
     createdAt: import("../../../types").Timestamp;
     updatedAt: import("../../../types").Timestamp;
@@ -55,4 +86,10 @@ export declare const messageBaseLogSchema: z.ZodObject<{
     tacticId?: string | undefined;
     impulseId?: string | undefined;
     respondingToLogId?: string | undefined;
+    voice?: {
+        callLogId: string;
+        interrupted?: boolean | undefined;
+        backfilled?: boolean | undefined;
+    } | undefined;
 }>;
+export type VoiceTurn = z.infer<typeof voiceTurnSchema>;

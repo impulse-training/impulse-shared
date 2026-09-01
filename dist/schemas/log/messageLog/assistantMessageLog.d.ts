@@ -19,6 +19,19 @@ export declare const assistantMessageLogSchema: z.ZodObject<{
     }, {
         message?: any;
     }>;
+    voice: z.ZodOptional<z.ZodObject<{
+        callLogId: z.ZodString;
+        interrupted: z.ZodOptional<z.ZodBoolean>;
+        backfilled: z.ZodOptional<z.ZodBoolean>;
+    }, "strip", z.ZodTypeAny, {
+        callLogId: string;
+        interrupted?: boolean | undefined;
+        backfilled?: boolean | undefined;
+    }, {
+        callLogId: string;
+        interrupted?: boolean | undefined;
+        backfilled?: boolean | undefined;
+    }>>;
 } & {
     type: z.ZodLiteral<"assistant_message">;
     isPartial: z.ZodOptional<z.ZodBoolean>;
@@ -39,6 +52,11 @@ export declare const assistantMessageLogSchema: z.ZodObject<{
     tacticId?: string | undefined;
     impulseId?: string | undefined;
     respondingToLogId?: string | undefined;
+    voice?: {
+        callLogId: string;
+        interrupted?: boolean | undefined;
+        backfilled?: boolean | undefined;
+    } | undefined;
     isPartial?: boolean | undefined;
 }, {
     createdAt: import("../../../types").Timestamp;
@@ -57,6 +75,11 @@ export declare const assistantMessageLogSchema: z.ZodObject<{
     tacticId?: string | undefined;
     impulseId?: string | undefined;
     respondingToLogId?: string | undefined;
+    voice?: {
+        callLogId: string;
+        interrupted?: boolean | undefined;
+        backfilled?: boolean | undefined;
+    } | undefined;
     isPartial?: boolean | undefined;
 }>;
 export type AssistantMessageLog = z.infer<typeof assistantMessageLogSchema>;

@@ -59,6 +59,22 @@ describe("getGptPayload — call logs", () => {
     );
   });
 
+  it("renders only a boundary marker when the turns live in the session", () => {
+    const log = callLog({
+      endedAt: ts(200),
+      transcriptInSession: true,
+      summary: "Should not be rendered.",
+      transcriptItems: [
+        { role: "user", text: "Hello", ts: ts(150), type: "final" },
+      ],
+    });
+    const messages = getGptPayload(log, false);
+    expect(messages).toHaveLength(1);
+    expect(messages[0].content).toBe(
+      "<SYSTEM>The user had a voice call with the assistant. The turns spoken on that call follow as ordinary messages.</SYSTEM>",
+    );
+  });
+
   it("keeps the generic line when there's no summary and no transcript", () => {
     const log = callLog({ endedAt: ts(200) });
     const [message] = getGptPayload(log, false);

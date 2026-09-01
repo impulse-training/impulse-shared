@@ -422,6 +422,10 @@ export const isValidTacticLog = (value: unknown): value is TacticLog => {
 export const logIsUserMessageLog = (
   value: Omit<Log, "id">,
 ): value is UserMessageLog => value.type === "user_message";
+/** A user/assistant message that was spoken on a voice call, not typed. */
+export const logIsVoiceTurn = (value: Omit<Log, "id">): boolean =>
+  (value.type === "user_message" || value.type === "assistant_message") &&
+  !!(value as { voice?: { callLogId?: string } }).voice?.callLogId;
 export const isValidUserMessageLog = (
   value: unknown,
 ): value is UserMessageLog => {
