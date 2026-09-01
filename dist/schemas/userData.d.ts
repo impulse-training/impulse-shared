@@ -45,14 +45,17 @@ export declare const userDataSchema: z.ZodObject<{
         suppressedTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         pinnedTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         suppressedMixOptionIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        suppressedGoToKeys: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     }, "strip", z.ZodTypeAny, {
         suppressedTacticIds?: string[] | undefined;
         pinnedTacticIds?: string[] | undefined;
         suppressedMixOptionIds?: string[] | undefined;
+        suppressedGoToKeys?: string[] | undefined;
     }, {
         suppressedTacticIds?: string[] | undefined;
         pinnedTacticIds?: string[] | undefined;
         suppressedMixOptionIds?: string[] | undefined;
+        suppressedGoToKeys?: string[] | undefined;
     }>>;
     voipPushToken: z.ZodDefault<z.ZodNullable<z.ZodString>>;
     fcmCallToken: z.ZodDefault<z.ZodNullable<z.ZodString>>;
@@ -361,6 +364,7 @@ export declare const userDataSchema: z.ZodObject<{
         suppressedTacticIds?: string[] | undefined;
         pinnedTacticIds?: string[] | undefined;
         suppressedMixOptionIds?: string[] | undefined;
+        suppressedGoToKeys?: string[] | undefined;
     } | undefined;
     device?: {
         osVersion?: string | undefined;
@@ -480,6 +484,7 @@ export declare const userDataSchema: z.ZodObject<{
         suppressedTacticIds?: string[] | undefined;
         pinnedTacticIds?: string[] | undefined;
         suppressedMixOptionIds?: string[] | undefined;
+        suppressedGoToKeys?: string[] | undefined;
     } | undefined;
     voipPushToken?: string | null | undefined;
     fcmCallToken?: string | null | undefined;
