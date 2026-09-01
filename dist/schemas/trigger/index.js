@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.triggerHasLocation = exports.isValidTrigger = exports.triggerWithIdSchema = exports.triggerSchema = exports.triggerLocationSchema = void 0;
 const zod_1 = require("zod");
-const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
+const documentReferenceSchema_1 = require("../../utils/documentReferenceSchema");
 const timestampSchema_1 = require("../../utils/timestampSchema");
 const withId_1 = require("../../utils/withId");
 // Optional location reference for location-based triggers. Coordinates and

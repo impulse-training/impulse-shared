@@ -20,7 +20,7 @@ export declare const triggerSchema: z.ZodObject<{
     text: z.ZodOptional<z.ZodString>;
     ordinal: z.ZodOptional<z.ZodNumber>;
     triggerType: z.ZodOptional<z.ZodEnum<["arrival", "departure"]>>;
-    tactics: z.ZodOptional<z.ZodArray<any, "many">>;
+    tactics: z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>;
     /** @deprecated Use triggerType + location tag group option localLocationRef instead */
     location: z.ZodOptional<z.ZodObject<{
         locationName: z.ZodString;
@@ -48,7 +48,7 @@ export declare const triggerSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     text?: string | undefined;
     ordinal?: number | undefined;
-    tactics?: any[] | undefined;
+    tactics?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
     triggerType?: "arrival" | "departure" | undefined;
     deletedAt?: import("../../types").Timestamp | null | undefined;
     location?: {
@@ -64,7 +64,7 @@ export declare const triggerSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     text?: string | undefined;
     ordinal?: number | undefined;
-    tactics?: any[] | undefined;
+    tactics?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
     tags?: Record<string, string> | undefined;
     triggerType?: "arrival" | "departure" | undefined;
     deletedAt?: import("../../types").Timestamp | null | undefined;
@@ -77,13 +77,13 @@ export declare const triggerSchema: z.ZodObject<{
 export type Trigger = z.infer<typeof triggerSchema>;
 export declare const triggerWithIdSchema: z.ZodIntersection<z.ZodObject<{
     id: z.ZodString;
-    _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+    _ref: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
 }, "strip", z.ZodTypeAny, {
     id: string;
-    _ref: import("../..").DocumentReferenceLike<unknown>;
+    _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
 }, {
     id: string;
-    _ref: import("../..").DocumentReferenceLike<unknown>;
+    _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     tags: z.ZodDefault<z.ZodRecord<z.ZodString, z.ZodString>>;
@@ -91,7 +91,7 @@ export declare const triggerWithIdSchema: z.ZodIntersection<z.ZodObject<{
     text: z.ZodOptional<z.ZodString>;
     ordinal: z.ZodOptional<z.ZodNumber>;
     triggerType: z.ZodOptional<z.ZodEnum<["arrival", "departure"]>>;
-    tactics: z.ZodOptional<z.ZodArray<any, "many">>;
+    tactics: z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>;
     /** @deprecated Use triggerType + location tag group option localLocationRef instead */
     location: z.ZodOptional<z.ZodObject<{
         locationName: z.ZodString;
@@ -119,7 +119,7 @@ export declare const triggerWithIdSchema: z.ZodIntersection<z.ZodObject<{
     behaviorIds?: string[] | undefined;
     text?: string | undefined;
     ordinal?: number | undefined;
-    tactics?: any[] | undefined;
+    tactics?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
     triggerType?: "arrival" | "departure" | undefined;
     deletedAt?: import("../../types").Timestamp | null | undefined;
     location?: {
@@ -135,7 +135,7 @@ export declare const triggerWithIdSchema: z.ZodIntersection<z.ZodObject<{
     behaviorIds?: string[] | undefined;
     text?: string | undefined;
     ordinal?: number | undefined;
-    tactics?: any[] | undefined;
+    tactics?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
     tags?: Record<string, string> | undefined;
     triggerType?: "arrival" | "departure" | undefined;
     deletedAt?: import("../../types").Timestamp | null | undefined;
