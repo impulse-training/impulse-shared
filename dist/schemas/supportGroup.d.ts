@@ -657,6 +657,19 @@ export declare const supportGroupSchema: z.ZodObject<{
         }, {
             message?: any;
         }>;
+        voice: z.ZodOptional<z.ZodObject<{
+            callLogId: z.ZodString;
+            interrupted: z.ZodOptional<z.ZodBoolean>;
+            backfilled: z.ZodOptional<z.ZodBoolean>;
+        }, "strip", z.ZodTypeAny, {
+            callLogId: string;
+            interrupted?: boolean | undefined;
+            backfilled?: boolean | undefined;
+        }, {
+            callLogId: string;
+            interrupted?: boolean | undefined;
+            backfilled?: boolean | undefined;
+        }>>;
     } & {
         type: z.ZodLiteral<"user_message">;
         audioAttachment: z.ZodOptional<z.ZodObject<{
@@ -876,6 +889,11 @@ export declare const supportGroupSchema: z.ZodObject<{
         tacticId?: string | undefined;
         impulseId?: string | undefined;
         respondingToLogId?: string | undefined;
+        voice?: {
+            callLogId: string;
+            interrupted?: boolean | undefined;
+            backfilled?: boolean | undefined;
+        } | undefined;
         audioAttachment?: {
             uri: string;
             storagePath: string;
@@ -927,6 +945,11 @@ export declare const supportGroupSchema: z.ZodObject<{
         tacticId?: string | undefined;
         impulseId?: string | undefined;
         respondingToLogId?: string | undefined;
+        voice?: {
+            callLogId: string;
+            interrupted?: boolean | undefined;
+            backfilled?: boolean | undefined;
+        } | undefined;
         audioAttachment?: {
             uri: string;
             storagePath: string;
@@ -1124,6 +1147,11 @@ export declare const supportGroupSchema: z.ZodObject<{
         tacticId?: string | undefined;
         impulseId?: string | undefined;
         respondingToLogId?: string | undefined;
+        voice?: {
+            callLogId: string;
+            interrupted?: boolean | undefined;
+            backfilled?: boolean | undefined;
+        } | undefined;
         audioAttachment?: {
             uri: string;
             storagePath: string;
@@ -1298,6 +1326,11 @@ export declare const supportGroupSchema: z.ZodObject<{
         tacticId?: string | undefined;
         impulseId?: string | undefined;
         respondingToLogId?: string | undefined;
+        voice?: {
+            callLogId: string;
+            interrupted?: boolean | undefined;
+            backfilled?: boolean | undefined;
+        } | undefined;
         audioAttachment?: {
             uri: string;
             storagePath: string;

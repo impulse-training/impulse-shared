@@ -14,17 +14,25 @@ exports.callLogSchema = base_1.logBaseSchema.extend({
         tactic: tactic_1.tacticSchema.optional(),
         agentConnectedAt: timestampSchema_1.timestampSchema.optional(),
         endedAt: timestampSchema_1.timestampSchema.optional(),
-        // Voice provider plumbing. Both vendor groups are optional — a call log
-        // either has LiveKit fields (legacy) OR ElevenLabs fields (current).
+        // Voice provider plumbing. Both vendor groups are optional. Impulse calls
+        // are LiveKit (current); the ElevenLabs fields are left over from the
+        // earlier pipeline and only survive on old docs.
         livekitSessionId: zod_1.z.string().optional(),
         livekitRoomName: zod_1.z.string().optional(),
         elevenlabsAgentId: zod_1.z.string().optional(),
         elevenlabsConversationId: zod_1.z.string().optional(),
         token: zod_1.z.string().optional(),
         summary: zod_1.z.string().optional(),
-        // Not persisted on the doc — hydrated at read time from the log's
-        // transcriptItems subcollection when the call ended but the summary
-        // hasn't landed yet, so getGptPayload can fall back to the transcript.
+        // True once the call's turns are written as user_message /
+        // assistant_message logs in the session (each carrying `voice.callLogId`).
+        // Readers that see this render the call as a boundary marker and let the
+        // inline turns speak for themselves. Absent on legacy calls, whose
+        // transcript lives only in the log's transcriptItems subcollection.
+        transcriptInSession: zod_1.z.boolean().optional(),
+        // Legacy calls only. Not persisted on the doc — hydrated at read time from
+        // the log's transcriptItems subcollection when the call ended but the
+        // summary hasn't landed yet, so getGptPayload can fall back to the
+        // transcript.
         transcriptItems: zod_1.z.array(transcriptItem_1.transcriptItemSchema).optional(),
     }),
 });

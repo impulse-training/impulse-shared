@@ -230,6 +230,15 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
     const isCreating = !beforeData && afterData;
     const isUpdating = beforeData && afterData;
     const isNotDeleting = !!afterData;
+    // Spoken turns are persisted as message logs by the voice agent while the
+    // call is live. The voice agent is already answering them; a text reply here
+    // would put a second coach in the same conversation. Mechanical check on the
+    // log itself, not on session state, so a late-arriving turn after hangup is
+    // equally silent.
+    if (isCreating && (0, log_1.logIsVoiceTurn)(afterData)) {
+        console.log("Voice call turn. Not responding with AI.");
+        return false;
+    }
     // Case: New message logs (creation event, no before data)
     if (isCreating && (0, log_1.logIsUserMessageLog)(afterData)) {
         console.log("New message log. Responding with AI.");

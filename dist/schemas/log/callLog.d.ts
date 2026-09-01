@@ -5304,6 +5304,7 @@ export declare const callLogSchema: z.ZodObject<{
         elevenlabsConversationId: z.ZodOptional<z.ZodString>;
         token: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
+        transcriptInSession: z.ZodOptional<z.ZodBoolean>;
         transcriptItems: z.ZodOptional<z.ZodArray<z.ZodObject<{
             role: z.ZodEnum<["user", "assistant"]>;
             text: z.ZodString;
@@ -5946,6 +5947,7 @@ export declare const callLogSchema: z.ZodObject<{
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
         summary?: string | undefined;
+        transcriptInSession?: boolean | undefined;
         transcriptItems?: {
             ts: import("../../types").Timestamp;
             text: string;
@@ -6042,6 +6044,7 @@ export declare const callLogSchema: z.ZodObject<{
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
         summary?: string | undefined;
+        transcriptInSession?: boolean | undefined;
         transcriptItems?: {
             ts: import("../../types").Timestamp;
             text: string;
@@ -6682,6 +6685,7 @@ export declare const callLogSchema: z.ZodObject<{
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
         summary?: string | undefined;
+        transcriptInSession?: boolean | undefined;
         transcriptItems?: {
             ts: import("../../types").Timestamp;
             text: string;
@@ -6793,6 +6797,7 @@ export declare const callLogSchema: z.ZodObject<{
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
         summary?: string | undefined;
+        transcriptInSession?: boolean | undefined;
         transcriptItems?: {
             ts: import("../../types").Timestamp;
             text: string;

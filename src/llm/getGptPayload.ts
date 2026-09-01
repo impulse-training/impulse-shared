@@ -411,6 +411,17 @@ export function getGptPayload(
 
     if (!log.data.endedAt) return [];
 
+    // The turns are inline as message logs right after this one, so the call
+    // log is only a boundary. No summary either: it would duplicate them.
+    if (log.data.transcriptInSession) {
+      messages.push({
+        role: "user",
+        content:
+          "<SYSTEM>The user had a voice call with the assistant. The turns spoken on that call follow as ordinary messages.</SYSTEM>",
+      });
+      return messages;
+    }
+
     const transcriptItems = log.data.transcriptItems?.filter(
       (item) => item.type !== "partial" && item.text.trim().length > 0,
     );

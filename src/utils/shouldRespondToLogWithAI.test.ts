@@ -581,3 +581,37 @@ describe("shouldRespondToLogWithAI — tags updated", () => {
     ).toBe(true);
   });
 });
+
+describe("shouldRespondToLogWithAI — voice call turns", () => {
+  const typedUserMessage = {
+    type: "user_message",
+    data: { message: { role: "user", content: "hey" } },
+  } as unknown as Log;
+
+  it("responds to a typed user message", () => {
+    expect(
+      shouldRespondToLogWithAI(impulseSession, undefined, typedUserMessage, typedUserMessage),
+    ).toBe(true);
+  });
+
+  it("stays silent for a user turn spoken on a call", () => {
+    const spoken = {
+      ...typedUserMessage,
+      voice: { callLogId: "call1" },
+    } as unknown as Log;
+    expect(
+      shouldRespondToLogWithAI(impulseSession, undefined, spoken, spoken),
+    ).toBe(false);
+  });
+
+  it("stays silent for an assistant turn spoken on a call", () => {
+    const spoken = {
+      type: "assistant_message",
+      voice: { callLogId: "call1", interrupted: true },
+      data: { message: { role: "assistant", content: "Let's try" } },
+    } as unknown as Log;
+    expect(
+      shouldRespondToLogWithAI(impulseSession, undefined, spoken, spoken),
+    ).toBe(false);
+  });
+});

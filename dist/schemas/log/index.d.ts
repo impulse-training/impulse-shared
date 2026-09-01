@@ -64,6 +64,19 @@ export declare const logSchemas: {
         }, {
             message?: any;
         }>;
+        voice: z.ZodOptional<z.ZodObject<{
+            callLogId: z.ZodString;
+            interrupted: z.ZodOptional<z.ZodBoolean>;
+            backfilled: z.ZodOptional<z.ZodBoolean>;
+        }, "strip", z.ZodTypeAny, {
+            callLogId: string;
+            interrupted?: boolean | undefined;
+            backfilled?: boolean | undefined;
+        }, {
+            callLogId: string;
+            interrupted?: boolean | undefined;
+            backfilled?: boolean | undefined;
+        }>>;
     } & {
         type: z.ZodLiteral<"user_message">;
         audioAttachment: z.ZodOptional<z.ZodObject<{
@@ -283,6 +296,11 @@ export declare const logSchemas: {
         tacticId?: string | undefined;
         impulseId?: string | undefined;
         respondingToLogId?: string | undefined;
+        voice?: {
+            callLogId: string;
+            interrupted?: boolean | undefined;
+            backfilled?: boolean | undefined;
+        } | undefined;
         audioAttachment?: {
             uri: string;
             storagePath: string;
@@ -334,6 +352,11 @@ export declare const logSchemas: {
         tacticId?: string | undefined;
         impulseId?: string | undefined;
         respondingToLogId?: string | undefined;
+        voice?: {
+            callLogId: string;
+            interrupted?: boolean | undefined;
+            backfilled?: boolean | undefined;
+        } | undefined;
         audioAttachment?: {
             uri: string;
             storagePath: string;
@@ -389,6 +412,19 @@ export declare const logSchemas: {
         }, {
             message?: any;
         }>;
+        voice: z.ZodOptional<z.ZodObject<{
+            callLogId: z.ZodString;
+            interrupted: z.ZodOptional<z.ZodBoolean>;
+            backfilled: z.ZodOptional<z.ZodBoolean>;
+        }, "strip", z.ZodTypeAny, {
+            callLogId: string;
+            interrupted?: boolean | undefined;
+            backfilled?: boolean | undefined;
+        }, {
+            callLogId: string;
+            interrupted?: boolean | undefined;
+            backfilled?: boolean | undefined;
+        }>>;
     } & {
         type: z.ZodLiteral<"assistant_message">;
         isPartial: z.ZodOptional<z.ZodBoolean>;
@@ -409,6 +445,11 @@ export declare const logSchemas: {
         tacticId?: string | undefined;
         impulseId?: string | undefined;
         respondingToLogId?: string | undefined;
+        voice?: {
+            callLogId: string;
+            interrupted?: boolean | undefined;
+            backfilled?: boolean | undefined;
+        } | undefined;
         isPartial?: boolean | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -427,6 +468,11 @@ export declare const logSchemas: {
         tacticId?: string | undefined;
         impulseId?: string | undefined;
         respondingToLogId?: string | undefined;
+        voice?: {
+            callLogId: string;
+            interrupted?: boolean | undefined;
+            backfilled?: boolean | undefined;
+        } | undefined;
         isPartial?: boolean | undefined;
     }>;
     system_message: z.ZodObject<{
@@ -442,6 +488,19 @@ export declare const logSchemas: {
         impulseId: z.ZodOptional<z.ZodString>;
         respondingToLogId: z.ZodOptional<z.ZodString>;
         isDisplayable: z.ZodLiteral<true>;
+        voice: z.ZodOptional<z.ZodObject<{
+            callLogId: z.ZodString;
+            interrupted: z.ZodOptional<z.ZodBoolean>;
+            backfilled: z.ZodOptional<z.ZodBoolean>;
+        }, "strip", z.ZodTypeAny, {
+            callLogId: string;
+            interrupted?: boolean | undefined;
+            backfilled?: boolean | undefined;
+        }, {
+            callLogId: string;
+            interrupted?: boolean | undefined;
+            backfilled?: boolean | undefined;
+        }>>;
     } & {
         type: z.ZodLiteral<"system_message">;
         data: z.ZodObject<{
@@ -522,6 +581,11 @@ export declare const logSchemas: {
         tacticId?: string | undefined;
         impulseId?: string | undefined;
         respondingToLogId?: string | undefined;
+        voice?: {
+            callLogId: string;
+            interrupted?: boolean | undefined;
+            backfilled?: boolean | undefined;
+        } | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -548,6 +612,11 @@ export declare const logSchemas: {
         tacticId?: string | undefined;
         impulseId?: string | undefined;
         respondingToLogId?: string | undefined;
+        voice?: {
+            callLogId: string;
+            interrupted?: boolean | undefined;
+            backfilled?: boolean | undefined;
+        } | undefined;
     }>;
     call: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -5854,6 +5923,7 @@ export declare const logSchemas: {
             elevenlabsConversationId: z.ZodOptional<z.ZodString>;
             token: z.ZodOptional<z.ZodString>;
             summary: z.ZodOptional<z.ZodString>;
+            transcriptInSession: z.ZodOptional<z.ZodBoolean>;
             transcriptItems: z.ZodOptional<z.ZodArray<z.ZodObject<{
                 role: z.ZodEnum<["user", "assistant"]>;
                 text: z.ZodString;
@@ -6496,6 +6566,7 @@ export declare const logSchemas: {
             elevenlabsConversationId?: string | undefined;
             token?: string | undefined;
             summary?: string | undefined;
+            transcriptInSession?: boolean | undefined;
             transcriptItems?: {
                 ts: import("../../types").Timestamp;
                 text: string;
@@ -6592,6 +6663,7 @@ export declare const logSchemas: {
             elevenlabsConversationId?: string | undefined;
             token?: string | undefined;
             summary?: string | undefined;
+            transcriptInSession?: boolean | undefined;
             transcriptItems?: {
                 ts: import("../../types").Timestamp;
                 text: string;
@@ -7232,6 +7304,7 @@ export declare const logSchemas: {
             elevenlabsConversationId?: string | undefined;
             token?: string | undefined;
             summary?: string | undefined;
+            transcriptInSession?: boolean | undefined;
             transcriptItems?: {
                 ts: import("../../types").Timestamp;
                 text: string;
@@ -7343,6 +7416,7 @@ export declare const logSchemas: {
             elevenlabsConversationId?: string | undefined;
             token?: string | undefined;
             summary?: string | undefined;
+            transcriptInSession?: boolean | undefined;
             transcriptItems?: {
                 ts: import("../../types").Timestamp;
                 text: string;
@@ -36286,6 +36360,19 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     }, {
         message?: any;
     }>;
+    voice: z.ZodOptional<z.ZodObject<{
+        callLogId: z.ZodString;
+        interrupted: z.ZodOptional<z.ZodBoolean>;
+        backfilled: z.ZodOptional<z.ZodBoolean>;
+    }, "strip", z.ZodTypeAny, {
+        callLogId: string;
+        interrupted?: boolean | undefined;
+        backfilled?: boolean | undefined;
+    }, {
+        callLogId: string;
+        interrupted?: boolean | undefined;
+        backfilled?: boolean | undefined;
+    }>>;
 } & {
     type: z.ZodLiteral<"user_message">;
     audioAttachment: z.ZodOptional<z.ZodObject<{
@@ -36505,6 +36592,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     tacticId?: string | undefined;
     impulseId?: string | undefined;
     respondingToLogId?: string | undefined;
+    voice?: {
+        callLogId: string;
+        interrupted?: boolean | undefined;
+        backfilled?: boolean | undefined;
+    } | undefined;
     audioAttachment?: {
         uri: string;
         storagePath: string;
@@ -36556,6 +36648,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     tacticId?: string | undefined;
     impulseId?: string | undefined;
     respondingToLogId?: string | undefined;
+    voice?: {
+        callLogId: string;
+        interrupted?: boolean | undefined;
+        backfilled?: boolean | undefined;
+    } | undefined;
     audioAttachment?: {
         uri: string;
         storagePath: string;
@@ -36610,6 +36707,19 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     }, {
         message?: any;
     }>;
+    voice: z.ZodOptional<z.ZodObject<{
+        callLogId: z.ZodString;
+        interrupted: z.ZodOptional<z.ZodBoolean>;
+        backfilled: z.ZodOptional<z.ZodBoolean>;
+    }, "strip", z.ZodTypeAny, {
+        callLogId: string;
+        interrupted?: boolean | undefined;
+        backfilled?: boolean | undefined;
+    }, {
+        callLogId: string;
+        interrupted?: boolean | undefined;
+        backfilled?: boolean | undefined;
+    }>>;
 } & {
     type: z.ZodLiteral<"assistant_message">;
     isPartial: z.ZodOptional<z.ZodBoolean>;
@@ -36630,6 +36740,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     tacticId?: string | undefined;
     impulseId?: string | undefined;
     respondingToLogId?: string | undefined;
+    voice?: {
+        callLogId: string;
+        interrupted?: boolean | undefined;
+        backfilled?: boolean | undefined;
+    } | undefined;
     isPartial?: boolean | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -36648,6 +36763,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     tacticId?: string | undefined;
     impulseId?: string | undefined;
     respondingToLogId?: string | undefined;
+    voice?: {
+        callLogId: string;
+        interrupted?: boolean | undefined;
+        backfilled?: boolean | undefined;
+    } | undefined;
     isPartial?: boolean | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -36662,6 +36782,19 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     impulseId: z.ZodOptional<z.ZodString>;
     respondingToLogId: z.ZodOptional<z.ZodString>;
     isDisplayable: z.ZodLiteral<true>;
+    voice: z.ZodOptional<z.ZodObject<{
+        callLogId: z.ZodString;
+        interrupted: z.ZodOptional<z.ZodBoolean>;
+        backfilled: z.ZodOptional<z.ZodBoolean>;
+    }, "strip", z.ZodTypeAny, {
+        callLogId: string;
+        interrupted?: boolean | undefined;
+        backfilled?: boolean | undefined;
+    }, {
+        callLogId: string;
+        interrupted?: boolean | undefined;
+        backfilled?: boolean | undefined;
+    }>>;
 } & {
     type: z.ZodLiteral<"system_message">;
     data: z.ZodObject<{
@@ -36742,6 +36875,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     tacticId?: string | undefined;
     impulseId?: string | undefined;
     respondingToLogId?: string | undefined;
+    voice?: {
+        callLogId: string;
+        interrupted?: boolean | undefined;
+        backfilled?: boolean | undefined;
+    } | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
@@ -36768,6 +36906,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     tacticId?: string | undefined;
     impulseId?: string | undefined;
     respondingToLogId?: string | undefined;
+    voice?: {
+        callLogId: string;
+        interrupted?: boolean | undefined;
+        backfilled?: boolean | undefined;
+    } | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -42073,6 +42216,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         elevenlabsConversationId: z.ZodOptional<z.ZodString>;
         token: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
+        transcriptInSession: z.ZodOptional<z.ZodBoolean>;
         transcriptItems: z.ZodOptional<z.ZodArray<z.ZodObject<{
             role: z.ZodEnum<["user", "assistant"]>;
             text: z.ZodString;
@@ -42715,6 +42859,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
         summary?: string | undefined;
+        transcriptInSession?: boolean | undefined;
         transcriptItems?: {
             ts: import("../../types").Timestamp;
             text: string;
@@ -42811,6 +42956,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
         summary?: string | undefined;
+        transcriptInSession?: boolean | undefined;
         transcriptItems?: {
             ts: import("../../types").Timestamp;
             text: string;
@@ -43451,6 +43597,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
         summary?: string | undefined;
+        transcriptInSession?: boolean | undefined;
         transcriptItems?: {
             ts: import("../../types").Timestamp;
             text: string;
@@ -43562,6 +43709,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
         summary?: string | undefined;
+        transcriptInSession?: boolean | undefined;
         transcriptItems?: {
             ts: import("../../types").Timestamp;
             text: string;
@@ -65204,6 +65352,8 @@ export declare const isValidWidgetSetupLog: (value: unknown) => value is WidgetS
 export declare const logIsTacticLog: (value: Omit<Log, "id">) => value is TacticLog;
 export declare const isValidTacticLog: (value: unknown) => value is TacticLog;
 export declare const logIsUserMessageLog: (value: Omit<Log, "id">) => value is UserMessageLog;
+/** A user/assistant message that was spoken on a voice call, not typed. */
+export declare const logIsVoiceTurn: (value: Omit<Log, "id">) => boolean;
 export declare const isValidUserMessageLog: (value: unknown) => value is UserMessageLog;
 export declare const logIsPlansLog: (value: Omit<Log, "id">) => value is PlansLog;
 export declare const isValidPlansLog: (value: unknown) => value is PlansLog;
