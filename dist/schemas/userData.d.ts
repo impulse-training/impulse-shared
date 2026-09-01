@@ -41,6 +41,19 @@ export declare const userDataSchema: z.ZodObject<{
     notifyOnSignUp: z.ZodOptional<z.ZodBoolean>;
     notifyOnCoachingApplication: z.ZodOptional<z.ZodBoolean>;
     expoPushToken: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    tacticPreferences: z.ZodOptional<z.ZodObject<{
+        suppressedTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        pinnedTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        suppressedMixOptionIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strip", z.ZodTypeAny, {
+        suppressedTacticIds?: string[] | undefined;
+        pinnedTacticIds?: string[] | undefined;
+        suppressedMixOptionIds?: string[] | undefined;
+    }, {
+        suppressedTacticIds?: string[] | undefined;
+        pinnedTacticIds?: string[] | undefined;
+        suppressedMixOptionIds?: string[] | undefined;
+    }>>;
     voipPushToken: z.ZodDefault<z.ZodNullable<z.ZodString>>;
     fcmCallToken: z.ZodDefault<z.ZodNullable<z.ZodString>>;
     notificationSettings: z.ZodDefault<z.ZodObject<{
@@ -344,6 +357,11 @@ export declare const userDataSchema: z.ZodObject<{
     createdViaSimulator?: boolean | undefined;
     notifyOnSignUp?: boolean | undefined;
     notifyOnCoachingApplication?: boolean | undefined;
+    tacticPreferences?: {
+        suppressedTacticIds?: string[] | undefined;
+        pinnedTacticIds?: string[] | undefined;
+        suppressedMixOptionIds?: string[] | undefined;
+    } | undefined;
     device?: {
         osVersion?: string | undefined;
         osName?: string | undefined;
@@ -458,6 +476,11 @@ export declare const userDataSchema: z.ZodObject<{
     notifyOnSignUp?: boolean | undefined;
     notifyOnCoachingApplication?: boolean | undefined;
     expoPushToken?: string | null | undefined;
+    tacticPreferences?: {
+        suppressedTacticIds?: string[] | undefined;
+        pinnedTacticIds?: string[] | undefined;
+        suppressedMixOptionIds?: string[] | undefined;
+    } | undefined;
     voipPushToken?: string | null | undefined;
     fcmCallToken?: string | null | undefined;
     notificationSettings?: {
