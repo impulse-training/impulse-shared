@@ -28,6 +28,10 @@ exports.triggerSchema = zod_1.z.object({
     // as the "Next time" card and read by the AI as evidence - never
     // deterministically injected.
     tactics: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema).optional(),
+    // When the user last stood behind the go-to order (set/reorder/re-agree).
+    // Drives freshness framing ("Agreed 12 Aug", aging nudges) - never
+    // deletion; a rehearsed plan is the win, not the bug.
+    tacticsAgreedAt: timestampSchema_1.timestampSchema.optional(),
     /** @deprecated Use triggerType + location tag group option localLocationRef instead */
     location: exports.triggerLocationSchema.optional(),
     lastOccurredAt: timestampSchema_1.timestampSchema.nullable(),

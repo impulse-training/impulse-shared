@@ -21,6 +21,7 @@ export declare const triggerSchema: z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     triggerType: z.ZodOptional<z.ZodEnum<["arrival", "departure"]>>;
     tactics: z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>;
+    tacticsAgreedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     /** @deprecated Use triggerType + location tag group option localLocationRef instead */
     location: z.ZodOptional<z.ZodObject<{
         locationName: z.ZodString;
@@ -49,6 +50,7 @@ export declare const triggerSchema: z.ZodObject<{
     text?: string | undefined;
     ordinal?: number | undefined;
     tactics?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+    tacticsAgreedAt?: import("../../types").Timestamp | undefined;
     triggerType?: "arrival" | "departure" | undefined;
     deletedAt?: import("../../types").Timestamp | null | undefined;
     location?: {
@@ -65,6 +67,7 @@ export declare const triggerSchema: z.ZodObject<{
     text?: string | undefined;
     ordinal?: number | undefined;
     tactics?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+    tacticsAgreedAt?: import("../../types").Timestamp | undefined;
     tags?: Record<string, string> | undefined;
     triggerType?: "arrival" | "departure" | undefined;
     deletedAt?: import("../../types").Timestamp | null | undefined;
@@ -92,6 +95,7 @@ export declare const triggerWithIdSchema: z.ZodIntersection<z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     triggerType: z.ZodOptional<z.ZodEnum<["arrival", "departure"]>>;
     tactics: z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>;
+    tacticsAgreedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     /** @deprecated Use triggerType + location tag group option localLocationRef instead */
     location: z.ZodOptional<z.ZodObject<{
         locationName: z.ZodString;
@@ -120,6 +124,7 @@ export declare const triggerWithIdSchema: z.ZodIntersection<z.ZodObject<{
     text?: string | undefined;
     ordinal?: number | undefined;
     tactics?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+    tacticsAgreedAt?: import("../../types").Timestamp | undefined;
     triggerType?: "arrival" | "departure" | undefined;
     deletedAt?: import("../../types").Timestamp | null | undefined;
     location?: {
@@ -136,6 +141,7 @@ export declare const triggerWithIdSchema: z.ZodIntersection<z.ZodObject<{
     text?: string | undefined;
     ordinal?: number | undefined;
     tactics?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+    tacticsAgreedAt?: import("../../types").Timestamp | undefined;
     tags?: Record<string, string> | undefined;
     triggerType?: "arrival" | "departure" | undefined;
     deletedAt?: import("../../types").Timestamp | null | undefined;
