@@ -1,4 +1,5 @@
 import { TagGroup, Tactic, TacticPhase } from "../schemas";
+import { orderTerminalTacticsLast, tacticIsTerminal } from "./tacticOrdering";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -255,7 +256,9 @@ export function selectBestTacticsPerPhase(
     }
   }
 
-  return selected;
+  // Phase order puts a regulate-phase "turn off your phone" first; a terminal
+  // tactic ends the guided session, so it must close the sequence instead.
+  return orderTerminalTacticsLast(selected, tacticIsTerminal);
 }
 
 // ── Check if session has primary tags or behaviors ───────────────────────────

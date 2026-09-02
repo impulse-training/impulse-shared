@@ -258,3 +258,28 @@ describe("buildTagGroupLookup – resolving a group by id or name", () => {
     expect(collided.byName.get("feeling")?.groupId).toBe("emotion");
   });
 });
+
+describe("selectBestTacticsPerPhase keeps a device-restart tactic last", () => {
+  it("moves a regulate-phase terminal tactic after shift and reengage", () => {
+    const { selectBestTacticsPerPhase, buildTagGroupLookup } = require("./tacticScoring");
+    const lookup = buildTagGroupLookup([]);
+    const mk = (id: string, phase: string, extra: Record<string, unknown> = {}) =>
+      ({ id, path: `tactics/${id}`, phase, steps: [], ...extra }) as any;
+    const selected = selectBestTacticsPerPhase(
+      [
+        mk("turn-off-phone", "regulate", { completionTrigger: "device-restart" }),
+        mk("ground", "shift"),
+        mk("talk", "reengage"),
+      ],
+      {},
+      [],
+      new Map(),
+      lookup,
+    );
+    expect(selected.map((t: { id: string }) => t.id)).toEqual([
+      "ground",
+      "talk",
+      "turn-off-phone",
+    ]);
+  });
+});

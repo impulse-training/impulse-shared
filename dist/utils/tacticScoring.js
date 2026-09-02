@@ -5,6 +5,7 @@ exports.buildTagGroupLookup = buildTagGroupLookup;
 exports.scoreTactic = scoreTactic;
 exports.selectBestTacticsPerPhase = selectBestTacticsPerPhase;
 exports.sessionHasPrimaryTagsOrBehaviors = sessionHasPrimaryTagsOrBehaviors;
+const tacticOrdering_1 = require("./tacticOrdering");
 /** Ranking boost applied to a pinned tactic. Large enough to clear a tactic's
  * recency penalty, small enough that a strong tag/topic match still competes. */
 exports.PINNED_TACTIC_BONUS = 3;
@@ -148,7 +149,9 @@ function selectBestTacticsPerPhase(allTactics, sessionTags, recentTacticIds, tac
             selected.push(best.tactic);
         }
     }
-    return selected;
+    // Phase order puts a regulate-phase "turn off your phone" first; a terminal
+    // tactic ends the guided session, so it must close the sequence instead.
+    return (0, tacticOrdering_1.orderTerminalTacticsLast)(selected, tacticOrdering_1.tacticIsTerminal);
 }
 // ── Check if session has primary tags or behaviors ───────────────────────────
 /**
