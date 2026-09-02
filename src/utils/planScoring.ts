@@ -6,6 +6,7 @@ import {
   TacticWithMeta,
   scoreTactic,
 } from "./tacticScoring";
+import { orderTerminalTacticsLast, tacticIsTerminal } from "./tacticOrdering";
 
 export type PlanWithMeta = Plan & {
   id: string;
@@ -218,9 +219,14 @@ export function rankPlansForNextTactic(params: {
       }
     }
 
-    const eligibleTacticPaths = scoredTactics
-      .sort((a, b) => b.score - a.score)
-      .map((entry) => entry.path);
+    // Score order may pull a terminal tactic (device-restart) ahead of guided
+    // ones; it ends the session, so it is always delivered last.
+    const eligibleTacticPaths = orderTerminalTacticsLast(
+      scoredTactics
+        .sort((a, b) => b.score - a.score)
+        .map((entry) => entry.path),
+      (path) => tacticIsTerminal(getTacticWithMetaFromPlan(plan, path)),
+    );
 
     const nextTacticScore = bestTactic?.score ?? null;
     const evidenceBonus =

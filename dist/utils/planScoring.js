@@ -5,6 +5,7 @@ exports.rankPlansForNextTactic = rankPlansForNextTactic;
 exports.buildPlanTagGroupLookup = buildPlanTagGroupLookup;
 exports.summarizePlanPhase = summarizePlanPhase;
 const tacticScoring_1 = require("./tacticScoring");
+const tacticOrdering_1 = require("./tacticOrdering");
 function normalizeText(value) {
     return value.trim().toLowerCase();
 }
@@ -132,9 +133,11 @@ function rankPlansForNextTactic(params) {
                 bestTactic = { score: orderedScore, tactic };
             }
         }
-        const eligibleTacticPaths = scoredTactics
+        // Score order may pull a terminal tactic (device-restart) ahead of guided
+        // ones; it ends the session, so it is always delivered last.
+        const eligibleTacticPaths = (0, tacticOrdering_1.orderTerminalTacticsLast)(scoredTactics
             .sort((a, b) => b.score - a.score)
-            .map((entry) => entry.path);
+            .map((entry) => entry.path), (path) => (0, tacticOrdering_1.tacticIsTerminal)(getTacticWithMetaFromPlan(plan, path)));
         const nextTacticScore = (_a = bestTactic === null || bestTactic === void 0 ? void 0 : bestTactic.score) !== null && _a !== void 0 ? _a : null;
         const evidenceBonus = candidate.sourceKind === "shared" ? crossUserEvidenceBonus(plan) : 0;
         const totalScore = affinityScore * 2 +
