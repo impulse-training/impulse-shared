@@ -141,6 +141,10 @@ import {
   protectNextWindowOutcomeLogSchema,
 } from "./protectNextWindowOutcomeLog";
 import { VoiceOfferLog, voiceOfferLogSchema } from "./voiceOfferLog";
+import {
+  ScheduledCheckInLog,
+  scheduledCheckInLogSchema,
+} from "./scheduledCheckInLog";
 
 export const logSchemas = {
   user: userMessageLogSchema,
@@ -190,6 +194,7 @@ export const logSchemas = {
   closing_reflection: closingReflectionLogSchema,
   protect_next_window_outcome: protectNextWindowOutcomeLogSchema,
   voice_offer: voiceOfferLogSchema,
+  scheduled_check_in: scheduledCheckInLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -240,7 +245,8 @@ export type Log =
   | PlanHistoryEntryLog
   | ClosingReflectionLog
   | ProtectNextWindowOutcomeLog
-  | VoiceOfferLog;
+  | VoiceOfferLog
+  | ScheduledCheckInLog;
 
 export * from "./behaviorLog";
 export * from "./breathingLog";
@@ -287,6 +293,7 @@ export * from "./planHistoryEntryLog";
 export * from "./closingReflectionLog";
 export * from "./protectNextWindowOutcomeLog";
 export * from "./voiceOfferLog";
+export * from "./scheduledCheckInLog";
 
 // Discriminated union schema across all log variants
 export const logSchema = z.discriminatedUnion("type", [
@@ -335,9 +342,19 @@ export const logSchema = z.discriminatedUnion("type", [
   closingReflectionLogSchema,
   protectNextWindowOutcomeLogSchema,
   voiceOfferLogSchema,
+  scheduledCheckInLogSchema,
 ]);
 
 // Export log type guards
+
+export const logIsScheduledCheckInLog = (
+  value: Omit<Log, "id">,
+): value is ScheduledCheckInLog => value.type === "scheduled_check_in";
+export const isValidScheduledCheckInLog = (
+  value: unknown,
+): value is ScheduledCheckInLog => {
+  return scheduledCheckInLogSchema.safeParse(value).success;
+};
 
 export const logIsVoiceOfferLog = (
   value: Omit<Log, "id">,
