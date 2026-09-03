@@ -1,4 +1,5 @@
 import { ChatCompletionMessageParam } from "openai/resources/chat";
+import { Trend } from "../schemas/behavior";
 import {
   BehaviorLog,
   Log,
@@ -143,6 +144,19 @@ function buildBehaviorLogPayload(
 
   return [];
 }
+
+
+/**
+ * The week card's on-screen trend words (impulse-native
+ * WeekOverviewLogView), so the coach and the card use the same words.
+ * INSUFFICIENT_DATA is omitted there and here.
+ */
+const WEEK_CARD_TREND_LABEL: Partial<Record<Trend, string>> = {
+  IMPROVING: "Trending down",
+  DECLINING: "Trending up",
+  STABLE: "Holding steady",
+  VOLATILE: "Up and down",
+};
 
 export function getGptPayload(
   log: Log,
@@ -768,8 +782,16 @@ export function getGptPayload(
         );
       }
 
-      if (card.trend && card.trend !== "INSUFFICIENT_DATA") {
-        parts.push(card.trend.toLowerCase().replace(/_/g, " "));
+      // The trend is the behavior state's short-window slope, and its enum
+      // reads backwards for a reduce goal (DECLINING = adherence declining =
+      // usage rising). Rendered raw it sat next to "down 74% vs last week"
+      // as "declining" and read as the week getting worse. Give the model the
+      // words the card shows, and say what they measure — the movement
+      // within this week, which is a different fact from the change vs last
+      // week and never decides whether the week was heavier or lighter.
+      const trendLabel = card.trend ? WEEK_CARD_TREND_LABEL[card.trend] : undefined;
+      if (trendLabel) {
+        parts.push(`on-screen trend "${trendLabel}" (the slope within this week)`);
       }
 
       if (card.mainTriggers?.length) {
@@ -791,10 +813,11 @@ export function getGptPayload(
           "change, use these exact figures so what you say matches the card " +
           "they can see. They do not replace the week's shape — still open on " +
           "the multi-day pattern (the run of days, where it slipped, where it " +
-          "recovered) from the week block above. Say what it shows plainly " +
-          "— up, down, heavier, cleaner — without inventing more than the " +
-          "figures support — then ask how the week went for them; that " +
-          "question is the point of the opener.</SYSTEM>",
+          "recovered) from the week block above. Whether it was a heavier or " +
+          "a lighter week than last week is settled by the change figure " +
+          "above and nothing else; say what the figures show without " +
+          "inventing more than they support, then ask how the week went for " +
+          "them; that question is the point of the opener.</SYSTEM>",
       },
     ];
   }

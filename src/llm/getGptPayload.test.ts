@@ -116,7 +116,7 @@ describe("getGptPayload — week overview cards", () => {
     const [message] = getGptPayload(log, false);
     expect(message.content).toContain("2026-05-04 to 2026-05-10");
     expect(message.content).toContain(
-      "- Online videos: 2 hrs tracked; down 43% vs last week; improving",
+      '- Online videos: 2 hrs tracked; down 43% vs last week; on-screen trend "Trending down" (the slope within this week)',
     );
   });
 

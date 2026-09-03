@@ -90,6 +90,17 @@ function buildBehaviorLogPayload(log, options) {
     }
     return [];
 }
+/**
+ * The week card's on-screen trend words (impulse-native
+ * WeekOverviewLogView), so the coach and the card use the same words.
+ * INSUFFICIENT_DATA is omitted there and here.
+ */
+const WEEK_CARD_TREND_LABEL = {
+    IMPROVING: "Trending down",
+    DECLINING: "Trending up",
+    STABLE: "Holding steady",
+    VOLATILE: "Up and down",
+};
 function getGptPayload(log, isFinalLogInSession, options) {
     var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
     if (log.type === "proposed_experiment") {
@@ -616,8 +627,16 @@ function getGptPayload(log, isFinalLogInSession, options) {
                     ? "level with last week"
                     : `${card.pctChangeFromLastWeek < 0 ? "down" : "up"} ${pct}% vs last week`);
             }
-            if (card.trend && card.trend !== "INSUFFICIENT_DATA") {
-                parts.push(card.trend.toLowerCase().replace(/_/g, " "));
+            // The trend is the behavior state's short-window slope, and its enum
+            // reads backwards for a reduce goal (DECLINING = adherence declining =
+            // usage rising). Rendered raw it sat next to "down 74% vs last week"
+            // as "declining" and read as the week getting worse. Give the model the
+            // words the card shows, and say what they measure — the movement
+            // within this week, which is a different fact from the change vs last
+            // week and never decides whether the week was heavier or lighter.
+            const trendLabel = card.trend ? WEEK_CARD_TREND_LABEL[card.trend] : undefined;
+            if (trendLabel) {
+                parts.push(`on-screen trend "${trendLabel}" (the slope within this week)`);
             }
             if ((_a = card.mainTriggers) === null || _a === void 0 ? void 0 : _a.length) {
                 parts.push(`most-tagged triggers: ${card.mainTriggers.join(", ")}`);
@@ -635,10 +654,11 @@ function getGptPayload(log, isFinalLogInSession, options) {
                     "change, use these exact figures so what you say matches the card " +
                     "they can see. They do not replace the week's shape — still open on " +
                     "the multi-day pattern (the run of days, where it slipped, where it " +
-                    "recovered) from the week block above. Say what it shows plainly " +
-                    "— up, down, heavier, cleaner — without inventing more than the " +
-                    "figures support — then ask how the week went for them; that " +
-                    "question is the point of the opener.</SYSTEM>",
+                    "recovered) from the week block above. Whether it was a heavier or " +
+                    "a lighter week than last week is settled by the change figure " +
+                    "above and nothing else; say what the figures show without " +
+                    "inventing more than they support, then ask how the week went for " +
+                    "them; that question is the point of the opener.</SYSTEM>",
             },
         ];
     }
