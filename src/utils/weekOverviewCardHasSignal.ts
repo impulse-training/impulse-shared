@@ -4,21 +4,24 @@ import { WeekOverviewBehaviorCard } from "../schemas/log/weekOverviewLog";
  * Whether a week-overview card has anything meaningful to say about the week.
  *
  * The card's job is a week's shape plus a week-over-week change. With neither a
- * usable trend nor a prior week to compare against, all that's left is a bare
- * total dressed as a week summary — "peak 3" sitting above "No data last week",
- * off a single tracked entry. That reads as a pattern the user doesn't have,
- * which is worse than showing nothing.
+ * shape to draw (fewer than two tracked days) nor a prior week to compare
+ * against, all that's left is a bare total dressed as a week summary — "peak 3"
+ * sitting above "No data last week", off a single tracked entry. That reads as
+ * a pattern the user doesn't have, which is worse than showing nothing.
  *
- * `INSUFFICIENT_DATA` is already treated as "nothing meaningful to say" for the
- * trend label; this extends the same judgement to the card as a whole.
+ * Cards logged before `dailyValues` existed carried a trend label instead; a
+ * usable trend still counts for those (INSUFFICIENT_DATA never did).
  *
- * Note a genuine tracked zero still has signal: it carries a real trend once
- * there are enough samples, or a comparison once there's a prior week.
+ * Note a genuine tracked zero still has signal: it is a point on the sparkline,
+ * and a comparison once there's a prior week.
  */
 export function weekOverviewCardHasSignal(
-  card: Pick<WeekOverviewBehaviorCard, "trend" | "pctChangeFromLastWeek">,
+  card: Pick<WeekOverviewBehaviorCard, "trend" | "pctChangeFromLastWeek" | "dailyValues">,
 ): boolean {
-  const hasTrend = !!card.trend && card.trend !== "INSUFFICIENT_DATA";
   const hasComparison = card.pctChangeFromLastWeek != null;
-  return hasTrend || hasComparison;
+  const trackedDays = (card.dailyValues ?? []).filter((v) => v != null).length;
+  const hasShape = trackedDays >= 2;
+  const hasLegacyTrend =
+    card.dailyValues === undefined && !!card.trend && card.trend !== "INSUFFICIENT_DATA";
+  return hasComparison || hasShape || hasLegacyTrend;
 }

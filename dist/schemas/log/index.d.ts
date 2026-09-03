@@ -26156,6 +26156,7 @@ export declare const logSchemas: {
                 weeklyTotal: z.ZodNumber;
                 weeklyTotalFormatted: z.ZodString;
                 pctChangeFromLastWeek: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+                dailyValues: z.ZodOptional<z.ZodArray<z.ZodNullable<z.ZodNumber>, "many">>;
                 trend: z.ZodOptional<z.ZodEnum<["IMPROVING", "DECLINING", "STABLE", "VOLATILE", "INSUFFICIENT_DATA"]>>;
                 mainTriggers: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             }, "strip", z.ZodTypeAny, {
@@ -26167,6 +26168,7 @@ export declare const logSchemas: {
                 trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
                 unit?: string | undefined;
                 pctChangeFromLastWeek?: number | null | undefined;
+                dailyValues?: (number | null)[] | undefined;
                 mainTriggers?: string[] | undefined;
             }, {
                 name: string;
@@ -26177,6 +26179,7 @@ export declare const logSchemas: {
                 trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
                 unit?: string | undefined;
                 pctChangeFromLastWeek?: number | null | undefined;
+                dailyValues?: (number | null)[] | undefined;
                 mainTriggers?: string[] | undefined;
             }>, "many">;
         }, "strip", z.ZodTypeAny, {
@@ -26189,6 +26192,7 @@ export declare const logSchemas: {
                 trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
                 unit?: string | undefined;
                 pctChangeFromLastWeek?: number | null | undefined;
+                dailyValues?: (number | null)[] | undefined;
                 mainTriggers?: string[] | undefined;
             }[];
             weekStartDateString: string;
@@ -26203,6 +26207,7 @@ export declare const logSchemas: {
                 trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
                 unit?: string | undefined;
                 pctChangeFromLastWeek?: number | null | undefined;
+                dailyValues?: (number | null)[] | undefined;
                 mainTriggers?: string[] | undefined;
             }[];
             weekStartDateString: string;
@@ -26227,6 +26232,7 @@ export declare const logSchemas: {
                 trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
                 unit?: string | undefined;
                 pctChangeFromLastWeek?: number | null | undefined;
+                dailyValues?: (number | null)[] | undefined;
                 mainTriggers?: string[] | undefined;
             }[];
             weekStartDateString: string;
@@ -26256,6 +26262,7 @@ export declare const logSchemas: {
                 trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
                 unit?: string | undefined;
                 pctChangeFromLastWeek?: number | null | undefined;
+                dailyValues?: (number | null)[] | undefined;
                 mainTriggers?: string[] | undefined;
             }[];
             weekStartDateString: string;
@@ -55277,6 +55284,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             weeklyTotal: z.ZodNumber;
             weeklyTotalFormatted: z.ZodString;
             pctChangeFromLastWeek: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+            dailyValues: z.ZodOptional<z.ZodArray<z.ZodNullable<z.ZodNumber>, "many">>;
             trend: z.ZodOptional<z.ZodEnum<["IMPROVING", "DECLINING", "STABLE", "VOLATILE", "INSUFFICIENT_DATA"]>>;
             mainTriggers: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         }, "strip", z.ZodTypeAny, {
@@ -55288,6 +55296,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
             unit?: string | undefined;
             pctChangeFromLastWeek?: number | null | undefined;
+            dailyValues?: (number | null)[] | undefined;
             mainTriggers?: string[] | undefined;
         }, {
             name: string;
@@ -55298,6 +55307,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
             unit?: string | undefined;
             pctChangeFromLastWeek?: number | null | undefined;
+            dailyValues?: (number | null)[] | undefined;
             mainTriggers?: string[] | undefined;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
@@ -55310,6 +55320,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
             unit?: string | undefined;
             pctChangeFromLastWeek?: number | null | undefined;
+            dailyValues?: (number | null)[] | undefined;
             mainTriggers?: string[] | undefined;
         }[];
         weekStartDateString: string;
@@ -55324,6 +55335,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
             unit?: string | undefined;
             pctChangeFromLastWeek?: number | null | undefined;
+            dailyValues?: (number | null)[] | undefined;
             mainTriggers?: string[] | undefined;
         }[];
         weekStartDateString: string;
@@ -55348,6 +55360,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
             unit?: string | undefined;
             pctChangeFromLastWeek?: number | null | undefined;
+            dailyValues?: (number | null)[] | undefined;
             mainTriggers?: string[] | undefined;
         }[];
         weekStartDateString: string;
@@ -55377,6 +55390,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
             unit?: string | undefined;
             pctChangeFromLastWeek?: number | null | undefined;
+            dailyValues?: (number | null)[] | undefined;
             mainTriggers?: string[] | undefined;
         }[];
         weekStartDateString: string;
