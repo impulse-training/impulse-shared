@@ -232,3 +232,30 @@ describe("scorePlanAffinity – group named by id", () => {
         expect((0, planScoring_1.scorePlanAffinity)(plan, { emotion: ["bored"] }, lookup, [])).toBe(0);
     });
 });
+describe("eligibleTacticPaths keeps a device-restart tactic last", () => {
+    it("demotes the terminal tactic even when it is first and scores highest", () => {
+        const plan = makePlan({
+            id: "phone",
+            tactics: [
+                { path: "tactics/turn-off-phone" },
+                { path: "tactics/ground" },
+                { path: "tactics/talk" },
+            ],
+            tacticsByPath: {
+                "tactics/turn-off-phone": {
+                    id: "turn-off-phone",
+                    phase: "regulate",
+                    completionTrigger: "device-restart",
+                },
+                "tactics/ground": { id: "ground", phase: "shift" },
+                "tactics/talk": { id: "talk", phase: "reengage" },
+            },
+        });
+        const [result] = rank([{ plan, sourceKind: "user" }]);
+        expect(result.eligibleTacticPaths).toEqual([
+            "tactics/ground",
+            "tactics/talk",
+            "tactics/turn-off-phone",
+        ]);
+    });
+});
