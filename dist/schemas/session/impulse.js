@@ -96,4 +96,13 @@ exports.impulseSessionSchema = base_1.sessionBaseSchema.extend({
      * the transcript (see the protect_next_window post-mortem for why).
      */
     planPresentation: zod_1.z.enum(["pending", "presented"]).optional(),
+    /**
+     * Set by the client when the impulse button starts a FRESH session instead
+     * of reopening this one, because the user never engaged with it (opened it
+     * and backed out — see impulseSessionWasEngaged in impulse-native). The
+     * newer session owns the moment from here: taskProcessDebriefUrge skips a
+     * superseded session, so an abandoned open doesn't produce a second "did
+     * you act on it?" prompt beside the live one.
+     */
+    supersededBySessionId: zod_1.z.string().optional(),
 });

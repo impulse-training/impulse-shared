@@ -7760,6 +7760,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
     }>>;
     protectNextWindowEligible: z.ZodOptional<z.ZodBoolean>;
     planPresentation: z.ZodOptional<z.ZodEnum<["pending", "presented"]>>;
+    supersededBySessionId: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     type: "impulse";
     date: import("../../types").Timestamp;
@@ -8672,6 +8673,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
     } | undefined;
     protectNextWindowEligible?: boolean | undefined;
     planPresentation?: "pending" | "presented" | undefined;
+    supersededBySessionId?: string | undefined;
 }, {
     type: "impulse";
     date: import("../../types").Timestamp;
@@ -9050,5 +9052,6 @@ export declare const impulseSessionSchema: z.ZodObject<{
     } | undefined;
     protectNextWindowEligible?: boolean | undefined;
     planPresentation?: "pending" | "presented" | undefined;
+    supersededBySessionId?: string | undefined;
 }>;
 export type ImpulseSession = z.infer<typeof impulseSessionSchema>;
