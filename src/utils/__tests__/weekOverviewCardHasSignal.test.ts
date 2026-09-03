@@ -15,7 +15,37 @@ describe("weekOverviewCardHasSignal", () => {
     expect(weekOverviewCardHasSignal({})).toBe(false);
   });
 
-  it("keeps a card with a real trend even without a prior week", () => {
+  // A sparkline needs two points to have a shape; one tracked day is the same
+  // "peak 3" card as before, just drawn as a dot.
+  it("keeps a card whose daily values give the sparkline a shape", () => {
+    expect(
+      weekOverviewCardHasSignal({
+        dailyValues: [null, 30, null, null, null, 45, 60],
+        pctChangeFromLastWeek: null,
+      }),
+    ).toBe(true);
+    expect(
+      weekOverviewCardHasSignal({ dailyValues: [0, 0, 0, 0, 0, 0, 0], pctChangeFromLastWeek: null }),
+    ).toBe(true);
+    expect(
+      weekOverviewCardHasSignal({
+        dailyValues: [null, null, null, null, null, null, 3],
+        pctChangeFromLastWeek: null,
+      }),
+    ).toBe(false);
+  });
+
+  it("ignores a trend once daily values are present (the trend is no longer shown)", () => {
+    expect(
+      weekOverviewCardHasSignal({
+        trend: "IMPROVING",
+        dailyValues: [null, null, null, null, null, null, 3],
+        pctChangeFromLastWeek: null,
+      }),
+    ).toBe(false);
+  });
+
+  it("keeps a legacy card (no daily values) with a real trend even without a prior week", () => {
     expect(
       weekOverviewCardHasSignal({
         trend: "IMPROVING",

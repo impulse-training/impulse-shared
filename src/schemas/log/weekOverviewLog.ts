@@ -21,7 +21,19 @@ export const weekOverviewBehaviorCardSchema = z.object({
    * prior-week data to compare against (so the card just shows the total).
    */
   pctChangeFromLastWeek: z.number().nullable().optional(),
-  /** Qualitative direction from the behavior's short (7-day) window. */
+  /**
+   * Per-day totals across the week, oldest to newest (same units as
+   * weeklyTotal). Null marks a day with no total at all — untracked, not zero.
+   * The card draws these as a sparkline: the week's shape shown, not labelled.
+   */
+  dailyValues: z.array(z.number().nullable()).optional(),
+  /**
+   * @deprecated No longer written. The behavior's short-window adherence slope
+   * was shown as "Trending up/down", which is a different fact from the
+   * week-over-week change beside it and read as a contradiction ("Trending up"
+   * under "↓ 74% from last week"). Kept so cards logged before dailyValues
+   * still parse.
+   */
   trend: trendSchema.optional(),
   /** Top trigger tag labels (e.g. ["Stressed", "Bored"]); all-time until week-scoped. */
   mainTriggers: z.array(z.string()).optional(),

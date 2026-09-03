@@ -616,9 +616,11 @@ function getGptPayload(log, isFinalLogInSession, options) {
                     ? "level with last week"
                     : `${card.pctChangeFromLastWeek < 0 ? "down" : "up"} ${pct}% vs last week`);
             }
-            if (card.trend && card.trend !== "INSUFFICIENT_DATA") {
-                parts.push(card.trend.toLowerCase().replace(/_/g, " "));
-            }
+            // No trend here on purpose: the card's old "Trending up/down" was the
+            // behavior state's short-window slope, a different fact from the change
+            // vs last week beside it, and it read as the week getting worse next to
+            // "down 74%". The day-by-day shape reaches the model through the week
+            // block, and reaches the user as the card's sparkline.
             if ((_a = card.mainTriggers) === null || _a === void 0 ? void 0 : _a.length) {
                 parts.push(`most-tagged triggers: ${card.mainTriggers.join(", ")}`);
             }
@@ -635,10 +637,11 @@ function getGptPayload(log, isFinalLogInSession, options) {
                     "change, use these exact figures so what you say matches the card " +
                     "they can see. They do not replace the week's shape — still open on " +
                     "the multi-day pattern (the run of days, where it slipped, where it " +
-                    "recovered) from the week block above. Say what it shows plainly " +
-                    "— up, down, heavier, cleaner — without inventing more than the " +
-                    "figures support — then ask how the week went for them; that " +
-                    "question is the point of the opener.</SYSTEM>",
+                    "recovered) from the week block above. Whether it was a heavier or " +
+                    "a lighter week than last week is settled by the change figure " +
+                    "above and nothing else; say what the figures show without " +
+                    "inventing more than they support, then ask how the week went for " +
+                    "them; that question is the point of the opener.</SYSTEM>",
             },
         ];
     }
