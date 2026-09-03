@@ -92,6 +92,9 @@ function buildPlansLogPayload(log, isFinalLogInSession, completedTacticIds) {
     const isUserOwnedPlan = log.data.source === "trigger" ||
         log.data.source === "behavior" ||
         log.data.source === "composed";
+    // scheduled = a routine the scheduler opened at the user's chosen time or
+    // place. Shown as a card, ticked off from it; no urge is in play.
+    const isScheduledPlan = log.data.source === "scheduled";
     if (isPlanning) {
         // Planning mode framing (recap session — proposing a plan for next time)
         parts.push(`A plan has been proposed for this trigger. It includes ${tacticsCount} ${tacticsNoun}.`);
@@ -99,6 +102,33 @@ function buildPlansLogPayload(log, isFinalLogInSession, completedTacticIds) {
             parts.push(`The first tactic is: ${firstTacticTitle}.`);
         }
         parts.push("This plan will be ready for next time this trigger comes up. Ask the user if they'd like to keep this plan, adjust it, or skip it.");
+    }
+    else if (isScheduledPlan) {
+        // SCHEDULED plan: a preventive routine, not a response to an urge. The
+        // card delivers the tactics and the user ticks them off there; the
+        // assistant's only job is to credit the routine, never to run the
+        // impulse-mode checkpoint ("how's the urge now?") — nothing is happening
+        // with the behavior for that question to refer to.
+        const allTactics = getAllTactics(plan === null || plan === void 0 ? void 0 : plan.tactics, plan === null || plan === void 0 ? void 0 : plan.tacticsByPath);
+        const completed = new Set(completedTacticIds !== null && completedTacticIds !== void 0 ? completedTacticIds : []);
+        const allTacticsCompleted = allTactics.length > 0 && allTactics.every((t) => completed.has(t.id));
+        const planName = plan && typeof plan.name === "string" && plan.name.trim().length > 0
+            ? `"${plan.name.trim()}"`
+            : "their scheduled plan";
+        parts.push(`This session is ${planName}: a routine the user set up to run on a schedule as a preventive step, shown to them as a card with its ${tacticsCount} ${tacticsNoun}. It opened because the scheduled time or place arrived, not because of an urge; there is no urge, craving, or impulse in progress.`);
+        if (allTacticsCompleted) {
+            parts.push("The user has completed every tactic of the routine. Credit it in one or two short sentences, then stop or ask one light question about the routine itself. Ask nothing about urges or cravings, and never direct the user to a tactic of this plan — there is no next step left.");
+        }
+        else {
+            if (allTactics.length > 0) {
+                parts.push("Tactics in the routine (in order):");
+                allTactics.forEach((t, i) => {
+                    parts.push(`${i + 1}. "${t.title}"${completed.has(t.id) ? " — ALREADY COMPLETED" : ""}`);
+                });
+            }
+            parts.push("When the user completes a tactic, credit it in one short line; they start any remaining tactic from the card themselves. Ask nothing about urges or cravings, and skip any tactic marked ALREADY COMPLETED.");
+        }
+        parts.push("Do NOT call suggestTactic for the routine's tactics and do NOT type out their step instructions — the card already shows them.");
     }
     else if (isUserOwnedPlan) {
         // USER-OWNED plan (source trigger/behavior): the plan sheet — not the
