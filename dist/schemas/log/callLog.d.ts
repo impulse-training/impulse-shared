@@ -1,4 +1,62 @@
 import { z } from "zod";
+/**
+ * How long a voice call took to become a conversation, in milliseconds.
+ *
+ * Durations, not timestamps, and deliberately split by whose clock measured
+ * them. The four `fromButton*` figures all come from ONE clock — the phone's,
+ * started at the button press — because the two events that actually define the
+ * user-facing number (the tap, and the first word they hear) both happen on the
+ * device. Stitching that number out of client and server timestamps instead
+ * would be measuring clock skew as much as latency.
+ *
+ * The remaining fields are each measured wholly inside one process, so they say
+ * where the time went without ever being compared across machines.
+ */
+export declare const callTimingsSchema: z.ZodObject<{
+    /** Token request sent. Covers session creation and the doc round-trip. */
+    fromButtonToTokenRequestMs: z.ZodOptional<z.ZodNumber>;
+    /** Token landed on this device (today: written to Firestore, then synced). */
+    fromButtonToTokenReceivedMs: z.ZodOptional<z.ZodNumber>;
+    /** LiveKit room connected. */
+    fromButtonToRoomConnectedMs: z.ZodOptional<z.ZodNumber>;
+    /** THE headline: the first word the user actually hears. */
+    fromButtonToFirstAudioMs: z.ZodOptional<z.ZodNumber>;
+    /** issueCallToken wall time, server-side (Firestore writes + 3 LiveKit calls). */
+    serverTokenMs: z.ZodOptional<z.ZodNumber>;
+    /** Agent: building the per-session context and instructions. */
+    agentContextBuildMs: z.ZodOptional<z.ZodNumber>;
+    /** Agent: opening the OpenAI Realtime session. */
+    agentRealtimeStartMs: z.ZodOptional<z.ZodNumber>;
+    /** Agent: room join to asking the model for the opening line. */
+    agentJoinToReplyMs: z.ZodOptional<z.ZodNumber>;
+    /**
+     * Which affordance started the call, so a slow path can be told from a slow
+     * moment: "default_mode" is the impulse button opening straight into a call,
+     * "toggle" is the user switching an existing session over.
+     */
+    entry: z.ZodOptional<z.ZodEnum<["default_mode", "toggle", "unknown"]>>;
+}, "strip", z.ZodTypeAny, {
+    fromButtonToTokenRequestMs?: number | undefined;
+    fromButtonToTokenReceivedMs?: number | undefined;
+    fromButtonToRoomConnectedMs?: number | undefined;
+    fromButtonToFirstAudioMs?: number | undefined;
+    serverTokenMs?: number | undefined;
+    agentContextBuildMs?: number | undefined;
+    agentRealtimeStartMs?: number | undefined;
+    agentJoinToReplyMs?: number | undefined;
+    entry?: "unknown" | "default_mode" | "toggle" | undefined;
+}, {
+    fromButtonToTokenRequestMs?: number | undefined;
+    fromButtonToTokenReceivedMs?: number | undefined;
+    fromButtonToRoomConnectedMs?: number | undefined;
+    fromButtonToFirstAudioMs?: number | undefined;
+    serverTokenMs?: number | undefined;
+    agentContextBuildMs?: number | undefined;
+    agentRealtimeStartMs?: number | undefined;
+    agentJoinToReplyMs?: number | undefined;
+    entry?: "unknown" | "default_mode" | "toggle" | undefined;
+}>;
+export type CallTimings = z.infer<typeof callTimingsSchema>;
 export declare const callLogSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -5297,6 +5355,50 @@ export declare const callLogSchema: z.ZodObject<{
             collectionTemplateIds?: string[] | undefined;
         }>>;
         agentConnectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        timings: z.ZodOptional<z.ZodObject<{
+            /** Token request sent. Covers session creation and the doc round-trip. */
+            fromButtonToTokenRequestMs: z.ZodOptional<z.ZodNumber>;
+            /** Token landed on this device (today: written to Firestore, then synced). */
+            fromButtonToTokenReceivedMs: z.ZodOptional<z.ZodNumber>;
+            /** LiveKit room connected. */
+            fromButtonToRoomConnectedMs: z.ZodOptional<z.ZodNumber>;
+            /** THE headline: the first word the user actually hears. */
+            fromButtonToFirstAudioMs: z.ZodOptional<z.ZodNumber>;
+            /** issueCallToken wall time, server-side (Firestore writes + 3 LiveKit calls). */
+            serverTokenMs: z.ZodOptional<z.ZodNumber>;
+            /** Agent: building the per-session context and instructions. */
+            agentContextBuildMs: z.ZodOptional<z.ZodNumber>;
+            /** Agent: opening the OpenAI Realtime session. */
+            agentRealtimeStartMs: z.ZodOptional<z.ZodNumber>;
+            /** Agent: room join to asking the model for the opening line. */
+            agentJoinToReplyMs: z.ZodOptional<z.ZodNumber>;
+            /**
+             * Which affordance started the call, so a slow path can be told from a slow
+             * moment: "default_mode" is the impulse button opening straight into a call,
+             * "toggle" is the user switching an existing session over.
+             */
+            entry: z.ZodOptional<z.ZodEnum<["default_mode", "toggle", "unknown"]>>;
+        }, "strip", z.ZodTypeAny, {
+            fromButtonToTokenRequestMs?: number | undefined;
+            fromButtonToTokenReceivedMs?: number | undefined;
+            fromButtonToRoomConnectedMs?: number | undefined;
+            fromButtonToFirstAudioMs?: number | undefined;
+            serverTokenMs?: number | undefined;
+            agentContextBuildMs?: number | undefined;
+            agentRealtimeStartMs?: number | undefined;
+            agentJoinToReplyMs?: number | undefined;
+            entry?: "unknown" | "default_mode" | "toggle" | undefined;
+        }, {
+            fromButtonToTokenRequestMs?: number | undefined;
+            fromButtonToTokenReceivedMs?: number | undefined;
+            fromButtonToRoomConnectedMs?: number | undefined;
+            fromButtonToFirstAudioMs?: number | undefined;
+            serverTokenMs?: number | undefined;
+            agentContextBuildMs?: number | undefined;
+            agentRealtimeStartMs?: number | undefined;
+            agentJoinToReplyMs?: number | undefined;
+            entry?: "unknown" | "default_mode" | "toggle" | undefined;
+        }>>;
         endedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         livekitSessionId: z.ZodOptional<z.ZodString>;
         livekitRoomName: z.ZodOptional<z.ZodString>;
@@ -5941,6 +6043,17 @@ export declare const callLogSchema: z.ZodObject<{
             collectionTemplateIds?: string[] | undefined;
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
+        timings?: {
+            fromButtonToTokenRequestMs?: number | undefined;
+            fromButtonToTokenReceivedMs?: number | undefined;
+            fromButtonToRoomConnectedMs?: number | undefined;
+            fromButtonToFirstAudioMs?: number | undefined;
+            serverTokenMs?: number | undefined;
+            agentContextBuildMs?: number | undefined;
+            agentRealtimeStartMs?: number | undefined;
+            agentJoinToReplyMs?: number | undefined;
+            entry?: "unknown" | "default_mode" | "toggle" | undefined;
+        } | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
@@ -6038,6 +6151,17 @@ export declare const callLogSchema: z.ZodObject<{
             collectionTemplateIds?: string[] | undefined;
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
+        timings?: {
+            fromButtonToTokenRequestMs?: number | undefined;
+            fromButtonToTokenReceivedMs?: number | undefined;
+            fromButtonToRoomConnectedMs?: number | undefined;
+            fromButtonToFirstAudioMs?: number | undefined;
+            serverTokenMs?: number | undefined;
+            agentContextBuildMs?: number | undefined;
+            agentRealtimeStartMs?: number | undefined;
+            agentJoinToReplyMs?: number | undefined;
+            entry?: "unknown" | "default_mode" | "toggle" | undefined;
+        } | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
@@ -6679,6 +6803,17 @@ export declare const callLogSchema: z.ZodObject<{
             collectionTemplateIds?: string[] | undefined;
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
+        timings?: {
+            fromButtonToTokenRequestMs?: number | undefined;
+            fromButtonToTokenReceivedMs?: number | undefined;
+            fromButtonToRoomConnectedMs?: number | undefined;
+            fromButtonToFirstAudioMs?: number | undefined;
+            serverTokenMs?: number | undefined;
+            agentContextBuildMs?: number | undefined;
+            agentRealtimeStartMs?: number | undefined;
+            agentJoinToReplyMs?: number | undefined;
+            entry?: "unknown" | "default_mode" | "toggle" | undefined;
+        } | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
@@ -6791,6 +6926,17 @@ export declare const callLogSchema: z.ZodObject<{
             collectionTemplateIds?: string[] | undefined;
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
+        timings?: {
+            fromButtonToTokenRequestMs?: number | undefined;
+            fromButtonToTokenReceivedMs?: number | undefined;
+            fromButtonToRoomConnectedMs?: number | undefined;
+            fromButtonToFirstAudioMs?: number | undefined;
+            serverTokenMs?: number | undefined;
+            agentContextBuildMs?: number | undefined;
+            agentRealtimeStartMs?: number | undefined;
+            agentJoinToReplyMs?: number | undefined;
+            entry?: "unknown" | "default_mode" | "toggle" | undefined;
+        } | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;

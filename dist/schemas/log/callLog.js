@@ -1,11 +1,48 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.callLogSchema = void 0;
+exports.callLogSchema = exports.callTimingsSchema = void 0;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../../utils/timestampSchema");
 const tactic_1 = require("../tactic");
 const transcriptItem_1 = require("../transcriptItem");
 const base_1 = require("./base");
+/**
+ * How long a voice call took to become a conversation, in milliseconds.
+ *
+ * Durations, not timestamps, and deliberately split by whose clock measured
+ * them. The four `fromButton*` figures all come from ONE clock — the phone's,
+ * started at the button press — because the two events that actually define the
+ * user-facing number (the tap, and the first word they hear) both happen on the
+ * device. Stitching that number out of client and server timestamps instead
+ * would be measuring clock skew as much as latency.
+ *
+ * The remaining fields are each measured wholly inside one process, so they say
+ * where the time went without ever being compared across machines.
+ */
+exports.callTimingsSchema = zod_1.z.object({
+    /** Token request sent. Covers session creation and the doc round-trip. */
+    fromButtonToTokenRequestMs: zod_1.z.number().optional(),
+    /** Token landed on this device (today: written to Firestore, then synced). */
+    fromButtonToTokenReceivedMs: zod_1.z.number().optional(),
+    /** LiveKit room connected. */
+    fromButtonToRoomConnectedMs: zod_1.z.number().optional(),
+    /** THE headline: the first word the user actually hears. */
+    fromButtonToFirstAudioMs: zod_1.z.number().optional(),
+    /** issueCallToken wall time, server-side (Firestore writes + 3 LiveKit calls). */
+    serverTokenMs: zod_1.z.number().optional(),
+    /** Agent: building the per-session context and instructions. */
+    agentContextBuildMs: zod_1.z.number().optional(),
+    /** Agent: opening the OpenAI Realtime session. */
+    agentRealtimeStartMs: zod_1.z.number().optional(),
+    /** Agent: room join to asking the model for the opening line. */
+    agentJoinToReplyMs: zod_1.z.number().optional(),
+    /**
+     * Which affordance started the call, so a slow path can be told from a slow
+     * moment: "default_mode" is the impulse button opening straight into a call,
+     * "toggle" is the user switching an existing session over.
+     */
+    entry: zod_1.z.enum(["default_mode", "toggle", "unknown"]).optional(),
+});
 // Call log Schema
 exports.callLogSchema = base_1.logBaseSchema.extend({
     type: zod_1.z.literal("call"),
@@ -13,6 +50,10 @@ exports.callLogSchema = base_1.logBaseSchema.extend({
     data: zod_1.z.object({
         tactic: tactic_1.tacticSchema.optional(),
         agentConnectedAt: timestampSchema_1.timestampSchema.optional(),
+        // See callTimingsSchema. Written by three processes (device, issueCallToken,
+        // voice agent), so every writer uses update() with dotted paths — a
+        // set({merge:true}) would store "timings.x" as a literal key.
+        timings: exports.callTimingsSchema.optional(),
         endedAt: timestampSchema_1.timestampSchema.optional(),
         // Voice provider plumbing. Both vendor groups are optional. Impulse calls
         // are LiveKit (current); the ElevenLabs fields are left over from the
