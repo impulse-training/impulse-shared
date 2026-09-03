@@ -355,12 +355,20 @@ function getGptPayload(log, isFinalLogInSession, options) {
         // doing — never march the user to the next step in the same message. The
         // plan is a strategy, not a script; if the urge passed, the remaining
         // steps were never needed (resolvePlanEarly), which is a success.
+        //
+        // A scheduled (time/location) plan is a routine, not an urge response:
+        // there is no urge for the checkpoint question to refer to, so its step
+        // completions get a routine credit instead.
+        const isScheduledPlanSession = (options === null || options === void 0 ? void 0 : options.sessionType) === "timePlan" ||
+            (options === null || options === void 0 ? void 0 : options.sessionType) === "locationPlan";
         const checkpointDirective = isCompleted &&
             log.data.planId &&
             isFinalLogInSession &&
             !isPostDebrief &&
             !(options === null || options === void 0 ? void 0 : options.forSummarization)
-            ? " This was a step of the user's assigned plan. Reply in ONE short message: briefly credit them, then ask how the urge is doing now. Do NOT direct them to the next step of the plan in this message. If the user then says the urge has passed or they feel in control, call resolvePlanEarly and reinforce the win; if the urge is still present or they want to continue, point them to the next tactic of their plan they have NOT already completed — the user may do steps out of order, and if none remain the plan is simply done: never send them back to a completed tactic."
+            ? isScheduledPlanSession
+                ? " This was a step of the user's scheduled routine, which they ticked off from its card; nothing is happening with the behavior right now. Reply in ONE short message crediting the step. Ask nothing about urges or cravings. If steps of the routine remain, the card shows them and the user starts the next one from there; if none remain, the routine is done and there is nothing to point them to."
+                : " This was a step of the user's assigned plan. Reply in ONE short message: briefly credit them, then ask how the urge is doing now. Do NOT direct them to the next step of the plan in this message. If the user then says the urge has passed or they feel in control, call resolvePlanEarly and reinforce the win; if the urge is still present or they want to continue, point them to the next tactic of their plan they have NOT already completed — the user may do steps out of order, and if none remain the plan is simply done: never send them back to a completed tactic."
             : "";
         if (isCompleted && response) {
             return [
