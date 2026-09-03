@@ -5917,6 +5917,37 @@ export declare const logSchemas: {
                 collectionTemplateIds?: string[] | undefined;
             }>>;
             agentConnectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            timings: z.ZodOptional<z.ZodObject<{
+                fromButtonToTokenRequestMs: z.ZodOptional<z.ZodNumber>;
+                fromButtonToTokenReceivedMs: z.ZodOptional<z.ZodNumber>;
+                fromButtonToRoomConnectedMs: z.ZodOptional<z.ZodNumber>;
+                fromButtonToFirstAudioMs: z.ZodOptional<z.ZodNumber>;
+                serverTokenMs: z.ZodOptional<z.ZodNumber>;
+                agentContextBuildMs: z.ZodOptional<z.ZodNumber>;
+                agentRealtimeStartMs: z.ZodOptional<z.ZodNumber>;
+                agentJoinToReplyMs: z.ZodOptional<z.ZodNumber>;
+                entry: z.ZodOptional<z.ZodEnum<["default_mode", "toggle", "unknown"]>>;
+            }, "strip", z.ZodTypeAny, {
+                fromButtonToTokenRequestMs?: number | undefined;
+                fromButtonToTokenReceivedMs?: number | undefined;
+                fromButtonToRoomConnectedMs?: number | undefined;
+                fromButtonToFirstAudioMs?: number | undefined;
+                serverTokenMs?: number | undefined;
+                agentContextBuildMs?: number | undefined;
+                agentRealtimeStartMs?: number | undefined;
+                agentJoinToReplyMs?: number | undefined;
+                entry?: "unknown" | "default_mode" | "toggle" | undefined;
+            }, {
+                fromButtonToTokenRequestMs?: number | undefined;
+                fromButtonToTokenReceivedMs?: number | undefined;
+                fromButtonToRoomConnectedMs?: number | undefined;
+                fromButtonToFirstAudioMs?: number | undefined;
+                serverTokenMs?: number | undefined;
+                agentContextBuildMs?: number | undefined;
+                agentRealtimeStartMs?: number | undefined;
+                agentJoinToReplyMs?: number | undefined;
+                entry?: "unknown" | "default_mode" | "toggle" | undefined;
+            }>>;
             endedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             livekitSessionId: z.ZodOptional<z.ZodString>;
             livekitRoomName: z.ZodOptional<z.ZodString>;
@@ -6561,6 +6592,17 @@ export declare const logSchemas: {
                 collectionTemplateIds?: string[] | undefined;
             } | undefined;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
+            timings?: {
+                fromButtonToTokenRequestMs?: number | undefined;
+                fromButtonToTokenReceivedMs?: number | undefined;
+                fromButtonToRoomConnectedMs?: number | undefined;
+                fromButtonToFirstAudioMs?: number | undefined;
+                serverTokenMs?: number | undefined;
+                agentContextBuildMs?: number | undefined;
+                agentRealtimeStartMs?: number | undefined;
+                agentJoinToReplyMs?: number | undefined;
+                entry?: "unknown" | "default_mode" | "toggle" | undefined;
+            } | undefined;
             livekitSessionId?: string | undefined;
             livekitRoomName?: string | undefined;
             elevenlabsAgentId?: string | undefined;
@@ -6658,6 +6700,17 @@ export declare const logSchemas: {
                 collectionTemplateIds?: string[] | undefined;
             } | undefined;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
+            timings?: {
+                fromButtonToTokenRequestMs?: number | undefined;
+                fromButtonToTokenReceivedMs?: number | undefined;
+                fromButtonToRoomConnectedMs?: number | undefined;
+                fromButtonToFirstAudioMs?: number | undefined;
+                serverTokenMs?: number | undefined;
+                agentContextBuildMs?: number | undefined;
+                agentRealtimeStartMs?: number | undefined;
+                agentJoinToReplyMs?: number | undefined;
+                entry?: "unknown" | "default_mode" | "toggle" | undefined;
+            } | undefined;
             livekitSessionId?: string | undefined;
             livekitRoomName?: string | undefined;
             elevenlabsAgentId?: string | undefined;
@@ -7299,6 +7352,17 @@ export declare const logSchemas: {
                 collectionTemplateIds?: string[] | undefined;
             } | undefined;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
+            timings?: {
+                fromButtonToTokenRequestMs?: number | undefined;
+                fromButtonToTokenReceivedMs?: number | undefined;
+                fromButtonToRoomConnectedMs?: number | undefined;
+                fromButtonToFirstAudioMs?: number | undefined;
+                serverTokenMs?: number | undefined;
+                agentContextBuildMs?: number | undefined;
+                agentRealtimeStartMs?: number | undefined;
+                agentJoinToReplyMs?: number | undefined;
+                entry?: "unknown" | "default_mode" | "toggle" | undefined;
+            } | undefined;
             livekitSessionId?: string | undefined;
             livekitRoomName?: string | undefined;
             elevenlabsAgentId?: string | undefined;
@@ -7411,6 +7475,17 @@ export declare const logSchemas: {
                 collectionTemplateIds?: string[] | undefined;
             } | undefined;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
+            timings?: {
+                fromButtonToTokenRequestMs?: number | undefined;
+                fromButtonToTokenReceivedMs?: number | undefined;
+                fromButtonToRoomConnectedMs?: number | undefined;
+                fromButtonToFirstAudioMs?: number | undefined;
+                serverTokenMs?: number | undefined;
+                agentContextBuildMs?: number | undefined;
+                agentRealtimeStartMs?: number | undefined;
+                agentJoinToReplyMs?: number | undefined;
+                entry?: "unknown" | "default_mode" | "toggle" | undefined;
+            } | undefined;
             livekitSessionId?: string | undefined;
             livekitRoomName?: string | undefined;
             elevenlabsAgentId?: string | undefined;
@@ -42290,6 +42365,37 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             collectionTemplateIds?: string[] | undefined;
         }>>;
         agentConnectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        timings: z.ZodOptional<z.ZodObject<{
+            fromButtonToTokenRequestMs: z.ZodOptional<z.ZodNumber>;
+            fromButtonToTokenReceivedMs: z.ZodOptional<z.ZodNumber>;
+            fromButtonToRoomConnectedMs: z.ZodOptional<z.ZodNumber>;
+            fromButtonToFirstAudioMs: z.ZodOptional<z.ZodNumber>;
+            serverTokenMs: z.ZodOptional<z.ZodNumber>;
+            agentContextBuildMs: z.ZodOptional<z.ZodNumber>;
+            agentRealtimeStartMs: z.ZodOptional<z.ZodNumber>;
+            agentJoinToReplyMs: z.ZodOptional<z.ZodNumber>;
+            entry: z.ZodOptional<z.ZodEnum<["default_mode", "toggle", "unknown"]>>;
+        }, "strip", z.ZodTypeAny, {
+            fromButtonToTokenRequestMs?: number | undefined;
+            fromButtonToTokenReceivedMs?: number | undefined;
+            fromButtonToRoomConnectedMs?: number | undefined;
+            fromButtonToFirstAudioMs?: number | undefined;
+            serverTokenMs?: number | undefined;
+            agentContextBuildMs?: number | undefined;
+            agentRealtimeStartMs?: number | undefined;
+            agentJoinToReplyMs?: number | undefined;
+            entry?: "unknown" | "default_mode" | "toggle" | undefined;
+        }, {
+            fromButtonToTokenRequestMs?: number | undefined;
+            fromButtonToTokenReceivedMs?: number | undefined;
+            fromButtonToRoomConnectedMs?: number | undefined;
+            fromButtonToFirstAudioMs?: number | undefined;
+            serverTokenMs?: number | undefined;
+            agentContextBuildMs?: number | undefined;
+            agentRealtimeStartMs?: number | undefined;
+            agentJoinToReplyMs?: number | undefined;
+            entry?: "unknown" | "default_mode" | "toggle" | undefined;
+        }>>;
         endedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         livekitSessionId: z.ZodOptional<z.ZodString>;
         livekitRoomName: z.ZodOptional<z.ZodString>;
@@ -42934,6 +43040,17 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             collectionTemplateIds?: string[] | undefined;
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
+        timings?: {
+            fromButtonToTokenRequestMs?: number | undefined;
+            fromButtonToTokenReceivedMs?: number | undefined;
+            fromButtonToRoomConnectedMs?: number | undefined;
+            fromButtonToFirstAudioMs?: number | undefined;
+            serverTokenMs?: number | undefined;
+            agentContextBuildMs?: number | undefined;
+            agentRealtimeStartMs?: number | undefined;
+            agentJoinToReplyMs?: number | undefined;
+            entry?: "unknown" | "default_mode" | "toggle" | undefined;
+        } | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
@@ -43031,6 +43148,17 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             collectionTemplateIds?: string[] | undefined;
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
+        timings?: {
+            fromButtonToTokenRequestMs?: number | undefined;
+            fromButtonToTokenReceivedMs?: number | undefined;
+            fromButtonToRoomConnectedMs?: number | undefined;
+            fromButtonToFirstAudioMs?: number | undefined;
+            serverTokenMs?: number | undefined;
+            agentContextBuildMs?: number | undefined;
+            agentRealtimeStartMs?: number | undefined;
+            agentJoinToReplyMs?: number | undefined;
+            entry?: "unknown" | "default_mode" | "toggle" | undefined;
+        } | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
@@ -43672,6 +43800,17 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             collectionTemplateIds?: string[] | undefined;
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
+        timings?: {
+            fromButtonToTokenRequestMs?: number | undefined;
+            fromButtonToTokenReceivedMs?: number | undefined;
+            fromButtonToRoomConnectedMs?: number | undefined;
+            fromButtonToFirstAudioMs?: number | undefined;
+            serverTokenMs?: number | undefined;
+            agentContextBuildMs?: number | undefined;
+            agentRealtimeStartMs?: number | undefined;
+            agentJoinToReplyMs?: number | undefined;
+            entry?: "unknown" | "default_mode" | "toggle" | undefined;
+        } | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
@@ -43784,6 +43923,17 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             collectionTemplateIds?: string[] | undefined;
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
+        timings?: {
+            fromButtonToTokenRequestMs?: number | undefined;
+            fromButtonToTokenReceivedMs?: number | undefined;
+            fromButtonToRoomConnectedMs?: number | undefined;
+            fromButtonToFirstAudioMs?: number | undefined;
+            serverTokenMs?: number | undefined;
+            agentContextBuildMs?: number | undefined;
+            agentRealtimeStartMs?: number | undefined;
+            agentJoinToReplyMs?: number | undefined;
+            entry?: "unknown" | "default_mode" | "toggle" | undefined;
+        } | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;

@@ -59,6 +59,7 @@ __exportStar(require("./scheduledNotification"), exports);
 __exportStar(require("./dailyReviewReport"), exports);
 __exportStar(require("./brainHealthReport"), exports);
 __exportStar(require("./schemaValidationReport"), exports);
+__exportStar(require("./voiceLatencyReport"), exports);
 __exportStar(require("./session"), exports);
 __exportStar(require("./slot"), exports);
 __exportStar(require("./supportGroup"), exports);
