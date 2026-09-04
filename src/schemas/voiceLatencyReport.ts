@@ -79,6 +79,9 @@ export const VOICE_LATENCY_SEGMENT_LABELS: {
 }[] = [
   { key: "fromButtonToTokenRequestMs", label: "Token requested", cumulative: true },
   { key: "fromButtonToVoiceUiMs", label: "Call UI on screen", cumulative: true },
+  { key: "fromButtonToOpenerAudioMs", label: "Opener heard", cumulative: true },
+  { key: "fromButtonToSpeechStartMs", label: "Caller started speaking", cumulative: true },
+  { key: "fromButtonToSpeechEndMs", label: "Caller stopped speaking", cumulative: true },
   { key: "fromButtonToTokenReceivedMs", label: "Token received", cumulative: true },
   { key: "fromButtonToRoomConnectedMs", label: "Room connected", cumulative: true },
   { key: "fromButtonToFirstAudioMs", label: "First word heard", cumulative: true },
@@ -86,4 +89,5 @@ export const VOICE_LATENCY_SEGMENT_LABELS: {
   { key: "agentContextBuildMs", label: "Agent: build context", cumulative: false },
   { key: "agentRealtimeStartMs", label: "Agent: open realtime", cumulative: false },
   { key: "agentJoinToReplyMs", label: "Agent: join to reply", cumulative: false },
+  { key: "handoverMs", label: "Handover to live mic", cumulative: false },
 ];
