@@ -8,6 +8,7 @@ export * from "./constants";
 export * from "./defaultImages";
 export * from "./llm";
 export * from "./schemas";
+export * from "./voiceOpeners";
 export * from "./utils/attachments";
 export * from "./utils/behaviorData";
 export * from "./utils/behaviorSalience";

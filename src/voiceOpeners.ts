@@ -51,3 +51,16 @@ export function voiceOpenerLine(id: string | null | undefined): string | null {
   if (!id) return null;
   return ALL_VOICE_OPENERS.find((opener) => opener.id === id)?.line ?? null;
 }
+
+/**
+ * Data-channel topic the app forwards its locally captured first turn on.
+ *
+ * The room takes 3-4 seconds to connect and the caller starts talking about a
+ * second after the opener, so their first turn is very often spoken before
+ * there is a room to speak into. LiveKit does not buffer for late joiners, so
+ * the app recognises it on device and sends the text over this topic once the
+ * room is up. Shared because a typo in it on either side fails silently: the
+ * message is published, nothing is listening, and the caller simply appears to
+ * have been ignored.
+ */
+export const EARLY_UTTERANCE_TOPIC = "impulse.early_utterance";

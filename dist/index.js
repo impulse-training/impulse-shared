@@ -47,6 +47,7 @@ __exportStar(require("./constants"), exports);
 __exportStar(require("./defaultImages"), exports);
 __exportStar(require("./llm"), exports);
 __exportStar(require("./schemas"), exports);
+__exportStar(require("./voiceOpeners"), exports);
 __exportStar(require("./utils/attachments"), exports);
 __exportStar(require("./utils/behaviorData"), exports);
 __exportStar(require("./utils/behaviorSalience"), exports);
