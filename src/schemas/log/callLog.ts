@@ -20,6 +20,26 @@ import { logBaseSchema } from "./base";
 export const callTimingsSchema = z.object({
   /** Token request sent. Covers session creation and the doc round-trip. */
   fromButtonToTokenRequestMs: z.number().optional(),
+  /**
+   * The call UI replaced the chat composer.
+   *
+   * Not a step in the connection chain — the call is coming up regardless of
+   * what is painted — but it is the only part of the wait the user can SEE, and
+   * it is the part they complain about. Every other figure here is about audio;
+   * without this one, "it showed the text view for a second first" is
+   * unfalsifiable.
+   */
+  fromButtonToVoiceUiMs: z.number().optional(),
+  /**
+   * Which mode the composer painted in FIRST.
+   *
+   * "text" means the chat composer was genuinely on screen before the call UI
+   * replaced it. "voice" means it never was, and any perceived delay is the
+   * navigation animation or the loading gate — a different problem with a
+   * different fix.
+   */
+  composerFirstMode: z.enum(["text", "voice"]).optional(),
+
   /** Token landed on this device (today: written to Firestore, then synced). */
   fromButtonToTokenReceivedMs: z.number().optional(),
   /** LiveKit room connected. */

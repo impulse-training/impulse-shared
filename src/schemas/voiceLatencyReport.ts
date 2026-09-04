@@ -78,6 +78,7 @@ export const VOICE_LATENCY_SEGMENT_LABELS: {
   cumulative: boolean;
 }[] = [
   { key: "fromButtonToTokenRequestMs", label: "Token requested", cumulative: true },
+  { key: "fromButtonToVoiceUiMs", label: "Call UI on screen", cumulative: true },
   { key: "fromButtonToTokenReceivedMs", label: "Token received", cumulative: true },
   { key: "fromButtonToRoomConnectedMs", label: "Room connected", cumulative: true },
   { key: "fromButtonToFirstAudioMs", label: "First word heard", cumulative: true },

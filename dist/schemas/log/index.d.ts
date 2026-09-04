@@ -5919,6 +5919,8 @@ export declare const logSchemas: {
             agentConnectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             timings: z.ZodOptional<z.ZodObject<{
                 fromButtonToTokenRequestMs: z.ZodOptional<z.ZodNumber>;
+                fromButtonToVoiceUiMs: z.ZodOptional<z.ZodNumber>;
+                composerFirstMode: z.ZodOptional<z.ZodEnum<["text", "voice"]>>;
                 fromButtonToTokenReceivedMs: z.ZodOptional<z.ZodNumber>;
                 fromButtonToRoomConnectedMs: z.ZodOptional<z.ZodNumber>;
                 fromButtonToFirstAudioMs: z.ZodOptional<z.ZodNumber>;
@@ -5929,6 +5931,8 @@ export declare const logSchemas: {
                 entry: z.ZodOptional<z.ZodEnum<["default_mode", "toggle", "unknown"]>>;
             }, "strip", z.ZodTypeAny, {
                 fromButtonToTokenRequestMs?: number | undefined;
+                fromButtonToVoiceUiMs?: number | undefined;
+                composerFirstMode?: "text" | "voice" | undefined;
                 fromButtonToTokenReceivedMs?: number | undefined;
                 fromButtonToRoomConnectedMs?: number | undefined;
                 fromButtonToFirstAudioMs?: number | undefined;
@@ -5939,6 +5943,8 @@ export declare const logSchemas: {
                 entry?: "unknown" | "default_mode" | "toggle" | undefined;
             }, {
                 fromButtonToTokenRequestMs?: number | undefined;
+                fromButtonToVoiceUiMs?: number | undefined;
+                composerFirstMode?: "text" | "voice" | undefined;
                 fromButtonToTokenReceivedMs?: number | undefined;
                 fromButtonToRoomConnectedMs?: number | undefined;
                 fromButtonToFirstAudioMs?: number | undefined;
@@ -6594,6 +6600,8 @@ export declare const logSchemas: {
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             timings?: {
                 fromButtonToTokenRequestMs?: number | undefined;
+                fromButtonToVoiceUiMs?: number | undefined;
+                composerFirstMode?: "text" | "voice" | undefined;
                 fromButtonToTokenReceivedMs?: number | undefined;
                 fromButtonToRoomConnectedMs?: number | undefined;
                 fromButtonToFirstAudioMs?: number | undefined;
@@ -6702,6 +6710,8 @@ export declare const logSchemas: {
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             timings?: {
                 fromButtonToTokenRequestMs?: number | undefined;
+                fromButtonToVoiceUiMs?: number | undefined;
+                composerFirstMode?: "text" | "voice" | undefined;
                 fromButtonToTokenReceivedMs?: number | undefined;
                 fromButtonToRoomConnectedMs?: number | undefined;
                 fromButtonToFirstAudioMs?: number | undefined;
@@ -7354,6 +7364,8 @@ export declare const logSchemas: {
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             timings?: {
                 fromButtonToTokenRequestMs?: number | undefined;
+                fromButtonToVoiceUiMs?: number | undefined;
+                composerFirstMode?: "text" | "voice" | undefined;
                 fromButtonToTokenReceivedMs?: number | undefined;
                 fromButtonToRoomConnectedMs?: number | undefined;
                 fromButtonToFirstAudioMs?: number | undefined;
@@ -7477,6 +7489,8 @@ export declare const logSchemas: {
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             timings?: {
                 fromButtonToTokenRequestMs?: number | undefined;
+                fromButtonToVoiceUiMs?: number | undefined;
+                composerFirstMode?: "text" | "voice" | undefined;
                 fromButtonToTokenReceivedMs?: number | undefined;
                 fromButtonToRoomConnectedMs?: number | undefined;
                 fromButtonToFirstAudioMs?: number | undefined;
@@ -42367,6 +42381,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         agentConnectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         timings: z.ZodOptional<z.ZodObject<{
             fromButtonToTokenRequestMs: z.ZodOptional<z.ZodNumber>;
+            fromButtonToVoiceUiMs: z.ZodOptional<z.ZodNumber>;
+            composerFirstMode: z.ZodOptional<z.ZodEnum<["text", "voice"]>>;
             fromButtonToTokenReceivedMs: z.ZodOptional<z.ZodNumber>;
             fromButtonToRoomConnectedMs: z.ZodOptional<z.ZodNumber>;
             fromButtonToFirstAudioMs: z.ZodOptional<z.ZodNumber>;
@@ -42377,6 +42393,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             entry: z.ZodOptional<z.ZodEnum<["default_mode", "toggle", "unknown"]>>;
         }, "strip", z.ZodTypeAny, {
             fromButtonToTokenRequestMs?: number | undefined;
+            fromButtonToVoiceUiMs?: number | undefined;
+            composerFirstMode?: "text" | "voice" | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -42387,6 +42405,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         }, {
             fromButtonToTokenRequestMs?: number | undefined;
+            fromButtonToVoiceUiMs?: number | undefined;
+            composerFirstMode?: "text" | "voice" | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -43042,6 +43062,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         timings?: {
             fromButtonToTokenRequestMs?: number | undefined;
+            fromButtonToVoiceUiMs?: number | undefined;
+            composerFirstMode?: "text" | "voice" | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -43150,6 +43172,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         timings?: {
             fromButtonToTokenRequestMs?: number | undefined;
+            fromButtonToVoiceUiMs?: number | undefined;
+            composerFirstMode?: "text" | "voice" | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -43802,6 +43826,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         timings?: {
             fromButtonToTokenRequestMs?: number | undefined;
+            fromButtonToVoiceUiMs?: number | undefined;
+            composerFirstMode?: "text" | "voice" | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -43925,6 +43951,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         timings?: {
             fromButtonToTokenRequestMs?: number | undefined;
+            fromButtonToVoiceUiMs?: number | undefined;
+            composerFirstMode?: "text" | "voice" | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;

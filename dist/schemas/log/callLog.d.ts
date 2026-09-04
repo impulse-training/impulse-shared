@@ -15,6 +15,25 @@ import { z } from "zod";
 export declare const callTimingsSchema: z.ZodObject<{
     /** Token request sent. Covers session creation and the doc round-trip. */
     fromButtonToTokenRequestMs: z.ZodOptional<z.ZodNumber>;
+    /**
+     * The call UI replaced the chat composer.
+     *
+     * Not a step in the connection chain — the call is coming up regardless of
+     * what is painted — but it is the only part of the wait the user can SEE, and
+     * it is the part they complain about. Every other figure here is about audio;
+     * without this one, "it showed the text view for a second first" is
+     * unfalsifiable.
+     */
+    fromButtonToVoiceUiMs: z.ZodOptional<z.ZodNumber>;
+    /**
+     * Which mode the composer painted in FIRST.
+     *
+     * "text" means the chat composer was genuinely on screen before the call UI
+     * replaced it. "voice" means it never was, and any perceived delay is the
+     * navigation animation or the loading gate — a different problem with a
+     * different fix.
+     */
+    composerFirstMode: z.ZodOptional<z.ZodEnum<["text", "voice"]>>;
     /** Token landed on this device (today: written to Firestore, then synced). */
     fromButtonToTokenReceivedMs: z.ZodOptional<z.ZodNumber>;
     /** LiveKit room connected. */
@@ -37,6 +56,8 @@ export declare const callTimingsSchema: z.ZodObject<{
     entry: z.ZodOptional<z.ZodEnum<["default_mode", "toggle", "unknown"]>>;
 }, "strip", z.ZodTypeAny, {
     fromButtonToTokenRequestMs?: number | undefined;
+    fromButtonToVoiceUiMs?: number | undefined;
+    composerFirstMode?: "text" | "voice" | undefined;
     fromButtonToTokenReceivedMs?: number | undefined;
     fromButtonToRoomConnectedMs?: number | undefined;
     fromButtonToFirstAudioMs?: number | undefined;
@@ -47,6 +68,8 @@ export declare const callTimingsSchema: z.ZodObject<{
     entry?: "unknown" | "default_mode" | "toggle" | undefined;
 }, {
     fromButtonToTokenRequestMs?: number | undefined;
+    fromButtonToVoiceUiMs?: number | undefined;
+    composerFirstMode?: "text" | "voice" | undefined;
     fromButtonToTokenReceivedMs?: number | undefined;
     fromButtonToRoomConnectedMs?: number | undefined;
     fromButtonToFirstAudioMs?: number | undefined;
@@ -5358,6 +5381,25 @@ export declare const callLogSchema: z.ZodObject<{
         timings: z.ZodOptional<z.ZodObject<{
             /** Token request sent. Covers session creation and the doc round-trip. */
             fromButtonToTokenRequestMs: z.ZodOptional<z.ZodNumber>;
+            /**
+             * The call UI replaced the chat composer.
+             *
+             * Not a step in the connection chain — the call is coming up regardless of
+             * what is painted — but it is the only part of the wait the user can SEE, and
+             * it is the part they complain about. Every other figure here is about audio;
+             * without this one, "it showed the text view for a second first" is
+             * unfalsifiable.
+             */
+            fromButtonToVoiceUiMs: z.ZodOptional<z.ZodNumber>;
+            /**
+             * Which mode the composer painted in FIRST.
+             *
+             * "text" means the chat composer was genuinely on screen before the call UI
+             * replaced it. "voice" means it never was, and any perceived delay is the
+             * navigation animation or the loading gate — a different problem with a
+             * different fix.
+             */
+            composerFirstMode: z.ZodOptional<z.ZodEnum<["text", "voice"]>>;
             /** Token landed on this device (today: written to Firestore, then synced). */
             fromButtonToTokenReceivedMs: z.ZodOptional<z.ZodNumber>;
             /** LiveKit room connected. */
@@ -5380,6 +5422,8 @@ export declare const callLogSchema: z.ZodObject<{
             entry: z.ZodOptional<z.ZodEnum<["default_mode", "toggle", "unknown"]>>;
         }, "strip", z.ZodTypeAny, {
             fromButtonToTokenRequestMs?: number | undefined;
+            fromButtonToVoiceUiMs?: number | undefined;
+            composerFirstMode?: "text" | "voice" | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -5390,6 +5434,8 @@ export declare const callLogSchema: z.ZodObject<{
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         }, {
             fromButtonToTokenRequestMs?: number | undefined;
+            fromButtonToVoiceUiMs?: number | undefined;
+            composerFirstMode?: "text" | "voice" | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -6045,6 +6091,8 @@ export declare const callLogSchema: z.ZodObject<{
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         timings?: {
             fromButtonToTokenRequestMs?: number | undefined;
+            fromButtonToVoiceUiMs?: number | undefined;
+            composerFirstMode?: "text" | "voice" | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -6153,6 +6201,8 @@ export declare const callLogSchema: z.ZodObject<{
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         timings?: {
             fromButtonToTokenRequestMs?: number | undefined;
+            fromButtonToVoiceUiMs?: number | undefined;
+            composerFirstMode?: "text" | "voice" | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -6805,6 +6855,8 @@ export declare const callLogSchema: z.ZodObject<{
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         timings?: {
             fromButtonToTokenRequestMs?: number | undefined;
+            fromButtonToVoiceUiMs?: number | undefined;
+            composerFirstMode?: "text" | "voice" | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -6928,6 +6980,8 @@ export declare const callLogSchema: z.ZodObject<{
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         timings?: {
             fromButtonToTokenRequestMs?: number | undefined;
+            fromButtonToVoiceUiMs?: number | undefined;
+            composerFirstMode?: "text" | "voice" | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
