@@ -34,6 +34,43 @@ export declare const callTimingsSchema: z.ZodObject<{
      * different fix.
      */
     composerFirstMode: z.ZodOptional<z.ZodEnum<["text", "voice"]>>;
+    /**
+     * The caller heard the opener, played from the app bundle.
+     *
+     * The point of the whole early-capture harness: this should land within a few
+     * hundred milliseconds of the press, against ~5s for an opener that waits for
+     * a room, an agent and a model round-trip.
+     */
+    fromButtonToOpenerAudioMs: z.ZodOptional<z.ZodNumber>;
+    /** The caller started their first utterance, per on-device recognition. */
+    fromButtonToSpeechStartMs: z.ZodOptional<z.ZodNumber>;
+    /** That utterance ended — the turn boundary the handover waits for. */
+    fromButtonToSpeechEndMs: z.ZodOptional<z.ZodNumber>;
+    /**
+     * Turn boundary to the live microphone being unmuted.
+     *
+     * The seam. Local capture and the live track must never both feed the model,
+     * so this is the window in which the caller is heard by exactly one of them —
+     * small enough that a word spoken across it is at worst duplicated, never
+     * dropped.
+     */
+    handoverMs: z.ZodOptional<z.ZodNumber>;
+    /**
+     * Whether the room finished connecting while the caller was mid-utterance.
+     *
+     * The case the harness exists to survive. If this is rare, the design can be
+     * simplified; if it is the norm, the boundary-triggered handover is carrying
+     * the feature.
+     */
+    connectedMidUtterance: z.ZodOptional<z.ZodBoolean>;
+    /**
+     * How the caller's first utterance reached the model: forwarded as text from
+     * on-device recognition, spoken live after handover, or never — they said
+     * nothing before the room was ready.
+     */
+    firstUtteranceRoute: z.ZodOptional<z.ZodEnum<["forwarded", "live", "none"]>>;
+    /** Which canned opener played, so a bad line can be traced back. */
+    openerId: z.ZodOptional<z.ZodString>;
     /** Token landed on this device (today: written to Firestore, then synced). */
     fromButtonToTokenReceivedMs: z.ZodOptional<z.ZodNumber>;
     /** LiveKit room connected. */
@@ -58,6 +95,13 @@ export declare const callTimingsSchema: z.ZodObject<{
     fromButtonToTokenRequestMs?: number | undefined;
     fromButtonToVoiceUiMs?: number | undefined;
     composerFirstMode?: "text" | "voice" | undefined;
+    fromButtonToOpenerAudioMs?: number | undefined;
+    fromButtonToSpeechStartMs?: number | undefined;
+    fromButtonToSpeechEndMs?: number | undefined;
+    handoverMs?: number | undefined;
+    connectedMidUtterance?: boolean | undefined;
+    firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
+    openerId?: string | undefined;
     fromButtonToTokenReceivedMs?: number | undefined;
     fromButtonToRoomConnectedMs?: number | undefined;
     fromButtonToFirstAudioMs?: number | undefined;
@@ -70,6 +114,13 @@ export declare const callTimingsSchema: z.ZodObject<{
     fromButtonToTokenRequestMs?: number | undefined;
     fromButtonToVoiceUiMs?: number | undefined;
     composerFirstMode?: "text" | "voice" | undefined;
+    fromButtonToOpenerAudioMs?: number | undefined;
+    fromButtonToSpeechStartMs?: number | undefined;
+    fromButtonToSpeechEndMs?: number | undefined;
+    handoverMs?: number | undefined;
+    connectedMidUtterance?: boolean | undefined;
+    firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
+    openerId?: string | undefined;
     fromButtonToTokenReceivedMs?: number | undefined;
     fromButtonToRoomConnectedMs?: number | undefined;
     fromButtonToFirstAudioMs?: number | undefined;
@@ -5400,6 +5451,43 @@ export declare const callLogSchema: z.ZodObject<{
              * different fix.
              */
             composerFirstMode: z.ZodOptional<z.ZodEnum<["text", "voice"]>>;
+            /**
+             * The caller heard the opener, played from the app bundle.
+             *
+             * The point of the whole early-capture harness: this should land within a few
+             * hundred milliseconds of the press, against ~5s for an opener that waits for
+             * a room, an agent and a model round-trip.
+             */
+            fromButtonToOpenerAudioMs: z.ZodOptional<z.ZodNumber>;
+            /** The caller started their first utterance, per on-device recognition. */
+            fromButtonToSpeechStartMs: z.ZodOptional<z.ZodNumber>;
+            /** That utterance ended — the turn boundary the handover waits for. */
+            fromButtonToSpeechEndMs: z.ZodOptional<z.ZodNumber>;
+            /**
+             * Turn boundary to the live microphone being unmuted.
+             *
+             * The seam. Local capture and the live track must never both feed the model,
+             * so this is the window in which the caller is heard by exactly one of them —
+             * small enough that a word spoken across it is at worst duplicated, never
+             * dropped.
+             */
+            handoverMs: z.ZodOptional<z.ZodNumber>;
+            /**
+             * Whether the room finished connecting while the caller was mid-utterance.
+             *
+             * The case the harness exists to survive. If this is rare, the design can be
+             * simplified; if it is the norm, the boundary-triggered handover is carrying
+             * the feature.
+             */
+            connectedMidUtterance: z.ZodOptional<z.ZodBoolean>;
+            /**
+             * How the caller's first utterance reached the model: forwarded as text from
+             * on-device recognition, spoken live after handover, or never — they said
+             * nothing before the room was ready.
+             */
+            firstUtteranceRoute: z.ZodOptional<z.ZodEnum<["forwarded", "live", "none"]>>;
+            /** Which canned opener played, so a bad line can be traced back. */
+            openerId: z.ZodOptional<z.ZodString>;
             /** Token landed on this device (today: written to Firestore, then synced). */
             fromButtonToTokenReceivedMs: z.ZodOptional<z.ZodNumber>;
             /** LiveKit room connected. */
@@ -5424,6 +5512,13 @@ export declare const callLogSchema: z.ZodObject<{
             fromButtonToTokenRequestMs?: number | undefined;
             fromButtonToVoiceUiMs?: number | undefined;
             composerFirstMode?: "text" | "voice" | undefined;
+            fromButtonToOpenerAudioMs?: number | undefined;
+            fromButtonToSpeechStartMs?: number | undefined;
+            fromButtonToSpeechEndMs?: number | undefined;
+            handoverMs?: number | undefined;
+            connectedMidUtterance?: boolean | undefined;
+            firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
+            openerId?: string | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -5436,6 +5531,13 @@ export declare const callLogSchema: z.ZodObject<{
             fromButtonToTokenRequestMs?: number | undefined;
             fromButtonToVoiceUiMs?: number | undefined;
             composerFirstMode?: "text" | "voice" | undefined;
+            fromButtonToOpenerAudioMs?: number | undefined;
+            fromButtonToSpeechStartMs?: number | undefined;
+            fromButtonToSpeechEndMs?: number | undefined;
+            handoverMs?: number | undefined;
+            connectedMidUtterance?: boolean | undefined;
+            firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
+            openerId?: string | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -6093,6 +6195,13 @@ export declare const callLogSchema: z.ZodObject<{
             fromButtonToTokenRequestMs?: number | undefined;
             fromButtonToVoiceUiMs?: number | undefined;
             composerFirstMode?: "text" | "voice" | undefined;
+            fromButtonToOpenerAudioMs?: number | undefined;
+            fromButtonToSpeechStartMs?: number | undefined;
+            fromButtonToSpeechEndMs?: number | undefined;
+            handoverMs?: number | undefined;
+            connectedMidUtterance?: boolean | undefined;
+            firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
+            openerId?: string | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -6203,6 +6312,13 @@ export declare const callLogSchema: z.ZodObject<{
             fromButtonToTokenRequestMs?: number | undefined;
             fromButtonToVoiceUiMs?: number | undefined;
             composerFirstMode?: "text" | "voice" | undefined;
+            fromButtonToOpenerAudioMs?: number | undefined;
+            fromButtonToSpeechStartMs?: number | undefined;
+            fromButtonToSpeechEndMs?: number | undefined;
+            handoverMs?: number | undefined;
+            connectedMidUtterance?: boolean | undefined;
+            firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
+            openerId?: string | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -6857,6 +6973,13 @@ export declare const callLogSchema: z.ZodObject<{
             fromButtonToTokenRequestMs?: number | undefined;
             fromButtonToVoiceUiMs?: number | undefined;
             composerFirstMode?: "text" | "voice" | undefined;
+            fromButtonToOpenerAudioMs?: number | undefined;
+            fromButtonToSpeechStartMs?: number | undefined;
+            fromButtonToSpeechEndMs?: number | undefined;
+            handoverMs?: number | undefined;
+            connectedMidUtterance?: boolean | undefined;
+            firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
+            openerId?: string | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -6982,6 +7105,13 @@ export declare const callLogSchema: z.ZodObject<{
             fromButtonToTokenRequestMs?: number | undefined;
             fromButtonToVoiceUiMs?: number | undefined;
             composerFirstMode?: "text" | "voice" | undefined;
+            fromButtonToOpenerAudioMs?: number | undefined;
+            fromButtonToSpeechStartMs?: number | undefined;
+            fromButtonToSpeechEndMs?: number | undefined;
+            handoverMs?: number | undefined;
+            connectedMidUtterance?: boolean | undefined;
+            firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
+            openerId?: string | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;

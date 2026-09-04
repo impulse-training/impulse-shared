@@ -41,6 +41,43 @@ exports.callTimingsSchema = zod_1.z.object({
      * different fix.
      */
     composerFirstMode: zod_1.z.enum(["text", "voice"]).optional(),
+    /**
+     * The caller heard the opener, played from the app bundle.
+     *
+     * The point of the whole early-capture harness: this should land within a few
+     * hundred milliseconds of the press, against ~5s for an opener that waits for
+     * a room, an agent and a model round-trip.
+     */
+    fromButtonToOpenerAudioMs: zod_1.z.number().optional(),
+    /** The caller started their first utterance, per on-device recognition. */
+    fromButtonToSpeechStartMs: zod_1.z.number().optional(),
+    /** That utterance ended — the turn boundary the handover waits for. */
+    fromButtonToSpeechEndMs: zod_1.z.number().optional(),
+    /**
+     * Turn boundary to the live microphone being unmuted.
+     *
+     * The seam. Local capture and the live track must never both feed the model,
+     * so this is the window in which the caller is heard by exactly one of them —
+     * small enough that a word spoken across it is at worst duplicated, never
+     * dropped.
+     */
+    handoverMs: zod_1.z.number().optional(),
+    /**
+     * Whether the room finished connecting while the caller was mid-utterance.
+     *
+     * The case the harness exists to survive. If this is rare, the design can be
+     * simplified; if it is the norm, the boundary-triggered handover is carrying
+     * the feature.
+     */
+    connectedMidUtterance: zod_1.z.boolean().optional(),
+    /**
+     * How the caller's first utterance reached the model: forwarded as text from
+     * on-device recognition, spoken live after handover, or never — they said
+     * nothing before the room was ready.
+     */
+    firstUtteranceRoute: zod_1.z.enum(["forwarded", "live", "none"]).optional(),
+    /** Which canned opener played, so a bad line can be traced back. */
+    openerId: zod_1.z.string().optional(),
     /** Token landed on this device (today: written to Firestore, then synced). */
     fromButtonToTokenReceivedMs: zod_1.z.number().optional(),
     /** LiveKit room connected. */
