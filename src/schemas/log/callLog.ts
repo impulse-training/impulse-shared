@@ -95,6 +95,26 @@ export const callTimingsSchema = z.object({
   agentJoinToReplyMs: z.number().optional(),
 
   /**
+   * Agent: join to the caller's microphone track being SUBSCRIBED.
+   *
+   * The three fields below exist because the agent's own logs cannot be read
+   * after the fact — `lk agent logs` returns a short tail of the current pod's
+   * stdout, never history, so every agent-side diagnosis so far has depended on
+   * catching the pod mid-call. These are written to the call log, which
+   * survives.
+   *
+   * They separate three failures that look identical from outside: a track that
+   * never arrives, a track that arrives but carries silence (a Bluetooth route
+   * still switching from A2DP to the mono call profile), and audio that arrives
+   * fine while something downstream refuses to answer.
+   */
+  agentAudioSubscribedMs: z.number().optional(),
+  /** Agent: join to the first moment the model heard the caller speak. */
+  agentFirstUserSpeechMs: z.number().optional(),
+  /** Agent: join to the first reply it generated. */
+  agentFirstReplyMs: z.number().optional(),
+
+  /**
    * Which affordance started the call, so a slow path can be told from a slow
    * moment: "default_mode" is the impulse button opening straight into a call,
    * "toggle" is the user switching an existing session over.
