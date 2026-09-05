@@ -5937,6 +5937,7 @@ export declare const logSchemas: {
                 agentRealtimeStartMs: z.ZodOptional<z.ZodNumber>;
                 agentJoinToReplyMs: z.ZodOptional<z.ZodNumber>;
                 agentCallerPresentMs: z.ZodOptional<z.ZodNumber>;
+                agentCallerReadyMs: z.ZodOptional<z.ZodNumber>;
                 agentOpenerStartedMs: z.ZodOptional<z.ZodNumber>;
                 agentUserContextMs: z.ZodOptional<z.ZodNumber>;
                 agentAudioSubscribedMs: z.ZodOptional<z.ZodNumber>;
@@ -5963,6 +5964,7 @@ export declare const logSchemas: {
                 agentRealtimeStartMs?: number | undefined;
                 agentJoinToReplyMs?: number | undefined;
                 agentCallerPresentMs?: number | undefined;
+                agentCallerReadyMs?: number | undefined;
                 agentOpenerStartedMs?: number | undefined;
                 agentUserContextMs?: number | undefined;
                 agentAudioSubscribedMs?: number | undefined;
@@ -5989,6 +5991,7 @@ export declare const logSchemas: {
                 agentRealtimeStartMs?: number | undefined;
                 agentJoinToReplyMs?: number | undefined;
                 agentCallerPresentMs?: number | undefined;
+                agentCallerReadyMs?: number | undefined;
                 agentOpenerStartedMs?: number | undefined;
                 agentUserContextMs?: number | undefined;
                 agentAudioSubscribedMs?: number | undefined;
@@ -6660,6 +6663,7 @@ export declare const logSchemas: {
                 agentRealtimeStartMs?: number | undefined;
                 agentJoinToReplyMs?: number | undefined;
                 agentCallerPresentMs?: number | undefined;
+                agentCallerReadyMs?: number | undefined;
                 agentOpenerStartedMs?: number | undefined;
                 agentUserContextMs?: number | undefined;
                 agentAudioSubscribedMs?: number | undefined;
@@ -6784,6 +6788,7 @@ export declare const logSchemas: {
                 agentRealtimeStartMs?: number | undefined;
                 agentJoinToReplyMs?: number | undefined;
                 agentCallerPresentMs?: number | undefined;
+                agentCallerReadyMs?: number | undefined;
                 agentOpenerStartedMs?: number | undefined;
                 agentUserContextMs?: number | undefined;
                 agentAudioSubscribedMs?: number | undefined;
@@ -7452,6 +7457,7 @@ export declare const logSchemas: {
                 agentRealtimeStartMs?: number | undefined;
                 agentJoinToReplyMs?: number | undefined;
                 agentCallerPresentMs?: number | undefined;
+                agentCallerReadyMs?: number | undefined;
                 agentOpenerStartedMs?: number | undefined;
                 agentUserContextMs?: number | undefined;
                 agentAudioSubscribedMs?: number | undefined;
@@ -7591,6 +7597,7 @@ export declare const logSchemas: {
                 agentRealtimeStartMs?: number | undefined;
                 agentJoinToReplyMs?: number | undefined;
                 agentCallerPresentMs?: number | undefined;
+                agentCallerReadyMs?: number | undefined;
                 agentOpenerStartedMs?: number | undefined;
                 agentUserContextMs?: number | undefined;
                 agentAudioSubscribedMs?: number | undefined;
@@ -42497,6 +42504,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             agentRealtimeStartMs: z.ZodOptional<z.ZodNumber>;
             agentJoinToReplyMs: z.ZodOptional<z.ZodNumber>;
             agentCallerPresentMs: z.ZodOptional<z.ZodNumber>;
+            agentCallerReadyMs: z.ZodOptional<z.ZodNumber>;
             agentOpenerStartedMs: z.ZodOptional<z.ZodNumber>;
             agentUserContextMs: z.ZodOptional<z.ZodNumber>;
             agentAudioSubscribedMs: z.ZodOptional<z.ZodNumber>;
@@ -42523,6 +42531,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
             agentCallerPresentMs?: number | undefined;
+            agentCallerReadyMs?: number | undefined;
             agentOpenerStartedMs?: number | undefined;
             agentUserContextMs?: number | undefined;
             agentAudioSubscribedMs?: number | undefined;
@@ -42549,6 +42558,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
             agentCallerPresentMs?: number | undefined;
+            agentCallerReadyMs?: number | undefined;
             agentOpenerStartedMs?: number | undefined;
             agentUserContextMs?: number | undefined;
             agentAudioSubscribedMs?: number | undefined;
@@ -43220,6 +43230,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
             agentCallerPresentMs?: number | undefined;
+            agentCallerReadyMs?: number | undefined;
             agentOpenerStartedMs?: number | undefined;
             agentUserContextMs?: number | undefined;
             agentAudioSubscribedMs?: number | undefined;
@@ -43344,6 +43355,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
             agentCallerPresentMs?: number | undefined;
+            agentCallerReadyMs?: number | undefined;
             agentOpenerStartedMs?: number | undefined;
             agentUserContextMs?: number | undefined;
             agentAudioSubscribedMs?: number | undefined;
@@ -44012,6 +44024,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
             agentCallerPresentMs?: number | undefined;
+            agentCallerReadyMs?: number | undefined;
             agentOpenerStartedMs?: number | undefined;
             agentUserContextMs?: number | undefined;
             agentAudioSubscribedMs?: number | undefined;
@@ -44151,6 +44164,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
             agentCallerPresentMs?: number | undefined;
+            agentCallerReadyMs?: number | undefined;
             agentOpenerStartedMs?: number | undefined;
             agentUserContextMs?: number | undefined;
             agentAudioSubscribedMs?: number | undefined;
