@@ -90,6 +90,7 @@ export const VOICE_LATENCY_SEGMENT_LABELS: {
   { key: "agentRealtimeStartMs", label: "Agent: open realtime", cumulative: false },
   { key: "agentJoinToReplyMs", label: "Agent: join to reply", cumulative: false },
   { key: "agentCallerPresentMs", label: "Agent: caller in the room", cumulative: false },
+  { key: "agentCallerReadyMs", label: "Agent: caller can hear", cumulative: false },
   { key: "agentOpenerStartedMs", label: "Agent: opener started", cumulative: false },
   { key: "agentUserContextMs", label: "Agent: build user context", cumulative: false },
   { key: "agentAudioSubscribedMs", label: "Agent: caller mic subscribed", cumulative: false },

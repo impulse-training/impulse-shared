@@ -106,6 +106,18 @@ export declare const callTimingsSchema: z.ZodObject<{
      */
     agentCallerPresentMs: z.ZodOptional<z.ZodNumber>;
     /**
+     * Agent: join to the caller's media path actually being up.
+     *
+     * Read against agentCallerPresentMs, which is when they merely APPEARED in
+     * the room. The server accepts a participant before their connection can
+     * carry audio, and LiveKit buffers nothing, so anything spoken between these
+     * two figures is lost. Measured at 270ms apart on a fast join and 1.8s on a
+     * slow one — the second of which clipped the front off a 3.7s opener. The
+     * agent now waits for this before speaking; a large gap here is a slow
+     * connect, not a slow agent.
+     */
+    agentCallerReadyMs: z.ZodOptional<z.ZodNumber>;
+    /**
      * Agent: join to the opener starting to play into the room.
      *
      * The room-side headline. Against agentCallerPresentMs it says how much of
@@ -167,6 +179,7 @@ export declare const callTimingsSchema: z.ZodObject<{
     agentRealtimeStartMs?: number | undefined;
     agentJoinToReplyMs?: number | undefined;
     agentCallerPresentMs?: number | undefined;
+    agentCallerReadyMs?: number | undefined;
     agentOpenerStartedMs?: number | undefined;
     agentUserContextMs?: number | undefined;
     agentAudioSubscribedMs?: number | undefined;
@@ -193,6 +206,7 @@ export declare const callTimingsSchema: z.ZodObject<{
     agentRealtimeStartMs?: number | undefined;
     agentJoinToReplyMs?: number | undefined;
     agentCallerPresentMs?: number | undefined;
+    agentCallerReadyMs?: number | undefined;
     agentOpenerStartedMs?: number | undefined;
     agentUserContextMs?: number | undefined;
     agentAudioSubscribedMs?: number | undefined;
@@ -5593,6 +5607,18 @@ export declare const callLogSchema: z.ZodObject<{
              */
             agentCallerPresentMs: z.ZodOptional<z.ZodNumber>;
             /**
+             * Agent: join to the caller's media path actually being up.
+             *
+             * Read against agentCallerPresentMs, which is when they merely APPEARED in
+             * the room. The server accepts a participant before their connection can
+             * carry audio, and LiveKit buffers nothing, so anything spoken between these
+             * two figures is lost. Measured at 270ms apart on a fast join and 1.8s on a
+             * slow one — the second of which clipped the front off a 3.7s opener. The
+             * agent now waits for this before speaking; a large gap here is a slow
+             * connect, not a slow agent.
+             */
+            agentCallerReadyMs: z.ZodOptional<z.ZodNumber>;
+            /**
              * Agent: join to the opener starting to play into the room.
              *
              * The room-side headline. Against agentCallerPresentMs it says how much of
@@ -5654,6 +5680,7 @@ export declare const callLogSchema: z.ZodObject<{
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
             agentCallerPresentMs?: number | undefined;
+            agentCallerReadyMs?: number | undefined;
             agentOpenerStartedMs?: number | undefined;
             agentUserContextMs?: number | undefined;
             agentAudioSubscribedMs?: number | undefined;
@@ -5680,6 +5707,7 @@ export declare const callLogSchema: z.ZodObject<{
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
             agentCallerPresentMs?: number | undefined;
+            agentCallerReadyMs?: number | undefined;
             agentOpenerStartedMs?: number | undefined;
             agentUserContextMs?: number | undefined;
             agentAudioSubscribedMs?: number | undefined;
@@ -6351,6 +6379,7 @@ export declare const callLogSchema: z.ZodObject<{
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
             agentCallerPresentMs?: number | undefined;
+            agentCallerReadyMs?: number | undefined;
             agentOpenerStartedMs?: number | undefined;
             agentUserContextMs?: number | undefined;
             agentAudioSubscribedMs?: number | undefined;
@@ -6475,6 +6504,7 @@ export declare const callLogSchema: z.ZodObject<{
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
             agentCallerPresentMs?: number | undefined;
+            agentCallerReadyMs?: number | undefined;
             agentOpenerStartedMs?: number | undefined;
             agentUserContextMs?: number | undefined;
             agentAudioSubscribedMs?: number | undefined;
@@ -7143,6 +7173,7 @@ export declare const callLogSchema: z.ZodObject<{
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
             agentCallerPresentMs?: number | undefined;
+            agentCallerReadyMs?: number | undefined;
             agentOpenerStartedMs?: number | undefined;
             agentUserContextMs?: number | undefined;
             agentAudioSubscribedMs?: number | undefined;
@@ -7282,6 +7313,7 @@ export declare const callLogSchema: z.ZodObject<{
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
             agentCallerPresentMs?: number | undefined;
+            agentCallerReadyMs?: number | undefined;
             agentOpenerStartedMs?: number | undefined;
             agentUserContextMs?: number | undefined;
             agentAudioSubscribedMs?: number | undefined;
