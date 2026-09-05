@@ -69,8 +69,18 @@ export declare const callTimingsSchema: z.ZodObject<{
      * nothing before the room was ready.
      */
     firstUtteranceRoute: z.ZodOptional<z.ZodEnum<["forwarded", "live", "none"]>>;
-    /** Which canned opener played, so a bad line can be traced back. */
+    /**
+     * Which canned opener the DEVICE played, so a bad line can be traced back.
+     *
+     * Only written by app bundles that play the opener themselves. Current
+     * bundles nominate one and the agent plays it into the room instead; that id
+     * is recorded as roomOpenerId. Two fields rather than one because the two
+     * mean opposite things about who made the sound, and reading a call log that
+     * conflates them is how you end up chasing a double greeting.
+     */
     openerId: z.ZodOptional<z.ZodString>;
+    /** Which canned opener the AGENT played into the room. */
+    roomOpenerId: z.ZodOptional<z.ZodString>;
     /** Token landed on this device (today: written to Firestore, then synced). */
     fromButtonToTokenReceivedMs: z.ZodOptional<z.ZodNumber>;
     /** LiveKit room connected. */
@@ -85,6 +95,33 @@ export declare const callTimingsSchema: z.ZodObject<{
     agentRealtimeStartMs: z.ZodOptional<z.ZodNumber>;
     /** Agent: room join to asking the model for the opening line. */
     agentJoinToReplyMs: z.ZodOptional<z.ZodNumber>;
+    /**
+     * Agent: join to the caller actually being in the room.
+     *
+     * The agent is dispatched when the room is created, which happens while the
+     * caller is still receiving their token and connecting, so it is normally
+     * waiting for them rather than the other way round. This is how much slack
+     * that wait provides — and the deferred work below is only free while it fits
+     * inside it.
+     */
+    agentCallerPresentMs: z.ZodOptional<z.ZodNumber>;
+    /**
+     * Agent: join to the opener starting to play into the room.
+     *
+     * The room-side headline. Against agentCallerPresentMs it says how much of
+     * the caller's silence the agent is responsible for, as opposed to how long
+     * they spent connecting.
+     */
+    agentOpenerStartedMs: z.ZodOptional<z.ZodNumber>;
+    /**
+     * Agent: how long the caller's history took to build.
+     *
+     * Six parallel Firestore reads, no longer in front of the opener. Read it
+     * against agentCallerPresentMs: while it is the shorter of the two it costs
+     * the caller nothing, and when it stops being so the opener starts landing on
+     * a prompt that is still filling in.
+     */
+    agentUserContextMs: z.ZodOptional<z.ZodNumber>;
     /**
      * Agent: join to the caller's microphone track being SUBSCRIBED.
      *
@@ -121,6 +158,7 @@ export declare const callTimingsSchema: z.ZodObject<{
     connectedMidUtterance?: boolean | undefined;
     firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
     openerId?: string | undefined;
+    roomOpenerId?: string | undefined;
     fromButtonToTokenReceivedMs?: number | undefined;
     fromButtonToRoomConnectedMs?: number | undefined;
     fromButtonToFirstAudioMs?: number | undefined;
@@ -128,6 +166,9 @@ export declare const callTimingsSchema: z.ZodObject<{
     agentContextBuildMs?: number | undefined;
     agentRealtimeStartMs?: number | undefined;
     agentJoinToReplyMs?: number | undefined;
+    agentCallerPresentMs?: number | undefined;
+    agentOpenerStartedMs?: number | undefined;
+    agentUserContextMs?: number | undefined;
     agentAudioSubscribedMs?: number | undefined;
     agentFirstUserSpeechMs?: number | undefined;
     agentFirstReplyMs?: number | undefined;
@@ -143,6 +184,7 @@ export declare const callTimingsSchema: z.ZodObject<{
     connectedMidUtterance?: boolean | undefined;
     firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
     openerId?: string | undefined;
+    roomOpenerId?: string | undefined;
     fromButtonToTokenReceivedMs?: number | undefined;
     fromButtonToRoomConnectedMs?: number | undefined;
     fromButtonToFirstAudioMs?: number | undefined;
@@ -150,6 +192,9 @@ export declare const callTimingsSchema: z.ZodObject<{
     agentContextBuildMs?: number | undefined;
     agentRealtimeStartMs?: number | undefined;
     agentJoinToReplyMs?: number | undefined;
+    agentCallerPresentMs?: number | undefined;
+    agentOpenerStartedMs?: number | undefined;
+    agentUserContextMs?: number | undefined;
     agentAudioSubscribedMs?: number | undefined;
     agentFirstUserSpeechMs?: number | undefined;
     agentFirstReplyMs?: number | undefined;
@@ -5511,8 +5556,18 @@ export declare const callLogSchema: z.ZodObject<{
              * nothing before the room was ready.
              */
             firstUtteranceRoute: z.ZodOptional<z.ZodEnum<["forwarded", "live", "none"]>>;
-            /** Which canned opener played, so a bad line can be traced back. */
+            /**
+             * Which canned opener the DEVICE played, so a bad line can be traced back.
+             *
+             * Only written by app bundles that play the opener themselves. Current
+             * bundles nominate one and the agent plays it into the room instead; that id
+             * is recorded as roomOpenerId. Two fields rather than one because the two
+             * mean opposite things about who made the sound, and reading a call log that
+             * conflates them is how you end up chasing a double greeting.
+             */
             openerId: z.ZodOptional<z.ZodString>;
+            /** Which canned opener the AGENT played into the room. */
+            roomOpenerId: z.ZodOptional<z.ZodString>;
             /** Token landed on this device (today: written to Firestore, then synced). */
             fromButtonToTokenReceivedMs: z.ZodOptional<z.ZodNumber>;
             /** LiveKit room connected. */
@@ -5527,6 +5582,33 @@ export declare const callLogSchema: z.ZodObject<{
             agentRealtimeStartMs: z.ZodOptional<z.ZodNumber>;
             /** Agent: room join to asking the model for the opening line. */
             agentJoinToReplyMs: z.ZodOptional<z.ZodNumber>;
+            /**
+             * Agent: join to the caller actually being in the room.
+             *
+             * The agent is dispatched when the room is created, which happens while the
+             * caller is still receiving their token and connecting, so it is normally
+             * waiting for them rather than the other way round. This is how much slack
+             * that wait provides — and the deferred work below is only free while it fits
+             * inside it.
+             */
+            agentCallerPresentMs: z.ZodOptional<z.ZodNumber>;
+            /**
+             * Agent: join to the opener starting to play into the room.
+             *
+             * The room-side headline. Against agentCallerPresentMs it says how much of
+             * the caller's silence the agent is responsible for, as opposed to how long
+             * they spent connecting.
+             */
+            agentOpenerStartedMs: z.ZodOptional<z.ZodNumber>;
+            /**
+             * Agent: how long the caller's history took to build.
+             *
+             * Six parallel Firestore reads, no longer in front of the opener. Read it
+             * against agentCallerPresentMs: while it is the shorter of the two it costs
+             * the caller nothing, and when it stops being so the opener starts landing on
+             * a prompt that is still filling in.
+             */
+            agentUserContextMs: z.ZodOptional<z.ZodNumber>;
             /**
              * Agent: join to the caller's microphone track being SUBSCRIBED.
              *
@@ -5563,6 +5645,7 @@ export declare const callLogSchema: z.ZodObject<{
             connectedMidUtterance?: boolean | undefined;
             firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
             openerId?: string | undefined;
+            roomOpenerId?: string | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -5570,6 +5653,9 @@ export declare const callLogSchema: z.ZodObject<{
             agentContextBuildMs?: number | undefined;
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
+            agentCallerPresentMs?: number | undefined;
+            agentOpenerStartedMs?: number | undefined;
+            agentUserContextMs?: number | undefined;
             agentAudioSubscribedMs?: number | undefined;
             agentFirstUserSpeechMs?: number | undefined;
             agentFirstReplyMs?: number | undefined;
@@ -5585,6 +5671,7 @@ export declare const callLogSchema: z.ZodObject<{
             connectedMidUtterance?: boolean | undefined;
             firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
             openerId?: string | undefined;
+            roomOpenerId?: string | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -5592,6 +5679,9 @@ export declare const callLogSchema: z.ZodObject<{
             agentContextBuildMs?: number | undefined;
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
+            agentCallerPresentMs?: number | undefined;
+            agentOpenerStartedMs?: number | undefined;
+            agentUserContextMs?: number | undefined;
             agentAudioSubscribedMs?: number | undefined;
             agentFirstUserSpeechMs?: number | undefined;
             agentFirstReplyMs?: number | undefined;
@@ -6252,6 +6342,7 @@ export declare const callLogSchema: z.ZodObject<{
             connectedMidUtterance?: boolean | undefined;
             firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
             openerId?: string | undefined;
+            roomOpenerId?: string | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -6259,6 +6350,9 @@ export declare const callLogSchema: z.ZodObject<{
             agentContextBuildMs?: number | undefined;
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
+            agentCallerPresentMs?: number | undefined;
+            agentOpenerStartedMs?: number | undefined;
+            agentUserContextMs?: number | undefined;
             agentAudioSubscribedMs?: number | undefined;
             agentFirstUserSpeechMs?: number | undefined;
             agentFirstReplyMs?: number | undefined;
@@ -6372,6 +6466,7 @@ export declare const callLogSchema: z.ZodObject<{
             connectedMidUtterance?: boolean | undefined;
             firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
             openerId?: string | undefined;
+            roomOpenerId?: string | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -6379,6 +6474,9 @@ export declare const callLogSchema: z.ZodObject<{
             agentContextBuildMs?: number | undefined;
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
+            agentCallerPresentMs?: number | undefined;
+            agentOpenerStartedMs?: number | undefined;
+            agentUserContextMs?: number | undefined;
             agentAudioSubscribedMs?: number | undefined;
             agentFirstUserSpeechMs?: number | undefined;
             agentFirstReplyMs?: number | undefined;
@@ -7036,6 +7134,7 @@ export declare const callLogSchema: z.ZodObject<{
             connectedMidUtterance?: boolean | undefined;
             firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
             openerId?: string | undefined;
+            roomOpenerId?: string | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -7043,6 +7142,9 @@ export declare const callLogSchema: z.ZodObject<{
             agentContextBuildMs?: number | undefined;
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
+            agentCallerPresentMs?: number | undefined;
+            agentOpenerStartedMs?: number | undefined;
+            agentUserContextMs?: number | undefined;
             agentAudioSubscribedMs?: number | undefined;
             agentFirstUserSpeechMs?: number | undefined;
             agentFirstReplyMs?: number | undefined;
@@ -7171,6 +7273,7 @@ export declare const callLogSchema: z.ZodObject<{
             connectedMidUtterance?: boolean | undefined;
             firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
             openerId?: string | undefined;
+            roomOpenerId?: string | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -7178,6 +7281,9 @@ export declare const callLogSchema: z.ZodObject<{
             agentContextBuildMs?: number | undefined;
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
+            agentCallerPresentMs?: number | undefined;
+            agentOpenerStartedMs?: number | undefined;
+            agentUserContextMs?: number | undefined;
             agentAudioSubscribedMs?: number | undefined;
             agentFirstUserSpeechMs?: number | undefined;
             agentFirstReplyMs?: number | undefined;
