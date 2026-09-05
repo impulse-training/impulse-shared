@@ -5935,6 +5935,9 @@ export declare const logSchemas: {
                 agentContextBuildMs: z.ZodOptional<z.ZodNumber>;
                 agentRealtimeStartMs: z.ZodOptional<z.ZodNumber>;
                 agentJoinToReplyMs: z.ZodOptional<z.ZodNumber>;
+                agentAudioSubscribedMs: z.ZodOptional<z.ZodNumber>;
+                agentFirstUserSpeechMs: z.ZodOptional<z.ZodNumber>;
+                agentFirstReplyMs: z.ZodOptional<z.ZodNumber>;
                 entry: z.ZodOptional<z.ZodEnum<["default_mode", "toggle", "unknown"]>>;
             }, "strip", z.ZodTypeAny, {
                 fromButtonToTokenRequestMs?: number | undefined;
@@ -5954,6 +5957,9 @@ export declare const logSchemas: {
                 agentContextBuildMs?: number | undefined;
                 agentRealtimeStartMs?: number | undefined;
                 agentJoinToReplyMs?: number | undefined;
+                agentAudioSubscribedMs?: number | undefined;
+                agentFirstUserSpeechMs?: number | undefined;
+                agentFirstReplyMs?: number | undefined;
                 entry?: "unknown" | "default_mode" | "toggle" | undefined;
             }, {
                 fromButtonToTokenRequestMs?: number | undefined;
@@ -5973,6 +5979,9 @@ export declare const logSchemas: {
                 agentContextBuildMs?: number | undefined;
                 agentRealtimeStartMs?: number | undefined;
                 agentJoinToReplyMs?: number | undefined;
+                agentAudioSubscribedMs?: number | undefined;
+                agentFirstUserSpeechMs?: number | undefined;
+                agentFirstReplyMs?: number | undefined;
                 entry?: "unknown" | "default_mode" | "toggle" | undefined;
             }>>;
             endedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -6637,6 +6646,9 @@ export declare const logSchemas: {
                 agentContextBuildMs?: number | undefined;
                 agentRealtimeStartMs?: number | undefined;
                 agentJoinToReplyMs?: number | undefined;
+                agentAudioSubscribedMs?: number | undefined;
+                agentFirstUserSpeechMs?: number | undefined;
+                agentFirstReplyMs?: number | undefined;
                 entry?: "unknown" | "default_mode" | "toggle" | undefined;
             } | undefined;
             livekitSessionId?: string | undefined;
@@ -6754,6 +6766,9 @@ export declare const logSchemas: {
                 agentContextBuildMs?: number | undefined;
                 agentRealtimeStartMs?: number | undefined;
                 agentJoinToReplyMs?: number | undefined;
+                agentAudioSubscribedMs?: number | undefined;
+                agentFirstUserSpeechMs?: number | undefined;
+                agentFirstReplyMs?: number | undefined;
                 entry?: "unknown" | "default_mode" | "toggle" | undefined;
             } | undefined;
             livekitSessionId?: string | undefined;
@@ -7415,6 +7430,9 @@ export declare const logSchemas: {
                 agentContextBuildMs?: number | undefined;
                 agentRealtimeStartMs?: number | undefined;
                 agentJoinToReplyMs?: number | undefined;
+                agentAudioSubscribedMs?: number | undefined;
+                agentFirstUserSpeechMs?: number | undefined;
+                agentFirstReplyMs?: number | undefined;
                 entry?: "unknown" | "default_mode" | "toggle" | undefined;
             } | undefined;
             livekitSessionId?: string | undefined;
@@ -7547,6 +7565,9 @@ export declare const logSchemas: {
                 agentContextBuildMs?: number | undefined;
                 agentRealtimeStartMs?: number | undefined;
                 agentJoinToReplyMs?: number | undefined;
+                agentAudioSubscribedMs?: number | undefined;
+                agentFirstUserSpeechMs?: number | undefined;
+                agentFirstReplyMs?: number | undefined;
                 entry?: "unknown" | "default_mode" | "toggle" | undefined;
             } | undefined;
             livekitSessionId?: string | undefined;
@@ -42446,6 +42467,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             agentContextBuildMs: z.ZodOptional<z.ZodNumber>;
             agentRealtimeStartMs: z.ZodOptional<z.ZodNumber>;
             agentJoinToReplyMs: z.ZodOptional<z.ZodNumber>;
+            agentAudioSubscribedMs: z.ZodOptional<z.ZodNumber>;
+            agentFirstUserSpeechMs: z.ZodOptional<z.ZodNumber>;
+            agentFirstReplyMs: z.ZodOptional<z.ZodNumber>;
             entry: z.ZodOptional<z.ZodEnum<["default_mode", "toggle", "unknown"]>>;
         }, "strip", z.ZodTypeAny, {
             fromButtonToTokenRequestMs?: number | undefined;
@@ -42465,6 +42489,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             agentContextBuildMs?: number | undefined;
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
+            agentAudioSubscribedMs?: number | undefined;
+            agentFirstUserSpeechMs?: number | undefined;
+            agentFirstReplyMs?: number | undefined;
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         }, {
             fromButtonToTokenRequestMs?: number | undefined;
@@ -42484,6 +42511,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             agentContextBuildMs?: number | undefined;
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
+            agentAudioSubscribedMs?: number | undefined;
+            agentFirstUserSpeechMs?: number | undefined;
+            agentFirstReplyMs?: number | undefined;
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         }>>;
         endedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -43148,6 +43178,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             agentContextBuildMs?: number | undefined;
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
+            agentAudioSubscribedMs?: number | undefined;
+            agentFirstUserSpeechMs?: number | undefined;
+            agentFirstReplyMs?: number | undefined;
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         } | undefined;
         livekitSessionId?: string | undefined;
@@ -43265,6 +43298,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             agentContextBuildMs?: number | undefined;
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
+            agentAudioSubscribedMs?: number | undefined;
+            agentFirstUserSpeechMs?: number | undefined;
+            agentFirstReplyMs?: number | undefined;
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         } | undefined;
         livekitSessionId?: string | undefined;
@@ -43926,6 +43962,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             agentContextBuildMs?: number | undefined;
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
+            agentAudioSubscribedMs?: number | undefined;
+            agentFirstUserSpeechMs?: number | undefined;
+            agentFirstReplyMs?: number | undefined;
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         } | undefined;
         livekitSessionId?: string | undefined;
@@ -44058,6 +44097,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             agentContextBuildMs?: number | undefined;
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
+            agentAudioSubscribedMs?: number | undefined;
+            agentFirstUserSpeechMs?: number | undefined;
+            agentFirstReplyMs?: number | undefined;
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         } | undefined;
         livekitSessionId?: string | undefined;

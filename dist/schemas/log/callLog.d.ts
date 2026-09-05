@@ -86,6 +86,25 @@ export declare const callTimingsSchema: z.ZodObject<{
     /** Agent: room join to asking the model for the opening line. */
     agentJoinToReplyMs: z.ZodOptional<z.ZodNumber>;
     /**
+     * Agent: join to the caller's microphone track being SUBSCRIBED.
+     *
+     * The three fields below exist because the agent's own logs cannot be read
+     * after the fact — `lk agent logs` returns a short tail of the current pod's
+     * stdout, never history, so every agent-side diagnosis so far has depended on
+     * catching the pod mid-call. These are written to the call log, which
+     * survives.
+     *
+     * They separate three failures that look identical from outside: a track that
+     * never arrives, a track that arrives but carries silence (a Bluetooth route
+     * still switching from A2DP to the mono call profile), and audio that arrives
+     * fine while something downstream refuses to answer.
+     */
+    agentAudioSubscribedMs: z.ZodOptional<z.ZodNumber>;
+    /** Agent: join to the first moment the model heard the caller speak. */
+    agentFirstUserSpeechMs: z.ZodOptional<z.ZodNumber>;
+    /** Agent: join to the first reply it generated. */
+    agentFirstReplyMs: z.ZodOptional<z.ZodNumber>;
+    /**
      * Which affordance started the call, so a slow path can be told from a slow
      * moment: "default_mode" is the impulse button opening straight into a call,
      * "toggle" is the user switching an existing session over.
@@ -109,6 +128,9 @@ export declare const callTimingsSchema: z.ZodObject<{
     agentContextBuildMs?: number | undefined;
     agentRealtimeStartMs?: number | undefined;
     agentJoinToReplyMs?: number | undefined;
+    agentAudioSubscribedMs?: number | undefined;
+    agentFirstUserSpeechMs?: number | undefined;
+    agentFirstReplyMs?: number | undefined;
     entry?: "unknown" | "default_mode" | "toggle" | undefined;
 }, {
     fromButtonToTokenRequestMs?: number | undefined;
@@ -128,6 +150,9 @@ export declare const callTimingsSchema: z.ZodObject<{
     agentContextBuildMs?: number | undefined;
     agentRealtimeStartMs?: number | undefined;
     agentJoinToReplyMs?: number | undefined;
+    agentAudioSubscribedMs?: number | undefined;
+    agentFirstUserSpeechMs?: number | undefined;
+    agentFirstReplyMs?: number | undefined;
     entry?: "unknown" | "default_mode" | "toggle" | undefined;
 }>;
 export type CallTimings = z.infer<typeof callTimingsSchema>;
@@ -5503,6 +5528,25 @@ export declare const callLogSchema: z.ZodObject<{
             /** Agent: room join to asking the model for the opening line. */
             agentJoinToReplyMs: z.ZodOptional<z.ZodNumber>;
             /**
+             * Agent: join to the caller's microphone track being SUBSCRIBED.
+             *
+             * The three fields below exist because the agent's own logs cannot be read
+             * after the fact — `lk agent logs` returns a short tail of the current pod's
+             * stdout, never history, so every agent-side diagnosis so far has depended on
+             * catching the pod mid-call. These are written to the call log, which
+             * survives.
+             *
+             * They separate three failures that look identical from outside: a track that
+             * never arrives, a track that arrives but carries silence (a Bluetooth route
+             * still switching from A2DP to the mono call profile), and audio that arrives
+             * fine while something downstream refuses to answer.
+             */
+            agentAudioSubscribedMs: z.ZodOptional<z.ZodNumber>;
+            /** Agent: join to the first moment the model heard the caller speak. */
+            agentFirstUserSpeechMs: z.ZodOptional<z.ZodNumber>;
+            /** Agent: join to the first reply it generated. */
+            agentFirstReplyMs: z.ZodOptional<z.ZodNumber>;
+            /**
              * Which affordance started the call, so a slow path can be told from a slow
              * moment: "default_mode" is the impulse button opening straight into a call,
              * "toggle" is the user switching an existing session over.
@@ -5526,6 +5570,9 @@ export declare const callLogSchema: z.ZodObject<{
             agentContextBuildMs?: number | undefined;
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
+            agentAudioSubscribedMs?: number | undefined;
+            agentFirstUserSpeechMs?: number | undefined;
+            agentFirstReplyMs?: number | undefined;
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         }, {
             fromButtonToTokenRequestMs?: number | undefined;
@@ -5545,6 +5592,9 @@ export declare const callLogSchema: z.ZodObject<{
             agentContextBuildMs?: number | undefined;
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
+            agentAudioSubscribedMs?: number | undefined;
+            agentFirstUserSpeechMs?: number | undefined;
+            agentFirstReplyMs?: number | undefined;
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         }>>;
         endedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -6209,6 +6259,9 @@ export declare const callLogSchema: z.ZodObject<{
             agentContextBuildMs?: number | undefined;
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
+            agentAudioSubscribedMs?: number | undefined;
+            agentFirstUserSpeechMs?: number | undefined;
+            agentFirstReplyMs?: number | undefined;
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         } | undefined;
         livekitSessionId?: string | undefined;
@@ -6326,6 +6379,9 @@ export declare const callLogSchema: z.ZodObject<{
             agentContextBuildMs?: number | undefined;
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
+            agentAudioSubscribedMs?: number | undefined;
+            agentFirstUserSpeechMs?: number | undefined;
+            agentFirstReplyMs?: number | undefined;
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         } | undefined;
         livekitSessionId?: string | undefined;
@@ -6987,6 +7043,9 @@ export declare const callLogSchema: z.ZodObject<{
             agentContextBuildMs?: number | undefined;
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
+            agentAudioSubscribedMs?: number | undefined;
+            agentFirstUserSpeechMs?: number | undefined;
+            agentFirstReplyMs?: number | undefined;
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         } | undefined;
         livekitSessionId?: string | undefined;
@@ -7119,6 +7178,9 @@ export declare const callLogSchema: z.ZodObject<{
             agentContextBuildMs?: number | undefined;
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
+            agentAudioSubscribedMs?: number | undefined;
+            agentFirstUserSpeechMs?: number | undefined;
+            agentFirstReplyMs?: number | undefined;
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         } | undefined;
         livekitSessionId?: string | undefined;
