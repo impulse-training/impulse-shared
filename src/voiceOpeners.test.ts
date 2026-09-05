@@ -1,4 +1,10 @@
-import { ALL_VOICE_OPENERS, voiceOpenerLine } from "./voiceOpeners";
+import {
+  ALL_VOICE_OPENERS,
+  COLD_OPENERS,
+  FAMILIAR_OPENERS,
+  RETIRED_VOICE_OPENERS,
+  voiceOpenerLine,
+} from "./voiceOpeners";
 
 /**
  * The id is a contract between three processes that deploy independently. A
@@ -24,6 +30,25 @@ describe("voiceOpenerLine", () => {
     expect(voiceOpenerLine(undefined)).toBeNull();
     expect(voiceOpenerLine(null)).toBeNull();
     expect(voiceOpenerLine("")).toBeNull();
+  });
+
+  it("still resolves a retired line, for an app bundle in the field", () => {
+    // A device goes on sending the id it shipped with. The agent looks it up to
+    // learn what the caller was told, so a retired id that stopped resolving
+    // would have the coach greet them a second time.
+    expect(voiceOpenerLine("familiar-2")).toBe("Hi again. What's happening?");
+  });
+
+  it("never plays a retired line", () => {
+    // Retired means the audio is gone from the bundle: picking one would leave
+    // the caller in silence while the model believed it had greeted them.
+    const playable = new Set<string>([
+      ...COLD_OPENERS.map((o) => o.id),
+      ...FAMILIAR_OPENERS.map((o) => o.id),
+    ]);
+    for (const retired of RETIRED_VOICE_OPENERS) {
+      expect(playable.has(retired.id)).toBe(false);
+    }
   });
 
   it("has no duplicate ids", () => {
