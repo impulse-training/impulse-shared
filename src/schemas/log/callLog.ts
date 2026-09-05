@@ -75,8 +75,18 @@ export const callTimingsSchema = z.object({
    * nothing before the room was ready.
    */
   firstUtteranceRoute: z.enum(["forwarded", "live", "none"]).optional(),
-  /** Which canned opener played, so a bad line can be traced back. */
+  /**
+   * Which canned opener the DEVICE played, so a bad line can be traced back.
+   *
+   * Only written by app bundles that play the opener themselves. Current
+   * bundles nominate one and the agent plays it into the room instead; that id
+   * is recorded as roomOpenerId. Two fields rather than one because the two
+   * mean opposite things about who made the sound, and reading a call log that
+   * conflates them is how you end up chasing a double greeting.
+   */
   openerId: z.string().optional(),
+  /** Which canned opener the AGENT played into the room. */
+  roomOpenerId: z.string().optional(),
 
   /** Token landed on this device (today: written to Firestore, then synced). */
   fromButtonToTokenReceivedMs: z.number().optional(),
@@ -93,6 +103,33 @@ export const callTimingsSchema = z.object({
   agentRealtimeStartMs: z.number().optional(),
   /** Agent: room join to asking the model for the opening line. */
   agentJoinToReplyMs: z.number().optional(),
+  /**
+   * Agent: join to the caller actually being in the room.
+   *
+   * The agent is dispatched when the room is created, which happens while the
+   * caller is still receiving their token and connecting, so it is normally
+   * waiting for them rather than the other way round. This is how much slack
+   * that wait provides — and the deferred work below is only free while it fits
+   * inside it.
+   */
+  agentCallerPresentMs: z.number().optional(),
+  /**
+   * Agent: join to the opener starting to play into the room.
+   *
+   * The room-side headline. Against agentCallerPresentMs it says how much of
+   * the caller's silence the agent is responsible for, as opposed to how long
+   * they spent connecting.
+   */
+  agentOpenerStartedMs: z.number().optional(),
+  /**
+   * Agent: how long the caller's history took to build.
+   *
+   * Six parallel Firestore reads, no longer in front of the opener. Read it
+   * against agentCallerPresentMs: while it is the shorter of the two it costs
+   * the caller nothing, and when it stops being so the opener starts landing on
+   * a prompt that is still filling in.
+   */
+  agentUserContextMs: z.number().optional(),
 
   /**
    * Agent: join to the caller's microphone track being SUBSCRIBED.

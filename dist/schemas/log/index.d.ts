@@ -5928,6 +5928,7 @@ export declare const logSchemas: {
                 connectedMidUtterance: z.ZodOptional<z.ZodBoolean>;
                 firstUtteranceRoute: z.ZodOptional<z.ZodEnum<["forwarded", "live", "none"]>>;
                 openerId: z.ZodOptional<z.ZodString>;
+                roomOpenerId: z.ZodOptional<z.ZodString>;
                 fromButtonToTokenReceivedMs: z.ZodOptional<z.ZodNumber>;
                 fromButtonToRoomConnectedMs: z.ZodOptional<z.ZodNumber>;
                 fromButtonToFirstAudioMs: z.ZodOptional<z.ZodNumber>;
@@ -5935,6 +5936,9 @@ export declare const logSchemas: {
                 agentContextBuildMs: z.ZodOptional<z.ZodNumber>;
                 agentRealtimeStartMs: z.ZodOptional<z.ZodNumber>;
                 agentJoinToReplyMs: z.ZodOptional<z.ZodNumber>;
+                agentCallerPresentMs: z.ZodOptional<z.ZodNumber>;
+                agentOpenerStartedMs: z.ZodOptional<z.ZodNumber>;
+                agentUserContextMs: z.ZodOptional<z.ZodNumber>;
                 agentAudioSubscribedMs: z.ZodOptional<z.ZodNumber>;
                 agentFirstUserSpeechMs: z.ZodOptional<z.ZodNumber>;
                 agentFirstReplyMs: z.ZodOptional<z.ZodNumber>;
@@ -5950,6 +5954,7 @@ export declare const logSchemas: {
                 connectedMidUtterance?: boolean | undefined;
                 firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
                 openerId?: string | undefined;
+                roomOpenerId?: string | undefined;
                 fromButtonToTokenReceivedMs?: number | undefined;
                 fromButtonToRoomConnectedMs?: number | undefined;
                 fromButtonToFirstAudioMs?: number | undefined;
@@ -5957,6 +5962,9 @@ export declare const logSchemas: {
                 agentContextBuildMs?: number | undefined;
                 agentRealtimeStartMs?: number | undefined;
                 agentJoinToReplyMs?: number | undefined;
+                agentCallerPresentMs?: number | undefined;
+                agentOpenerStartedMs?: number | undefined;
+                agentUserContextMs?: number | undefined;
                 agentAudioSubscribedMs?: number | undefined;
                 agentFirstUserSpeechMs?: number | undefined;
                 agentFirstReplyMs?: number | undefined;
@@ -5972,6 +5980,7 @@ export declare const logSchemas: {
                 connectedMidUtterance?: boolean | undefined;
                 firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
                 openerId?: string | undefined;
+                roomOpenerId?: string | undefined;
                 fromButtonToTokenReceivedMs?: number | undefined;
                 fromButtonToRoomConnectedMs?: number | undefined;
                 fromButtonToFirstAudioMs?: number | undefined;
@@ -5979,6 +5988,9 @@ export declare const logSchemas: {
                 agentContextBuildMs?: number | undefined;
                 agentRealtimeStartMs?: number | undefined;
                 agentJoinToReplyMs?: number | undefined;
+                agentCallerPresentMs?: number | undefined;
+                agentOpenerStartedMs?: number | undefined;
+                agentUserContextMs?: number | undefined;
                 agentAudioSubscribedMs?: number | undefined;
                 agentFirstUserSpeechMs?: number | undefined;
                 agentFirstReplyMs?: number | undefined;
@@ -6639,6 +6651,7 @@ export declare const logSchemas: {
                 connectedMidUtterance?: boolean | undefined;
                 firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
                 openerId?: string | undefined;
+                roomOpenerId?: string | undefined;
                 fromButtonToTokenReceivedMs?: number | undefined;
                 fromButtonToRoomConnectedMs?: number | undefined;
                 fromButtonToFirstAudioMs?: number | undefined;
@@ -6646,6 +6659,9 @@ export declare const logSchemas: {
                 agentContextBuildMs?: number | undefined;
                 agentRealtimeStartMs?: number | undefined;
                 agentJoinToReplyMs?: number | undefined;
+                agentCallerPresentMs?: number | undefined;
+                agentOpenerStartedMs?: number | undefined;
+                agentUserContextMs?: number | undefined;
                 agentAudioSubscribedMs?: number | undefined;
                 agentFirstUserSpeechMs?: number | undefined;
                 agentFirstReplyMs?: number | undefined;
@@ -6759,6 +6775,7 @@ export declare const logSchemas: {
                 connectedMidUtterance?: boolean | undefined;
                 firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
                 openerId?: string | undefined;
+                roomOpenerId?: string | undefined;
                 fromButtonToTokenReceivedMs?: number | undefined;
                 fromButtonToRoomConnectedMs?: number | undefined;
                 fromButtonToFirstAudioMs?: number | undefined;
@@ -6766,6 +6783,9 @@ export declare const logSchemas: {
                 agentContextBuildMs?: number | undefined;
                 agentRealtimeStartMs?: number | undefined;
                 agentJoinToReplyMs?: number | undefined;
+                agentCallerPresentMs?: number | undefined;
+                agentOpenerStartedMs?: number | undefined;
+                agentUserContextMs?: number | undefined;
                 agentAudioSubscribedMs?: number | undefined;
                 agentFirstUserSpeechMs?: number | undefined;
                 agentFirstReplyMs?: number | undefined;
@@ -7423,6 +7443,7 @@ export declare const logSchemas: {
                 connectedMidUtterance?: boolean | undefined;
                 firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
                 openerId?: string | undefined;
+                roomOpenerId?: string | undefined;
                 fromButtonToTokenReceivedMs?: number | undefined;
                 fromButtonToRoomConnectedMs?: number | undefined;
                 fromButtonToFirstAudioMs?: number | undefined;
@@ -7430,6 +7451,9 @@ export declare const logSchemas: {
                 agentContextBuildMs?: number | undefined;
                 agentRealtimeStartMs?: number | undefined;
                 agentJoinToReplyMs?: number | undefined;
+                agentCallerPresentMs?: number | undefined;
+                agentOpenerStartedMs?: number | undefined;
+                agentUserContextMs?: number | undefined;
                 agentAudioSubscribedMs?: number | undefined;
                 agentFirstUserSpeechMs?: number | undefined;
                 agentFirstReplyMs?: number | undefined;
@@ -7558,6 +7582,7 @@ export declare const logSchemas: {
                 connectedMidUtterance?: boolean | undefined;
                 firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
                 openerId?: string | undefined;
+                roomOpenerId?: string | undefined;
                 fromButtonToTokenReceivedMs?: number | undefined;
                 fromButtonToRoomConnectedMs?: number | undefined;
                 fromButtonToFirstAudioMs?: number | undefined;
@@ -7565,6 +7590,9 @@ export declare const logSchemas: {
                 agentContextBuildMs?: number | undefined;
                 agentRealtimeStartMs?: number | undefined;
                 agentJoinToReplyMs?: number | undefined;
+                agentCallerPresentMs?: number | undefined;
+                agentOpenerStartedMs?: number | undefined;
+                agentUserContextMs?: number | undefined;
                 agentAudioSubscribedMs?: number | undefined;
                 agentFirstUserSpeechMs?: number | undefined;
                 agentFirstReplyMs?: number | undefined;
@@ -42460,6 +42488,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             connectedMidUtterance: z.ZodOptional<z.ZodBoolean>;
             firstUtteranceRoute: z.ZodOptional<z.ZodEnum<["forwarded", "live", "none"]>>;
             openerId: z.ZodOptional<z.ZodString>;
+            roomOpenerId: z.ZodOptional<z.ZodString>;
             fromButtonToTokenReceivedMs: z.ZodOptional<z.ZodNumber>;
             fromButtonToRoomConnectedMs: z.ZodOptional<z.ZodNumber>;
             fromButtonToFirstAudioMs: z.ZodOptional<z.ZodNumber>;
@@ -42467,6 +42496,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             agentContextBuildMs: z.ZodOptional<z.ZodNumber>;
             agentRealtimeStartMs: z.ZodOptional<z.ZodNumber>;
             agentJoinToReplyMs: z.ZodOptional<z.ZodNumber>;
+            agentCallerPresentMs: z.ZodOptional<z.ZodNumber>;
+            agentOpenerStartedMs: z.ZodOptional<z.ZodNumber>;
+            agentUserContextMs: z.ZodOptional<z.ZodNumber>;
             agentAudioSubscribedMs: z.ZodOptional<z.ZodNumber>;
             agentFirstUserSpeechMs: z.ZodOptional<z.ZodNumber>;
             agentFirstReplyMs: z.ZodOptional<z.ZodNumber>;
@@ -42482,6 +42514,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             connectedMidUtterance?: boolean | undefined;
             firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
             openerId?: string | undefined;
+            roomOpenerId?: string | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -42489,6 +42522,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             agentContextBuildMs?: number | undefined;
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
+            agentCallerPresentMs?: number | undefined;
+            agentOpenerStartedMs?: number | undefined;
+            agentUserContextMs?: number | undefined;
             agentAudioSubscribedMs?: number | undefined;
             agentFirstUserSpeechMs?: number | undefined;
             agentFirstReplyMs?: number | undefined;
@@ -42504,6 +42540,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             connectedMidUtterance?: boolean | undefined;
             firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
             openerId?: string | undefined;
+            roomOpenerId?: string | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -42511,6 +42548,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             agentContextBuildMs?: number | undefined;
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
+            agentCallerPresentMs?: number | undefined;
+            agentOpenerStartedMs?: number | undefined;
+            agentUserContextMs?: number | undefined;
             agentAudioSubscribedMs?: number | undefined;
             agentFirstUserSpeechMs?: number | undefined;
             agentFirstReplyMs?: number | undefined;
@@ -43171,6 +43211,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             connectedMidUtterance?: boolean | undefined;
             firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
             openerId?: string | undefined;
+            roomOpenerId?: string | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -43178,6 +43219,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             agentContextBuildMs?: number | undefined;
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
+            agentCallerPresentMs?: number | undefined;
+            agentOpenerStartedMs?: number | undefined;
+            agentUserContextMs?: number | undefined;
             agentAudioSubscribedMs?: number | undefined;
             agentFirstUserSpeechMs?: number | undefined;
             agentFirstReplyMs?: number | undefined;
@@ -43291,6 +43335,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             connectedMidUtterance?: boolean | undefined;
             firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
             openerId?: string | undefined;
+            roomOpenerId?: string | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -43298,6 +43343,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             agentContextBuildMs?: number | undefined;
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
+            agentCallerPresentMs?: number | undefined;
+            agentOpenerStartedMs?: number | undefined;
+            agentUserContextMs?: number | undefined;
             agentAudioSubscribedMs?: number | undefined;
             agentFirstUserSpeechMs?: number | undefined;
             agentFirstReplyMs?: number | undefined;
@@ -43955,6 +44003,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             connectedMidUtterance?: boolean | undefined;
             firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
             openerId?: string | undefined;
+            roomOpenerId?: string | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -43962,6 +44011,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             agentContextBuildMs?: number | undefined;
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
+            agentCallerPresentMs?: number | undefined;
+            agentOpenerStartedMs?: number | undefined;
+            agentUserContextMs?: number | undefined;
             agentAudioSubscribedMs?: number | undefined;
             agentFirstUserSpeechMs?: number | undefined;
             agentFirstReplyMs?: number | undefined;
@@ -44090,6 +44142,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             connectedMidUtterance?: boolean | undefined;
             firstUtteranceRoute?: "forwarded" | "live" | "none" | undefined;
             openerId?: string | undefined;
+            roomOpenerId?: string | undefined;
             fromButtonToTokenReceivedMs?: number | undefined;
             fromButtonToRoomConnectedMs?: number | undefined;
             fromButtonToFirstAudioMs?: number | undefined;
@@ -44097,6 +44150,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             agentContextBuildMs?: number | undefined;
             agentRealtimeStartMs?: number | undefined;
             agentJoinToReplyMs?: number | undefined;
+            agentCallerPresentMs?: number | undefined;
+            agentOpenerStartedMs?: number | undefined;
+            agentUserContextMs?: number | undefined;
             agentAudioSubscribedMs?: number | undefined;
             agentFirstUserSpeechMs?: number | undefined;
             agentFirstReplyMs?: number | undefined;
