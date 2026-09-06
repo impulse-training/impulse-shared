@@ -100,3 +100,23 @@ export function voiceOpenerLine(id: string | null | undefined): string | null {
  * have been ignored.
  */
 export const EARLY_UTTERANCE_TOPIC = "impulse.early_utterance";
+
+/**
+ * Data-channel topic the app uses to say "I can hear you now".
+ *
+ * The agent cannot work this out for itself. It knows when IT has subscribed
+ * to the caller's microphone, which proves the caller's upstream is flowing
+ * and says nothing about their downstream — and once tokens were pre-issued
+ * that inference stopped being even accidentally useful: the caller now joins
+ * BEFORE the agent, so their microphone is already there when the agent looks,
+ * the check passes in 0ms, and the opener plays into a device that has not yet
+ * subscribed to it. Measured: the coach started speaking 1.9 seconds before
+ * the caller's first audio, and they heard the second sentence, not the first.
+ *
+ * The device is the only party that knows. It fires TrackSubscribed for the
+ * agent's audio track, and sends this the moment it does.
+ *
+ * Shared because a typo on either side fails silently: the message is
+ * published, nothing is listening, and the coach simply talks too early again.
+ */
+export const CALLER_READY_TOPIC = "impulse.caller_ready";
