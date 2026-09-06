@@ -60,3 +60,58 @@ export function hasAiDataConsent(
     consent.version >= AI_DATA_CONSENT_VERSION
   );
 }
+
+/**
+ * First native version whose app can ask for AI data consent.
+ *
+ * A build older than this has no way to answer, so refusing those users would
+ * break the coach for everyone already installed rather than protect anyone.
+ */
+export const AI_DATA_CONSENT_MIN_NATIVE_VERSION = "0.4";
+
+/**
+ * THE consent gate. One rule, for every caller.
+ *
+ * It lived in impulse-functions, which was fine until the voice agent needed
+ * it too — a pre-issued token is valid for thirty days, so checking consent
+ * only when the token is minted lets a caller who WITHDREW it keep a key to a
+ * room. The agent has to check at the moment audio would flow, and it cannot
+ * import from impulse-functions, so it grew a near-copy that got the
+ * grandfathering subtly wrong. A compliance rule written twice is a compliance
+ * rule that drifts.
+ *
+ * Grandfathering: a build that predates the consent screen cannot record an
+ * answer, so those users are exempt until they update. They are asked the
+ * first time they open a build that can ask, and from then the gate applies —
+ * so declining genuinely turns the coach off.
+ *
+ * An unknown or unparseable version is treated as OLD. nativeVersion is
+ * written only from real hardware, so "missing" means an account that has not
+ * booted a recent build on a device: exactly the population that must not
+ * break. A reviewer, on real hardware running the new binary, always has a
+ * version and is always gated.
+ */
+export function mayProcessWithAi(user: {
+  aiDataConsent?: { version?: number | null } | null;
+  device?: { nativeVersion?: string } | null;
+} | undefined | null): boolean {
+  if (hasAiDataConsent(user?.aiDataConsent)) return true;
+
+  const nativeVersion = user?.device?.nativeVersion;
+  if (!nativeVersion) return true;
+
+  const parse = (v: string): number[] | null => {
+    const parts = v.split(":")[0].split(".").map((n) => parseInt(n, 10));
+    return parts.some((n) => Number.isNaN(n)) ? null : parts;
+  };
+  const actual = parse(nativeVersion);
+  const minimum = parse(AI_DATA_CONSENT_MIN_NATIVE_VERSION);
+  if (!actual || !minimum) return true;
+
+  for (let i = 0; i < Math.max(actual.length, minimum.length); i++) {
+    const diff = (actual[i] || 0) - (minimum[i] || 0);
+    // Older than the first build that could ask: grandfathered.
+    if (diff !== 0) return diff < 0;
+  }
+  return false;
+}
