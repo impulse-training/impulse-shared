@@ -83,6 +83,7 @@ export declare const userDataSchema: z.ZodObject<{
         suppressedGoToKeys?: string[] | undefined;
     }>>;
     voipPushToken: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    voipBundleId: z.ZodDefault<z.ZodNullable<z.ZodString>>;
     fcmCallToken: z.ZodDefault<z.ZodNullable<z.ZodString>>;
     notificationSettings: z.ZodDefault<z.ZodObject<{
         debriefReminders: z.ZodDefault<z.ZodBoolean>;
@@ -360,6 +361,7 @@ export declare const userDataSchema: z.ZodObject<{
     defaultSessionMode: "text" | "voice";
     expoPushToken: string | null;
     voipPushToken: string | null;
+    voipBundleId: string | null;
     fcmCallToken: string | null;
     notificationSettings: {
         debriefReminders: boolean;
@@ -535,6 +537,7 @@ export declare const userDataSchema: z.ZodObject<{
         suppressedGoToKeys?: string[] | undefined;
     } | undefined;
     voipPushToken?: string | null | undefined;
+    voipBundleId?: string | null | undefined;
     fcmCallToken?: string | null | undefined;
     notificationSettings?: {
         debriefReminders?: boolean | undefined;

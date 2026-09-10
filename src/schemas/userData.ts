@@ -108,8 +108,15 @@ export const userDataSchema = z.object({
   // Distinct from expoPushToken because VoIP/CallKit and Android full-screen
   // call notifications cannot be delivered through Expo's push service.
   // voipPushToken: iOS PushKit token (sent direct to APNs, .voip topic).
+  // voipBundleId: the bundle id of the build that issued voipPushToken. A
+  //   PushKit token is only valid for the topic "<bundle id>.voip", and the dev
+  //   build installs alongside the App Store one under a DIFFERENT bundle id
+  //   (see impulse-native app.config.js), so a hardcoded topic makes APNs
+  //   reject every dev-build token with DeviceTokenNotForTopic. Null on docs
+  //   written before the app started reporting it.
   // fcmCallToken: Android raw FCM token (high-priority data message).
   voipPushToken: z.string().nullable().default(null),
+  voipBundleId: z.string().nullable().default(null),
   fcmCallToken: z.string().nullable().default(null),
   notificationSettings: z
     .object({
