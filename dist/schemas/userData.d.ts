@@ -24,6 +24,31 @@ declare const recapClosingReflectionSchema: z.ZodObject<{
     prompt?: string | undefined;
     enabled?: boolean | undefined;
 }>;
+/**
+ * The proactive morning check-in: at this local time each day the app RINGS
+ * the user (a native incoming call from "Impulse") and the answer opens a voice
+ * session with the coach. The session is yesterday's recap when yesterday's
+ * totals are still unconfirmed, otherwise a general session seeded for the
+ * morning; either way it covers how they're feeling and what they'll reach for
+ * today (see processMorningCheckIns in impulse-functions).
+ *
+ * Time is :00/:30-slotted like the recap trigger — the scheduler ticks every
+ * 30 minutes and matches via the local-slot engine, so a 7:50 setting fires at
+ * the 7:30 slot. The settings screen only offers :00/:30 times.
+ */
+declare const morningCheckInSchema: z.ZodObject<{
+    enabled: z.ZodDefault<z.ZodBoolean>;
+    hour: z.ZodNumber;
+    minute: z.ZodNumber;
+}, "strip", z.ZodTypeAny, {
+    enabled: boolean;
+    hour: number;
+    minute: number;
+}, {
+    hour: number;
+    minute: number;
+    enabled?: boolean | undefined;
+}>;
 export declare const userDataSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -106,6 +131,19 @@ export declare const userDataSchema: z.ZodObject<{
     deletionRequestedBy: z.ZodOptional<z.ZodEnum<["user", "admin", "system"]>>;
     theme: z.ZodDefault<z.ZodEnum<["light", "dark", "system"]>>;
     weekStartsOn: z.ZodDefault<z.ZodUnion<[z.ZodLiteral<0>, z.ZodLiteral<1>]>>;
+    morningCheckIn: z.ZodOptional<z.ZodObject<{
+        enabled: z.ZodDefault<z.ZodBoolean>;
+        hour: z.ZodNumber;
+        minute: z.ZodNumber;
+    }, "strip", z.ZodTypeAny, {
+        enabled: boolean;
+        hour: number;
+        minute: number;
+    }, {
+        hour: number;
+        minute: number;
+        enabled?: boolean | undefined;
+    }>>;
     recap: z.ZodOptional<z.ZodObject<{
         trigger: z.ZodObject<{
             hour: z.ZodNumber;
@@ -351,6 +389,11 @@ export declare const userDataSchema: z.ZodObject<{
             prompt?: string | undefined;
         } | undefined;
     } | undefined;
+    morningCheckIn?: {
+        enabled: boolean;
+        hour: number;
+        minute: number;
+    } | undefined;
     lastActive?: import("../types").Timestamp | undefined;
     lastLogin?: import("../types").Timestamp | undefined;
     lastVisit?: import("../types").Timestamp | undefined;
@@ -468,6 +511,11 @@ export declare const userDataSchema: z.ZodObject<{
         } | undefined;
     } | undefined;
     theme?: "system" | "light" | "dark" | undefined;
+    morningCheckIn?: {
+        hour: number;
+        minute: number;
+        enabled?: boolean | undefined;
+    } | undefined;
     notificationsEnabled?: boolean | undefined;
     lastActive?: import("../types").Timestamp | undefined;
     lastLogin?: import("../types").Timestamp | undefined;
@@ -569,6 +617,7 @@ export declare const userDataSchema: z.ZodObject<{
     } | undefined;
 }>;
 export type UserData = z.infer<typeof userDataSchema>;
+export type MorningCheckInConfig = z.infer<typeof morningCheckInSchema>;
 export type RecapClosingReflection = z.infer<typeof recapClosingReflectionSchema>;
 /**
  * The closing reflection is live only when the user turned it on AND wrote a

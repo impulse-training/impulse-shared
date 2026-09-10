@@ -71,7 +71,24 @@ export const sessionBaseSchema = z.object({
   // Which app feature/flow created this session (as opposed to `origin`,
   // which is about the client device). Currently only set on "behavior"
   // sessions created by the recap "adjust totals" flow.
-  source: z.enum(["adjustment"]).optional(),
+  // "morningCheckIn": opened by the scheduled morning check-in (a recap for
+  // yesterday, or a general session when yesterday was already confirmed).
+  // The prompt builders read it to add the morning-call beats.
+  source: z.enum(["adjustment", "morningCheckIn"]).optional(),
+
+  // Stamped by processMorningCheckIns when it delivers the morning check-in
+  // into this session. Idempotency marker for the scheduler (one delivery per
+  // session) and a record of how the user was reached.
+  morningCheckIn: z
+    .object({
+      deliveredAt: timestampSchema,
+      // "call": the phone rang (VoIP/FCM push accepted). "push": no call
+      // token or the ring failed, so a regular notification went instead.
+      deliveredAs: z.enum(["call", "push"]),
+      // The local date the check-in was for (the morning it fired).
+      dateString: z.string(),
+    })
+    .optional(),
 
   // True when this session represents a behavior total that wasn't tied to a
   // specific time of day (e.g. a recap adjustment with no time picked).
