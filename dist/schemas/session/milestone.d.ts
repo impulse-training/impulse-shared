@@ -5356,7 +5356,20 @@ export declare const milestoneSessionSchema: z.ZodObject<{
     summarizedAt: z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     reflectRequestedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     origin: z.ZodOptional<z.ZodEnum<["native", "mac"]>>;
-    source: z.ZodOptional<z.ZodEnum<["adjustment"]>>;
+    source: z.ZodOptional<z.ZodEnum<["adjustment", "morningCheckIn"]>>;
+    morningCheckIn: z.ZodOptional<z.ZodObject<{
+        deliveredAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        deliveredAs: z.ZodEnum<["call", "push"]>;
+        dateString: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        dateString: string;
+        deliveredAt: import("../../types").Timestamp;
+        deliveredAs: "push" | "call";
+    }, {
+        dateString: string;
+        deliveredAt: import("../../types").Timestamp;
+        deliveredAs: "push" | "call";
+    }>>;
     timeUnspecified: z.ZodOptional<z.ZodBoolean>;
     triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     agentConnectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -5422,7 +5435,7 @@ export declare const milestoneSessionSchema: z.ZodObject<{
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
     behaviorIds?: string[] | undefined;
-    source?: "adjustment" | undefined;
+    source?: "adjustment" | "morningCheckIn" | undefined;
     tags?: Record<string, string[]> | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
@@ -6070,6 +6083,11 @@ export declare const milestoneSessionSchema: z.ZodObject<{
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
     reflectRequestedAt?: import("../../types").Timestamp | undefined;
     origin?: "native" | "mac" | undefined;
+    morningCheckIn?: {
+        dateString: string;
+        deliveredAt: import("../../types").Timestamp;
+        deliveredAs: "push" | "call";
+    } | undefined;
     timeUnspecified?: boolean | undefined;
     sharingMessage?: string | undefined;
     openAfter?: import("../../types").Timestamp | undefined;
@@ -6112,7 +6130,7 @@ export declare const milestoneSessionSchema: z.ZodObject<{
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
     behaviorIds?: string[] | undefined;
-    source?: "adjustment" | undefined;
+    source?: "adjustment" | "morningCheckIn" | undefined;
     tags?: Record<string, string[]> | undefined;
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
@@ -6228,6 +6246,11 @@ export declare const milestoneSessionSchema: z.ZodObject<{
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
     reflectRequestedAt?: import("../../types").Timestamp | undefined;
     origin?: "native" | "mac" | undefined;
+    morningCheckIn?: {
+        dateString: string;
+        deliveredAt: import("../../types").Timestamp;
+        deliveredAs: "push" | "call";
+    } | undefined;
     timeUnspecified?: boolean | undefined;
     sharingMessage?: string | undefined;
     openAfter?: import("../../types").Timestamp | undefined;

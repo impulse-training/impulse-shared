@@ -457,7 +457,7 @@ function getGptPayload(log, isFinalLogInSession, options) {
         return [
             {
                 role: "user",
-                content: "<CONTEXT>The user has confirmed their day totals. Open the reflection. HOW to open tonight is owned by the TONIGHT'S RECAP section of your instructions — follow its guidance for this specific night (a milestone night opens by naming the win; an ordinary night opens broad on the day, not zeroed in on one behavior; a coach-chosen question gets woven in later, never fired as the opening line). Do not recite the user's numbers back to them.</CONTEXT>",
+                content: "<CONTEXT>The user has confirmed their day totals. Open the reflection. HOW to open is owned by the TONIGHT'S RECAP section of your instructions when there is one — follow its guidance for this specific night (a milestone night opens by naming the win; an ordinary night opens broad on the day, not zeroed in on one behavior; a coach-chosen question gets woven in later, never fired as the opening line) — or, in a morning check-in, by the Morning check-in section: open on how they are doing this morning. Do not recite the user's numbers back to them.</CONTEXT>",
             },
         ];
     }

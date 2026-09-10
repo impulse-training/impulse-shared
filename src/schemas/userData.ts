@@ -38,6 +38,24 @@ const recapClosingReflectionSchema = z.object({
   prompt: z.string().max(300).optional(),
 });
 
+/**
+ * The proactive morning check-in: at this local time each day the app RINGS
+ * the user (a native incoming call from "Impulse") and the answer opens a voice
+ * session with the coach. The session is yesterday's recap when yesterday's
+ * totals are still unconfirmed, otherwise a general session seeded for the
+ * morning; either way it covers how they're feeling and what they'll reach for
+ * today (see processMorningCheckIns in impulse-functions).
+ *
+ * Time is :00/:30-slotted like the recap trigger — the scheduler ticks every
+ * 30 minutes and matches via the local-slot engine, so a 7:50 setting fires at
+ * the 7:30 slot. The settings screen only offers :00/:30 times.
+ */
+const morningCheckInSchema = z.object({
+  enabled: z.boolean().default(false),
+  hour: z.number().min(0).max(23),
+  minute: z.number().min(0).max(59),
+});
+
 const latestSupportGroupMessageSchema = z.object({
   senderId: z.string(),
   message: z.string(),
@@ -136,6 +154,9 @@ export const userDataSchema = z.object({
 
   // Calendar preferences
   weekStartsOn: z.union([z.literal(0), z.literal(1)]).default(1), // 0 = Sunday, 1 = Monday
+
+  // Morning check-in call. See morningCheckInSchema.
+  morningCheckIn: morningCheckInSchema.optional(),
 
   // Recap configuration
   recap: z
@@ -312,6 +333,7 @@ export const userDataSchema = z.object({
 // Export User type inferred from schema
 export type UserData = z.infer<typeof userDataSchema>;
 
+export type MorningCheckInConfig = z.infer<typeof morningCheckInSchema>;
 export type RecapClosingReflection = z.infer<
   typeof recapClosingReflectionSchema
 >;
