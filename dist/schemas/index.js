@@ -54,6 +54,7 @@ __exportStar(require("./question/answerSpec"), exports);
 __exportStar(require("./quote"), exports);
 __exportStar(require("./recapMessage"), exports);
 __exportStar(require("./outreach"), exports);
+__exportStar(require("./morningCheckInRun"), exports);
 __exportStar(require("./scheduledCheckIn"), exports);
 __exportStar(require("./scheduledNotification"), exports);
 __exportStar(require("./dailyReviewReport"), exports);
