@@ -6005,6 +6005,59 @@ export declare const logSchemas: {
             elevenlabsAgentId: z.ZodOptional<z.ZodString>;
             elevenlabsConversationId: z.ZodOptional<z.ZodString>;
             token: z.ZodOptional<z.ZodString>;
+            usage: z.ZodOptional<z.ZodObject<{
+                models: z.ZodArray<z.ZodObject<{
+                    provider: z.ZodString;
+                    model: z.ZodString;
+                    inputTextTokens: z.ZodOptional<z.ZodNumber>;
+                    inputAudioTokens: z.ZodOptional<z.ZodNumber>;
+                    inputCachedTokens: z.ZodOptional<z.ZodNumber>;
+                    outputTextTokens: z.ZodOptional<z.ZodNumber>;
+                    outputAudioTokens: z.ZodOptional<z.ZodNumber>;
+                }, "strip", z.ZodTypeAny, {
+                    provider: string;
+                    model: string;
+                    inputTextTokens?: number | undefined;
+                    inputAudioTokens?: number | undefined;
+                    inputCachedTokens?: number | undefined;
+                    outputTextTokens?: number | undefined;
+                    outputAudioTokens?: number | undefined;
+                }, {
+                    provider: string;
+                    model: string;
+                    inputTextTokens?: number | undefined;
+                    inputAudioTokens?: number | undefined;
+                    inputCachedTokens?: number | undefined;
+                    outputTextTokens?: number | undefined;
+                    outputAudioTokens?: number | undefined;
+                }>, "many">;
+                costUsd: z.ZodOptional<z.ZodNumber>;
+                ratesVersion: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                models: {
+                    provider: string;
+                    model: string;
+                    inputTextTokens?: number | undefined;
+                    inputAudioTokens?: number | undefined;
+                    inputCachedTokens?: number | undefined;
+                    outputTextTokens?: number | undefined;
+                    outputAudioTokens?: number | undefined;
+                }[];
+                costUsd?: number | undefined;
+                ratesVersion?: string | undefined;
+            }, {
+                models: {
+                    provider: string;
+                    model: string;
+                    inputTextTokens?: number | undefined;
+                    inputAudioTokens?: number | undefined;
+                    inputCachedTokens?: number | undefined;
+                    outputTextTokens?: number | undefined;
+                    outputAudioTokens?: number | undefined;
+                }[];
+                costUsd?: number | undefined;
+                ratesVersion?: string | undefined;
+            }>>;
             summary: z.ZodOptional<z.ZodString>;
             transcriptInSession: z.ZodOptional<z.ZodBoolean>;
             transcriptItems: z.ZodOptional<z.ZodArray<z.ZodObject<{
@@ -6676,6 +6729,19 @@ export declare const logSchemas: {
             elevenlabsAgentId?: string | undefined;
             elevenlabsConversationId?: string | undefined;
             token?: string | undefined;
+            usage?: {
+                models: {
+                    provider: string;
+                    model: string;
+                    inputTextTokens?: number | undefined;
+                    inputAudioTokens?: number | undefined;
+                    inputCachedTokens?: number | undefined;
+                    outputTextTokens?: number | undefined;
+                    outputAudioTokens?: number | undefined;
+                }[];
+                costUsd?: number | undefined;
+                ratesVersion?: string | undefined;
+            } | undefined;
             summary?: string | undefined;
             transcriptInSession?: boolean | undefined;
             transcriptItems?: {
@@ -6801,6 +6867,19 @@ export declare const logSchemas: {
             elevenlabsAgentId?: string | undefined;
             elevenlabsConversationId?: string | undefined;
             token?: string | undefined;
+            usage?: {
+                models: {
+                    provider: string;
+                    model: string;
+                    inputTextTokens?: number | undefined;
+                    inputAudioTokens?: number | undefined;
+                    inputCachedTokens?: number | undefined;
+                    outputTextTokens?: number | undefined;
+                    outputAudioTokens?: number | undefined;
+                }[];
+                costUsd?: number | undefined;
+                ratesVersion?: string | undefined;
+            } | undefined;
             summary?: string | undefined;
             transcriptInSession?: boolean | undefined;
             transcriptItems?: {
@@ -7470,6 +7549,19 @@ export declare const logSchemas: {
             elevenlabsAgentId?: string | undefined;
             elevenlabsConversationId?: string | undefined;
             token?: string | undefined;
+            usage?: {
+                models: {
+                    provider: string;
+                    model: string;
+                    inputTextTokens?: number | undefined;
+                    inputAudioTokens?: number | undefined;
+                    inputCachedTokens?: number | undefined;
+                    outputTextTokens?: number | undefined;
+                    outputAudioTokens?: number | undefined;
+                }[];
+                costUsd?: number | undefined;
+                ratesVersion?: string | undefined;
+            } | undefined;
             summary?: string | undefined;
             transcriptInSession?: boolean | undefined;
             transcriptItems?: {
@@ -7610,6 +7702,19 @@ export declare const logSchemas: {
             elevenlabsAgentId?: string | undefined;
             elevenlabsConversationId?: string | undefined;
             token?: string | undefined;
+            usage?: {
+                models: {
+                    provider: string;
+                    model: string;
+                    inputTextTokens?: number | undefined;
+                    inputAudioTokens?: number | undefined;
+                    inputCachedTokens?: number | undefined;
+                    outputTextTokens?: number | undefined;
+                    outputAudioTokens?: number | undefined;
+                }[];
+                costUsd?: number | undefined;
+                ratesVersion?: string | undefined;
+            } | undefined;
             summary?: string | undefined;
             transcriptInSession?: boolean | undefined;
             transcriptItems?: {
@@ -42562,6 +42667,59 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         elevenlabsAgentId: z.ZodOptional<z.ZodString>;
         elevenlabsConversationId: z.ZodOptional<z.ZodString>;
         token: z.ZodOptional<z.ZodString>;
+        usage: z.ZodOptional<z.ZodObject<{
+            models: z.ZodArray<z.ZodObject<{
+                provider: z.ZodString;
+                model: z.ZodString;
+                inputTextTokens: z.ZodOptional<z.ZodNumber>;
+                inputAudioTokens: z.ZodOptional<z.ZodNumber>;
+                inputCachedTokens: z.ZodOptional<z.ZodNumber>;
+                outputTextTokens: z.ZodOptional<z.ZodNumber>;
+                outputAudioTokens: z.ZodOptional<z.ZodNumber>;
+            }, "strip", z.ZodTypeAny, {
+                provider: string;
+                model: string;
+                inputTextTokens?: number | undefined;
+                inputAudioTokens?: number | undefined;
+                inputCachedTokens?: number | undefined;
+                outputTextTokens?: number | undefined;
+                outputAudioTokens?: number | undefined;
+            }, {
+                provider: string;
+                model: string;
+                inputTextTokens?: number | undefined;
+                inputAudioTokens?: number | undefined;
+                inputCachedTokens?: number | undefined;
+                outputTextTokens?: number | undefined;
+                outputAudioTokens?: number | undefined;
+            }>, "many">;
+            costUsd: z.ZodOptional<z.ZodNumber>;
+            ratesVersion: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            models: {
+                provider: string;
+                model: string;
+                inputTextTokens?: number | undefined;
+                inputAudioTokens?: number | undefined;
+                inputCachedTokens?: number | undefined;
+                outputTextTokens?: number | undefined;
+                outputAudioTokens?: number | undefined;
+            }[];
+            costUsd?: number | undefined;
+            ratesVersion?: string | undefined;
+        }, {
+            models: {
+                provider: string;
+                model: string;
+                inputTextTokens?: number | undefined;
+                inputAudioTokens?: number | undefined;
+                inputCachedTokens?: number | undefined;
+                outputTextTokens?: number | undefined;
+                outputAudioTokens?: number | undefined;
+            }[];
+            costUsd?: number | undefined;
+            ratesVersion?: string | undefined;
+        }>>;
         summary: z.ZodOptional<z.ZodString>;
         transcriptInSession: z.ZodOptional<z.ZodBoolean>;
         transcriptItems: z.ZodOptional<z.ZodArray<z.ZodObject<{
@@ -43233,6 +43391,19 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
+        usage?: {
+            models: {
+                provider: string;
+                model: string;
+                inputTextTokens?: number | undefined;
+                inputAudioTokens?: number | undefined;
+                inputCachedTokens?: number | undefined;
+                outputTextTokens?: number | undefined;
+                outputAudioTokens?: number | undefined;
+            }[];
+            costUsd?: number | undefined;
+            ratesVersion?: string | undefined;
+        } | undefined;
         summary?: string | undefined;
         transcriptInSession?: boolean | undefined;
         transcriptItems?: {
@@ -43358,6 +43529,19 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
+        usage?: {
+            models: {
+                provider: string;
+                model: string;
+                inputTextTokens?: number | undefined;
+                inputAudioTokens?: number | undefined;
+                inputCachedTokens?: number | undefined;
+                outputTextTokens?: number | undefined;
+                outputAudioTokens?: number | undefined;
+            }[];
+            costUsd?: number | undefined;
+            ratesVersion?: string | undefined;
+        } | undefined;
         summary?: string | undefined;
         transcriptInSession?: boolean | undefined;
         transcriptItems?: {
@@ -44027,6 +44211,19 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
+        usage?: {
+            models: {
+                provider: string;
+                model: string;
+                inputTextTokens?: number | undefined;
+                inputAudioTokens?: number | undefined;
+                inputCachedTokens?: number | undefined;
+                outputTextTokens?: number | undefined;
+                outputAudioTokens?: number | undefined;
+            }[];
+            costUsd?: number | undefined;
+            ratesVersion?: string | undefined;
+        } | undefined;
         summary?: string | undefined;
         transcriptInSession?: boolean | undefined;
         transcriptItems?: {
@@ -44167,6 +44364,19 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
+        usage?: {
+            models: {
+                provider: string;
+                model: string;
+                inputTextTokens?: number | undefined;
+                inputAudioTokens?: number | undefined;
+                inputCachedTokens?: number | undefined;
+                outputTextTokens?: number | undefined;
+                outputAudioTokens?: number | undefined;
+            }[];
+            costUsd?: number | undefined;
+            ratesVersion?: string | undefined;
+        } | undefined;
         summary?: string | undefined;
         transcriptInSession?: boolean | undefined;
         transcriptItems?: {
