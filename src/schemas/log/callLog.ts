@@ -174,6 +174,34 @@ export const callTimingsSchema = z.object({
 export type CallTimings = z.infer<typeof callTimingsSchema>;
 
 // Call log Schema
+/** One model's share of a call, as the agent's usage collector reported it. */
+export const callModelUsageSchema = z.object({
+  provider: z.string(),
+  model: z.string(),
+  inputTextTokens: z.number().optional(),
+  inputAudioTokens: z.number().optional(),
+  inputCachedTokens: z.number().optional(),
+  outputTextTokens: z.number().optional(),
+  outputAudioTokens: z.number().optional(),
+});
+export type CallModelUsage = z.infer<typeof callModelUsageSchema>;
+
+export const callUsageSchema = z.object({
+  models: z.array(callModelUsageSchema),
+  /**
+   * The bill, in US dollars, when a rate table was configured. Absent rather
+   * than zero when it was not: an invented price is worse than no price, and
+   * `models` above is enough to work one out later.
+   */
+  costUsd: z.number().optional(),
+  /**
+   * Which rate table produced `costUsd`, so a correction can find every call
+   * priced by the wrong one.
+   */
+  ratesVersion: z.string().optional(),
+});
+export type CallUsage = z.infer<typeof callUsageSchema>;
+
 export const callLogSchema = logBaseSchema.extend({
   type: z.literal("call"),
   isDisplayable: z.literal(true),
@@ -193,6 +221,18 @@ export const callLogSchema = logBaseSchema.extend({
     elevenlabsAgentId: z.string().optional(),
     elevenlabsConversationId: z.string().optional(),
     token: z.string().optional(),
+    /**
+     * What this call cost to run, in the units the provider bills.
+     *
+     * The realtime model charges separately for audio and text, in and out,
+     * with a cheaper rate for cached input — so a single token count cannot
+     * be priced. These are the raw counts the agent's usage collector
+     * reported, kept per model because a call can touch more than one, and a
+     * cost is only ever derived from them. Storing the counts rather than
+     * just a figure means a wrong or outdated rate table can be corrected
+     * afterwards, over calls that have already happened.
+     */
+    usage: callUsageSchema.optional(),
     summary: z.string().optional(),
     // True once the call's turns are written as user_message /
     // assistant_message logs in the session (each carrying `voice.callLogId`).

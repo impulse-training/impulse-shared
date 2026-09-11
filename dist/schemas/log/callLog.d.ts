@@ -215,6 +215,96 @@ export declare const callTimingsSchema: z.ZodObject<{
     entry?: "unknown" | "default_mode" | "toggle" | undefined;
 }>;
 export type CallTimings = z.infer<typeof callTimingsSchema>;
+/** One model's share of a call, as the agent's usage collector reported it. */
+export declare const callModelUsageSchema: z.ZodObject<{
+    provider: z.ZodString;
+    model: z.ZodString;
+    inputTextTokens: z.ZodOptional<z.ZodNumber>;
+    inputAudioTokens: z.ZodOptional<z.ZodNumber>;
+    inputCachedTokens: z.ZodOptional<z.ZodNumber>;
+    outputTextTokens: z.ZodOptional<z.ZodNumber>;
+    outputAudioTokens: z.ZodOptional<z.ZodNumber>;
+}, "strip", z.ZodTypeAny, {
+    provider: string;
+    model: string;
+    inputTextTokens?: number | undefined;
+    inputAudioTokens?: number | undefined;
+    inputCachedTokens?: number | undefined;
+    outputTextTokens?: number | undefined;
+    outputAudioTokens?: number | undefined;
+}, {
+    provider: string;
+    model: string;
+    inputTextTokens?: number | undefined;
+    inputAudioTokens?: number | undefined;
+    inputCachedTokens?: number | undefined;
+    outputTextTokens?: number | undefined;
+    outputAudioTokens?: number | undefined;
+}>;
+export type CallModelUsage = z.infer<typeof callModelUsageSchema>;
+export declare const callUsageSchema: z.ZodObject<{
+    models: z.ZodArray<z.ZodObject<{
+        provider: z.ZodString;
+        model: z.ZodString;
+        inputTextTokens: z.ZodOptional<z.ZodNumber>;
+        inputAudioTokens: z.ZodOptional<z.ZodNumber>;
+        inputCachedTokens: z.ZodOptional<z.ZodNumber>;
+        outputTextTokens: z.ZodOptional<z.ZodNumber>;
+        outputAudioTokens: z.ZodOptional<z.ZodNumber>;
+    }, "strip", z.ZodTypeAny, {
+        provider: string;
+        model: string;
+        inputTextTokens?: number | undefined;
+        inputAudioTokens?: number | undefined;
+        inputCachedTokens?: number | undefined;
+        outputTextTokens?: number | undefined;
+        outputAudioTokens?: number | undefined;
+    }, {
+        provider: string;
+        model: string;
+        inputTextTokens?: number | undefined;
+        inputAudioTokens?: number | undefined;
+        inputCachedTokens?: number | undefined;
+        outputTextTokens?: number | undefined;
+        outputAudioTokens?: number | undefined;
+    }>, "many">;
+    /**
+     * The bill, in US dollars, when a rate table was configured. Absent rather
+     * than zero when it was not: an invented price is worse than no price, and
+     * `models` above is enough to work one out later.
+     */
+    costUsd: z.ZodOptional<z.ZodNumber>;
+    /**
+     * Which rate table produced `costUsd`, so a correction can find every call
+     * priced by the wrong one.
+     */
+    ratesVersion: z.ZodOptional<z.ZodString>;
+}, "strip", z.ZodTypeAny, {
+    models: {
+        provider: string;
+        model: string;
+        inputTextTokens?: number | undefined;
+        inputAudioTokens?: number | undefined;
+        inputCachedTokens?: number | undefined;
+        outputTextTokens?: number | undefined;
+        outputAudioTokens?: number | undefined;
+    }[];
+    costUsd?: number | undefined;
+    ratesVersion?: string | undefined;
+}, {
+    models: {
+        provider: string;
+        model: string;
+        inputTextTokens?: number | undefined;
+        inputAudioTokens?: number | undefined;
+        inputCachedTokens?: number | undefined;
+        outputTextTokens?: number | undefined;
+        outputAudioTokens?: number | undefined;
+    }[];
+    costUsd?: number | undefined;
+    ratesVersion?: string | undefined;
+}>;
+export type CallUsage = z.infer<typeof callUsageSchema>;
 export declare const callLogSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -5721,6 +5811,79 @@ export declare const callLogSchema: z.ZodObject<{
         elevenlabsAgentId: z.ZodOptional<z.ZodString>;
         elevenlabsConversationId: z.ZodOptional<z.ZodString>;
         token: z.ZodOptional<z.ZodString>;
+        /**
+         * What this call cost to run, in the units the provider bills.
+         *
+         * The realtime model charges separately for audio and text, in and out,
+         * with a cheaper rate for cached input — so a single token count cannot
+         * be priced. These are the raw counts the agent's usage collector
+         * reported, kept per model because a call can touch more than one, and a
+         * cost is only ever derived from them. Storing the counts rather than
+         * just a figure means a wrong or outdated rate table can be corrected
+         * afterwards, over calls that have already happened.
+         */
+        usage: z.ZodOptional<z.ZodObject<{
+            models: z.ZodArray<z.ZodObject<{
+                provider: z.ZodString;
+                model: z.ZodString;
+                inputTextTokens: z.ZodOptional<z.ZodNumber>;
+                inputAudioTokens: z.ZodOptional<z.ZodNumber>;
+                inputCachedTokens: z.ZodOptional<z.ZodNumber>;
+                outputTextTokens: z.ZodOptional<z.ZodNumber>;
+                outputAudioTokens: z.ZodOptional<z.ZodNumber>;
+            }, "strip", z.ZodTypeAny, {
+                provider: string;
+                model: string;
+                inputTextTokens?: number | undefined;
+                inputAudioTokens?: number | undefined;
+                inputCachedTokens?: number | undefined;
+                outputTextTokens?: number | undefined;
+                outputAudioTokens?: number | undefined;
+            }, {
+                provider: string;
+                model: string;
+                inputTextTokens?: number | undefined;
+                inputAudioTokens?: number | undefined;
+                inputCachedTokens?: number | undefined;
+                outputTextTokens?: number | undefined;
+                outputAudioTokens?: number | undefined;
+            }>, "many">;
+            /**
+             * The bill, in US dollars, when a rate table was configured. Absent rather
+             * than zero when it was not: an invented price is worse than no price, and
+             * `models` above is enough to work one out later.
+             */
+            costUsd: z.ZodOptional<z.ZodNumber>;
+            /**
+             * Which rate table produced `costUsd`, so a correction can find every call
+             * priced by the wrong one.
+             */
+            ratesVersion: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            models: {
+                provider: string;
+                model: string;
+                inputTextTokens?: number | undefined;
+                inputAudioTokens?: number | undefined;
+                inputCachedTokens?: number | undefined;
+                outputTextTokens?: number | undefined;
+                outputAudioTokens?: number | undefined;
+            }[];
+            costUsd?: number | undefined;
+            ratesVersion?: string | undefined;
+        }, {
+            models: {
+                provider: string;
+                model: string;
+                inputTextTokens?: number | undefined;
+                inputAudioTokens?: number | undefined;
+                inputCachedTokens?: number | undefined;
+                outputTextTokens?: number | undefined;
+                outputAudioTokens?: number | undefined;
+            }[];
+            costUsd?: number | undefined;
+            ratesVersion?: string | undefined;
+        }>>;
         summary: z.ZodOptional<z.ZodString>;
         transcriptInSession: z.ZodOptional<z.ZodBoolean>;
         transcriptItems: z.ZodOptional<z.ZodArray<z.ZodObject<{
@@ -6392,6 +6555,19 @@ export declare const callLogSchema: z.ZodObject<{
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
+        usage?: {
+            models: {
+                provider: string;
+                model: string;
+                inputTextTokens?: number | undefined;
+                inputAudioTokens?: number | undefined;
+                inputCachedTokens?: number | undefined;
+                outputTextTokens?: number | undefined;
+                outputAudioTokens?: number | undefined;
+            }[];
+            costUsd?: number | undefined;
+            ratesVersion?: string | undefined;
+        } | undefined;
         summary?: string | undefined;
         transcriptInSession?: boolean | undefined;
         transcriptItems?: {
@@ -6517,6 +6693,19 @@ export declare const callLogSchema: z.ZodObject<{
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
+        usage?: {
+            models: {
+                provider: string;
+                model: string;
+                inputTextTokens?: number | undefined;
+                inputAudioTokens?: number | undefined;
+                inputCachedTokens?: number | undefined;
+                outputTextTokens?: number | undefined;
+                outputAudioTokens?: number | undefined;
+            }[];
+            costUsd?: number | undefined;
+            ratesVersion?: string | undefined;
+        } | undefined;
         summary?: string | undefined;
         transcriptInSession?: boolean | undefined;
         transcriptItems?: {
@@ -7186,6 +7375,19 @@ export declare const callLogSchema: z.ZodObject<{
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
+        usage?: {
+            models: {
+                provider: string;
+                model: string;
+                inputTextTokens?: number | undefined;
+                inputAudioTokens?: number | undefined;
+                inputCachedTokens?: number | undefined;
+                outputTextTokens?: number | undefined;
+                outputAudioTokens?: number | undefined;
+            }[];
+            costUsd?: number | undefined;
+            ratesVersion?: string | undefined;
+        } | undefined;
         summary?: string | undefined;
         transcriptInSession?: boolean | undefined;
         transcriptItems?: {
@@ -7326,6 +7528,19 @@ export declare const callLogSchema: z.ZodObject<{
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
+        usage?: {
+            models: {
+                provider: string;
+                model: string;
+                inputTextTokens?: number | undefined;
+                inputAudioTokens?: number | undefined;
+                inputCachedTokens?: number | undefined;
+                outputTextTokens?: number | undefined;
+                outputAudioTokens?: number | undefined;
+            }[];
+            costUsd?: number | undefined;
+            ratesVersion?: string | undefined;
+        } | undefined;
         summary?: string | undefined;
         transcriptInSession?: boolean | undefined;
         transcriptItems?: {

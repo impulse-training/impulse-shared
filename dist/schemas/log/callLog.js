@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.callLogSchema = exports.callTimingsSchema = void 0;
+exports.callLogSchema = exports.callUsageSchema = exports.callModelUsageSchema = exports.callTimingsSchema = void 0;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../../utils/timestampSchema");
 const tactic_1 = require("../tactic");
@@ -168,6 +168,30 @@ exports.callTimingsSchema = zod_1.z.object({
     entry: zod_1.z.enum(["default_mode", "toggle", "unknown"]).optional(),
 });
 // Call log Schema
+/** One model's share of a call, as the agent's usage collector reported it. */
+exports.callModelUsageSchema = zod_1.z.object({
+    provider: zod_1.z.string(),
+    model: zod_1.z.string(),
+    inputTextTokens: zod_1.z.number().optional(),
+    inputAudioTokens: zod_1.z.number().optional(),
+    inputCachedTokens: zod_1.z.number().optional(),
+    outputTextTokens: zod_1.z.number().optional(),
+    outputAudioTokens: zod_1.z.number().optional(),
+});
+exports.callUsageSchema = zod_1.z.object({
+    models: zod_1.z.array(exports.callModelUsageSchema),
+    /**
+     * The bill, in US dollars, when a rate table was configured. Absent rather
+     * than zero when it was not: an invented price is worse than no price, and
+     * `models` above is enough to work one out later.
+     */
+    costUsd: zod_1.z.number().optional(),
+    /**
+     * Which rate table produced `costUsd`, so a correction can find every call
+     * priced by the wrong one.
+     */
+    ratesVersion: zod_1.z.string().optional(),
+});
 exports.callLogSchema = base_1.logBaseSchema.extend({
     type: zod_1.z.literal("call"),
     isDisplayable: zod_1.z.literal(true),
@@ -187,6 +211,18 @@ exports.callLogSchema = base_1.logBaseSchema.extend({
         elevenlabsAgentId: zod_1.z.string().optional(),
         elevenlabsConversationId: zod_1.z.string().optional(),
         token: zod_1.z.string().optional(),
+        /**
+         * What this call cost to run, in the units the provider bills.
+         *
+         * The realtime model charges separately for audio and text, in and out,
+         * with a cheaper rate for cached input — so a single token count cannot
+         * be priced. These are the raw counts the agent's usage collector
+         * reported, kept per model because a call can touch more than one, and a
+         * cost is only ever derived from them. Storing the counts rather than
+         * just a figure means a wrong or outdated rate table can be corrected
+         * afterwards, over calls that have already happened.
+         */
+        usage: exports.callUsageSchema.optional(),
         summary: zod_1.z.string().optional(),
         // True once the call's turns are written as user_message /
         // assistant_message logs in the session (each carrying `voice.callLogId`).

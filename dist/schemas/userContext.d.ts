@@ -901,29 +901,6 @@ export declare const userContextSchema: z.ZodObject<{
     }>;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
-    brain?: {
-        summary: string;
-        memories: {
-            id: string;
-            createdAt: string;
-            category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
-            statement: string;
-            behaviorId?: string | undefined;
-            behaviorName?: string | undefined;
-            question?: string | undefined;
-            questionId?: string | undefined;
-        }[];
-        syncedAt: import("../types").Timestamp;
-        derivedAt?: string | undefined;
-    } | undefined;
-    activeExperiment?: {
-        behaviorIds: string[];
-        behaviorNames: string[];
-        experimentQuestion: string;
-        observations: string[];
-    } | null | undefined;
-    communicationProfile?: string | undefined;
-    communicationProfileVersion?: number | undefined;
     usage?: {
         windows: {
             short: {
@@ -962,6 +939,29 @@ export declare const userContextSchema: z.ZodObject<{
         computedDateString?: string | undefined;
         computedAt?: import("../types").Timestamp | undefined;
     } | undefined;
+    brain?: {
+        summary: string;
+        memories: {
+            id: string;
+            createdAt: string;
+            category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+            statement: string;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            question?: string | undefined;
+            questionId?: string | undefined;
+        }[];
+        syncedAt: import("../types").Timestamp;
+        derivedAt?: string | undefined;
+    } | undefined;
+    activeExperiment?: {
+        behaviorIds: string[];
+        behaviorNames: string[];
+        experimentQuestion: string;
+        observations: string[];
+    } | null | undefined;
+    communicationProfile?: string | undefined;
+    communicationProfileVersion?: number | undefined;
 }, {
     tactics: Record<string, {
         title: string;
@@ -984,29 +984,6 @@ export declare const userContextSchema: z.ZodObject<{
     }>;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
-    brain?: {
-        summary: string;
-        memories: {
-            id: string;
-            createdAt: string;
-            category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
-            statement: string;
-            behaviorId?: string | undefined;
-            behaviorName?: string | undefined;
-            question?: string | undefined;
-            questionId?: string | undefined;
-        }[];
-        syncedAt: import("../types").Timestamp;
-        derivedAt?: string | undefined;
-    } | undefined;
-    activeExperiment?: {
-        behaviorIds: string[];
-        behaviorNames: string[];
-        experimentQuestion: string;
-        observations: string[];
-    } | null | undefined;
-    communicationProfile?: string | undefined;
-    communicationProfileVersion?: number | undefined;
     usage?: {
         windows: {
             short: {
@@ -1045,6 +1022,29 @@ export declare const userContextSchema: z.ZodObject<{
         computedDateString?: string | undefined;
         computedAt?: import("../types").Timestamp | undefined;
     } | undefined;
+    brain?: {
+        summary: string;
+        memories: {
+            id: string;
+            createdAt: string;
+            category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+            statement: string;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            question?: string | undefined;
+            questionId?: string | undefined;
+        }[];
+        syncedAt: import("../types").Timestamp;
+        derivedAt?: string | undefined;
+    } | undefined;
+    activeExperiment?: {
+        behaviorIds: string[];
+        behaviorNames: string[];
+        experimentQuestion: string;
+        observations: string[];
+    } | null | undefined;
+    communicationProfile?: string | undefined;
+    communicationProfileVersion?: number | undefined;
 }>;
 export type BehaviorContext = z.infer<typeof behaviorContextSchema>;
 export type TacticContext = z.infer<typeof tacticContextSchema>;
