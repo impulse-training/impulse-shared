@@ -51,10 +51,16 @@ function tagIndicationMatchesSession(indication, sessionTags, lookup) {
 }
 // ── Score a single tactic ────────────────────────────────────────────────────
 function scoreTactic(tactic, sessionTags, recentTacticIds, tacticRatings, lookup, context = {}) {
-    var _a, _b, _c, _d, _e;
-    const { behaviorIds, behaviorTopicIds, pinnedTacticIds, suppressedTacticIds, lowSignal, } = context;
+    var _a, _b, _c, _d, _e, _f;
+    const { behaviorIds, behaviorTopicIds, pinnedTacticIds, suppressedTacticIds, lowSignal, sessionMode, } = context;
     // 1. Hard exclude: user/behavior suppression (human oversight)
     if (suppressedTacticIds === null || suppressedTacticIds === void 0 ? void 0 : suppressedTacticIds.includes(tactic.id)) {
+        return null; // EXCLUDED
+    }
+    // 1a. Hard exclude: tactic is contraindicated for this session's mode
+    //     (e.g. a tactic that doesn't work spoken aloud shouldn't surface in a
+    //     voice session).
+    if (sessionMode && ((_a = tactic.excludeModes) === null || _a === void 0 ? void 0 : _a.includes(sessionMode))) {
         return null; // EXCLUDED
     }
     // 1b. Hard exclude: presumptuous tactic on a low-signal session. A tactic that
@@ -66,7 +72,7 @@ function scoreTactic(tactic, sessionTags, recentTacticIds, tacticRatings, lookup
         return null; // EXCLUDED
     }
     // 2. Hard exclude: tag contraindications
-    if ((_a = tactic.contraindications) === null || _a === void 0 ? void 0 : _a.tags) {
+    if ((_b = tactic.contraindications) === null || _b === void 0 ? void 0 : _b.tags) {
         for (const contra of tactic.contraindications.tags) {
             if (tagIndicationMatchesSession(contra, sessionTags, lookup)) {
                 return null; // EXCLUDED
@@ -75,7 +81,7 @@ function scoreTactic(tactic, sessionTags, recentTacticIds, tacticRatings, lookup
     }
     // 3. Hard exclude: behavior-topic contraindications (e.g. anxiety
     //    down-regulators are a poor fit for arousal-driven sexual urges)
-    if (((_b = tactic.contraindications) === null || _b === void 0 ? void 0 : _b.behaviorTopics) && (behaviorTopicIds === null || behaviorTopicIds === void 0 ? void 0 : behaviorTopicIds.length)) {
+    if (((_c = tactic.contraindications) === null || _c === void 0 ? void 0 : _c.behaviorTopics) && (behaviorTopicIds === null || behaviorTopicIds === void 0 ? void 0 : behaviorTopicIds.length)) {
         for (const contra of tactic.contraindications.behaviorTopics) {
             if (behaviorTopicIds.includes(contra.behaviorTopicId)) {
                 return null; // EXCLUDED
@@ -85,7 +91,7 @@ function scoreTactic(tactic, sessionTags, recentTacticIds, tacticRatings, lookup
     // 4. Base score
     let score = 1;
     // 5. Behavior indication boost
-    if (((_c = tactic.indications) === null || _c === void 0 ? void 0 : _c.behaviors) && (behaviorIds === null || behaviorIds === void 0 ? void 0 : behaviorIds.length)) {
+    if (((_d = tactic.indications) === null || _d === void 0 ? void 0 : _d.behaviors) && (behaviorIds === null || behaviorIds === void 0 ? void 0 : behaviorIds.length)) {
         for (const indication of tactic.indications.behaviors) {
             if (behaviorIds.includes(indication.behaviorId)) {
                 score += indication.weight;
@@ -93,7 +99,7 @@ function scoreTactic(tactic, sessionTags, recentTacticIds, tacticRatings, lookup
         }
     }
     // 6. Behavior-topic indication boost
-    if (((_d = tactic.indications) === null || _d === void 0 ? void 0 : _d.behaviorTopics) && (behaviorTopicIds === null || behaviorTopicIds === void 0 ? void 0 : behaviorTopicIds.length)) {
+    if (((_e = tactic.indications) === null || _e === void 0 ? void 0 : _e.behaviorTopics) && (behaviorTopicIds === null || behaviorTopicIds === void 0 ? void 0 : behaviorTopicIds.length)) {
         for (const indication of tactic.indications.behaviorTopics) {
             if (behaviorTopicIds.includes(indication.behaviorTopicId)) {
                 score += indication.weight;
@@ -101,7 +107,7 @@ function scoreTactic(tactic, sessionTags, recentTacticIds, tacticRatings, lookup
         }
     }
     // 7. Tag indication boost
-    if ((_e = tactic.indications) === null || _e === void 0 ? void 0 : _e.tags) {
+    if ((_f = tactic.indications) === null || _f === void 0 ? void 0 : _f.tags) {
         for (const indication of tactic.indications.tags) {
             if (tagIndicationMatchesSession(indication, sessionTags, lookup)) {
                 score += indication.weight;

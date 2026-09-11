@@ -4574,6 +4574,7 @@ export declare const behaviorSessionSchema: z.ZodObject<{
         effort: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
         worksAnywhere: z.ZodOptional<z.ZodBoolean>;
         presumesState: z.ZodOptional<z.ZodString>;
+        excludeModes: z.ZodOptional<z.ZodArray<z.ZodEnum<["voice", "text"]>, "many">>;
         aiConfiguration: z.ZodOptional<z.ZodObject<{
             defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
             goal: z.ZodString;
@@ -5197,6 +5198,7 @@ export declare const behaviorSessionSchema: z.ZodObject<{
         effort?: "medium" | "low" | "high" | undefined;
         worksAnywhere?: boolean | undefined;
         presumesState?: string | undefined;
+        excludeModes?: ("text" | "voice")[] | undefined;
         aiConfiguration?: {
             goal: string;
             defaultConversationMode?: "text" | "voice" | undefined;
@@ -5276,6 +5278,7 @@ export declare const behaviorSessionSchema: z.ZodObject<{
         effort?: "medium" | "low" | "high" | undefined;
         worksAnywhere?: boolean | undefined;
         presumesState?: string | undefined;
+        excludeModes?: ("text" | "voice")[] | undefined;
         aiConfiguration?: {
             goal: string;
             defaultConversationMode?: "text" | "voice" | undefined;
@@ -6035,6 +6038,7 @@ export declare const behaviorSessionSchema: z.ZodObject<{
         effort?: "medium" | "low" | "high" | undefined;
         worksAnywhere?: boolean | undefined;
         presumesState?: string | undefined;
+        excludeModes?: ("text" | "voice")[] | undefined;
         aiConfiguration?: {
             goal: string;
             defaultConversationMode?: "text" | "voice" | undefined;
@@ -6193,6 +6197,7 @@ export declare const behaviorSessionSchema: z.ZodObject<{
         effort?: "medium" | "low" | "high" | undefined;
         worksAnywhere?: boolean | undefined;
         presumesState?: string | undefined;
+        excludeModes?: ("text" | "voice")[] | undefined;
         aiConfiguration?: {
             goal: string;
             defaultConversationMode?: "text" | "voice" | undefined;
