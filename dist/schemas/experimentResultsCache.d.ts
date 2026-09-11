@@ -31,19 +31,48 @@ declare const behaviorSummarySchema: z.ZodObject<{
     resistRate?: number | undefined;
 }>;
 /**
- * Overall metric summary (average of 1-5 scale ratings).
+ * Overall metric summary across the observations in scope.
+ *
+ * `distribution` is the user-facing shape — experiment results compare how
+ * observations were spread across the three states between conditions ("high
+ * energy 62% vs 38%"), which is what an ordinal scale actually supports.
+ * `average` is retained for internal statistics only; never surface it.
  */
 declare const metricSummarySchema: z.ZodObject<{
-    /** Average rating across all measurements */
+    /** Count of observations in each state, low → high */
+    distribution: z.ZodOptional<z.ZodObject<{
+        low: z.ZodNumber;
+        okay: z.ZodNumber;
+        high: z.ZodNumber;
+    }, "strip", z.ZodTypeAny, {
+        low: number;
+        high: number;
+        okay: number;
+    }, {
+        low: number;
+        high: number;
+        okay: number;
+    }>>;
+    /** Mean of the ordinal values — for analysis only, not for display */
     average: z.ZodNumber;
-    /** Number of individual ratings recorded */
+    /** Number of individual observations recorded */
     count: z.ZodNumber;
 }, "strip", z.ZodTypeAny, {
     count: number;
     average: number;
+    distribution?: {
+        low: number;
+        high: number;
+        okay: number;
+    } | undefined;
 }, {
     count: number;
     average: number;
+    distribution?: {
+        low: number;
+        high: number;
+        okay: number;
+    } | undefined;
 }>;
 /**
  * A single day's data point for time series charts.
@@ -104,19 +133,43 @@ export declare function metricConfidenceFromReadings(input: {
 declare const metricResultSchema: z.ZodObject<{
     metricId: z.ZodString;
     metricName: z.ZodString;
-    minLabel: z.ZodOptional<z.ZodString>;
-    maxLabel: z.ZodOptional<z.ZodString>;
+    /** The metric's three scale labels, low → high */
+    scaleLabels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodString], null>>;
     summary: z.ZodOptional<z.ZodObject<{
-        /** Average rating across all measurements */
+        /** Count of observations in each state, low → high */
+        distribution: z.ZodOptional<z.ZodObject<{
+            low: z.ZodNumber;
+            okay: z.ZodNumber;
+            high: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            low: number;
+            high: number;
+            okay: number;
+        }, {
+            low: number;
+            high: number;
+            okay: number;
+        }>>;
+        /** Mean of the ordinal values — for analysis only, not for display */
         average: z.ZodNumber;
-        /** Number of individual ratings recorded */
+        /** Number of individual observations recorded */
         count: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
         count: number;
         average: number;
+        distribution?: {
+            low: number;
+            high: number;
+            okay: number;
+        } | undefined;
     }, {
         count: number;
         average: number;
+        distribution?: {
+            low: number;
+            high: number;
+            okay: number;
+        } | undefined;
     }>>;
     /** Daily time series for charts */
     dailySeries: z.ZodOptional<z.ZodArray<z.ZodObject<{
@@ -154,12 +207,16 @@ declare const metricResultSchema: z.ZodObject<{
     metricId: string;
     metricName: string;
     confidence?: "low" | "high" | "moderate" | undefined;
-    minLabel?: string | undefined;
-    maxLabel?: string | undefined;
     summary?: {
         count: number;
         average: number;
+        distribution?: {
+            low: number;
+            high: number;
+            okay: number;
+        } | undefined;
     } | undefined;
+    scaleLabels?: [string, string, string] | undefined;
     hasBaseline?: boolean | undefined;
     postMilestoneReadings?: number | undefined;
     dailySeries?: {
@@ -171,12 +228,16 @@ declare const metricResultSchema: z.ZodObject<{
     metricId: string;
     metricName: string;
     confidence?: "low" | "high" | "moderate" | undefined;
-    minLabel?: string | undefined;
-    maxLabel?: string | undefined;
     summary?: {
         count: number;
         average: number;
+        distribution?: {
+            low: number;
+            high: number;
+            okay: number;
+        } | undefined;
     } | undefined;
+    scaleLabels?: [string, string, string] | undefined;
     hasBaseline?: boolean | undefined;
     postMilestoneReadings?: number | undefined;
     dailySeries?: {
@@ -343,8 +404,8 @@ declare const discoveredInsightSchema: z.ZodObject<{
     behaviorId: string;
     direction: "positive" | "negative";
     metricId: string;
-    metricName: string;
     quadrant: "low" | "activated" | "stressed" | "calm" | null;
+    metricName: string;
     rBest: number;
     rBestLag: "same_day" | "lagged";
     strength: "moderate" | "strong" | "weak";
@@ -360,8 +421,8 @@ declare const discoveredInsightSchema: z.ZodObject<{
     behaviorId: string;
     direction: "positive" | "negative";
     metricId: string;
-    metricName: string;
     quadrant: "low" | "activated" | "stressed" | "calm" | null;
+    metricName: string;
     rBest: number;
     rBestLag: "same_day" | "lagged";
     strength: "moderate" | "strong" | "weak";
@@ -478,19 +539,43 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
     metricResults: z.ZodArray<z.ZodObject<{
         metricId: z.ZodString;
         metricName: z.ZodString;
-        minLabel: z.ZodOptional<z.ZodString>;
-        maxLabel: z.ZodOptional<z.ZodString>;
+        /** The metric's three scale labels, low → high */
+        scaleLabels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodString], null>>;
         summary: z.ZodOptional<z.ZodObject<{
-            /** Average rating across all measurements */
+            /** Count of observations in each state, low → high */
+            distribution: z.ZodOptional<z.ZodObject<{
+                low: z.ZodNumber;
+                okay: z.ZodNumber;
+                high: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                low: number;
+                high: number;
+                okay: number;
+            }, {
+                low: number;
+                high: number;
+                okay: number;
+            }>>;
+            /** Mean of the ordinal values — for analysis only, not for display */
             average: z.ZodNumber;
-            /** Number of individual ratings recorded */
+            /** Number of individual observations recorded */
             count: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
             count: number;
             average: number;
+            distribution?: {
+                low: number;
+                high: number;
+                okay: number;
+            } | undefined;
         }, {
             count: number;
             average: number;
+            distribution?: {
+                low: number;
+                high: number;
+                okay: number;
+            } | undefined;
         }>>;
         /** Daily time series for charts */
         dailySeries: z.ZodOptional<z.ZodArray<z.ZodObject<{
@@ -528,12 +613,16 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
         metricId: string;
         metricName: string;
         confidence?: "low" | "high" | "moderate" | undefined;
-        minLabel?: string | undefined;
-        maxLabel?: string | undefined;
         summary?: {
             count: number;
             average: number;
+            distribution?: {
+                low: number;
+                high: number;
+                okay: number;
+            } | undefined;
         } | undefined;
+        scaleLabels?: [string, string, string] | undefined;
         hasBaseline?: boolean | undefined;
         postMilestoneReadings?: number | undefined;
         dailySeries?: {
@@ -545,12 +634,16 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
         metricId: string;
         metricName: string;
         confidence?: "low" | "high" | "moderate" | undefined;
-        minLabel?: string | undefined;
-        maxLabel?: string | undefined;
         summary?: {
             count: number;
             average: number;
+            distribution?: {
+                low: number;
+                high: number;
+                okay: number;
+            } | undefined;
         } | undefined;
+        scaleLabels?: [string, string, string] | undefined;
         hasBaseline?: boolean | undefined;
         postMilestoneReadings?: number | undefined;
         dailySeries?: {
@@ -627,8 +720,8 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
         behaviorId: string;
         direction: "positive" | "negative";
         metricId: string;
-        metricName: string;
         quadrant: "low" | "activated" | "stressed" | "calm" | null;
+        metricName: string;
         rBest: number;
         rBestLag: "same_day" | "lagged";
         strength: "moderate" | "strong" | "weak";
@@ -644,8 +737,8 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
         behaviorId: string;
         direction: "positive" | "negative";
         metricId: string;
-        metricName: string;
         quadrant: "low" | "activated" | "stressed" | "calm" | null;
+        metricName: string;
         rBest: number;
         rBestLag: "same_day" | "lagged";
         strength: "moderate" | "strong" | "weak";
@@ -691,12 +784,16 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
         metricId: string;
         metricName: string;
         confidence?: "low" | "high" | "moderate" | undefined;
-        minLabel?: string | undefined;
-        maxLabel?: string | undefined;
         summary?: {
             count: number;
             average: number;
+            distribution?: {
+                low: number;
+                high: number;
+                okay: number;
+            } | undefined;
         } | undefined;
+        scaleLabels?: [string, string, string] | undefined;
         hasBaseline?: boolean | undefined;
         postMilestoneReadings?: number | undefined;
         dailySeries?: {
@@ -718,8 +815,8 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
         behaviorId: string;
         direction: "positive" | "negative";
         metricId: string;
-        metricName: string;
         quadrant: "low" | "activated" | "stressed" | "calm" | null;
+        metricName: string;
         rBest: number;
         rBestLag: "same_day" | "lagged";
         strength: "moderate" | "strong" | "weak";
@@ -761,12 +858,16 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
         metricId: string;
         metricName: string;
         confidence?: "low" | "high" | "moderate" | undefined;
-        minLabel?: string | undefined;
-        maxLabel?: string | undefined;
         summary?: {
             count: number;
             average: number;
+            distribution?: {
+                low: number;
+                high: number;
+                okay: number;
+            } | undefined;
         } | undefined;
+        scaleLabels?: [string, string, string] | undefined;
         hasBaseline?: boolean | undefined;
         postMilestoneReadings?: number | undefined;
         dailySeries?: {
@@ -788,8 +889,8 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
         behaviorId: string;
         direction: "positive" | "negative";
         metricId: string;
-        metricName: string;
         quadrant: "low" | "activated" | "stressed" | "calm" | null;
+        metricName: string;
         rBest: number;
         rBestLag: "same_day" | "lagged";
         strength: "moderate" | "strong" | "weak";

@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidToolkitPlanningSession = exports.sessionIsToolkitPlanningSession = exports.isValidMilestoneSession = exports.sessionIsMilestoneSession = exports.isValidDemoSession = exports.sessionIsDemoSession = exports.isValidTasksSession = exports.sessionIsTasksSession = exports.isValidRecoveryKeySession = exports.sessionIsRecoveryKeySession = exports.isValidWelcomeSession = exports.sessionIsWelcomeSession = exports.isValidTacticSession = exports.sessionIsTacticSession = exports.isValidAdjustmentSession = exports.sessionIsAdjustmentSession = exports.isValidBehaviorSession = exports.sessionIsBehaviorSession = exports.isValidLocationPlanSession = exports.sessionIsLocationPlanSession = exports.isValidRecapSession = exports.sessionIsRecapSession = exports.isValidOnboardingSession = exports.sessionIsOnboardingSession = exports.isValidTimePlanSession = exports.sessionIsTimePlanSession = exports.isValidImpulseSession = exports.sessionIsImpulseSession = exports.isValidGeneralSession = exports.sessionIsGeneralSession = exports.sessionSchema = exports.sessionSchemas = void 0;
+exports.isValidToolkitPlanningSession = exports.sessionIsToolkitPlanningSession = exports.isValidMilestoneSession = exports.sessionIsMilestoneSession = exports.isValidDemoSession = exports.sessionIsDemoSession = exports.isValidTasksSession = exports.sessionIsTasksSession = exports.isValidRecoveryKeySession = exports.sessionIsRecoveryKeySession = exports.isValidWelcomeSession = exports.sessionIsWelcomeSession = exports.isValidTacticSession = exports.sessionIsTacticSession = exports.isValidAdjustmentSession = exports.sessionIsAdjustmentSession = exports.isValidMetricSession = exports.sessionIsMetricSession = exports.isValidBehaviorSession = exports.sessionIsBehaviorSession = exports.isValidLocationPlanSession = exports.sessionIsLocationPlanSession = exports.isValidRecapSession = exports.sessionIsRecapSession = exports.isValidOnboardingSession = exports.sessionIsOnboardingSession = exports.isValidTimePlanSession = exports.sessionIsTimePlanSession = exports.isValidImpulseSession = exports.sessionIsImpulseSession = exports.isValidGeneralSession = exports.sessionIsGeneralSession = exports.sessionSchema = exports.sessionSchemas = void 0;
 exports.shouldSummarizeSession = shouldSummarizeSession;
 const zod_1 = require("zod");
 const adjustment_1 = require("./adjustment");
@@ -34,6 +34,7 @@ const demo_1 = require("./demo");
 const milestone_1 = require("./milestone");
 const toolkitPlanning_1 = require("./toolkitPlanning");
 const coachCheckIn_1 = require("./coachCheckIn");
+const metric_1 = require("./metric");
 __exportStar(require("../sessionSummary"), exports);
 __exportStar(require("./adjustment"), exports);
 __exportStar(require("./behavior"), exports);
@@ -53,6 +54,7 @@ __exportStar(require("./demo"), exports);
 __exportStar(require("./milestone"), exports);
 __exportStar(require("./toolkitPlanning"), exports);
 __exportStar(require("./coachCheckIn"), exports);
+__exportStar(require("./metric"), exports);
 // Map of session types to their schemas
 exports.sessionSchemas = {
     general: general_1.generalSessionSchema,
@@ -73,6 +75,7 @@ exports.sessionSchemas = {
     milestone: milestone_1.milestoneSessionSchema,
     toolkitPlanning: toolkitPlanning_1.toolkitPlanningSessionSchema,
     zaraCheckIn: coachCheckIn_1.coachCheckInSessionSchema,
+    metric: metric_1.metricSessionSchema,
 };
 // Discriminated union over type
 exports.sessionSchema = zod_1.z.discriminatedUnion("type", [
@@ -94,6 +97,7 @@ exports.sessionSchema = zod_1.z.discriminatedUnion("type", [
     milestone_1.milestoneSessionSchema,
     toolkitPlanning_1.toolkitPlanningSessionSchema,
     coachCheckIn_1.coachCheckInSessionSchema,
+    metric_1.metricSessionSchema,
 ]);
 const sessionIsGeneralSession = (value) => value.type === "general";
 exports.sessionIsGeneralSession = sessionIsGeneralSession;
@@ -124,6 +128,10 @@ const sessionIsBehaviorSession = (value) => value.type === "behavior";
 exports.sessionIsBehaviorSession = sessionIsBehaviorSession;
 const isValidBehaviorSession = (value) => behavior_1.behaviorSessionSchema.safeParse(value).success;
 exports.isValidBehaviorSession = isValidBehaviorSession;
+const sessionIsMetricSession = (value) => value.type === "metric";
+exports.sessionIsMetricSession = sessionIsMetricSession;
+const isValidMetricSession = (value) => metric_1.metricSessionSchema.safeParse(value).success;
+exports.isValidMetricSession = isValidMetricSession;
 const sessionIsAdjustmentSession = (value) => value.type === "adjustment";
 exports.sessionIsAdjustmentSession = sessionIsAdjustmentSession;
 const isValidAdjustmentSession = (value) => adjustment_1.adjustmentSessionSchema.safeParse(value).success;

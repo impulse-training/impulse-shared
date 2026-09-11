@@ -5433,6 +5433,7 @@ export declare const tasksSessionSchema: z.ZodObject<{
     tags?: Record<string, string[]> | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    startedDeletingAt?: import("../../types").Timestamp | undefined;
     triggerId?: string | null | undefined;
     completedAt?: import("../../types").Timestamp | null | undefined;
     taskId?: string | undefined;
@@ -6107,7 +6108,6 @@ export declare const tasksSessionSchema: z.ZodObject<{
     }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     closeDecidedBy?: "ai" | "reviewer" | undefined;
-    startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
 }, {
     type: "tasks";
@@ -6127,6 +6127,7 @@ export declare const tasksSessionSchema: z.ZodObject<{
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    startedDeletingAt?: import("../../types").Timestamp | undefined;
     triggerId?: string | null | undefined;
     completedAt?: import("../../types").Timestamp | null | undefined;
     taskId?: string | undefined;
@@ -6268,7 +6269,6 @@ export declare const tasksSessionSchema: z.ZodObject<{
     }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     closeDecidedBy?: "ai" | "reviewer" | undefined;
-    startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
 }>;
 export type TasksSession = z.infer<typeof tasksSessionSchema>;

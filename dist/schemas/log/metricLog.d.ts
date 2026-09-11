@@ -1,7 +1,16 @@
 import { z } from "zod";
 /**
- * A metric measurement log.
- * Records a single 1-5 scale rating for a metric, with optional supporting text.
+ * A metric observation log — one ordered day-scoped state observation.
+ *
+ * The day the observation is ABOUT is `dateString` (inherited from
+ * logBaseSchema); when it was actually recorded is `createdAt`. Those differ on
+ * a backfill, and the gap is deliberately preserved so experiment analysis can
+ * later distinguish a contemporaneous observation from a later recollection.
+ * Do not collapse them by passing the backdated timestamp as `createdAt`.
+ *
+ * One observation per metric per day: these are written with the deterministic
+ * id `metric_{metricId}_{dateString}`, so re-recording a day edits in place
+ * rather than appending a second observation.
  */
 export declare const metricLogSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -25,31 +34,30 @@ export declare const metricLogSchema: z.ZodObject<{
         metricId: z.ZodString;
         /** Denormalized metric name for display */
         metricName: z.ZodString;
-        /** 1–5 scale rating, null when awaiting user input */
-        value: z.ZodNullable<z.ZodNumber>;
-        /** Denormalized label for the low end of the scale */
-        minLabel: z.ZodOptional<z.ZodString>;
-        /** Denormalized label for the high end of the scale */
-        maxLabel: z.ZodOptional<z.ZodString>;
+        /** Ordered 3-point observation, null when awaiting user input */
+        value: z.ZodNullable<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>>;
+        /**
+         * Denormalized scale labels, so a log renders ("Energy: High") without
+         * loading the metric document.
+         */
+        scaleLabels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodString], null>>;
         /** Optional supporting text / note */
         text: z.ZodOptional<z.ZodString>;
         /** Denormalized circumplex quadrant — present only on feeling-type metrics */
         quadrant: z.ZodOptional<z.ZodEnum<["activated", "stressed", "calm", "low"]>>;
     }, "strip", z.ZodTypeAny, {
-        value: number | null;
+        value: 1 | 2 | 3 | null;
         metricId: string;
         metricName: string;
         text?: string | undefined;
-        minLabel?: string | undefined;
-        maxLabel?: string | undefined;
+        scaleLabels?: [string, string, string] | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     }, {
-        value: number | null;
+        value: 1 | 2 | 3 | null;
         metricId: string;
         metricName: string;
         text?: string | undefined;
-        minLabel?: string | undefined;
-        maxLabel?: string | undefined;
+        scaleLabels?: [string, string, string] | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -62,12 +70,11 @@ export declare const metricLogSchema: z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        value: number | null;
+        value: 1 | 2 | 3 | null;
         metricId: string;
         metricName: string;
         text?: string | undefined;
-        minLabel?: string | undefined;
-        maxLabel?: string | undefined;
+        scaleLabels?: [string, string, string] | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     };
     id?: string | undefined;
@@ -86,12 +93,11 @@ export declare const metricLogSchema: z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        value: number | null;
+        value: 1 | 2 | 3 | null;
         metricId: string;
         metricName: string;
         text?: string | undefined;
-        minLabel?: string | undefined;
-        maxLabel?: string | undefined;
+        scaleLabels?: [string, string, string] | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     };
     id?: string | undefined;

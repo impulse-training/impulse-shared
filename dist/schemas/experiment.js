@@ -4,6 +4,7 @@ exports.experimentProposalSchema = exports.DEFAULT_EXPERIMENT_TARGET_DAYS = expo
 exports.getExperimentTargetDays = getExperimentTargetDays;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../utils/timestampSchema");
+const metric_1 = require("./metric");
 const experimentMemoryNotesEntrySchema = zod_1.z.object({
     behaviorIds: zod_1.z.array(zod_1.z.string()),
     insights: zod_1.z.array(zod_1.z.string()).default([]),
@@ -41,7 +42,8 @@ exports.experimentSchema = zod_1.z.object({
     goal: zod_1.z
         .object({
         metricId: zod_1.z.string(),
-        target: zod_1.z.number(),
+        /** The state being aimed for, on the metric's ordered 3-point scale */
+        target: metric_1.metricValueSchema,
         direction: zod_1.z.enum(["increase", "decrease"]),
     })
         .optional(),

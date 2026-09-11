@@ -24,6 +24,7 @@ import {
   toolkitPlanningSessionSchema,
 } from "./toolkitPlanning";
 import { CoachCheckInSession, coachCheckInSessionSchema } from "./coachCheckIn";
+import { MetricSession, metricSessionSchema } from "./metric";
 
 export * from "../sessionSummary";
 export * from "./adjustment";
@@ -44,6 +45,7 @@ export * from "./demo";
 export * from "./milestone";
 export * from "./toolkitPlanning";
 export * from "./coachCheckIn";
+export * from "./metric";
 
 // Map of session types to their schemas
 export const sessionSchemas: Record<string, z.ZodTypeAny> = {
@@ -65,6 +67,7 @@ export const sessionSchemas: Record<string, z.ZodTypeAny> = {
   milestone: milestoneSessionSchema,
   toolkitPlanning: toolkitPlanningSessionSchema,
   zaraCheckIn: coachCheckInSessionSchema,
+  metric: metricSessionSchema,
 };
 
 // Discriminated union over type
@@ -88,6 +91,7 @@ export const sessionSchema: z.ZodDiscriminatedUnion<
     typeof milestoneSessionSchema,
     typeof toolkitPlanningSessionSchema,
     typeof coachCheckInSessionSchema,
+    typeof metricSessionSchema,
   ]
 > = z.discriminatedUnion("type", [
   generalSessionSchema,
@@ -108,6 +112,7 @@ export const sessionSchema: z.ZodDiscriminatedUnion<
   milestoneSessionSchema,
   toolkitPlanningSessionSchema,
   coachCheckInSessionSchema,
+  metricSessionSchema,
 ]);
 
 export const sessionIsGeneralSession = (
@@ -160,6 +165,13 @@ export const sessionIsBehaviorSession = (
 export const isValidBehaviorSession = (
   value: unknown,
 ): value is BehaviorSession => behaviorSessionSchema.safeParse(value).success;
+
+export const sessionIsMetricSession = (
+  value: Session,
+): value is MetricSession => value.type === "metric";
+export const isValidMetricSession = (
+  value: unknown,
+): value is MetricSession => metricSessionSchema.safeParse(value).success;
 
 export const sessionIsAdjustmentSession = (
   value: Session,

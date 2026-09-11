@@ -1,11 +1,15 @@
 import { z } from "zod";
 import { logBaseSchema } from "./base";
 import { timestampSchema } from "../../utils/timestampSchema";
+import {
+  METRIC_NAME_MAX_LENGTH,
+  metricScaleLabelsSchema,
+} from "../metric";
 
 export const proposedExperimentMetricSchema = z.object({
-  name: z.string().min(1),
-  minLabel: z.string().optional(),
-  maxLabel: z.string().optional(),
+  name: z.string().min(1).max(METRIC_NAME_MAX_LENGTH),
+  /** The three scale labels the metric should use, ordered low → high */
+  scaleLabels: metricScaleLabelsSchema.optional(),
 });
 
 export const proposedExperimentLogSchema = logBaseSchema.extend({
