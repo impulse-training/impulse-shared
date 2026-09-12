@@ -276,3 +276,33 @@ export function segmentMaskedText(
   }
   return segments;
 }
+
+/** A group plus what to write where its terms appear. */
+export interface MaskedTermSubstitution extends MaskedTermGroup {
+  /** What to write in place of a match — "the red behavior", typically. */
+  replacement: string;
+}
+
+/**
+ * Rewrite every masked term in `text` as its group's replacement.
+ *
+ * The point of doing this over finished text rather than at each place a name
+ * is interpolated is that there is no list of those places to keep correct.
+ * Prompt text is assembled from dozens of builders, several of which quote the
+ * user, the coach or a tactic's own wording; a name can arrive through any of
+ * them, and a builder added next month leaks by simply not knowing.
+ */
+export function maskTerms(
+  text: string,
+  groups: MaskedTermSubstitution[],
+): string {
+  if (!text || groups.length === 0) return text;
+  const replacementById = new Map(groups.map((g) => [g.id, g.replacement]));
+  return segmentMaskedText(text, groups)
+    .map((segment) =>
+      segment.maskedGroupId === null
+        ? segment.text
+        : (replacementById.get(segment.maskedGroupId) ?? segment.text),
+    )
+    .join("");
+}
