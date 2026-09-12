@@ -123,3 +123,51 @@ export const BEHAVIOR_DOT = {
   RING_BORDER_WIDTH: 2.5,
   RING_BG_OPACITY: "26",
 } as const;
+
+/**
+ * Colour words, for behaviours the user has chosen to hide.
+ *
+ * A masked behaviour is one the user does not want named — on a screen
+ * someone else might glance at, and much more so out loud on a call, where
+ * "pornography" is a word the room hears. Masking has always been a display
+ * decision the client made, which was fine while the coach only ever wrote to
+ * that screen; it stopped being fine the moment the coach could speak.
+ */
+const COLOR_WORDS: Record<string, string> = {
+  [COLORS.RED]: "red",
+  [COLORS.ORANGE]: "orange",
+  [COLORS.BROWN]: "brown",
+  [COLORS.GREEN]: "green",
+  [COLORS.BLUE]: "blue",
+  [COLORS.PURPLE]: "purple",
+  [COLORS.PINK]: "pink",
+};
+
+/** The colour word for a behaviour's swatch, or null for an unknown colour. */
+export function behaviorColorWord(color: string | undefined): string | null {
+  if (!color) return null;
+  return COLOR_WORDS[color.toUpperCase()] ?? COLOR_WORDS[color] ?? null;
+}
+
+/**
+ * What to call a behaviour when writing or saying it.
+ *
+ * The user sees a coloured swatch where a masked behaviour's name would be,
+ * so the colour is the name they already use for it themselves — "the red
+ * one". Anything we cannot colour falls back to a phrase that is still usable
+ * in a sentence rather than to the name we are trying not to say.
+ *
+ * Deliberately the NAME, not a filter: a masked behaviour is tracked, ranked,
+ * reflected on and counted exactly like any other. Dropping it from the
+ * model's view would quietly stop coaching the thing the user most wanted
+ * help with.
+ */
+export function behaviorDisplayName(behavior: {
+  name?: string;
+  masked?: boolean;
+  color?: string;
+}): string {
+  if (!behavior.masked) return behavior.name ?? "";
+  const word = behaviorColorWord(behavior.color);
+  return word ? `the ${word} behavior` : "a hidden behavior";
+}

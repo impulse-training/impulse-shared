@@ -1,6 +1,7 @@
 import {
   guessBehaviorColor,
   BEHAVIOR_COLOR_OPTIONS,
+  behaviorDisplayName,
 } from "./behaviorColors";
 
 const RED = "#C4362C";
@@ -43,5 +44,33 @@ describe("guessBehaviorColor", () => {
     const usedColor = BEHAVIOR_COLOR_OPTIONS[0];
     const color = guessBehaviorColor("Some Unknown Behavior", 0, [usedColor]);
     expect(color).not.toBe(usedColor);
+  });
+});
+
+describe("behaviorDisplayName", () => {
+  it("names an unmasked behavior plainly", () => {
+    expect(behaviorDisplayName({ name: "Coffee", color: "#6F4E37" })).toBe("Coffee");
+    expect(behaviorDisplayName({ name: "Coffee", masked: false })).toBe("Coffee");
+  });
+
+  it("names a masked behavior by its colour, the way the user sees it", () => {
+    expect(
+      behaviorDisplayName({ name: "Pornography", masked: true, color: "#C4362C" }),
+    ).toBe("the red behavior");
+    expect(
+      behaviorDisplayName({ name: "Picking nose", masked: true, color: "#16A34A" }),
+    ).toBe("the green behavior");
+  });
+
+  it("never falls back to the name it is hiding", () => {
+    const hidden = behaviorDisplayName({ name: "Pornography", masked: true });
+    expect(hidden).toBe("a hidden behavior");
+    expect(hidden).not.toContain("Porn");
+    const unknownColor = behaviorDisplayName({
+      name: "Pornography",
+      masked: true,
+      color: "#123456",
+    });
+    expect(unknownColor).not.toContain("Porn");
   });
 });
