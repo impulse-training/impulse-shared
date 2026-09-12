@@ -6016,6 +6016,8 @@ export declare const logSchemas: {
                     inputTextTokens: z.ZodOptional<z.ZodNumber>;
                     inputAudioTokens: z.ZodOptional<z.ZodNumber>;
                     inputCachedTokens: z.ZodOptional<z.ZodNumber>;
+                    inputCachedTextTokens: z.ZodOptional<z.ZodNumber>;
+                    inputCachedAudioTokens: z.ZodOptional<z.ZodNumber>;
                     outputTextTokens: z.ZodOptional<z.ZodNumber>;
                     outputAudioTokens: z.ZodOptional<z.ZodNumber>;
                 }, "strip", z.ZodTypeAny, {
@@ -6024,6 +6026,8 @@ export declare const logSchemas: {
                     inputTextTokens?: number | undefined;
                     inputAudioTokens?: number | undefined;
                     inputCachedTokens?: number | undefined;
+                    inputCachedTextTokens?: number | undefined;
+                    inputCachedAudioTokens?: number | undefined;
                     outputTextTokens?: number | undefined;
                     outputAudioTokens?: number | undefined;
                 }, {
@@ -6032,6 +6036,8 @@ export declare const logSchemas: {
                     inputTextTokens?: number | undefined;
                     inputAudioTokens?: number | undefined;
                     inputCachedTokens?: number | undefined;
+                    inputCachedTextTokens?: number | undefined;
+                    inputCachedAudioTokens?: number | undefined;
                     outputTextTokens?: number | undefined;
                     outputAudioTokens?: number | undefined;
                 }>, "many">;
@@ -6044,6 +6050,8 @@ export declare const logSchemas: {
                     inputTextTokens?: number | undefined;
                     inputAudioTokens?: number | undefined;
                     inputCachedTokens?: number | undefined;
+                    inputCachedTextTokens?: number | undefined;
+                    inputCachedAudioTokens?: number | undefined;
                     outputTextTokens?: number | undefined;
                     outputAudioTokens?: number | undefined;
                 }[];
@@ -6056,6 +6064,8 @@ export declare const logSchemas: {
                     inputTextTokens?: number | undefined;
                     inputAudioTokens?: number | undefined;
                     inputCachedTokens?: number | undefined;
+                    inputCachedTextTokens?: number | undefined;
+                    inputCachedAudioTokens?: number | undefined;
                     outputTextTokens?: number | undefined;
                     outputAudioTokens?: number | undefined;
                 }[];
@@ -6741,6 +6751,8 @@ export declare const logSchemas: {
                     inputTextTokens?: number | undefined;
                     inputAudioTokens?: number | undefined;
                     inputCachedTokens?: number | undefined;
+                    inputCachedTextTokens?: number | undefined;
+                    inputCachedAudioTokens?: number | undefined;
                     outputTextTokens?: number | undefined;
                     outputAudioTokens?: number | undefined;
                 }[];
@@ -6880,6 +6892,8 @@ export declare const logSchemas: {
                     inputTextTokens?: number | undefined;
                     inputAudioTokens?: number | undefined;
                     inputCachedTokens?: number | undefined;
+                    inputCachedTextTokens?: number | undefined;
+                    inputCachedAudioTokens?: number | undefined;
                     outputTextTokens?: number | undefined;
                     outputAudioTokens?: number | undefined;
                 }[];
@@ -7563,6 +7577,8 @@ export declare const logSchemas: {
                     inputTextTokens?: number | undefined;
                     inputAudioTokens?: number | undefined;
                     inputCachedTokens?: number | undefined;
+                    inputCachedTextTokens?: number | undefined;
+                    inputCachedAudioTokens?: number | undefined;
                     outputTextTokens?: number | undefined;
                     outputAudioTokens?: number | undefined;
                 }[];
@@ -7717,6 +7733,8 @@ export declare const logSchemas: {
                     inputTextTokens?: number | undefined;
                     inputAudioTokens?: number | undefined;
                     inputCachedTokens?: number | undefined;
+                    inputCachedTextTokens?: number | undefined;
+                    inputCachedAudioTokens?: number | undefined;
                     outputTextTokens?: number | undefined;
                     outputAudioTokens?: number | undefined;
                 }[];
@@ -42961,6 +42979,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 inputTextTokens: z.ZodOptional<z.ZodNumber>;
                 inputAudioTokens: z.ZodOptional<z.ZodNumber>;
                 inputCachedTokens: z.ZodOptional<z.ZodNumber>;
+                inputCachedTextTokens: z.ZodOptional<z.ZodNumber>;
+                inputCachedAudioTokens: z.ZodOptional<z.ZodNumber>;
                 outputTextTokens: z.ZodOptional<z.ZodNumber>;
                 outputAudioTokens: z.ZodOptional<z.ZodNumber>;
             }, "strip", z.ZodTypeAny, {
@@ -42969,6 +42989,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 inputTextTokens?: number | undefined;
                 inputAudioTokens?: number | undefined;
                 inputCachedTokens?: number | undefined;
+                inputCachedTextTokens?: number | undefined;
+                inputCachedAudioTokens?: number | undefined;
                 outputTextTokens?: number | undefined;
                 outputAudioTokens?: number | undefined;
             }, {
@@ -42977,6 +42999,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 inputTextTokens?: number | undefined;
                 inputAudioTokens?: number | undefined;
                 inputCachedTokens?: number | undefined;
+                inputCachedTextTokens?: number | undefined;
+                inputCachedAudioTokens?: number | undefined;
                 outputTextTokens?: number | undefined;
                 outputAudioTokens?: number | undefined;
             }>, "many">;
@@ -42989,6 +43013,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 inputTextTokens?: number | undefined;
                 inputAudioTokens?: number | undefined;
                 inputCachedTokens?: number | undefined;
+                inputCachedTextTokens?: number | undefined;
+                inputCachedAudioTokens?: number | undefined;
                 outputTextTokens?: number | undefined;
                 outputAudioTokens?: number | undefined;
             }[];
@@ -43001,6 +43027,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 inputTextTokens?: number | undefined;
                 inputAudioTokens?: number | undefined;
                 inputCachedTokens?: number | undefined;
+                inputCachedTextTokens?: number | undefined;
+                inputCachedAudioTokens?: number | undefined;
                 outputTextTokens?: number | undefined;
                 outputAudioTokens?: number | undefined;
             }[];
@@ -43686,6 +43714,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 inputTextTokens?: number | undefined;
                 inputAudioTokens?: number | undefined;
                 inputCachedTokens?: number | undefined;
+                inputCachedTextTokens?: number | undefined;
+                inputCachedAudioTokens?: number | undefined;
                 outputTextTokens?: number | undefined;
                 outputAudioTokens?: number | undefined;
             }[];
@@ -43825,6 +43855,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 inputTextTokens?: number | undefined;
                 inputAudioTokens?: number | undefined;
                 inputCachedTokens?: number | undefined;
+                inputCachedTextTokens?: number | undefined;
+                inputCachedAudioTokens?: number | undefined;
                 outputTextTokens?: number | undefined;
                 outputAudioTokens?: number | undefined;
             }[];
@@ -44508,6 +44540,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 inputTextTokens?: number | undefined;
                 inputAudioTokens?: number | undefined;
                 inputCachedTokens?: number | undefined;
+                inputCachedTextTokens?: number | undefined;
+                inputCachedAudioTokens?: number | undefined;
                 outputTextTokens?: number | undefined;
                 outputAudioTokens?: number | undefined;
             }[];
@@ -44662,6 +44696,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 inputTextTokens?: number | undefined;
                 inputAudioTokens?: number | undefined;
                 inputCachedTokens?: number | undefined;
+                inputCachedTextTokens?: number | undefined;
+                inputCachedAudioTokens?: number | undefined;
                 outputTextTokens?: number | undefined;
                 outputAudioTokens?: number | undefined;
             }[];

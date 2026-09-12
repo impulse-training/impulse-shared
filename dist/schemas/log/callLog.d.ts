@@ -222,6 +222,14 @@ export declare const callModelUsageSchema: z.ZodObject<{
     inputTextTokens: z.ZodOptional<z.ZodNumber>;
     inputAudioTokens: z.ZodOptional<z.ZodNumber>;
     inputCachedTokens: z.ZodOptional<z.ZodNumber>;
+    /**
+     * Cached input, split by kind. The total above cannot be priced on its own:
+     * cached tokens are billed instead of their own kind's full rate, and text
+     * and audio input differ by 8x — so charging a call's cached total against
+     * either one is wrong by most of the bill.
+     */
+    inputCachedTextTokens: z.ZodOptional<z.ZodNumber>;
+    inputCachedAudioTokens: z.ZodOptional<z.ZodNumber>;
     outputTextTokens: z.ZodOptional<z.ZodNumber>;
     outputAudioTokens: z.ZodOptional<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
@@ -230,6 +238,8 @@ export declare const callModelUsageSchema: z.ZodObject<{
     inputTextTokens?: number | undefined;
     inputAudioTokens?: number | undefined;
     inputCachedTokens?: number | undefined;
+    inputCachedTextTokens?: number | undefined;
+    inputCachedAudioTokens?: number | undefined;
     outputTextTokens?: number | undefined;
     outputAudioTokens?: number | undefined;
 }, {
@@ -238,6 +248,8 @@ export declare const callModelUsageSchema: z.ZodObject<{
     inputTextTokens?: number | undefined;
     inputAudioTokens?: number | undefined;
     inputCachedTokens?: number | undefined;
+    inputCachedTextTokens?: number | undefined;
+    inputCachedAudioTokens?: number | undefined;
     outputTextTokens?: number | undefined;
     outputAudioTokens?: number | undefined;
 }>;
@@ -249,6 +261,14 @@ export declare const callUsageSchema: z.ZodObject<{
         inputTextTokens: z.ZodOptional<z.ZodNumber>;
         inputAudioTokens: z.ZodOptional<z.ZodNumber>;
         inputCachedTokens: z.ZodOptional<z.ZodNumber>;
+        /**
+         * Cached input, split by kind. The total above cannot be priced on its own:
+         * cached tokens are billed instead of their own kind's full rate, and text
+         * and audio input differ by 8x — so charging a call's cached total against
+         * either one is wrong by most of the bill.
+         */
+        inputCachedTextTokens: z.ZodOptional<z.ZodNumber>;
+        inputCachedAudioTokens: z.ZodOptional<z.ZodNumber>;
         outputTextTokens: z.ZodOptional<z.ZodNumber>;
         outputAudioTokens: z.ZodOptional<z.ZodNumber>;
     }, "strip", z.ZodTypeAny, {
@@ -257,6 +277,8 @@ export declare const callUsageSchema: z.ZodObject<{
         inputTextTokens?: number | undefined;
         inputAudioTokens?: number | undefined;
         inputCachedTokens?: number | undefined;
+        inputCachedTextTokens?: number | undefined;
+        inputCachedAudioTokens?: number | undefined;
         outputTextTokens?: number | undefined;
         outputAudioTokens?: number | undefined;
     }, {
@@ -265,6 +287,8 @@ export declare const callUsageSchema: z.ZodObject<{
         inputTextTokens?: number | undefined;
         inputAudioTokens?: number | undefined;
         inputCachedTokens?: number | undefined;
+        inputCachedTextTokens?: number | undefined;
+        inputCachedAudioTokens?: number | undefined;
         outputTextTokens?: number | undefined;
         outputAudioTokens?: number | undefined;
     }>, "many">;
@@ -286,6 +310,8 @@ export declare const callUsageSchema: z.ZodObject<{
         inputTextTokens?: number | undefined;
         inputAudioTokens?: number | undefined;
         inputCachedTokens?: number | undefined;
+        inputCachedTextTokens?: number | undefined;
+        inputCachedAudioTokens?: number | undefined;
         outputTextTokens?: number | undefined;
         outputAudioTokens?: number | undefined;
     }[];
@@ -298,6 +324,8 @@ export declare const callUsageSchema: z.ZodObject<{
         inputTextTokens?: number | undefined;
         inputAudioTokens?: number | undefined;
         inputCachedTokens?: number | undefined;
+        inputCachedTextTokens?: number | undefined;
+        inputCachedAudioTokens?: number | undefined;
         outputTextTokens?: number | undefined;
         outputAudioTokens?: number | undefined;
     }[];
@@ -5832,6 +5860,14 @@ export declare const callLogSchema: z.ZodObject<{
                 inputTextTokens: z.ZodOptional<z.ZodNumber>;
                 inputAudioTokens: z.ZodOptional<z.ZodNumber>;
                 inputCachedTokens: z.ZodOptional<z.ZodNumber>;
+                /**
+                 * Cached input, split by kind. The total above cannot be priced on its own:
+                 * cached tokens are billed instead of their own kind's full rate, and text
+                 * and audio input differ by 8x — so charging a call's cached total against
+                 * either one is wrong by most of the bill.
+                 */
+                inputCachedTextTokens: z.ZodOptional<z.ZodNumber>;
+                inputCachedAudioTokens: z.ZodOptional<z.ZodNumber>;
                 outputTextTokens: z.ZodOptional<z.ZodNumber>;
                 outputAudioTokens: z.ZodOptional<z.ZodNumber>;
             }, "strip", z.ZodTypeAny, {
@@ -5840,6 +5876,8 @@ export declare const callLogSchema: z.ZodObject<{
                 inputTextTokens?: number | undefined;
                 inputAudioTokens?: number | undefined;
                 inputCachedTokens?: number | undefined;
+                inputCachedTextTokens?: number | undefined;
+                inputCachedAudioTokens?: number | undefined;
                 outputTextTokens?: number | undefined;
                 outputAudioTokens?: number | undefined;
             }, {
@@ -5848,6 +5886,8 @@ export declare const callLogSchema: z.ZodObject<{
                 inputTextTokens?: number | undefined;
                 inputAudioTokens?: number | undefined;
                 inputCachedTokens?: number | undefined;
+                inputCachedTextTokens?: number | undefined;
+                inputCachedAudioTokens?: number | undefined;
                 outputTextTokens?: number | undefined;
                 outputAudioTokens?: number | undefined;
             }>, "many">;
@@ -5869,6 +5909,8 @@ export declare const callLogSchema: z.ZodObject<{
                 inputTextTokens?: number | undefined;
                 inputAudioTokens?: number | undefined;
                 inputCachedTokens?: number | undefined;
+                inputCachedTextTokens?: number | undefined;
+                inputCachedAudioTokens?: number | undefined;
                 outputTextTokens?: number | undefined;
                 outputAudioTokens?: number | undefined;
             }[];
@@ -5881,6 +5923,8 @@ export declare const callLogSchema: z.ZodObject<{
                 inputTextTokens?: number | undefined;
                 inputAudioTokens?: number | undefined;
                 inputCachedTokens?: number | undefined;
+                inputCachedTextTokens?: number | undefined;
+                inputCachedAudioTokens?: number | undefined;
                 outputTextTokens?: number | undefined;
                 outputAudioTokens?: number | undefined;
             }[];
@@ -6566,6 +6610,8 @@ export declare const callLogSchema: z.ZodObject<{
                 inputTextTokens?: number | undefined;
                 inputAudioTokens?: number | undefined;
                 inputCachedTokens?: number | undefined;
+                inputCachedTextTokens?: number | undefined;
+                inputCachedAudioTokens?: number | undefined;
                 outputTextTokens?: number | undefined;
                 outputAudioTokens?: number | undefined;
             }[];
@@ -6705,6 +6751,8 @@ export declare const callLogSchema: z.ZodObject<{
                 inputTextTokens?: number | undefined;
                 inputAudioTokens?: number | undefined;
                 inputCachedTokens?: number | undefined;
+                inputCachedTextTokens?: number | undefined;
+                inputCachedAudioTokens?: number | undefined;
                 outputTextTokens?: number | undefined;
                 outputAudioTokens?: number | undefined;
             }[];
@@ -7388,6 +7436,8 @@ export declare const callLogSchema: z.ZodObject<{
                 inputTextTokens?: number | undefined;
                 inputAudioTokens?: number | undefined;
                 inputCachedTokens?: number | undefined;
+                inputCachedTextTokens?: number | undefined;
+                inputCachedAudioTokens?: number | undefined;
                 outputTextTokens?: number | undefined;
                 outputAudioTokens?: number | undefined;
             }[];
@@ -7542,6 +7592,8 @@ export declare const callLogSchema: z.ZodObject<{
                 inputTextTokens?: number | undefined;
                 inputAudioTokens?: number | undefined;
                 inputCachedTokens?: number | undefined;
+                inputCachedTextTokens?: number | undefined;
+                inputCachedAudioTokens?: number | undefined;
                 outputTextTokens?: number | undefined;
                 outputAudioTokens?: number | undefined;
             }[];

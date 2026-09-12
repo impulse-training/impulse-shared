@@ -181,6 +181,14 @@ export const callModelUsageSchema = z.object({
   inputTextTokens: z.number().optional(),
   inputAudioTokens: z.number().optional(),
   inputCachedTokens: z.number().optional(),
+  /**
+   * Cached input, split by kind. The total above cannot be priced on its own:
+   * cached tokens are billed instead of their own kind's full rate, and text
+   * and audio input differ by 8x — so charging a call's cached total against
+   * either one is wrong by most of the bill.
+   */
+  inputCachedTextTokens: z.number().optional(),
+  inputCachedAudioTokens: z.number().optional(),
   outputTextTokens: z.number().optional(),
   outputAudioTokens: z.number().optional(),
 });
