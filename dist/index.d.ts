@@ -32,6 +32,8 @@ export * from "./utils/tacticFit";
 export * from "./utils/tacticScoring";
 export * from "./utils/planScoring";
 export * from "./utils/tacticOrdering";
+export * from "./utils/tacticPairing";
+export * from "./utils/resolveAgreement";
 export * from "./utils/behaviorColors";
 export * from "./utils/walkthroughTasks";
 export * from "./utils/selfHarmKeywords";

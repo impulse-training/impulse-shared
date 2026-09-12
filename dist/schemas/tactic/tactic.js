@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.tacticSchema = exports.tacticNoteSchema = exports.tacticLinkSchema = exports.tacticPhaseSchema = exports.indicationSchema = exports.behaviorTopicIndicationSchema = exports.tagIndicationSchema = exports.behaviorIndicationSchema = exports.tacticUnderstandingSchema = void 0;
+exports.tacticSchema = exports.tacticNoteSchema = exports.tacticLinkSchema = exports.tacticModalitySchema = exports.tacticPhaseSchema = exports.indicationSchema = exports.behaviorTopicIndicationSchema = exports.tagIndicationSchema = exports.behaviorIndicationSchema = exports.tacticUnderstandingSchema = void 0;
 const zod_1 = require("zod");
 const behavior_1 = require("../behavior");
 const timestampSchema_1 = require("../../utils/timestampSchema");
@@ -56,6 +56,37 @@ exports.indicationSchema = zod_1.z.object({
     tags: zod_1.z.array(exports.tagIndicationSchema).optional(),
 });
 exports.tacticPhaseSchema = zod_1.z.enum(["regulate", "shift", "reengage"]);
+/**
+ * WHAT KIND of thing the tactic asks the user to do — the axis the impulse
+ * moment's two options are contrasted on ("a movement one, or a reflection
+ * one").
+ *
+ * Distinct from `phase`, which says what the tactic is FOR (regulate, shift,
+ * reengage). Two tactics can share a phase and still be a real choice: a
+ * breathing exercise and a cold-water splash both regulate, but one is still
+ * and one is sensory, and that difference is what makes offering both worth
+ * something. Phase alone is too coarse to pair on — most regulate tactics are
+ * breathing of one sort or another.
+ *
+ * Optional, and selection degrades rather than fails when it is missing (see
+ * selectTacticPair's fallback ladder). Catalog coverage will never be
+ * complete: user-authored tactics arrive unclassified, and the AI never
+ * invents a value for one.
+ */
+exports.tacticModalitySchema = zod_1.z.enum([
+    /** Use the body, or change where the body is: walk, 50 steps, leave the room. */
+    "move",
+    /** Stay put and settle: breath work, a timer, sitting with it. */
+    "still",
+    /** Change what the senses are getting: cold water, ice, a strong taste, sound. */
+    "sense",
+    /** Turn it into words, to yourself: name the feeling, write it down, ask why. */
+    "reflect",
+    /** Involve another person: message someone, call, say it out loud to them. */
+    "connect",
+    /** Change the situation rather than yourself: phone off, move rooms, remove the thing. */
+    "environment",
+]);
 exports.tacticLinkSchema = zod_1.z.object({
     url: zod_1.z.string().url(),
     title: zod_1.z.string().optional(),
@@ -78,6 +109,11 @@ exports.tacticSchema = zod_1.z.object({
     createdByUid: zod_1.z.string().optional(),
     recommended: zod_1.z.boolean().optional(),
     phase: exports.tacticPhaseSchema.optional(),
+    // What kind of act this is — the contrast axis the impulse moment's pair of
+    // options is chosen on. `.catch(undefined)` so a stray legacy value degrades
+    // to "unclassified" instead of failing the whole-tactic parse that session
+    // and log type guards depend on.
+    modality: exports.tacticModalitySchema.optional().catch(undefined),
     steps: zod_1.z.array(step_1.tacticStepSchema).min(1),
     tags: zod_1.z.array(zod_1.z.string()).optional(),
     isMultiStep: zod_1.z.boolean().optional(), // If true, show multi-step editor UI

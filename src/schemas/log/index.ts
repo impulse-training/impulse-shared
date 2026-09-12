@@ -48,6 +48,10 @@ import {
   supportGroupDaySummaryLogSchema,
 } from "./supportGroupDaySummaryLog";
 import { TacticLog, tacticLogSchema } from "./tacticLog";
+import {
+  TacticChoiceLog,
+  tacticChoiceLogSchema,
+} from "./tacticChoiceLog";
 import { ToolCallLog, toolCallLogSchema } from "./toolCallLog";
 import { VideoLog, videoLogSchema } from "./videoLog";
 import { MetricLog, metricLogSchema } from "./metricLog";
@@ -154,6 +158,7 @@ export const logSchemas = {
   tool_call: toolCallLogSchema,
   tactic: tacticLogSchema,
   tactic_viewed: tacticLogSchema,
+  tactic_choice: tacticChoiceLogSchema,
   behavior: behaviorLogSchema,
   breathing: breathingLogSchema,
   plans: plansLogSchema,
@@ -203,6 +208,7 @@ export type LogType = (typeof logTypes)[number];
 // Union type of all logs
 export type Log =
   | TacticLog
+  | TacticChoiceLog
   | BehaviorLog
   | BreathingLog
   | PlansLog
@@ -263,6 +269,7 @@ export * from "./tourStep";
 export * from "./summaryLog";
 export * from "./supportGroupDaySummaryLog";
 export * from "./tacticLog";
+export * from "./tacticChoiceLog";
 export * from "./toolCallLog";
 export * from "./videoLog";
 export * from "./widgetSetupLog";
@@ -303,6 +310,7 @@ export const logSchema = z.discriminatedUnion("type", [
   callLogSchema,
   toolCallLogSchema,
   tacticLogSchema,
+  tacticChoiceLogSchema,
   behaviorLogSchema,
   breathingLogSchema,
   plansLogSchema,
@@ -435,6 +443,19 @@ export const logIsTacticLog = (value: Omit<Log, "id">): value is TacticLog =>
 export const isValidTacticLog = (value: unknown): value is TacticLog => {
   return tacticLogSchema.safeParse(value).success;
 };
+
+export const logIsTacticChoiceLog = (
+  value: Omit<Log, "id">,
+): value is TacticChoiceLog => value.type === "tactic_choice";
+export const isValidTacticChoiceLog = (
+  value: unknown,
+): value is TacticChoiceLog => {
+  return tacticChoiceLogSchema.safeParse(value).success;
+};
+
+/** A choice the user has not answered yet: still the live offer on screen. */
+export const tacticChoiceIsOpen = (log: TacticChoiceLog): boolean =>
+  !log.data.chosenTacticId && !log.data.declinedBoth;
 
 export const logIsUserMessageLog = (
   value: Omit<Log, "id">,

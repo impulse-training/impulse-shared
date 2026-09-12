@@ -134,6 +134,25 @@ export declare const indicationSchema: z.ZodObject<{
 }>;
 export declare const tacticPhaseSchema: z.ZodEnum<["regulate", "shift", "reengage"]>;
 export type TacticPhase = z.infer<typeof tacticPhaseSchema>;
+/**
+ * WHAT KIND of thing the tactic asks the user to do — the axis the impulse
+ * moment's two options are contrasted on ("a movement one, or a reflection
+ * one").
+ *
+ * Distinct from `phase`, which says what the tactic is FOR (regulate, shift,
+ * reengage). Two tactics can share a phase and still be a real choice: a
+ * breathing exercise and a cold-water splash both regulate, but one is still
+ * and one is sensory, and that difference is what makes offering both worth
+ * something. Phase alone is too coarse to pair on — most regulate tactics are
+ * breathing of one sort or another.
+ *
+ * Optional, and selection degrades rather than fails when it is missing (see
+ * selectTacticPair's fallback ladder). Catalog coverage will never be
+ * complete: user-authored tactics arrive unclassified, and the AI never
+ * invents a value for one.
+ */
+export declare const tacticModalitySchema: z.ZodEnum<["move", "still", "sense", "reflect", "connect", "environment"]>;
+export type TacticModality = z.infer<typeof tacticModalitySchema>;
 export declare const tacticLinkSchema: z.ZodObject<{
     url: z.ZodString;
     title: z.ZodOptional<z.ZodString>;
@@ -208,6 +227,7 @@ export declare const tacticSchema: z.ZodObject<{
     createdByUid: z.ZodOptional<z.ZodString>;
     recommended: z.ZodOptional<z.ZodBoolean>;
     phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
+    modality: z.ZodCatch<z.ZodOptional<z.ZodEnum<["move", "still", "sense", "reflect", "connect", "environment"]>>>;
     steps: z.ZodArray<z.ZodEffects<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
         backgroundImage: z.ZodOptional<z.ZodObject<{
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -5311,6 +5331,7 @@ export declare const tacticSchema: z.ZodObject<{
     createdByUid?: string | undefined;
     recommended?: boolean | undefined;
     phase?: "shift" | "regulate" | "reengage" | undefined;
+    modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
     isMultiStep?: boolean | undefined;
     indications?: {
         tags?: {
@@ -5390,6 +5411,7 @@ export declare const tacticSchema: z.ZodObject<{
     createdByUid?: string | undefined;
     recommended?: boolean | undefined;
     phase?: "shift" | "regulate" | "reengage" | undefined;
+    modality?: unknown;
     isMultiStep?: boolean | undefined;
     indications?: {
         tags?: {

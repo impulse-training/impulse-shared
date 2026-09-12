@@ -71,6 +71,8 @@ __exportStar(require("./utils/tacticFit"), exports);
 __exportStar(require("./utils/tacticScoring"), exports);
 __exportStar(require("./utils/planScoring"), exports);
 __exportStar(require("./utils/tacticOrdering"), exports);
+__exportStar(require("./utils/tacticPairing"), exports);
+__exportStar(require("./utils/resolveAgreement"), exports);
 __exportStar(require("./utils/behaviorColors"), exports);
 __exportStar(require("./utils/walkthroughTasks"), exports);
 __exportStar(require("./utils/selfHarmKeywords"), exports);

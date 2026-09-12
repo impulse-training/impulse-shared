@@ -20,7 +20,53 @@ export declare const triggerSchema: z.ZodObject<{
     text: z.ZodOptional<z.ZodString>;
     ordinal: z.ZodOptional<z.ZodNumber>;
     triggerType: z.ZodOptional<z.ZodEnum<["arrival", "departure"]>>;
+    /**
+     * "Next up" for this situation: the ONE tactic the user agreed to try the
+     * next time it comes round.
+     *
+     * Unlike the list it replaces, this IS deterministically delivered. The old
+     * field was read by the AI as evidence and never injected, which meant a
+     * promise the user made could simply not come up. An agreement that only
+     * surfaces when a model remembers it is not an agreement.
+     */
+    agreement: z.ZodOptional<z.ZodObject<{
+        tacticId: z.ZodString;
+        tacticRefPath: z.ZodString;
+        tacticTitle: z.ZodString;
+        agreedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        agreedInSessionId: z.ZodOptional<z.ZodString>;
+        lastHonouredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        honouredCount: z.ZodOptional<z.ZodNumber>;
+        lastPassedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        passedCount: z.ZodOptional<z.ZodNumber>;
+    }, "strip", z.ZodTypeAny, {
+        tacticId: string;
+        tacticRefPath: string;
+        tacticTitle: string;
+        agreedAt: import("../../types").Timestamp;
+        agreedInSessionId?: string | undefined;
+        lastHonouredAt?: import("../../types").Timestamp | undefined;
+        honouredCount?: number | undefined;
+        lastPassedAt?: import("../../types").Timestamp | undefined;
+        passedCount?: number | undefined;
+    }, {
+        tacticId: string;
+        tacticRefPath: string;
+        tacticTitle: string;
+        agreedAt: import("../../types").Timestamp;
+        agreedInSessionId?: string | undefined;
+        lastHonouredAt?: import("../../types").Timestamp | undefined;
+        honouredCount?: number | undefined;
+        lastPassedAt?: import("../../types").Timestamp | undefined;
+        passedCount?: number | undefined;
+    }>>;
+    /**
+     * @deprecated The ordered go-to list, read by the AI as evidence only.
+     * Superseded by `agreement`. Read only by the migration that collapses it
+     * to its first entry.
+     */
     tactics: z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>;
+    /** @deprecated Superseded by `agreement.agreedAt`. */
     tacticsAgreedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     /** @deprecated Use triggerType + location tag group option localLocationRef instead */
     location: z.ZodOptional<z.ZodObject<{
@@ -49,6 +95,17 @@ export declare const triggerSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     text?: string | undefined;
     ordinal?: number | undefined;
+    agreement?: {
+        tacticId: string;
+        tacticRefPath: string;
+        tacticTitle: string;
+        agreedAt: import("../../types").Timestamp;
+        agreedInSessionId?: string | undefined;
+        lastHonouredAt?: import("../../types").Timestamp | undefined;
+        honouredCount?: number | undefined;
+        lastPassedAt?: import("../../types").Timestamp | undefined;
+        passedCount?: number | undefined;
+    } | undefined;
     tactics?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
     tacticsAgreedAt?: import("../../types").Timestamp | undefined;
     triggerType?: "arrival" | "departure" | undefined;
@@ -66,6 +123,17 @@ export declare const triggerSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     text?: string | undefined;
     ordinal?: number | undefined;
+    agreement?: {
+        tacticId: string;
+        tacticRefPath: string;
+        tacticTitle: string;
+        agreedAt: import("../../types").Timestamp;
+        agreedInSessionId?: string | undefined;
+        lastHonouredAt?: import("../../types").Timestamp | undefined;
+        honouredCount?: number | undefined;
+        lastPassedAt?: import("../../types").Timestamp | undefined;
+        passedCount?: number | undefined;
+    } | undefined;
     tactics?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
     tacticsAgreedAt?: import("../../types").Timestamp | undefined;
     tags?: Record<string, string> | undefined;
@@ -94,7 +162,53 @@ export declare const triggerWithIdSchema: z.ZodIntersection<z.ZodObject<{
     text: z.ZodOptional<z.ZodString>;
     ordinal: z.ZodOptional<z.ZodNumber>;
     triggerType: z.ZodOptional<z.ZodEnum<["arrival", "departure"]>>;
+    /**
+     * "Next up" for this situation: the ONE tactic the user agreed to try the
+     * next time it comes round.
+     *
+     * Unlike the list it replaces, this IS deterministically delivered. The old
+     * field was read by the AI as evidence and never injected, which meant a
+     * promise the user made could simply not come up. An agreement that only
+     * surfaces when a model remembers it is not an agreement.
+     */
+    agreement: z.ZodOptional<z.ZodObject<{
+        tacticId: z.ZodString;
+        tacticRefPath: z.ZodString;
+        tacticTitle: z.ZodString;
+        agreedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        agreedInSessionId: z.ZodOptional<z.ZodString>;
+        lastHonouredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        honouredCount: z.ZodOptional<z.ZodNumber>;
+        lastPassedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        passedCount: z.ZodOptional<z.ZodNumber>;
+    }, "strip", z.ZodTypeAny, {
+        tacticId: string;
+        tacticRefPath: string;
+        tacticTitle: string;
+        agreedAt: import("../../types").Timestamp;
+        agreedInSessionId?: string | undefined;
+        lastHonouredAt?: import("../../types").Timestamp | undefined;
+        honouredCount?: number | undefined;
+        lastPassedAt?: import("../../types").Timestamp | undefined;
+        passedCount?: number | undefined;
+    }, {
+        tacticId: string;
+        tacticRefPath: string;
+        tacticTitle: string;
+        agreedAt: import("../../types").Timestamp;
+        agreedInSessionId?: string | undefined;
+        lastHonouredAt?: import("../../types").Timestamp | undefined;
+        honouredCount?: number | undefined;
+        lastPassedAt?: import("../../types").Timestamp | undefined;
+        passedCount?: number | undefined;
+    }>>;
+    /**
+     * @deprecated The ordered go-to list, read by the AI as evidence only.
+     * Superseded by `agreement`. Read only by the migration that collapses it
+     * to its first entry.
+     */
     tactics: z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>;
+    /** @deprecated Superseded by `agreement.agreedAt`. */
     tacticsAgreedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     /** @deprecated Use triggerType + location tag group option localLocationRef instead */
     location: z.ZodOptional<z.ZodObject<{
@@ -123,6 +237,17 @@ export declare const triggerWithIdSchema: z.ZodIntersection<z.ZodObject<{
     behaviorIds?: string[] | undefined;
     text?: string | undefined;
     ordinal?: number | undefined;
+    agreement?: {
+        tacticId: string;
+        tacticRefPath: string;
+        tacticTitle: string;
+        agreedAt: import("../../types").Timestamp;
+        agreedInSessionId?: string | undefined;
+        lastHonouredAt?: import("../../types").Timestamp | undefined;
+        honouredCount?: number | undefined;
+        lastPassedAt?: import("../../types").Timestamp | undefined;
+        passedCount?: number | undefined;
+    } | undefined;
     tactics?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
     tacticsAgreedAt?: import("../../types").Timestamp | undefined;
     triggerType?: "arrival" | "departure" | undefined;
@@ -140,6 +265,17 @@ export declare const triggerWithIdSchema: z.ZodIntersection<z.ZodObject<{
     behaviorIds?: string[] | undefined;
     text?: string | undefined;
     ordinal?: number | undefined;
+    agreement?: {
+        tacticId: string;
+        tacticRefPath: string;
+        tacticTitle: string;
+        agreedAt: import("../../types").Timestamp;
+        agreedInSessionId?: string | undefined;
+        lastHonouredAt?: import("../../types").Timestamp | undefined;
+        honouredCount?: number | undefined;
+        lastPassedAt?: import("../../types").Timestamp | undefined;
+        passedCount?: number | undefined;
+    } | undefined;
     tactics?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
     tacticsAgreedAt?: import("../../types").Timestamp | undefined;
     tags?: Record<string, string> | undefined;

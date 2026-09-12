@@ -16,6 +16,17 @@ exports.recommendedTacticSchema = zod_1.z.object({
     // legacy value from failing the whole-session safeParse used by the
     // `isImpulseSession` type guard.
     phase: tactic_1.tacticPhaseSchema.optional().catch(undefined),
+    // Fit metadata denormalised alongside phase, because the pair of options the
+    // impulse moment offers is chosen from this pool and has to be able to tell
+    // two tactics apart WITHOUT refetching each one mid-turn. `modality` is the
+    // axis that carries the choice ("a movement one, or a reflection one"); the
+    // rest are the ladder selectTacticPair falls back through.
+    modality: tactic_1.tacticModalitySchema.optional().catch(undefined),
+    effort: zod_1.z.enum(["low", "medium", "high"]).optional().catch(undefined),
+    worksAnywhere: zod_1.z.boolean().optional(),
+    // A session-ending tactic (turn the phone off) is only ever the alternative,
+    // never the default the user has to opt out of.
+    completionTrigger: zod_1.z.enum(["device-restart"]).optional().catch(undefined),
     firstStepText: zod_1.z.string().optional(),
     tacticRefPath: zod_1.z.string().optional(),
     /** One-line rendering of the tactic's per-user understanding (note +

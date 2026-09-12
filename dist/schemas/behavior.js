@@ -5,6 +5,7 @@ exports.isBehaviorState = isBehaviorState;
 const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
 const timestampSchema_1 = require("../utils/timestampSchema");
+const agreement_1 = require("./agreement");
 const goal_1 = require("./goal");
 const behaviorTrackingData_1 = require("./behaviorTrackingData");
 const behaviorTemplate_1 = require("./behaviorTemplate");
@@ -329,10 +330,20 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
     drawbacks: zod_1.z.array(zod_1.z.string()).default([]),
     goal: goal_1.goalSchema.optional(),
     lastTrackedAt: timestampSchema_1.timestampSchema.optional(),
-    // Tactics pinned to this behavior. Surfaced as a ranking boost for
-    // in-the-moment recommendations on sessions involving this behavior.
+    /**
+     * "Next up" for this behavior: the ONE tactic the user agreed to try the
+     * next time it comes round. Delivered alone, without an alternative beside
+     * it — they already chose, and the impulse moment is the worst place to
+     * reopen that. See tacticAgreementSchema.
+     */
+    agreement: agreement_1.tacticAgreementSchema.optional(),
+    /**
+     * @deprecated The ordered go-to list. Superseded by `agreement`: a list
+     * invites sequencing, and the impulse moment is no longer a playlist.
+     * Read only by the migration that collapses it to its first entry.
+     */
     tactics: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema).optional(),
-    // When the user last stood behind the go-to order (see trigger's twin).
+    /** @deprecated Superseded by `agreement.agreedAt`. */
     tacticsAgreedAt: timestampSchema_1.timestampSchema.optional(),
     // Tactic IDs to never recommend in-the-moment for this behavior. Applied as
     // a hard exclude in the scoring engine. Set by the user or a coach when a

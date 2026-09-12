@@ -4,6 +4,10 @@ export declare const recommendedTacticSchema: z.ZodObject<{
     title: z.ZodString;
     description: z.ZodOptional<z.ZodString>;
     phase: z.ZodCatch<z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>>;
+    modality: z.ZodCatch<z.ZodOptional<z.ZodEnum<["move", "still", "sense", "reflect", "connect", "environment"]>>>;
+    effort: z.ZodCatch<z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>>;
+    worksAnywhere: z.ZodOptional<z.ZodBoolean>;
+    completionTrigger: z.ZodCatch<z.ZodOptional<z.ZodEnum<["device-restart"]>>>;
     firstStepText: z.ZodOptional<z.ZodString>;
     tacticRefPath: z.ZodOptional<z.ZodString>;
     /** One-line rendering of the tactic's per-user understanding (note +
@@ -12,17 +16,25 @@ export declare const recommendedTacticSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     title: string;
     tacticId: string;
+    tacticRefPath?: string | undefined;
     description?: string | undefined;
     phase?: "shift" | "regulate" | "reengage" | undefined;
-    tacticRefPath?: string | undefined;
+    modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
+    completionTrigger?: "device-restart" | undefined;
+    effort?: "medium" | "low" | "high" | undefined;
+    worksAnywhere?: boolean | undefined;
     firstStepText?: string | undefined;
     forUser?: string | undefined;
 }, {
     title: string;
     tacticId: string;
+    tacticRefPath?: string | undefined;
     description?: string | undefined;
     phase?: unknown;
-    tacticRefPath?: string | undefined;
+    modality?: unknown;
+    completionTrigger?: unknown;
+    effort?: unknown;
+    worksAnywhere?: boolean | undefined;
     firstStepText?: string | undefined;
     forUser?: string | undefined;
 }>;
@@ -1236,6 +1248,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         createdByUid: z.ZodOptional<z.ZodString>;
         recommended: z.ZodOptional<z.ZodBoolean>;
         phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
+        modality: z.ZodCatch<z.ZodOptional<z.ZodEnum<["move", "still", "sense", "reflect", "connect", "environment"]>>>;
         steps: z.ZodArray<z.ZodEffects<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
             backgroundImage: z.ZodOptional<z.ZodObject<{
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -6339,6 +6352,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
         phase?: "shift" | "regulate" | "reengage" | undefined;
+        modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
         isMultiStep?: boolean | undefined;
         indications?: {
             tags?: {
@@ -6418,6 +6432,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
         phase?: "shift" | "regulate" | "reengage" | undefined;
+        modality?: unknown;
         isMultiStep?: boolean | undefined;
         indications?: {
             tags?: {
@@ -6610,6 +6625,10 @@ export declare const impulseSessionSchema: z.ZodObject<{
         title: z.ZodString;
         description: z.ZodOptional<z.ZodString>;
         phase: z.ZodCatch<z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>>;
+        modality: z.ZodCatch<z.ZodOptional<z.ZodEnum<["move", "still", "sense", "reflect", "connect", "environment"]>>>;
+        effort: z.ZodCatch<z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>>;
+        worksAnywhere: z.ZodOptional<z.ZodBoolean>;
+        completionTrigger: z.ZodCatch<z.ZodOptional<z.ZodEnum<["device-restart"]>>>;
         firstStepText: z.ZodOptional<z.ZodString>;
         tacticRefPath: z.ZodOptional<z.ZodString>;
         /** One-line rendering of the tactic's per-user understanding (note +
@@ -6618,17 +6637,25 @@ export declare const impulseSessionSchema: z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         title: string;
         tacticId: string;
+        tacticRefPath?: string | undefined;
         description?: string | undefined;
         phase?: "shift" | "regulate" | "reengage" | undefined;
-        tacticRefPath?: string | undefined;
+        modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
+        completionTrigger?: "device-restart" | undefined;
+        effort?: "medium" | "low" | "high" | undefined;
+        worksAnywhere?: boolean | undefined;
         firstStepText?: string | undefined;
         forUser?: string | undefined;
     }, {
         title: string;
         tacticId: string;
+        tacticRefPath?: string | undefined;
         description?: string | undefined;
         phase?: unknown;
-        tacticRefPath?: string | undefined;
+        modality?: unknown;
+        completionTrigger?: unknown;
+        effort?: unknown;
+        worksAnywhere?: boolean | undefined;
         firstStepText?: string | undefined;
         forUser?: string | undefined;
     }>, "many">>;
@@ -8361,6 +8388,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
         phase?: "shift" | "regulate" | "reengage" | undefined;
+        modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
         isMultiStep?: boolean | undefined;
         indications?: {
             tags?: {
@@ -8482,9 +8510,13 @@ export declare const impulseSessionSchema: z.ZodObject<{
     recommendedTactics?: {
         title: string;
         tacticId: string;
+        tacticRefPath?: string | undefined;
         description?: string | undefined;
         phase?: "shift" | "regulate" | "reengage" | undefined;
-        tacticRefPath?: string | undefined;
+        modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
+        completionTrigger?: "device-restart" | undefined;
+        effort?: "medium" | "low" | "high" | undefined;
+        worksAnywhere?: boolean | undefined;
         firstStepText?: string | undefined;
         forUser?: string | undefined;
     }[] | undefined;
@@ -8744,6 +8776,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
         phase?: "shift" | "regulate" | "reengage" | undefined;
+        modality?: unknown;
         isMultiStep?: boolean | undefined;
         indications?: {
             tags?: {
@@ -8866,9 +8899,13 @@ export declare const impulseSessionSchema: z.ZodObject<{
     recommendedTactics?: {
         title: string;
         tacticId: string;
+        tacticRefPath?: string | undefined;
         description?: string | undefined;
         phase?: unknown;
-        tacticRefPath?: string | undefined;
+        modality?: unknown;
+        completionTrigger?: unknown;
+        effort?: unknown;
+        worksAnywhere?: boolean | undefined;
         firstStepText?: string | undefined;
         forUser?: string | undefined;
     }[] | undefined;
