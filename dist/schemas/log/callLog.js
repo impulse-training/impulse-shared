@@ -211,6 +211,20 @@ exports.callLogSchema = base_1.logBaseSchema.extend({
         // set({merge:true}) would store "timings.x" as a literal key.
         timings: exports.callTimingsSchema.optional(),
         endedAt: timestampSchema_1.timestampSchema.optional(),
+        /**
+         * Did the user pick up?
+         *
+         * Set from the caller actually joining the room, not from anything they
+         * said. Without it, "they were busy and let it ring" and "the agent
+         * answered and then failed to speak" are the same shape in the logs — a
+         * call with no speech in it — and only one of those is a bug. Anyone
+         * debugging a quiet call was left inferring an outcome from an absence.
+         *
+         * Optional because calls from before this existed have no answer to give;
+         * absent means unknown, not unanswered.
+         */
+        answered: zod_1.z.boolean().optional(),
+        answeredAt: timestampSchema_1.timestampSchema.optional(),
         // Voice provider plumbing. Both vendor groups are optional. Impulse calls
         // are LiveKit (current); the ElevenLabs fields are left over from the
         // earlier pipeline and only survive on old docs.
