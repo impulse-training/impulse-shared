@@ -35,6 +35,38 @@ export const recommendedTacticSchema = z.object({
 export type RecommendedTactic = z.infer<typeof recommendedTacticSchema>;
 
 /**
+ * What the impulse moment will deliver when the conversation reaches the point
+ * of doing something: the tactic the user already agreed to for this
+ * situation, or a choice of two.
+ *
+ * Note what this is NOT: a decision to present. The conversation still owns
+ * WHEN — that judgement is the model's and is read from the transcript after
+ * the fact, never inferred from state. This only makes the answer ready.
+ */
+export const preparedNextSchema = z.object({
+  kind: z.enum(["agreement", "choice"]),
+  /** One entry for an agreement, exactly two for a choice. */
+  options: z.array(recommendedTacticSchema).min(1).max(2),
+  contrastAxis: z
+    .enum(["modality", "phase", "effort", "ranking"])
+    .optional()
+    .catch(undefined),
+  /** Set when the offer came from the user's own plan or agreement. */
+  planId: z.string().optional(),
+  /** The situation the agreement was made for, for the coach's one-liner. */
+  agreementSituation: z.string().optional(),
+  /** Where the agreement lives, so honouring it can be counted. */
+  agreementSource: z.enum(["trigger", "behavior"]).optional(),
+  agreementSourceId: z.string().optional(),
+  /** What had been offered or completed when this was worked out. A mismatch
+   * with the session's current spend is what marks it stale. */
+  spentTacticIds: z.array(z.string()).default([]),
+  preparedAt: timestampSchema,
+});
+
+export type PreparedNext = z.infer<typeof preparedNextSchema>;
+
+/**
  * An ENGINE-MATCHED plan for this session — the backend saying "this is a good
  * plan, guide the user through it". Invisible to the user: its tactics are
  * delivered inline one `suggestTactic` card at a time (see
@@ -79,6 +111,22 @@ export const impulseSessionSchema = sessionBaseSchema.extend({
   // never started (fatigue counts ignored offers).
   resolvedPlanId: z.string().optional(),
   recommendedTactics: z.array(recommendedTacticSchema).optional(),
+  /**
+   * The next offer, worked out AHEAD of being asked for.
+   *
+   * Resolving what to deliver touches the session's choice logs, its plan, the
+   * user's agreements, their library and the catalog — about ten round trips,
+   * several of them sequential. Paying that inside a tool call means paying it
+   * in the middle of a sentence, which on a call is a silence the user sits
+   * through mid-urge.
+   *
+   * So it is computed whenever the picture changes (the record judge
+   * establishing context, an offer being consumed) and read back when asked
+   * for. This is a CACHE: `offerNext` still validates it against what the
+   * session has since spent and recomputes if it has gone stale, so a wrong
+   * prepared offer can only cost latency, never correctness.
+   */
+  preparedNext: preparedNextSchema.optional(),
   suggestedPlan: suggestedPlanSchema.optional(),
   /**
    * Set at debrief resolution when this session qualifies for the
