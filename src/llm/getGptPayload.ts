@@ -13,6 +13,7 @@ import {
   logIsProposedStrategyModificationLog,
   logIsProposedGoalChangeLog,
   logIsResumeRecapRemindersCtaLog,
+  logIsTacticChoiceLog,
   logIsTacticLog,
   logIsToolCallLog,
   logIsUserMessageLog,
@@ -456,6 +457,62 @@ export function getGptPayload(
     }
 
     return messages;
+  }
+
+  // A choice the model offered. It has to see its own offer, or it re-offers:
+  // the tool result is gone by the next turn, and without this the transcript
+  // reads as though nothing was put to the user at all.
+  if (logIsTacticChoiceLog(log)) {
+    const [anchor, alternative] = log.data.options;
+    const both = `"${anchor.title}" or "${alternative.title}"`;
+
+    if (log.data.chosenTacticId) {
+      const chosen =
+        log.data.chosenTacticId === anchor.tacticId ? anchor : alternative;
+      const notChosen =
+        log.data.chosenTacticId === anchor.tacticId ? alternative : anchor;
+      // Terse on purpose: the tactic log the pick produced renders alongside
+      // this and carries the "what happened next". What only this log knows is
+      // what they turned DOWN, which is a real signal about what fits them.
+      return [
+        {
+          role: "user",
+          content: `<SYSTEM>You offered ${both}. The user chose "${chosen.title}" over "${notChosen.title}".</SYSTEM>`,
+        },
+      ];
+    }
+
+    if (log.data.declinedBoth) {
+      return [
+        {
+          role: "user",
+          content:
+            `<SYSTEM>You offered ${both}. The user wanted NEITHER. ` +
+            (log.data.declineOutcome === "voiceOffered"
+              ? "Two pairs have now missed, so stop offering tactics and talk: ask what would actually help right now, in their words, and work from their answer."
+              : "A fresh pair has been offered in its place. Do not re-explain the two they turned down and do not treat the refusal as resistance — it tells you the match was wrong, not that they are being difficult.") +
+            "</SYSTEM>",
+        },
+      ];
+    }
+
+    if (options?.forSummarization) {
+      return [
+        {
+          role: "user",
+          content: `<SYSTEM>Offered a choice of ${both} — the user picked neither and did not decline; the offer was simply left open.</SYSTEM>`,
+        },
+      ];
+    }
+
+    return [
+      {
+        role: "user",
+        content:
+          `<SYSTEM>${both} are on screen right now as a choice, and the user has not answered yet. ` +
+          "Do not offer another tactic on top of them and do not assume either one has been done. If they ask which, recommend one in a clause and leave both live.</SYSTEM>",
+      },
+    ];
   }
 
   if (logIsTacticLog(log)) {

@@ -14,8 +14,8 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidDayTotalsPromptLog = exports.logIsDayTotalsPromptLog = exports.isValidRecapTimePreferenceLog = exports.logIsRecapTimePreferenceLog = exports.isValidMetricLog = exports.logIsMetricLog = exports.isValidHumanSupportEscalationLog = exports.logIsHumanSupportEscalationLog = exports.isValidResumeRecapRemindersCtaLog = exports.logIsResumeRecapRemindersCtaLog = exports.isValidEnableNotificationsCtaLog = exports.logIsEnableNotificationsCtaLog = exports.isValidSupportGroupDaySummaryLog = exports.logIsSupportGroupDaySummaryLog = exports.isValidBreathingLog = exports.logIsBreathingLog = exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlansLog = exports.logIsPlansLog = exports.isValidUserMessageLog = exports.logIsVoiceTurn = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidSharedMomentLog = exports.logIsSharedMomentLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidSystemMessageLog = exports.logIsSystemMessageLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.isValidVoiceOfferLog = exports.logIsVoiceOfferLog = exports.isValidScheduledCheckInLog = exports.logIsScheduledCheckInLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
-exports.logIsPlanHistoryEntryLog = exports.logIsDebriefQuestionLog = exports.logIsCoachBookingPromptLog = exports.logIsTacticSuggestionsLog = exports.logIsShortcutSetupIntroLog = exports.logIsMaskBehaviorProposalLog = exports.logIsMergeBehaviorsProposalLog = exports.logIsPhotoLog = exports.logIsImageLog = exports.logIsRecoveryKeyLog = exports.logIsCrisisResourceLog = exports.logIsTagsUpdatedLog = exports.logIsProposedStrategyModificationLog = exports.logIsSetupModeChoiceLog = exports.isValidTacticReviewLog = exports.logIsTacticReviewLog = exports.isValidTriggerSelectionLog = exports.logIsTriggerSelectionLog = exports.isValidRequestPermissionsLog = exports.logIsRequestPermissionsLog = exports.isValidImpulseStartedLog = exports.logIsImpulseStartedLog = exports.isValidProposedGoalChangeLog = exports.logIsProposedGoalChangeLog = exports.isValidWeekOverviewLog = exports.logIsWeekOverviewLog = void 0;
+exports.logIsRecapTimePreferenceLog = exports.isValidMetricLog = exports.logIsMetricLog = exports.isValidHumanSupportEscalationLog = exports.logIsHumanSupportEscalationLog = exports.isValidResumeRecapRemindersCtaLog = exports.logIsResumeRecapRemindersCtaLog = exports.isValidEnableNotificationsCtaLog = exports.logIsEnableNotificationsCtaLog = exports.isValidSupportGroupDaySummaryLog = exports.logIsSupportGroupDaySummaryLog = exports.isValidBreathingLog = exports.logIsBreathingLog = exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlansLog = exports.logIsPlansLog = exports.isValidUserMessageLog = exports.logIsVoiceTurn = exports.logIsUserMessageLog = exports.tacticChoiceIsOpen = exports.isValidTacticChoiceLog = exports.logIsTacticChoiceLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidSharedMomentLog = exports.logIsSharedMomentLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidSystemMessageLog = exports.logIsSystemMessageLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.isValidVoiceOfferLog = exports.logIsVoiceOfferLog = exports.isValidScheduledCheckInLog = exports.logIsScheduledCheckInLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
+exports.logIsPlanHistoryEntryLog = exports.logIsDebriefQuestionLog = exports.logIsCoachBookingPromptLog = exports.logIsTacticSuggestionsLog = exports.logIsShortcutSetupIntroLog = exports.logIsMaskBehaviorProposalLog = exports.logIsMergeBehaviorsProposalLog = exports.logIsPhotoLog = exports.logIsImageLog = exports.logIsRecoveryKeyLog = exports.logIsCrisisResourceLog = exports.logIsTagsUpdatedLog = exports.logIsProposedStrategyModificationLog = exports.logIsSetupModeChoiceLog = exports.isValidTacticReviewLog = exports.logIsTacticReviewLog = exports.isValidTriggerSelectionLog = exports.logIsTriggerSelectionLog = exports.isValidRequestPermissionsLog = exports.logIsRequestPermissionsLog = exports.isValidImpulseStartedLog = exports.logIsImpulseStartedLog = exports.isValidProposedGoalChangeLog = exports.logIsProposedGoalChangeLog = exports.isValidWeekOverviewLog = exports.logIsWeekOverviewLog = exports.isValidDayTotalsPromptLog = exports.logIsDayTotalsPromptLog = exports.isValidRecapTimePreferenceLog = void 0;
 const zod_1 = require("zod");
 const behaviorLog_1 = require("./behaviorLog");
 const breathingLog_1 = require("./breathingLog");
@@ -34,6 +34,7 @@ const sharedMomentLog_1 = require("./sharedMomentLog");
 const summaryLog_1 = require("./summaryLog");
 const supportGroupDaySummaryLog_1 = require("./supportGroupDaySummaryLog");
 const tacticLog_1 = require("./tacticLog");
+const tacticChoiceLog_1 = require("./tacticChoiceLog");
 const toolCallLog_1 = require("./toolCallLog");
 const videoLog_1 = require("./videoLog");
 const metricLog_1 = require("./metricLog");
@@ -70,6 +71,7 @@ exports.logSchemas = {
     tool_call: toolCallLog_1.toolCallLogSchema,
     tactic: tacticLog_1.tacticLogSchema,
     tactic_viewed: tacticLog_1.tacticLogSchema,
+    tactic_choice: tacticChoiceLog_1.tacticChoiceLogSchema,
     behavior: behaviorLog_1.behaviorLogSchema,
     breathing: breathingLog_1.breathingLogSchema,
     plans: plansLog_1.plansLogSchema,
@@ -128,6 +130,7 @@ __exportStar(require("./tourStep"), exports);
 __exportStar(require("./summaryLog"), exports);
 __exportStar(require("./supportGroupDaySummaryLog"), exports);
 __exportStar(require("./tacticLog"), exports);
+__exportStar(require("./tacticChoiceLog"), exports);
 __exportStar(require("./toolCallLog"), exports);
 __exportStar(require("./videoLog"), exports);
 __exportStar(require("./widgetSetupLog"), exports);
@@ -167,6 +170,7 @@ exports.logSchema = zod_1.z.discriminatedUnion("type", [
     callLog_1.callLogSchema,
     toolCallLog_1.toolCallLogSchema,
     tacticLog_1.tacticLogSchema,
+    tacticChoiceLog_1.tacticChoiceLogSchema,
     behaviorLog_1.behaviorLogSchema,
     breathingLog_1.breathingLogSchema,
     plansLog_1.plansLogSchema,
@@ -275,6 +279,15 @@ const isValidTacticLog = (value) => {
     return tacticLog_1.tacticLogSchema.safeParse(value).success;
 };
 exports.isValidTacticLog = isValidTacticLog;
+const logIsTacticChoiceLog = (value) => value.type === "tactic_choice";
+exports.logIsTacticChoiceLog = logIsTacticChoiceLog;
+const isValidTacticChoiceLog = (value) => {
+    return tacticChoiceLog_1.tacticChoiceLogSchema.safeParse(value).success;
+};
+exports.isValidTacticChoiceLog = isValidTacticChoiceLog;
+/** A choice the user has not answered yet: still the live offer on screen. */
+const tacticChoiceIsOpen = (log) => !log.data.chosenTacticId && !log.data.declinedBoth;
+exports.tacticChoiceIsOpen = tacticChoiceIsOpen;
 const logIsUserMessageLog = (value) => value.type === "user_message";
 exports.logIsUserMessageLog = logIsUserMessageLog;
 /** A user/assistant message that was spoken on a voice call, not typed. */

@@ -2,6 +2,7 @@ import { z } from "zod";
 import { documentReferenceSchema } from "../../utils/documentReferenceSchema";
 import { timestampSchema } from "../../utils/timestampSchema";
 import { withIdSchema } from "../../utils/withId";
+import { tacticAgreementSchema } from "../agreement";
 
 // Optional location reference for location-based triggers. Coordinates and
 // addresses live only on the user's device.
@@ -24,14 +25,23 @@ export const triggerSchema = z.object({
   ordinal: z.number().optional(),
   // Arrival/departure for location-based auto-triggering (coordinates are resolved locally)
   triggerType: z.enum(["arrival", "departure"]).optional(),
-  // Agreed go-to order for this situation (plans-to-routines): ordered
-  // tactic refs, the trigger analogue of behavior.tactics pins. Displayed
-  // as the "Next time" card and read by the AI as evidence - never
-  // deterministically injected.
+  /**
+   * "Next up" for this situation: the ONE tactic the user agreed to try the
+   * next time it comes round.
+   *
+   * Unlike the list it replaces, this IS deterministically delivered. The old
+   * field was read by the AI as evidence and never injected, which meant a
+   * promise the user made could simply not come up. An agreement that only
+   * surfaces when a model remembers it is not an agreement.
+   */
+  agreement: tacticAgreementSchema.optional(),
+  /**
+   * @deprecated The ordered go-to list, read by the AI as evidence only.
+   * Superseded by `agreement`. Read only by the migration that collapses it
+   * to its first entry.
+   */
   tactics: z.array(documentReferenceSchema).optional(),
-  // When the user last stood behind the go-to order (set/reorder/re-agree).
-  // Drives freshness framing ("Agreed 12 Aug", aging nudges) - never
-  // deletion; a rehearsed plan is the win, not the bug.
+  /** @deprecated Superseded by `agreement.agreedAt`. */
   tacticsAgreedAt: timestampSchema.optional(),
   /** @deprecated Use triggerType + location tag group option localLocationRef instead */
   location: triggerLocationSchema.optional(),

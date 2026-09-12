@@ -4,6 +4,7 @@ export * from "./analyticsSession";
 export * from "./answeredRecapQuestion";
 export * from "./attachment";
 export * from "./audit";
+export * from "./agreement";
 export * from "./behavior";
 export * from "./behaviorDayHistory";
 export * from "./behaviorPatternsCache";

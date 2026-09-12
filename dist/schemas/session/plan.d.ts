@@ -55,6 +55,7 @@ export declare const timePlanSessionSchema: z.ZodObject<{
         createdByUid: z.ZodOptional<z.ZodString>;
         recommended: z.ZodOptional<z.ZodBoolean>;
         phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
+        modality: z.ZodCatch<z.ZodOptional<z.ZodEnum<["move", "still", "sense", "reflect", "connect", "environment"]>>>;
         steps: z.ZodArray<z.ZodEffects<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
             backgroundImage: z.ZodOptional<z.ZodObject<{
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -5158,6 +5159,7 @@ export declare const timePlanSessionSchema: z.ZodObject<{
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
         phase?: "shift" | "regulate" | "reengage" | undefined;
+        modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
         isMultiStep?: boolean | undefined;
         indications?: {
             tags?: {
@@ -5237,6 +5239,7 @@ export declare const timePlanSessionSchema: z.ZodObject<{
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
         phase?: "shift" | "regulate" | "reengage" | undefined;
+        modality?: unknown;
         isMultiStep?: boolean | undefined;
         indications?: {
             tags?: {
@@ -5998,6 +6001,7 @@ export declare const timePlanSessionSchema: z.ZodObject<{
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
         phase?: "shift" | "regulate" | "reengage" | undefined;
+        modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
         isMultiStep?: boolean | undefined;
         indications?: {
             tags?: {
@@ -6157,6 +6161,7 @@ export declare const timePlanSessionSchema: z.ZodObject<{
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
         phase?: "shift" | "regulate" | "reengage" | undefined;
+        modality?: unknown;
         isMultiStep?: boolean | undefined;
         indications?: {
             tags?: {
@@ -6324,6 +6329,7 @@ export declare const locationPlanSessionSchema: z.ZodObject<{
         createdByUid: z.ZodOptional<z.ZodString>;
         recommended: z.ZodOptional<z.ZodBoolean>;
         phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
+        modality: z.ZodCatch<z.ZodOptional<z.ZodEnum<["move", "still", "sense", "reflect", "connect", "environment"]>>>;
         steps: z.ZodArray<z.ZodEffects<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
             backgroundImage: z.ZodOptional<z.ZodObject<{
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -11427,6 +11433,7 @@ export declare const locationPlanSessionSchema: z.ZodObject<{
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
         phase?: "shift" | "regulate" | "reengage" | undefined;
+        modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
         isMultiStep?: boolean | undefined;
         indications?: {
             tags?: {
@@ -11506,6 +11513,7 @@ export declare const locationPlanSessionSchema: z.ZodObject<{
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
         phase?: "shift" | "regulate" | "reengage" | undefined;
+        modality?: unknown;
         isMultiStep?: boolean | undefined;
         indications?: {
             tags?: {
@@ -12267,6 +12275,7 @@ export declare const locationPlanSessionSchema: z.ZodObject<{
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
         phase?: "shift" | "regulate" | "reengage" | undefined;
+        modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
         isMultiStep?: boolean | undefined;
         indications?: {
             tags?: {
@@ -12426,6 +12435,7 @@ export declare const locationPlanSessionSchema: z.ZodObject<{
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
         phase?: "shift" | "regulate" | "reengage" | undefined;
+        modality?: unknown;
         isMultiStep?: boolean | undefined;
         indications?: {
             tags?: {

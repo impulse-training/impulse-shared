@@ -77,6 +77,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             createdByUid: z.ZodOptional<z.ZodString>;
             recommended: z.ZodOptional<z.ZodBoolean>;
             phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
+            modality: z.ZodCatch<z.ZodOptional<z.ZodEnum<["move", "still", "sense", "reflect", "connect", "environment"]>>>;
             steps: z.ZodArray<z.ZodEffects<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -5180,6 +5181,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
             phase?: "shift" | "regulate" | "reengage" | undefined;
+            modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
             isMultiStep?: boolean | undefined;
             indications?: {
                 tags?: {
@@ -5259,6 +5261,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
             phase?: "shift" | "regulate" | "reengage" | undefined;
+            modality?: unknown;
             isMultiStep?: boolean | undefined;
             indications?: {
                 tags?: {
@@ -5537,6 +5540,7 @@ export declare const tacticLogSchema: z.ZodObject<{
         rating: z.ZodOptional<z.ZodEnum<["helpful", "not_helpful"]>>;
         ratedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
+        tacticRefPath: string;
         tactic: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -6099,6 +6103,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
             phase?: "shift" | "regulate" | "reengage" | undefined;
+            modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
             isMultiStep?: boolean | undefined;
             indications?: {
                 tags?: {
@@ -6151,7 +6156,6 @@ export declare const tacticLogSchema: z.ZodObject<{
             generationVoice?: "m" | "f" | null | undefined;
             collectionTemplateIds?: string[] | undefined;
         };
-        tacticRefPath: string;
         completed?: boolean | undefined;
         planId?: string | undefined;
         planLogId?: string | undefined;
@@ -6203,6 +6207,7 @@ export declare const tacticLogSchema: z.ZodObject<{
         rating?: "helpful" | "not_helpful" | undefined;
         ratedAt?: import("../../types").Timestamp | undefined;
     }, {
+        tacticRefPath: string;
         tactic: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -6231,6 +6236,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
             phase?: "shift" | "regulate" | "reengage" | undefined;
+            modality?: unknown;
             isMultiStep?: boolean | undefined;
             indications?: {
                 tags?: {
@@ -6283,7 +6289,6 @@ export declare const tacticLogSchema: z.ZodObject<{
             generationVoice?: "m" | "f" | null | undefined;
             collectionTemplateIds?: string[] | undefined;
         };
-        tacticRefPath: string;
         completed?: boolean | undefined;
         planId?: string | undefined;
         planLogId?: string | undefined;
@@ -6345,6 +6350,7 @@ export declare const tacticLogSchema: z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: boolean;
     data: {
+        tacticRefPath: string;
         tactic: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -6907,6 +6913,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
             phase?: "shift" | "regulate" | "reengage" | undefined;
+            modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
             isMultiStep?: boolean | undefined;
             indications?: {
                 tags?: {
@@ -6959,7 +6966,6 @@ export declare const tacticLogSchema: z.ZodObject<{
             generationVoice?: "m" | "f" | null | undefined;
             collectionTemplateIds?: string[] | undefined;
         };
-        tacticRefPath: string;
         completed?: boolean | undefined;
         planId?: string | undefined;
         planLogId?: string | undefined;
@@ -7026,6 +7032,7 @@ export declare const tacticLogSchema: z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: boolean;
     data: {
+        tacticRefPath: string;
         tactic: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -7054,6 +7061,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
             phase?: "shift" | "regulate" | "reengage" | undefined;
+            modality?: unknown;
             isMultiStep?: boolean | undefined;
             indications?: {
                 tags?: {
@@ -7106,7 +7114,6 @@ export declare const tacticLogSchema: z.ZodObject<{
             generationVoice?: "m" | "f" | null | undefined;
             collectionTemplateIds?: string[] | undefined;
         };
-        tacticRefPath: string;
         completed?: boolean | undefined;
         planId?: string | undefined;
         planLogId?: string | undefined;

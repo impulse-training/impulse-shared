@@ -62,6 +62,39 @@ export const indicationSchema = z.object({
 export const tacticPhaseSchema = z.enum(["regulate", "shift", "reengage"]);
 export type TacticPhase = z.infer<typeof tacticPhaseSchema>;
 
+/**
+ * WHAT KIND of thing the tactic asks the user to do — the axis the impulse
+ * moment's two options are contrasted on ("a movement one, or a reflection
+ * one").
+ *
+ * Distinct from `phase`, which says what the tactic is FOR (regulate, shift,
+ * reengage). Two tactics can share a phase and still be a real choice: a
+ * breathing exercise and a cold-water splash both regulate, but one is still
+ * and one is sensory, and that difference is what makes offering both worth
+ * something. Phase alone is too coarse to pair on — most regulate tactics are
+ * breathing of one sort or another.
+ *
+ * Optional, and selection degrades rather than fails when it is missing (see
+ * selectTacticPair's fallback ladder). Catalog coverage will never be
+ * complete: user-authored tactics arrive unclassified, and the AI never
+ * invents a value for one.
+ */
+export const tacticModalitySchema = z.enum([
+  /** Use the body, or change where the body is: walk, 50 steps, leave the room. */
+  "move",
+  /** Stay put and settle: breath work, a timer, sitting with it. */
+  "still",
+  /** Change what the senses are getting: cold water, ice, a strong taste, sound. */
+  "sense",
+  /** Turn it into words, to yourself: name the feeling, write it down, ask why. */
+  "reflect",
+  /** Involve another person: message someone, call, say it out loud to them. */
+  "connect",
+  /** Change the situation rather than yourself: phone off, move rooms, remove the thing. */
+  "environment",
+]);
+export type TacticModality = z.infer<typeof tacticModalitySchema>;
+
 export const tacticLinkSchema = z.object({
   url: z.string().url(),
   title: z.string().optional(),
@@ -90,6 +123,11 @@ export const tacticSchema = z.object({
   createdByUid: z.string().optional(),
   recommended: z.boolean().optional(),
   phase: tacticPhaseSchema.optional(),
+  // What kind of act this is — the contrast axis the impulse moment's pair of
+  // options is chosen on. `.catch(undefined)` so a stray legacy value degrades
+  // to "unclassified" instead of failing the whole-tactic parse that session
+  // and log type guards depend on.
+  modality: tacticModalitySchema.optional().catch(undefined),
   steps: z.array(tacticStepSchema).min(1),
   tags: z.array(z.string()).optional(),
   isMultiStep: z.boolean().optional(), // If true, show multi-step editor UI

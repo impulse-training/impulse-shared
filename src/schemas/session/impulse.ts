@@ -2,7 +2,7 @@ import { z } from "zod";
 import { documentReferenceSchema } from "../../utils/documentReferenceSchema";
 import { timestampSchema } from "../../utils/timestampSchema";
 import { planWithIdSchema } from "../plan";
-import { tacticPhaseSchema } from "../tactic/tactic";
+import { tacticModalitySchema, tacticPhaseSchema } from "../tactic/tactic";
 import { sessionBaseSchema } from "./base";
 import { sessionPhaseSchema } from "./phase";
 
@@ -14,6 +14,17 @@ export const recommendedTacticSchema = z.object({
   // legacy value from failing the whole-session safeParse used by the
   // `isImpulseSession` type guard.
   phase: tacticPhaseSchema.optional().catch(undefined),
+  // Fit metadata denormalised alongside phase, because the pair of options the
+  // impulse moment offers is chosen from this pool and has to be able to tell
+  // two tactics apart WITHOUT refetching each one mid-turn. `modality` is the
+  // axis that carries the choice ("a movement one, or a reflection one"); the
+  // rest are the ladder selectTacticPair falls back through.
+  modality: tacticModalitySchema.optional().catch(undefined),
+  effort: z.enum(["low", "medium", "high"]).optional().catch(undefined),
+  worksAnywhere: z.boolean().optional(),
+  // A session-ending tactic (turn the phone off) is only ever the alternative,
+  // never the default the user has to opt out of.
+  completionTrigger: z.enum(["device-restart"]).optional().catch(undefined),
   firstStepText: z.string().optional(),
   tacticRefPath: z.string().optional(),
   /** One-line rendering of the tactic's per-user understanding (note +
