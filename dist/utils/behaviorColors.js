@@ -3,6 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BEHAVIOR_DOT = exports.BEHAVIOR_COLOR_OPTIONS = void 0;
 exports.guessBehaviorColor = guessBehaviorColor;
 exports.getBehaviorColor = getBehaviorColor;
+exports.behaviorColorWord = behaviorColorWord;
+exports.behaviorDisplayName = behaviorDisplayName;
 const COLORS = {
     RED: "#C4362C",
     ORANGE: "#F97316",
@@ -110,3 +112,48 @@ exports.BEHAVIOR_DOT = {
     RING_BORDER_WIDTH: 2.5,
     RING_BG_OPACITY: "26",
 };
+/**
+ * Colour words, for behaviours the user has chosen to hide.
+ *
+ * A masked behaviour is one the user does not want named — on a screen
+ * someone else might glance at, and much more so out loud on a call, where
+ * "pornography" is a word the room hears. Masking has always been a display
+ * decision the client made, which was fine while the coach only ever wrote to
+ * that screen; it stopped being fine the moment the coach could speak.
+ */
+const COLOR_WORDS = {
+    [COLORS.RED]: "red",
+    [COLORS.ORANGE]: "orange",
+    [COLORS.BROWN]: "brown",
+    [COLORS.GREEN]: "green",
+    [COLORS.BLUE]: "blue",
+    [COLORS.PURPLE]: "purple",
+    [COLORS.PINK]: "pink",
+};
+/** The colour word for a behaviour's swatch, or null for an unknown colour. */
+function behaviorColorWord(color) {
+    var _a, _b;
+    if (!color)
+        return null;
+    return (_b = (_a = COLOR_WORDS[color.toUpperCase()]) !== null && _a !== void 0 ? _a : COLOR_WORDS[color]) !== null && _b !== void 0 ? _b : null;
+}
+/**
+ * What to call a behaviour when writing or saying it.
+ *
+ * The user sees a coloured swatch where a masked behaviour's name would be,
+ * so the colour is the name they already use for it themselves — "the red
+ * one". Anything we cannot colour falls back to a phrase that is still usable
+ * in a sentence rather than to the name we are trying not to say.
+ *
+ * Deliberately the NAME, not a filter: a masked behaviour is tracked, ranked,
+ * reflected on and counted exactly like any other. Dropping it from the
+ * model's view would quietly stop coaching the thing the user most wanted
+ * help with.
+ */
+function behaviorDisplayName(behavior) {
+    var _a;
+    if (!behavior.masked)
+        return (_a = behavior.name) !== null && _a !== void 0 ? _a : "";
+    const word = behaviorColorWord(behavior.color);
+    return word ? `the ${word} behavior` : "a hidden behavior";
+}
