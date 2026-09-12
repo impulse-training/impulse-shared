@@ -175,6 +175,14 @@ exports.callModelUsageSchema = zod_1.z.object({
     inputTextTokens: zod_1.z.number().optional(),
     inputAudioTokens: zod_1.z.number().optional(),
     inputCachedTokens: zod_1.z.number().optional(),
+    /**
+     * Cached input, split by kind. The total above cannot be priced on its own:
+     * cached tokens are billed instead of their own kind's full rate, and text
+     * and audio input differ by 8x — so charging a call's cached total against
+     * either one is wrong by most of the bill.
+     */
+    inputCachedTextTokens: zod_1.z.number().optional(),
+    inputCachedAudioTokens: zod_1.z.number().optional(),
     outputTextTokens: zod_1.z.number().optional(),
     outputAudioTokens: zod_1.z.number().optional(),
 });
