@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.impulseSessionSchema = exports.suggestedPlanSchema = exports.recommendedTacticSchema = void 0;
+exports.impulseSessionSchema = exports.suggestedPlanSchema = exports.preparedNextSchema = exports.recommendedTacticSchema = void 0;
 const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../../utils/documentReferenceSchema");
 const timestampSchema_1 = require("../../utils/timestampSchema");
@@ -32,6 +32,35 @@ exports.recommendedTacticSchema = zod_1.z.object({
     /** One-line rendering of the tactic's per-user understanding (note +
      * avoidWhen), denormalised at extraction time for prompt display. */
     forUser: zod_1.z.string().optional(),
+});
+/**
+ * What the impulse moment will deliver when the conversation reaches the point
+ * of doing something: the tactic the user already agreed to for this
+ * situation, or a choice of two.
+ *
+ * Note what this is NOT: a decision to present. The conversation still owns
+ * WHEN — that judgement is the model's and is read from the transcript after
+ * the fact, never inferred from state. This only makes the answer ready.
+ */
+exports.preparedNextSchema = zod_1.z.object({
+    kind: zod_1.z.enum(["agreement", "choice"]),
+    /** One entry for an agreement, exactly two for a choice. */
+    options: zod_1.z.array(exports.recommendedTacticSchema).min(1).max(2),
+    contrastAxis: zod_1.z
+        .enum(["modality", "phase", "effort", "ranking"])
+        .optional()
+        .catch(undefined),
+    /** Set when the offer came from the user's own plan or agreement. */
+    planId: zod_1.z.string().optional(),
+    /** The situation the agreement was made for, for the coach's one-liner. */
+    agreementSituation: zod_1.z.string().optional(),
+    /** Where the agreement lives, so honouring it can be counted. */
+    agreementSource: zod_1.z.enum(["trigger", "behavior"]).optional(),
+    agreementSourceId: zod_1.z.string().optional(),
+    /** What had been offered or completed when this was worked out. A mismatch
+     * with the session's current spend is what marks it stale. */
+    spentTacticIds: zod_1.z.array(zod_1.z.string()).default([]),
+    preparedAt: timestampSchema_1.timestampSchema,
 });
 /**
  * An ENGINE-MATCHED plan for this session — the backend saying "this is a good
@@ -75,6 +104,22 @@ exports.impulseSessionSchema = base_1.sessionBaseSchema.extend({
     // never started (fatigue counts ignored offers).
     resolvedPlanId: zod_1.z.string().optional(),
     recommendedTactics: zod_1.z.array(exports.recommendedTacticSchema).optional(),
+    /**
+     * The next offer, worked out AHEAD of being asked for.
+     *
+     * Resolving what to deliver touches the session's choice logs, its plan, the
+     * user's agreements, their library and the catalog — about ten round trips,
+     * several of them sequential. Paying that inside a tool call means paying it
+     * in the middle of a sentence, which on a call is a silence the user sits
+     * through mid-urge.
+     *
+     * So it is computed whenever the picture changes (the record judge
+     * establishing context, an offer being consumed) and read back when asked
+     * for. This is a CACHE: `offerNext` still validates it against what the
+     * session has since spent and recomputes if it has gone stale, so a wrong
+     * prepared offer can only cost latency, never correctness.
+     */
+    preparedNext: exports.preparedNextSchema.optional(),
     suggestedPlan: exports.suggestedPlanSchema.optional(),
     /**
      * Set at debrief resolution when this session qualifies for the

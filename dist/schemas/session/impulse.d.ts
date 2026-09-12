@@ -40,6 +40,115 @@ export declare const recommendedTacticSchema: z.ZodObject<{
 }>;
 export type RecommendedTactic = z.infer<typeof recommendedTacticSchema>;
 /**
+ * What the impulse moment will deliver when the conversation reaches the point
+ * of doing something: the tactic the user already agreed to for this
+ * situation, or a choice of two.
+ *
+ * Note what this is NOT: a decision to present. The conversation still owns
+ * WHEN — that judgement is the model's and is read from the transcript after
+ * the fact, never inferred from state. This only makes the answer ready.
+ */
+export declare const preparedNextSchema: z.ZodObject<{
+    kind: z.ZodEnum<["agreement", "choice"]>;
+    /** One entry for an agreement, exactly two for a choice. */
+    options: z.ZodArray<z.ZodObject<{
+        tacticId: z.ZodString;
+        title: z.ZodString;
+        description: z.ZodOptional<z.ZodString>;
+        phase: z.ZodCatch<z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>>;
+        modality: z.ZodCatch<z.ZodOptional<z.ZodEnum<["move", "still", "sense", "reflect", "connect", "environment"]>>>;
+        effort: z.ZodCatch<z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>>;
+        worksAnywhere: z.ZodOptional<z.ZodBoolean>;
+        completionTrigger: z.ZodCatch<z.ZodOptional<z.ZodEnum<["device-restart"]>>>;
+        firstStepText: z.ZodOptional<z.ZodString>;
+        tacticRefPath: z.ZodOptional<z.ZodString>;
+        /** One-line rendering of the tactic's per-user understanding (note +
+         * avoidWhen), denormalised at extraction time for prompt display. */
+        forUser: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        title: string;
+        tacticId: string;
+        tacticRefPath?: string | undefined;
+        description?: string | undefined;
+        phase?: "shift" | "regulate" | "reengage" | undefined;
+        modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
+        completionTrigger?: "device-restart" | undefined;
+        effort?: "medium" | "low" | "high" | undefined;
+        worksAnywhere?: boolean | undefined;
+        firstStepText?: string | undefined;
+        forUser?: string | undefined;
+    }, {
+        title: string;
+        tacticId: string;
+        tacticRefPath?: string | undefined;
+        description?: string | undefined;
+        phase?: unknown;
+        modality?: unknown;
+        completionTrigger?: unknown;
+        effort?: unknown;
+        worksAnywhere?: boolean | undefined;
+        firstStepText?: string | undefined;
+        forUser?: string | undefined;
+    }>, "many">;
+    contrastAxis: z.ZodCatch<z.ZodOptional<z.ZodEnum<["modality", "phase", "effort", "ranking"]>>>;
+    /** Set when the offer came from the user's own plan or agreement. */
+    planId: z.ZodOptional<z.ZodString>;
+    /** The situation the agreement was made for, for the coach's one-liner. */
+    agreementSituation: z.ZodOptional<z.ZodString>;
+    /** Where the agreement lives, so honouring it can be counted. */
+    agreementSource: z.ZodOptional<z.ZodEnum<["trigger", "behavior"]>>;
+    agreementSourceId: z.ZodOptional<z.ZodString>;
+    /** What had been offered or completed when this was worked out. A mismatch
+     * with the session's current spend is what marks it stale. */
+    spentTacticIds: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+    preparedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+}, "strip", z.ZodTypeAny, {
+    options: {
+        title: string;
+        tacticId: string;
+        tacticRefPath?: string | undefined;
+        description?: string | undefined;
+        phase?: "shift" | "regulate" | "reengage" | undefined;
+        modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
+        completionTrigger?: "device-restart" | undefined;
+        effort?: "medium" | "low" | "high" | undefined;
+        worksAnywhere?: boolean | undefined;
+        firstStepText?: string | undefined;
+        forUser?: string | undefined;
+    }[];
+    kind: "agreement" | "choice";
+    spentTacticIds: string[];
+    preparedAt: import("../../types").Timestamp;
+    planId?: string | undefined;
+    contrastAxis?: "phase" | "modality" | "effort" | "ranking" | undefined;
+    agreementSituation?: string | undefined;
+    agreementSource?: "behavior" | "trigger" | undefined;
+    agreementSourceId?: string | undefined;
+}, {
+    options: {
+        title: string;
+        tacticId: string;
+        tacticRefPath?: string | undefined;
+        description?: string | undefined;
+        phase?: unknown;
+        modality?: unknown;
+        completionTrigger?: unknown;
+        effort?: unknown;
+        worksAnywhere?: boolean | undefined;
+        firstStepText?: string | undefined;
+        forUser?: string | undefined;
+    }[];
+    kind: "agreement" | "choice";
+    preparedAt: import("../../types").Timestamp;
+    planId?: string | undefined;
+    contrastAxis?: unknown;
+    agreementSituation?: string | undefined;
+    agreementSource?: "behavior" | "trigger" | undefined;
+    agreementSourceId?: string | undefined;
+    spentTacticIds?: string[] | undefined;
+}>;
+export type PreparedNext = z.infer<typeof preparedNextSchema>;
+/**
  * An ENGINE-MATCHED plan for this session — the backend saying "this is a good
  * plan, guide the user through it". Invisible to the user: its tactics are
  * delivered inline one `suggestTactic` card at a time (see
@@ -6659,6 +6768,105 @@ export declare const impulseSessionSchema: z.ZodObject<{
         firstStepText?: string | undefined;
         forUser?: string | undefined;
     }>, "many">>;
+    preparedNext: z.ZodOptional<z.ZodObject<{
+        kind: z.ZodEnum<["agreement", "choice"]>;
+        /** One entry for an agreement, exactly two for a choice. */
+        options: z.ZodArray<z.ZodObject<{
+            tacticId: z.ZodString;
+            title: z.ZodString;
+            description: z.ZodOptional<z.ZodString>;
+            phase: z.ZodCatch<z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>>;
+            modality: z.ZodCatch<z.ZodOptional<z.ZodEnum<["move", "still", "sense", "reflect", "connect", "environment"]>>>;
+            effort: z.ZodCatch<z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>>;
+            worksAnywhere: z.ZodOptional<z.ZodBoolean>;
+            completionTrigger: z.ZodCatch<z.ZodOptional<z.ZodEnum<["device-restart"]>>>;
+            firstStepText: z.ZodOptional<z.ZodString>;
+            tacticRefPath: z.ZodOptional<z.ZodString>;
+            /** One-line rendering of the tactic's per-user understanding (note +
+             * avoidWhen), denormalised at extraction time for prompt display. */
+            forUser: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            title: string;
+            tacticId: string;
+            tacticRefPath?: string | undefined;
+            description?: string | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
+            modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
+            completionTrigger?: "device-restart" | undefined;
+            effort?: "medium" | "low" | "high" | undefined;
+            worksAnywhere?: boolean | undefined;
+            firstStepText?: string | undefined;
+            forUser?: string | undefined;
+        }, {
+            title: string;
+            tacticId: string;
+            tacticRefPath?: string | undefined;
+            description?: string | undefined;
+            phase?: unknown;
+            modality?: unknown;
+            completionTrigger?: unknown;
+            effort?: unknown;
+            worksAnywhere?: boolean | undefined;
+            firstStepText?: string | undefined;
+            forUser?: string | undefined;
+        }>, "many">;
+        contrastAxis: z.ZodCatch<z.ZodOptional<z.ZodEnum<["modality", "phase", "effort", "ranking"]>>>;
+        /** Set when the offer came from the user's own plan or agreement. */
+        planId: z.ZodOptional<z.ZodString>;
+        /** The situation the agreement was made for, for the coach's one-liner. */
+        agreementSituation: z.ZodOptional<z.ZodString>;
+        /** Where the agreement lives, so honouring it can be counted. */
+        agreementSource: z.ZodOptional<z.ZodEnum<["trigger", "behavior"]>>;
+        agreementSourceId: z.ZodOptional<z.ZodString>;
+        /** What had been offered or completed when this was worked out. A mismatch
+         * with the session's current spend is what marks it stale. */
+        spentTacticIds: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+        preparedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    }, "strip", z.ZodTypeAny, {
+        options: {
+            title: string;
+            tacticId: string;
+            tacticRefPath?: string | undefined;
+            description?: string | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
+            modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
+            completionTrigger?: "device-restart" | undefined;
+            effort?: "medium" | "low" | "high" | undefined;
+            worksAnywhere?: boolean | undefined;
+            firstStepText?: string | undefined;
+            forUser?: string | undefined;
+        }[];
+        kind: "agreement" | "choice";
+        spentTacticIds: string[];
+        preparedAt: import("../../types").Timestamp;
+        planId?: string | undefined;
+        contrastAxis?: "phase" | "modality" | "effort" | "ranking" | undefined;
+        agreementSituation?: string | undefined;
+        agreementSource?: "behavior" | "trigger" | undefined;
+        agreementSourceId?: string | undefined;
+    }, {
+        options: {
+            title: string;
+            tacticId: string;
+            tacticRefPath?: string | undefined;
+            description?: string | undefined;
+            phase?: unknown;
+            modality?: unknown;
+            completionTrigger?: unknown;
+            effort?: unknown;
+            worksAnywhere?: boolean | undefined;
+            firstStepText?: string | undefined;
+            forUser?: string | undefined;
+        }[];
+        kind: "agreement" | "choice";
+        preparedAt: import("../../types").Timestamp;
+        planId?: string | undefined;
+        contrastAxis?: unknown;
+        agreementSituation?: string | undefined;
+        agreementSource?: "behavior" | "trigger" | undefined;
+        agreementSourceId?: string | undefined;
+        spentTacticIds?: string[] | undefined;
+    }>>;
     suggestedPlan: z.ZodOptional<z.ZodObject<{
         planId: z.ZodString;
         plan: z.ZodUnion<[z.ZodIntersection<z.ZodObject<{
@@ -8520,6 +8728,29 @@ export declare const impulseSessionSchema: z.ZodObject<{
         firstStepText?: string | undefined;
         forUser?: string | undefined;
     }[] | undefined;
+    preparedNext?: {
+        options: {
+            title: string;
+            tacticId: string;
+            tacticRefPath?: string | undefined;
+            description?: string | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
+            modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
+            completionTrigger?: "device-restart" | undefined;
+            effort?: "medium" | "low" | "high" | undefined;
+            worksAnywhere?: boolean | undefined;
+            firstStepText?: string | undefined;
+            forUser?: string | undefined;
+        }[];
+        kind: "agreement" | "choice";
+        spentTacticIds: string[];
+        preparedAt: import("../../types").Timestamp;
+        planId?: string | undefined;
+        contrastAxis?: "phase" | "modality" | "effort" | "ranking" | undefined;
+        agreementSituation?: string | undefined;
+        agreementSource?: "behavior" | "trigger" | undefined;
+        agreementSourceId?: string | undefined;
+    } | undefined;
     suggestedPlan?: {
         source: "tags" | "improvised";
         plan: ({
@@ -8909,6 +9140,29 @@ export declare const impulseSessionSchema: z.ZodObject<{
         firstStepText?: string | undefined;
         forUser?: string | undefined;
     }[] | undefined;
+    preparedNext?: {
+        options: {
+            title: string;
+            tacticId: string;
+            tacticRefPath?: string | undefined;
+            description?: string | undefined;
+            phase?: unknown;
+            modality?: unknown;
+            completionTrigger?: unknown;
+            effort?: unknown;
+            worksAnywhere?: boolean | undefined;
+            firstStepText?: string | undefined;
+            forUser?: string | undefined;
+        }[];
+        kind: "agreement" | "choice";
+        preparedAt: import("../../types").Timestamp;
+        planId?: string | undefined;
+        contrastAxis?: unknown;
+        agreementSituation?: string | undefined;
+        agreementSource?: "behavior" | "trigger" | undefined;
+        agreementSourceId?: string | undefined;
+        spentTacticIds?: string[] | undefined;
+    } | undefined;
     suggestedPlan?: {
         source: "tags" | "improvised";
         plan: ({
