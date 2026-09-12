@@ -5837,6 +5837,20 @@ export declare const callLogSchema: z.ZodObject<{
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         }>>;
         endedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        /**
+         * Did the user pick up?
+         *
+         * Set from the caller actually joining the room, not from anything they
+         * said. Without it, "they were busy and let it ring" and "the agent
+         * answered and then failed to speak" are the same shape in the logs — a
+         * call with no speech in it — and only one of those is a bug. Anyone
+         * debugging a quiet call was left inferring an outcome from an absence.
+         *
+         * Optional because calls from before this existed have no answer to give;
+         * absent means unknown, not unanswered.
+         */
+        answered: z.ZodOptional<z.ZodBoolean>;
+        answeredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         livekitSessionId: z.ZodOptional<z.ZodString>;
         livekitRoomName: z.ZodOptional<z.ZodString>;
         elevenlabsAgentId: z.ZodOptional<z.ZodString>;
@@ -5954,6 +5968,7 @@ export declare const callLogSchema: z.ZodObject<{
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         endedAt?: import("../../types").Timestamp | undefined;
+        answeredAt?: import("../../types").Timestamp | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -6598,6 +6613,7 @@ export declare const callLogSchema: z.ZodObject<{
             agentFirstReplyMs?: number | undefined;
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         } | undefined;
+        answered?: boolean | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
@@ -6629,6 +6645,7 @@ export declare const callLogSchema: z.ZodObject<{
         }[] | undefined;
     }, {
         endedAt?: import("../../types").Timestamp | undefined;
+        answeredAt?: import("../../types").Timestamp | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -6739,6 +6756,7 @@ export declare const callLogSchema: z.ZodObject<{
             agentFirstReplyMs?: number | undefined;
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         } | undefined;
+        answered?: boolean | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
@@ -6780,6 +6798,7 @@ export declare const callLogSchema: z.ZodObject<{
     isDisplayable: true;
     data: {
         endedAt?: import("../../types").Timestamp | undefined;
+        answeredAt?: import("../../types").Timestamp | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -7424,6 +7443,7 @@ export declare const callLogSchema: z.ZodObject<{
             agentFirstReplyMs?: number | undefined;
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         } | undefined;
+        answered?: boolean | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
@@ -7470,6 +7490,7 @@ export declare const callLogSchema: z.ZodObject<{
     isDisplayable: true;
     data: {
         endedAt?: import("../../types").Timestamp | undefined;
+        answeredAt?: import("../../types").Timestamp | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -7580,6 +7601,7 @@ export declare const callLogSchema: z.ZodObject<{
             agentFirstReplyMs?: number | undefined;
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         } | undefined;
+        answered?: boolean | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
