@@ -35,6 +35,11 @@ exports.insightSchema = zod_1.z.object({
     // brain thought is not re-proposed.
     userReview: zod_1.z.enum(["proposed", "accepted", "declined"]).optional(),
     userReviewedAt: timestampSchema_1.timestampSchema.optional(),
+    // Why it was raised: short observations drawn from the user's own activity
+    // (dated log lines, things they said, experiment stats), in second person.
+    // The show screen renders these above the accept / decline decision so the
+    // user judges the insight against its grounds, not on the statement alone.
+    evidence: zod_1.z.array(zod_1.z.string()).optional(),
     // Where this insight came from: "experiment" = auto-generated from experiment
     // results, "brain" = promoted from the impulse-brain knowledge graph,
     // "coach" = authored by a coach, "user" = user-authored. Absent on legacy docs.
