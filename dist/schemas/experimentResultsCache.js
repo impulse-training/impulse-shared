@@ -119,8 +119,8 @@ function metricConfidenceFromReadings(input) {
 const metricResultSchema = zod_1.z.object({
     metricId: zod_1.z.string(),
     metricName: zod_1.z.string(),
-    /** The metric's three scale labels, low → high */
-    scaleLabels: metric_1.metricScaleLabelsSchema.optional(),
+    /** The metric's word scale (see metricScaleSchema) */
+    scale: metric_1.metricScaleSchema.optional(),
     summary: metricSummarySchema.optional(),
     /** Daily time series for charts */
     dailySeries: zod_1.z.array(dailyDataPointSchema).optional(),

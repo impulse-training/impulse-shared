@@ -1,8 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isMetric = exports.metricSchema = exports.metricStateSchema = exports.metricRecentSliceSchema = exports.metricWindowSchema = exports.METRIC_NAME_MAX_LENGTH = exports.DEFAULT_METRIC_SCALE_LABELS = exports.metricScaleLabelsSchema = exports.metricValueSchema = void 0;
+exports.isMetric = exports.metricSchema = exports.metricStateSchema = exports.metricRecentSliceSchema = exports.metricWindowSchema = exports.METRIC_NAME_MAX_LENGTH = exports.DEFAULT_METRIC_SCALE_ADJECTIVES = exports.DEFAULT_METRIC_SCALE_LABELS = exports.metricScaleSchema = exports.METRIC_SCALE_ADJECTIVE_MAX_LENGTH = exports.METRIC_SCALE_WORD_MAX_LENGTH = exports.metricValueSchema = void 0;
+exports.defaultMetricScale = defaultMetricScale;
+exports.metricScaleLabels = metricScaleLabels;
 exports.metricValueLabel = metricValueLabel;
-exports.normalizeScaleLabels = normalizeScaleLabels;
+exports.normalizeMetricScale = normalizeMetricScale;
 exports.resolveDesiredDirection = resolveDesiredDirection;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../utils/timestampSchema");
@@ -25,38 +27,80 @@ exports.metricValueSchema = zod_1.z.union([
     zod_1.z.literal(2),
     zod_1.z.literal(3),
 ]);
+/** Longest `word` / adjective a scale accepts — they render on a single chip. */
+exports.METRIC_SCALE_WORD_MAX_LENGTH = 20;
+exports.METRIC_SCALE_ADJECTIVE_MAX_LENGTH = 12;
 /**
- * The three labels for a metric's scale, ordered low → high, e.g.
- * ["Poor", "Okay", "Good"] for Sleep quality. Index = value - 1.
+ * How a metric's three states are worded: ONE word, which is the middle state
+ * on its own, and the adjectives that mark the ends.
+ *
+ *   { word: "bored", low: "a little", high: "very" }
+ *   → 1 "a little bored"   2 "bored"   3 "very bored"
+ *
+ * The bare word is the middle state on purpose: "I'm bored" is the natural
+ * thing to say, and the adjective is an optional refinement of it, so the UI
+ * records the word first and lets the user modify it.
+ *
+ * Every metric is one-ended — it names a single state and measures how much of
+ * it there is (Energy is "energetic", not Low/Okay/High). Adjectives are chosen
+ * per word, because "very" does not fit everything ("well rested").
+ *
+ * All three strings are stored lowercase; capitalize at render.
  */
-exports.metricScaleLabelsSchema = zod_1.z.tuple([
-    zod_1.z.string().min(1),
-    zod_1.z.string().min(1),
-    zod_1.z.string().min(1),
-]);
-/** Resolve the user-facing label for an observation. */
-function metricValueLabel(value, scaleLabels) {
-    return (scaleLabels !== null && scaleLabels !== void 0 ? scaleLabels : exports.DEFAULT_METRIC_SCALE_LABELS)[value - 1];
-}
-/** Fallback for metrics that predate `scaleLabels`. */
+exports.metricScaleSchema = zod_1.z.object({
+    /** The state itself, e.g. "bored". The middle value, unmodified. */
+    word: zod_1.z.string().min(1).max(exports.METRIC_SCALE_WORD_MAX_LENGTH),
+    /** Prefix for value 1, e.g. "a little", "somewhat" */
+    low: zod_1.z.string().min(1).max(exports.METRIC_SCALE_ADJECTIVE_MAX_LENGTH),
+    /** Prefix for value 3, e.g. "very", "well" */
+    high: zod_1.z.string().min(1).max(exports.METRIC_SCALE_ADJECTIVE_MAX_LENGTH),
+});
+/**
+ * Generic labels for a metric with no `scale` — only metrics predating the
+ * word scale, which the migration gives one. Never written to a document.
+ */
 exports.DEFAULT_METRIC_SCALE_LABELS = [
-    "Low",
-    "Okay",
-    "High",
+    "low",
+    "okay",
+    "high",
 ];
+/** The adjectives most words take. Prefer choosing per word where it reads better. */
+exports.DEFAULT_METRIC_SCALE_ADJECTIVES = {
+    low: "a little",
+    high: "very",
+};
+/** A scale for `word` with the default adjectives. */
+function defaultMetricScale(word) {
+    return { word: word.trim().toLowerCase(), ...exports.DEFAULT_METRIC_SCALE_ADJECTIVES };
+}
+/** The three state labels for a scale, e.g. ["a little bored", "bored", "very bored"]. */
+function metricScaleLabels(scale) {
+    if (!scale)
+        return exports.DEFAULT_METRIC_SCALE_LABELS;
+    return [`${scale.low} ${scale.word}`, scale.word, `${scale.high} ${scale.word}`];
+}
+/** Resolve the user-facing label for an observation, e.g. 3 → "very bored". */
+function metricValueLabel(value, scale) {
+    return metricScaleLabels(scale)[value - 1];
+}
 /**
- * Coerce untrusted input (an AI tool argument, a form field) into scale labels,
- * or undefined if it isn't exactly three non-empty strings. Returning undefined
- * rather than padding is deliberate: a partial set would silently mislabel a
- * state, and `DEFAULT_METRIC_SCALE_LABELS` is a safer read than a wrong label.
+ * Coerce untrusted input (an AI tool argument, a form field) into a scale, or
+ * undefined if any part is missing or too long. Lowercases and trims. Returning
+ * undefined rather than filling gaps is deliberate: a guessed adjective can read
+ * wrong ("very rested"), and callers should fall back to `defaultMetricScale`
+ * explicitly where that is acceptable.
  */
-function normalizeScaleLabels(input) {
-    if (!Array.isArray(input) || input.length !== 3)
+function normalizeMetricScale(input) {
+    if (!input || typeof input !== "object")
         return undefined;
-    const trimmed = input.map((v) => (typeof v === "string" ? v.trim() : ""));
-    if (trimmed.some((v) => v.length === 0))
-        return undefined;
-    return [trimmed[0], trimmed[1], trimmed[2]];
+    const clean = (v) => typeof v === "string" ? v.trim().replace(/\s+/g, " ").toLowerCase() : "";
+    const candidate = {
+        word: clean(input.word),
+        low: clean(input.low),
+        high: clean(input.high),
+    };
+    const parsed = exports.metricScaleSchema.safeParse(candidate);
+    return parsed.success ? parsed.data : undefined;
 }
 /**
  * Longest metric name that still fits the Home matrix's fixed label column
@@ -155,11 +199,11 @@ exports.metricSchema = zod_1.z.object({
     /** Prompt shown when tracking, e.g. "How clear is your thinking?" */
     description: zod_1.z.string().optional(),
     /**
-     * The three scale labels, ordered low → high, e.g.
-     * ["Very foggy", "Okay", "Very clear"]. Optional only for metrics created
-     * before the 3-point migration; use `metricValueLabel` to read it.
+     * How the three states are worded, e.g. { word: "rested", low: "somewhat",
+     * high: "well" }. Optional only for metrics created before the word scale;
+     * read it through `metricValueLabel` / `metricScaleLabels`.
      */
-    scaleLabels: exports.metricScaleLabelsSchema.optional(),
+    scale: exports.metricScaleSchema.optional(),
     /** If created from METRIC_REGISTRY, stores the registry id for dedup */
     metricRegistryId: zod_1.z.string().optional(),
     /** Circumplex quadrant — present only on pre-seeded feeling metrics */

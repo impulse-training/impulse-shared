@@ -1,15 +1,16 @@
-import type { MetricScaleLabels } from "../schemas/metric";
+import type { MetricScale } from "../schemas/metric";
 export type MetricDefinition = {
     id: string;
     label: string;
     description: string;
     /**
-     * The three scale labels, ordered low → high. Named for the metric itself
-     * rather than a generic Low/Medium/High, because the ordering means "more of
-     * this metric" — high Anxiety is 3 just as high Energy is 3, and only
-     * `desiredDirection` says whether that is welcome.
+     * The word and its adjectives, chosen per metric so each end reads naturally
+     * ("somewhat rested / rested / well rested"). One-ended: the word names the
+     * state and the value says how much of it — high Anxiety is "very anxious"
+     * just as high Energy is "very energetic", and only `desiredDirection` says
+     * whether more is welcome.
      */
-    scaleLabels: MetricScaleLabels;
+    scale: MetricScale;
     minContiguousTransitionDays: number;
     desiredDirection: "higher" | "lower";
 };

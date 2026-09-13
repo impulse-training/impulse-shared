@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { logBaseSchema } from "./base";
-import { metricScaleLabelsSchema, metricValueSchema } from "../metric";
+import { metricScaleSchema, metricValueSchema } from "../metric";
 
 /**
  * A metric observation log — one ordered day-scoped state observation.
@@ -28,10 +28,10 @@ export const metricLogSchema = logBaseSchema.extend({
     /** Ordered 3-point observation, null when awaiting user input */
     value: metricValueSchema.nullable(),
     /**
-     * Denormalized scale labels, so a log renders ("Energy: High") without
-     * loading the metric document.
+     * Denormalized word scale, so a log renders ("Energy: very energetic")
+     * without loading the metric document.
      */
-    scaleLabels: metricScaleLabelsSchema.optional(),
+    scale: metricScaleSchema.optional(),
     /** Optional supporting text / note */
     text: z.string().optional(),
     /** Denormalized circumplex quadrant — present only on feeling-type metrics */

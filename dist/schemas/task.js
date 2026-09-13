@@ -145,8 +145,8 @@ exports.proposeGoalTaskSchema = exports.taskBaseSchema.extend({
 });
 exports.proposedMetricSchema = zod_1.z.object({
     name: zod_1.z.string().min(1).max(metric_1.METRIC_NAME_MAX_LENGTH),
-    /** The three scale labels the metric should use, ordered low → high */
-    scaleLabels: metric_1.metricScaleLabelsSchema.optional(),
+    /** The word and adjectives the metric should use (see metricScaleSchema) */
+    scale: metric_1.metricScaleSchema.optional(),
 });
 exports.proposeExperimentTaskSchema = exports.taskBaseSchema.extend({
     type: zod_1.z.literal("propose_experiment"),

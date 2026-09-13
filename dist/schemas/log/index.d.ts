@@ -25641,13 +25641,33 @@ export declare const logSchemas: {
         behaviorNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         metrics: z.ZodOptional<z.ZodArray<z.ZodObject<{
             name: z.ZodString;
-            scaleLabels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodString], null>>;
+            scale: z.ZodOptional<z.ZodObject<{
+                word: z.ZodString;
+                low: z.ZodString;
+                high: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                low: string;
+                high: string;
+                word: string;
+            }, {
+                low: string;
+                high: string;
+                word: string;
+            }>>;
         }, "strip", z.ZodTypeAny, {
             name: string;
-            scaleLabels?: [string, string, string] | undefined;
+            scale?: {
+                low: string;
+                high: string;
+                word: string;
+            } | undefined;
         }, {
             name: string;
-            scaleLabels?: [string, string, string] | undefined;
+            scale?: {
+                low: string;
+                high: string;
+                word: string;
+            } | undefined;
         }>, "many">>;
         metricLabels: z.ZodArray<z.ZodString, "many">;
         experimentQuestion: z.ZodOptional<z.ZodString>;
@@ -25684,7 +25704,11 @@ export declare const logSchemas: {
         behaviorNames?: string[] | undefined;
         metrics?: {
             name: string;
-            scaleLabels?: [string, string, string] | undefined;
+            scale?: {
+                low: string;
+                high: string;
+                word: string;
+            } | undefined;
         }[] | undefined;
         experimentQuestion?: string | undefined;
         confirmedAt?: import("../../types").Timestamp | undefined;
@@ -25712,7 +25736,11 @@ export declare const logSchemas: {
         behaviorNames?: string[] | undefined;
         metrics?: {
             name: string;
-            scaleLabels?: [string, string, string] | undefined;
+            scale?: {
+                low: string;
+                high: string;
+                word: string;
+            } | undefined;
         }[] | undefined;
         experimentQuestion?: string | undefined;
         confirmedAt?: import("../../types").Timestamp | undefined;
@@ -26518,7 +26546,19 @@ export declare const logSchemas: {
             metricId: z.ZodString;
             metricName: z.ZodString;
             value: z.ZodNullable<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>>;
-            scaleLabels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodString], null>>;
+            scale: z.ZodOptional<z.ZodObject<{
+                word: z.ZodString;
+                low: z.ZodString;
+                high: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                low: string;
+                high: string;
+                word: string;
+            }, {
+                low: string;
+                high: string;
+                word: string;
+            }>>;
             text: z.ZodOptional<z.ZodString>;
             quadrant: z.ZodOptional<z.ZodEnum<["activated", "stressed", "calm", "low"]>>;
         }, "strip", z.ZodTypeAny, {
@@ -26526,14 +26566,22 @@ export declare const logSchemas: {
             metricId: string;
             metricName: string;
             text?: string | undefined;
-            scaleLabels?: [string, string, string] | undefined;
+            scale?: {
+                low: string;
+                high: string;
+                word: string;
+            } | undefined;
             quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
         }, {
             value: 1 | 2 | 3 | null;
             metricId: string;
             metricName: string;
             text?: string | undefined;
-            scaleLabels?: [string, string, string] | undefined;
+            scale?: {
+                low: string;
+                high: string;
+                word: string;
+            } | undefined;
             quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
@@ -26550,7 +26598,11 @@ export declare const logSchemas: {
             metricId: string;
             metricName: string;
             text?: string | undefined;
-            scaleLabels?: [string, string, string] | undefined;
+            scale?: {
+                low: string;
+                high: string;
+                word: string;
+            } | undefined;
             quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
         };
         id?: string | undefined;
@@ -26573,7 +26625,11 @@ export declare const logSchemas: {
             metricId: string;
             metricName: string;
             text?: string | undefined;
-            scaleLabels?: [string, string, string] | undefined;
+            scale?: {
+                low: string;
+                high: string;
+                word: string;
+            } | undefined;
             quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
         };
         id?: string | undefined;
@@ -55480,13 +55536,33 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     behaviorNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     metrics: z.ZodOptional<z.ZodArray<z.ZodObject<{
         name: z.ZodString;
-        scaleLabels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodString], null>>;
+        scale: z.ZodOptional<z.ZodObject<{
+            word: z.ZodString;
+            low: z.ZodString;
+            high: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            low: string;
+            high: string;
+            word: string;
+        }, {
+            low: string;
+            high: string;
+            word: string;
+        }>>;
     }, "strip", z.ZodTypeAny, {
         name: string;
-        scaleLabels?: [string, string, string] | undefined;
+        scale?: {
+            low: string;
+            high: string;
+            word: string;
+        } | undefined;
     }, {
         name: string;
-        scaleLabels?: [string, string, string] | undefined;
+        scale?: {
+            low: string;
+            high: string;
+            word: string;
+        } | undefined;
     }>, "many">>;
     metricLabels: z.ZodArray<z.ZodString, "many">;
     experimentQuestion: z.ZodOptional<z.ZodString>;
@@ -55523,7 +55599,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     behaviorNames?: string[] | undefined;
     metrics?: {
         name: string;
-        scaleLabels?: [string, string, string] | undefined;
+        scale?: {
+            low: string;
+            high: string;
+            word: string;
+        } | undefined;
     }[] | undefined;
     experimentQuestion?: string | undefined;
     confirmedAt?: import("../../types").Timestamp | undefined;
@@ -55551,7 +55631,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     behaviorNames?: string[] | undefined;
     metrics?: {
         name: string;
-        scaleLabels?: [string, string, string] | undefined;
+        scale?: {
+            low: string;
+            high: string;
+            word: string;
+        } | undefined;
     }[] | undefined;
     experimentQuestion?: string | undefined;
     confirmedAt?: import("../../types").Timestamp | undefined;
@@ -56354,7 +56438,19 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         metricId: z.ZodString;
         metricName: z.ZodString;
         value: z.ZodNullable<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>>;
-        scaleLabels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodString], null>>;
+        scale: z.ZodOptional<z.ZodObject<{
+            word: z.ZodString;
+            low: z.ZodString;
+            high: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            low: string;
+            high: string;
+            word: string;
+        }, {
+            low: string;
+            high: string;
+            word: string;
+        }>>;
         text: z.ZodOptional<z.ZodString>;
         quadrant: z.ZodOptional<z.ZodEnum<["activated", "stressed", "calm", "low"]>>;
     }, "strip", z.ZodTypeAny, {
@@ -56362,14 +56458,22 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         metricId: string;
         metricName: string;
         text?: string | undefined;
-        scaleLabels?: [string, string, string] | undefined;
+        scale?: {
+            low: string;
+            high: string;
+            word: string;
+        } | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     }, {
         value: 1 | 2 | 3 | null;
         metricId: string;
         metricName: string;
         text?: string | undefined;
-        scaleLabels?: [string, string, string] | undefined;
+        scale?: {
+            low: string;
+            high: string;
+            word: string;
+        } | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -56386,7 +56490,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         metricId: string;
         metricName: string;
         text?: string | undefined;
-        scaleLabels?: [string, string, string] | undefined;
+        scale?: {
+            low: string;
+            high: string;
+            word: string;
+        } | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     };
     id?: string | undefined;
@@ -56409,7 +56517,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         metricId: string;
         metricName: string;
         text?: string | undefined;
-        scaleLabels?: [string, string, string] | undefined;
+        scale?: {
+            low: string;
+            high: string;
+            word: string;
+        } | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     };
     id?: string | undefined;
