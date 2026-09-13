@@ -24,6 +24,18 @@ export const insightSchema = z.object({
   postedAt: timestampSchema.optional(),
   postedBy: z.string().optional(), // coach UID who posted
 
+  // User-review lifecycle. Anything the system (or a coach) writes about the
+  // user is a PROPOSAL until the user says it rings true: it renders under
+  // "Proposed" on the Me tab with accept / decline, and only "accepted"
+  // insights sit in their list as things they know about themselves.
+  // User-authored insights are born "accepted". Absent on legacy docs: the
+  // client treats a system-origin doc (one carrying `status`) as proposed and
+  // anything else as accepted, so old pending brain insights become proposals
+  // rather than facts. Declined insights are kept, not deleted, so the same
+  // brain thought is not re-proposed.
+  userReview: z.enum(["proposed", "accepted", "declined"]).optional(),
+  userReviewedAt: timestampSchema.optional(),
+
   // Where this insight came from: "experiment" = auto-generated from experiment
   // results, "brain" = promoted from the impulse-brain knowledge graph,
   // "coach" = authored by a coach, "user" = user-authored. Absent on legacy docs.

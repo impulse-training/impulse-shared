@@ -12,6 +12,8 @@ export declare const insightSchema: z.ZodObject<{
     coachId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     postedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     postedBy: z.ZodOptional<z.ZodString>;
+    userReview: z.ZodOptional<z.ZodEnum<["proposed", "accepted", "declined"]>>;
+    userReviewedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     source: z.ZodOptional<z.ZodEnum<["experiment", "brain", "coach", "user"]>>;
     category: z.ZodOptional<z.ZodString>;
     confidence: z.ZodOptional<z.ZodNumber>;
@@ -49,6 +51,8 @@ export declare const insightSchema: z.ZodObject<{
     coachId?: string | null | undefined;
     postedAt?: import("../types").Timestamp | undefined;
     postedBy?: string | undefined;
+    userReview?: "accepted" | "declined" | "proposed" | undefined;
+    userReviewedAt?: import("../types").Timestamp | undefined;
     category?: string | undefined;
     brainThoughtId?: string | undefined;
     contentEligibilityStatus?: "eligible" | "ineligible" | null | undefined;
@@ -73,6 +77,8 @@ export declare const insightSchema: z.ZodObject<{
     coachId?: string | null | undefined;
     postedAt?: import("../types").Timestamp | undefined;
     postedBy?: string | undefined;
+    userReview?: "accepted" | "declined" | "proposed" | undefined;
+    userReviewedAt?: import("../types").Timestamp | undefined;
     category?: string | undefined;
     brainThoughtId?: string | undefined;
     contentEligibilityStatus?: "eligible" | "ineligible" | null | undefined;
