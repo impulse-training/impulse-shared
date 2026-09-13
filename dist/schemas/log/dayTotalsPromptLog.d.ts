@@ -19,15 +19,56 @@ export declare const dayTotalsPromptLogSchema: z.ZodObject<{
         targetDateString: z.ZodString;
         /** Set when the user confirms their day totals */
         confirmedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        /**
+         * What was confirmed, snapshotted at the moment of confirming.
+         *
+         * The card could say THAT the day was locked in but never WHAT was locked
+         * in, so a recap read back later — or a voice call where the user never
+         * saw a screen — leaves no record of the numbers they actually agreed to.
+         * Re-deriving them from the day summary is not the same fact: behaviour
+         * logs keep changing afterwards, and the question this answers is what
+         * the user said yes to.
+         *
+         * Absent on logs confirmed before this existed.
+         */
+        confirmedTotals: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            behaviorId: z.ZodString;
+            /** Masked behaviours are stored by id; the name is for display. */
+            behaviorName: z.ZodOptional<z.ZodString>;
+            value: z.ZodNumber;
+            formattedValue: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            value: number;
+            behaviorId: string;
+            behaviorName?: string | undefined;
+            formattedValue?: string | undefined;
+        }, {
+            value: number;
+            behaviorId: string;
+            behaviorName?: string | undefined;
+            formattedValue?: string | undefined;
+        }>, "many">>;
         /** Set when the user requests a late-recap discussion with the AI */
         discussRequestedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
         targetDateString: string;
         confirmedAt?: import("../../types").Timestamp | undefined;
+        confirmedTotals?: {
+            value: number;
+            behaviorId: string;
+            behaviorName?: string | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         discussRequestedAt?: import("../../types").Timestamp | undefined;
     }, {
         targetDateString: string;
         confirmedAt?: import("../../types").Timestamp | undefined;
+        confirmedTotals?: {
+            value: number;
+            behaviorId: string;
+            behaviorName?: string | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         discussRequestedAt?: import("../../types").Timestamp | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -42,6 +83,12 @@ export declare const dayTotalsPromptLogSchema: z.ZodObject<{
     data: {
         targetDateString: string;
         confirmedAt?: import("../../types").Timestamp | undefined;
+        confirmedTotals?: {
+            value: number;
+            behaviorId: string;
+            behaviorName?: string | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         discussRequestedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
@@ -61,6 +108,12 @@ export declare const dayTotalsPromptLogSchema: z.ZodObject<{
     data: {
         targetDateString: string;
         confirmedAt?: import("../../types").Timestamp | undefined;
+        confirmedTotals?: {
+            value: number;
+            behaviorId: string;
+            behaviorName?: string | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         discussRequestedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
