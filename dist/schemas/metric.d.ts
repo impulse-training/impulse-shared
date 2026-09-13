@@ -13,23 +13,69 @@ import { z } from "zod";
  */
 export declare const metricValueSchema: z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>;
 export type MetricValue = z.infer<typeof metricValueSchema>;
+/** Longest `word` / adjective a scale accepts — they render on a single chip. */
+export declare const METRIC_SCALE_WORD_MAX_LENGTH = 20;
+export declare const METRIC_SCALE_ADJECTIVE_MAX_LENGTH = 12;
 /**
- * The three labels for a metric's scale, ordered low → high, e.g.
- * ["Poor", "Okay", "Good"] for Sleep quality. Index = value - 1.
+ * How a metric's three states are worded: ONE word, which is the middle state
+ * on its own, and the adjectives that mark the ends.
+ *
+ *   { word: "bored", low: "a little", high: "very" }
+ *   → 1 "a little bored"   2 "bored"   3 "very bored"
+ *
+ * The bare word is the middle state on purpose: "I'm bored" is the natural
+ * thing to say, and the adjective is an optional refinement of it, so the UI
+ * records the word first and lets the user modify it.
+ *
+ * Every metric is one-ended — it names a single state and measures how much of
+ * it there is (Energy is "energetic", not Low/Okay/High). Adjectives are chosen
+ * per word, because "very" does not fit everything ("well rested").
+ *
+ * All three strings are stored lowercase; capitalize at render.
  */
-export declare const metricScaleLabelsSchema: z.ZodTuple<[z.ZodString, z.ZodString, z.ZodString], null>;
-export type MetricScaleLabels = z.infer<typeof metricScaleLabelsSchema>;
-/** Resolve the user-facing label for an observation. */
-export declare function metricValueLabel(value: MetricValue, scaleLabels?: MetricScaleLabels): string;
-/** Fallback for metrics that predate `scaleLabels`. */
+export declare const metricScaleSchema: z.ZodObject<{
+    /** The state itself, e.g. "bored". The middle value, unmodified. */
+    word: z.ZodString;
+    /** Prefix for value 1, e.g. "a little", "somewhat" */
+    low: z.ZodString;
+    /** Prefix for value 3, e.g. "very", "well" */
+    high: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    low: string;
+    high: string;
+    word: string;
+}, {
+    low: string;
+    high: string;
+    word: string;
+}>;
+export type MetricScale = z.infer<typeof metricScaleSchema>;
+/** The three rendered state labels, ordered low → high. Index = value - 1. */
+export type MetricScaleLabels = [string, string, string];
+/**
+ * Generic labels for a metric with no `scale` — only metrics predating the
+ * word scale, which the migration gives one. Never written to a document.
+ */
 export declare const DEFAULT_METRIC_SCALE_LABELS: MetricScaleLabels;
+/** The adjectives most words take. Prefer choosing per word where it reads better. */
+export declare const DEFAULT_METRIC_SCALE_ADJECTIVES: {
+    readonly low: "a little";
+    readonly high: "very";
+};
+/** A scale for `word` with the default adjectives. */
+export declare function defaultMetricScale(word: string): MetricScale;
+/** The three state labels for a scale, e.g. ["a little bored", "bored", "very bored"]. */
+export declare function metricScaleLabels(scale?: MetricScale | null): MetricScaleLabels;
+/** Resolve the user-facing label for an observation, e.g. 3 → "very bored". */
+export declare function metricValueLabel(value: MetricValue, scale?: MetricScale | null): string;
 /**
- * Coerce untrusted input (an AI tool argument, a form field) into scale labels,
- * or undefined if it isn't exactly three non-empty strings. Returning undefined
- * rather than padding is deliberate: a partial set would silently mislabel a
- * state, and `DEFAULT_METRIC_SCALE_LABELS` is a safer read than a wrong label.
+ * Coerce untrusted input (an AI tool argument, a form field) into a scale, or
+ * undefined if any part is missing or too long. Lowercases and trims. Returning
+ * undefined rather than filling gaps is deliberate: a guessed adjective can read
+ * wrong ("very rested"), and callers should fall back to `defaultMetricScale`
+ * explicitly where that is acceptable.
  */
-export declare function normalizeScaleLabels(input: unknown): MetricScaleLabels | undefined;
+export declare function normalizeMetricScale(input: unknown): MetricScale | undefined;
 /**
  * Longest metric name that still fits the Home matrix's fixed label column
  * without truncation. Enforced at creation rather than truncated at render, so
@@ -554,11 +600,26 @@ export declare const metricSchema: z.ZodObject<{
     /** Prompt shown when tracking, e.g. "How clear is your thinking?" */
     description: z.ZodOptional<z.ZodString>;
     /**
-     * The three scale labels, ordered low → high, e.g.
-     * ["Very foggy", "Okay", "Very clear"]. Optional only for metrics created
-     * before the 3-point migration; use `metricValueLabel` to read it.
+     * How the three states are worded, e.g. { word: "rested", low: "somewhat",
+     * high: "well" }. Optional only for metrics created before the word scale;
+     * read it through `metricValueLabel` / `metricScaleLabels`.
      */
-    scaleLabels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodString], null>>;
+    scale: z.ZodOptional<z.ZodObject<{
+        /** The state itself, e.g. "bored". The middle value, unmodified. */
+        word: z.ZodString;
+        /** Prefix for value 1, e.g. "a little", "somewhat" */
+        low: z.ZodString;
+        /** Prefix for value 3, e.g. "very", "well" */
+        high: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        low: string;
+        high: string;
+        word: string;
+    }, {
+        low: string;
+        high: string;
+        word: string;
+    }>>;
     /** If created from METRIC_REGISTRY, stores the registry id for dedup */
     metricRegistryId: z.ZodOptional<z.ZodString>;
     /** Circumplex quadrant — present only on pre-seeded feeling metrics */
@@ -974,6 +1035,11 @@ export declare const metricSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
+    scale?: {
+        low: string;
+        high: string;
+        word: string;
+    } | undefined;
     description?: string | undefined;
     state?: {
         windows: {
@@ -1030,7 +1096,6 @@ export declare const metricSchema: z.ZodObject<{
             salience: "HIGH" | "MEDIUM" | "LOW";
         } | undefined;
     } | undefined;
-    scaleLabels?: [string, string, string] | undefined;
     metricRegistryId?: string | undefined;
     quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     desiredDirection?: "higher" | "lower" | undefined;
@@ -1040,6 +1105,11 @@ export declare const metricSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
+    scale?: {
+        low: string;
+        high: string;
+        word: string;
+    } | undefined;
     description?: string | undefined;
     state?: {
         windows: {
@@ -1096,7 +1166,6 @@ export declare const metricSchema: z.ZodObject<{
             salience: "HIGH" | "MEDIUM" | "LOW";
         } | undefined;
     } | undefined;
-    scaleLabels?: [string, string, string] | undefined;
     metricRegistryId?: string | undefined;
     quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     desiredDirection?: "higher" | "lower" | undefined;

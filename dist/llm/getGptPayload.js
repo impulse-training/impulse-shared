@@ -511,11 +511,10 @@ function getGptPayload(log, isFinalLogInSession, options) {
     }
     // Handle MetricLog
     if ((0, log_1.logIsMetricLog)(log)) {
-        const { metricName, value, scaleLabels, quadrant } = log.data;
+        const { metricName, value, scale, quadrant } = log.data;
         // Metrics are ordered states, so give the AI the state's NAME. "2/3" invites
-        // it to talk in scores; "Okay" is what the user actually chose.
-        const options3 = scaleLabels !== null && scaleLabels !== void 0 ? scaleLabels : metric_1.DEFAULT_METRIC_SCALE_LABELS;
-        const scaleDesc = ` (${options3.join(" / ")})`;
+        // it to talk in scores; "very bored" is what the user actually chose.
+        const scaleDesc = ` (${(0, metric_1.metricScaleLabels)(scale).join(" / ")})`;
         if (value == null) {
             return [
                 {
@@ -524,7 +523,7 @@ function getGptPayload(log, isFinalLogInSession, options) {
                 },
             ];
         }
-        const stateLabel = (0, metric_1.metricValueLabel)(value, scaleLabels);
+        const stateLabel = (0, metric_1.metricValueLabel)(value, scale);
         // Feeling metric (has quadrant) — use feeling-specific wording
         if (quadrant) {
             if (isFinalLogInSession && log.shouldZaraRespond) {

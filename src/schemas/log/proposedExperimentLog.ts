@@ -3,13 +3,13 @@ import { logBaseSchema } from "./base";
 import { timestampSchema } from "../../utils/timestampSchema";
 import {
   METRIC_NAME_MAX_LENGTH,
-  metricScaleLabelsSchema,
+  metricScaleSchema,
 } from "../metric";
 
 export const proposedExperimentMetricSchema = z.object({
   name: z.string().min(1).max(METRIC_NAME_MAX_LENGTH),
-  /** The three scale labels the metric should use, ordered low → high */
-  scaleLabels: metricScaleLabelsSchema.optional(),
+  /** The word and adjectives the metric should use (see metricScaleSchema) */
+  scale: metricScaleSchema.optional(),
 });
 
 export const proposedExperimentLogSchema = logBaseSchema.extend({

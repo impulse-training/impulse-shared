@@ -133,8 +133,20 @@ export declare function metricConfidenceFromReadings(input: {
 declare const metricResultSchema: z.ZodObject<{
     metricId: z.ZodString;
     metricName: z.ZodString;
-    /** The metric's three scale labels, low → high */
-    scaleLabels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodString], null>>;
+    /** The metric's word scale (see metricScaleSchema) */
+    scale: z.ZodOptional<z.ZodObject<{
+        word: z.ZodString;
+        low: z.ZodString;
+        high: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        low: string;
+        high: string;
+        word: string;
+    }, {
+        low: string;
+        high: string;
+        word: string;
+    }>>;
     summary: z.ZodOptional<z.ZodObject<{
         /** Count of observations in each state, low → high */
         distribution: z.ZodOptional<z.ZodObject<{
@@ -206,6 +218,11 @@ declare const metricResultSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     metricId: string;
     metricName: string;
+    scale?: {
+        low: string;
+        high: string;
+        word: string;
+    } | undefined;
     confidence?: "low" | "high" | "moderate" | undefined;
     summary?: {
         count: number;
@@ -216,7 +233,6 @@ declare const metricResultSchema: z.ZodObject<{
             okay: number;
         } | undefined;
     } | undefined;
-    scaleLabels?: [string, string, string] | undefined;
     hasBaseline?: boolean | undefined;
     postMilestoneReadings?: number | undefined;
     dailySeries?: {
@@ -227,6 +243,11 @@ declare const metricResultSchema: z.ZodObject<{
 }, {
     metricId: string;
     metricName: string;
+    scale?: {
+        low: string;
+        high: string;
+        word: string;
+    } | undefined;
     confidence?: "low" | "high" | "moderate" | undefined;
     summary?: {
         count: number;
@@ -237,7 +258,6 @@ declare const metricResultSchema: z.ZodObject<{
             okay: number;
         } | undefined;
     } | undefined;
-    scaleLabels?: [string, string, string] | undefined;
     hasBaseline?: boolean | undefined;
     postMilestoneReadings?: number | undefined;
     dailySeries?: {
@@ -539,8 +559,20 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
     metricResults: z.ZodArray<z.ZodObject<{
         metricId: z.ZodString;
         metricName: z.ZodString;
-        /** The metric's three scale labels, low → high */
-        scaleLabels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodString], null>>;
+        /** The metric's word scale (see metricScaleSchema) */
+        scale: z.ZodOptional<z.ZodObject<{
+            word: z.ZodString;
+            low: z.ZodString;
+            high: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            low: string;
+            high: string;
+            word: string;
+        }, {
+            low: string;
+            high: string;
+            word: string;
+        }>>;
         summary: z.ZodOptional<z.ZodObject<{
             /** Count of observations in each state, low → high */
             distribution: z.ZodOptional<z.ZodObject<{
@@ -612,6 +644,11 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         metricId: string;
         metricName: string;
+        scale?: {
+            low: string;
+            high: string;
+            word: string;
+        } | undefined;
         confidence?: "low" | "high" | "moderate" | undefined;
         summary?: {
             count: number;
@@ -622,7 +659,6 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
                 okay: number;
             } | undefined;
         } | undefined;
-        scaleLabels?: [string, string, string] | undefined;
         hasBaseline?: boolean | undefined;
         postMilestoneReadings?: number | undefined;
         dailySeries?: {
@@ -633,6 +669,11 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
     }, {
         metricId: string;
         metricName: string;
+        scale?: {
+            low: string;
+            high: string;
+            word: string;
+        } | undefined;
         confidence?: "low" | "high" | "moderate" | undefined;
         summary?: {
             count: number;
@@ -643,7 +684,6 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
                 okay: number;
             } | undefined;
         } | undefined;
-        scaleLabels?: [string, string, string] | undefined;
         hasBaseline?: boolean | undefined;
         postMilestoneReadings?: number | undefined;
         dailySeries?: {
@@ -783,6 +823,11 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
     metricResults: {
         metricId: string;
         metricName: string;
+        scale?: {
+            low: string;
+            high: string;
+            word: string;
+        } | undefined;
         confidence?: "low" | "high" | "moderate" | undefined;
         summary?: {
             count: number;
@@ -793,7 +838,6 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
                 okay: number;
             } | undefined;
         } | undefined;
-        scaleLabels?: [string, string, string] | undefined;
         hasBaseline?: boolean | undefined;
         postMilestoneReadings?: number | undefined;
         dailySeries?: {
@@ -857,6 +901,11 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
     metricResults: {
         metricId: string;
         metricName: string;
+        scale?: {
+            low: string;
+            high: string;
+            word: string;
+        } | undefined;
         confidence?: "low" | "high" | "moderate" | undefined;
         summary?: {
             count: number;
@@ -867,7 +916,6 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
                 okay: number;
             } | undefined;
         } | undefined;
-        scaleLabels?: [string, string, string] | undefined;
         hasBaseline?: boolean | undefined;
         postMilestoneReadings?: number | undefined;
         dailySeries?: {

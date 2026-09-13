@@ -2,7 +2,7 @@ import { z } from "zod";
 import { goalSchema } from "./goal";
 import { strategyModificationOperationSchema } from "./log/proposedStrategyModificationLog";
 import { timestampSchema } from "../utils/timestampSchema";
-import { METRIC_NAME_MAX_LENGTH, metricScaleLabelsSchema } from "./metric";
+import { METRIC_NAME_MAX_LENGTH, metricScaleSchema } from "./metric";
 
 export const taskStatusSchema = z.enum(["open", "completed", "dismissed"]);
 
@@ -151,8 +151,8 @@ export const proposeGoalTaskSchema = taskBaseSchema.extend({
 
 export const proposedMetricSchema = z.object({
   name: z.string().min(1).max(METRIC_NAME_MAX_LENGTH),
-  /** The three scale labels the metric should use, ordered low → high */
-  scaleLabels: metricScaleLabelsSchema.optional(),
+  /** The word and adjectives the metric should use (see metricScaleSchema) */
+  scale: metricScaleSchema.optional(),
 });
 
 export const proposeExperimentTaskSchema = taskBaseSchema.extend({

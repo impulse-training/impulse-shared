@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { timestampSchema } from "../utils/timestampSchema";
-import { metricScaleLabelsSchema } from "./metric";
+import { metricScaleSchema } from "./metric";
 
 /**
  * Overall behavior summary from BigQuery (impulse session counts).
@@ -130,8 +130,8 @@ export function metricConfidenceFromReadings(input: {
 const metricResultSchema = z.object({
   metricId: z.string(),
   metricName: z.string(),
-  /** The metric's three scale labels, low → high */
-  scaleLabels: metricScaleLabelsSchema.optional(),
+  /** The metric's word scale (see metricScaleSchema) */
+  scale: metricScaleSchema.optional(),
   summary: metricSummarySchema.optional(),
   /** Daily time series for charts */
   dailySeries: z.array(dailyDataPointSchema).optional(),

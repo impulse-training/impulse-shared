@@ -30,10 +30,10 @@ exports.metricLogSchema = base_1.logBaseSchema.extend({
         /** Ordered 3-point observation, null when awaiting user input */
         value: metric_1.metricValueSchema.nullable(),
         /**
-         * Denormalized scale labels, so a log renders ("Energy: High") without
-         * loading the metric document.
+         * Denormalized word scale, so a log renders ("Energy: very energetic")
+         * without loading the metric document.
          */
-        scaleLabels: metric_1.metricScaleLabelsSchema.optional(),
+        scale: metric_1.metricScaleSchema.optional(),
         /** Optional supporting text / note */
         text: zod_1.z.string().optional(),
         /** Denormalized circumplex quadrant — present only on feeling-type metrics */

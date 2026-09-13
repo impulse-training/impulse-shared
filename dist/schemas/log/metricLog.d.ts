@@ -37,10 +37,22 @@ export declare const metricLogSchema: z.ZodObject<{
         /** Ordered 3-point observation, null when awaiting user input */
         value: z.ZodNullable<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>>;
         /**
-         * Denormalized scale labels, so a log renders ("Energy: High") without
-         * loading the metric document.
+         * Denormalized word scale, so a log renders ("Energy: very energetic")
+         * without loading the metric document.
          */
-        scaleLabels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodString], null>>;
+        scale: z.ZodOptional<z.ZodObject<{
+            word: z.ZodString;
+            low: z.ZodString;
+            high: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            low: string;
+            high: string;
+            word: string;
+        }, {
+            low: string;
+            high: string;
+            word: string;
+        }>>;
         /** Optional supporting text / note */
         text: z.ZodOptional<z.ZodString>;
         /** Denormalized circumplex quadrant — present only on feeling-type metrics */
@@ -50,14 +62,22 @@ export declare const metricLogSchema: z.ZodObject<{
         metricId: string;
         metricName: string;
         text?: string | undefined;
-        scaleLabels?: [string, string, string] | undefined;
+        scale?: {
+            low: string;
+            high: string;
+            word: string;
+        } | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     }, {
         value: 1 | 2 | 3 | null;
         metricId: string;
         metricName: string;
         text?: string | undefined;
-        scaleLabels?: [string, string, string] | undefined;
+        scale?: {
+            low: string;
+            high: string;
+            word: string;
+        } | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -74,7 +94,11 @@ export declare const metricLogSchema: z.ZodObject<{
         metricId: string;
         metricName: string;
         text?: string | undefined;
-        scaleLabels?: [string, string, string] | undefined;
+        scale?: {
+            low: string;
+            high: string;
+            word: string;
+        } | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     };
     id?: string | undefined;
@@ -97,7 +121,11 @@ export declare const metricLogSchema: z.ZodObject<{
         metricId: string;
         metricName: string;
         text?: string | undefined;
-        scaleLabels?: [string, string, string] | undefined;
+        scale?: {
+            low: string;
+            high: string;
+            word: string;
+        } | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     };
     id?: string | undefined;

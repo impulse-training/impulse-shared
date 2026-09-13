@@ -7,8 +7,8 @@ const timestampSchema_1 = require("../../utils/timestampSchema");
 const metric_1 = require("../metric");
 exports.proposedExperimentMetricSchema = zod_1.z.object({
     name: zod_1.z.string().min(1).max(metric_1.METRIC_NAME_MAX_LENGTH),
-    /** The three scale labels the metric should use, ordered low → high */
-    scaleLabels: metric_1.metricScaleLabelsSchema.optional(),
+    /** The word and adjectives the metric should use (see metricScaleSchema) */
+    scale: metric_1.metricScaleSchema.optional(),
 });
 exports.proposedExperimentLogSchema = base_1.logBaseSchema.extend({
     type: zod_1.z.literal("proposed_experiment"),
