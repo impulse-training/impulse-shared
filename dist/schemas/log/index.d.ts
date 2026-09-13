@@ -26673,14 +26673,42 @@ export declare const logSchemas: {
         data: z.ZodObject<{
             targetDateString: z.ZodString;
             confirmedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            confirmedTotals: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                behaviorId: z.ZodString;
+                behaviorName: z.ZodOptional<z.ZodString>;
+                value: z.ZodNumber;
+                formattedValue: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                value: number;
+                behaviorId: string;
+                behaviorName?: string | undefined;
+                formattedValue?: string | undefined;
+            }, {
+                value: number;
+                behaviorId: string;
+                behaviorName?: string | undefined;
+                formattedValue?: string | undefined;
+            }>, "many">>;
             discussRequestedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
             targetDateString: string;
             confirmedAt?: import("../../types").Timestamp | undefined;
+            confirmedTotals?: {
+                value: number;
+                behaviorId: string;
+                behaviorName?: string | undefined;
+                formattedValue?: string | undefined;
+            }[] | undefined;
             discussRequestedAt?: import("../../types").Timestamp | undefined;
         }, {
             targetDateString: string;
             confirmedAt?: import("../../types").Timestamp | undefined;
+            confirmedTotals?: {
+                value: number;
+                behaviorId: string;
+                behaviorName?: string | undefined;
+                formattedValue?: string | undefined;
+            }[] | undefined;
             discussRequestedAt?: import("../../types").Timestamp | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
@@ -26695,6 +26723,12 @@ export declare const logSchemas: {
         data: {
             targetDateString: string;
             confirmedAt?: import("../../types").Timestamp | undefined;
+            confirmedTotals?: {
+                value: number;
+                behaviorId: string;
+                behaviorName?: string | undefined;
+                formattedValue?: string | undefined;
+            }[] | undefined;
             discussRequestedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
@@ -26714,6 +26748,12 @@ export declare const logSchemas: {
         data: {
             targetDateString: string;
             confirmedAt?: import("../../types").Timestamp | undefined;
+            confirmedTotals?: {
+                value: number;
+                behaviorId: string;
+                behaviorName?: string | undefined;
+                formattedValue?: string | undefined;
+            }[] | undefined;
             discussRequestedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
@@ -56467,14 +56507,42 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: z.ZodObject<{
         targetDateString: z.ZodString;
         confirmedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        confirmedTotals: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            behaviorId: z.ZodString;
+            behaviorName: z.ZodOptional<z.ZodString>;
+            value: z.ZodNumber;
+            formattedValue: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            value: number;
+            behaviorId: string;
+            behaviorName?: string | undefined;
+            formattedValue?: string | undefined;
+        }, {
+            value: number;
+            behaviorId: string;
+            behaviorName?: string | undefined;
+            formattedValue?: string | undefined;
+        }>, "many">>;
         discussRequestedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
         targetDateString: string;
         confirmedAt?: import("../../types").Timestamp | undefined;
+        confirmedTotals?: {
+            value: number;
+            behaviorId: string;
+            behaviorName?: string | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         discussRequestedAt?: import("../../types").Timestamp | undefined;
     }, {
         targetDateString: string;
         confirmedAt?: import("../../types").Timestamp | undefined;
+        confirmedTotals?: {
+            value: number;
+            behaviorId: string;
+            behaviorName?: string | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         discussRequestedAt?: import("../../types").Timestamp | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -56489,6 +56557,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         targetDateString: string;
         confirmedAt?: import("../../types").Timestamp | undefined;
+        confirmedTotals?: {
+            value: number;
+            behaviorId: string;
+            behaviorName?: string | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         discussRequestedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
@@ -56508,6 +56582,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         targetDateString: string;
         confirmedAt?: import("../../types").Timestamp | undefined;
+        confirmedTotals?: {
+            value: number;
+            behaviorId: string;
+            behaviorName?: string | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         discussRequestedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
