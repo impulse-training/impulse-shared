@@ -74,6 +74,7 @@ __exportStar(require("./utils/tacticOrdering"), exports);
 __exportStar(require("./utils/tacticPairing"), exports);
 __exportStar(require("./utils/resolveAgreement"), exports);
 __exportStar(require("./utils/behaviorColors"), exports);
+__exportStar(require("./utils/llmPricing"), exports);
 __exportStar(require("./utils/walkthroughTasks"), exports);
 __exportStar(require("./utils/selfHarmKeywords"), exports);
 __exportStar(require("./utils/milestoneLadder"), exports);

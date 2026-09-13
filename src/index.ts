@@ -36,6 +36,7 @@ export * from "./utils/tacticOrdering";
 export * from "./utils/tacticPairing";
 export * from "./utils/resolveAgreement";
 export * from "./utils/behaviorColors";
+export * from "./utils/llmPricing";
 export * from "./utils/walkthroughTasks";
 export * from "./utils/selfHarmKeywords";
 export * from "./utils/milestoneLadder";
