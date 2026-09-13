@@ -59,6 +59,21 @@ exports.sessionBaseSchema = zod_1.z.object({
     aiSummary: zod_1.z.string().optional(),
     summaryRequestedAt: timestampSchema_1.timestampSchema.optional(),
     summarizedAt: timestampSchema_1.timestampSchema.nullable(),
+    /**
+     * Held by whichever taskSummarizeSession dispatch is currently doing the
+     * work, so the others stand down.
+     *
+     * `summarizedAt` says the work is DONE; this says it is UNDERWAY, which is
+     * the state that was missing. Summarization is enqueued per log write, so a
+     * chatty session dispatches many tasks at once and they all used to read
+     * "no summary yet" before any of them had written one — each then paying
+     * for a summary and a full-transcript tactic extraction.
+     *
+     * Never written alongside `updatedAt`: that field is what the cooldown and
+     * sessionNeedsSummary both read, and stamping it here would make the
+     * session look freshly active and re-enqueue itself forever.
+     */
+    summarizeClaimedAt: timestampSchema_1.timestampSchema.optional(),
     reflectRequestedAt: timestampSchema_1.timestampSchema.optional(),
     // Where the session was created from
     origin: zod_1.z.enum(["native", "mac"]).optional(),

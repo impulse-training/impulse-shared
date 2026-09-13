@@ -5357,6 +5357,7 @@ export declare const recoveryKeySessionSchema: z.ZodObject<{
     aiSummary: z.ZodOptional<z.ZodString>;
     summaryRequestedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     summarizedAt: z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    summarizeClaimedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     reflectRequestedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     origin: z.ZodOptional<z.ZodEnum<["native", "mac"]>>;
     source: z.ZodOptional<z.ZodEnum<["adjustment", "morningCheckIn"]>>;
@@ -6078,6 +6079,7 @@ export declare const recoveryKeySessionSchema: z.ZodObject<{
     defaultSystemPrompt?: string | undefined;
     aiSummary?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
+    summarizeClaimedAt?: import("../../types").Timestamp | undefined;
     reflectRequestedAt?: import("../../types").Timestamp | undefined;
     origin?: "native" | "mac" | undefined;
     morningCheckIn?: {
@@ -6238,6 +6240,7 @@ export declare const recoveryKeySessionSchema: z.ZodObject<{
     defaultSystemPrompt?: string | undefined;
     aiSummary?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
+    summarizeClaimedAt?: import("../../types").Timestamp | undefined;
     reflectRequestedAt?: import("../../types").Timestamp | undefined;
     origin?: "native" | "mac" | undefined;
     morningCheckIn?: {
