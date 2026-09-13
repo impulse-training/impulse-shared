@@ -5358,6 +5358,21 @@ export declare const sessionBaseSchema: z.ZodObject<{
     aiSummary: z.ZodOptional<z.ZodString>;
     summaryRequestedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     summarizedAt: z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    /**
+     * Held by whichever taskSummarizeSession dispatch is currently doing the
+     * work, so the others stand down.
+     *
+     * `summarizedAt` says the work is DONE; this says it is UNDERWAY, which is
+     * the state that was missing. Summarization is enqueued per log write, so a
+     * chatty session dispatches many tasks at once and they all used to read
+     * "no summary yet" before any of them had written one — each then paying
+     * for a summary and a full-transcript tactic extraction.
+     *
+     * Never written alongside `updatedAt`: that field is what the cooldown and
+     * sessionNeedsSummary both read, and stamping it here would make the
+     * session look freshly active and re-enqueue itself forever.
+     */
+    summarizeClaimedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     reflectRequestedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     origin: z.ZodOptional<z.ZodEnum<["native", "mac"]>>;
     source: z.ZodOptional<z.ZodEnum<["adjustment", "morningCheckIn"]>>;
@@ -6077,6 +6092,7 @@ export declare const sessionBaseSchema: z.ZodObject<{
     defaultSystemPrompt?: string | undefined;
     aiSummary?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
+    summarizeClaimedAt?: import("../../types").Timestamp | undefined;
     reflectRequestedAt?: import("../../types").Timestamp | undefined;
     origin?: "native" | "mac" | undefined;
     morningCheckIn?: {
@@ -6237,6 +6253,7 @@ export declare const sessionBaseSchema: z.ZodObject<{
     defaultSystemPrompt?: string | undefined;
     aiSummary?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
+    summarizeClaimedAt?: import("../../types").Timestamp | undefined;
     reflectRequestedAt?: import("../../types").Timestamp | undefined;
     origin?: "native" | "mac" | undefined;
     morningCheckIn?: {
