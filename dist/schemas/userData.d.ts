@@ -372,6 +372,11 @@ export declare const userDataSchema: z.ZodObject<{
     updatedAt?: import("../types").Timestamp | undefined;
     country?: string | undefined;
     appVersion?: string | undefined;
+    morningCheckIn?: {
+        enabled: boolean;
+        hour: number;
+        minute: number;
+    } | undefined;
     behaviorNames?: string[] | undefined;
     emojiId?: {
         emoji: string;
@@ -390,11 +395,6 @@ export declare const userDataSchema: z.ZodObject<{
             enabled: boolean;
             prompt?: string | undefined;
         } | undefined;
-    } | undefined;
-    morningCheckIn?: {
-        enabled: boolean;
-        hour: number;
-        minute: number;
     } | undefined;
     lastActive?: import("../types").Timestamp | undefined;
     lastLogin?: import("../types").Timestamp | undefined;
@@ -493,6 +493,11 @@ export declare const userDataSchema: z.ZodObject<{
     country?: string | undefined;
     appVersion?: string | undefined;
     role?: "user" | "coach" | "support" | undefined;
+    morningCheckIn?: {
+        hour: number;
+        minute: number;
+        enabled?: boolean | undefined;
+    } | undefined;
     behaviorNames?: string[] | undefined;
     emojiId?: {
         emoji: string;
@@ -513,11 +518,6 @@ export declare const userDataSchema: z.ZodObject<{
         } | undefined;
     } | undefined;
     theme?: "system" | "light" | "dark" | undefined;
-    morningCheckIn?: {
-        hour: number;
-        minute: number;
-        enabled?: boolean | undefined;
-    } | undefined;
     notificationsEnabled?: boolean | undefined;
     lastActive?: import("../types").Timestamp | undefined;
     lastLogin?: import("../types").Timestamp | undefined;

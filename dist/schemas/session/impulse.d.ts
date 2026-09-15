@@ -8026,9 +8026,14 @@ export declare const impulseSessionSchema: z.ZodObject<{
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
     behaviorIds?: string[] | undefined;
-    source?: "adjustment" | "morningCheckIn" | undefined;
+    source?: "morningCheckIn" | "adjustment" | undefined;
     tags?: Record<string, string[]> | undefined;
     phase?: "contain" | "regulate" | "debrief" | undefined;
+    morningCheckIn?: {
+        dateString: string;
+        deliveredAt: import("../../types").Timestamp;
+        deliveredAs: "push" | "call";
+    } | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     startedDeletingAt?: import("../../types").Timestamp | undefined;
@@ -8679,11 +8684,6 @@ export declare const impulseSessionSchema: z.ZodObject<{
     summarizeClaimedAt?: import("../../types").Timestamp | undefined;
     reflectRequestedAt?: import("../../types").Timestamp | undefined;
     origin?: "native" | "mac" | undefined;
-    morningCheckIn?: {
-        dateString: string;
-        deliveredAt: import("../../types").Timestamp;
-        deliveredAs: "push" | "call";
-    } | undefined;
     timeUnspecified?: boolean | undefined;
     sharingMessage?: string | undefined;
     openAfter?: import("../../types").Timestamp | undefined;
@@ -8971,10 +8971,15 @@ export declare const impulseSessionSchema: z.ZodObject<{
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
     behaviorIds?: string[] | undefined;
-    source?: "adjustment" | "morningCheckIn" | undefined;
+    source?: "morningCheckIn" | "adjustment" | undefined;
     tags?: Record<string, string[]> | undefined;
     mode?: "text" | "voice" | undefined;
     phase?: "contain" | "regulate" | "debrief" | undefined;
+    morningCheckIn?: {
+        dateString: string;
+        deliveredAt: import("../../types").Timestamp;
+        deliveredAs: "push" | "call";
+    } | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     startedDeletingAt?: import("../../types").Timestamp | undefined;
@@ -9092,11 +9097,6 @@ export declare const impulseSessionSchema: z.ZodObject<{
     summarizeClaimedAt?: import("../../types").Timestamp | undefined;
     reflectRequestedAt?: import("../../types").Timestamp | undefined;
     origin?: "native" | "mac" | undefined;
-    morningCheckIn?: {
-        dateString: string;
-        deliveredAt: import("../../types").Timestamp;
-        deliveredAs: "push" | "call";
-    } | undefined;
     timeUnspecified?: boolean | undefined;
     sharingMessage?: string | undefined;
     openAfter?: import("../../types").Timestamp | undefined;

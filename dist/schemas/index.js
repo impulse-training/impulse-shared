@@ -83,5 +83,6 @@ __exportStar(require("./userContext"), exports);
 __exportStar(require("./userData"), exports);
 __exportStar(require("./userProfile"), exports);
 __exportStar(require("./userTimezones"), exports);
+__exportStar(require("./voiceEngine"), exports);
 var question_1 = require("./tactic/step/question");
 Object.defineProperty(exports, "isQuestionStepMode", { enumerable: true, get: function () { return question_1.isQuestionStepMode; } });

@@ -5430,7 +5430,7 @@ export declare const sessionBaseSchema: z.ZodObject<{
     startedDeletingAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     deletingError: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    type: "behavior" | "tactic" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | "alignment" | "welcome" | "recoveryKey" | "tasks" | "demo" | "milestone" | "toolkitPlanning" | "zaraCheckIn";
+    type: "behavior" | "impulse" | "general" | "tactic" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | "alignment" | "welcome" | "recoveryKey" | "tasks" | "demo" | "milestone" | "toolkitPlanning" | "zaraCheckIn";
     date: import("../../types").Timestamp;
     userId: string;
     dateString: string;
@@ -5444,8 +5444,13 @@ export declare const sessionBaseSchema: z.ZodObject<{
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
     behaviorIds?: string[] | undefined;
-    source?: "adjustment" | "morningCheckIn" | undefined;
+    source?: "morningCheckIn" | "adjustment" | undefined;
     tags?: Record<string, string[]> | undefined;
+    morningCheckIn?: {
+        dateString: string;
+        deliveredAt: import("../../types").Timestamp;
+        deliveredAs: "push" | "call";
+    } | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     startedDeletingAt?: import("../../types").Timestamp | undefined;
@@ -6095,11 +6100,6 @@ export declare const sessionBaseSchema: z.ZodObject<{
     summarizeClaimedAt?: import("../../types").Timestamp | undefined;
     reflectRequestedAt?: import("../../types").Timestamp | undefined;
     origin?: "native" | "mac" | undefined;
-    morningCheckIn?: {
-        dateString: string;
-        deliveredAt: import("../../types").Timestamp;
-        deliveredAs: "push" | "call";
-    } | undefined;
     timeUnspecified?: boolean | undefined;
     sharingMessage?: string | undefined;
     openAfter?: import("../../types").Timestamp | undefined;
@@ -6135,11 +6135,16 @@ export declare const sessionBaseSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    type?: "behavior" | "tactic" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | "alignment" | "welcome" | "recoveryKey" | "tasks" | "demo" | "milestone" | "toolkitPlanning" | "zaraCheckIn" | undefined;
+    type?: "behavior" | "impulse" | "general" | "tactic" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | "alignment" | "welcome" | "recoveryKey" | "tasks" | "demo" | "milestone" | "toolkitPlanning" | "zaraCheckIn" | undefined;
     behaviorIds?: string[] | undefined;
-    source?: "adjustment" | "morningCheckIn" | undefined;
+    source?: "morningCheckIn" | "adjustment" | undefined;
     tags?: Record<string, string[]> | undefined;
     mode?: "text" | "voice" | undefined;
+    morningCheckIn?: {
+        dateString: string;
+        deliveredAt: import("../../types").Timestamp;
+        deliveredAs: "push" | "call";
+    } | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     startedDeletingAt?: import("../../types").Timestamp | undefined;
@@ -6256,11 +6261,6 @@ export declare const sessionBaseSchema: z.ZodObject<{
     summarizeClaimedAt?: import("../../types").Timestamp | undefined;
     reflectRequestedAt?: import("../../types").Timestamp | undefined;
     origin?: "native" | "mac" | undefined;
-    morningCheckIn?: {
-        dateString: string;
-        deliveredAt: import("../../types").Timestamp;
-        deliveredAs: "push" | "call";
-    } | undefined;
     timeUnspecified?: boolean | undefined;
     sharingMessage?: string | undefined;
     openAfter?: import("../../types").Timestamp | undefined;

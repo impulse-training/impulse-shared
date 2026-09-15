@@ -66,5 +66,6 @@ export * from "./userContext";
 export * from "./userData";
 export * from "./userProfile";
 export * from "./userTimezones";
+export * from "./voiceEngine";
 
 export { isQuestionStepMode } from "./tactic/step/question";
