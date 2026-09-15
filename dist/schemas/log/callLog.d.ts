@@ -5851,6 +5851,13 @@ export declare const callLogSchema: z.ZodObject<{
          */
         answered: z.ZodOptional<z.ZodBoolean>;
         answeredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        /**
+         * Which engine runs this call, chosen by the engine switch
+         * (config/voiceEngine) when the call is prepared. The app routes an
+         * answered ring from it. Absent on calls from before the switch; read it
+         * through `callLogEngine`, which recognises those by their vendor fields.
+         */
+        engine: z.ZodOptional<z.ZodEnum<["livekit", "elevenlabs"]>>;
         livekitSessionId: z.ZodOptional<z.ZodString>;
         livekitRoomName: z.ZodOptional<z.ZodString>;
         elevenlabsAgentId: z.ZodOptional<z.ZodString>;
@@ -5969,6 +5976,7 @@ export declare const callLogSchema: z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         endedAt?: import("../../types").Timestamp | undefined;
         answeredAt?: import("../../types").Timestamp | undefined;
+        engine?: "livekit" | "elevenlabs" | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -6646,6 +6654,7 @@ export declare const callLogSchema: z.ZodObject<{
     }, {
         endedAt?: import("../../types").Timestamp | undefined;
         answeredAt?: import("../../types").Timestamp | undefined;
+        engine?: "livekit" | "elevenlabs" | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -6799,6 +6808,7 @@ export declare const callLogSchema: z.ZodObject<{
     data: {
         endedAt?: import("../../types").Timestamp | undefined;
         answeredAt?: import("../../types").Timestamp | undefined;
+        engine?: "livekit" | "elevenlabs" | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -7491,6 +7501,7 @@ export declare const callLogSchema: z.ZodObject<{
     data: {
         endedAt?: import("../../types").Timestamp | undefined;
         answeredAt?: import("../../types").Timestamp | undefined;
+        engine?: "livekit" | "elevenlabs" | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;

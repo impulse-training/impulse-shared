@@ -2,6 +2,7 @@ import { z } from "zod";
 import { timestampSchema } from "../../utils/timestampSchema";
 import { tacticSchema } from "../tactic";
 import { transcriptItemSchema } from "../transcriptItem";
+import { voiceEngineSchema } from "../voiceEngine";
 import { logBaseSchema } from "./base";
 
 /**
@@ -235,9 +236,16 @@ export const callLogSchema = logBaseSchema.extend({
      */
     answered: z.boolean().optional(),
     answeredAt: timestampSchema.optional(),
-    // Voice provider plumbing. Both vendor groups are optional. Impulse calls
-    // are LiveKit (current); the ElevenLabs fields are left over from the
-    // earlier pipeline and only survive on old docs.
+    /**
+     * Which engine runs this call, chosen by the engine switch
+     * (config/voiceEngine) when the call is prepared. The app routes an
+     * answered ring from it. Absent on calls from before the switch; read it
+     * through `callLogEngine`, which recognises those by their vendor fields.
+     */
+    engine: voiceEngineSchema.optional(),
+    // Voice provider plumbing, one group per engine. ElevenLabs fields appear
+    // on the ElevenLabs engine's calls and on old docs from the earlier
+    // pipeline.
     livekitSessionId: z.string().optional(),
     livekitRoomName: z.string().optional(),
     elevenlabsAgentId: z.string().optional(),

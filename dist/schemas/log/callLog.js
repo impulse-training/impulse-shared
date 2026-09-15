@@ -5,6 +5,7 @@ const zod_1 = require("zod");
 const timestampSchema_1 = require("../../utils/timestampSchema");
 const tactic_1 = require("../tactic");
 const transcriptItem_1 = require("../transcriptItem");
+const voiceEngine_1 = require("../voiceEngine");
 const base_1 = require("./base");
 /**
  * How long a voice call took to become a conversation, in milliseconds.
@@ -225,9 +226,16 @@ exports.callLogSchema = base_1.logBaseSchema.extend({
          */
         answered: zod_1.z.boolean().optional(),
         answeredAt: timestampSchema_1.timestampSchema.optional(),
-        // Voice provider plumbing. Both vendor groups are optional. Impulse calls
-        // are LiveKit (current); the ElevenLabs fields are left over from the
-        // earlier pipeline and only survive on old docs.
+        /**
+         * Which engine runs this call, chosen by the engine switch
+         * (config/voiceEngine) when the call is prepared. The app routes an
+         * answered ring from it. Absent on calls from before the switch; read it
+         * through `callLogEngine`, which recognises those by their vendor fields.
+         */
+        engine: voiceEngine_1.voiceEngineSchema.optional(),
+        // Voice provider plumbing, one group per engine. ElevenLabs fields appear
+        // on the ElevenLabs engine's calls and on old docs from the earlier
+        // pipeline.
         livekitSessionId: zod_1.z.string().optional(),
         livekitRoomName: zod_1.z.string().optional(),
         elevenlabsAgentId: zod_1.z.string().optional(),

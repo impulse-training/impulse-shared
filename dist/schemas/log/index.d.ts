@@ -6006,6 +6006,7 @@ export declare const logSchemas: {
             endedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             answered: z.ZodOptional<z.ZodBoolean>;
             answeredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            engine: z.ZodOptional<z.ZodEnum<["livekit", "elevenlabs"]>>;
             livekitSessionId: z.ZodOptional<z.ZodString>;
             livekitRoomName: z.ZodOptional<z.ZodString>;
             elevenlabsAgentId: z.ZodOptional<z.ZodString>;
@@ -6098,6 +6099,7 @@ export declare const logSchemas: {
         }, "strip", z.ZodTypeAny, {
             endedAt?: import("../../types").Timestamp | undefined;
             answeredAt?: import("../../types").Timestamp | undefined;
+            engine?: "livekit" | "elevenlabs" | undefined;
             tactic?: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
@@ -6775,6 +6777,7 @@ export declare const logSchemas: {
         }, {
             endedAt?: import("../../types").Timestamp | undefined;
             answeredAt?: import("../../types").Timestamp | undefined;
+            engine?: "livekit" | "elevenlabs" | undefined;
             tactic?: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
@@ -6928,6 +6931,7 @@ export declare const logSchemas: {
         data: {
             endedAt?: import("../../types").Timestamp | undefined;
             answeredAt?: import("../../types").Timestamp | undefined;
+            engine?: "livekit" | "elevenlabs" | undefined;
             tactic?: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
@@ -7620,6 +7624,7 @@ export declare const logSchemas: {
         data: {
             endedAt?: import("../../types").Timestamp | undefined;
             answeredAt?: import("../../types").Timestamp | undefined;
+            engine?: "livekit" | "elevenlabs" | undefined;
             tactic?: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
@@ -43075,6 +43080,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         endedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         answered: z.ZodOptional<z.ZodBoolean>;
         answeredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        engine: z.ZodOptional<z.ZodEnum<["livekit", "elevenlabs"]>>;
         livekitSessionId: z.ZodOptional<z.ZodString>;
         livekitRoomName: z.ZodOptional<z.ZodString>;
         elevenlabsAgentId: z.ZodOptional<z.ZodString>;
@@ -43167,6 +43173,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         endedAt?: import("../../types").Timestamp | undefined;
         answeredAt?: import("../../types").Timestamp | undefined;
+        engine?: "livekit" | "elevenlabs" | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -43844,6 +43851,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     }, {
         endedAt?: import("../../types").Timestamp | undefined;
         answeredAt?: import("../../types").Timestamp | undefined;
+        engine?: "livekit" | "elevenlabs" | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -43997,6 +44005,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         endedAt?: import("../../types").Timestamp | undefined;
         answeredAt?: import("../../types").Timestamp | undefined;
+        engine?: "livekit" | "elevenlabs" | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -44689,6 +44698,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         endedAt?: import("../../types").Timestamp | undefined;
         answeredAt?: import("../../types").Timestamp | undefined;
+        engine?: "livekit" | "elevenlabs" | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
