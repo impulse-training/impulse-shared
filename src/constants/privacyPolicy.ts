@@ -3,7 +3,7 @@ export interface PrivacyPolicySection {
   paragraphs: string[];
 }
 
-export const PRIVACY_POLICY_LAST_UPDATED = "August 20, 2026";
+export const PRIVACY_POLICY_LAST_UPDATED = "September 15, 2026";
 
 export const PRIVACY_POLICY_INTRO =
   "Your privacy is important to us. This Privacy Policy explains how Impulse collects, uses, and protects your information when you use our application.";
@@ -31,12 +31,12 @@ export const PRIVACY_POLICY_SECTIONS: PrivacyPolicySection[] = [
   {
     title: "3. AI Processing and Third-Party Sharing",
     paragraphs: [
-      "Impulse's coach is powered by AI. To generate its replies, we send the content of your sessions to OpenAI, L.L.C., an AI provider in the United States that runs the model on our behalf. We ask for your permission before any of this is sent, and you can withdraw that permission at any time in Settings.",
-      "What we send to OpenAI:",
+      "Impulse's coach is powered by AI. To generate its replies, we send the content of your sessions to AI providers in the United States that run the coach on our behalf: OpenAI, L.L.C. and Anthropic, PBC, which run the language models, and Eleven Labs Inc., which handles voice calls. We ask for your permission before any of this is sent, and you can withdraw that permission at any time in Settings.",
+      "What we send to these providers:",
       "\u2022 The messages you type in a session, and the audio of your voice when you talk to the coach.",
       "\u2022 The behaviors you track, the notes and logs you add, and the plans and tactics you are working on, so that the coach has context for its replies.",
       "\u2022 Your anonymous account identifier. We never send your name, email address or phone number, because Impulse does not ask for them.",
-      "OpenAI processes this content only to generate the coach's replies and return them to Impulse. Under our agreement with OpenAI, your content is not used to train their models, and OpenAI is required to protect it to a standard equal to the one described in this policy. If you do not consent, the AI coach is unavailable and the rest of Impulse continues to work.",
+      "These providers process this content only to generate the coach's replies and voice and return them to Impulse, under their data processing terms. Your content is not used to train their models. Voice recordings are not kept, and call transcripts are deleted from ElevenLabs within a day. If you do not consent, the AI coach is unavailable and the rest of Impulse continues to work.",
       "We do not sell your information, and we do not share it with any other third party for their own purposes.",
     ],
   },
