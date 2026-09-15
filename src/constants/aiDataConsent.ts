@@ -9,17 +9,30 @@
  *
  * Bump AI_DATA_CONSENT_VERSION whenever the substance of what we send, or who
  * we send it to, changes. Users whose stored version is lower are asked again.
+ * An older consent still covers what it described: processing stays allowed
+ * down to AI_DATA_CONSENT_MIN_VERSION, and a surface that depends on the newer
+ * disclosure checks for that version itself.
  */
 
-export const AI_DATA_CONSENT_VERSION = 1;
+/**
+ * 2: names Anthropic and ElevenLabs alongside OpenAI, and says voice
+ * recordings are not kept (2026-09-15).
+ */
+export const AI_DATA_CONSENT_VERSION = 2;
 
-/** The AI service that processes session content. */
-export const AI_DATA_CONSENT_PROVIDER = "OpenAI";
+/** The oldest stored consent that still permits sending content to OpenAI. */
+export const AI_DATA_CONSENT_MIN_VERSION = 1;
+
+/** The first disclosure that names ElevenLabs and Anthropic. */
+export const AI_DATA_CONSENT_ELEVENLABS_MIN_VERSION = 2;
+
+/** The AI services that process session content. */
+export const AI_DATA_CONSENT_PROVIDERS = ["OpenAI", "Anthropic", "ElevenLabs"] as const;
 
 export const AI_DATA_CONSENT_TITLE = "How Impulse uses AI";
 
 export const AI_DATA_CONSENT_INTRO =
-  "Impulse's coach is powered by AI. To answer you, it sends what you share to OpenAI, an AI company in the United States that runs the model on our behalf.";
+  "Impulse's coach is powered by AI. To answer you, it sends what you share to AI companies that run the coach on our behalf: OpenAI and Anthropic, which run the models, and ElevenLabs, which handles voice calls. All three are in the United States.";
 
 /** What actually leaves the device, in the user's terms. */
 export const AI_DATA_CONSENT_WHAT_WE_SEND: string[] = [
@@ -29,13 +42,14 @@ export const AI_DATA_CONSENT_WHAT_WE_SEND: string[] = [
 ];
 
 export const AI_DATA_CONSENT_HOW_ITS_USED: string[] = [
-  "OpenAI processes this only to generate the coach's replies, then returns them to Impulse.",
-  "Your content is not used to train OpenAI's models.",
+  "These companies process it only to generate the coach's replies and voice, then return them to Impulse.",
+  "Your content is not used to train their models.",
+  "Voice recordings are not kept. Call transcripts are deleted from ElevenLabs within a day.",
   "You can use Impulse without the AI coach, and you can withdraw consent at any time in Settings.",
 ];
 
 export const AI_DATA_CONSENT_AGREE_LABEL =
-  "I agree to Impulse sending what I share to OpenAI to generate the coach's replies.";
+  "I agree to Impulse sending what I share to OpenAI, Anthropic and ElevenLabs to generate the coach's replies.";
 
 export const AI_DATA_CONSENT_DECLINE_LABEL = "Not now";
 
@@ -44,7 +58,7 @@ export const AI_DATA_CONSENT_DECLINE_LABEL = "Not now";
  * server gate, so the client can explain the refusal rather than appear broken.
  */
 export const AI_DATA_CONSENT_REQUIRED_MESSAGE =
-  "The coach needs your permission before it can send what you share to OpenAI. You can give it in Settings under Privacy and data handling.";
+  "The coach needs your permission before it can send what you share to its AI providers. You can give it in Settings under Privacy and data handling.";
 
 /**
  * The one place that decides whether AI processing is allowed. Used by the app
@@ -52,6 +66,20 @@ export const AI_DATA_CONSENT_REQUIRED_MESSAGE =
  * so the two can never disagree about what counts as consent.
  */
 export function hasAiDataConsent(
+  consent?: { version?: number | null } | null
+): boolean {
+  return (
+    !!consent &&
+    typeof consent.version === "number" &&
+    consent.version >= AI_DATA_CONSENT_MIN_VERSION
+  );
+}
+
+/**
+ * Has the user agreed to the disclosure as it reads today? The app asks again
+ * when not; it does not gate anything by itself.
+ */
+export function isAiDataConsentCurrent(
   consent?: { version?: number | null } | null
 ): boolean {
   return (
