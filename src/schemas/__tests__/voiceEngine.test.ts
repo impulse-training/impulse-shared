@@ -29,24 +29,33 @@ describe("resolveVoiceEngine", () => {
   });
 
   // A user override is per kind: Michael's morning can be on ElevenLabs while
-  // his impulse calls stay on the engine that runs them.
+  // his impulse calls stay on the engine that runs them. Overrides live on the
+  // user's own doc, so the app can resolve its engine without a round trip.
   it("applies a user override only to its kind", () => {
-    const c = config({ default: "livekit", userOverrides: { u1: { morningCheckIn: "elevenlabs" } } });
-    expect(resolveVoiceEngine(c, { userId: "u1", kind: "morningCheckIn" })).toEqual({
+    const c = config({ default: "livekit" });
+    const userOverrides = { morningCheckIn: "elevenlabs" as const };
+    expect(resolveVoiceEngine(c, { userId: "u1", kind: "morningCheckIn", userOverrides })).toEqual({
       engine: "elevenlabs",
       reason: "user-override",
     });
-    expect(resolveVoiceEngine(c, { userId: "u1", kind: "impulse" }).engine).toBe("livekit");
+    expect(resolveVoiceEngine(c, { userId: "u1", kind: "impulse", userOverrides }).engine).toBe("livekit");
     expect(resolveVoiceEngine(c, { userId: "u2", kind: "morningCheckIn" }).engine).toBe("livekit");
+  });
+
+  it("applies a user override even without a config doc", () => {
+    expect(
+      resolveVoiceEngine(undefined, { userId: "u1", kind: "impulse", userOverrides: { impulse: "elevenlabs" } }),
+    ).toEqual({ engine: "elevenlabs", reason: "user-override" });
   });
 
   it("puts a user override ahead of a split", () => {
     const c = config({
       default: "livekit",
       splits: { impulse: { engine: "elevenlabs", percent: 100 } },
-      userOverrides: { u1: { impulse: "livekit" } },
     });
-    expect(resolveVoiceEngine(c, { userId: "u1", kind: "impulse" }).reason).toBe("user-override");
+    expect(
+      resolveVoiceEngine(c, { userId: "u1", kind: "impulse", userOverrides: { impulse: "livekit" } }).reason,
+    ).toBe("user-override");
     expect(resolveVoiceEngine(c, { userId: "u2", kind: "impulse" })).toEqual({ engine: "elevenlabs", reason: "split" });
   });
 
@@ -86,6 +95,13 @@ describe("voiceEngineBucket", () => {
 });
 
 describe("voiceEngineConfigSchema", () => {
+  // Readable by every signed-in user, so it must not list anyone.
+  it("drops per-user overrides from the shared config", () => {
+    expect(config({ default: "livekit", userOverrides: { u1: { impulse: "elevenlabs" } } })).not.toHaveProperty(
+      "userOverrides",
+    );
+  });
+
   it("rejects an unknown engine", () => {
     expect(voiceEngineConfigSchema.safeParse({ default: "vapi" }).success).toBe(false);
   });

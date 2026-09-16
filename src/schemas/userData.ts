@@ -1,3 +1,4 @@
+import { voiceEngineOverridesSchema } from "./voiceEngine";
 import { z } from "zod";
 import { documentReferenceSchema } from "../utils/documentReferenceSchema";
 import { timestampSchema } from "../utils/timestampSchema";
@@ -247,6 +248,10 @@ export const userDataSchema = z.object({
 
   // Disclaimer acceptance
   disclaimerAcceptedAt: timestampSchema.optional(),
+
+  // Which voice engine this user's calls run on, per kind, when it differs
+  // from config/voiceEngine. See voiceEngineOverridesSchema.
+  voiceEngineOverrides: voiceEngineOverridesSchema.optional(),
 
   // Consent to send session content to the third-party AI provider (OpenAI).
   // Absent means never asked or declined; either way the AI coach is gated off
