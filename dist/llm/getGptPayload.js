@@ -7,6 +7,7 @@ const constants_1 = require("../constants");
 const metric_1 = require("../schemas/metric");
 const phase_1 = require("../schemas/session/phase");
 const clock_1 = require("../utils/clock");
+const changeStage_1 = require("../utils/changeStage");
 const formatRecentBehaviorTracking_1 = require("../utils/formatRecentBehaviorTracking");
 /**
  * Drop the tactic-card `logId` from a replayed tool-call result before it goes
@@ -92,7 +93,7 @@ function buildBehaviorLogPayload(log, options) {
     return [];
 }
 function getGptPayload(log, isFinalLogInSession, options) {
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
     if (log.type === "proposed_experiment") {
         const behaviorName = "behaviorName" in log
             ? log.behaviorName
@@ -183,9 +184,35 @@ function getGptPayload(log, isFinalLogInSession, options) {
             },
         ];
     }
+    if ((0, log_1.logIsProposedChangeStageLog)(log)) {
+        const name = (_c = log.data.behaviorName) === null || _c === void 0 ? void 0 : _c.trim();
+        const about = name ? ` about ${name}` : "";
+        const to = (0, changeStage_1.getChangeStageLabel)(log.data.toStage);
+        const from = log.data.fromStage
+            ? ` (currently "${(0, changeStage_1.getChangeStageLabel)(log.data.fromStage)}")`
+            : "";
+        if (log.data.status !== "accepted" && log.data.status !== "declined") {
+            return [
+                {
+                    role: "user",
+                    content: `<SYSTEM>A card${about} is in front of the user asking whether they are now "${to}"${from}, based on their tracking: ${log.data.evidence} ` +
+                        `If you haven't already, say ONE short line pointing them to it, then wait. ` +
+                        `Do not restate the card's contents and do not move the conversation onward past an undecided card.</SYSTEM>`,
+                },
+            ];
+        }
+        return [
+            {
+                role: "user",
+                content: log.data.status === "accepted"
+                    ? `<SYSTEM>The user CONFIRMED they are now "${to}"${about}; their stage has been updated. Acknowledge briefly and move the conversation forward; do not re-explain the stage.</SYSTEM>`
+                    : `<SYSTEM>The user said they are NOT "${to}"${about} yet. Respect that without persuasion and move on.</SYSTEM>`,
+            },
+        ];
+    }
     if ((0, log_1.logIsProposedGoalChangeLog)(log)) {
         const title = log.data.title.trim();
-        const name = (_c = log.data.behaviorName) === null || _c === void 0 ? void 0 : _c.trim();
+        const name = (_d = log.data.behaviorName) === null || _d === void 0 ? void 0 : _d.trim();
         const label = name ? `"${title}" (${name})` : `"${title}"`;
         if (log.data.status !== "accepted" && log.data.status !== "declined") {
             // Same invisibility fix as the pending strategy card above.
@@ -208,7 +235,7 @@ function getGptPayload(log, isFinalLogInSession, options) {
         ];
     }
     if ((0, log_1.logIsMergeBehaviorsProposalLog)(log)) {
-        const selected = (_d = log.data.selectedResponseText) === null || _d === void 0 ? void 0 : _d.trim();
+        const selected = (_e = log.data.selectedResponseText) === null || _e === void 0 ? void 0 : _e.trim();
         if (selected) {
             return [
                 {
@@ -225,7 +252,7 @@ function getGptPayload(log, isFinalLogInSession, options) {
         ];
     }
     if ((0, log_1.logIsDebriefQuestionLog)(log)) {
-        const selected = (_e = log.data.selectedResponseText) === null || _e === void 0 ? void 0 : _e.trim();
+        const selected = (_f = log.data.selectedResponseText) === null || _f === void 0 ? void 0 : _f.trim();
         // Weekly-review and quick-question chips reuse this log type, but there
         // the selection IS the user's conversational reply and drives the flow.
         const isConversationalChip = log.data.debriefQuestionId.startsWith("weekly_review") ||
@@ -321,7 +348,7 @@ function getGptPayload(log, isFinalLogInSession, options) {
             });
             return messages;
         }
-        const transcriptItems = (_f = log.data.transcriptItems) === null || _f === void 0 ? void 0 : _f.filter((item) => item.type !== "partial" && item.text.trim().length > 0);
+        const transcriptItems = (_g = log.data.transcriptItems) === null || _g === void 0 ? void 0 : _g.filter((item) => item.type !== "partial" && item.text.trim().length > 0);
         if (log.data.summary) {
             messages.push({
                 role: "user",
@@ -552,12 +579,12 @@ function getGptPayload(log, isFinalLogInSession, options) {
     if (log.type === "tags_updated") {
         if (options === null || options === void 0 ? void 0 : options.forSummarization)
             return [];
-        const tactics = (_g = log.data) === null || _g === void 0 ? void 0 : _g.recommendedTactics;
+        const tactics = (_h = log.data) === null || _h === void 0 ? void 0 : _h.recommendedTactics;
         // `behaviorIds` is only written when the update changed which behaviors
         // the session is about, so its presence means the user flagged a
         // behavior as also relevant — a different event from editing a tag, and
         // the one the reply should acknowledge.
-        const behaviorsChanged = ((_j = (_h = log.data.behaviorIds) === null || _h === void 0 ? void 0 : _h.length) !== null && _j !== void 0 ? _j : 0) > 0;
+        const behaviorsChanged = ((_k = (_j = log.data.behaviorIds) === null || _j === void 0 ? void 0 : _j.length) !== null && _k !== void 0 ? _k : 0) > 0;
         const opener = behaviorsChanged
             ? "The user just flagged another behavior as relevant to this moment using the tag bar. "
             : "The user just updated their session tags using the tag bar. ";
@@ -568,7 +595,7 @@ function getGptPayload(log, isFinalLogInSession, options) {
         // plans are invisible and deliver inline, one suggestTactic card at a
         // time.
         if (tactics && tactics.length > 0) {
-            const planSource = (_k = log.data) === null || _k === void 0 ? void 0 : _k.planSource;
+            const planSource = (_l = log.data) === null || _l === void 0 ? void 0 : _l.planSource;
             const isUserOwnedPlan = planSource === "trigger" || planSource === "behavior";
             if (isUserOwnedPlan) {
                 const lines = tactics.map((t) => `- "${t.title}"${t.phase ? ` (${t.phase})` : ""}${t.description ? ` — ${t.description}` : ""}`);

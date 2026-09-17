@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.behaviorIsActive = exports.isBehavior = exports.behaviorSchema = exports.streakForgivenessEntrySchema = exports.formatBenefitsForPrompt = exports.normalizeBehaviorBenefits = exports.behaviorBenefitElementSchema = exports.behaviorBenefitSchema = exports.benefitNeedSchema = exports.behaviorStateSchema = exports.behaviorStruggleSchema = exports.WINDOW_SIZES = exports.recentSliceSchema = exports.behaviorStateMetaSchema = exports.behaviorStateGoalSchema = exports.trackingWindowSchema = exports.behaviorWindowSchema = exports.behaviorMeaningSchema = exports.behaviorStretchesSchema = exports.globalStreaksSchema = exports.changeStageSchema = exports.streaksSchema = exports.behaviorStateGoalTypeSchema = exports.dataCompletenessSchema = exports.stabilitySchema = exports.trendSchema = exports.behaviorTemplateSchema = exports.streakLabels = exports.baselinePeriods = exports.trackingTypes = void 0;
+exports.behaviorIsActive = exports.isBehavior = exports.behaviorSchema = exports.streakForgivenessEntrySchema = exports.formatBenefitsForPrompt = exports.normalizeBehaviorBenefits = exports.behaviorBenefitElementSchema = exports.behaviorBenefitSchema = exports.benefitNeedSchema = exports.behaviorStateSchema = exports.behaviorStruggleSchema = exports.WINDOW_SIZES = exports.recentSliceSchema = exports.behaviorStateMetaSchema = exports.behaviorStateGoalSchema = exports.trackingWindowSchema = exports.behaviorWindowSchema = exports.behaviorMeaningSchema = exports.behaviorStretchesSchema = exports.globalStreaksSchema = exports.changeStageSourceSchema = exports.changeStageSchema = exports.streaksSchema = exports.behaviorStateGoalTypeSchema = exports.dataCompletenessSchema = exports.stabilitySchema = exports.trendSchema = exports.behaviorTemplateSchema = exports.streakLabels = exports.baselinePeriods = exports.trackingTypes = void 0;
 exports.isBehaviorState = isBehaviorState;
 const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
@@ -55,6 +55,20 @@ exports.changeStageSchema = zod_1.z.enum([
     "action",
     "maintenance",
     "relapse",
+]);
+/**
+ * Who set a behavior's changeStage:
+ * - `onboarding` — the AI's light first read when the behavior was created.
+ * - `user`       — picked on the behavior screen.
+ * - `proposal`   — the user accepted a proposed_change_stage card.
+ * - `auto`       — the reconciliation moved it without asking (a setback
+ *                  moves an active behavior to "relapse").
+ */
+exports.changeStageSourceSchema = zod_1.z.enum([
+    "onboarding",
+    "user",
+    "proposal",
+    "auto",
 ]);
 // Global streaks tracking (not limited to any window)
 exports.globalStreaksSchema = zod_1.z.object({
@@ -366,12 +380,15 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
     behaviorTopicId: behaviorTopic_1.behaviorTopicIdSchema.optional(),
     // When true, the recap session should collect baseline usage data for this behavior
     needsBaselineData: zod_1.z.boolean().optional().default(false),
-    // User-declared Stage of Change for this behavior (Transtheoretical Model).
-    // Set explicitly by the user; gates which reflective recap questions are
-    // surfaced. Absent = unknown → no stage gating applied.
+    // Stage of Change for this behavior (Transtheoretical Model). Gates which
+    // reflective recap questions are surfaced. Absent = unknown → no stage
+    // gating applied. Seeded by onboarding, editable by the user, and kept
+    // current by the change-stage reconciliation (see changeStageSource).
     changeStage: exports.changeStageSchema.optional(),
-    // When the user last set/changed changeStage.
+    // When changeStage last changed, by anyone.
     changeStageUpdatedAt: timestampSchema_1.timestampSchema.optional(),
+    // Who set the current changeStage. Absent on older docs = unknown.
+    changeStageSource: exports.changeStageSourceSchema.optional(),
     customMilestoneRungs: zod_1.z.array(milestoneAchievement_1.milestoneRungSchema).optional(),
     mergedIntoBehaviorId: zod_1.z.string().optional(),
     mergedFromBehaviorIds: zod_1.z.array(zod_1.z.string()).optional(),

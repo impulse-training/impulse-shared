@@ -24,6 +24,7 @@ import { RecapTimePreferenceLog } from "./recapTimePreferenceLog";
 import { DayTotalsPromptLog } from "./dayTotalsPromptLog";
 import { WeekOverviewLog } from "./weekOverviewLog";
 import { ProposedGoalChangeLog } from "./proposedGoalChangeLog";
+import { ProposedChangeStageLog } from "./proposedChangeStageLog";
 import { TriggerSelectionLog } from "./triggerSelectionLog";
 import { WidgetSetupLog } from "./widgetSetupLog";
 import { RequestPermissionsLog } from "./requestPermissionsLog";
@@ -6011,6 +6012,7 @@ export declare const logSchemas: {
             livekitRoomName: z.ZodOptional<z.ZodString>;
             elevenlabsAgentId: z.ZodOptional<z.ZodString>;
             elevenlabsConversationId: z.ZodOptional<z.ZodString>;
+            elevenlabsTranscriptSavedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             token: z.ZodOptional<z.ZodString>;
             usage: z.ZodOptional<z.ZodObject<{
                 models: z.ZodArray<z.ZodObject<{
@@ -6749,6 +6751,7 @@ export declare const logSchemas: {
             livekitRoomName?: string | undefined;
             elevenlabsAgentId?: string | undefined;
             elevenlabsConversationId?: string | undefined;
+            elevenlabsTranscriptSavedAt?: import("../../types").Timestamp | undefined;
             token?: string | undefined;
             usage?: {
                 models: {
@@ -6893,6 +6896,7 @@ export declare const logSchemas: {
             livekitRoomName?: string | undefined;
             elevenlabsAgentId?: string | undefined;
             elevenlabsConversationId?: string | undefined;
+            elevenlabsTranscriptSavedAt?: import("../../types").Timestamp | undefined;
             token?: string | undefined;
             usage?: {
                 models: {
@@ -7581,6 +7585,7 @@ export declare const logSchemas: {
             livekitRoomName?: string | undefined;
             elevenlabsAgentId?: string | undefined;
             elevenlabsConversationId?: string | undefined;
+            elevenlabsTranscriptSavedAt?: import("../../types").Timestamp | undefined;
             token?: string | undefined;
             usage?: {
                 models: {
@@ -7740,6 +7745,7 @@ export declare const logSchemas: {
             livekitRoomName?: string | undefined;
             elevenlabsAgentId?: string | undefined;
             elevenlabsConversationId?: string | undefined;
+            elevenlabsTranscriptSavedAt?: import("../../types").Timestamp | undefined;
             token?: string | undefined;
             usage?: {
                 models: {
@@ -25208,7 +25214,7 @@ export declare const logSchemas: {
                 outcomeLogs: any[];
                 plansLogs: any[];
                 hasContent: boolean;
-                type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
+                type?: "onboarding" | "behavior" | "impulse" | "general" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
                 metricLogs?: any[] | undefined;
                 firstMessageLog?: any;
                 firstCallLog?: any;
@@ -25218,7 +25224,7 @@ export declare const logSchemas: {
                 outcomeLogs: any[];
                 plansLogs: any[];
                 hasContent: boolean;
-                type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
+                type?: "onboarding" | "behavior" | "impulse" | "general" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
                 metricLogs?: any[] | undefined;
                 firstMessageLog?: any;
                 firstCallLog?: any;
@@ -25239,7 +25245,7 @@ export declare const logSchemas: {
                 outcomeLogs: any[];
                 plansLogs: any[];
                 hasContent: boolean;
-                type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
+                type?: "onboarding" | "behavior" | "impulse" | "general" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
                 metricLogs?: any[] | undefined;
                 firstMessageLog?: any;
                 firstCallLog?: any;
@@ -25256,7 +25262,7 @@ export declare const logSchemas: {
                 outcomeLogs: any[];
                 plansLogs: any[];
                 hasContent: boolean;
-                type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
+                type?: "onboarding" | "behavior" | "impulse" | "general" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
                 metricLogs?: any[] | undefined;
                 firstMessageLog?: any;
                 firstCallLog?: any;
@@ -25283,7 +25289,7 @@ export declare const logSchemas: {
                 outcomeLogs: any[];
                 plansLogs: any[];
                 hasContent: boolean;
-                type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
+                type?: "onboarding" | "behavior" | "impulse" | "general" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
                 metricLogs?: any[] | undefined;
                 firstMessageLog?: any;
                 firstCallLog?: any;
@@ -25315,7 +25321,7 @@ export declare const logSchemas: {
                 outcomeLogs: any[];
                 plansLogs: any[];
                 hasContent: boolean;
-                type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
+                type?: "onboarding" | "behavior" | "impulse" | "general" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
                 metricLogs?: any[] | undefined;
                 firstMessageLog?: any;
                 firstCallLog?: any;
@@ -27437,6 +27443,113 @@ export declare const logSchemas: {
                 }[];
             } | undefined;
             appliedAt?: import("../../types").Timestamp | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
+    }>;
+    proposed_change_stage: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        sessionId: z.ZodString;
+        tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        impulseId: z.ZodOptional<z.ZodString>;
+        respondingToLogId: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"proposed_change_stage">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            behaviorId: z.ZodString;
+            behaviorName: z.ZodOptional<z.ZodString>;
+            fromStage: z.ZodOptional<z.ZodEnum<["precontemplation", "contemplation", "preparation", "action", "maintenance", "relapse"]>>;
+            toStage: z.ZodEnum<["precontemplation", "contemplation", "preparation", "action", "maintenance", "relapse"]>;
+            title: z.ZodString;
+            evidence: z.ZodString;
+            status: z.ZodDefault<z.ZodEnum<["pending", "accepted", "declined"]>>;
+            sourceTaskId: z.ZodOptional<z.ZodString>;
+            acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            declinedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            appliedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        }, "strip", z.ZodTypeAny, {
+            status: "pending" | "accepted" | "declined";
+            title: string;
+            behaviorId: string;
+            toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
+            evidence: string;
+            behaviorName?: string | undefined;
+            acceptedAt?: import("../../types").Timestamp | undefined;
+            declinedAt?: import("../../types").Timestamp | undefined;
+            sourceTaskId?: string | undefined;
+            appliedAt?: import("../../types").Timestamp | undefined;
+            fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
+        }, {
+            title: string;
+            behaviorId: string;
+            toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
+            evidence: string;
+            status?: "pending" | "accepted" | "declined" | undefined;
+            behaviorName?: string | undefined;
+            acceptedAt?: import("../../types").Timestamp | undefined;
+            declinedAt?: import("../../types").Timestamp | undefined;
+            sourceTaskId?: string | undefined;
+            appliedAt?: import("../../types").Timestamp | undefined;
+            fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "proposed_change_stage";
+        userId: string;
+        sessionId: string;
+        dateString: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            status: "pending" | "accepted" | "declined";
+            title: string;
+            behaviorId: string;
+            toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
+            evidence: string;
+            behaviorName?: string | undefined;
+            acceptedAt?: import("../../types").Timestamp | undefined;
+            declinedAt?: import("../../types").Timestamp | undefined;
+            sourceTaskId?: string | undefined;
+            appliedAt?: import("../../types").Timestamp | undefined;
+            fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "proposed_change_stage";
+        userId: string;
+        sessionId: string;
+        dateString: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            title: string;
+            behaviorId: string;
+            toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
+            evidence: string;
+            status?: "pending" | "accepted" | "declined" | undefined;
+            behaviorName?: string | undefined;
+            acceptedAt?: import("../../types").Timestamp | undefined;
+            declinedAt?: import("../../types").Timestamp | undefined;
+            sourceTaskId?: string | undefined;
+            appliedAt?: import("../../types").Timestamp | undefined;
+            fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
         };
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
@@ -37075,7 +37188,7 @@ export declare const logSchemas: {
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | TacticChoiceLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ResumeRecapRemindersCtaLog | HumanSupportEscalationLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | WeekOverviewLog | ProposedGoalChangeLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | ImageLog | PhotoLog | MergeBehaviorsProposalLog | MaskBehaviorProposalLog | ShortcutSetupIntroLog | TacticSuggestionsLog | CoachBookingPromptLog | DebriefQuestionLog | PlanHistoryEntryLog | ClosingReflectionLog | ProtectNextWindowOutcomeLog | VoiceOfferLog | ScheduledCheckInLog;
+export type Log = TacticLog | TacticChoiceLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ResumeRecapRemindersCtaLog | HumanSupportEscalationLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | WeekOverviewLog | ProposedGoalChangeLog | ProposedChangeStageLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | ImageLog | PhotoLog | MergeBehaviorsProposalLog | MaskBehaviorProposalLog | ShortcutSetupIntroLog | TacticSuggestionsLog | CoachBookingPromptLog | DebriefQuestionLog | PlanHistoryEntryLog | ClosingReflectionLog | ProtectNextWindowOutcomeLog | VoiceOfferLog | ScheduledCheckInLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
@@ -37103,6 +37216,7 @@ export * from "./recapTimePreferenceLog";
 export * from "./dayTotalsPromptLog";
 export * from "./weekOverviewLog";
 export * from "./proposedGoalChangeLog";
+export * from "./proposedChangeStageLog";
 export * from "./triggerSelectionLog";
 export * from "./requestPermissionsLog";
 export * from "./tacticReviewLog";
@@ -43085,6 +43199,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         livekitRoomName: z.ZodOptional<z.ZodString>;
         elevenlabsAgentId: z.ZodOptional<z.ZodString>;
         elevenlabsConversationId: z.ZodOptional<z.ZodString>;
+        elevenlabsTranscriptSavedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         token: z.ZodOptional<z.ZodString>;
         usage: z.ZodOptional<z.ZodObject<{
             models: z.ZodArray<z.ZodObject<{
@@ -43823,6 +43938,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
+        elevenlabsTranscriptSavedAt?: import("../../types").Timestamp | undefined;
         token?: string | undefined;
         usage?: {
             models: {
@@ -43967,6 +44083,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
+        elevenlabsTranscriptSavedAt?: import("../../types").Timestamp | undefined;
         token?: string | undefined;
         usage?: {
             models: {
@@ -44655,6 +44772,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
+        elevenlabsTranscriptSavedAt?: import("../../types").Timestamp | undefined;
         token?: string | undefined;
         usage?: {
             models: {
@@ -44814,6 +44932,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
+        elevenlabsTranscriptSavedAt?: import("../../types").Timestamp | undefined;
         token?: string | undefined;
         usage?: {
             models: {
@@ -55051,7 +55170,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             outcomeLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
-            type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
+            type?: "onboarding" | "behavior" | "impulse" | "general" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
             metricLogs?: any[] | undefined;
             firstMessageLog?: any;
             firstCallLog?: any;
@@ -55061,7 +55180,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             outcomeLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
-            type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
+            type?: "onboarding" | "behavior" | "impulse" | "general" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
             metricLogs?: any[] | undefined;
             firstMessageLog?: any;
             firstCallLog?: any;
@@ -55082,7 +55201,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             outcomeLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
-            type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
+            type?: "onboarding" | "behavior" | "impulse" | "general" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
             metricLogs?: any[] | undefined;
             firstMessageLog?: any;
             firstCallLog?: any;
@@ -55099,7 +55218,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             outcomeLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
-            type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
+            type?: "onboarding" | "behavior" | "impulse" | "general" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
             metricLogs?: any[] | undefined;
             firstMessageLog?: any;
             firstCallLog?: any;
@@ -55126,7 +55245,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             outcomeLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
-            type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
+            type?: "onboarding" | "behavior" | "impulse" | "general" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
             metricLogs?: any[] | undefined;
             firstMessageLog?: any;
             firstCallLog?: any;
@@ -55158,7 +55277,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             outcomeLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
-            type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
+            type?: "onboarding" | "behavior" | "impulse" | "general" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
             metricLogs?: any[] | undefined;
             firstMessageLog?: any;
             firstCallLog?: any;
@@ -57330,6 +57449,112 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }[];
         } | undefined;
         appliedAt?: import("../../types").Timestamp | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    sessionId: z.ZodString;
+    tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    impulseId: z.ZodOptional<z.ZodString>;
+    respondingToLogId: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"proposed_change_stage">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        behaviorId: z.ZodString;
+        behaviorName: z.ZodOptional<z.ZodString>;
+        fromStage: z.ZodOptional<z.ZodEnum<["precontemplation", "contemplation", "preparation", "action", "maintenance", "relapse"]>>;
+        toStage: z.ZodEnum<["precontemplation", "contemplation", "preparation", "action", "maintenance", "relapse"]>;
+        title: z.ZodString;
+        evidence: z.ZodString;
+        status: z.ZodDefault<z.ZodEnum<["pending", "accepted", "declined"]>>;
+        sourceTaskId: z.ZodOptional<z.ZodString>;
+        acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        declinedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        appliedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    }, "strip", z.ZodTypeAny, {
+        status: "pending" | "accepted" | "declined";
+        title: string;
+        behaviorId: string;
+        toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
+        evidence: string;
+        behaviorName?: string | undefined;
+        acceptedAt?: import("../../types").Timestamp | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
+        sourceTaskId?: string | undefined;
+        appliedAt?: import("../../types").Timestamp | undefined;
+        fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
+    }, {
+        title: string;
+        behaviorId: string;
+        toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
+        evidence: string;
+        status?: "pending" | "accepted" | "declined" | undefined;
+        behaviorName?: string | undefined;
+        acceptedAt?: import("../../types").Timestamp | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
+        sourceTaskId?: string | undefined;
+        appliedAt?: import("../../types").Timestamp | undefined;
+        fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "proposed_change_stage";
+    userId: string;
+    sessionId: string;
+    dateString: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        status: "pending" | "accepted" | "declined";
+        title: string;
+        behaviorId: string;
+        toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
+        evidence: string;
+        behaviorName?: string | undefined;
+        acceptedAt?: import("../../types").Timestamp | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
+        sourceTaskId?: string | undefined;
+        appliedAt?: import("../../types").Timestamp | undefined;
+        fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
+}, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "proposed_change_stage";
+    userId: string;
+    sessionId: string;
+    dateString: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        title: string;
+        behaviorId: string;
+        toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
+        evidence: string;
+        status?: "pending" | "accepted" | "declined" | undefined;
+        behaviorName?: string | undefined;
+        acceptedAt?: import("../../types").Timestamp | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
+        sourceTaskId?: string | undefined;
+        appliedAt?: import("../../types").Timestamp | undefined;
+        fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
@@ -66940,6 +67165,7 @@ export declare const logIsWeekOverviewLog: (value: Omit<Log, "id">) => value is 
 export declare const isValidWeekOverviewLog: (value: unknown) => value is WeekOverviewLog;
 export declare const logIsProposedGoalChangeLog: (value: Omit<Log, "id">) => value is ProposedGoalChangeLog;
 export declare const isValidProposedGoalChangeLog: (value: unknown) => value is ProposedGoalChangeLog;
+export declare const logIsProposedChangeStageLog: (value: Omit<Log, "id">) => value is ProposedChangeStageLog;
 export declare const logIsImpulseStartedLog: (value: Omit<Log, "id">) => value is ImpulseStartedLog;
 export declare const isValidImpulseStartedLog: (value: unknown) => value is ImpulseStartedLog;
 export declare const logIsRequestPermissionsLog: (value: Omit<Log, "id">) => value is RequestPermissionsLog;

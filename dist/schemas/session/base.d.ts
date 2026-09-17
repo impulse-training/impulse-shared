@@ -5312,7 +5312,7 @@ export declare const sessionBaseSchema: z.ZodObject<{
         outcomeLogs: any[];
         plansLogs: any[];
         hasContent: boolean;
-        type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
+        type?: "onboarding" | "behavior" | "impulse" | "general" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
         metricLogs?: any[] | undefined;
         firstMessageLog?: any;
         firstCallLog?: any;
@@ -5322,7 +5322,7 @@ export declare const sessionBaseSchema: z.ZodObject<{
         outcomeLogs: any[];
         plansLogs: any[];
         hasContent: boolean;
-        type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
+        type?: "onboarding" | "behavior" | "impulse" | "general" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
         metricLogs?: any[] | undefined;
         firstMessageLog?: any;
         firstCallLog?: any;
@@ -5430,7 +5430,7 @@ export declare const sessionBaseSchema: z.ZodObject<{
     startedDeletingAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     deletingError: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    type: "behavior" | "impulse" | "general" | "tactic" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | "alignment" | "welcome" | "recoveryKey" | "tasks" | "demo" | "milestone" | "toolkitPlanning" | "zaraCheckIn";
+    type: "onboarding" | "behavior" | "impulse" | "general" | "tactic" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | "alignment" | "welcome" | "recoveryKey" | "tasks" | "demo" | "milestone" | "toolkitPlanning" | "zaraCheckIn";
     date: import("../../types").Timestamp;
     userId: string;
     dateString: string;
@@ -6079,7 +6079,7 @@ export declare const sessionBaseSchema: z.ZodObject<{
         outcomeLogs: any[];
         plansLogs: any[];
         hasContent: boolean;
-        type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
+        type?: "onboarding" | "behavior" | "impulse" | "general" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
         metricLogs?: any[] | undefined;
         firstMessageLog?: any;
         firstCallLog?: any;
@@ -6135,7 +6135,7 @@ export declare const sessionBaseSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    type?: "behavior" | "impulse" | "general" | "tactic" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | "alignment" | "welcome" | "recoveryKey" | "tasks" | "demo" | "milestone" | "toolkitPlanning" | "zaraCheckIn" | undefined;
+    type?: "onboarding" | "behavior" | "impulse" | "general" | "tactic" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | "alignment" | "welcome" | "recoveryKey" | "tasks" | "demo" | "milestone" | "toolkitPlanning" | "zaraCheckIn" | undefined;
     behaviorIds?: string[] | undefined;
     source?: "morningCheckIn" | "adjustment" | undefined;
     tags?: Record<string, string[]> | undefined;
@@ -6240,7 +6240,7 @@ export declare const sessionBaseSchema: z.ZodObject<{
         outcomeLogs: any[];
         plansLogs: any[];
         hasContent: boolean;
-        type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
+        type?: "onboarding" | "behavior" | "impulse" | "general" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
         metricLogs?: any[] | undefined;
         firstMessageLog?: any;
         firstCallLog?: any;

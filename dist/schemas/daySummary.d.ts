@@ -277,6 +277,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         needsBaselineData: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         changeStage: z.ZodOptional<z.ZodEnum<["precontemplation", "contemplation", "preparation", "action", "maintenance", "relapse"]>>;
         changeStageUpdatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        changeStageSource: z.ZodOptional<z.ZodEnum<["onboarding", "user", "proposal", "auto"]>>;
         customMilestoneRungs: z.ZodOptional<z.ZodArray<z.ZodObject<{
             days: z.ZodNumber;
             label: z.ZodString;
@@ -1280,6 +1281,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         behaviorTopicId?: string | undefined;
         changeStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
         changeStageUpdatedAt?: import("../types").Timestamp | undefined;
+        changeStageSource?: "onboarding" | "user" | "proposal" | "auto" | undefined;
         customMilestoneRungs?: {
             days: number;
             label: string;
@@ -1521,6 +1523,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         needsBaselineData?: boolean | undefined;
         changeStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
         changeStageUpdatedAt?: import("../types").Timestamp | undefined;
+        changeStageSource?: "onboarding" | "user" | "proposal" | "auto" | undefined;
         customMilestoneRungs?: {
             days: number;
             label: string;
@@ -1777,6 +1780,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         behaviorTopicId?: string | undefined;
         changeStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
         changeStageUpdatedAt?: import("../types").Timestamp | undefined;
+        changeStageSource?: "onboarding" | "user" | "proposal" | "auto" | undefined;
         customMilestoneRungs?: {
             days: number;
             label: string;
@@ -2033,6 +2037,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         needsBaselineData?: boolean | undefined;
         changeStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
         changeStageUpdatedAt?: import("../types").Timestamp | undefined;
+        changeStageSource?: "onboarding" | "user" | "proposal" | "auto" | undefined;
         customMilestoneRungs?: {
             days: number;
             label: string;
@@ -2430,6 +2435,7 @@ export declare const daySummarySchema: z.ZodObject<{
         needsBaselineData: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         changeStage: z.ZodOptional<z.ZodEnum<["precontemplation", "contemplation", "preparation", "action", "maintenance", "relapse"]>>;
         changeStageUpdatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        changeStageSource: z.ZodOptional<z.ZodEnum<["onboarding", "user", "proposal", "auto"]>>;
         customMilestoneRungs: z.ZodOptional<z.ZodArray<z.ZodObject<{
             days: z.ZodNumber;
             label: z.ZodString;
@@ -3433,6 +3439,7 @@ export declare const daySummarySchema: z.ZodObject<{
         behaviorTopicId?: string | undefined;
         changeStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
         changeStageUpdatedAt?: import("../types").Timestamp | undefined;
+        changeStageSource?: "onboarding" | "user" | "proposal" | "auto" | undefined;
         customMilestoneRungs?: {
             days: number;
             label: string;
@@ -3674,6 +3681,7 @@ export declare const daySummarySchema: z.ZodObject<{
         needsBaselineData?: boolean | undefined;
         changeStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
         changeStageUpdatedAt?: import("../types").Timestamp | undefined;
+        changeStageSource?: "onboarding" | "user" | "proposal" | "auto" | undefined;
         customMilestoneRungs?: {
             days: number;
             label: string;
@@ -4026,6 +4034,7 @@ export declare const daySummarySchema: z.ZodObject<{
         behaviorTopicId?: string | undefined;
         changeStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
         changeStageUpdatedAt?: import("../types").Timestamp | undefined;
+        changeStageSource?: "onboarding" | "user" | "proposal" | "auto" | undefined;
         customMilestoneRungs?: {
             days: number;
             label: string;
@@ -4316,6 +4325,7 @@ export declare const daySummarySchema: z.ZodObject<{
         needsBaselineData?: boolean | undefined;
         changeStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
         changeStageUpdatedAt?: import("../types").Timestamp | undefined;
+        changeStageSource?: "onboarding" | "user" | "proposal" | "auto" | undefined;
         customMilestoneRungs?: {
             days: number;
             label: string;

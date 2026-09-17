@@ -45,6 +45,7 @@ export declare const insightSchema: z.ZodObject<{
     behavior?: string | undefined;
     source?: "user" | "experiment" | "brain" | "coach" | undefined;
     experimentId?: string | undefined;
+    evidence?: string[] | undefined;
     emotion?: string | undefined;
     associatedBehaviorDocs?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
     sourceSessionDoc?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
@@ -54,7 +55,6 @@ export declare const insightSchema: z.ZodObject<{
     postedBy?: string | undefined;
     userReview?: "accepted" | "declined" | "proposed" | undefined;
     userReviewedAt?: import("../types").Timestamp | undefined;
-    evidence?: string[] | undefined;
     category?: string | undefined;
     brainThoughtId?: string | undefined;
     contentEligibilityStatus?: "eligible" | "ineligible" | null | undefined;
@@ -72,6 +72,7 @@ export declare const insightSchema: z.ZodObject<{
     behavior?: string | undefined;
     source?: "user" | "experiment" | "brain" | "coach" | undefined;
     experimentId?: string | undefined;
+    evidence?: string[] | undefined;
     emotion?: string | undefined;
     associatedBehaviorDocs?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
     sourceSessionDoc?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
@@ -81,7 +82,6 @@ export declare const insightSchema: z.ZodObject<{
     postedBy?: string | undefined;
     userReview?: "accepted" | "declined" | "proposed" | undefined;
     userReviewedAt?: import("../types").Timestamp | undefined;
-    evidence?: string[] | undefined;
     category?: string | undefined;
     brainThoughtId?: string | undefined;
     contentEligibilityStatus?: "eligible" | "ineligible" | null | undefined;

@@ -1701,6 +1701,170 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     homeSubtitle?: string | undefined;
     claimedBySessionId?: string | undefined;
 }>;
+/**
+ * Asks the user to confirm moving one behavior to a different Stage of Change,
+ * raised by the change-stage reconciliation (impulse-functions
+ * reconcileChangeStage) when tracking disagrees with the declared stage.
+ * Deterministic: a recap claims it and renders a proposed_change_stage card;
+ * accepting writes the stage server-side. Only upward moves are proposed —
+ * a setback moves the stage to "relapse" automatically, without a task.
+ */
+export declare const proposeChangeStageTaskSchema: z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    userId: z.ZodString;
+    category: z.ZodDefault<z.ZodEnum<["zara", "deterministic"]>>;
+    status: z.ZodDefault<z.ZodEnum<["open", "completed", "dismissed"]>>;
+    title: z.ZodString;
+    instructions: z.ZodString;
+    context: z.ZodOptional<z.ZodString>;
+    ordinal: z.ZodOptional<z.ZodNumber>;
+    minAppVersion: z.ZodOptional<z.ZodString>;
+    requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
+    dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
+    createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
+    createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"propose_change_stage">;
+    behaviorId: z.ZodString;
+    /** The declared stage the proposal was computed against. Absent = never declared. */
+    fromStage: z.ZodOptional<z.ZodEnum<["precontemplation", "contemplation", "preparation", "action", "maintenance", "relapse"]>>;
+    toStage: z.ZodEnum<["precontemplation", "contemplation", "preparation", "action", "maintenance", "relapse"]>;
+    /** The current streak (days) at evaluation time, for the card's evidence. */
+    streakDays: z.ZodNumber;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "propose_change_stage";
+    status: "completed" | "dismissed" | "open";
+    userId: string;
+    title: string;
+    behaviorId: string;
+    toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
+    category: "zara" | "deterministic";
+    streakDays: number;
+    instructions: string;
+    id?: string | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
+}, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "propose_change_stage";
+    userId: string;
+    title: string;
+    behaviorId: string;
+    toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
+    streakDays: number;
+    instructions: string;
+    id?: string | undefined;
+    status?: "completed" | "dismissed" | "open" | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
+    category?: "zara" | "deterministic" | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
+}>;
 export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -6042,6 +6206,161 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      */
     claimedBySessionId: z.ZodOptional<z.ZodString>;
 } & {
+    type: z.ZodLiteral<"propose_change_stage">;
+    behaviorId: z.ZodString;
+    /** The declared stage the proposal was computed against. Absent = never declared. */
+    fromStage: z.ZodOptional<z.ZodEnum<["precontemplation", "contemplation", "preparation", "action", "maintenance", "relapse"]>>;
+    toStage: z.ZodEnum<["precontemplation", "contemplation", "preparation", "action", "maintenance", "relapse"]>;
+    /** The current streak (days) at evaluation time, for the card's evidence. */
+    streakDays: z.ZodNumber;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "propose_change_stage";
+    status: "completed" | "dismissed" | "open";
+    userId: string;
+    title: string;
+    behaviorId: string;
+    toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
+    category: "zara" | "deterministic";
+    streakDays: number;
+    instructions: string;
+    id?: string | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
+}, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "propose_change_stage";
+    userId: string;
+    title: string;
+    behaviorId: string;
+    toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
+    streakDays: number;
+    instructions: string;
+    id?: string | undefined;
+    status?: "completed" | "dismissed" | "open" | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
+    category?: "zara" | "deterministic" | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    optionalTools?: string[] | undefined;
+    foundational?: boolean | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    approvedAt?: import("../types").Timestamp | undefined;
+    approvalReason?: string | undefined;
+    showOnHome?: boolean | undefined;
+    homeSubtitle?: string | undefined;
+    claimedBySessionId?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    userId: z.ZodString;
+    category: z.ZodDefault<z.ZodEnum<["zara", "deterministic"]>>;
+    status: z.ZodDefault<z.ZodEnum<["open", "completed", "dismissed"]>>;
+    title: z.ZodString;
+    instructions: z.ZodString;
+    context: z.ZodOptional<z.ZodString>;
+    ordinal: z.ZodOptional<z.ZodNumber>;
+    minAppVersion: z.ZodOptional<z.ZodString>;
+    requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * Tools to inject for this task WITHOUT a completion contract: getTaskTools
+     * exposes them alongside requiredTools, but creditCalledTools never counts
+     * them, so calling every one of them does not complete the task. For arcs
+     * whose completion is decided elsewhere (e.g. protect_next_window completes
+     * via the showCloseButton gate) but that still need optional in-arc tools.
+     */
+    optionalTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    /**
+     * The conversation this task drives is a durable source of understanding
+     * about the user (e.g. understand_behavior), not a routine beat. When a
+     * foundational task resolves as COMPLETED, its session transcript is
+     * ingested into the brain right then, uncapped and tagged with the task
+     * type as its source (see ingestFoundationalSession) — instead of being
+     * left to the weekly digest, where it competes with a week of chat under a
+     * two-insights-per-run cap and would mostly be lost. Copied onto the
+     * session task when claimed, so the session-task trigger can read it.
+     */
+    foundational: z.ZodOptional<z.ZodBoolean>;
+    dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
+    createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
+    createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    /**
+     * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
+     * means "awaiting coach review" and no claim path may present the task to
+     * the user (see isTaskAwaitingApproval). Set from the coach dashboard.
+     * Other task types are auto-approved by not being in that set, so they
+     * never carry these fields.
+     */
+    approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Why the coach approved it — recorded alongside `approvedAt`. */
+    approvalReason: z.ZodOptional<z.ZodString>;
+    /**
+     * Opt-in: surface this open user-level task as a card on the native home
+     * screen (below the experiment card). Tapping the card calls
+     * POST app/sessions/ensureTask, which claims the task into a dedicated
+     * `task_<taskId>` session. Set per task at creation — most task types stay
+     * recap/session-claimed only.
+     */
+    showOnHome: z.ZodOptional<z.ZodBoolean>;
+    /** Card subtitle when shown on home; the card falls back to generic copy. */
+    homeSubtitle: z.ZodOptional<z.ZodString>;
+    /**
+     * Session currently working this task. Recap claiming and the ensureTask
+     * endpoint both stamp it (the latter with a deterministic `task_<taskId>`
+     * id), on any claimable task type — base-level, though a couple of
+     * variants re-declare it from before it lived here.
+     */
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
+} & {
     type: z.ZodLiteral<"create_session">;
     lazy: z.ZodDefault<z.ZodBoolean>;
     taskIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -8305,6 +8624,7 @@ export type SuggestStrategyTask = z.infer<typeof suggestStrategyTaskSchema>;
 export type ProposeGoalTask = z.infer<typeof proposeGoalTaskSchema>;
 export type ProposeExperimentTask = z.infer<typeof proposeExperimentTaskSchema>;
 export type ProposeMaskBehaviorTask = z.infer<typeof proposeMaskBehaviorTaskSchema>;
+export type ProposeChangeStageTask = z.infer<typeof proposeChangeStageTaskSchema>;
 export type CreateSessionTask = z.infer<typeof createSessionTaskSchema>;
 export type RecapQuestionTask = z.infer<typeof recapQuestionTaskSchema>;
 export type ReviewTriggerTask = z.infer<typeof reviewTriggerTaskSchema>;

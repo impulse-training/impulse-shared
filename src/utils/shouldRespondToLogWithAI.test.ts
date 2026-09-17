@@ -615,3 +615,46 @@ describe("shouldRespondToLogWithAI — voice call turns", () => {
     ).toBe(false);
   });
 });
+
+describe("shouldRespondToLogWithAI — change stage card responded", () => {
+  const recapSession = {
+    id: "2026-09-17",
+    type: "recap",
+  } as unknown as WithId<Session>;
+
+  const card = (data: Record<string, unknown>) =>
+    ({
+      type: "proposed_change_stage",
+      data: {
+        behaviorId: "b1",
+        toStage: "action",
+        title: "Update where you're at?",
+        evidence: "3 days free",
+        status: "pending",
+        ...data,
+      },
+    }) as unknown as Log;
+
+  it("responds on accept, even with an assistant log latest", () => {
+    expect(
+      shouldRespondToLogWithAI(recapSession, card({}), card({ status: "accepted" }), assistantLog),
+    ).toBe(true);
+  });
+
+  it("responds on decline", () => {
+    expect(
+      shouldRespondToLogWithAI(recapSession, card({}), card({ status: "declined" }), assistantLog),
+    ).toBe(true);
+  });
+
+  it("does not respond to the server's appliedAt patch", () => {
+    expect(
+      shouldRespondToLogWithAI(
+        recapSession,
+        card({ status: "accepted" }),
+        card({ status: "accepted", appliedAt: ts(1789600000) }),
+        assistantLog,
+      ),
+    ).toBe(false);
+  });
+});

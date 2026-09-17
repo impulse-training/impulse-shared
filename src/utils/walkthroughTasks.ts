@@ -44,6 +44,8 @@ export const WALKTHROUGH_EXCLUDED_TASK_TYPES: ReadonlySet<string> = new Set([
   "suggest_tactic",
   "suggest_strategy",
   "propose_goal",
+  // Recap-only confirm card, raised by streak recomputes.
+  "propose_change_stage",
 ]);
 
 /**

@@ -5862,6 +5862,13 @@ export declare const callLogSchema: z.ZodObject<{
         livekitRoomName: z.ZodOptional<z.ZodString>;
         elevenlabsAgentId: z.ZodOptional<z.ZodString>;
         elevenlabsConversationId: z.ZodOptional<z.ZodString>;
+        /**
+         * When the conversation's final transcript was reconciled into the session
+         * (the post-call webhook or the app's finishCall, whichever came first).
+         * Separate from endedAt: the app ends an ElevenLabs call on hang-up, like
+         * any other, and the transcript is only ready some seconds later.
+         */
+        elevenlabsTranscriptSavedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         token: z.ZodOptional<z.ZodString>;
         /**
          * What this call cost to run, in the units the provider bills.
@@ -6626,6 +6633,7 @@ export declare const callLogSchema: z.ZodObject<{
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
+        elevenlabsTranscriptSavedAt?: import("../../types").Timestamp | undefined;
         token?: string | undefined;
         usage?: {
             models: {
@@ -6770,6 +6778,7 @@ export declare const callLogSchema: z.ZodObject<{
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
+        elevenlabsTranscriptSavedAt?: import("../../types").Timestamp | undefined;
         token?: string | undefined;
         usage?: {
             models: {
@@ -7458,6 +7467,7 @@ export declare const callLogSchema: z.ZodObject<{
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
+        elevenlabsTranscriptSavedAt?: import("../../types").Timestamp | undefined;
         token?: string | undefined;
         usage?: {
             models: {
@@ -7617,6 +7627,7 @@ export declare const callLogSchema: z.ZodObject<{
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
+        elevenlabsTranscriptSavedAt?: import("../../types").Timestamp | undefined;
         token?: string | undefined;
         usage?: {
             models: {

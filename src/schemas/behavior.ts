@@ -71,6 +71,22 @@ export const changeStageSchema = z.enum([
 ]);
 export type ChangeStage = z.infer<typeof changeStageSchema>;
 
+/**
+ * Who set a behavior's changeStage:
+ * - `onboarding` — the AI's light first read when the behavior was created.
+ * - `user`       — picked on the behavior screen.
+ * - `proposal`   — the user accepted a proposed_change_stage card.
+ * - `auto`       — the reconciliation moved it without asking (a setback
+ *                  moves an active behavior to "relapse").
+ */
+export const changeStageSourceSchema = z.enum([
+  "onboarding",
+  "user",
+  "proposal",
+  "auto",
+]);
+export type ChangeStageSource = z.infer<typeof changeStageSourceSchema>;
+
 // Global streaks tracking (not limited to any window)
 export const globalStreaksSchema = z.object({
   currentStreak: z.number(),
@@ -437,12 +453,15 @@ export const behaviorSchema = behaviorTemplateBase
     behaviorTopicId: behaviorTopicIdSchema.optional(),
     // When true, the recap session should collect baseline usage data for this behavior
     needsBaselineData: z.boolean().optional().default(false),
-    // User-declared Stage of Change for this behavior (Transtheoretical Model).
-    // Set explicitly by the user; gates which reflective recap questions are
-    // surfaced. Absent = unknown → no stage gating applied.
+    // Stage of Change for this behavior (Transtheoretical Model). Gates which
+    // reflective recap questions are surfaced. Absent = unknown → no stage
+    // gating applied. Seeded by onboarding, editable by the user, and kept
+    // current by the change-stage reconciliation (see changeStageSource).
     changeStage: changeStageSchema.optional(),
-    // When the user last set/changed changeStage.
+    // When changeStage last changed, by anyone.
     changeStageUpdatedAt: timestampSchema.optional(),
+    // Who set the current changeStage. Absent on older docs = unknown.
+    changeStageSource: changeStageSourceSchema.optional(),
     customMilestoneRungs: z.array(milestoneRungSchema).optional(),
     mergedIntoBehaviorId: z.string().optional(),
     mergedFromBehaviorIds: z.array(z.string()).optional(),

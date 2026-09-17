@@ -72,6 +72,10 @@ import {
   proposedGoalChangeLogSchema,
 } from "./proposedGoalChangeLog";
 import {
+  ProposedChangeStageLog,
+  proposedChangeStageLogSchema,
+} from "./proposedChangeStageLog";
+import {
   TriggerSelectionLog,
   triggerSelectionLogSchema,
 } from "./triggerSelectionLog";
@@ -180,6 +184,7 @@ export const logSchemas = {
   day_totals_prompt: dayTotalsPromptLogSchema,
   week_overview: weekOverviewLogSchema,
   proposed_goal_change: proposedGoalChangeLogSchema,
+  proposed_change_stage: proposedChangeStageLogSchema,
   trigger_selection: triggerSelectionLogSchema,
   request_permissions: requestPermissionsLogSchema,
   tactic_review: tacticReviewLogSchema,
@@ -233,6 +238,7 @@ export type Log =
   | DayTotalsPromptLog
   | WeekOverviewLog
   | ProposedGoalChangeLog
+  | ProposedChangeStageLog
   | TriggerSelectionLog
   | RequestPermissionsLog
   | TacticReviewLog
@@ -281,6 +287,7 @@ export * from "./recapTimePreferenceLog";
 export * from "./dayTotalsPromptLog";
 export * from "./weekOverviewLog";
 export * from "./proposedGoalChangeLog";
+export * from "./proposedChangeStageLog";
 export * from "./triggerSelectionLog";
 export * from "./requestPermissionsLog";
 export * from "./tacticReviewLog";
@@ -332,6 +339,7 @@ export const logSchema = z.discriminatedUnion("type", [
   dayTotalsPromptLogSchema,
   weekOverviewLogSchema,
   proposedGoalChangeLogSchema,
+  proposedChangeStageLogSchema,
   triggerSelectionLogSchema,
   requestPermissionsLogSchema,
   tacticReviewLogSchema,
@@ -577,6 +585,10 @@ export const isValidProposedGoalChangeLog = (
 ): value is ProposedGoalChangeLog => {
   return proposedGoalChangeLogSchema.safeParse(value).success;
 };
+
+export const logIsProposedChangeStageLog = (
+  value: Omit<Log, "id">,
+): value is ProposedChangeStageLog => value.type === "proposed_change_stage";
 
 export const logIsImpulseStartedLog = (
   value: Omit<Log, "id">,

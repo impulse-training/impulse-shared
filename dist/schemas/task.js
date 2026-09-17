@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isSetupShortcutTask = exports.isReflectOnMetricsTask = exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isProposeGoalTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.isTaskAwaitingApproval = exports.TASK_TYPES_REQUIRING_APPROVAL = exports.taskSchema = exports.protectNextWindowTaskSchema = exports.protectNextWindowVariantSchema = exports.closingReflectionTaskSchema = exports.weeklyReviewTaskSchema = exports.weekLookbackTaskSchema = exports.resumeRecapRemindersTaskSchema = exports.setupShortcutTaskSchema = exports.containLapseTaskSchema = exports.understandBehaviorTaskSchema = exports.collectBaselineTaskSchema = exports.reflectOnMetricsTaskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.proposeGoalTaskSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.claimableSessionTypeSchema = exports.taskCategorySchema = exports.dismissedReasonSchema = exports.taskStatusSchema = void 0;
+exports.isSetupShortcutTask = exports.isReflectOnMetricsTask = exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isProposeGoalTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.isTaskAwaitingApproval = exports.TASK_TYPES_REQUIRING_APPROVAL = exports.taskSchema = exports.protectNextWindowTaskSchema = exports.protectNextWindowVariantSchema = exports.closingReflectionTaskSchema = exports.weeklyReviewTaskSchema = exports.weekLookbackTaskSchema = exports.resumeRecapRemindersTaskSchema = exports.setupShortcutTaskSchema = exports.containLapseTaskSchema = exports.understandBehaviorTaskSchema = exports.collectBaselineTaskSchema = exports.reflectOnMetricsTaskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeChangeStageTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.proposeGoalTaskSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.claimableSessionTypeSchema = exports.taskCategorySchema = exports.dismissedReasonSchema = exports.taskStatusSchema = void 0;
 const zod_1 = require("zod");
 const goal_1 = require("./goal");
+const behavior_1 = require("./behavior");
 const proposedStrategyModificationLog_1 = require("./log/proposedStrategyModificationLog");
 const timestampSchema_1 = require("../utils/timestampSchema");
 const metric_1 = require("./metric");
@@ -155,6 +156,23 @@ exports.proposeExperimentTaskSchema = exports.taskBaseSchema.extend({
         metrics: zod_1.z.array(exports.proposedMetricSchema).min(1),
         experimentQuestion: zod_1.z.string().min(1),
     }),
+});
+/**
+ * Asks the user to confirm moving one behavior to a different Stage of Change,
+ * raised by the change-stage reconciliation (impulse-functions
+ * reconcileChangeStage) when tracking disagrees with the declared stage.
+ * Deterministic: a recap claims it and renders a proposed_change_stage card;
+ * accepting writes the stage server-side. Only upward moves are proposed —
+ * a setback moves the stage to "relapse" automatically, without a task.
+ */
+exports.proposeChangeStageTaskSchema = exports.taskBaseSchema.extend({
+    type: zod_1.z.literal("propose_change_stage"),
+    behaviorId: zod_1.z.string().min(1),
+    /** The declared stage the proposal was computed against. Absent = never declared. */
+    fromStage: behavior_1.changeStageSchema.optional(),
+    toStage: behavior_1.changeStageSchema,
+    /** The current streak (days) at evaluation time, for the card's evidence. */
+    streakDays: zod_1.z.number().int().min(0),
 });
 exports.proposeMaskBehaviorTaskSchema = exports.taskBaseSchema.extend({
     type: zod_1.z.literal("propose_mask_behavior"),
@@ -434,6 +452,7 @@ exports.taskSchema = zod_1.z.discriminatedUnion("type", [
     exports.proposeGoalTaskSchema,
     exports.proposeExperimentTaskSchema,
     exports.proposeMaskBehaviorTaskSchema,
+    exports.proposeChangeStageTaskSchema,
     exports.createSessionTaskSchema,
     exports.recapQuestionTaskSchema,
     exports.reviewTriggerTaskSchema,
