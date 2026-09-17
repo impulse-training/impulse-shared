@@ -241,3 +241,33 @@ describe("getGptPayload — pending proposal cards", () => {
     expect(getGptPayload(goalCard("declined"), false)[0].content).toContain("DECLINED");
   });
 });
+
+describe("getGptPayload — change stage card", () => {
+  const card = (status: string): Log =>
+    ({
+      type: "proposed_change_stage",
+      isDisplayable: true,
+      data: {
+        behaviorId: "b1",
+        behaviorName: "Social media & videos",
+        fromStage: "preparation",
+        toStage: "action",
+        title: "Update where you're at?",
+        evidence: "You're at 3 days free.",
+        status,
+      },
+    }) as unknown as Log;
+
+  it("renders a pending card with its evidence and the stage labels", () => {
+    const [message] = getGptPayload(card("pending"), false);
+    expect(message.content).toContain('"Actively changing"');
+    expect(message.content).toContain('currently "Getting ready"');
+    expect(message.content).toContain("You're at 3 days free.");
+    expect(message.content).toContain("then wait");
+  });
+
+  it("renders the resolutions", () => {
+    expect(getGptPayload(card("accepted"), false)[0].content).toContain("CONFIRMED");
+    expect(getGptPayload(card("declined"), false)[0].content).toContain("NOT");
+  });
+});

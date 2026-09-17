@@ -26,6 +26,16 @@ export declare const streaksSchema: z.ZodObject<{
 export type Streaks = z.infer<typeof streaksSchema>;
 export declare const changeStageSchema: z.ZodEnum<["precontemplation", "contemplation", "preparation", "action", "maintenance", "relapse"]>;
 export type ChangeStage = z.infer<typeof changeStageSchema>;
+/**
+ * Who set a behavior's changeStage:
+ * - `onboarding` — the AI's light first read when the behavior was created.
+ * - `user`       — picked on the behavior screen.
+ * - `proposal`   — the user accepted a proposed_change_stage card.
+ * - `auto`       — the reconciliation moved it without asking (a setback
+ *                  moves an active behavior to "relapse").
+ */
+export declare const changeStageSourceSchema: z.ZodEnum<["onboarding", "user", "proposal", "auto"]>;
+export type ChangeStageSource = z.infer<typeof changeStageSourceSchema>;
 export declare const globalStreaksSchema: z.ZodObject<{
     currentStreak: z.ZodNumber;
     longestStreak: z.ZodNumber;
@@ -1470,6 +1480,7 @@ export declare const behaviorSchema: z.ZodObject<{
     needsBaselineData: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     changeStage: z.ZodOptional<z.ZodEnum<["precontemplation", "contemplation", "preparation", "action", "maintenance", "relapse"]>>;
     changeStageUpdatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    changeStageSource: z.ZodOptional<z.ZodEnum<["onboarding", "user", "proposal", "auto"]>>;
     customMilestoneRungs: z.ZodOptional<z.ZodArray<z.ZodObject<{
         days: z.ZodNumber;
         label: z.ZodString;
@@ -2476,6 +2487,7 @@ export declare const behaviorSchema: z.ZodObject<{
     behaviorTopicId?: string | undefined;
     changeStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
     changeStageUpdatedAt?: import("../types").Timestamp | undefined;
+    changeStageSource?: "onboarding" | "user" | "proposal" | "auto" | undefined;
     customMilestoneRungs?: {
         days: number;
         label: string;
@@ -2717,6 +2729,7 @@ export declare const behaviorSchema: z.ZodObject<{
     needsBaselineData?: boolean | undefined;
     changeStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
     changeStageUpdatedAt?: import("../types").Timestamp | undefined;
+    changeStageSource?: "onboarding" | "user" | "proposal" | "auto" | undefined;
     customMilestoneRungs?: {
         days: number;
         label: string;

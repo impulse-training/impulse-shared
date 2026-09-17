@@ -265,6 +265,19 @@ export declare const userDataSchema: z.ZodObject<{
     country: z.ZodOptional<z.ZodString>;
     recoveryKeySaved: z.ZodOptional<z.ZodBoolean>;
     disclaimerAcceptedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    voiceEngineOverrides: z.ZodOptional<z.ZodObject<{
+        morningCheckIn: z.ZodOptional<z.ZodEnum<["livekit", "elevenlabs"]>>;
+        impulse: z.ZodOptional<z.ZodEnum<["livekit", "elevenlabs"]>>;
+        general: z.ZodOptional<z.ZodEnum<["livekit", "elevenlabs"]>>;
+    }, "strip", z.ZodTypeAny, {
+        morningCheckIn?: "livekit" | "elevenlabs" | undefined;
+        impulse?: "livekit" | "elevenlabs" | undefined;
+        general?: "livekit" | "elevenlabs" | undefined;
+    }, {
+        morningCheckIn?: "livekit" | "elevenlabs" | undefined;
+        impulse?: "livekit" | "elevenlabs" | undefined;
+        general?: "livekit" | "elevenlabs" | undefined;
+    }>>;
     aiDataConsent: z.ZodOptional<z.ZodObject<{
         acceptedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
         version: z.ZodNumber;
@@ -449,6 +462,11 @@ export declare const userDataSchema: z.ZodObject<{
     }>> | undefined;
     recoveryKeySaved?: boolean | undefined;
     disclaimerAcceptedAt?: import("../types").Timestamp | undefined;
+    voiceEngineOverrides?: {
+        morningCheckIn?: "livekit" | "elevenlabs" | undefined;
+        impulse?: "livekit" | "elevenlabs" | undefined;
+        general?: "livekit" | "elevenlabs" | undefined;
+    } | undefined;
     aiDataConsent?: {
         acceptedAt: import("../types").Timestamp;
         version: number;
@@ -581,6 +599,11 @@ export declare const userDataSchema: z.ZodObject<{
     }>> | undefined;
     recoveryKeySaved?: boolean | undefined;
     disclaimerAcceptedAt?: import("../types").Timestamp | undefined;
+    voiceEngineOverrides?: {
+        morningCheckIn?: "livekit" | "elevenlabs" | undefined;
+        impulse?: "livekit" | "elevenlabs" | undefined;
+        general?: "livekit" | "elevenlabs" | undefined;
+    } | undefined;
     aiDataConsent?: {
         acceptedAt: import("../types").Timestamp;
         version: number;

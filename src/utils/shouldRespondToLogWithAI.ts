@@ -15,6 +15,7 @@ import {
   logIsImpulseStartedLog,
   logIsMaskBehaviorProposalLog,
   logIsMergeBehaviorsProposalLog,
+  logIsProposedChangeStageLog,
   logIsProposedGoalChangeLog,
   logIsProposedStrategyModificationLog,
   logIsMetricLog,
@@ -194,6 +195,17 @@ export function shouldRespondToLogWithAI(
     logIsProposedGoalChangeLog(beforeData) &&
     beforeData.data.status === "pending";
 
+  // Same contract for the stage-of-change card: respond once, on the
+  // pending → accepted/declined transition (not on the server's appliedAt patch).
+  const isChangeStageResponded =
+    beforeData &&
+    afterData &&
+    logIsProposedChangeStageLog(afterData) &&
+    (afterData.data.status === "accepted" ||
+      afterData.data.status === "declined") &&
+    logIsProposedChangeStageLog(beforeData) &&
+    beforeData.data.status === "pending";
+
   // The user accepted/declined a weekly-review strategy proposal card (or its
   // full-screen view) — inline interaction, no user message. Scoped to queue
   // cards (data.sourceTaskId) OR any card inside a weekly recap — v2 review
@@ -284,6 +296,7 @@ export function shouldRespondToLogWithAI(
     !isShortcutSetupTextChoice &&
     !isTacticCompleted &&
     !isGoalChangeResponded &&
+    !isChangeStageResponded &&
     !isStrategyCardResponded &&
     !isResumeRemindersResponded &&
     !isMergeBehaviorsResponseSelected &&
@@ -346,6 +359,11 @@ export function shouldRespondToLogWithAI(
   // Case: Proposed goal change responded to (accept/decline card tapped)
   if (isGoalChangeResponded) {
     console.log("Goal change proposal responded to. Responding with AI.");
+    return true;
+  }
+
+  if (isChangeStageResponded) {
+    console.log("Change stage proposal responded to. Responding with AI.");
     return true;
   }
 

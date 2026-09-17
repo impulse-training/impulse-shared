@@ -15,7 +15,7 @@ export declare const sessionSummarySchema: z.ZodObject<{
     outcomeLogs: any[];
     plansLogs: any[];
     hasContent: boolean;
-    type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
+    type?: "onboarding" | "behavior" | "impulse" | "general" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
     metricLogs?: any[] | undefined;
     firstMessageLog?: any;
     firstCallLog?: any;
@@ -25,7 +25,7 @@ export declare const sessionSummarySchema: z.ZodObject<{
     outcomeLogs: any[];
     plansLogs: any[];
     hasContent: boolean;
-    type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
+    type?: "onboarding" | "behavior" | "impulse" | "general" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
     metricLogs?: any[] | undefined;
     firstMessageLog?: any;
     firstCallLog?: any;

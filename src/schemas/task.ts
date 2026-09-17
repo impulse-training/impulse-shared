@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { goalSchema } from "./goal";
+import { changeStageSchema } from "./behavior";
 import { strategyModificationOperationSchema } from "./log/proposedStrategyModificationLog";
 import { timestampSchema } from "../utils/timestampSchema";
 import { METRIC_NAME_MAX_LENGTH, metricScaleSchema } from "./metric";
@@ -162,6 +163,24 @@ export const proposeExperimentTaskSchema = taskBaseSchema.extend({
     metrics: z.array(proposedMetricSchema).min(1),
     experimentQuestion: z.string().min(1),
   }),
+});
+
+/**
+ * Asks the user to confirm moving one behavior to a different Stage of Change,
+ * raised by the change-stage reconciliation (impulse-functions
+ * reconcileChangeStage) when tracking disagrees with the declared stage.
+ * Deterministic: a recap claims it and renders a proposed_change_stage card;
+ * accepting writes the stage server-side. Only upward moves are proposed —
+ * a setback moves the stage to "relapse" automatically, without a task.
+ */
+export const proposeChangeStageTaskSchema = taskBaseSchema.extend({
+  type: z.literal("propose_change_stage"),
+  behaviorId: z.string().min(1),
+  /** The declared stage the proposal was computed against. Absent = never declared. */
+  fromStage: changeStageSchema.optional(),
+  toStage: changeStageSchema,
+  /** The current streak (days) at evaluation time, for the card's evidence. */
+  streakDays: z.number().int().min(0),
 });
 
 export const proposeMaskBehaviorTaskSchema = taskBaseSchema.extend({
@@ -461,6 +480,7 @@ export const taskSchema = z.discriminatedUnion("type", [
   proposeGoalTaskSchema,
   proposeExperimentTaskSchema,
   proposeMaskBehaviorTaskSchema,
+  proposeChangeStageTaskSchema,
   createSessionTaskSchema,
   recapQuestionTaskSchema,
   reviewTriggerTaskSchema,
@@ -487,6 +507,7 @@ export type SuggestStrategyTask = z.infer<typeof suggestStrategyTaskSchema>;
 export type ProposeGoalTask = z.infer<typeof proposeGoalTaskSchema>;
 export type ProposeExperimentTask = z.infer<typeof proposeExperimentTaskSchema>;
 export type ProposeMaskBehaviorTask = z.infer<typeof proposeMaskBehaviorTaskSchema>;
+export type ProposeChangeStageTask = z.infer<typeof proposeChangeStageTaskSchema>;
 export type CreateSessionTask = z.infer<typeof createSessionTaskSchema>;
 export type RecapQuestionTask = z.infer<typeof recapQuestionTaskSchema>;
 export type ReviewTriggerTask = z.infer<typeof reviewTriggerTaskSchema>;

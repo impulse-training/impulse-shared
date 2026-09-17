@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isUserData = exports.getActiveClosingReflectionPrompt = exports.userDataSchema = void 0;
+const voiceEngine_1 = require("./voiceEngine");
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../utils/timestampSchema");
 const supportGroup_1 = require("./supportGroup");
@@ -217,6 +218,9 @@ exports.userDataSchema = zod_1.z.object({
     recoveryKeySaved: zod_1.z.boolean().optional(),
     // Disclaimer acceptance
     disclaimerAcceptedAt: timestampSchema_1.timestampSchema.optional(),
+    // Which voice engine this user's calls run on, per kind, when it differs
+    // from config/voiceEngine. See voiceEngineOverridesSchema.
+    voiceEngineOverrides: voiceEngine_1.voiceEngineOverridesSchema.optional(),
     // Consent to send session content to the third-party AI provider (OpenAI).
     // Absent means never asked or declined; either way the AI coach is gated off
     // both in the app and on the server. `version` is AI_DATA_CONSENT_VERSION at

@@ -11,6 +11,7 @@ import {
   logIsPlansLog,
   logIsMergeBehaviorsProposalLog,
   logIsProposedStrategyModificationLog,
+  logIsProposedChangeStageLog,
   logIsProposedGoalChangeLog,
   logIsResumeRecapRemindersCtaLog,
   logIsTacticChoiceLog,
@@ -28,6 +29,7 @@ import {
 } from "../schemas/metric";
 import { isPostDebriefPhase, SessionPhase } from "../schemas/session/phase";
 import { nowMs } from "../utils/clock";
+import { getChangeStageLabel } from "../utils/changeStage";
 import { formatTimeAgo } from "../utils/formatRecentBehaviorTracking";
 
 interface PayloadOptions {
@@ -262,6 +264,37 @@ export function getGptPayload(
           `<SYSTEM>A strategy proposal card "${context}" is in front of the user, awaiting their accept/decline. ` +
           `If you haven't already, say ONE short line pointing them to it — why it follows from what they said — and then wait. ` +
           `Do not restate the card's contents, do not explain how to accept or decline, and do not move the conversation onward past an undecided card.</SYSTEM>`,
+      },
+    ];
+  }
+
+  if (logIsProposedChangeStageLog(log)) {
+    const name = log.data.behaviorName?.trim();
+    const about = name ? ` about ${name}` : "";
+    const to = getChangeStageLabel(log.data.toStage);
+    const from = log.data.fromStage
+      ? ` (currently "${getChangeStageLabel(log.data.fromStage)}")`
+      : "";
+
+    if (log.data.status !== "accepted" && log.data.status !== "declined") {
+      return [
+        {
+          role: "user",
+          content:
+            `<SYSTEM>A card${about} is in front of the user asking whether they are now "${to}"${from}, based on their tracking: ${log.data.evidence} ` +
+            `If you haven't already, say ONE short line pointing them to it, then wait. ` +
+            `Do not restate the card's contents and do not move the conversation onward past an undecided card.</SYSTEM>`,
+        },
+      ];
+    }
+
+    return [
+      {
+        role: "user",
+        content:
+          log.data.status === "accepted"
+            ? `<SYSTEM>The user CONFIRMED they are now "${to}"${about}; their stage has been updated. Acknowledge briefly and move the conversation forward; do not re-explain the stage.</SYSTEM>`
+            : `<SYSTEM>The user said they are NOT "${to}"${about} yet. Respect that without persuasion and move on.</SYSTEM>`,
       },
     ];
   }
