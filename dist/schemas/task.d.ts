@@ -1798,6 +1798,12 @@ export declare const proposeChangeStageTaskSchema: z.ZodObject<{
     toStage: z.ZodEnum<["precontemplation", "contemplation", "preparation", "action", "maintenance", "relapse"]>;
     /** The current streak (days) at evaluation time, for the card's evidence. */
     streakDays: z.ZodNumber;
+    /**
+     * effectiveBehaviorSalience at evaluation time. Ranks proposals for the
+     * recap claim, and a behavior below DEFAULT_BEHAVIOR_SALIENCE is never paired
+     * into a combined question. Absent on proposals raised before it existed.
+     */
+    salience: z.ZodOptional<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -1811,6 +1817,7 @@ export declare const proposeChangeStageTaskSchema: z.ZodObject<{
     streakDays: number;
     instructions: string;
     id?: string | undefined;
+    salience?: number | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
@@ -1843,6 +1850,7 @@ export declare const proposeChangeStageTaskSchema: z.ZodObject<{
     instructions: string;
     id?: string | undefined;
     status?: "completed" | "dismissed" | "open" | undefined;
+    salience?: number | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
@@ -6213,6 +6221,12 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     toStage: z.ZodEnum<["precontemplation", "contemplation", "preparation", "action", "maintenance", "relapse"]>;
     /** The current streak (days) at evaluation time, for the card's evidence. */
     streakDays: z.ZodNumber;
+    /**
+     * effectiveBehaviorSalience at evaluation time. Ranks proposals for the
+     * recap claim, and a behavior below DEFAULT_BEHAVIOR_SALIENCE is never paired
+     * into a combined question. Absent on proposals raised before it existed.
+     */
+    salience: z.ZodOptional<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -6226,6 +6240,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     streakDays: number;
     instructions: string;
     id?: string | undefined;
+    salience?: number | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
@@ -6258,6 +6273,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     instructions: string;
     id?: string | undefined;
     status?: "completed" | "dismissed" | "open" | undefined;
+    salience?: number | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;

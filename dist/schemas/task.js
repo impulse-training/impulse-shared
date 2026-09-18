@@ -173,6 +173,12 @@ exports.proposeChangeStageTaskSchema = exports.taskBaseSchema.extend({
     toStage: behavior_1.changeStageSchema,
     /** The current streak (days) at evaluation time, for the card's evidence. */
     streakDays: zod_1.z.number().int().min(0),
+    /**
+     * effectiveBehaviorSalience at evaluation time. Ranks proposals for the
+     * recap claim, and a behavior below DEFAULT_BEHAVIOR_SALIENCE is never paired
+     * into a combined question. Absent on proposals raised before it existed.
+     */
+    salience: zod_1.z.number().min(0).max(1).optional(),
 });
 exports.proposeMaskBehaviorTaskSchema = exports.taskBaseSchema.extend({
     type: zod_1.z.literal("propose_mask_behavior"),
