@@ -133,6 +133,12 @@ exports.tacticSchema = zod_1.z.object({
     // set) so we don't, e.g., tell someone who's already standing to "Stand up".
     // Free text describing the presumed state; presence of the field is what gates.
     presumesState: zod_1.z.string().optional(),
+    // Session modes this tactic should never be recommended into, regardless of
+    // indications/contraindications matching (e.g. a tactic that only makes
+    // sense read on-screen shouldn't surface in a voice session). Distinct from
+    // aiConfiguration.defaultConversationMode, which picks how a tactic itself
+    // is *delivered*, not which sessions it's eligible for.
+    excludeModes: zod_1.z.array(zod_1.z.enum(["voice", "text"])).optional(),
     aiConfiguration: zod_1.z
         .object({
         defaultConversationMode: zod_1.z.enum(["voice", "text"]).optional(),

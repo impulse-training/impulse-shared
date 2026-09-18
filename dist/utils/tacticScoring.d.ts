@@ -44,6 +44,9 @@ export interface TacticScoringContext {
      * ties on empty tags and get suggested regardless of the user's situation.
      */
     lowSignal?: boolean;
+    /** The session's conversation mode. Used to hard-exclude tactics whose
+     * `excludeModes` names this mode (see `tacticSchema.excludeModes`). */
+    sessionMode?: "voice" | "text";
 }
 /** Ranking boost applied to a pinned tactic. Large enough to clear a tactic's
  * recency penalty, small enough that a strong tag/topic match still competes. */
