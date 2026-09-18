@@ -8,9 +8,9 @@ import {
 const config = (raw: unknown) => voiceEngineConfigSchema.parse(raw);
 
 describe("resolveVoiceEngine", () => {
-  it("falls back to livekit without a config", () => {
+  it("falls back to the shipped engine without a config", () => {
     expect(resolveVoiceEngine(undefined, { userId: "u1", kind: "impulse" })).toEqual({
-      engine: "livekit",
+      engine: "elevenlabs",
       reason: "no-config",
     });
   });

@@ -73,8 +73,15 @@ export type VoiceEngineConfig = z.infer<typeof voiceEngineConfigSchema>;
 
 export const VOICE_ENGINE_CONFIG_DOC_PATH = "config/voiceEngine";
 
-/** The engine when there is no config doc, or it is unreadable. */
-export const FALLBACK_VOICE_ENGINE: VoiceEngine = "livekit";
+/**
+ * The engine when there is no config doc, or it is unreadable.
+ *
+ * ElevenLabs since 2026-09-17, matching what production's own config doc now
+ * says, so an environment WITHOUT that doc — the emulator a test run boots, a
+ * fresh project — runs calls the way real users get them rather than on the
+ * engine being replaced.
+ */
+export const FALLBACK_VOICE_ENGINE: VoiceEngine = "elevenlabs";
 
 export type VoiceEngineReason = "user-override" | "split" | "kind" | "default" | "no-config";
 
