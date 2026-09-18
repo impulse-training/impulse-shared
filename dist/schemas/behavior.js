@@ -380,6 +380,10 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
     behaviorTopicId: behaviorTopic_1.behaviorTopicIdSchema.optional(),
     // When true, the recap session should collect baseline usage data for this behavior
     needsBaselineData: zod_1.z.boolean().optional().default(false),
+    // Whether the recap asks for the day's First/Last times on a scale
+    // behavior with an eliminate goal. Absent means ask; only an explicit
+    // false turns it off (the server then counts the day from midnight).
+    askRecapFirstLast: zod_1.z.boolean().optional(),
     // Stage of Change for this behavior (Transtheoretical Model). Gates which
     // reflective recap questions are surfaced. Absent = unknown → no stage
     // gating applied. Seeded by onboarding, editable by the user, and kept
