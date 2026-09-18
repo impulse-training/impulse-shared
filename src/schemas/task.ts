@@ -181,6 +181,12 @@ export const proposeChangeStageTaskSchema = taskBaseSchema.extend({
   toStage: changeStageSchema,
   /** The current streak (days) at evaluation time, for the card's evidence. */
   streakDays: z.number().int().min(0),
+  /**
+   * effectiveBehaviorSalience at evaluation time. Ranks proposals for the
+   * recap claim, and a behavior below DEFAULT_BEHAVIOR_SALIENCE is never paired
+   * into a combined question. Absent on proposals raised before it existed.
+   */
+  salience: z.number().min(0).max(1).optional(),
 });
 
 export const proposeMaskBehaviorTaskSchema = taskBaseSchema.extend({
