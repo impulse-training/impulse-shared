@@ -51,6 +51,9 @@ export interface TacticScoringContext {
    * ties on empty tags and get suggested regardless of the user's situation.
    */
   lowSignal?: boolean;
+  /** The session's conversation mode. Used to hard-exclude tactics whose
+   * `excludeModes` names this mode (see `tacticSchema.excludeModes`). */
+  sessionMode?: "voice" | "text";
 }
 
 /** Ranking boost applied to a pinned tactic. Large enough to clear a tactic's
@@ -128,10 +131,18 @@ export function scoreTactic(
     pinnedTacticIds,
     suppressedTacticIds,
     lowSignal,
+    sessionMode,
   } = context;
 
   // 1. Hard exclude: user/behavior suppression (human oversight)
   if (suppressedTacticIds?.includes(tactic.id)) {
+    return null; // EXCLUDED
+  }
+
+  // 1a. Hard exclude: tactic is contraindicated for this session's mode
+  //     (e.g. a tactic that doesn't work spoken aloud shouldn't surface in a
+  //     voice session).
+  if (sessionMode && tactic.excludeModes?.includes(sessionMode)) {
     return null; // EXCLUDED
   }
 
