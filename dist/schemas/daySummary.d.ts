@@ -275,6 +275,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         color: z.ZodOptional<z.ZodString>;
         behaviorTopicId: z.ZodOptional<z.ZodEnum<[string, ...string[]]>>;
         needsBaselineData: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+        askRecapFirstLast: z.ZodOptional<z.ZodBoolean>;
         changeStage: z.ZodOptional<z.ZodEnum<["precontemplation", "contemplation", "preparation", "action", "maintenance", "relapse"]>>;
         changeStageUpdatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         changeStageSource: z.ZodOptional<z.ZodEnum<["onboarding", "user", "proposal", "auto"]>>;
@@ -1279,6 +1280,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         } | undefined;
         behaviorTemplateId?: string | undefined;
         behaviorTopicId?: string | undefined;
+        askRecapFirstLast?: boolean | undefined;
         changeStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
         changeStageUpdatedAt?: import("../types").Timestamp | undefined;
         changeStageSource?: "onboarding" | "user" | "proposal" | "auto" | undefined;
@@ -1521,6 +1523,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         behaviorTemplateId?: string | undefined;
         behaviorTopicId?: string | undefined;
         needsBaselineData?: boolean | undefined;
+        askRecapFirstLast?: boolean | undefined;
         changeStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
         changeStageUpdatedAt?: import("../types").Timestamp | undefined;
         changeStageSource?: "onboarding" | "user" | "proposal" | "auto" | undefined;
@@ -1778,6 +1781,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         } | undefined;
         behaviorTemplateId?: string | undefined;
         behaviorTopicId?: string | undefined;
+        askRecapFirstLast?: boolean | undefined;
         changeStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
         changeStageUpdatedAt?: import("../types").Timestamp | undefined;
         changeStageSource?: "onboarding" | "user" | "proposal" | "auto" | undefined;
@@ -2035,6 +2039,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         behaviorTemplateId?: string | undefined;
         behaviorTopicId?: string | undefined;
         needsBaselineData?: boolean | undefined;
+        askRecapFirstLast?: boolean | undefined;
         changeStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
         changeStageUpdatedAt?: import("../types").Timestamp | undefined;
         changeStageSource?: "onboarding" | "user" | "proposal" | "auto" | undefined;
@@ -2433,6 +2438,7 @@ export declare const daySummarySchema: z.ZodObject<{
         color: z.ZodOptional<z.ZodString>;
         behaviorTopicId: z.ZodOptional<z.ZodEnum<[string, ...string[]]>>;
         needsBaselineData: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+        askRecapFirstLast: z.ZodOptional<z.ZodBoolean>;
         changeStage: z.ZodOptional<z.ZodEnum<["precontemplation", "contemplation", "preparation", "action", "maintenance", "relapse"]>>;
         changeStageUpdatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         changeStageSource: z.ZodOptional<z.ZodEnum<["onboarding", "user", "proposal", "auto"]>>;
@@ -3437,6 +3443,7 @@ export declare const daySummarySchema: z.ZodObject<{
         } | undefined;
         behaviorTemplateId?: string | undefined;
         behaviorTopicId?: string | undefined;
+        askRecapFirstLast?: boolean | undefined;
         changeStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
         changeStageUpdatedAt?: import("../types").Timestamp | undefined;
         changeStageSource?: "onboarding" | "user" | "proposal" | "auto" | undefined;
@@ -3679,6 +3686,7 @@ export declare const daySummarySchema: z.ZodObject<{
         behaviorTemplateId?: string | undefined;
         behaviorTopicId?: string | undefined;
         needsBaselineData?: boolean | undefined;
+        askRecapFirstLast?: boolean | undefined;
         changeStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
         changeStageUpdatedAt?: import("../types").Timestamp | undefined;
         changeStageSource?: "onboarding" | "user" | "proposal" | "auto" | undefined;
@@ -4032,6 +4040,7 @@ export declare const daySummarySchema: z.ZodObject<{
         } | undefined;
         behaviorTemplateId?: string | undefined;
         behaviorTopicId?: string | undefined;
+        askRecapFirstLast?: boolean | undefined;
         changeStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
         changeStageUpdatedAt?: import("../types").Timestamp | undefined;
         changeStageSource?: "onboarding" | "user" | "proposal" | "auto" | undefined;
@@ -4323,6 +4332,7 @@ export declare const daySummarySchema: z.ZodObject<{
         behaviorTemplateId?: string | undefined;
         behaviorTopicId?: string | undefined;
         needsBaselineData?: boolean | undefined;
+        askRecapFirstLast?: boolean | undefined;
         changeStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
         changeStageUpdatedAt?: import("../types").Timestamp | undefined;
         changeStageSource?: "onboarding" | "user" | "proposal" | "auto" | undefined;
