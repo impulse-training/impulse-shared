@@ -142,11 +142,21 @@ exports.sessionBaseSchema = zod_1.z.object({
         .optional(),
     // Context the server learned mid-call, for an ElevenLabs call to hear. Its
     // prompt is fixed when the call is prepared and there is no server API into a
-    // live conversation, so the app (which holds it) relays each new item with
-    // sendContextualUpdate. First use: yesterday's facts (a broken streak), which
-    // are pinned only once the call itself confirms the day's totals.
+    // live conversation, so the app (which holds it) relays each new item.
+    //
+    // `respond` picks how. Without it the item is background (sendContextualUpdate),
+    // which ElevenLabs never answers. With it the app sends it as a typed message
+    // (sendUserMessage), the only client event that makes the agent speak: for
+    // something done on screen the call must react to now (a tactic completed or
+    // opened, the day's totals confirmed on the card). Its text says it is not the
+    // user speaking, and its echoed user turn ("...") is never logged as one.
     liveCallContextUpdates: zod_1.z
-        .array(zod_1.z.object({ id: zod_1.z.string(), text: zod_1.z.string(), createdAt: timestampSchema_1.timestampSchema }))
+        .array(zod_1.z.object({
+        id: zod_1.z.string(),
+        text: zod_1.z.string(),
+        createdAt: timestampSchema_1.timestampSchema,
+        respond: zod_1.z.boolean().optional(),
+    }))
         .optional(),
     // Multi-select tags: tagGroupId → array of selected optionIds
     tags: zod_1.z.record(zod_1.z.string(), zod_1.z.array(zod_1.z.string())).optional(),
