@@ -5431,14 +5431,17 @@ export declare const sessionBaseSchema: z.ZodObject<{
         id: z.ZodString;
         text: z.ZodString;
         createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        respond: z.ZodOptional<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
         id: string;
         createdAt: import("../../types").Timestamp;
         text: string;
+        respond?: boolean | undefined;
     }, {
         id: string;
         createdAt: import("../../types").Timestamp;
         text: string;
+        respond?: boolean | undefined;
     }>, "many">>;
     tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodArray<z.ZodString, "many">>>;
     aiFinalizedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -6142,6 +6145,7 @@ export declare const sessionBaseSchema: z.ZodObject<{
         id: string;
         createdAt: import("../../types").Timestamp;
         text: string;
+        respond?: boolean | undefined;
     }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     closeDecidedBy?: "ai" | "reviewer" | undefined;
@@ -6309,6 +6313,7 @@ export declare const sessionBaseSchema: z.ZodObject<{
         id: string;
         createdAt: import("../../types").Timestamp;
         text: string;
+        respond?: boolean | undefined;
     }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     closeDecidedBy?: "ai" | "reviewer" | undefined;
