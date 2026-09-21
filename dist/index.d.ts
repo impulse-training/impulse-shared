@@ -15,6 +15,7 @@ export * from "./utils/behaviorSalience";
 export * from "./utils/clock";
 export * from "./utils/planFreshness";
 export * from "./utils/dates";
+export * from "./utils/dayAdjustments";
 export * from "./utils/days";
 export * from "./utils/documentReferenceSchema";
 export * from "./utils/fields";

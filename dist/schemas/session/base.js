@@ -140,6 +140,14 @@ exports.sessionBaseSchema = zod_1.z.object({
     coachGuidanceItems: zod_1.z
         .array(zod_1.z.object({ id: zod_1.z.string(), text: zod_1.z.string(), sentAt: timestampSchema_1.timestampSchema }))
         .optional(),
+    // Context the server learned mid-call, for an ElevenLabs call to hear. Its
+    // prompt is fixed when the call is prepared and there is no server API into a
+    // live conversation, so the app (which holds it) relays each new item with
+    // sendContextualUpdate. First use: yesterday's facts (a broken streak), which
+    // are pinned only once the call itself confirms the day's totals.
+    liveCallContextUpdates: zod_1.z
+        .array(zod_1.z.object({ id: zod_1.z.string(), text: zod_1.z.string(), createdAt: timestampSchema_1.timestampSchema }))
+        .optional(),
     // Multi-select tags: tagGroupId → array of selected optionIds
     tags: zod_1.z.record(zod_1.z.string(), zod_1.z.array(zod_1.z.string())).optional(),
     // Set when the AI calls showCloseButton — indicates the conversation has reached a natural end.

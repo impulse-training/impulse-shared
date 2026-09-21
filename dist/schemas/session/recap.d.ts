@@ -5512,6 +5512,19 @@ export declare const recapSessionSchema: z.ZodObject<{
         text: string;
         sentAt: import("../../types").Timestamp;
     }>, "many">>;
+    liveCallContextUpdates: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        id: z.ZodString;
+        text: z.ZodString;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    }, "strip", z.ZodTypeAny, {
+        id: string;
+        createdAt: import("../../types").Timestamp;
+        text: string;
+    }, {
+        id: string;
+        createdAt: import("../../types").Timestamp;
+        text: string;
+    }>, "many">>;
     tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodArray<z.ZodString, "many">>>;
     aiFinalizedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     closeDecidedBy: z.ZodOptional<z.ZodEnum<["ai", "reviewer"]>>;
@@ -6321,6 +6334,11 @@ export declare const recapSessionSchema: z.ZodObject<{
         text: string;
         sentAt: import("../../types").Timestamp;
     }[] | undefined;
+    liveCallContextUpdates?: {
+        id: string;
+        createdAt: import("../../types").Timestamp;
+        text: string;
+    }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     closeDecidedBy?: "ai" | "reviewer" | undefined;
     deletingError?: string | undefined;
@@ -6522,6 +6540,11 @@ export declare const recapSessionSchema: z.ZodObject<{
         id: string;
         text: string;
         sentAt: import("../../types").Timestamp;
+    }[] | undefined;
+    liveCallContextUpdates?: {
+        id: string;
+        createdAt: import("../../types").Timestamp;
+        text: string;
     }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     closeDecidedBy?: "ai" | "reviewer" | undefined;
