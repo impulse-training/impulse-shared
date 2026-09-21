@@ -159,6 +159,15 @@ export const sessionBaseSchema = z.object({
     .array(z.object({ id: z.string(), text: z.string(), sentAt: timestampSchema }))
     .optional(),
 
+  // Context the server learned mid-call, for an ElevenLabs call to hear. Its
+  // prompt is fixed when the call is prepared and there is no server API into a
+  // live conversation, so the app (which holds it) relays each new item with
+  // sendContextualUpdate. First use: yesterday's facts (a broken streak), which
+  // are pinned only once the call itself confirms the day's totals.
+  liveCallContextUpdates: z
+    .array(z.object({ id: z.string(), text: z.string(), createdAt: timestampSchema }))
+    .optional(),
+
   // Multi-select tags: tagGroupId → array of selected optionIds
   tags: z.record(z.string(), z.array(z.string())).optional(),
 
