@@ -20,7 +20,7 @@ export const taskStatusSchema = z.enum(["open", "completed", "dismissed"]);
  *   about the task at all: the live copy lives in `resumedInSessionId`, and
  *   the source-task status sync must ignore it.
  */
-export const dismissedReasonSchema = z.enum(["ignored", "declined", "resumed"]);
+export const dismissedReasonSchema = z.enum(["ignored", "declined", "resumed", "expired"]);
 
 export const taskCategorySchema = z.enum(["zara", "deterministic"]);
 
@@ -65,6 +65,15 @@ export const taskBaseSchema = z.object({
    */
   triggerAIAfter: z.boolean().optional(),
   createdBy: z.string().optional(),
+  /**
+   * When this task stops being worth doing, whether or not anything picked it
+   * up. A window guard opened by a slip the user reported this morning is
+   * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+   * an expired task and the creator sweeps expired ones closed
+   * (dismissedReason "expired"). Absent means the task has no deadline, which
+   * is every task written before 2026-09-23.
+   */
+  expiresAt: timestampSchema.optional(),
   /**
    * How many recap sessions have surfaced this task. Set to 1 on first claim
    * and incremented each time a fresh recap reclaims it off an earlier,

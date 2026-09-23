@@ -13,7 +13,7 @@ export declare const taskStatusSchema: z.ZodEnum<["open", "completed", "dismisse
  *   about the task at all: the live copy lives in `resumedInSessionId`, and
  *   the source-task status sync must ignore it.
  */
-export declare const dismissedReasonSchema: z.ZodEnum<["ignored", "declined", "resumed"]>;
+export declare const dismissedReasonSchema: z.ZodEnum<["ignored", "declined", "resumed", "expired"]>;
 export declare const taskCategorySchema: z.ZodEnum<["zara", "deterministic"]>;
 export declare const claimableSessionTypeSchema: z.ZodEnum<["recap", "general", "toolkitPlanning"]>;
 export declare const taskBaseSchema: z.ZodObject<{
@@ -56,6 +56,15 @@ export declare const taskBaseSchema: z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -69,7 +78,7 @@ export declare const taskBaseSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -108,6 +117,7 @@ export declare const taskBaseSchema: z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -119,7 +129,7 @@ export declare const taskBaseSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -136,6 +146,7 @@ export declare const taskBaseSchema: z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -147,7 +158,7 @@ export declare const taskBaseSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -194,6 +205,15 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -207,7 +227,7 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -273,6 +293,7 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -284,7 +305,7 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -309,6 +330,7 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -320,7 +342,7 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -367,6 +389,15 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -380,7 +411,7 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -970,6 +1001,7 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -981,7 +1013,7 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -1067,6 +1099,7 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -1078,7 +1111,7 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -1134,6 +1167,15 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -1147,7 +1189,7 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -1371,6 +1413,7 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -1382,7 +1425,7 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -1429,6 +1472,7 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -1440,7 +1484,7 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -1518,6 +1562,15 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -1531,7 +1584,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -1642,6 +1695,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -1653,7 +1707,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -1683,6 +1737,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -1694,7 +1749,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -1749,6 +1804,15 @@ export declare const proposeChangeStageTaskSchema: z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -1762,7 +1826,7 @@ export declare const proposeChangeStageTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -1821,6 +1885,7 @@ export declare const proposeChangeStageTaskSchema: z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -1832,7 +1897,7 @@ export declare const proposeChangeStageTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -1855,6 +1920,7 @@ export declare const proposeChangeStageTaskSchema: z.ZodObject<{
     completedAt?: import("../types").Timestamp | undefined;
     fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -1866,7 +1932,7 @@ export declare const proposeChangeStageTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -1913,6 +1979,15 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -1926,7 +2001,7 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -1970,6 +2045,7 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -1981,7 +2057,7 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -2000,6 +2076,7 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -2011,7 +2088,7 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -2058,6 +2135,15 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -2071,7 +2157,7 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -2208,6 +2294,7 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     sessionTemplate?: {
         title: string;
@@ -2236,7 +2323,7 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -2260,6 +2347,7 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     sessionTemplate?: {
         title: string;
@@ -2288,7 +2376,7 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -2318,12 +2406,13 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     approvalReason: z.ZodOptional<z.ZodString>;
     showOnHome: z.ZodOptional<z.ZodBoolean>;
@@ -2352,6 +2441,7 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     id?: string | undefined;
     answerSummary?: string | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -2363,7 +2453,7 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -2385,6 +2475,7 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     answerSummary?: string | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -2396,7 +2487,7 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -2443,6 +2534,15 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -2456,7 +2556,7 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -2552,6 +2652,7 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -2563,7 +2664,7 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -2595,6 +2696,7 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -2606,7 +2708,7 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -2653,6 +2755,15 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -2666,7 +2777,7 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -2708,6 +2819,7 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -2719,7 +2831,7 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -2737,6 +2849,7 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -2748,7 +2861,7 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -2795,6 +2908,15 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -2808,7 +2930,7 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -2868,6 +2990,7 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -2879,7 +3002,7 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -2902,6 +3025,7 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -2913,7 +3037,7 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -2960,6 +3084,15 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -2973,7 +3106,7 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -3034,6 +3167,7 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -3045,7 +3179,7 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -3070,6 +3204,7 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -3081,7 +3216,7 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -3130,6 +3265,15 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -3143,7 +3287,7 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -3187,6 +3331,7 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -3198,7 +3343,7 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -3217,6 +3362,7 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -3228,7 +3374,7 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -3290,6 +3436,15 @@ export declare const understandBehaviorTaskSchema: z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -3303,7 +3458,7 @@ export declare const understandBehaviorTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -3349,6 +3504,7 @@ export declare const understandBehaviorTaskSchema: z.ZodObject<{
     behaviorName?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -3360,7 +3516,7 @@ export declare const understandBehaviorTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -3380,6 +3536,7 @@ export declare const understandBehaviorTaskSchema: z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -3391,7 +3548,7 @@ export declare const understandBehaviorTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -3448,6 +3605,15 @@ export declare const containLapseTaskSchema: z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -3461,7 +3627,7 @@ export declare const containLapseTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -3516,6 +3682,7 @@ export declare const containLapseTaskSchema: z.ZodObject<{
     behaviorName?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -3527,7 +3694,7 @@ export declare const containLapseTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -3548,6 +3715,7 @@ export declare const containLapseTaskSchema: z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -3559,7 +3727,7 @@ export declare const containLapseTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -3615,6 +3783,15 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -3628,7 +3805,7 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -3676,6 +3853,7 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     completedAt?: import("../types").Timestamp | undefined;
     shortcutType?: "back_tap" | "lock_screen_widget" | undefined;
     returning?: boolean | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -3687,7 +3865,7 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -3707,6 +3885,7 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     shortcutType?: "back_tap" | "lock_screen_widget" | undefined;
     returning?: boolean | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -3718,7 +3897,7 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -3773,6 +3952,15 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -3786,7 +3974,7 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -3828,6 +4016,7 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -3839,7 +4028,7 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -3857,6 +4046,7 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -3868,7 +4058,7 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -3922,6 +4112,15 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -3935,7 +4134,7 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -3980,6 +4179,7 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     weekOfDateString?: string | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -3991,7 +4191,7 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -4010,6 +4210,7 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     completedAt?: import("../types").Timestamp | undefined;
     weekOfDateString?: string | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -4021,7 +4222,7 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -4056,12 +4257,13 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     approvalReason: z.ZodOptional<z.ZodString>;
     showOnHome: z.ZodOptional<z.ZodBoolean>;
@@ -4085,6 +4287,7 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -4096,7 +4299,7 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -4117,6 +4320,7 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -4128,7 +4332,7 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -4194,6 +4398,15 @@ export declare const closingReflectionTaskSchema: z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -4207,7 +4420,7 @@ export declare const closingReflectionTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -4252,6 +4465,7 @@ export declare const closingReflectionTaskSchema: z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -4263,7 +4477,7 @@ export declare const closingReflectionTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -4282,6 +4496,7 @@ export declare const closingReflectionTaskSchema: z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -4293,7 +4508,7 @@ export declare const closingReflectionTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -4380,6 +4595,15 @@ export declare const protectNextWindowTaskSchema: z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -4393,7 +4617,7 @@ export declare const protectNextWindowTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -4437,6 +4661,7 @@ export declare const protectNextWindowTaskSchema: z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -4448,7 +4673,7 @@ export declare const protectNextWindowTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -4467,6 +4692,7 @@ export declare const protectNextWindowTaskSchema: z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -4478,7 +4704,7 @@ export declare const protectNextWindowTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -4525,6 +4751,15 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -4538,7 +4773,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -4604,6 +4839,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -4615,7 +4851,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -4640,6 +4876,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -4651,7 +4888,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -4697,6 +4934,15 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -4710,7 +4956,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -5300,6 +5546,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -5311,7 +5558,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -5397,6 +5644,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -5408,7 +5656,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -5454,6 +5702,15 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -5467,7 +5724,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -5691,6 +5948,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -5702,7 +5960,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -5749,6 +6007,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -5760,7 +6019,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -5806,6 +6065,15 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -5819,7 +6087,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -5930,6 +6198,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -5941,7 +6210,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -5971,6 +6240,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -5982,7 +6252,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -6028,6 +6298,15 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -6041,7 +6320,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -6085,6 +6364,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -6096,7 +6376,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -6115,6 +6395,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -6126,7 +6407,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -6172,6 +6453,15 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -6185,7 +6475,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -6244,6 +6534,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -6255,7 +6546,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -6278,6 +6569,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt?: import("../types").Timestamp | undefined;
     fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -6289,7 +6581,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -6335,6 +6627,15 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -6348,7 +6649,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -6485,6 +6786,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     sessionTemplate?: {
         title: string;
@@ -6513,7 +6815,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -6537,6 +6839,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     sessionTemplate?: {
         title: string;
@@ -6565,7 +6868,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -6594,12 +6897,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     approvalReason: z.ZodOptional<z.ZodString>;
     showOnHome: z.ZodOptional<z.ZodBoolean>;
@@ -6628,6 +6932,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     answerSummary?: string | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -6639,7 +6944,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -6661,6 +6966,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     answerSummary?: string | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -6672,7 +6978,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -6718,6 +7024,15 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -6731,7 +7046,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -6827,6 +7142,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -6838,7 +7154,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -6870,6 +7186,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -6881,7 +7198,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -6927,6 +7244,15 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -6940,7 +7266,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -6982,6 +7308,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -6993,7 +7320,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -7011,6 +7338,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -7022,7 +7350,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -7068,6 +7396,15 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -7081,7 +7418,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -7141,6 +7478,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -7152,7 +7490,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -7175,6 +7513,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -7186,7 +7525,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -7232,6 +7571,15 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -7245,7 +7593,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -7306,6 +7654,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -7317,7 +7666,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -7342,6 +7691,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -7353,7 +7703,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -7401,6 +7751,15 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -7414,7 +7773,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -7458,6 +7817,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -7469,7 +7829,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -7488,6 +7848,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -7499,7 +7860,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -7545,6 +7906,15 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -7558,7 +7928,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -7604,6 +7974,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     behaviorName?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -7615,7 +7986,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -7635,6 +8006,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -7646,7 +8018,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -7692,6 +8064,15 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -7705,7 +8086,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -7760,6 +8141,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     behaviorName?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -7771,7 +8153,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -7792,6 +8174,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -7803,7 +8186,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -7849,6 +8232,15 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -7862,7 +8254,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -7910,6 +8302,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt?: import("../types").Timestamp | undefined;
     shortcutType?: "back_tap" | "lock_screen_widget" | undefined;
     returning?: boolean | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -7921,7 +8314,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -7941,6 +8334,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     shortcutType?: "back_tap" | "lock_screen_widget" | undefined;
     returning?: boolean | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -7952,7 +8346,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -7998,6 +8392,15 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -8011,7 +8414,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -8053,6 +8456,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -8064,7 +8468,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -8082,6 +8486,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -8093,7 +8498,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -8139,6 +8544,15 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -8152,7 +8566,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -8197,6 +8611,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     weekOfDateString?: string | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -8208,7 +8623,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -8227,6 +8642,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt?: import("../types").Timestamp | undefined;
     weekOfDateString?: string | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -8238,7 +8654,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -8261,12 +8677,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     approvalReason: z.ZodOptional<z.ZodString>;
     showOnHome: z.ZodOptional<z.ZodBoolean>;
@@ -8290,6 +8707,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -8301,7 +8719,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -8322,6 +8740,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -8333,7 +8752,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -8381,6 +8800,15 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -8394,7 +8822,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -8439,6 +8867,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -8450,7 +8879,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -8469,6 +8898,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -8480,7 +8910,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -8526,6 +8956,15 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     /**
+     * When this task stops being worth doing, whether or not anything picked it
+     * up. A window guard opened by a slip the user reported this morning is
+     * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+     * an expired task and the creator sweeps expired ones closed
+     * (dismissedReason "expired"). Absent means the task has no deadline, which
+     * is every task written before 2026-09-23.
+     */
+    expiresAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
      * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
@@ -8539,7 +8978,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -8583,6 +9022,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -8594,7 +9034,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -8613,6 +9053,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
+    expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
     context?: string | undefined;
@@ -8624,7 +9065,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | undefined;
+    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
