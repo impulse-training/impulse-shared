@@ -40,6 +40,7 @@ export * from "./recapMessage";
 export * from "./outreach";
 export * from "./morningCheckInRun";
 export * from "./scheduledCheckIn";
+export * from "./thread";
 export * from "./scheduledNotification";
 export * from "./dailyReviewReport";
 export * from "./brainHealthReport";
