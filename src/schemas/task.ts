@@ -20,7 +20,7 @@ export const taskStatusSchema = z.enum(["open", "completed", "dismissed"]);
  *   about the task at all: the live copy lives in `resumedInSessionId`, and
  *   the source-task status sync must ignore it.
  */
-export const dismissedReasonSchema = z.enum(["ignored", "declined", "resumed"]);
+export const dismissedReasonSchema = z.enum(["ignored", "declined", "resumed", "expired"]);
 
 export const taskCategorySchema = z.enum(["zara", "deterministic"]);
 
@@ -65,6 +65,15 @@ export const taskBaseSchema = z.object({
    */
   triggerAIAfter: z.boolean().optional(),
   createdBy: z.string().optional(),
+  /**
+   * When this task stops being worth doing, whether or not anything picked it
+   * up. A window guard opened by a slip the user reported this morning is
+   * stale tomorrow: the hours it was protecting are gone. Prompt builders skip
+   * an expired task and the creator sweeps expired ones closed
+   * (dismissedReason "expired"). Absent means the task has no deadline, which
+   * is every task written before 2026-09-23.
+   */
+  expiresAt: timestampSchema.optional(),
   /**
    * How many recap sessions have surfaced this task. Set to 1 on first claim
    * and incremented each time a fresh recap reclaims it off an earlier,
@@ -480,6 +489,26 @@ export const protectNextWindowTaskSchema = taskBaseSchema.extend({
   variant: protectNextWindowVariantSchema,
 });
 
+/**
+ * Ask the user to reach for the button when the moment comes, until they have
+ * done it enough times that the asking is over.
+ *
+ * Opened only after a slip they reported that had no impulse session behind it
+ * (a moment they went through alone), satisfied by PRESS_TARGET impulse
+ * sessions however they start one, and reopened by the next press-less slip.
+ * Before this the coach asked at every named worry, which is nagging rather
+ * than coaching: the ask exists while the habit does not.
+ */
+export const pressImpulseButtonTaskSchema = taskBaseSchema.extend({
+  type: z.literal("press_impulse_button"),
+  /** Impulse sessions started since this task opened. */
+  pressCount: z.number().int().min(0).default(0),
+  /** How many it takes to settle the habit. */
+  pressTarget: z.number().int().min(1).default(3),
+  /** How many times a press-less slip has brought it back. */
+  revivals: z.number().int().min(0).optional(),
+});
+
 export const taskSchema = z.discriminatedUnion("type", [
   mergeBehaviorsTaskSchema,
   suggestStrategyTaskSchema,
@@ -502,6 +531,7 @@ export const taskSchema = z.discriminatedUnion("type", [
   weeklyReviewTaskSchema,
   closingReflectionTaskSchema,
   protectNextWindowTaskSchema,
+  pressImpulseButtonTaskSchema,
 ]);
 
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
@@ -536,6 +566,9 @@ export type ProtectNextWindowVariant = z.infer<
   typeof protectNextWindowVariantSchema
 >;
 export type ProtectNextWindowTask = z.infer<typeof protectNextWindowTaskSchema>;
+export type PressImpulseButtonTask = z.infer<typeof pressImpulseButtonTaskSchema>;
+/** Impulse sessions it takes to settle the button habit. */
+export const PRESS_TARGET = 3;
 export type Task = z.infer<typeof taskSchema>;
 
 /**
