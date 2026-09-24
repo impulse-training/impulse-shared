@@ -489,6 +489,26 @@ export const protectNextWindowTaskSchema = taskBaseSchema.extend({
   variant: protectNextWindowVariantSchema,
 });
 
+/**
+ * Ask the user to reach for the button when the moment comes, until they have
+ * done it enough times that the asking is over.
+ *
+ * Opened only after a slip they reported that had no impulse session behind it
+ * (a moment they went through alone), satisfied by PRESS_TARGET impulse
+ * sessions however they start one, and reopened by the next press-less slip.
+ * Before this the coach asked at every named worry, which is nagging rather
+ * than coaching: the ask exists while the habit does not.
+ */
+export const pressImpulseButtonTaskSchema = taskBaseSchema.extend({
+  type: z.literal("press_impulse_button"),
+  /** Impulse sessions started since this task opened. */
+  pressCount: z.number().int().min(0).default(0),
+  /** How many it takes to settle the habit. */
+  pressTarget: z.number().int().min(1).default(3),
+  /** How many times a press-less slip has brought it back. */
+  revivals: z.number().int().min(0).optional(),
+});
+
 export const taskSchema = z.discriminatedUnion("type", [
   mergeBehaviorsTaskSchema,
   suggestStrategyTaskSchema,
@@ -511,6 +531,7 @@ export const taskSchema = z.discriminatedUnion("type", [
   weeklyReviewTaskSchema,
   closingReflectionTaskSchema,
   protectNextWindowTaskSchema,
+  pressImpulseButtonTaskSchema,
 ]);
 
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
@@ -545,6 +566,9 @@ export type ProtectNextWindowVariant = z.infer<
   typeof protectNextWindowVariantSchema
 >;
 export type ProtectNextWindowTask = z.infer<typeof protectNextWindowTaskSchema>;
+export type PressImpulseButtonTask = z.infer<typeof pressImpulseButtonTaskSchema>;
+/** Impulse sessions it takes to settle the button habit. */
+export const PRESS_TARGET = 3;
 export type Task = z.infer<typeof taskSchema>;
 
 /**

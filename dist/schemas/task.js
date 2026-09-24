@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isSetupShortcutTask = exports.isReflectOnMetricsTask = exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isProposeGoalTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.isTaskAwaitingApproval = exports.TASK_TYPES_REQUIRING_APPROVAL = exports.taskSchema = exports.protectNextWindowTaskSchema = exports.protectNextWindowVariantSchema = exports.closingReflectionTaskSchema = exports.weeklyReviewTaskSchema = exports.weekLookbackTaskSchema = exports.resumeRecapRemindersTaskSchema = exports.setupShortcutTaskSchema = exports.containLapseTaskSchema = exports.understandBehaviorTaskSchema = exports.collectBaselineTaskSchema = exports.reflectOnMetricsTaskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeChangeStageTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.proposeGoalTaskSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.claimableSessionTypeSchema = exports.taskCategorySchema = exports.dismissedReasonSchema = exports.taskStatusSchema = void 0;
+exports.isSetupShortcutTask = exports.isReflectOnMetricsTask = exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isProposeGoalTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.isTaskAwaitingApproval = exports.TASK_TYPES_REQUIRING_APPROVAL = exports.PRESS_TARGET = exports.taskSchema = exports.pressImpulseButtonTaskSchema = exports.protectNextWindowTaskSchema = exports.protectNextWindowVariantSchema = exports.closingReflectionTaskSchema = exports.weeklyReviewTaskSchema = exports.weekLookbackTaskSchema = exports.resumeRecapRemindersTaskSchema = exports.setupShortcutTaskSchema = exports.containLapseTaskSchema = exports.understandBehaviorTaskSchema = exports.collectBaselineTaskSchema = exports.reflectOnMetricsTaskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeChangeStageTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.proposeGoalTaskSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.claimableSessionTypeSchema = exports.taskCategorySchema = exports.dismissedReasonSchema = exports.taskStatusSchema = void 0;
 const zod_1 = require("zod");
 const goal_1 = require("./goal");
 const behavior_1 = require("./behavior");
@@ -461,6 +461,25 @@ exports.protectNextWindowTaskSchema = exports.taskBaseSchema.extend({
     type: zod_1.z.literal("protect_next_window"),
     variant: exports.protectNextWindowVariantSchema,
 });
+/**
+ * Ask the user to reach for the button when the moment comes, until they have
+ * done it enough times that the asking is over.
+ *
+ * Opened only after a slip they reported that had no impulse session behind it
+ * (a moment they went through alone), satisfied by PRESS_TARGET impulse
+ * sessions however they start one, and reopened by the next press-less slip.
+ * Before this the coach asked at every named worry, which is nagging rather
+ * than coaching: the ask exists while the habit does not.
+ */
+exports.pressImpulseButtonTaskSchema = exports.taskBaseSchema.extend({
+    type: zod_1.z.literal("press_impulse_button"),
+    /** Impulse sessions started since this task opened. */
+    pressCount: zod_1.z.number().int().min(0).default(0),
+    /** How many it takes to settle the habit. */
+    pressTarget: zod_1.z.number().int().min(1).default(3),
+    /** How many times a press-less slip has brought it back. */
+    revivals: zod_1.z.number().int().min(0).optional(),
+});
 exports.taskSchema = zod_1.z.discriminatedUnion("type", [
     exports.mergeBehaviorsTaskSchema,
     exports.suggestStrategyTaskSchema,
@@ -483,7 +502,10 @@ exports.taskSchema = zod_1.z.discriminatedUnion("type", [
     exports.weeklyReviewTaskSchema,
     exports.closingReflectionTaskSchema,
     exports.protectNextWindowTaskSchema,
+    exports.pressImpulseButtonTaskSchema,
 ]);
+/** Impulse sessions it takes to settle the button habit. */
+exports.PRESS_TARGET = 3;
 /**
  * Task types that must NEVER reach the user without a human (coach) sign-off.
  * System code may still create these tasks, but every claim path skips them
