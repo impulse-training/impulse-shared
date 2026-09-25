@@ -61,3 +61,19 @@ describe("formatBrainMemoryForPrompt", () => {
     expect(out).toContain("Archived thing.");
   });
 });
+
+describe("life context", () => {
+  it("leads the general group under its own label", () => {
+    const brain = {
+      summary: "",
+      memories: [
+        { id: "a", statement: "You struggle most late at night.", category: "pattern" as const, createdAt: "2026-09-20T00:00:00Z" },
+        { id: "b", statement: "You are in the middle of buying a house.", category: "life_context" as const, createdAt: "2026-09-10T00:00:00Z" },
+      ],
+      syncedAt: { toMillis: () => 0 } as never,
+    };
+    const out = formatBrainMemoryForPrompt(brain as never);
+    expect(out).toContain("What's going on in their life:\n- You are in the middle of buying a house.");
+    expect(out.indexOf("buying a house")).toBeLessThan(out.indexOf("late at night"));
+  });
+});
