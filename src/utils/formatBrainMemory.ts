@@ -37,6 +37,8 @@ export interface FormatBrainMemoryOptions {
 }
 
 const CATEGORY_ORDER: BrainMemoryCategory[] = [
+  // Life context leads: the season the user is in frames everything under it.
+  "life_context",
   "trigger",
   "what_works",
   "what_doesnt",
@@ -46,6 +48,7 @@ const CATEGORY_ORDER: BrainMemoryCategory[] = [
 ];
 
 const CATEGORY_LABEL: Record<BrainMemoryCategory, string> = {
+  life_context: "What's going on in their life",
   trigger: "Triggers",
   what_works: "What works",
   what_doesnt: "What doesn't",
