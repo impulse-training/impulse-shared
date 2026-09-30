@@ -1423,6 +1423,8 @@ export declare const behaviorSchema: z.ZodObject<{
         honouredCount: z.ZodOptional<z.ZodNumber>;
         lastPassedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         passedCount: z.ZodOptional<z.ZodNumber>;
+        lastDeliveredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        lastDeliveredSessionId: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         tacticId: string;
         tacticRefPath: string;
@@ -1433,6 +1435,8 @@ export declare const behaviorSchema: z.ZodObject<{
         honouredCount?: number | undefined;
         lastPassedAt?: import("../types").Timestamp | undefined;
         passedCount?: number | undefined;
+        lastDeliveredAt?: import("../types").Timestamp | undefined;
+        lastDeliveredSessionId?: string | undefined;
     }, {
         tacticId: string;
         tacticRefPath: string;
@@ -1443,6 +1447,8 @@ export declare const behaviorSchema: z.ZodObject<{
         honouredCount?: number | undefined;
         lastPassedAt?: import("../types").Timestamp | undefined;
         passedCount?: number | undefined;
+        lastDeliveredAt?: import("../types").Timestamp | undefined;
+        lastDeliveredSessionId?: string | undefined;
     }>>;
     tactics: z.ZodOptional<z.ZodArray<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>;
     tacticsAgreedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -2471,6 +2477,8 @@ export declare const behaviorSchema: z.ZodObject<{
         honouredCount?: number | undefined;
         lastPassedAt?: import("../types").Timestamp | undefined;
         passedCount?: number | undefined;
+        lastDeliveredAt?: import("../types").Timestamp | undefined;
+        lastDeliveredSessionId?: string | undefined;
     } | undefined;
     tactics?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
     tacticsAgreedAt?: import("../types").Timestamp | undefined;
@@ -2712,6 +2720,8 @@ export declare const behaviorSchema: z.ZodObject<{
         honouredCount?: number | undefined;
         lastPassedAt?: import("../types").Timestamp | undefined;
         passedCount?: number | undefined;
+        lastDeliveredAt?: import("../types").Timestamp | undefined;
+        lastDeliveredSessionId?: string | undefined;
     } | undefined;
     tactics?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
     tacticsAgreedAt?: import("../types").Timestamp | undefined;
