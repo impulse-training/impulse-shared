@@ -364,11 +364,14 @@ export declare const impulseUsageStatsSchema: z.ZodObject<{
 export type ImpulseUsageStats = z.infer<typeof impulseUsageStatsSchema>;
 /**
  * Category of a durable brain memory. The first five are what the weekly
- * insight extraction emits; `self_report` is a captured answer to a recap
+ * insight extraction emits about behavior; `life_context` is the situation
+ * the user is living through for a season (buying a house, a wedding, a new
+ * job), which the same extraction records so the coach knows the backdrop
+ * without being told twice; `self_report` is a captured answer to a recap
  * reflection question, in the user's own words (see
  * impulse-functions/src/brain/captureRecapAnswer.ts).
  */
-export declare const brainMemoryCategorySchema: z.ZodEnum<["trigger", "what_works", "what_doesnt", "pattern", "context", "self_report"]>;
+export declare const brainMemoryCategorySchema: z.ZodEnum<["trigger", "what_works", "what_doesnt", "pattern", "context", "life_context", "self_report"]>;
 export type BrainMemoryCategory = z.infer<typeof brainMemoryCategorySchema>;
 /** One durable memory about the user, mirrored from the impulse-brain. */
 export declare const brainMemorySchema: z.ZodObject<{
@@ -376,7 +379,7 @@ export declare const brainMemorySchema: z.ZodObject<{
     id: z.ZodString;
     /** Second-person, standalone statement ("You tend to…"). */
     statement: z.ZodString;
-    category: z.ZodEnum<["trigger", "what_works", "what_doesnt", "pattern", "context", "self_report"]>;
+    category: z.ZodEnum<["trigger", "what_works", "what_doesnt", "pattern", "context", "life_context", "self_report"]>;
     /** Behavior this memory is about; absent for general memories. */
     behaviorId: z.ZodOptional<z.ZodString>;
     behaviorName: z.ZodOptional<z.ZodString>;
@@ -389,7 +392,7 @@ export declare const brainMemorySchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     id: string;
     createdAt: string;
-    category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+    category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "life_context" | "self_report";
     statement: string;
     behaviorId?: string | undefined;
     behaviorName?: string | undefined;
@@ -398,7 +401,7 @@ export declare const brainMemorySchema: z.ZodObject<{
 }, {
     id: string;
     createdAt: string;
-    category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+    category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "life_context" | "self_report";
     statement: string;
     behaviorId?: string | undefined;
     behaviorName?: string | undefined;
@@ -422,7 +425,7 @@ export declare const userBrainMirrorSchema: z.ZodObject<{
         id: z.ZodString;
         /** Second-person, standalone statement ("You tend to…"). */
         statement: z.ZodString;
-        category: z.ZodEnum<["trigger", "what_works", "what_doesnt", "pattern", "context", "self_report"]>;
+        category: z.ZodEnum<["trigger", "what_works", "what_doesnt", "pattern", "context", "life_context", "self_report"]>;
         /** Behavior this memory is about; absent for general memories. */
         behaviorId: z.ZodOptional<z.ZodString>;
         behaviorName: z.ZodOptional<z.ZodString>;
@@ -435,7 +438,7 @@ export declare const userBrainMirrorSchema: z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         id: string;
         createdAt: string;
-        category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+        category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "life_context" | "self_report";
         statement: string;
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
@@ -444,7 +447,7 @@ export declare const userBrainMirrorSchema: z.ZodObject<{
     }, {
         id: string;
         createdAt: string;
-        category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+        category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "life_context" | "self_report";
         statement: string;
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
@@ -460,7 +463,7 @@ export declare const userBrainMirrorSchema: z.ZodObject<{
     memories: {
         id: string;
         createdAt: string;
-        category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+        category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "life_context" | "self_report";
         statement: string;
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
@@ -474,7 +477,7 @@ export declare const userBrainMirrorSchema: z.ZodObject<{
     memories: {
         id: string;
         createdAt: string;
-        category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+        category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "life_context" | "self_report";
         statement: string;
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
@@ -815,7 +818,7 @@ export declare const userContextSchema: z.ZodObject<{
             id: z.ZodString;
             /** Second-person, standalone statement ("You tend to…"). */
             statement: z.ZodString;
-            category: z.ZodEnum<["trigger", "what_works", "what_doesnt", "pattern", "context", "self_report"]>;
+            category: z.ZodEnum<["trigger", "what_works", "what_doesnt", "pattern", "context", "life_context", "self_report"]>;
             /** Behavior this memory is about; absent for general memories. */
             behaviorId: z.ZodOptional<z.ZodString>;
             behaviorName: z.ZodOptional<z.ZodString>;
@@ -828,7 +831,7 @@ export declare const userContextSchema: z.ZodObject<{
         }, "strip", z.ZodTypeAny, {
             id: string;
             createdAt: string;
-            category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+            category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "life_context" | "self_report";
             statement: string;
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
@@ -837,7 +840,7 @@ export declare const userContextSchema: z.ZodObject<{
         }, {
             id: string;
             createdAt: string;
-            category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+            category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "life_context" | "self_report";
             statement: string;
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
@@ -853,7 +856,7 @@ export declare const userContextSchema: z.ZodObject<{
         memories: {
             id: string;
             createdAt: string;
-            category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+            category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "life_context" | "self_report";
             statement: string;
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
@@ -867,7 +870,7 @@ export declare const userContextSchema: z.ZodObject<{
         memories: {
             id: string;
             createdAt: string;
-            category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+            category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "life_context" | "self_report";
             statement: string;
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
@@ -944,7 +947,7 @@ export declare const userContextSchema: z.ZodObject<{
         memories: {
             id: string;
             createdAt: string;
-            category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+            category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "life_context" | "self_report";
             statement: string;
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
@@ -1027,7 +1030,7 @@ export declare const userContextSchema: z.ZodObject<{
         memories: {
             id: string;
             createdAt: string;
-            category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "self_report";
+            category: "trigger" | "context" | "pattern" | "what_works" | "what_doesnt" | "life_context" | "self_report";
             statement: string;
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;

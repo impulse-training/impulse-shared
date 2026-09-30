@@ -25,7 +25,8 @@ import { timestampSchema } from "../utils/timestampSchema";
  * same reason rather than despite it: the user ALREADY chose, earlier, with a
  * clear head. Putting an alternative beside it would be second-guessing their
  * own decision at the moment they are least able to defend it. So an open
- * agreement is delivered alone. Choice resumes once it has been honoured.
+ * agreement is delivered alone. Choice resumes once it has been started, or
+ * once it has been offered and passed over.
  */
 export const tacticAgreementSchema = z.object({
   tacticId: z.string(),
@@ -56,6 +57,17 @@ export const tacticAgreementSchema = z.object({
    */
   lastPassedAt: timestampSchema.optional(),
   passedCount: z.number().int().nonnegative().optional(),
+  /**
+   * The session that last put this agreement in front of the user, and when.
+   *
+   * An agreement is used up by being STARTED, so one that is still here after a
+   * delivery in an EARLIER session was offered and passed over. That is the
+   * signal not to hand it back verbatim a second time: the moment falls to a
+   * choice instead, and the agreement stays visible for the user to keep or
+   * change.
+   */
+  lastDeliveredAt: timestampSchema.optional(),
+  lastDeliveredSessionId: z.string().optional(),
 });
 
 export type TacticAgreement = z.infer<typeof tacticAgreementSchema>;

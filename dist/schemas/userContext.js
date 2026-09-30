@@ -75,7 +75,10 @@ exports.impulseUsageStatsSchema = zod_1.z.object({
 });
 /**
  * Category of a durable brain memory. The first five are what the weekly
- * insight extraction emits; `self_report` is a captured answer to a recap
+ * insight extraction emits about behavior; `life_context` is the situation
+ * the user is living through for a season (buying a house, a wedding, a new
+ * job), which the same extraction records so the coach knows the backdrop
+ * without being told twice; `self_report` is a captured answer to a recap
  * reflection question, in the user's own words (see
  * impulse-functions/src/brain/captureRecapAnswer.ts).
  */
@@ -85,6 +88,7 @@ exports.brainMemoryCategorySchema = zod_1.z.enum([
     "what_doesnt",
     "pattern",
     "context",
+    "life_context",
     "self_report",
 ]);
 /** One durable memory about the user, mirrored from the impulse-brain. */
