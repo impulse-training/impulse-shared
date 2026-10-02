@@ -1,5 +1,6 @@
 import type { BehaviorLog } from "../schemas/log/behaviorLog";
 import { nowMs } from "./clock";
+import { adjustmentSessionId } from "./dayAdjustments";
 
 /**
  * Renders behavior logs the user recorded in the last few hours as a prompt
@@ -88,6 +89,37 @@ export function formatTimeAgo(deltaMs: number): string {
     : `${hours} hours ago`;
 }
 
+/**
+ * Whether a behavior log is a correction to a day's total rather than an
+ * occurrence.
+ *
+ * Day-total adjustments (the totals card, a recap, the setDayTotal tool, the
+ * scale-rating backfill) all write one log per behavior and day into the
+ * deterministic adjustment session `adjustmentSessionId(dateString,
+ * behaviorId)`. Their timestamp is an anchor, not an occurrence time: with no
+ * time picked it is the 23:59:59.999 end-of-day sentinel (the session carries
+ * `timeUnspecified: true`), so an adjustment for yesterday made at 00:30 reads
+ * as "30 minutes ago" and one for today sits in the future. Render them against
+ * their `dateString`, never as a relative time.
+ *
+ * `isAdjustment` alone is not the test: recordJudge and
+ * updateBehaviorsTrackedToday also set it on logs they write from the user's
+ * words, and those carry a real time in the conversation's own session.
+ */
+export function behaviorLogIsDayTotalAdjustment(
+  log: Pick<BehaviorLog, "isAdjustment" | "sessionId" | "dateString"> & {
+    data?: { behaviorId?: string };
+  },
+): boolean {
+  const behaviorId = log.data?.behaviorId;
+  return (
+    log.isAdjustment === true &&
+    typeof log.dateString === "string" &&
+    typeof behaviorId === "string" &&
+    log.sessionId === adjustmentSessionId(log.dateString, behaviorId)
+  );
+}
+
 function toMillis(log: BehaviorLog): number | null {
   const ts = log.timestamp as
     | { toMillis?: () => number; toDate?: () => Date; _seconds?: number }
@@ -122,6 +154,11 @@ export function formatRecentBehaviorTrackingForPrompt(
     // scaffold, not something the user tracked. It has no name or amount to
     // report and would render as an empty bullet.
     .filter(({ log }) => Boolean(log.data?.behaviorName))
+    // A day-total adjustment is not "what just happened": its timestamp is an
+    // end-of-day anchor, not when the behavior occurred (see
+    // behaviorLogIsDayTotalAdjustment). Leading with it is how the coach
+    // opened on yesterday's correction as if it were a fresh lapse.
+    .filter(({ log }) => !behaviorLogIsDayTotalAdjustment(log))
     .sort((a, b) => b.ms - a.ms)
     .slice(0, cap);
 
