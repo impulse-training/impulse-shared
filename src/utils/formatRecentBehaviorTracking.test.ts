@@ -23,6 +23,7 @@ const log = (
     type: "behavior",
     isAdjustment: over.isAdjustment ?? false,
     sessionId: over.sessionId ?? "other-session",
+    dateString: "2026-08-23",
     timestamp: ts(NOW - over.minutesAgo * 60_000),
     data: {
       behaviorId: "b1",
@@ -119,8 +120,8 @@ describe("formatRecentBehaviorTrackingForPrompt", () => {
     // today sits in the future and rendered as "just now".
     const out = formatRecentBehaviorTrackingForPrompt(
       [
-        log({ minutesAgo: 30, behaviorName: "Picking nose", formattedValue: "Low", isAdjustment: true }),
-        log({ minutesAgo: -9 * 60, behaviorName: "Vaping", formattedValue: "3", isAdjustment: true }),
+        log({ minutesAgo: 30, behaviorName: "Picking nose", formattedValue: "Low", isAdjustment: true, sessionId: "2026-08-23-adjustment-b1" }),
+        log({ minutesAgo: -9 * 60, behaviorName: "Vaping", formattedValue: "3", isAdjustment: true, sessionId: "2026-08-23-adjustment-b1" }),
         log({ minutesAgo: 45, behaviorName: "Social media & videos", formattedValue: "15m" }),
       ],
       { now: NOW },
@@ -133,9 +134,20 @@ describe("formatRecentBehaviorTrackingForPrompt", () => {
   it("renders nothing when every recent log is an adjustment", () => {
     expect(
       formatRecentBehaviorTrackingForPrompt(
-        [log({ minutesAgo: 30, isAdjustment: true })],
+        [log({ minutesAgo: 30, isAdjustment: true, sessionId: "2026-08-23-adjustment-b1" })],
         { now: NOW },
       ),
     ).toBe("");
+  });
+
+  it("keeps an app-written occurrence that is not a day-total adjustment", () => {
+    // recordJudge marks logs it writes from the user's words isAdjustment:
+    // true, but stamps them with the real time in the conversation's session.
+    // "I just vaped" is exactly what just happened.
+    const out = formatRecentBehaviorTrackingForPrompt(
+      [log({ minutesAgo: 3, behaviorName: "Vaping", formattedValue: "2", isAdjustment: true, sessionId: "call-session" })],
+      { now: NOW },
+    );
+    expect(out).toContain("- Vaping - 2 (3 minutes ago)");
   });
 });

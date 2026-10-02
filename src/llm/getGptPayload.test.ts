@@ -279,13 +279,19 @@ describe("getGptPayload — behavior logs", () => {
     isAdjustment?: boolean;
     dateString?: string;
     debriefOutcome?: string;
+    sessionId?: string;
   }): Log =>
     ({
       type: "behavior",
       isDisplayable: true,
       isAdjustment: over.isAdjustment ?? false,
       dateString: over.dateString ?? "2026-10-02",
-      sessionId: "s1",
+      // Day-total adjustments live in the day's adjustment session.
+      sessionId:
+        over.sessionId ??
+        (over.isAdjustment
+          ? `${over.dateString ?? "2026-10-02"}-adjustment-b1`
+          : "s1"),
       timestamp: { toMillis: () => NOW - over.msAgo },
       data: {
         behaviorId: "b1",
@@ -335,6 +341,18 @@ describe("getGptPayload — behavior logs", () => {
     );
     expect(message.content).toBe(
       "<CONTEXT>Adjusted total for 2026-10-02: Picking nose - Low.</CONTEXT>",
+    );
+  });
+
+  it("keeps the time on an app-written occurrence outside the adjustment session", () => {
+    // recordJudge writes isAdjustment: true with a real timestamp (now) into
+    // the conversation's own session when the user says what they did.
+    const [message] = getGptPayload(
+      behaviorLog({ msAgo: 5 * 60_000, isAdjustment: true, sessionId: "s1" }),
+      false,
+    );
+    expect(message.content).toBe(
+      "<CONTEXT>Behavior tracked: Picking nose - Low (5 minutes ago).</CONTEXT>",
     );
   });
 

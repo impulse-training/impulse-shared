@@ -31,7 +31,7 @@ import { isPostDebriefPhase, SessionPhase } from "../schemas/session/phase";
 import { nowMs } from "../utils/clock";
 import { getChangeStageLabel } from "../utils/changeStage";
 import {
-  behaviorLogHasOccurrenceTime,
+  behaviorLogIsDayTotalAdjustment,
   formatTimeAgo,
 } from "../utils/formatRecentBehaviorTracking";
 
@@ -135,14 +135,12 @@ function buildBehaviorLogPayload(
   // later, so "15 minutes ago" frozen into it is wrong by the time anyone reads
   // it: no relative time when summarizing. And an adjustment's timestamp is an
   // end-of-day anchor, not an occurrence time (see
-  // behaviorLogHasOccurrenceTime), so it is rendered as a change to that day's
+  // behaviorLogIsDayTotalAdjustment), so it is rendered as a change to that day's
   // total instead.
   if (behaviorName && formattedValue) {
-    if (!behaviorLogHasOccurrenceTime(log)) {
+    if (behaviorLogIsDayTotalAdjustment(log)) {
       parts.push(
-        log.dateString
-          ? `<CONTEXT>Adjusted total for ${log.dateString}: ${behaviorName} - ${formattedValue}.</CONTEXT>`
-          : `<CONTEXT>Adjusted day total: ${behaviorName} - ${formattedValue}.</CONTEXT>`,
+        `<CONTEXT>Adjusted total for ${log.dateString}: ${behaviorName} - ${formattedValue}.</CONTEXT>`,
       );
     } else {
       const trackedMs =
