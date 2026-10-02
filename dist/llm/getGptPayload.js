@@ -80,13 +80,11 @@ function buildBehaviorLogPayload(log, options) {
     // later, so "15 minutes ago" frozen into it is wrong by the time anyone reads
     // it: no relative time when summarizing. And an adjustment's timestamp is an
     // end-of-day anchor, not an occurrence time (see
-    // behaviorLogHasOccurrenceTime), so it is rendered as a change to that day's
+    // behaviorLogIsDayTotalAdjustment), so it is rendered as a change to that day's
     // total instead.
     if (behaviorName && formattedValue) {
-        if (!(0, formatRecentBehaviorTracking_1.behaviorLogHasOccurrenceTime)(log)) {
-            parts.push(log.dateString
-                ? `<CONTEXT>Adjusted total for ${log.dateString}: ${behaviorName} - ${formattedValue}.</CONTEXT>`
-                : `<CONTEXT>Adjusted day total: ${behaviorName} - ${formattedValue}.</CONTEXT>`);
+        if ((0, formatRecentBehaviorTracking_1.behaviorLogIsDayTotalAdjustment)(log)) {
+            parts.push(`<CONTEXT>Adjusted total for ${log.dateString}: ${behaviorName} - ${formattedValue}.</CONTEXT>`);
         }
         else {
             const trackedMs = (_c = (_b = (_a = log.timestamp) === null || _a === void 0 ? void 0 : _a.toMillis) === null || _b === void 0 ? void 0 : _b.call(_a)) !== null && _c !== void 0 ? _c : (_e = (_d = log.timestamp) === null || _d === void 0 ? void 0 : _d.toDate) === null || _e === void 0 ? void 0 : _e.call(_d).getTime();
