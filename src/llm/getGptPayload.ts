@@ -30,7 +30,10 @@ import {
 import { isPostDebriefPhase, SessionPhase } from "../schemas/session/phase";
 import { nowMs } from "../utils/clock";
 import { getChangeStageLabel } from "../utils/changeStage";
-import { formatTimeAgo } from "../utils/formatRecentBehaviorTracking";
+import {
+  behaviorLogHasOccurrenceTime,
+  formatTimeAgo,
+} from "../utils/formatRecentBehaviorTracking";
 
 interface PayloadOptions {
   forSummarization?: boolean;
@@ -127,16 +130,33 @@ function buildBehaviorLogPayload(
   // `toLocaleTimeString` rendered the server's zone and would tell a Mexico
   // City user their 8:39 AM lapse happened at 2:39 PM. "15 minutes ago" is
   // both timezone-free and the thing we actually want the model to notice.
-  const trackedMs = log.timestamp?.toMillis?.() ?? log.timestamp?.toDate?.().getTime();
-  const timeAgo =
-    typeof trackedMs === "number" ? formatTimeAgo(nowMs() - trackedMs) : null;
-
+  //
+  // Two exceptions. A summary is persisted and read by other prompts days
+  // later, so "15 minutes ago" frozen into it is wrong by the time anyone reads
+  // it: no relative time when summarizing. And an adjustment's timestamp is an
+  // end-of-day anchor, not an occurrence time (see
+  // behaviorLogHasOccurrenceTime), so it is rendered as a change to that day's
+  // total instead.
   if (behaviorName && formattedValue) {
-    parts.push(
-      timeAgo
-        ? `<CONTEXT>Behavior tracked: ${behaviorName} - ${formattedValue} (${timeAgo}).</CONTEXT>`
-        : `<CONTEXT>Behavior tracked: ${behaviorName} - ${formattedValue}.</CONTEXT>`,
-    );
+    if (!behaviorLogHasOccurrenceTime(log)) {
+      parts.push(
+        log.dateString
+          ? `<CONTEXT>Adjusted total for ${log.dateString}: ${behaviorName} - ${formattedValue}.</CONTEXT>`
+          : `<CONTEXT>Adjusted day total: ${behaviorName} - ${formattedValue}.</CONTEXT>`,
+      );
+    } else {
+      const trackedMs =
+        log.timestamp?.toMillis?.() ?? log.timestamp?.toDate?.().getTime();
+      const timeAgo =
+        !options?.forSummarization && typeof trackedMs === "number"
+          ? formatTimeAgo(nowMs() - trackedMs)
+          : null;
+      parts.push(
+        timeAgo
+          ? `<CONTEXT>Behavior tracked: ${behaviorName} - ${formattedValue} (${timeAgo}).</CONTEXT>`
+          : `<CONTEXT>Behavior tracked: ${behaviorName} - ${formattedValue}.</CONTEXT>`,
+      );
+    }
   }
 
   if (parts.length > 0) {

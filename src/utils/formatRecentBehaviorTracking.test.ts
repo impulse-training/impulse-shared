@@ -16,10 +16,12 @@ const log = (
     formattedValue?: string;
     debriefOutcome?: BehaviorLog["data"]["debriefOutcome"];
     sessionId?: string;
+    isAdjustment?: boolean;
   },
 ): BehaviorLog =>
   ({
     type: "behavior",
+    isAdjustment: over.isAdjustment ?? false,
     sessionId: over.sessionId ?? "other-session",
     timestamp: ts(NOW - over.minutesAgo * 60_000),
     data: {
@@ -109,5 +111,31 @@ describe("formatRecentBehaviorTrackingForPrompt", () => {
     const out = formatRecentBehaviorTrackingForPrompt(logs, { now: NOW, cap: 3 });
     expect(out.split("\n").filter((l) => l.startsWith("- "))).toHaveLength(3);
     expect(out).toContain("- Social media & videos - 0m (just now)");
+  });
+
+  it("leaves out day-total adjustments, whose timestamp is not a real time", () => {
+    // An adjustment for yesterday made just after midnight carries a
+    // 23:59:59.999 sentinel, so it used to render as "30 minutes ago"; one for
+    // today sits in the future and rendered as "just now".
+    const out = formatRecentBehaviorTrackingForPrompt(
+      [
+        log({ minutesAgo: 30, behaviorName: "Picking nose", formattedValue: "Low", isAdjustment: true }),
+        log({ minutesAgo: -9 * 60, behaviorName: "Vaping", formattedValue: "3", isAdjustment: true }),
+        log({ minutesAgo: 45, behaviorName: "Social media & videos", formattedValue: "15m" }),
+      ],
+      { now: NOW },
+    );
+    expect(out).not.toContain("Picking nose");
+    expect(out).not.toContain("Vaping");
+    expect(out).toContain("- Social media & videos - 15m (45 minutes ago)");
+  });
+
+  it("renders nothing when every recent log is an adjustment", () => {
+    expect(
+      formatRecentBehaviorTrackingForPrompt(
+        [log({ minutesAgo: 30, isAdjustment: true })],
+        { now: NOW },
+      ),
+    ).toBe("");
   });
 });

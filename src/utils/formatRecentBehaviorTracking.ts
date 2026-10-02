@@ -88,6 +88,21 @@ export function formatTimeAgo(deltaMs: number): string {
     : `${hours} hours ago`;
 }
 
+/**
+ * Whether a behavior log's timestamp is when the behavior actually happened.
+ *
+ * Adjustment logs (`isAdjustment: true`) are corrections to a day's total, made
+ * from the totals card, a recap or a setDayTotal / updateBehaviorsTrackedToday
+ * tool call. Their timestamp is an anchor, not an occurrence time: with no time
+ * picked it is the 23:59:59.999 end-of-day sentinel (the adjustment session
+ * carries `timeUnspecified: true`), so an adjustment for yesterday made at
+ * 00:30 reads as "30 minutes ago" and one for today sits in the future. Render
+ * them against their `dateString`, never as a relative time.
+ */
+export function behaviorLogHasOccurrenceTime(log: Pick<BehaviorLog, "isAdjustment">): boolean {
+  return log.isAdjustment !== true;
+}
+
 function toMillis(log: BehaviorLog): number | null {
   const ts = log.timestamp as
     | { toMillis?: () => number; toDate?: () => Date; _seconds?: number }
@@ -122,6 +137,11 @@ export function formatRecentBehaviorTrackingForPrompt(
     // scaffold, not something the user tracked. It has no name or amount to
     // report and would render as an empty bullet.
     .filter(({ log }) => Boolean(log.data?.behaviorName))
+    // A day-total adjustment is not "what just happened": its timestamp is an
+    // end-of-day anchor, not when the behavior occurred (see
+    // behaviorLogHasOccurrenceTime). Leading with it is how the coach opened
+    // on yesterday's correction as if it were a fresh lapse.
+    .filter(({ log }) => behaviorLogHasOccurrenceTime(log))
     .sort((a, b) => b.ms - a.ms)
     .slice(0, cap);
 

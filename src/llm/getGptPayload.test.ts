@@ -271,3 +271,90 @@ describe("getGptPayload — change stage card", () => {
     expect(getGptPayload(card("declined"), false)[0].content).toContain("NOT");
   });
 });
+
+describe("getGptPayload — behavior logs", () => {
+  const NOW = Date.parse("2026-10-02T14:30:00Z");
+  const behaviorLog = (over: {
+    msAgo: number;
+    isAdjustment?: boolean;
+    dateString?: string;
+    debriefOutcome?: string;
+  }): Log =>
+    ({
+      type: "behavior",
+      isDisplayable: true,
+      isAdjustment: over.isAdjustment ?? false,
+      dateString: over.dateString ?? "2026-10-02",
+      sessionId: "s1",
+      timestamp: { toMillis: () => NOW - over.msAgo },
+      data: {
+        behaviorId: "b1",
+        behaviorName: "Picking nose",
+        formattedValue: "Low",
+        ...(over.debriefOutcome ? { debriefOutcome: over.debriefOutcome } : {}),
+      },
+    }) as unknown as Log;
+
+  let saved: string | undefined;
+  beforeEach(() => {
+    saved = process.env.TEST_NOW_MS;
+    process.env.TEST_NOW_MS = String(NOW);
+  });
+  afterEach(() => {
+    if (saved === undefined) delete process.env.TEST_NOW_MS;
+    else process.env.TEST_NOW_MS = saved;
+  });
+
+  it("stamps a real tracked behavior with how long ago it was", () => {
+    const [message] = getGptPayload(behaviorLog({ msAgo: 15 * 60_000 }), false);
+    expect(message.content).toBe(
+      "<CONTEXT>Behavior tracked: Picking nose - Low (15 minutes ago).</CONTEXT>",
+    );
+  });
+
+  it("renders an adjustment as a day total with no relative time", () => {
+    // The sentinel end-of-day timestamp on an adjustment for yesterday, read
+    // the next morning, used to come out as "8 hours ago".
+    const [message] = getGptPayload(
+      behaviorLog({
+        msAgo: 8 * 60 * 60_000,
+        isAdjustment: true,
+        dateString: "2026-10-01",
+      }),
+      false,
+    );
+    expect(message.content).toBe(
+      "<CONTEXT>Adjusted total for 2026-10-01: Picking nose - Low.</CONTEXT>",
+    );
+  });
+
+  it("does not call a future-dated adjustment 'just now'", () => {
+    const [message] = getGptPayload(
+      behaviorLog({ msAgo: -9 * 60 * 60_000, isAdjustment: true }),
+      false,
+    );
+    expect(message.content).toBe(
+      "<CONTEXT>Adjusted total for 2026-10-02: Picking nose - Low.</CONTEXT>",
+    );
+  });
+
+  it("omits relative times when building a persisted summary", () => {
+    const [message] = getGptPayload(behaviorLog({ msAgo: 15 * 60_000 }), false, {
+      forSummarization: true,
+    });
+    expect(message.content).toBe(
+      "<CONTEXT>Behavior tracked: Picking nose - Low.</CONTEXT>",
+    );
+  });
+
+  it("renders an adjustment as a day total when summarizing too", () => {
+    const [message] = getGptPayload(
+      behaviorLog({ msAgo: 8 * 60 * 60_000, isAdjustment: true, dateString: "2026-10-01" }),
+      false,
+      { forSummarization: true },
+    );
+    expect(message.content).toBe(
+      "<CONTEXT>Adjusted total for 2026-10-01: Picking nose - Low.</CONTEXT>",
+    );
+  });
+});
