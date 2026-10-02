@@ -5841,6 +5841,18 @@ export declare const callLogSchema: z.ZodObject<{
         }>>;
         endedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         /**
+         * Who ended the call, when the app knows first-hand. "user" means the app
+         * closed a live conversation itself: the hang-up button, the lock screen,
+         * or leaving the session. Nothing else sets it, so a dropped line, an agent
+         * sign-off, or a call whose end the app never saw all leave it absent.
+         *
+         * endedAt alone cannot say this: the app stamps it on every ending,
+         * including a drop. On 2026-10-02 a user hung up on a coach's question and
+         * was rung straight back, because the call-back judge read the unanswered
+         * question as a dropped line. Absent means unknown, not "not the user".
+         */
+        endedBy: z.ZodOptional<z.ZodLiteral<"user">>;
+        /**
          * Did the user pick up?
          *
          * Set from the caller actually joining the room, not from anything they
@@ -6632,6 +6644,7 @@ export declare const callLogSchema: z.ZodObject<{
             agentFirstReplyMs?: number | undefined;
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         } | undefined;
+        endedBy?: "user" | undefined;
         answered?: boolean | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
@@ -6778,6 +6791,7 @@ export declare const callLogSchema: z.ZodObject<{
             agentFirstReplyMs?: number | undefined;
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         } | undefined;
+        endedBy?: "user" | undefined;
         answered?: boolean | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
@@ -7468,6 +7482,7 @@ export declare const callLogSchema: z.ZodObject<{
             agentFirstReplyMs?: number | undefined;
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         } | undefined;
+        endedBy?: "user" | undefined;
         answered?: boolean | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
@@ -7629,6 +7644,7 @@ export declare const callLogSchema: z.ZodObject<{
             agentFirstReplyMs?: number | undefined;
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         } | undefined;
+        endedBy?: "user" | undefined;
         answered?: boolean | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;

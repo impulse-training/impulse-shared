@@ -6008,6 +6008,7 @@ export declare const logSchemas: {
                 entry?: "unknown" | "default_mode" | "toggle" | undefined;
             }>>;
             endedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            endedBy: z.ZodOptional<z.ZodLiteral<"user">>;
             answered: z.ZodOptional<z.ZodBoolean>;
             answeredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             engine: z.ZodOptional<z.ZodEnum<["livekit", "elevenlabs"]>>;
@@ -6750,6 +6751,7 @@ export declare const logSchemas: {
                 agentFirstReplyMs?: number | undefined;
                 entry?: "unknown" | "default_mode" | "toggle" | undefined;
             } | undefined;
+            endedBy?: "user" | undefined;
             answered?: boolean | undefined;
             livekitSessionId?: string | undefined;
             livekitRoomName?: string | undefined;
@@ -6896,6 +6898,7 @@ export declare const logSchemas: {
                 agentFirstReplyMs?: number | undefined;
                 entry?: "unknown" | "default_mode" | "toggle" | undefined;
             } | undefined;
+            endedBy?: "user" | undefined;
             answered?: boolean | undefined;
             livekitSessionId?: string | undefined;
             livekitRoomName?: string | undefined;
@@ -7586,6 +7589,7 @@ export declare const logSchemas: {
                 agentFirstReplyMs?: number | undefined;
                 entry?: "unknown" | "default_mode" | "toggle" | undefined;
             } | undefined;
+            endedBy?: "user" | undefined;
             answered?: boolean | undefined;
             livekitSessionId?: string | undefined;
             livekitRoomName?: string | undefined;
@@ -7747,6 +7751,7 @@ export declare const logSchemas: {
                 agentFirstReplyMs?: number | undefined;
                 entry?: "unknown" | "default_mode" | "toggle" | undefined;
             } | undefined;
+            endedBy?: "user" | undefined;
             answered?: boolean | undefined;
             livekitSessionId?: string | undefined;
             livekitRoomName?: string | undefined;
@@ -43225,6 +43230,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         }>>;
         endedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        endedBy: z.ZodOptional<z.ZodLiteral<"user">>;
         answered: z.ZodOptional<z.ZodBoolean>;
         answeredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         engine: z.ZodOptional<z.ZodEnum<["livekit", "elevenlabs"]>>;
@@ -43967,6 +43973,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             agentFirstReplyMs?: number | undefined;
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         } | undefined;
+        endedBy?: "user" | undefined;
         answered?: boolean | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
@@ -44113,6 +44120,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             agentFirstReplyMs?: number | undefined;
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         } | undefined;
+        endedBy?: "user" | undefined;
         answered?: boolean | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
@@ -44803,6 +44811,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             agentFirstReplyMs?: number | undefined;
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         } | undefined;
+        endedBy?: "user" | undefined;
         answered?: boolean | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
@@ -44964,6 +44973,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             agentFirstReplyMs?: number | undefined;
             entry?: "unknown" | "default_mode" | "toggle" | undefined;
         } | undefined;
+        endedBy?: "user" | undefined;
         answered?: boolean | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;

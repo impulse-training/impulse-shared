@@ -223,6 +223,18 @@ export const callLogSchema = logBaseSchema.extend({
     timings: callTimingsSchema.optional(),
     endedAt: timestampSchema.optional(),
     /**
+     * Who ended the call, when the app knows first-hand. "user" means the app
+     * closed a live conversation itself: the hang-up button, the lock screen,
+     * or leaving the session. Nothing else sets it, so a dropped line, an agent
+     * sign-off, or a call whose end the app never saw all leave it absent.
+     *
+     * endedAt alone cannot say this: the app stamps it on every ending,
+     * including a drop. On 2026-10-02 a user hung up on a coach's question and
+     * was rung straight back, because the call-back judge read the unanswered
+     * question as a dropped line. Absent means unknown, not "not the user".
+     */
+    endedBy: z.literal("user").optional(),
+    /**
      * Did the user pick up?
      *
      * Set from the caller actually joining the room, not from anything they
