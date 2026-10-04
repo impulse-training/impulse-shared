@@ -53,7 +53,7 @@ export type StrategyChanges = z.infer<typeof strategyChangesSchema>;
 
 /**
  * An immutable-ish snapshot of the user's full plan state at a point in time,
- * debounced to one doc per local day: users/{uid}/strategies/{dateString}.
+ * debounced to one doc per local day: users/{uid}/planHistory/{dateString}.
  * Same-day edits overwrite the day's doc (re-snapshotting and re-diffing
  * against the last PRIOR day's strategy); the first edit on a later day
  * creates a new doc. The newest doc is "the current strategy" until then.

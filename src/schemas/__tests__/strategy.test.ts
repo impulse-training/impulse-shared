@@ -2,7 +2,10 @@ import {
   activeBoundaries,
   applyStrategyRevision,
   boundaryBindingSchema,
+  boundaryAppliesOn,
   boundaryStreak,
+  describeBoundaryAnchor,
+  strategyRequestSchema,
   logSchema,
   pendingSetupSteps,
   Strategy,
@@ -220,5 +223,24 @@ describe("strategy_proposal log", () => {
     };
     const parsed = logSchema.parse(log);
     expect(parsed.type === "strategy_proposal" && parsed.data.status).toBe("open");
+  });
+});
+
+describe("boundary wording and weekdays", () => {
+  it("describes event anchors with their approximate time", () => {
+    expect(describeBoundaryAnchor({ kind: "event", event: "work_start", approxTime: "08:30" })).toBe("starting work (~08:30)");
+    expect(describeBoundaryAnchor({ kind: "clock", time: "21:00" })).toBe("21:00");
+  });
+
+  it("applies every day unless weekdays are given", () => {
+    expect(boundaryAppliesOn({}, 0)).toBe(true);
+    expect(boundaryAppliesOn({ weekdays: [1, 2, 3, 4, 5] }, 0)).toBe(false);
+  });
+});
+
+describe("strategyRequestSchema", () => {
+  it("parses a build request with defaults", () => {
+    const r = strategyRequestSchema.parse({ userId: "u1", sessionId: "s1", kind: "build", status: "pending", createdAt: at, updatedAt: at });
+    expect(r.behaviorIds).toEqual([]);
   });
 });

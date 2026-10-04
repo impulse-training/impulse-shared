@@ -24,6 +24,7 @@ import { RecapTimePreferenceLog } from "./recapTimePreferenceLog";
 import { DayTotalsPromptLog } from "./dayTotalsPromptLog";
 import { WeekOverviewLog } from "./weekOverviewLog";
 import { ProposedGoalChangeLog } from "./proposedGoalChangeLog";
+import { StrategyProposalLog } from "./strategyProposalLog";
 import { ProposedChangeStageLog } from "./proposedChangeStageLog";
 import { TriggerSelectionLog } from "./triggerSelectionLog";
 import { WidgetSetupLog } from "./widgetSetupLog";
@@ -27476,6 +27477,88 @@ export declare const logSchemas: {
         impulseId?: string | undefined;
         respondingToLogId?: string | undefined;
     }>;
+    strategy_proposal: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        sessionId: z.ZodString;
+        tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        impulseId: z.ZodOptional<z.ZodString>;
+        respondingToLogId: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"strategy_proposal">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            strategyId: z.ZodString;
+            revision: z.ZodNumber;
+            title: z.ZodString;
+            itemCount: z.ZodNumber;
+            changedItemCount: z.ZodNumber;
+            status: z.ZodDefault<z.ZodEnum<["open", "superseded"]>>;
+        }, "strip", z.ZodTypeAny, {
+            status: "superseded" | "open";
+            title: string;
+            revision: number;
+            strategyId: string;
+            itemCount: number;
+            changedItemCount: number;
+        }, {
+            title: string;
+            revision: number;
+            strategyId: string;
+            itemCount: number;
+            changedItemCount: number;
+            status?: "superseded" | "open" | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "strategy_proposal";
+        userId: string;
+        sessionId: string;
+        dateString: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            status: "superseded" | "open";
+            title: string;
+            revision: number;
+            strategyId: string;
+            itemCount: number;
+            changedItemCount: number;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "strategy_proposal";
+        userId: string;
+        sessionId: string;
+        dateString: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            title: string;
+            revision: number;
+            strategyId: string;
+            itemCount: number;
+            changedItemCount: number;
+            status?: "superseded" | "open" | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
+    }>;
     proposed_change_stage: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -37223,7 +37306,7 @@ export declare const logSchemas: {
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | TacticChoiceLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ResumeRecapRemindersCtaLog | HumanSupportEscalationLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | WeekOverviewLog | ProposedGoalChangeLog | ProposedChangeStageLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | ImageLog | PhotoLog | MergeBehaviorsProposalLog | MaskBehaviorProposalLog | ShortcutSetupIntroLog | TacticSuggestionsLog | CoachBookingPromptLog | DebriefQuestionLog | PlanHistoryEntryLog | ClosingReflectionLog | ProtectNextWindowOutcomeLog | VoiceOfferLog | ScheduledCheckInLog;
+export type Log = TacticLog | TacticChoiceLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ResumeRecapRemindersCtaLog | HumanSupportEscalationLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | WeekOverviewLog | ProposedGoalChangeLog | StrategyProposalLog | ProposedChangeStageLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | ImageLog | PhotoLog | MergeBehaviorsProposalLog | MaskBehaviorProposalLog | ShortcutSetupIntroLog | TacticSuggestionsLog | CoachBookingPromptLog | DebriefQuestionLog | PlanHistoryEntryLog | ClosingReflectionLog | ProtectNextWindowOutcomeLog | VoiceOfferLog | ScheduledCheckInLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
@@ -37251,6 +37334,7 @@ export * from "./recapTimePreferenceLog";
 export * from "./dayTotalsPromptLog";
 export * from "./weekOverviewLog";
 export * from "./proposedGoalChangeLog";
+export * from "./strategyProposalLog";
 export * from "./proposedChangeStageLog";
 export * from "./triggerSelectionLog";
 export * from "./requestPermissionsLog";
@@ -57522,6 +57606,87 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     impulseId: z.ZodOptional<z.ZodString>;
     respondingToLogId: z.ZodOptional<z.ZodString>;
 } & {
+    type: z.ZodLiteral<"strategy_proposal">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        strategyId: z.ZodString;
+        revision: z.ZodNumber;
+        title: z.ZodString;
+        itemCount: z.ZodNumber;
+        changedItemCount: z.ZodNumber;
+        status: z.ZodDefault<z.ZodEnum<["open", "superseded"]>>;
+    }, "strip", z.ZodTypeAny, {
+        status: "superseded" | "open";
+        title: string;
+        revision: number;
+        strategyId: string;
+        itemCount: number;
+        changedItemCount: number;
+    }, {
+        title: string;
+        revision: number;
+        strategyId: string;
+        itemCount: number;
+        changedItemCount: number;
+        status?: "superseded" | "open" | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "strategy_proposal";
+    userId: string;
+    sessionId: string;
+    dateString: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        status: "superseded" | "open";
+        title: string;
+        revision: number;
+        strategyId: string;
+        itemCount: number;
+        changedItemCount: number;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
+}, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "strategy_proposal";
+    userId: string;
+    sessionId: string;
+    dateString: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        title: string;
+        revision: number;
+        strategyId: string;
+        itemCount: number;
+        changedItemCount: number;
+        status?: "superseded" | "open" | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    sessionId: z.ZodString;
+    tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    impulseId: z.ZodOptional<z.ZodString>;
+    respondingToLogId: z.ZodOptional<z.ZodString>;
+} & {
     type: z.ZodLiteral<"proposed_change_stage">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
@@ -67228,6 +67393,7 @@ export declare const logIsWeekOverviewLog: (value: Omit<Log, "id">) => value is 
 export declare const isValidWeekOverviewLog: (value: unknown) => value is WeekOverviewLog;
 export declare const logIsProposedGoalChangeLog: (value: Omit<Log, "id">) => value is ProposedGoalChangeLog;
 export declare const isValidProposedGoalChangeLog: (value: unknown) => value is ProposedGoalChangeLog;
+export declare const logIsStrategyProposalLog: (value: Omit<Log, "id">) => value is StrategyProposalLog;
 export declare const logIsProposedChangeStageLog: (value: Omit<Log, "id">) => value is ProposedChangeStageLog;
 export declare const logIsImpulseStartedLog: (value: Omit<Log, "id">) => value is ImpulseStartedLog;
 export declare const isValidImpulseStartedLog: (value: unknown) => value is ImpulseStartedLog;

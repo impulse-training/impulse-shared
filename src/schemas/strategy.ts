@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { goalSchema } from "./goal";
+import { tacticAgreementSchema } from "./agreement";
 import { timestampSchema } from "../utils/timestampSchema";
 
 /**
@@ -9,9 +10,8 @@ import { timestampSchema } from "../utils/timestampSchema";
  *   users/{uid}/strategies/{strategyId}
  *   users/{uid}/strategies/{strategyId}/days/{dateString}   (adherence)
  *
- * NOTE: `strategies` currently also holds the per-day plan snapshots
- * (strategySnapshot.ts, doc id = YYYY-MM-DD). Those move to
- * `users/{uid}/planHistory/{date}` before this collection is written to.
+ * The per-day plan snapshots (strategySnapshot.ts) used to live in this
+ * collection; they are at `users/{uid}/planHistory/{date}`.
  *
  * Shape of the pipeline this models:
  *   - A model reasons FREELY and writes the strategy in prose (`source.prose`).
@@ -79,7 +79,12 @@ export const goalBindingSchema = z.object({
   appliedAt: timestampSchema.optional(),
 });
 
-/** "When I notice X, do Y". Compiles to a trigger (existing or new) + plan. */
+/**
+ * "When I notice X, do Y". Compiles to a trigger (existing, or created from
+ * `triggerText`) whose "Next up" agreement is the first library tactic: the
+ * one in-the-moment mechanism that is delivered deterministically. Scoped
+ * steps have no tactic doc; impulse sessions read them from the strategy.
+ */
 export const triggerPlanBindingSchema = z.object({
   type: z.literal("trigger_plan"),
   existingTriggerId: z.string().optional(),
@@ -88,7 +93,9 @@ export const triggerPlanBindingSchema = z.object({
   tacticIds: z.array(z.string()).default([]),
   scopedSteps: z.array(scopedStepSchema).default([]),
   createdTriggerId: z.string().optional(),
-  createdPlanId: z.string().optional(),
+  /** Set when compiling replaced an agreement; restored on uncompile. */
+  previousAgreement: tacticAgreementSchema.optional(),
+  appliedAt: timestampSchema.optional(),
 });
 
 /** A routine prompted at a fixed time. Compiles to a scheduled plan. */
@@ -261,8 +268,58 @@ export const strategyDaySchema = z.object({
 });
 export type StrategyDay = z.infer<typeof strategyDaySchema>;
 
+/**
+ * A request to build or revise a strategy: users/{uid}/strategyRequests/{id}.
+ * Written by the proposeStrategy / reviseStrategy tools (which run in both
+ * the functions runtime and the voice agent, so they only write this doc);
+ * a functions trigger runs the reasoning pipeline (minutes, not a turn) and
+ * delivers the result into `sessionId` as a strategy_proposal card.
+ *
+ * The pipeline reads the session transcript itself; `ask` / `feedback` are
+ * the model's short pointer to what the user wants, not a substitute for it.
+ */
+export const strategyRequestSchema = z.object({
+  id: z.string().optional(),
+  userId: z.string(),
+  sessionId: z.string(),
+  kind: z.enum(["build", "revise"]),
+  /** build: the behaviors this is about (may be empty = infer). */
+  behaviorIds: z.array(z.string()).default([]),
+  /** build: what the user is asking for, close to their words. */
+  ask: z.string().optional(),
+  /** revise: the strategy being negotiated. */
+  strategyId: z.string().optional(),
+  /** revise: the user's pushback, close to their words. */
+  feedback: z.string().optional(),
+  status: z.enum(["pending", "running", "done", "failed"]),
+  error: z.string().optional(),
+  /** The strategy written (build) or revised (revise). */
+  resultStrategyId: z.string().optional(),
+  createdAt: timestampSchema,
+  updatedAt: timestampSchema,
+});
+export type StrategyRequest = z.infer<typeof strategyRequestSchema>;
+
 // ---------------------------------------------------------------------------
 // Helpers
+
+/** Does a boundary apply on this weekday (0 = Sunday)? */
+export const boundaryAppliesOn = (binding: Pick<BoundaryBinding, "weekdays">, weekday: number) =>
+  !binding.weekdays || binding.weekdays.includes(weekday);
+
+/** "until you start work (~08:30)" — human wording for an anchor. */
+export function describeBoundaryAnchor(anchor: BoundaryAnchor): string {
+  if (anchor.kind === "clock") return anchor.time;
+  const label: Record<typeof anchor.event, string> = {
+    wake: "waking up",
+    leave_home: "leaving home",
+    work_start: "starting work",
+    work_end: "finishing work",
+    bedtime: "bedtime",
+    slip: "a slip",
+  };
+  return anchor.approxTime ? `${label[anchor.event]} (~${anchor.approxTime})` : label[anchor.event];
+}
 
 export const acceptedStrategyItems = (strategy: Pick<Strategy, "items">) =>
   strategy.items.filter((i) => i.userReview === "accepted");
