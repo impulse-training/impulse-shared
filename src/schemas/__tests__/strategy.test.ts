@@ -244,3 +244,19 @@ describe("strategyRequestSchema", () => {
     expect(r.behaviorIds).toEqual([]);
   });
 });
+
+describe("several strategies", () => {
+  it("overlap only when they share a behavior", () => {
+    expect(strategiesOverlap({ behaviorIds: ["social", "porn"] }, { behaviorIds: ["porn"] })).toBe(true);
+    expect(strategiesOverlap({ behaviorIds: ["social", "porn"] }, { behaviorIds: ["coffee"] })).toBe(false);
+  });
+
+  it("undecided moves exclude framing and decided ones", () => {
+    const items = [
+      { id: "a", kind: "boundary", userReview: "proposed" },
+      { id: "b", kind: "framing", userReview: "proposed" },
+      { id: "c", kind: "setup", userReview: "accepted" },
+    ] as never[];
+    expect(undecidedStrategyItems(items).map((i: { id: string }) => i.id)).toEqual(["a"]);
+  });
+});

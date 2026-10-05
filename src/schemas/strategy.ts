@@ -355,6 +355,18 @@ export function describeBoundaryAnchor(anchor: BoundaryAnchor): string {
 export const acceptedStrategyItems = (strategy: Pick<Strategy, "items">) =>
   strategy.items.filter((i) => i.userReview === "accepted");
 
+/** Moves still waiting for a yes or no (framing is never decided). */
+export const undecidedStrategyItems = <T extends Pick<StrategyItem, "userReview" | "kind">>(items: T[]): T[] =>
+  items.filter((i) => (i.userReview ?? "proposed") === "proposed" && i.kind !== "framing");
+
+/**
+ * Two strategies overlap when they cover a behavior in common. A behavior has
+ * at most one running strategy, so starting one retires the active strategies
+ * it overlaps.
+ */
+export const strategiesOverlap = (a: Pick<Strategy, "behaviorIds">, b: Pick<Strategy, "behaviorIds">) =>
+  a.behaviorIds.some((id) => b.behaviorIds.includes(id));
+
 /** Every accepted boundary binding, with the item it belongs to. */
 export function activeBoundaries(strategy: Pick<Strategy, "items">) {
   return acceptedStrategyItems(strategy).flatMap((item) =>
