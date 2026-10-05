@@ -228,6 +228,28 @@ export const strategyRoundSchema = z.object({
   proposalLogId: z.string().optional(),
 });
 
+/**
+ * How a weekly review left the strategy. "undecided" is its own verdict: a
+ * user who says "I don't know, let's move on" has not confirmed anything.
+ */
+export const strategyReviewVerdictSchema = z.enum([
+  "kept", // the user affirmed it as it is
+  "revised", // moves were changed (revision requested or decided)
+  "undecided", // the user didn't commit either way
+  "retired", // the user stopped it
+]);
+export type StrategyReviewVerdict = z.infer<typeof strategyReviewVerdictSchema>;
+
+export const strategyReviewSchema = z.object({
+  weekOfDateString: z.string(),
+  verdict: strategyReviewVerdictSchema,
+  /** One line, the user's own framing where possible. */
+  note: z.string().optional(),
+  sessionId: z.string(),
+  at: timestampSchema,
+});
+export type StrategyReview = z.infer<typeof strategyReviewSchema>;
+
 export const strategySchema = z.object({
   id: z.string().optional(),
   userId: z.string(),
@@ -241,6 +263,8 @@ export const strategySchema = z.object({
   revision: z.number().int().positive(),
   items: z.array(strategyItemSchema),
   rounds: z.array(strategyRoundSchema).default([]),
+  /** Weekly reviews of this strategy, oldest first. */
+  reviews: z.array(strategyReviewSchema).default([]),
   source: z.object({
     authoredBy: strategyAuthorSchema,
     /** The reasoner's full prose, kept verbatim. */
@@ -282,7 +306,14 @@ export const strategyRequestSchema = z.object({
   id: z.string().optional(),
   userId: z.string(),
   sessionId: z.string(),
-  kind: z.enum(["build", "revise"]),
+  /**
+   * build: a new strategy from the conversation. revise: the user's pushback.
+   * review: the week's record, prepared before a weekly review (no user
+   * feedback; the card waits in the review session, no reply is posted).
+   */
+  kind: z.enum(["build", "revise", "review"]),
+  /** review: the week under review (its last day). */
+  weekOfDateString: z.string().optional(),
   /** build: the behaviors this is about (may be empty = infer). */
   behaviorIds: z.array(z.string()).default([]),
   /** build: what the user is asking for, close to their words. */
