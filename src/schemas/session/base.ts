@@ -56,6 +56,10 @@ export const sessionBaseSchema = z.object({
   // outreach, scheduled check-ins). Prepended to the per-type system prompt
   // on every respond turn — it augments the prompt, it does not replace it.
   seededInstructions: z.string().optional(),
+  // The strategy this conversation is about (users/{uid}/strategies/{id}):
+  // set on the chat opened from a strategy's screen. The prompt shows that
+  // strategy and reviseStrategy revises it.
+  strategyId: z.string().optional(),
   // Deprecated pre-2026-08 name for seededInstructions. Old session docs
   // still carry it and readers fall back to it; never write it.
   defaultSystemPrompt: z.string().optional(),
