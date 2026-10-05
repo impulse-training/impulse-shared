@@ -109,7 +109,7 @@ export declare const taskBaseSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     category: "zara" | "deterministic";
@@ -142,7 +142,7 @@ export declare const taskBaseSchema: z.ZodObject<{
     title: string;
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -278,7 +278,7 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "merge_behaviors";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     category: "zara" | "deterministic";
@@ -326,7 +326,7 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
         description?: string | undefined;
     };
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -925,7 +925,7 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "suggest_strategy";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     category: "zara" | "deterministic";
@@ -1095,7 +1095,7 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
         })[];
     };
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -1376,7 +1376,7 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "propose_goal";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     behaviorId: string;
@@ -1468,7 +1468,7 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
         summary: string;
     };
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -1675,7 +1675,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "propose_experiment";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     category: "zara" | "deterministic";
@@ -1733,7 +1733,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
         experimentQuestion: string;
     };
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -1872,7 +1872,7 @@ export declare const proposeChangeStageTaskSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "propose_change_stage";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     behaviorId: string;
@@ -1914,7 +1914,7 @@ export declare const proposeChangeStageTaskSchema: z.ZodObject<{
     streakDays: number;
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     salience?: number | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
@@ -2036,7 +2036,7 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "propose_mask_behavior";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     behaviorId: string;
@@ -2072,7 +2072,7 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     behaviorId: string;
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -2285,7 +2285,7 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "create_session";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     category: "zara" | "deterministic";
@@ -2343,7 +2343,7 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     title: string;
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -2429,7 +2429,7 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "recap_question";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     behaviorId: string;
@@ -2471,7 +2471,7 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     recapQuestionId: string;
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     answerSummary?: string | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -2630,7 +2630,7 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "review_trigger";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     debriefOutcome: "acted" | "resisted";
@@ -2692,7 +2692,7 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
         behaviorIds?: string[] | undefined;
     };
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -2811,7 +2811,7 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "toolkit_planning";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     category: "zara" | "deterministic";
@@ -2845,7 +2845,7 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     title: string;
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -2977,7 +2977,7 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "suggest_tactic";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     suggestions: {
@@ -3021,7 +3021,7 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     }[];
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -3154,7 +3154,7 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "reflect_on_metrics";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     behaviorName: string;
@@ -3200,7 +3200,7 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     metricNames: string[];
     timeWindowDays: number;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -3322,7 +3322,7 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "collect_baseline";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     behaviorId: string;
@@ -3358,7 +3358,7 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     behaviorId: string;
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -3494,7 +3494,7 @@ export declare const understandBehaviorTaskSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "understand_behavior";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     behaviorId: string;
@@ -3531,7 +3531,7 @@ export declare const understandBehaviorTaskSchema: z.ZodObject<{
     behaviorId: string;
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     behaviorName?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
@@ -3671,7 +3671,7 @@ export declare const containLapseTaskSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "contain_lapse";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     behaviorId: string;
@@ -3710,7 +3710,7 @@ export declare const containLapseTaskSchema: z.ZodObject<{
     variant: "first" | "standing_plan" | "pattern";
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     behaviorName?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
@@ -3843,7 +3843,7 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "setup_shortcut";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     category: "zara" | "deterministic";
@@ -3879,7 +3879,7 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     title: string;
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     shortcutType?: "back_tap" | "lock_screen_widget" | undefined;
@@ -4008,7 +4008,7 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "resume_recap_reminders";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     category: "zara" | "deterministic";
@@ -4042,7 +4042,7 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     title: string;
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -4170,7 +4170,7 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "week_lookback";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     category: "zara" | "deterministic";
@@ -4205,7 +4205,7 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     title: string;
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     weekOfDateString?: string | undefined;
@@ -4278,7 +4278,7 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "weekly_review";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     category: "zara" | "deterministic";
@@ -4316,7 +4316,7 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     instructions: string;
     weekAnchorDateString: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -4456,7 +4456,7 @@ export declare const closingReflectionTaskSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "closing_reflection";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     prompt: string;
@@ -4492,7 +4492,7 @@ export declare const closingReflectionTaskSchema: z.ZodObject<{
     prompt: string;
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -4652,7 +4652,7 @@ export declare const protectNextWindowTaskSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "protect_next_window";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     variant: "daytime" | "evening" | "pre_recap";
@@ -4688,7 +4688,7 @@ export declare const protectNextWindowTaskSchema: z.ZodObject<{
     variant: "daytime" | "evening" | "pre_recap";
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -4823,7 +4823,7 @@ export declare const pressImpulseButtonTaskSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "press_impulse_button";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     category: "zara" | "deterministic";
@@ -4860,7 +4860,7 @@ export declare const pressImpulseButtonTaskSchema: z.ZodObject<{
     title: string;
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -4999,7 +4999,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "merge_behaviors";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     category: "zara" | "deterministic";
@@ -5047,7 +5047,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         description?: string | undefined;
     };
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -5645,7 +5645,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "suggest_strategy";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     category: "zara" | "deterministic";
@@ -5815,7 +5815,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         })[];
     };
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -6086,7 +6086,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "propose_goal";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     behaviorId: string;
@@ -6178,7 +6178,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         summary: string;
     };
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -6353,7 +6353,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "propose_experiment";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     category: "zara" | "deterministic";
@@ -6411,7 +6411,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         experimentQuestion: string;
     };
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -6530,7 +6530,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "propose_mask_behavior";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     behaviorId: string;
@@ -6566,7 +6566,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     behaviorId: string;
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -6696,7 +6696,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "propose_change_stage";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     behaviorId: string;
@@ -6738,7 +6738,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     streakDays: number;
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     salience?: number | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
@@ -6952,7 +6952,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "create_session";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     category: "zara" | "deterministic";
@@ -7010,7 +7010,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     title: string;
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -7095,7 +7095,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "recap_question";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     behaviorId: string;
@@ -7137,7 +7137,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     recapQuestionId: string;
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     answerSummary?: string | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -7295,7 +7295,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "review_trigger";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     debriefOutcome: "acted" | "resisted";
@@ -7357,7 +7357,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorIds?: string[] | undefined;
     };
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -7475,7 +7475,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "toolkit_planning";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     category: "zara" | "deterministic";
@@ -7509,7 +7509,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     title: string;
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -7640,7 +7640,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "suggest_tactic";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     suggestions: {
@@ -7684,7 +7684,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     }[];
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -7816,7 +7816,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "reflect_on_metrics";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     behaviorName: string;
@@ -7862,7 +7862,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     metricNames: string[];
     timeWindowDays: number;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -7983,7 +7983,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "collect_baseline";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     behaviorId: string;
@@ -8019,7 +8019,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     behaviorId: string;
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -8139,7 +8139,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "understand_behavior";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     behaviorId: string;
@@ -8176,7 +8176,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     behaviorId: string;
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     behaviorName?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
@@ -8305,7 +8305,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "contain_lapse";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     behaviorId: string;
@@ -8344,7 +8344,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     variant: "first" | "standing_plan" | "pattern";
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     behaviorName?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
@@ -8467,7 +8467,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "setup_shortcut";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     category: "zara" | "deterministic";
@@ -8503,7 +8503,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     title: string;
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     shortcutType?: "back_tap" | "lock_screen_widget" | undefined;
@@ -8623,7 +8623,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "resume_recap_reminders";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     category: "zara" | "deterministic";
@@ -8657,7 +8657,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     title: string;
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -8777,7 +8777,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "week_lookback";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     category: "zara" | "deterministic";
@@ -8812,7 +8812,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     title: string;
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     weekOfDateString?: string | undefined;
@@ -8873,7 +8873,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "weekly_review";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     category: "zara" | "deterministic";
@@ -8911,7 +8911,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     instructions: string;
     weekAnchorDateString: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -9033,7 +9033,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "closing_reflection";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     prompt: string;
@@ -9069,7 +9069,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     prompt: string;
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -9188,7 +9188,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "protect_next_window";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     variant: "daytime" | "evening" | "pre_recap";
@@ -9224,7 +9224,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     variant: "daytime" | "evening" | "pre_recap";
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;
@@ -9348,7 +9348,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "press_impulse_button";
-    status: "completed" | "dismissed" | "open";
+    status: "completed" | "open" | "dismissed";
     userId: string;
     title: string;
     category: "zara" | "deterministic";
@@ -9385,7 +9385,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     title: string;
     instructions: string;
     id?: string | undefined;
-    status?: "completed" | "dismissed" | "open" | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
     category?: "zara" | "deterministic" | undefined;

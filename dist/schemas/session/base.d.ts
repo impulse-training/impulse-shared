@@ -5356,6 +5356,7 @@ export declare const sessionBaseSchema: z.ZodObject<{
         period?: "daily" | "weekly" | undefined;
     }>, "many">>;
     seededInstructions: z.ZodOptional<z.ZodString>;
+    strategyId: z.ZodOptional<z.ZodString>;
     defaultSystemPrompt: z.ZodOptional<z.ZodString>;
     summary: z.ZodOptional<z.ZodString>;
     aiSummary: z.ZodOptional<z.ZodString>;
@@ -5474,6 +5475,7 @@ export declare const sessionBaseSchema: z.ZodObject<{
     summary?: string | undefined;
     startedDeletingAt?: import("../../types").Timestamp | undefined;
     triggerId?: string | null | undefined;
+    strategyId?: string | undefined;
     voiceEnabled?: boolean | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
@@ -6175,6 +6177,7 @@ export declare const sessionBaseSchema: z.ZodObject<{
     summary?: string | undefined;
     startedDeletingAt?: import("../../types").Timestamp | undefined;
     triggerId?: string | null | undefined;
+    strategyId?: string | undefined;
     voiceEnabled?: boolean | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
