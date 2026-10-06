@@ -26,6 +26,11 @@ exports.experimentSchema = zod_1.z.object({
     name: zod_1.z.string(),
     experimentQuestion: zod_1.z.string(),
     behaviorIds: zod_1.z.array(zod_1.z.string()).min(1),
+    /**
+     * The strategy running this experiment: a starter "track and notice" one
+     * while observing, then the user's real strategy once they start it.
+     */
+    strategyId: zod_1.z.string().optional(),
     metricIds: zod_1.z.array(zod_1.z.string()).default([]),
     memory: experimentMemorySchema.optional(),
     resultsSummary: zod_1.z.string().optional(),

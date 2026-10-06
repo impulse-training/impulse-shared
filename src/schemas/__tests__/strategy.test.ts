@@ -13,6 +13,8 @@ import {
   Strategy,
   StrategyItem,
   strategySchema,
+  strategyExperimentBinding,
+  isStarterStrategy,
 } from "../index";
 
 const at = new Date("2026-10-04T19:00:00Z") as never;
@@ -260,5 +262,32 @@ describe("several strategies", () => {
       { id: "c", kind: "setup", userReview: "accepted" },
     ] as never[];
     expect(undecidedStrategyItems(items).map((i: { id: string }) => i.id)).toEqual(["a"]);
+  });
+});
+
+describe("experiments in strategies", () => {
+  const base = {
+    userId: "u", title: "t", rationale: "r", status: "active", revision: 1,
+    source: { authoredBy: "system" }, createdAt: new Date() as never, updatedAt: new Date() as never,
+  };
+  it("defaults an experiment binding to the intervene stage", () => {
+    const s = strategySchema.parse({
+      ...base,
+      items: [{ id: "e", text: "x", kind: "experiment", fidelity: "exact", textRevision: 1, userReview: "accepted",
+        bindings: [{ type: "experiment", targetDays: 7 }] }],
+    });
+    expect(strategyExperimentBinding(s)).toMatchObject({ stage: "intervene", targetDays: 7 });
+  });
+  it("reads the binding from accepted moves only", () => {
+    const s = strategySchema.parse({
+      ...base,
+      items: [{ id: "e", text: "x", kind: "experiment", fidelity: "exact", textRevision: 1, userReview: "proposed",
+        bindings: [{ type: "experiment", targetDays: 7, stage: "observe" }] }],
+    });
+    expect(strategyExperimentBinding(s)).toBeUndefined();
+  });
+  it("tells the starter strategy apart", () => {
+    expect(isStarterStrategy({ source: { authoredBy: "system" } })).toBe(true);
+    expect(isStarterStrategy({ source: { authoredBy: "ai" } })).toBe(false);
   });
 });

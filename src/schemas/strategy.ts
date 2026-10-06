@@ -39,7 +39,11 @@ import { timestampSchema } from "../utils/timestampSchema";
 /** "HH:MM", 24h. */
 const clockTimeSchema = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/);
 
-export const strategyAuthorSchema = z.enum(["ai", "coach", "user"]);
+/**
+ * "system": the starter strategy made with an experiment ("track and
+ * notice"), before the user has a strategy of their own.
+ */
+export const strategyAuthorSchema = z.enum(["ai", "coach", "user", "system"]);
 export type StrategyAuthor = z.infer<typeof strategyAuthorSchema>;
 
 /** A concrete action with no tactic-library equivalent. Strategy-scoped. */
@@ -161,7 +165,13 @@ export const checkInBindingSchema = z.object({
 /** Runs the strategy as the intervene stage of an experiment. */
 export const experimentBindingSchema = z.object({
   type: z.literal("experiment"),
+  /** The Experiment this strategy runs (users/{uid}/experiments/{id}). */
   experimentId: z.string().optional(),
+  /**
+   * The experiment stage the strategy runs it in: "observe" for the starter
+   * strategy (tracking and noticing), "intervene" for a real one.
+   */
+  stage: z.enum(["observe", "intervene"]).default("intervene"),
   targetDays: z.number().int().positive(),
   /** What to notice each day, in the strategy's words. */
   observations: z.array(z.string()).default([]),
@@ -272,6 +282,8 @@ export const strategySchema = z.object({
     model: z.string().optional(),
     sessionId: z.string().optional(),
   }),
+  /** Where the user put it among their strategies (Strategy tab order). */
+  ordinal: z.number().optional(),
   activatedAt: timestampSchema.optional(),
   retiredAt: timestampSchema.optional(),
   retiredReason: z.string().optional(),
@@ -469,3 +481,18 @@ export function applyStrategyRevision<T extends Pick<Strategy, "items" | "revisi
 
 export const isStrategy = (value: unknown): value is Strategy =>
   strategySchema.safeParse(value).success;
+
+/** The experiment binding of the strategy's accepted moves, if it runs one. */
+export function strategyExperimentBinding(
+  strategy: Pick<Strategy, "items">,
+): Extract<StrategyBinding, { type: "experiment" }> | undefined {
+  for (const item of strategy.items) {
+    if (item.userReview !== "accepted") continue;
+    for (const b of item.bindings) if (b.type === "experiment") return b;
+  }
+  return undefined;
+}
+
+/** The starter strategy made with an experiment, before a real one exists. */
+export const isStarterStrategy = (strategy: Pick<Strategy, "source">) =>
+  strategy.source.authoredBy === "system";
