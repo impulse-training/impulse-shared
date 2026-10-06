@@ -4,6 +4,11 @@ export declare const experimentSchema: z.ZodObject<{
     name: z.ZodString;
     experimentQuestion: z.ZodString;
     behaviorIds: z.ZodArray<z.ZodString, "many">;
+    /**
+     * The strategy running this experiment: a starter "track and notice" one
+     * while observing, then the user's real strategy once they start it.
+     */
+    strategyId: z.ZodOptional<z.ZodString>;
     metricIds: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
     memory: z.ZodOptional<z.ZodObject<{
         notesByDate: z.ZodDefault<z.ZodRecord<z.ZodString, z.ZodObject<{
@@ -93,6 +98,7 @@ export declare const experimentSchema: z.ZodObject<{
         metricId: string;
     } | undefined;
     archivedAt?: import("../types").Timestamp | undefined;
+    strategyId?: string | undefined;
     insights?: {
         body: string;
         heading: string;
@@ -119,6 +125,7 @@ export declare const experimentSchema: z.ZodObject<{
         metricId: string;
     } | undefined;
     archivedAt?: import("../types").Timestamp | undefined;
+    strategyId?: string | undefined;
     insights?: {
         body: string;
         heading: string;

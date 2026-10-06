@@ -27,6 +27,11 @@ export const experimentSchema = z.object({
   name: z.string(),
   experimentQuestion: z.string(),
   behaviorIds: z.array(z.string()).min(1),
+  /**
+   * The strategy running this experiment: a starter "track and notice" one
+   * while observing, then the user's real strategy once they start it.
+   */
+  strategyId: z.string().optional(),
   metricIds: z.array(z.string()).default([]),
 
   memory: experimentMemorySchema.optional(),
