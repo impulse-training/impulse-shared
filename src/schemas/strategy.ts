@@ -282,6 +282,8 @@ export const strategySchema = z.object({
     model: z.string().optional(),
     sessionId: z.string().optional(),
   }),
+  /** Where the user put it among their strategies (Strategy tab order). */
+  ordinal: z.number().optional(),
   activatedAt: timestampSchema.optional(),
   retiredAt: timestampSchema.optional(),
   retiredReason: z.string().optional(),
