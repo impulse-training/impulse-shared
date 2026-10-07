@@ -376,3 +376,28 @@ describe("getGptPayload — behavior logs", () => {
     );
   });
 });
+
+describe("getGptPayload — a message asking for a strategy", () => {
+  const userMessage = (extra: Record<string, unknown>): Log =>
+    ({
+      type: "user_message",
+      isDisplayable: true,
+      data: { message: { role: "user", content: "Help me build a strategy for Coffee" } },
+      ...extra,
+    }) as unknown as Log;
+
+  it("names the behaviors it is for, by id", () => {
+    const [message] = getGptPayload(
+      userMessage({ strategyFor: { behaviorIds: ["coffee"], behaviorNames: ["Coffee"] } }),
+      true,
+    );
+    expect(message.content).toContain("Help me build a strategy for Coffee");
+    expect(message.content).toContain("Coffee (behaviorId: coffee)");
+  });
+
+  it("is a plain message without one", () => {
+    expect(getGptPayload(userMessage({}), true)).toEqual([
+      { role: "user", content: "Help me build a strategy for Coffee" },
+    ]);
+  });
+});

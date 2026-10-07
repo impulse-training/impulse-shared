@@ -872,6 +872,16 @@ export declare const supportGroupSchema: z.ZodObject<{
                 }[] | undefined;
             } | undefined;
         }>>;
+        strategyFor: z.ZodOptional<z.ZodObject<{
+            behaviorIds: z.ZodArray<z.ZodString, "many">;
+            behaviorNames: z.ZodArray<z.ZodString, "many">;
+        }, "strip", z.ZodTypeAny, {
+            behaviorIds: string[];
+            behaviorNames: string[];
+        }, {
+            behaviorIds: string[];
+            behaviorNames: string[];
+        }>>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../types").Timestamp;
         updatedAt: import("../types").Timestamp;
@@ -928,6 +938,10 @@ export declare const supportGroupSchema: z.ZodObject<{
                 }[] | undefined;
             } | undefined;
         } | undefined;
+        strategyFor?: {
+            behaviorIds: string[];
+            behaviorNames: string[];
+        } | undefined;
     }, {
         createdAt: import("../types").Timestamp;
         updatedAt: import("../types").Timestamp;
@@ -983,6 +997,10 @@ export declare const supportGroupSchema: z.ZodObject<{
                     timestampMs?: number | undefined;
                 }[] | undefined;
             } | undefined;
+        } | undefined;
+        strategyFor?: {
+            behaviorIds: string[];
+            behaviorNames: string[];
         } | undefined;
     }>>;
     tacticCount: z.ZodDefault<z.ZodNumber>;
@@ -1186,6 +1204,10 @@ export declare const supportGroupSchema: z.ZodObject<{
                 }[] | undefined;
             } | undefined;
         } | undefined;
+        strategyFor?: {
+            behaviorIds: string[];
+            behaviorNames: string[];
+        } | undefined;
     } | undefined;
     behaviorTopicIds?: string[] | undefined;
     timezoneOffsets?: number[] | undefined;
@@ -1364,6 +1386,10 @@ export declare const supportGroupSchema: z.ZodObject<{
                     timestampMs?: number | undefined;
                 }[] | undefined;
             } | undefined;
+        } | undefined;
+        strategyFor?: {
+            behaviorIds: string[];
+            behaviorNames: string[];
         } | undefined;
     } | undefined;
     tacticCount?: number | undefined;

@@ -1,4 +1,21 @@
 import { z } from "zod";
+/**
+ * A message the app sends on the user's behalf to ask for a strategy, from a
+ * screen that already knows which behaviors it is about (a starter strategy's
+ * "Build a strategy"). The text says it in words; this says it exactly, so the
+ * coach builds for these behaviors rather than guessing from the rest of the
+ * conversation (2026-10-07: a Coffee request was read as social media).
+ */
+export declare const strategyForSchema: z.ZodObject<{
+    behaviorIds: z.ZodArray<z.ZodString, "many">;
+    behaviorNames: z.ZodArray<z.ZodString, "many">;
+}, "strip", z.ZodTypeAny, {
+    behaviorIds: string[];
+    behaviorNames: string[];
+}, {
+    behaviorIds: string[];
+    behaviorNames: string[];
+}>;
 export declare const userMessageLogSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../../types").Timestamp, z.ZodTypeDef, import("../../../types").Timestamp>;
@@ -234,6 +251,16 @@ export declare const userMessageLogSchema: z.ZodObject<{
             }[] | undefined;
         } | undefined;
     }>>;
+    strategyFor: z.ZodOptional<z.ZodObject<{
+        behaviorIds: z.ZodArray<z.ZodString, "many">;
+        behaviorNames: z.ZodArray<z.ZodString, "many">;
+    }, "strip", z.ZodTypeAny, {
+        behaviorIds: string[];
+        behaviorNames: string[];
+    }, {
+        behaviorIds: string[];
+        behaviorNames: string[];
+    }>>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../../types").Timestamp;
     updatedAt: import("../../../types").Timestamp;
@@ -289,6 +316,10 @@ export declare const userMessageLogSchema: z.ZodObject<{
                 timestampMs?: number | undefined;
             }[] | undefined;
         } | undefined;
+    } | undefined;
+    strategyFor?: {
+        behaviorIds: string[];
+        behaviorNames: string[];
     } | undefined;
 }, {
     createdAt: import("../../../types").Timestamp;
@@ -346,5 +377,10 @@ export declare const userMessageLogSchema: z.ZodObject<{
             }[] | undefined;
         } | undefined;
     } | undefined;
+    strategyFor?: {
+        behaviorIds: string[];
+        behaviorNames: string[];
+    } | undefined;
 }>;
+export type StrategyFor = z.infer<typeof strategyForSchema>;
 export type UserMessageLog = z.infer<typeof userMessageLogSchema>;
