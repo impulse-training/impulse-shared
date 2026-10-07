@@ -34,8 +34,9 @@
  *
  * Over-matching is the cheap failure here and under-matching is the expensive
  * one: a spurious dot is a cosmetic bug, a leaked name is the disclosure
- * masking exists to prevent. The patterns lean accordingly, but stay anchored
- * on word boundaries so a term never matches inside a longer word.
+ * masking exists to prevent. The patterns lean accordingly: a term also
+ * matches as the start of a longer word ("porn" in "pornographic"), but never
+ * inside or at the end of one ("popcorn").
  */
 
 /**
@@ -148,9 +149,26 @@ function wordPattern(word: string): string {
   return `${escapeRegExp(base)}${doubledConsonant}(?:${SUFFIXES}|e|)`;
 }
 
+/**
+ * The last word of a term also matches as the start of a longer word: a
+ * masked "Pornography" (synonym "porn") leaked as "pornographic" and would as
+ * "pornhub". Only the start: a term inside or at the end of a word ("popcorn",
+ * "programming") is still left alone. A word of six letters or more gives up
+ * its last letter first, so "pornography" reaches "pornographic". Three-letter
+ * words stay whole ("pot" must not eat "potential").
+ */
+function lastWordPattern(word: string): string {
+  const own = wordPattern(word);
+  if (!/^[a-z]+$/.test(word) || word.length < 4) return own;
+  const prefix = word.length >= 6 ? word.slice(0, -1) : word;
+  return `(?:${own}|${escapeRegExp(prefix)}\\p{L}+)`;
+}
+
 /** A term's words in sequence, separator- and filler-tolerant. */
 function sequencePattern(words: string[]): string {
-  return words.map(wordPattern).join(GAP);
+  return words
+    .map((word, i) => (i === words.length - 1 ? lastWordPattern(word) : wordPattern(word)))
+    .join(GAP);
 }
 
 /**
@@ -172,8 +190,8 @@ function patternsForTerm(term: string): string[] {
 
 /**
  * One case-insensitive regex matching any of `terms` in any of the forms above,
- * or `null` when nothing is maskable. Anchored on word boundaries so a term
- * never matches inside a longer word.
+ * or `null` when nothing is maskable. Anchored on a word start, so a term
+ * never matches inside or at the end of a longer word.
  */
 export function buildMaskedTermRegex(terms: string[]): RegExp | null {
   const patterns = Array.from(
