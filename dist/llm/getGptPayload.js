@@ -308,6 +308,19 @@ function getGptPayload(log, isFinalLogInSession, options) {
         return (0, buildPlansLogPayload_1.buildPlansLogPayload)(log, isFinalLogInSession, options === null || options === void 0 ? void 0 : options.completedTacticIds);
     }
     if ((0, log_1.logIsUserMessageLog)(log)) {
+        const request = log.strategyFor;
+        if (request) {
+            const behaviors = request.behaviorIds
+                .map((id, i) => { var _a; return `${(_a = request.behaviorNames[i]) !== null && _a !== void 0 ? _a : id} (behaviorId: ${id})`; })
+                .join(", ");
+            return [
+                {
+                    role: "user",
+                    content: `${log.data.message.content}\n` +
+                        `<CONTEXT>Sent from the strategy screen. The strategy is for: ${behaviors}. Build it for these behaviors.</CONTEXT>`,
+                },
+            ];
+        }
         return [
             {
                 role: "user",

@@ -419,6 +419,20 @@ export function getGptPayload(
   }
 
   if (logIsUserMessageLog(log)) {
+    const request = log.strategyFor;
+    if (request) {
+      const behaviors = request.behaviorIds
+        .map((id, i) => `${request.behaviorNames[i] ?? id} (behaviorId: ${id})`)
+        .join(", ");
+      return [
+        {
+          role: "user",
+          content:
+            `${log.data.message.content}\n` +
+            `<CONTEXT>Sent from the strategy screen. The strategy is for: ${behaviors}. Build it for these behaviors.</CONTEXT>`,
+        },
+      ];
+    }
     return [
       {
         role: "user",

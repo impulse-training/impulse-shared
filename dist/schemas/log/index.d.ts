@@ -283,6 +283,16 @@ export declare const logSchemas: {
                 }[] | undefined;
             } | undefined;
         }>>;
+        strategyFor: z.ZodOptional<z.ZodObject<{
+            behaviorIds: z.ZodArray<z.ZodString, "many">;
+            behaviorNames: z.ZodArray<z.ZodString, "many">;
+        }, "strip", z.ZodTypeAny, {
+            behaviorIds: string[];
+            behaviorNames: string[];
+        }, {
+            behaviorIds: string[];
+            behaviorNames: string[];
+        }>>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -339,6 +349,10 @@ export declare const logSchemas: {
                 }[] | undefined;
             } | undefined;
         } | undefined;
+        strategyFor?: {
+            behaviorIds: string[];
+            behaviorNames: string[];
+        } | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -394,6 +408,10 @@ export declare const logSchemas: {
                     timestampMs?: number | undefined;
                 }[] | undefined;
             } | undefined;
+        } | undefined;
+        strategyFor?: {
+            behaviorIds: string[];
+            behaviorNames: string[];
         } | undefined;
     }>;
     assistant_message: z.ZodObject<{
@@ -37596,6 +37614,16 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }[] | undefined;
         } | undefined;
     }>>;
+    strategyFor: z.ZodOptional<z.ZodObject<{
+        behaviorIds: z.ZodArray<z.ZodString, "many">;
+        behaviorNames: z.ZodArray<z.ZodString, "many">;
+    }, "strip", z.ZodTypeAny, {
+        behaviorIds: string[];
+        behaviorNames: string[];
+    }, {
+        behaviorIds: string[];
+        behaviorNames: string[];
+    }>>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
@@ -37652,6 +37680,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }[] | undefined;
         } | undefined;
     } | undefined;
+    strategyFor?: {
+        behaviorIds: string[];
+        behaviorNames: string[];
+    } | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
@@ -37707,6 +37739,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 timestampMs?: number | undefined;
             }[] | undefined;
         } | undefined;
+    } | undefined;
+    strategyFor?: {
+        behaviorIds: string[];
+        behaviorNames: string[];
     } | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
