@@ -6012,6 +6012,7 @@ export declare const logSchemas: {
             endedBy: z.ZodOptional<z.ZodLiteral<"user">>;
             answered: z.ZodOptional<z.ZodBoolean>;
             answeredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            declinedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             engine: z.ZodOptional<z.ZodEnum<["livekit", "elevenlabs"]>>;
             livekitSessionId: z.ZodOptional<z.ZodString>;
             livekitRoomName: z.ZodOptional<z.ZodString>;
@@ -6754,6 +6755,7 @@ export declare const logSchemas: {
             } | undefined;
             endedBy?: "user" | undefined;
             answered?: boolean | undefined;
+            declinedAt?: import("../../types").Timestamp | undefined;
             livekitSessionId?: string | undefined;
             livekitRoomName?: string | undefined;
             elevenlabsAgentId?: string | undefined;
@@ -6901,6 +6903,7 @@ export declare const logSchemas: {
             } | undefined;
             endedBy?: "user" | undefined;
             answered?: boolean | undefined;
+            declinedAt?: import("../../types").Timestamp | undefined;
             livekitSessionId?: string | undefined;
             livekitRoomName?: string | undefined;
             elevenlabsAgentId?: string | undefined;
@@ -7592,6 +7595,7 @@ export declare const logSchemas: {
             } | undefined;
             endedBy?: "user" | undefined;
             answered?: boolean | undefined;
+            declinedAt?: import("../../types").Timestamp | undefined;
             livekitSessionId?: string | undefined;
             livekitRoomName?: string | undefined;
             elevenlabsAgentId?: string | undefined;
@@ -7754,6 +7758,7 @@ export declare const logSchemas: {
             } | undefined;
             endedBy?: "user" | undefined;
             answered?: boolean | undefined;
+            declinedAt?: import("../../types").Timestamp | undefined;
             livekitSessionId?: string | undefined;
             livekitRoomName?: string | undefined;
             elevenlabsAgentId?: string | undefined;
@@ -26225,9 +26230,9 @@ export declare const logSchemas: {
                     }[];
                 };
             })[];
+            declinedAt?: import("../../types").Timestamp | undefined;
             summary?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
-            declinedAt?: import("../../types").Timestamp | undefined;
             sourceTaskId?: string | undefined;
             revealedAt?: import("../../types").Timestamp | undefined;
             revision?: number | undefined;
@@ -26303,9 +26308,9 @@ export declare const logSchemas: {
                 };
             })[];
             status?: "pending" | "accepted" | "declined" | "superseded" | undefined;
+            declinedAt?: import("../../types").Timestamp | undefined;
             summary?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
-            declinedAt?: import("../../types").Timestamp | undefined;
             sourceTaskId?: string | undefined;
             revealedAt?: import("../../types").Timestamp | undefined;
             revision?: number | undefined;
@@ -26391,9 +26396,9 @@ export declare const logSchemas: {
                     }[];
                 };
             })[];
+            declinedAt?: import("../../types").Timestamp | undefined;
             summary?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
-            declinedAt?: import("../../types").Timestamp | undefined;
             sourceTaskId?: string | undefined;
             revealedAt?: import("../../types").Timestamp | undefined;
             revision?: number | undefined;
@@ -26484,9 +26489,9 @@ export declare const logSchemas: {
                 };
             })[];
             status?: "pending" | "accepted" | "declined" | "superseded" | undefined;
+            declinedAt?: import("../../types").Timestamp | undefined;
             summary?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
-            declinedAt?: import("../../types").Timestamp | undefined;
             sourceTaskId?: string | undefined;
             revealedAt?: import("../../types").Timestamp | undefined;
             revision?: number | undefined;
@@ -27242,9 +27247,9 @@ export declare const logSchemas: {
                 }[];
             };
             behaviorName?: string | undefined;
+            declinedAt?: import("../../types").Timestamp | undefined;
             summary?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
-            declinedAt?: import("../../types").Timestamp | undefined;
             sourceTaskId?: string | undefined;
             previousGoal?: {
                 type: "eliminate";
@@ -27300,9 +27305,9 @@ export declare const logSchemas: {
             };
             status?: "pending" | "accepted" | "declined" | undefined;
             behaviorName?: string | undefined;
+            declinedAt?: import("../../types").Timestamp | undefined;
             summary?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
-            declinedAt?: import("../../types").Timestamp | undefined;
             sourceTaskId?: string | undefined;
             previousGoal?: {
                 type: "eliminate";
@@ -27368,9 +27373,9 @@ export declare const logSchemas: {
                 }[];
             };
             behaviorName?: string | undefined;
+            declinedAt?: import("../../types").Timestamp | undefined;
             summary?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
-            declinedAt?: import("../../types").Timestamp | undefined;
             sourceTaskId?: string | undefined;
             previousGoal?: {
                 type: "eliminate";
@@ -27441,9 +27446,9 @@ export declare const logSchemas: {
             };
             status?: "pending" | "accepted" | "declined" | undefined;
             behaviorName?: string | undefined;
+            declinedAt?: import("../../types").Timestamp | undefined;
             summary?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
-            declinedAt?: import("../../types").Timestamp | undefined;
             sourceTaskId?: string | undefined;
             previousGoal?: {
                 type: "eliminate";
@@ -27593,8 +27598,8 @@ export declare const logSchemas: {
             toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
             evidence: string;
             behaviorName?: string | undefined;
-            acceptedAt?: import("../../types").Timestamp | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
+            acceptedAt?: import("../../types").Timestamp | undefined;
             sourceTaskId?: string | undefined;
             appliedAt?: import("../../types").Timestamp | undefined;
             fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
@@ -27605,8 +27610,8 @@ export declare const logSchemas: {
             evidence: string;
             status?: "pending" | "accepted" | "declined" | undefined;
             behaviorName?: string | undefined;
-            acceptedAt?: import("../../types").Timestamp | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
+            acceptedAt?: import("../../types").Timestamp | undefined;
             sourceTaskId?: string | undefined;
             appliedAt?: import("../../types").Timestamp | undefined;
             fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
@@ -27627,8 +27632,8 @@ export declare const logSchemas: {
             toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
             evidence: string;
             behaviorName?: string | undefined;
-            acceptedAt?: import("../../types").Timestamp | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
+            acceptedAt?: import("../../types").Timestamp | undefined;
             sourceTaskId?: string | undefined;
             appliedAt?: import("../../types").Timestamp | undefined;
             fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
@@ -27654,8 +27659,8 @@ export declare const logSchemas: {
             evidence: string;
             status?: "pending" | "accepted" | "declined" | undefined;
             behaviorName?: string | undefined;
-            acceptedAt?: import("../../types").Timestamp | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
+            acceptedAt?: import("../../types").Timestamp | undefined;
             sourceTaskId?: string | undefined;
             appliedAt?: import("../../types").Timestamp | undefined;
             fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
@@ -43317,6 +43322,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         endedBy: z.ZodOptional<z.ZodLiteral<"user">>;
         answered: z.ZodOptional<z.ZodBoolean>;
         answeredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        declinedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         engine: z.ZodOptional<z.ZodEnum<["livekit", "elevenlabs"]>>;
         livekitSessionId: z.ZodOptional<z.ZodString>;
         livekitRoomName: z.ZodOptional<z.ZodString>;
@@ -44059,6 +44065,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } | undefined;
         endedBy?: "user" | undefined;
         answered?: boolean | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
@@ -44206,6 +44213,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } | undefined;
         endedBy?: "user" | undefined;
         answered?: boolean | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
@@ -44897,6 +44905,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } | undefined;
         endedBy?: "user" | undefined;
         answered?: boolean | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
@@ -45059,6 +45068,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } | undefined;
         endedBy?: "user" | undefined;
         answered?: boolean | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
@@ -56348,9 +56358,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[];
             };
         })[];
+        declinedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
-        declinedAt?: import("../../types").Timestamp | undefined;
         sourceTaskId?: string | undefined;
         revealedAt?: import("../../types").Timestamp | undefined;
         revision?: number | undefined;
@@ -56426,9 +56436,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             };
         })[];
         status?: "pending" | "accepted" | "declined" | "superseded" | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
-        declinedAt?: import("../../types").Timestamp | undefined;
         sourceTaskId?: string | undefined;
         revealedAt?: import("../../types").Timestamp | undefined;
         revision?: number | undefined;
@@ -56514,9 +56524,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[];
             };
         })[];
+        declinedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
-        declinedAt?: import("../../types").Timestamp | undefined;
         sourceTaskId?: string | undefined;
         revealedAt?: import("../../types").Timestamp | undefined;
         revision?: number | undefined;
@@ -56607,9 +56617,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             };
         })[];
         status?: "pending" | "accepted" | "declined" | "superseded" | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
-        declinedAt?: import("../../types").Timestamp | undefined;
         sourceTaskId?: string | undefined;
         revealedAt?: import("../../types").Timestamp | undefined;
         revision?: number | undefined;
@@ -57359,9 +57369,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }[];
         };
         behaviorName?: string | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
-        declinedAt?: import("../../types").Timestamp | undefined;
         sourceTaskId?: string | undefined;
         previousGoal?: {
             type: "eliminate";
@@ -57417,9 +57427,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         };
         status?: "pending" | "accepted" | "declined" | undefined;
         behaviorName?: string | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
-        declinedAt?: import("../../types").Timestamp | undefined;
         sourceTaskId?: string | undefined;
         previousGoal?: {
             type: "eliminate";
@@ -57485,9 +57495,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }[];
         };
         behaviorName?: string | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
-        declinedAt?: import("../../types").Timestamp | undefined;
         sourceTaskId?: string | undefined;
         previousGoal?: {
             type: "eliminate";
@@ -57558,9 +57568,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         };
         status?: "pending" | "accepted" | "declined" | undefined;
         behaviorName?: string | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
-        declinedAt?: import("../../types").Timestamp | undefined;
         sourceTaskId?: string | undefined;
         previousGoal?: {
             type: "eliminate";
@@ -57708,8 +57718,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
         evidence: string;
         behaviorName?: string | undefined;
-        acceptedAt?: import("../../types").Timestamp | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
+        acceptedAt?: import("../../types").Timestamp | undefined;
         sourceTaskId?: string | undefined;
         appliedAt?: import("../../types").Timestamp | undefined;
         fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
@@ -57720,8 +57730,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         evidence: string;
         status?: "pending" | "accepted" | "declined" | undefined;
         behaviorName?: string | undefined;
-        acceptedAt?: import("../../types").Timestamp | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
+        acceptedAt?: import("../../types").Timestamp | undefined;
         sourceTaskId?: string | undefined;
         appliedAt?: import("../../types").Timestamp | undefined;
         fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
@@ -57742,8 +57752,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
         evidence: string;
         behaviorName?: string | undefined;
-        acceptedAt?: import("../../types").Timestamp | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
+        acceptedAt?: import("../../types").Timestamp | undefined;
         sourceTaskId?: string | undefined;
         appliedAt?: import("../../types").Timestamp | undefined;
         fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
@@ -57769,8 +57779,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         evidence: string;
         status?: "pending" | "accepted" | "declined" | undefined;
         behaviorName?: string | undefined;
-        acceptedAt?: import("../../types").Timestamp | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
+        acceptedAt?: import("../../types").Timestamp | undefined;
         sourceTaskId?: string | undefined;
         appliedAt?: import("../../types").Timestamp | undefined;
         fromStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;

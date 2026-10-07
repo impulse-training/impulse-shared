@@ -238,6 +238,8 @@ exports.callLogSchema = base_1.logBaseSchema.extend({
          */
         answered: zod_1.z.boolean().optional(),
         answeredAt: timestampSchema_1.timestampSchema.optional(),
+        /** The user rejected the ring (the phone reported ending it unanswered). */
+        declinedAt: timestampSchema_1.timestampSchema.optional(),
         /**
          * Which engine runs this call, chosen by the engine switch
          * (config/voiceEngine) when the call is prepared. The app routes an

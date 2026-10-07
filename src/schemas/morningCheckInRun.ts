@@ -13,6 +13,9 @@ export const morningCheckInStoppedReasonSchema = z.enum([
   // There is nothing to retry: a push is a delivery, and repeating it every
   // half hour would be nagging rather than calling back.
   "delivered-as-push",
+  // They rejected the ring twice: once is a "not now" worth one more try,
+  // twice is "not today".
+  "declined",
 ]);
 export type MorningCheckInStoppedReason = z.infer<
   typeof morningCheckInStoppedReasonSchema
@@ -48,6 +51,8 @@ export const morningCheckInRunSchema = z.object({
   lastCallLogId: z.string().nullable().optional(),
   /** Set the moment a tick observes that a caller reached one of our rooms. */
   answeredAt: timestampSchema.nullable().optional(),
+  /** Rings the user rejected (the phone reported it), by call log id. */
+  declinedCallLogIds: z.array(z.string()).optional(),
   stoppedReason: morningCheckInStoppedReasonSchema.optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
