@@ -248,6 +248,8 @@ export const callLogSchema = logBaseSchema.extend({
      */
     answered: z.boolean().optional(),
     answeredAt: timestampSchema.optional(),
+    /** The user rejected the ring (the phone reported ending it unanswered). */
+    declinedAt: timestampSchema.optional(),
     /**
      * Which engine runs this call, chosen by the engine switch
      * (config/voiceEngine) when the call is prepared. The app routes an

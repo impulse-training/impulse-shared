@@ -1244,9 +1244,9 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                 }[];
             };
         })[];
+        declinedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
-        declinedAt?: import("../../types").Timestamp | undefined;
         sourceTaskId?: string | undefined;
         revealedAt?: import("../../types").Timestamp | undefined;
         revision?: number | undefined;
@@ -1322,9 +1322,9 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
             };
         })[];
         status?: "pending" | "accepted" | "declined" | "superseded" | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
-        declinedAt?: import("../../types").Timestamp | undefined;
         sourceTaskId?: string | undefined;
         revealedAt?: import("../../types").Timestamp | undefined;
         revision?: number | undefined;
@@ -1410,9 +1410,9 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                 }[];
             };
         })[];
+        declinedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
-        declinedAt?: import("../../types").Timestamp | undefined;
         sourceTaskId?: string | undefined;
         revealedAt?: import("../../types").Timestamp | undefined;
         revision?: number | undefined;
@@ -1503,9 +1503,9 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
             };
         })[];
         status?: "pending" | "accepted" | "declined" | "superseded" | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
-        declinedAt?: import("../../types").Timestamp | undefined;
         sourceTaskId?: string | undefined;
         revealedAt?: import("../../types").Timestamp | undefined;
         revision?: number | undefined;

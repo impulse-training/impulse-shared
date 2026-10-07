@@ -5866,6 +5866,8 @@ export declare const callLogSchema: z.ZodObject<{
          */
         answered: z.ZodOptional<z.ZodBoolean>;
         answeredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        /** The user rejected the ring (the phone reported ending it unanswered). */
+        declinedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         /**
          * Which engine runs this call, chosen by the engine switch
          * (config/voiceEngine) when the call is prepared. The app routes an
@@ -6646,6 +6648,7 @@ export declare const callLogSchema: z.ZodObject<{
         } | undefined;
         endedBy?: "user" | undefined;
         answered?: boolean | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
@@ -6793,6 +6796,7 @@ export declare const callLogSchema: z.ZodObject<{
         } | undefined;
         endedBy?: "user" | undefined;
         answered?: boolean | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
@@ -7484,6 +7488,7 @@ export declare const callLogSchema: z.ZodObject<{
         } | undefined;
         endedBy?: "user" | undefined;
         answered?: boolean | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
@@ -7646,6 +7651,7 @@ export declare const callLogSchema: z.ZodObject<{
         } | undefined;
         endedBy?: "user" | undefined;
         answered?: boolean | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
