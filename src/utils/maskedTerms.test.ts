@@ -88,10 +88,23 @@ describe("buildMaskedTermRegex", () => {
       expect(matches(["Nose"], "nos vemos")).toBe(false);
     });
 
-    it("does not match inside a longer word", () => {
+    it("does not match inside or at the end of a longer word", () => {
       expect(matches(["Porn"], "a bowl of popcorn")).toBe(false);
       expect(matches(["Gaming"], "the programming session")).toBe(false);
-      expect(matches(["Coffee"], "the coffeehouse")).toBe(false);
+    });
+
+    // A longer word that STARTS with the term is usually the term: porn →
+    // pornographic, pornhub. Over-masking "coffeehouse" is cosmetic; leaking
+    // "pornographic" is the disclosure masking exists to prevent.
+    it("matches a longer word that starts with the term", () => {
+      expect(matches(["Pornography", "porn"], "no pornographic sites")).toBe(true);
+      expect(matches(["Pornography", "porn"], "opened pornhub")).toBe(true);
+      expect(matches(["Pornography"], "the pornographic stuff")).toBe(true);
+      expect(matches(["Coffee"], "the coffeehouse")).toBe(true);
+    });
+
+    it("keeps three-letter words whole", () => {
+      expect(matches(["Pot"], "a potential problem")).toBe(false);
     });
 
     it("still matches the whole word", () => {

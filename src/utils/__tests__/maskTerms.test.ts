@@ -46,8 +46,12 @@ describe("maskTerms", () => {
   });
 
   it("does not match inside a longer word", () => {
+    expect(maskTerms("a bowl of popcorn", [PORN])).toBe("a bowl of popcorn");
+  });
+
+  it("rewrites a longer word that starts with the term", () => {
     expect(maskTerms("pornographic-sounding", [PORN])).toBe(
-      "pornographic-sounding",
+      "the red behavior-sounding",
     );
   });
 });
