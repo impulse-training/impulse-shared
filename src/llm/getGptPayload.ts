@@ -429,7 +429,10 @@ export function getGptPayload(
           role: "user",
           content:
             `${log.data.message.content}\n` +
-            `<CONTEXT>Sent from the strategy screen. The strategy is for: ${behaviors}. Build it for these behaviors.</CONTEXT>`,
+            `<CONTEXT>Sent from the strategy screen. The strategy is for: ${behaviors}. ` +
+            "Talk it through briefly before building it: what they want from it, and what they have tried. " +
+            "Ask one question at a time, and once you have enough (two or three answers is plenty), build it with proposeStrategy for these behaviors. " +
+            "They can also tap Just build it to start it straight away.</CONTEXT>",
         },
       ];
     }

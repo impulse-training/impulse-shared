@@ -335,6 +335,16 @@ export const strategyRequestSchema = z.object({
   /** revise: the user's pushback, close to their words. */
   feedback: z.string().optional(),
   status: z.enum(["pending", "running", "done", "failed"]),
+  /**
+   * build: where a running build is, for the progress the app shows. ideas:
+   * reasoning freely over the conversation and history (most of the wait).
+   * moves: shaping those ideas into the strategy's moves.
+   */
+  stage: z.enum(["ideas", "moves"]).optional(),
+  /** When it started running; the app's progress bar counts from here. */
+  startedAt: timestampSchema.optional(),
+  /** coach: proposeStrategy. button: the user tapped "Just build it". */
+  source: z.enum(["coach", "button"]).optional(),
   error: z.string().optional(),
   /** The strategy written (build) or revised (revise). */
   resultStrategyId: z.string().optional(),
