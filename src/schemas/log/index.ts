@@ -63,6 +63,7 @@ import {
   DayTotalsPromptLog,
   dayTotalsPromptLogSchema,
 } from "./dayTotalsPromptLog";
+import { StrategyCheckinLog, strategyCheckinLogSchema } from "./strategyCheckinLog";
 import {
   WeekOverviewLog,
   weekOverviewLogSchema,
@@ -186,6 +187,7 @@ export const logSchemas = {
   metric: metricLogSchema,
   recap_time_preference: recapTimePreferenceLogSchema,
   day_totals_prompt: dayTotalsPromptLogSchema,
+  strategy_checkin: strategyCheckinLogSchema,
   week_overview: weekOverviewLogSchema,
   proposed_goal_change: proposedGoalChangeLogSchema,
   strategy_proposal: strategyProposalLogSchema,
@@ -241,6 +243,7 @@ export type Log =
   | MetricLog
   | RecapTimePreferenceLog
   | DayTotalsPromptLog
+  | StrategyCheckinLog
   | WeekOverviewLog
   | ProposedGoalChangeLog
   | StrategyProposalLog
@@ -291,6 +294,7 @@ export * from "./impulseStartedLog";
 export * from "./metricLog";
 export * from "./recapTimePreferenceLog";
 export * from "./dayTotalsPromptLog";
+export * from "./strategyCheckinLog";
 export * from "./weekOverviewLog";
 export * from "./proposedGoalChangeLog";
 export * from "./strategyProposalLog";
@@ -344,6 +348,7 @@ export const logSchema = z.discriminatedUnion("type", [
   metricLogSchema,
   recapTimePreferenceLogSchema,
   dayTotalsPromptLogSchema,
+  strategyCheckinLogSchema,
   weekOverviewLogSchema,
   proposedGoalChangeLogSchema,
   strategyProposalLogSchema,

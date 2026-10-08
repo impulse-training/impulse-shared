@@ -292,11 +292,28 @@ export const strategySchema = z.object({
 });
 export type Strategy = z.infer<typeof strategySchema>;
 
-/** One day of boundary adherence: strategies/{id}/days/{dateString}. */
+/**
+ * How one move went on one day. kept: did it / held it / used it. partly:
+ * some of it. broken: didn't / slipped. na: it didn't apply (a weekday rule
+ * on a weekend, a moment that never came).
+ */
+export const strategyDayOutcomeSchema = z.enum(["kept", "partly", "broken", "na"]);
+export type StrategyDayOutcome = z.infer<typeof strategyDayOutcomeSchema>;
+
+/** One day of a strategy's moves: strategies/{id}/days/{dateString}. */
 export const strategyDaySchema = z.object({
   dateString: z.string(),
-  /** itemId -> outcome. "na" = the boundary didn't apply (weekday, no slip). */
-  boundaries: z.record(z.string(), z.enum(["kept", "broken", "na"])),
+  /**
+   * itemId -> outcome, for every move checked that day: lines, routines and
+   * in-the-moment plans (the name is from when only lines were checked).
+   */
+  boundaries: z.record(z.string(), strategyDayOutcomeSchema),
+  /**
+   * Moves whose outcome the app filled in from what it already knew (a
+   * routine marked done, a plan used in the moment, a line with nothing
+   * logged). The user's own answer replaces it and drops it from here.
+   */
+  prefilled: z.array(z.string()).optional(),
   /** Where the answer came from. */
   source: z.enum(["recap", "user", "coach"]),
   createdAt: timestampSchema,
@@ -411,6 +428,7 @@ export function pendingSetupSteps(strategy: Pick<Strategy, "items">) {
  * Consecutive kept days for one boundary item, counting back from the most
  * recent recorded day. "na" days and days with no entry for the item are
  * skipped (a weekday rule shouldn't break on a weekend); a broken day ends it.
+ * A partly day neither ends it nor adds to it.
  */
 export function boundaryStreak(
   days: Pick<StrategyDay, "dateString" | "boundaries">[],
@@ -506,3 +524,38 @@ export function strategyExperimentBinding(
 /** The starter strategy made with an experiment, before a real one exists. */
 export const isStarterStrategy = (strategy: Pick<Strategy, "source">) =>
   strategy.source.authoredBy === "system";
+
+// ---------------------------------------------------------------------------
+// Daily check-off
+// ---------------------------------------------------------------------------
+
+/** The kinds of move checked day by day (setup, review and framing are not). */
+export const DAILY_STRATEGY_KINDS = ["boundary", "routine", "moment", "fallback"] as const;
+
+/**
+ * The moves of a running strategy to check for a day: accepted lines,
+ * routines and in-the-moment plans that apply on that weekday (0 = Sunday).
+ */
+export function dailyStrategyItems(strategy: Pick<Strategy, "items">, weekday: number): StrategyItem[] {
+  return acceptedStrategyItems(strategy).filter((item) => {
+    if (!(DAILY_STRATEGY_KINDS as readonly string[]).includes(item.kind)) return false;
+    const days = item.bindings.flatMap((b) =>
+      b.type === "boundary" || b.type === "scheduled_plan" ? [b.weekdays ?? null] : [],
+    );
+    // No weekday rule on any binding: every day.
+    return days.length === 0 || days.some((d) => d === null || d.includes(weekday));
+  });
+}
+
+/** The three answers for a move, in the move's own words, worst first. */
+export function strategyOutcomeLabels(kind: StrategyItem["kind"]): Record<"broken" | "partly" | "kept", string> & { na?: string } {
+  switch (kind) {
+    case "boundary":
+      return { broken: "Slipped", partly: "Mostly", kept: "Held" };
+    case "moment":
+    case "fallback":
+      return { broken: "Didn't use it", partly: "Partly", kept: "Used it", na: "Didn't come up" };
+    default:
+      return { broken: "Didn't do it", partly: "Partly", kept: "Did it" };
+  }
+}
