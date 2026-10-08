@@ -393,6 +393,7 @@ describe("getGptPayload — a message asking for a strategy", () => {
     );
     expect(message.content).toContain("Help me build a strategy for Coffee");
     expect(message.content).toContain("Coffee (behaviorId: coffee)");
+    expect(message.content).toContain("Talk it through briefly");
   });
 
   it("is a plain message without one", () => {
