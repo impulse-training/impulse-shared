@@ -41,6 +41,7 @@ const metricLog_1 = require("./metricLog");
 const recapTimePreferenceLog_1 = require("./recapTimePreferenceLog");
 const dayTotalsPromptLog_1 = require("./dayTotalsPromptLog");
 const strategyCheckinLog_1 = require("./strategyCheckinLog");
+const strategyOfferLog_1 = require("./strategyOfferLog");
 const weekOverviewLog_1 = require("./weekOverviewLog");
 const proposedGoalChangeLog_1 = require("./proposedGoalChangeLog");
 const strategyProposalLog_1 = require("./strategyProposalLog");
@@ -95,6 +96,7 @@ exports.logSchemas = {
     recap_time_preference: recapTimePreferenceLog_1.recapTimePreferenceLogSchema,
     day_totals_prompt: dayTotalsPromptLog_1.dayTotalsPromptLogSchema,
     strategy_checkin: strategyCheckinLog_1.strategyCheckinLogSchema,
+    strategy_offer: strategyOfferLog_1.strategyOfferLogSchema,
     week_overview: weekOverviewLog_1.weekOverviewLogSchema,
     proposed_goal_change: proposedGoalChangeLog_1.proposedGoalChangeLogSchema,
     strategy_proposal: strategyProposalLog_1.strategyProposalLogSchema,
@@ -147,6 +149,7 @@ __exportStar(require("./metricLog"), exports);
 __exportStar(require("./recapTimePreferenceLog"), exports);
 __exportStar(require("./dayTotalsPromptLog"), exports);
 __exportStar(require("./strategyCheckinLog"), exports);
+__exportStar(require("./strategyOfferLog"), exports);
 __exportStar(require("./weekOverviewLog"), exports);
 __exportStar(require("./proposedGoalChangeLog"), exports);
 __exportStar(require("./strategyProposalLog"), exports);
@@ -200,6 +203,7 @@ exports.logSchema = zod_1.z.discriminatedUnion("type", [
     recapTimePreferenceLog_1.recapTimePreferenceLogSchema,
     dayTotalsPromptLog_1.dayTotalsPromptLogSchema,
     strategyCheckinLog_1.strategyCheckinLogSchema,
+    strategyOfferLog_1.strategyOfferLogSchema,
     weekOverviewLog_1.weekOverviewLogSchema,
     proposedGoalChangeLog_1.proposedGoalChangeLogSchema,
     strategyProposalLog_1.strategyProposalLogSchema,
