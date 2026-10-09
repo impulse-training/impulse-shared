@@ -287,6 +287,14 @@ export const strategySchema = z.object({
   activatedAt: timestampSchema.optional(),
   retiredAt: timestampSchema.optional(),
   retiredReason: z.string().optional(),
+  /**
+   * A proposal waiting for the user, offered in an evening recap: each offer
+   * and their answer. "go_through" put it in front of them in that recap;
+   * "not_now" left it waiting. A second "not now" retires it.
+   */
+  recapOffers: z
+    .array(z.object({ dateString: z.string(), sessionId: z.string(), answer: z.enum(["go_through", "not_now"]) }))
+    .optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });
@@ -559,3 +567,6 @@ export function strategyOutcomeLabels(kind: StrategyItem["kind"]): Record<"broke
       return { broken: "Didn't do it", partly: "Partly", kept: "Did it" };
   }
 }
+
+/** A waiting proposal is retired after this many "not now"s in recaps. */
+export const MAX_STRATEGY_RECAP_DECLINES = 2;
