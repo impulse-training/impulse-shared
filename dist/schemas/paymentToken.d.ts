@@ -10,20 +10,20 @@ export declare const paymentTokenSchema: z.ZodObject<{
     usedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     claimErrorAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
+    amount: number;
     stripeEventId: string;
     stripeSessionId: string;
     stripePaymentIntentId: string;
-    amount: number;
     currency: string;
     livemode: boolean;
     createdAt?: import("../types").Timestamp | undefined;
     usedAt?: import("../types").Timestamp | undefined;
     claimErrorAt?: import("../types").Timestamp | undefined;
 }, {
+    amount: number;
     stripeEventId: string;
     stripeSessionId: string;
     stripePaymentIntentId: string;
-    amount: number;
     currency: string;
     livemode: boolean;
     createdAt?: import("../types").Timestamp | undefined;

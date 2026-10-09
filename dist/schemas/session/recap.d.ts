@@ -99,6 +99,67 @@ export declare const recapDayFactSchema: z.ZodObject<{
     milestoneLabel?: string | undefined;
 }>;
 export type RecapDayFact = z.infer<typeof recapDayFactSchema>;
+/**
+ * Why a logged instance of a behavior on the recap day is worth talking about.
+ * Deterministic, computed at day-totals confirmation (never judged by a model):
+ * - "ended_streak": it broke a run (the behavior's day fact is relapse/slip).
+ * - "late_night": it started between 22:00 and 04:00, user-local.
+ * - "long_stretch": one sitting at least twice their usual daily amount.
+ * - "high_salience": the goal was missed on a behavior that carries their struggle.
+ */
+export declare const recapMomentReasonSchema: z.ZodEnum<["ended_streak", "late_night", "long_stretch", "high_salience"]>;
+export type RecapMomentReason = z.infer<typeof recapMomentReasonSchema>;
+/**
+ * A logged instance of a behavior on the recap day, matched against the impulse
+ * moments the user had around it. Pinned at day-totals confirmation, so the
+ * recap knows which moments the user already talked through and which nobody
+ * has looked at yet.
+ *
+ * - "reflected": an impulse moment exists and the user talked about it
+ *   afterwards (the debrief, or a debriefNote).
+ * - "unreflected": an impulse moment exists, but nothing was said after it.
+ * - "none": the log has no impulse moment at all (logged on the totals card,
+ *   or after the fact).
+ */
+export declare const recapMomentSchema: z.ZodObject<{
+    logId: z.ZodString;
+    behaviorId: z.ZodString;
+    behaviorName: z.ZodString;
+    /** When it started (the log's timestamp). */
+    startedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    /** The start, user-local, "HH:mm", for the prompt. */
+    localTime: z.ZodString;
+    /** The amount as the app shows it ("1h15m"). */
+    amount: z.ZodOptional<z.ZodString>;
+    impulseSessionId: z.ZodNullable<z.ZodString>;
+    reflection: z.ZodEnum<["reflected", "unreflected", "none"]>;
+    remarkable: z.ZodArray<z.ZodEnum<["ended_streak", "late_night", "long_stretch", "high_salience"]>, "many">;
+    /** Set by debriefMoment once the user has talked it through in the recap. */
+    debriefedAt: z.ZodOptional<z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>>;
+}, "strip", z.ZodTypeAny, {
+    startedAt: import("../../types").Timestamp;
+    behaviorId: string;
+    behaviorName: string;
+    logId: string;
+    localTime: string;
+    impulseSessionId: string | null;
+    reflection: "none" | "reflected" | "unreflected";
+    remarkable: ("ended_streak" | "late_night" | "long_stretch" | "high_salience")[];
+    amount?: string | undefined;
+    debriefedAt?: import("../../types").Timestamp | null | undefined;
+}, {
+    startedAt: import("../../types").Timestamp;
+    behaviorId: string;
+    behaviorName: string;
+    logId: string;
+    localTime: string;
+    impulseSessionId: string | null;
+    reflection: "none" | "reflected" | "unreflected";
+    remarkable: ("ended_streak" | "late_night" | "long_stretch" | "high_salience")[];
+    amount?: string | undefined;
+    debriefedAt?: import("../../types").Timestamp | null | undefined;
+}>;
+export type RecapMoment = z.infer<typeof recapMomentSchema>;
 export declare const recapSessionSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     title: z.ZodString;
@@ -5625,6 +5686,44 @@ export declare const recapSessionSchema: z.ZodObject<{
         relapseStartDate?: string | undefined;
         milestoneLabel?: string | undefined;
     }>, "many">>;
+    recapMoments: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        logId: z.ZodString;
+        behaviorId: z.ZodString;
+        behaviorName: z.ZodString;
+        /** When it started (the log's timestamp). */
+        startedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        /** The start, user-local, "HH:mm", for the prompt. */
+        localTime: z.ZodString;
+        /** The amount as the app shows it ("1h15m"). */
+        amount: z.ZodOptional<z.ZodString>;
+        impulseSessionId: z.ZodNullable<z.ZodString>;
+        reflection: z.ZodEnum<["reflected", "unreflected", "none"]>;
+        remarkable: z.ZodArray<z.ZodEnum<["ended_streak", "late_night", "long_stretch", "high_salience"]>, "many">;
+        /** Set by debriefMoment once the user has talked it through in the recap. */
+        debriefedAt: z.ZodOptional<z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>>;
+    }, "strip", z.ZodTypeAny, {
+        startedAt: import("../../types").Timestamp;
+        behaviorId: string;
+        behaviorName: string;
+        logId: string;
+        localTime: string;
+        impulseSessionId: string | null;
+        reflection: "none" | "reflected" | "unreflected";
+        remarkable: ("ended_streak" | "late_night" | "long_stretch" | "high_salience")[];
+        amount?: string | undefined;
+        debriefedAt?: import("../../types").Timestamp | null | undefined;
+    }, {
+        startedAt: import("../../types").Timestamp;
+        behaviorId: string;
+        behaviorName: string;
+        logId: string;
+        localTime: string;
+        impulseSessionId: string | null;
+        reflection: "none" | "reflected" | "unreflected";
+        remarkable: ("ended_streak" | "late_night" | "long_stretch" | "high_salience")[];
+        amount?: string | undefined;
+        debriefedAt?: import("../../types").Timestamp | null | undefined;
+    }>, "many">>;
     recapSelectedQuestion: z.ZodOptional<z.ZodObject<{
         questionId: z.ZodString;
         question: z.ZodString;
@@ -6376,6 +6475,18 @@ export declare const recapSessionSchema: z.ZodObject<{
         relapseStartDate?: string | undefined;
         milestoneLabel?: string | undefined;
     }[] | undefined;
+    recapMoments?: {
+        startedAt: import("../../types").Timestamp;
+        behaviorId: string;
+        behaviorName: string;
+        logId: string;
+        localTime: string;
+        impulseSessionId: string | null;
+        reflection: "none" | "reflected" | "unreflected";
+        remarkable: ("ended_streak" | "late_night" | "long_stretch" | "high_salience")[];
+        amount?: string | undefined;
+        debriefedAt?: import("../../types").Timestamp | null | undefined;
+    }[] | undefined;
     recapSelectedQuestion?: {
         question: string;
         questionId: string;
@@ -6584,6 +6695,18 @@ export declare const recapSessionSchema: z.ZodObject<{
         daysIntoRelapse?: number | undefined;
         relapseStartDate?: string | undefined;
         milestoneLabel?: string | undefined;
+    }[] | undefined;
+    recapMoments?: {
+        startedAt: import("../../types").Timestamp;
+        behaviorId: string;
+        behaviorName: string;
+        logId: string;
+        localTime: string;
+        impulseSessionId: string | null;
+        reflection: "none" | "reflected" | "unreflected";
+        remarkable: ("ended_streak" | "late_night" | "long_stretch" | "high_salience")[];
+        amount?: string | undefined;
+        debriefedAt?: import("../../types").Timestamp | null | undefined;
     }[] | undefined;
     recapSelectedQuestion?: {
         question: string;
