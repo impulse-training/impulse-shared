@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isSetupShortcutTask = exports.isReflectOnMetricsTask = exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isProposeGoalTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.isTaskAwaitingApproval = exports.TASK_TYPES_REQUIRING_APPROVAL = exports.PRESS_TARGET = exports.taskSchema = exports.pressImpulseButtonTaskSchema = exports.protectNextWindowTaskSchema = exports.protectNextWindowVariantSchema = exports.closingReflectionTaskSchema = exports.weeklyReviewTaskSchema = exports.weekLookbackTaskSchema = exports.resumeRecapRemindersTaskSchema = exports.setupShortcutTaskSchema = exports.containLapseTaskSchema = exports.understandBehaviorTaskSchema = exports.collectBaselineTaskSchema = exports.reflectOnMetricsTaskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeChangeStageTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.proposeGoalTaskSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.claimableSessionTypeSchema = exports.taskCategorySchema = exports.dismissedReasonSchema = exports.taskStatusSchema = void 0;
+exports.isSetupShortcutTask = exports.isReflectOnMetricsTask = exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isProposeGoalTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.isTaskAwaitingApproval = exports.TASK_TYPES_REQUIRING_APPROVAL = exports.PRESS_TARGET = exports.taskSchema = exports.pressImpulseButtonTaskSchema = exports.protectNextWindowTaskSchema = exports.protectNextWindowVariantSchema = exports.closingReflectionTaskSchema = exports.weeklyReviewTaskSchema = exports.weekLookbackTaskSchema = exports.resumeRecapRemindersTaskSchema = exports.setupShortcutTaskSchema = exports.containLapseTaskSchema = exports.buildCollectionTaskSchema = exports.buildCollectionStageSchema = exports.understandBehaviorTaskSchema = exports.collectBaselineTaskSchema = exports.reflectOnMetricsTaskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeChangeStageTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.proposeGoalTaskSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.claimableSessionTypeSchema = exports.taskCategorySchema = exports.dismissedReasonSchema = exports.taskStatusSchema = void 0;
 const zod_1 = require("zod");
 const goal_1 = require("./goal");
 const behavior_1 = require("./behavior");
@@ -72,6 +72,13 @@ exports.taskBaseSchema = zod_1.z.object({
      * is every task written before 2026-09-23.
      */
     expiresAt: timestampSchema_1.timestampSchema.optional(),
+    /**
+     * The opposite bound: no claim path presents the task before this instant.
+     * For follow-ups that only make sense after some living has happened (a
+     * build_collection revisit asks what they tried since). Absent = available
+     * immediately.
+     */
+    availableAt: timestampSchema_1.timestampSchema.optional(),
     /**
      * How many recap sessions have surfaced this task. Set to 1 on first claim
      * and incremented each time a fresh recap reclaims it off an earlier,
@@ -303,6 +310,34 @@ exports.understandBehaviorTaskSchema = exports.taskBaseSchema.extend({
     behaviorName: zod_1.z.string().optional(),
 });
 /**
+ * Build a benefit collection ("What helps you relax?") out of the user's OWN
+ * ideas, created once a feeling has come up in two impulse moments. Multi-day:
+ *
+ * - `explore` — an open exploration of what already works for them. Their
+ *   ideas are captured with addToCollection (refuses unless the words are in a
+ *   user message). Only once their contribution has been explored (or they
+ *   say they have none) does topUpCollection add a few vetted catalog tactics
+ *   for the same feeling, so the collection ends abundant. Resolves through
+ *   dismissTask(successful: true), which refuses until the top-up has run.
+ * - `revisit` — a later, lighter pass (availableAt ≈ next day): did they try
+ *   any, and has anything else turned up? Resolves through dismissTask.
+ *
+ * The collection itself is `users/{uid}/tacticCollections/{collectionId}`
+ * with source kind "benefit", written lazily by the first capture or top-up.
+ */
+exports.buildCollectionStageSchema = zod_1.z.enum(["explore", "revisit"]);
+exports.buildCollectionTaskSchema = exports.taskBaseSchema.extend({
+    type: zod_1.z.literal("build_collection"),
+    stage: exports.buildCollectionStageSchema,
+    collectionId: zod_1.z.string().min(1),
+    collectionName: zod_1.z.string().min(1),
+    need: behavior_1.benefitNeedSchema,
+    question: zod_1.z.string().min(1),
+    feelingGroupId: zod_1.z.string().min(1),
+    feelingOptionId: zod_1.z.string().min(1),
+    feelingLabel: zod_1.z.string().optional(),
+});
+/**
  * Post-lapse containment: created on the impulse session at the moment the
  * user reports they acted on the urge (the session's phase moves to
  * "contain"). The task shifts the session objective from debriefing a closed
@@ -503,6 +538,7 @@ exports.taskSchema = zod_1.z.discriminatedUnion("type", [
     exports.closingReflectionTaskSchema,
     exports.protectNextWindowTaskSchema,
     exports.pressImpulseButtonTaskSchema,
+    exports.buildCollectionTaskSchema,
 ]);
 /** Impulse sessions it takes to settle the button habit. */
 exports.PRESS_TARGET = 3;

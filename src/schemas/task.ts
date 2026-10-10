@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { goalSchema } from "./goal";
-import { changeStageSchema } from "./behavior";
+import { benefitNeedSchema, changeStageSchema } from "./behavior";
 import { strategyModificationOperationSchema } from "./log/proposedStrategyModificationLog";
 import { timestampSchema } from "../utils/timestampSchema";
 import { METRIC_NAME_MAX_LENGTH, metricScaleSchema } from "./metric";
@@ -74,6 +74,13 @@ export const taskBaseSchema = z.object({
    * is every task written before 2026-09-23.
    */
   expiresAt: timestampSchema.optional(),
+  /**
+   * The opposite bound: no claim path presents the task before this instant.
+   * For follow-ups that only make sense after some living has happened (a
+   * build_collection revisit asks what they tried since). Absent = available
+   * immediately.
+   */
+  availableAt: timestampSchema.optional(),
   /**
    * How many recap sessions have surfaced this task. Set to 1 on first claim
    * and incremented each time a fresh recap reclaims it off an earlier,
@@ -323,6 +330,36 @@ export const understandBehaviorTaskSchema = taskBaseSchema.extend({
 });
 
 /**
+ * Build a benefit collection ("What helps you relax?") out of the user's OWN
+ * ideas, created once a feeling has come up in two impulse moments. Multi-day:
+ *
+ * - `explore` — an open exploration of what already works for them. Their
+ *   ideas are captured with addToCollection (refuses unless the words are in a
+ *   user message). Only once their contribution has been explored (or they
+ *   say they have none) does topUpCollection add a few vetted catalog tactics
+ *   for the same feeling, so the collection ends abundant. Resolves through
+ *   dismissTask(successful: true), which refuses until the top-up has run.
+ * - `revisit` — a later, lighter pass (availableAt ≈ next day): did they try
+ *   any, and has anything else turned up? Resolves through dismissTask.
+ *
+ * The collection itself is `users/{uid}/tacticCollections/{collectionId}`
+ * with source kind "benefit", written lazily by the first capture or top-up.
+ */
+export const buildCollectionStageSchema = z.enum(["explore", "revisit"]);
+
+export const buildCollectionTaskSchema = taskBaseSchema.extend({
+  type: z.literal("build_collection"),
+  stage: buildCollectionStageSchema,
+  collectionId: z.string().min(1),
+  collectionName: z.string().min(1),
+  need: benefitNeedSchema,
+  question: z.string().min(1),
+  feelingGroupId: z.string().min(1),
+  feelingOptionId: z.string().min(1),
+  feelingLabel: z.string().optional(),
+});
+
+/**
  * Post-lapse containment: created on the impulse session at the moment the
  * user reports they acted on the urge (the session's phase moves to
  * "contain"). The task shifts the session objective from debriefing a closed
@@ -532,6 +569,7 @@ export const taskSchema = z.discriminatedUnion("type", [
   closingReflectionTaskSchema,
   protectNextWindowTaskSchema,
   pressImpulseButtonTaskSchema,
+  buildCollectionTaskSchema,
 ]);
 
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
@@ -567,6 +605,8 @@ export type ProtectNextWindowVariant = z.infer<
 >;
 export type ProtectNextWindowTask = z.infer<typeof protectNextWindowTaskSchema>;
 export type PressImpulseButtonTask = z.infer<typeof pressImpulseButtonTaskSchema>;
+export type BuildCollectionStage = z.infer<typeof buildCollectionStageSchema>;
+export type BuildCollectionTask = z.infer<typeof buildCollectionTaskSchema>;
 /** Impulse sessions it takes to settle the button habit. */
 export const PRESS_TARGET = 3;
 export type Task = z.infer<typeof taskSchema>;
