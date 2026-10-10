@@ -36,6 +36,7 @@ export * from "./utils/tacticScoring";
 export * from "./utils/planScoring";
 export * from "./utils/tacticOrdering";
 export * from "./utils/tacticPairing";
+export * from "./utils/benefitCollections";
 export * from "./utils/resolveAgreement";
 export * from "./utils/behaviorColors";
 export * from "./utils/llmPricing";
