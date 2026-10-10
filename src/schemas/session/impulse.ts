@@ -168,6 +168,24 @@ export const impulseSessionSchema = sessionBaseSchema.extend({
    * you act on it?" prompt beside the live one.
    */
   supersededBySessionId: z.string().optional(),
+  /**
+   * A moment recorded AFTER the fact, from a recap debrief of a logged
+   * behavior that had no live moment (debriefMoment). It is the record of
+   * what happened, not a reach for help: it never credits the button habit,
+   * never counts as a first, never schedules the "how did it go?" debrief, and
+   * stays out of catch-rate and the day's impulse tally.
+   */
+  retrospective: z.boolean().optional(),
+  /** The behavior log a retrospective moment was recorded for. */
+  sourceLogId: z.string().optional(),
 });
+
+/** True for a moment recorded after the fact (see `retrospective`). */
+export function impulseSessionIsRetrospective(session: unknown): boolean {
+  return (
+    (session as { type?: string; retrospective?: boolean } | undefined)?.type === "impulse" &&
+    (session as { retrospective?: boolean }).retrospective === true
+  );
+}
 
 export type ImpulseSession = z.infer<typeof impulseSessionSchema>;

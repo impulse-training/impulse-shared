@@ -112,6 +112,52 @@ export const recapDayFactSchema = z.object({
 });
 export type RecapDayFact = z.infer<typeof recapDayFactSchema>;
 
+/**
+ * Why a logged instance of a behavior on the recap day is worth talking about.
+ * Deterministic, computed at day-totals confirmation (never judged by a model):
+ * - "ended_streak": it broke a run (the behavior's day fact is relapse/slip).
+ * - "late_night": it started between 22:00 and 04:00, user-local.
+ * - "long_stretch": one sitting at least twice their usual daily amount.
+ * - "high_salience": the goal was missed on a behavior that carries their struggle.
+ */
+export const recapMomentReasonSchema = z.enum([
+  "ended_streak",
+  "late_night",
+  "long_stretch",
+  "high_salience",
+]);
+export type RecapMomentReason = z.infer<typeof recapMomentReasonSchema>;
+
+/**
+ * A logged instance of a behavior on the recap day, matched against the impulse
+ * moments the user had around it. Pinned at day-totals confirmation, so the
+ * recap knows which moments the user already talked through and which nobody
+ * has looked at yet.
+ *
+ * - "reflected": an impulse moment exists and the user talked about it
+ *   afterwards (the debrief, or a debriefNote).
+ * - "unreflected": an impulse moment exists, but nothing was said after it.
+ * - "none": the log has no impulse moment at all (logged on the totals card,
+ *   or after the fact).
+ */
+export const recapMomentSchema = z.object({
+  logId: z.string(),
+  behaviorId: z.string(),
+  behaviorName: z.string(),
+  /** When it started (the log's timestamp). */
+  startedAt: timestampSchema,
+  /** The start, user-local, "HH:mm", for the prompt. */
+  localTime: z.string(),
+  /** The amount as the app shows it ("1h15m"). */
+  amount: z.string().optional(),
+  impulseSessionId: z.string().nullable(),
+  reflection: z.enum(["reflected", "unreflected", "none"]),
+  remarkable: z.array(recapMomentReasonSchema),
+  /** Set by debriefMoment once the user has talked it through in the recap. */
+  debriefedAt: timestampSchema.nullable().optional(),
+});
+export type RecapMoment = z.infer<typeof recapMomentSchema>;
+
 export const recapSessionSchema = sessionBaseSchema.extend({
   type: z.literal("recap"),
   /**
@@ -151,6 +197,13 @@ export const recapSessionSchema = sessionBaseSchema.extend({
    * confirmation. The factual spine the recap leads with.
    */
   recapDayFacts: z.array(recapDayFactSchema).optional(),
+  /**
+   * The day's logged instances with a real start time, each matched to its
+   * impulse moment (if any) and flagged when remarkable. Pinned at day-totals
+   * confirmation beside recapDayFacts; the recap debriefs the remarkable ones
+   * nobody has talked through yet.
+   */
+  recapMoments: z.array(recapMomentSchema).optional(),
   /**
    * The question chosen from the recap question graph at confirmation (source
    * "graph"), pinned with its text so the prompt builder renders it without a

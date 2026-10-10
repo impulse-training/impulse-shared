@@ -8030,6 +8030,8 @@ export declare const impulseSessionSchema: z.ZodObject<{
     protectNextWindowEligible: z.ZodOptional<z.ZodBoolean>;
     planPresentation: z.ZodOptional<z.ZodEnum<["pending", "presented"]>>;
     supersededBySessionId: z.ZodOptional<z.ZodString>;
+    retrospective: z.ZodOptional<z.ZodBoolean>;
+    sourceLogId: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     type: "impulse";
     date: import("../../types").Timestamp;
@@ -8985,6 +8987,8 @@ export declare const impulseSessionSchema: z.ZodObject<{
     protectNextWindowEligible?: boolean | undefined;
     planPresentation?: "pending" | "presented" | undefined;
     supersededBySessionId?: string | undefined;
+    retrospective?: boolean | undefined;
+    sourceLogId?: string | undefined;
 }, {
     type: "impulse";
     date: import("../../types").Timestamp;
@@ -9406,5 +9410,9 @@ export declare const impulseSessionSchema: z.ZodObject<{
     protectNextWindowEligible?: boolean | undefined;
     planPresentation?: "pending" | "presented" | undefined;
     supersededBySessionId?: string | undefined;
+    retrospective?: boolean | undefined;
+    sourceLogId?: string | undefined;
 }>;
+/** True for a moment recorded after the fact (see `retrospective`). */
+export declare function impulseSessionIsRetrospective(session: unknown): boolean;
 export type ImpulseSession = z.infer<typeof impulseSessionSchema>;

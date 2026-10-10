@@ -2643,8 +2643,8 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
             description?: string | undefined;
         }[] | undefined;
     };
-    instructions: string;
     impulseSessionId: string;
+    instructions: string;
     suggestedTrigger: {
         tags: Record<string, string>;
         behaviorIds?: string[] | undefined;
@@ -2685,8 +2685,8 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
             description?: string | undefined;
         }[] | undefined;
     };
-    instructions: string;
     impulseSessionId: string;
+    instructions: string;
     suggestedTrigger: {
         tags: Record<string, string>;
         behaviorIds?: string[] | undefined;
@@ -7308,8 +7308,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             description?: string | undefined;
         }[] | undefined;
     };
-    instructions: string;
     impulseSessionId: string;
+    instructions: string;
     suggestedTrigger: {
         tags: Record<string, string>;
         behaviorIds?: string[] | undefined;
@@ -7350,8 +7350,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             description?: string | undefined;
         }[] | undefined;
     };
-    instructions: string;
     impulseSessionId: string;
+    instructions: string;
     suggestedTrigger: {
         tags: Record<string, string>;
         behaviorIds?: string[] | undefined;

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.impulseSessionSchema = exports.suggestedPlanSchema = exports.preparedNextSchema = exports.recommendedTacticSchema = void 0;
+exports.impulseSessionIsRetrospective = impulseSessionIsRetrospective;
 const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../../utils/documentReferenceSchema");
 const timestampSchema_1 = require("../../utils/timestampSchema");
@@ -161,4 +162,19 @@ exports.impulseSessionSchema = base_1.sessionBaseSchema.extend({
      * you act on it?" prompt beside the live one.
      */
     supersededBySessionId: zod_1.z.string().optional(),
+    /**
+     * A moment recorded AFTER the fact, from a recap debrief of a logged
+     * behavior that had no live moment (debriefMoment). It is the record of
+     * what happened, not a reach for help: it never credits the button habit,
+     * never counts as a first, never schedules the "how did it go?" debrief, and
+     * stays out of catch-rate and the day's impulse tally.
+     */
+    retrospective: zod_1.z.boolean().optional(),
+    /** The behavior log a retrospective moment was recorded for. */
+    sourceLogId: zod_1.z.string().optional(),
 });
+/** True for a moment recorded after the fact (see `retrospective`). */
+function impulseSessionIsRetrospective(session) {
+    return ((session === null || session === void 0 ? void 0 : session.type) === "impulse" &&
+        session.retrospective === true);
+}
