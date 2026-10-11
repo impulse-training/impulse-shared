@@ -147,6 +147,8 @@ export const setupBindingSchema = z.object({
         id: z.string().min(1),
         text: z.string().min(1),
         doneAt: timestampSchema.optional(),
+        /** The user chose not to do this step: decided, not outstanding. */
+        skippedAt: timestampSchema.optional(),
       }),
     )
     .min(1),
@@ -420,6 +422,23 @@ export const strategyTrialSchema = z
         sessionId: z.string().optional(),
       })
       .optional(),
+    /**
+     * Moves dropped from or brought back into the strategy while this trial
+     * ran: what it tested changed on that day, so the verdict says so.
+     */
+    changes: z
+      .array(
+        z.object({
+          at: timestampSchema,
+          /** Day of the trial it happened on (1 = its first day). */
+          day: z.number().int().positive(),
+          kind: z.enum(["dropped", "restored"]),
+          itemId: z.string().min(1),
+          /** The move's text at the time, for the verdict. */
+          text: z.string().min(1),
+        }),
+      )
+      .optional(),
     /** Recap offers of this idea and the answers (see Strategy.recapOffers). */
     recapOffers: z
       .array(z.object({ dateString: z.string(), sessionId: z.string(), answer: z.enum(["go_through", "not_now"]) }))
@@ -434,6 +453,7 @@ export const strategyTrialSchema = z
     message: "A decided trial needs a verdict",
   });
 export type StrategyTrial = z.infer<typeof strategyTrialSchema>;
+export type TrialChange = NonNullable<StrategyTrial["changes"]>[number];
 
 /**
  * How one move went on one day. kept: did it / held it / used it. partly:
@@ -558,12 +578,12 @@ export function activeBoundaries(strategy: Pick<Strategy, "items">) {
   );
 }
 
-/** Setup steps not yet confirmed, across accepted items. */
+/** Setup steps neither confirmed nor skipped, across accepted items. */
 export function pendingSetupSteps(strategy: Pick<Strategy, "items">) {
   return acceptedStrategyItems(strategy).flatMap((item) =>
     item.bindings
       .filter((b): b is SetupBinding => b.type === "setup")
-      .flatMap((b) => b.steps.filter((s) => !s.doneAt).map((step) => ({ item, step }))),
+      .flatMap((b) => b.steps.filter((s) => !s.doneAt && !s.skippedAt).map((step) => ({ item, step }))),
   );
 }
 

@@ -129,6 +129,15 @@ describe("accepted-only helpers", () => {
   it("pendingSetupSteps lists unconfirmed steps of accepted setups", () => {
     expect(pendingSetupSteps(parse()).map((p) => p.step.id)).toEqual(["s2"]);
   });
+
+  it("pendingSetupSteps leaves out a step the user skipped", () => {
+    const s = parse();
+    const setup = s.items.flatMap((i) => i.bindings).find((b) => b.type === "setup");
+    if (setup?.type !== "setup") throw new Error("fixture has no setup");
+    setup.steps[1] = { ...setup.steps[1], skippedAt: at };
+    expect(strategySchema.safeParse(s).success).toBe(true);
+    expect(pendingSetupSteps(s)).toEqual([]);
+  });
 });
 
 describe("boundaryStreak", () => {

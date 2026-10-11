@@ -162,3 +162,24 @@ describe("trial_verdict log", () => {
     expect(parsed.success).toBe(true);
   });
 });
+
+describe("trial changes", () => {
+  it("records a move dropped or brought back mid-trial", () => {
+    const parsed = strategyTrialSchema.safeParse({
+      ...running,
+      changes: [
+        { at, day: 5, kind: "dropped", itemId: "i1", text: "Delete Twitter and video apps from your phone." },
+        { at, day: 6, kind: "restored", itemId: "i1", text: "Delete Twitter and video apps from your phone." },
+      ],
+    });
+    expect(parsed.success).toBe(true);
+  });
+
+  it("rejects a change with no day", () => {
+    const parsed = strategyTrialSchema.safeParse({
+      ...running,
+      changes: [{ at, kind: "dropped", itemId: "i1", text: "x" }],
+    });
+    expect(parsed.success).toBe(false);
+  });
+});
