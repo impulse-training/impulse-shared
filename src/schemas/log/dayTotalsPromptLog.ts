@@ -33,6 +33,12 @@ export const dayTotalsPromptLogSchema = logBaseSchema.extend({
         }),
       )
       .optional(),
+    /**
+     * Behaviours whose total the user has confirmed, one at a time, on a call.
+     * The card ticks each row as it lands; once every tracked behaviour is in
+     * it, the day is confirmed (confirmedAt) without a separate read-back.
+     */
+    confirmedBehaviorIds: z.array(z.string()).optional(),
     /** Set when the user requests a late-recap discussion with the AI */
     discussRequestedAt: timestampSchema.optional(),
   }),
