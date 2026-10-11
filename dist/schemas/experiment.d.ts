@@ -166,18 +166,18 @@ export declare const experimentProposalSchema: z.ZodObject<{
     declineNote: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     status: "pending" | "accepted" | "declined" | "superseded";
+    changes: Record<string, unknown>;
     proposedBy: "ai" | "admin";
     proposedAt: import("../types").Timestamp;
-    changes: Record<string, unknown>;
     respondedAt?: import("../types").Timestamp | undefined;
     rationale?: string | undefined;
     proposedByUid?: string | undefined;
     declineNote?: string | undefined;
 }, {
     status: "pending" | "accepted" | "declined" | "superseded";
+    changes: Record<string, unknown>;
     proposedBy: "ai" | "admin";
     proposedAt: import("../types").Timestamp;
-    changes: Record<string, unknown>;
     respondedAt?: import("../types").Timestamp | undefined;
     rationale?: string | undefined;
     proposedByUid?: string | undefined;
