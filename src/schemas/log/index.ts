@@ -65,6 +65,7 @@ import {
 } from "./dayTotalsPromptLog";
 import { StrategyCheckinLog, strategyCheckinLogSchema } from "./strategyCheckinLog";
 import { StrategyOfferLog, strategyOfferLogSchema } from "./strategyOfferLog";
+import { TrialVerdictLog, trialVerdictLogSchema } from "./trialVerdictLog";
 import {
   WeekOverviewLog,
   weekOverviewLogSchema,
@@ -190,6 +191,7 @@ export const logSchemas = {
   day_totals_prompt: dayTotalsPromptLogSchema,
   strategy_checkin: strategyCheckinLogSchema,
   strategy_offer: strategyOfferLogSchema,
+  trial_verdict: trialVerdictLogSchema,
   week_overview: weekOverviewLogSchema,
   proposed_goal_change: proposedGoalChangeLogSchema,
   strategy_proposal: strategyProposalLogSchema,
@@ -247,6 +249,7 @@ export type Log =
   | DayTotalsPromptLog
   | StrategyCheckinLog
   | StrategyOfferLog
+  | TrialVerdictLog
   | WeekOverviewLog
   | ProposedGoalChangeLog
   | StrategyProposalLog
@@ -299,6 +302,7 @@ export * from "./recapTimePreferenceLog";
 export * from "./dayTotalsPromptLog";
 export * from "./strategyCheckinLog";
 export * from "./strategyOfferLog";
+export * from "./trialVerdictLog";
 export * from "./weekOverviewLog";
 export * from "./proposedGoalChangeLog";
 export * from "./strategyProposalLog";
@@ -354,6 +358,7 @@ export const logSchema = z.discriminatedUnion("type", [
   dayTotalsPromptLogSchema,
   strategyCheckinLogSchema,
   strategyOfferLogSchema,
+  trialVerdictLogSchema,
   weekOverviewLogSchema,
   proposedGoalChangeLogSchema,
   strategyProposalLogSchema,
