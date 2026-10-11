@@ -48,6 +48,12 @@ export declare const dayTotalsPromptLogSchema: z.ZodObject<{
             behaviorName?: string | undefined;
             formattedValue?: string | undefined;
         }>, "many">>;
+        /**
+         * Behaviours whose total the user has confirmed, one at a time, on a call.
+         * The card ticks each row as it lands; once every tracked behaviour is in
+         * it, the day is confirmed (confirmedAt) without a separate read-back.
+         */
+        confirmedBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         /** Set when the user requests a late-recap discussion with the AI */
         discussRequestedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
@@ -59,6 +65,7 @@ export declare const dayTotalsPromptLogSchema: z.ZodObject<{
             behaviorName?: string | undefined;
             formattedValue?: string | undefined;
         }[] | undefined;
+        confirmedBehaviorIds?: string[] | undefined;
         discussRequestedAt?: import("../../types").Timestamp | undefined;
     }, {
         targetDateString: string;
@@ -69,6 +76,7 @@ export declare const dayTotalsPromptLogSchema: z.ZodObject<{
             behaviorName?: string | undefined;
             formattedValue?: string | undefined;
         }[] | undefined;
+        confirmedBehaviorIds?: string[] | undefined;
         discussRequestedAt?: import("../../types").Timestamp | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -89,6 +97,7 @@ export declare const dayTotalsPromptLogSchema: z.ZodObject<{
             behaviorName?: string | undefined;
             formattedValue?: string | undefined;
         }[] | undefined;
+        confirmedBehaviorIds?: string[] | undefined;
         discussRequestedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
@@ -114,6 +123,7 @@ export declare const dayTotalsPromptLogSchema: z.ZodObject<{
             behaviorName?: string | undefined;
             formattedValue?: string | undefined;
         }[] | undefined;
+        confirmedBehaviorIds?: string[] | undefined;
         discussRequestedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;

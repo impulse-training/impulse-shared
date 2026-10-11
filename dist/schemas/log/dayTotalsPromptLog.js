@@ -33,6 +33,12 @@ exports.dayTotalsPromptLogSchema = base_1.logBaseSchema.extend({
             formattedValue: zod_1.z.string().optional(),
         }))
             .optional(),
+        /**
+         * Behaviours whose total the user has confirmed, one at a time, on a call.
+         * The card ticks each row as it lands; once every tracked behaviour is in
+         * it, the day is confirmed (confirmedAt) without a separate read-back.
+         */
+        confirmedBehaviorIds: zod_1.z.array(zod_1.z.string()).optional(),
         /** Set when the user requests a late-recap discussion with the AI */
         discussRequestedAt: timestampSchema_1.timestampSchema.optional(),
     }),

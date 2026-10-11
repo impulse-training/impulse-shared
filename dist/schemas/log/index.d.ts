@@ -26809,6 +26809,7 @@ export declare const logSchemas: {
                 behaviorName?: string | undefined;
                 formattedValue?: string | undefined;
             }>, "many">>;
+            confirmedBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             discussRequestedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
             targetDateString: string;
@@ -26819,6 +26820,7 @@ export declare const logSchemas: {
                 behaviorName?: string | undefined;
                 formattedValue?: string | undefined;
             }[] | undefined;
+            confirmedBehaviorIds?: string[] | undefined;
             discussRequestedAt?: import("../../types").Timestamp | undefined;
         }, {
             targetDateString: string;
@@ -26829,6 +26831,7 @@ export declare const logSchemas: {
                 behaviorName?: string | undefined;
                 formattedValue?: string | undefined;
             }[] | undefined;
+            confirmedBehaviorIds?: string[] | undefined;
             discussRequestedAt?: import("../../types").Timestamp | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
@@ -26849,6 +26852,7 @@ export declare const logSchemas: {
                 behaviorName?: string | undefined;
                 formattedValue?: string | undefined;
             }[] | undefined;
+            confirmedBehaviorIds?: string[] | undefined;
             discussRequestedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
@@ -26874,6 +26878,7 @@ export declare const logSchemas: {
                 behaviorName?: string | undefined;
                 formattedValue?: string | undefined;
             }[] | undefined;
+            confirmedBehaviorIds?: string[] | undefined;
             discussRequestedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
@@ -57373,6 +57378,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             behaviorName?: string | undefined;
             formattedValue?: string | undefined;
         }>, "many">>;
+        confirmedBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         discussRequestedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
         targetDateString: string;
@@ -57383,6 +57389,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             behaviorName?: string | undefined;
             formattedValue?: string | undefined;
         }[] | undefined;
+        confirmedBehaviorIds?: string[] | undefined;
         discussRequestedAt?: import("../../types").Timestamp | undefined;
     }, {
         targetDateString: string;
@@ -57393,6 +57400,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             behaviorName?: string | undefined;
             formattedValue?: string | undefined;
         }[] | undefined;
+        confirmedBehaviorIds?: string[] | undefined;
         discussRequestedAt?: import("../../types").Timestamp | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -57413,6 +57421,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             behaviorName?: string | undefined;
             formattedValue?: string | undefined;
         }[] | undefined;
+        confirmedBehaviorIds?: string[] | undefined;
         discussRequestedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
@@ -57438,6 +57447,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             behaviorName?: string | undefined;
             formattedValue?: string | undefined;
         }[] | undefined;
+        confirmedBehaviorIds?: string[] | undefined;
         discussRequestedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
