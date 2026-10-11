@@ -30,7 +30,7 @@ export type RecapStreakContextEntry = z.infer<typeof recapStreakContextEntrySche
  * goal-comparison history at day-totals confirmation. This is the factual spine
  * the recap is grounded in — the question layer enriches it, never replaces it.
  */
-export declare const recapDayEventSchema: z.ZodEnum<["relapse", "slip", "relapse_aftermath", "milestone", "streak_continues", "none"]>;
+export declare const recapDayEventSchema: z.ZodEnum<["relapse", "slip", "relapse_aftermath", "over_goal", "milestone", "streak_continues", "none"]>;
 export type RecapDayEvent = z.infer<typeof recapDayEventSchema>;
 /**
  * Deterministic per-behavior fact for the recap day, computed and pinned at
@@ -50,7 +50,7 @@ export declare const recapDayFactSchema: z.ZodObject<{
     salience: z.ZodOptional<z.ZodNumber>;
     /** How today's logged total compared to this behavior's goal. */
     goalStatus: z.ZodEnum<["met", "missed", "no_goal", "unknown"]>;
-    event: z.ZodEnum<["relapse", "slip", "relapse_aftermath", "milestone", "streak_continues", "none"]>;
+    event: z.ZodEnum<["relapse", "slip", "relapse_aftermath", "over_goal", "milestone", "streak_continues", "none"]>;
     /**
      * For "relapse" / "slip" / "relapse_aftermath": length (days) of the run
      * that broke.
@@ -75,30 +75,54 @@ export declare const recapDayFactSchema: z.ZodObject<{
     relapseStartDate: z.ZodOptional<z.ZodString>;
     /** For "milestone": the rung label reached today (e.g. "7 days"). */
     milestoneLabel: z.ZodOptional<z.ZodString>;
+    /**
+     * For "over_goal": consecutive missed days ending today, inclusive. A missed
+     * recap (UNSPECIFIED_FOR_DAY) is skipped, as in the streak logic.
+     */
+    daysOverGoal: z.ZodOptional<z.ZodNumber>;
+    /**
+     * For "over_goal": today's measured amount over their average on the days
+     * before it (the 14 with a goal comparison). Absent when there is no history
+     * to compare with.
+     */
+    amountVsUsual: z.ZodOptional<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
     behaviorId: string;
     behaviorName: string;
     goalStatus: "unknown" | "missed" | "met" | "no_goal";
-    event: "relapse" | "none" | "milestone" | "slip" | "relapse_aftermath" | "streak_continues";
+    event: "relapse" | "none" | "milestone" | "slip" | "relapse_aftermath" | "over_goal" | "streak_continues";
     salience?: number | undefined;
     streakDays?: number | undefined;
     streakStartDate?: string | undefined;
     daysIntoRelapse?: number | undefined;
     relapseStartDate?: string | undefined;
     milestoneLabel?: string | undefined;
+    daysOverGoal?: number | undefined;
+    amountVsUsual?: number | undefined;
 }, {
     behaviorId: string;
     behaviorName: string;
     goalStatus: "unknown" | "missed" | "met" | "no_goal";
-    event: "relapse" | "none" | "milestone" | "slip" | "relapse_aftermath" | "streak_continues";
+    event: "relapse" | "none" | "milestone" | "slip" | "relapse_aftermath" | "over_goal" | "streak_continues";
     salience?: number | undefined;
     streakDays?: number | undefined;
     streakStartDate?: string | undefined;
     daysIntoRelapse?: number | undefined;
     relapseStartDate?: string | undefined;
     milestoneLabel?: string | undefined;
+    daysOverGoal?: number | undefined;
+    amountVsUsual?: number | undefined;
 }>;
 export type RecapDayFact = z.infer<typeof recapDayFactSchema>;
+/** An over-goal day at this multiple of their usual amount is the day's news. */
+export declare const OVER_GOAL_WORSE_THAN_USUAL_RATIO = 1.5;
+/**
+ * Whether an over-goal day was clearly worse than their usual. The one rule
+ * that decides when a chronic stretch leads the recap (opener, question) rather
+ * than sitting as backdrop: leading every day it is over goal makes the
+ * question a ritual, and never leading pretends the stretch isn't happening.
+ */
+export declare function overGoalWorseThanUsual(fact: RecapDayFact): boolean;
 /**
  * Why a logged instance of a behavior on the recap day is worth talking about.
  * Deterministic, computed at day-totals confirmation (never judged by a model):
@@ -5638,7 +5662,7 @@ export declare const recapSessionSchema: z.ZodObject<{
         salience: z.ZodOptional<z.ZodNumber>;
         /** How today's logged total compared to this behavior's goal. */
         goalStatus: z.ZodEnum<["met", "missed", "no_goal", "unknown"]>;
-        event: z.ZodEnum<["relapse", "slip", "relapse_aftermath", "milestone", "streak_continues", "none"]>;
+        event: z.ZodEnum<["relapse", "slip", "relapse_aftermath", "over_goal", "milestone", "streak_continues", "none"]>;
         /**
          * For "relapse" / "slip" / "relapse_aftermath": length (days) of the run
          * that broke.
@@ -5663,28 +5687,43 @@ export declare const recapSessionSchema: z.ZodObject<{
         relapseStartDate: z.ZodOptional<z.ZodString>;
         /** For "milestone": the rung label reached today (e.g. "7 days"). */
         milestoneLabel: z.ZodOptional<z.ZodString>;
+        /**
+         * For "over_goal": consecutive missed days ending today, inclusive. A missed
+         * recap (UNSPECIFIED_FOR_DAY) is skipped, as in the streak logic.
+         */
+        daysOverGoal: z.ZodOptional<z.ZodNumber>;
+        /**
+         * For "over_goal": today's measured amount over their average on the days
+         * before it (the 14 with a goal comparison). Absent when there is no history
+         * to compare with.
+         */
+        amountVsUsual: z.ZodOptional<z.ZodNumber>;
     }, "strip", z.ZodTypeAny, {
         behaviorId: string;
         behaviorName: string;
         goalStatus: "unknown" | "missed" | "met" | "no_goal";
-        event: "relapse" | "none" | "milestone" | "slip" | "relapse_aftermath" | "streak_continues";
+        event: "relapse" | "none" | "milestone" | "slip" | "relapse_aftermath" | "over_goal" | "streak_continues";
         salience?: number | undefined;
         streakDays?: number | undefined;
         streakStartDate?: string | undefined;
         daysIntoRelapse?: number | undefined;
         relapseStartDate?: string | undefined;
         milestoneLabel?: string | undefined;
+        daysOverGoal?: number | undefined;
+        amountVsUsual?: number | undefined;
     }, {
         behaviorId: string;
         behaviorName: string;
         goalStatus: "unknown" | "missed" | "met" | "no_goal";
-        event: "relapse" | "none" | "milestone" | "slip" | "relapse_aftermath" | "streak_continues";
+        event: "relapse" | "none" | "milestone" | "slip" | "relapse_aftermath" | "over_goal" | "streak_continues";
         salience?: number | undefined;
         streakDays?: number | undefined;
         streakStartDate?: string | undefined;
         daysIntoRelapse?: number | undefined;
         relapseStartDate?: string | undefined;
         milestoneLabel?: string | undefined;
+        daysOverGoal?: number | undefined;
+        amountVsUsual?: number | undefined;
     }>, "many">>;
     recapMoments: z.ZodOptional<z.ZodArray<z.ZodObject<{
         logId: z.ZodString;
@@ -6467,13 +6506,15 @@ export declare const recapSessionSchema: z.ZodObject<{
         behaviorId: string;
         behaviorName: string;
         goalStatus: "unknown" | "missed" | "met" | "no_goal";
-        event: "relapse" | "none" | "milestone" | "slip" | "relapse_aftermath" | "streak_continues";
+        event: "relapse" | "none" | "milestone" | "slip" | "relapse_aftermath" | "over_goal" | "streak_continues";
         salience?: number | undefined;
         streakDays?: number | undefined;
         streakStartDate?: string | undefined;
         daysIntoRelapse?: number | undefined;
         relapseStartDate?: string | undefined;
         milestoneLabel?: string | undefined;
+        daysOverGoal?: number | undefined;
+        amountVsUsual?: number | undefined;
     }[] | undefined;
     recapMoments?: {
         startedAt: import("../../types").Timestamp;
@@ -6688,13 +6729,15 @@ export declare const recapSessionSchema: z.ZodObject<{
         behaviorId: string;
         behaviorName: string;
         goalStatus: "unknown" | "missed" | "met" | "no_goal";
-        event: "relapse" | "none" | "milestone" | "slip" | "relapse_aftermath" | "streak_continues";
+        event: "relapse" | "none" | "milestone" | "slip" | "relapse_aftermath" | "over_goal" | "streak_continues";
         salience?: number | undefined;
         streakDays?: number | undefined;
         streakStartDate?: string | undefined;
         daysIntoRelapse?: number | undefined;
         relapseStartDate?: string | undefined;
         milestoneLabel?: string | undefined;
+        daysOverGoal?: number | undefined;
+        amountVsUsual?: number | undefined;
     }[] | undefined;
     recapMoments?: {
         startedAt: import("../../types").Timestamp;
