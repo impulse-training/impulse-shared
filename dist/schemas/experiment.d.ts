@@ -99,6 +99,7 @@ export declare const experimentSchema: z.ZodObject<{
     } | undefined;
     archivedAt?: import("../types").Timestamp | undefined;
     strategyId?: string | undefined;
+    targetDays?: number | undefined;
     insights?: {
         body: string;
         heading: string;
@@ -112,7 +113,6 @@ export declare const experimentSchema: z.ZodObject<{
     resultsSummary?: string | undefined;
     stageChangedAt?: import("../types").Timestamp | undefined;
     hypothesis?: string | undefined;
-    targetDays?: number | undefined;
     chartUnlocked?: boolean | undefined;
 }, {
     name: string;
@@ -126,11 +126,12 @@ export declare const experimentSchema: z.ZodObject<{
     } | undefined;
     archivedAt?: import("../types").Timestamp | undefined;
     strategyId?: string | undefined;
+    stage?: "observe" | "intervene" | "maintain" | undefined;
+    targetDays?: number | undefined;
     insights?: {
         body: string;
         heading: string;
     }[] | undefined;
-    stage?: "observe" | "intervene" | "maintain" | undefined;
     metricIds?: string[] | undefined;
     memory?: {
         notesByDate?: Record<string, {
@@ -147,7 +148,6 @@ export declare const experimentSchema: z.ZodObject<{
         exitedAt?: import("../types").Timestamp | undefined;
     }[] | undefined;
     hypothesis?: string | undefined;
-    targetDays?: number | undefined;
     chartUnlocked?: boolean | undefined;
 }>;
 export type Experiment = z.infer<typeof experimentSchema>;
@@ -166,21 +166,21 @@ export declare const experimentProposalSchema: z.ZodObject<{
     declineNote: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     status: "pending" | "accepted" | "declined" | "superseded";
-    proposedBy: "admin" | "ai";
+    proposedBy: "ai" | "admin";
     proposedAt: import("../types").Timestamp;
     changes: Record<string, unknown>;
     respondedAt?: import("../types").Timestamp | undefined;
-    proposedByUid?: string | undefined;
     rationale?: string | undefined;
+    proposedByUid?: string | undefined;
     declineNote?: string | undefined;
 }, {
     status: "pending" | "accepted" | "declined" | "superseded";
-    proposedBy: "admin" | "ai";
+    proposedBy: "ai" | "admin";
     proposedAt: import("../types").Timestamp;
     changes: Record<string, unknown>;
     respondedAt?: import("../types").Timestamp | undefined;
-    proposedByUid?: string | undefined;
     rationale?: string | undefined;
+    proposedByUid?: string | undefined;
     declineNote?: string | undefined;
 }>;
 export type ExperimentProposal = z.infer<typeof experimentProposalSchema>;
