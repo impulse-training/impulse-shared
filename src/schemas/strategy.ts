@@ -260,6 +260,22 @@ export const strategyReviewSchema = z.object({
 });
 export type StrategyReview = z.infer<typeof strategyReviewSchema>;
 
+/**
+ * Where a strategy is in its run of experiments. baseline: tracking with no
+ * changes, the window every trial is compared with. trial: one experiment
+ * running for a fixed window. kept: the last experiment's moves were kept
+ * and carry on with no clock.
+ */
+export const strategyPhaseSchema = z.enum(["baseline", "trial", "kept"]);
+export type StrategyPhase = z.infer<typeof strategyPhaseSchema>;
+
+/** A run of whole days in the user's calendar, both ends included. */
+export const dateWindowSchema = z.object({
+  fromDateString: z.string(),
+  toDateString: z.string(),
+});
+export type DateWindow = z.infer<typeof dateWindowSchema>;
+
 export const strategySchema = z.object({
   id: z.string().optional(),
   userId: z.string(),
@@ -295,10 +311,129 @@ export const strategySchema = z.object({
   recapOffers: z
     .array(z.object({ dateString: z.string(), sessionId: z.string(), answer: z.enum(["go_through", "not_now"]) }))
     .optional(),
+  /**
+   * The run of experiments (absent on strategies from before phases). One
+   * strategy covers one or more behaviors and runs one trial at a time.
+   */
+  phase: strategyPhaseSchema.optional(),
+  /** The comparison window: from the start of tracking until the first trial. */
+  baseline: z
+    .object({
+      startedAt: timestampSchema,
+      startDateString: z.string(),
+      endDateString: z.string().optional(),
+    })
+    .optional(),
+  /** The one outcome measure every trial is judged on (users/{uid}/metrics/{id}). */
+  outcomeMetricId: z.string().optional(),
+  /** The trial running (phase "trial") or last kept (phase "kept"). */
+  currentTrialId: z.string().optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });
 export type Strategy = z.infer<typeof strategySchema>;
+
+/**
+ * Baseline vs trial, as computed when the verdict was offered: what the user
+ * saw. Per behavior in the strategy's scope, plus its outcome measure.
+ * "cant_tell" is a real answer: too few days or readings to call it.
+ */
+export const trialComparisonSchema = z.object({
+  baseline: dateWindowSchema,
+  trial: dateWindowSchema,
+  behaviors: z.array(
+    z.object({
+      behaviorId: z.string(),
+      baselineDailyMean: z.number(),
+      trialDailyMean: z.number(),
+    }),
+  ),
+  outcome: z
+    .object({
+      metricId: z.string(),
+      baselineMean: z.number(),
+      trialMean: z.number(),
+      baselineReadings: z.number().int().nonnegative(),
+      trialReadings: z.number().int().nonnegative(),
+    })
+    .optional(),
+  confidence: z.enum(["cant_tell", "low", "moderate", "high"]),
+  computedAt: timestampSchema,
+});
+export type TrialComparison = z.infer<typeof trialComparisonSchema>;
+
+/**
+ * keep: the moves carry on, no clock. adjust: a new trial with changed moves.
+ * drop: we learned this doesn't help; the strategy goes back to baseline
+ * until another idea starts. extend: run more days before deciding.
+ */
+export const trialDecisionSchema = z.enum(["keep", "adjust", "drop", "extend"]);
+export type TrialDecision = z.infer<typeof trialDecisionSchema>;
+
+const windowDaysSchema = z.number().int().positive();
+
+/**
+ * One time-boxed experiment inside a strategy:
+ *
+ *   users/{uid}/strategies/{strategyId}/trials/{trialId}
+ *
+ * Shown to the user as an experiment, asked as a question ("What happens
+ * when..."): the user is the scientist, and a verdict reports what was found.
+ * An idea is a trial not started yet. Starting one applies its items to the
+ * strategy (applyStrategyRevision), so the strategy's items stay the moves in
+ * force and its bindings compile as before.
+ */
+export const strategyTrialSchema = z
+  .object({
+    id: z.string().optional(),
+    userId: z.string(),
+    strategyId: z.string(),
+    status: z.enum(["idea", "running", "decided", "declined"]),
+    title: z.string().min(1),
+    /** The experiment's question, in the user's voice. */
+    question: z.string().min(1),
+    rationale: z.string().optional(),
+    evidence: z.array(z.string()).default([]),
+    items: z.array(strategyItemSchema),
+    source: z.object({
+      authoredBy: strategyAuthorSchema,
+      prose: z.string().optional(),
+      model: z.string().optional(),
+      sessionId: z.string().optional(),
+    }),
+    /** The window the idea suggests, from how often the behavior happens. */
+    proposedWindowDays: windowDaysSchema,
+    startedAt: timestampSchema.optional(),
+    /** The first day of the trial, in the user's calendar. */
+    startDateString: z.string().optional(),
+    /** The window the user agreed to on starting. */
+    windowDays: windowDaysSchema.optional(),
+    /** Days added by "run 7 more days". */
+    extendedDays: z.number().int().nonnegative().optional(),
+    verdict: z
+      .object({
+        decision: trialDecisionSchema,
+        decidedAt: timestampSchema,
+        /** One line on what was found, the user's own framing where possible. */
+        summary: z.string().optional(),
+        comparison: trialComparisonSchema.optional(),
+        sessionId: z.string().optional(),
+      })
+      .optional(),
+    /** Recap offers of this idea and the answers (see Strategy.recapOffers). */
+    recapOffers: z
+      .array(z.object({ dateString: z.string(), sessionId: z.string(), answer: z.enum(["go_through", "not_now"]) }))
+      .optional(),
+    createdAt: timestampSchema,
+    updatedAt: timestampSchema,
+  })
+  .refine((t) => t.status === "idea" || t.status === "declined" || (t.startedAt && t.startDateString && t.windowDays), {
+    message: "A started trial needs startedAt, startDateString and windowDays",
+  })
+  .refine((t) => t.status !== "decided" || t.verdict, {
+    message: "A decided trial needs a verdict",
+  });
+export type StrategyTrial = z.infer<typeof strategyTrialSchema>;
 
 /**
  * How one move went on one day. kept: did it / held it / used it. partly:
@@ -570,3 +705,30 @@ export function strategyOutcomeLabels(kind: StrategyItem["kind"]): Record<"broke
 
 /** A waiting proposal is retired after this many "not now"s in recaps. */
 export const MAX_STRATEGY_RECAP_DECLINES = 2;
+
+// ---------------------------------------------------------------------------
+// Trial clock. Date strings are the user's calendar days ("YYYY-MM-DD"); the
+// arithmetic runs in UTC so DST never shifts a day.
+
+const addDays = (dateString: string, days: number): string => {
+  const d = new Date(`${dateString}T00:00:00Z`);
+  d.setUTCDate(d.getUTCDate() + days);
+  return d.toISOString().slice(0, 10);
+};
+
+const daysBetween = (from: string, to: string): number =>
+  Math.round((Date.parse(`${to}T00:00:00Z`) - Date.parse(`${from}T00:00:00Z`)) / 864e5);
+
+type TrialClock = { startDateString: string; windowDays: number; extendedDays?: number };
+
+/** The trial's last day, extensions included. */
+export const trialEndDateString = (t: TrialClock): string =>
+  addDays(t.startDateString, t.windowDays + (t.extendedDays ?? 0) - 1);
+
+/** "Day N": 1 on the first day. */
+export const trialDayNumber = (t: Pick<TrialClock, "startDateString">, todayDateString: string): number =>
+  daysBetween(t.startDateString, todayDateString) + 1;
+
+/** From the last day on, the verdict is due: it lands in that evening's recap. */
+export const isTrialDue = (t: TrialClock, todayDateString: string): boolean =>
+  todayDateString >= trialEndDateString(t);

@@ -320,9 +320,9 @@ export declare const impulseUsageStatsSchema: z.ZodObject<{
     directLogs: number;
     catchRateLifetime: number | null;
     lastImpulseAt?: import("../types").Timestamp | null | undefined;
+    computedAt?: import("../types").Timestamp | undefined;
     firstImpulseAt?: import("../types").Timestamp | null | undefined;
     computedDateString?: string | undefined;
-    computedAt?: import("../types").Timestamp | undefined;
 }, {
     windows: {
         short: {
@@ -357,9 +357,9 @@ export declare const impulseUsageStatsSchema: z.ZodObject<{
     directLogs: number;
     catchRateLifetime: number | null;
     lastImpulseAt?: import("../types").Timestamp | null | undefined;
+    computedAt?: import("../types").Timestamp | undefined;
     firstImpulseAt?: import("../types").Timestamp | null | undefined;
     computedDateString?: string | undefined;
-    computedAt?: import("../types").Timestamp | undefined;
 }>;
 export type ImpulseUsageStats = z.infer<typeof impulseUsageStatsSchema>;
 /**
@@ -768,9 +768,9 @@ export declare const userContextSchema: z.ZodObject<{
         directLogs: number;
         catchRateLifetime: number | null;
         lastImpulseAt?: import("../types").Timestamp | null | undefined;
+        computedAt?: import("../types").Timestamp | undefined;
         firstImpulseAt?: import("../types").Timestamp | null | undefined;
         computedDateString?: string | undefined;
-        computedAt?: import("../types").Timestamp | undefined;
     }, {
         windows: {
             short: {
@@ -805,9 +805,9 @@ export declare const userContextSchema: z.ZodObject<{
         directLogs: number;
         catchRateLifetime: number | null;
         lastImpulseAt?: import("../types").Timestamp | null | undefined;
+        computedAt?: import("../types").Timestamp | undefined;
         firstImpulseAt?: import("../types").Timestamp | null | undefined;
         computedDateString?: string | undefined;
-        computedAt?: import("../types").Timestamp | undefined;
     }>>;
     brain: z.ZodOptional<z.ZodObject<{
         /** The living "what we know about this user" profile, second person. */
@@ -938,9 +938,9 @@ export declare const userContextSchema: z.ZodObject<{
         directLogs: number;
         catchRateLifetime: number | null;
         lastImpulseAt?: import("../types").Timestamp | null | undefined;
+        computedAt?: import("../types").Timestamp | undefined;
         firstImpulseAt?: import("../types").Timestamp | null | undefined;
         computedDateString?: string | undefined;
-        computedAt?: import("../types").Timestamp | undefined;
     } | undefined;
     brain?: {
         summary: string;
@@ -1021,9 +1021,9 @@ export declare const userContextSchema: z.ZodObject<{
         directLogs: number;
         catchRateLifetime: number | null;
         lastImpulseAt?: import("../types").Timestamp | null | undefined;
+        computedAt?: import("../types").Timestamp | undefined;
         firstImpulseAt?: import("../types").Timestamp | null | undefined;
         computedDateString?: string | undefined;
-        computedAt?: import("../types").Timestamp | undefined;
     } | undefined;
     brain?: {
         summary: string;

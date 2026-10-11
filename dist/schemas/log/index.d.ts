@@ -24,6 +24,7 @@ import { RecapTimePreferenceLog } from "./recapTimePreferenceLog";
 import { DayTotalsPromptLog } from "./dayTotalsPromptLog";
 import { StrategyCheckinLog } from "./strategyCheckinLog";
 import { StrategyOfferLog } from "./strategyOfferLog";
+import { TrialVerdictLog } from "./trialVerdictLog";
 import { WeekOverviewLog } from "./weekOverviewLog";
 import { ProposedGoalChangeLog } from "./proposedGoalChangeLog";
 import { StrategyProposalLog } from "./strategyProposalLog";
@@ -27020,6 +27021,286 @@ export declare const logSchemas: {
         impulseId?: string | undefined;
         respondingToLogId?: string | undefined;
     }>;
+    trial_verdict: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        sessionId: z.ZodString;
+        tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        impulseId: z.ZodOptional<z.ZodString>;
+        respondingToLogId: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"trial_verdict">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            targetDateString: z.ZodString;
+            strategyId: z.ZodString;
+            trialId: z.ZodString;
+            title: z.ZodString;
+            comparison: z.ZodOptional<z.ZodObject<{
+                baseline: z.ZodObject<{
+                    fromDateString: z.ZodString;
+                    toDateString: z.ZodString;
+                }, "strip", z.ZodTypeAny, {
+                    fromDateString: string;
+                    toDateString: string;
+                }, {
+                    fromDateString: string;
+                    toDateString: string;
+                }>;
+                trial: z.ZodObject<{
+                    fromDateString: z.ZodString;
+                    toDateString: z.ZodString;
+                }, "strip", z.ZodTypeAny, {
+                    fromDateString: string;
+                    toDateString: string;
+                }, {
+                    fromDateString: string;
+                    toDateString: string;
+                }>;
+                behaviors: z.ZodArray<z.ZodObject<{
+                    behaviorId: z.ZodString;
+                    baselineDailyMean: z.ZodNumber;
+                    trialDailyMean: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    behaviorId: string;
+                    baselineDailyMean: number;
+                    trialDailyMean: number;
+                }, {
+                    behaviorId: string;
+                    baselineDailyMean: number;
+                    trialDailyMean: number;
+                }>, "many">;
+                outcome: z.ZodOptional<z.ZodObject<{
+                    metricId: z.ZodString;
+                    baselineMean: z.ZodNumber;
+                    trialMean: z.ZodNumber;
+                    baselineReadings: z.ZodNumber;
+                    trialReadings: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    metricId: string;
+                    baselineMean: number;
+                    trialMean: number;
+                    baselineReadings: number;
+                    trialReadings: number;
+                }, {
+                    metricId: string;
+                    baselineMean: number;
+                    trialMean: number;
+                    baselineReadings: number;
+                    trialReadings: number;
+                }>>;
+                confidence: z.ZodEnum<["cant_tell", "low", "moderate", "high"]>;
+                computedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            }, "strip", z.ZodTypeAny, {
+                confidence: "low" | "high" | "cant_tell" | "moderate";
+                behaviors: {
+                    behaviorId: string;
+                    baselineDailyMean: number;
+                    trialDailyMean: number;
+                }[];
+                baseline: {
+                    fromDateString: string;
+                    toDateString: string;
+                };
+                trial: {
+                    fromDateString: string;
+                    toDateString: string;
+                };
+                computedAt: import("../../types").Timestamp;
+                outcome?: {
+                    metricId: string;
+                    baselineMean: number;
+                    trialMean: number;
+                    baselineReadings: number;
+                    trialReadings: number;
+                } | undefined;
+            }, {
+                confidence: "low" | "high" | "cant_tell" | "moderate";
+                behaviors: {
+                    behaviorId: string;
+                    baselineDailyMean: number;
+                    trialDailyMean: number;
+                }[];
+                baseline: {
+                    fromDateString: string;
+                    toDateString: string;
+                };
+                trial: {
+                    fromDateString: string;
+                    toDateString: string;
+                };
+                computedAt: import("../../types").Timestamp;
+                outcome?: {
+                    metricId: string;
+                    baselineMean: number;
+                    trialMean: number;
+                    baselineReadings: number;
+                    trialReadings: number;
+                } | undefined;
+            }>>;
+            answer: z.ZodOptional<z.ZodEnum<["keep", "adjust", "drop", "extend"]>>;
+            answeredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        }, "strip", z.ZodTypeAny, {
+            title: string;
+            targetDateString: string;
+            strategyId: string;
+            trialId: string;
+            answeredAt?: import("../../types").Timestamp | undefined;
+            answer?: "extend" | "keep" | "adjust" | "drop" | undefined;
+            comparison?: {
+                confidence: "low" | "high" | "cant_tell" | "moderate";
+                behaviors: {
+                    behaviorId: string;
+                    baselineDailyMean: number;
+                    trialDailyMean: number;
+                }[];
+                baseline: {
+                    fromDateString: string;
+                    toDateString: string;
+                };
+                trial: {
+                    fromDateString: string;
+                    toDateString: string;
+                };
+                computedAt: import("../../types").Timestamp;
+                outcome?: {
+                    metricId: string;
+                    baselineMean: number;
+                    trialMean: number;
+                    baselineReadings: number;
+                    trialReadings: number;
+                } | undefined;
+            } | undefined;
+        }, {
+            title: string;
+            targetDateString: string;
+            strategyId: string;
+            trialId: string;
+            answeredAt?: import("../../types").Timestamp | undefined;
+            answer?: "extend" | "keep" | "adjust" | "drop" | undefined;
+            comparison?: {
+                confidence: "low" | "high" | "cant_tell" | "moderate";
+                behaviors: {
+                    behaviorId: string;
+                    baselineDailyMean: number;
+                    trialDailyMean: number;
+                }[];
+                baseline: {
+                    fromDateString: string;
+                    toDateString: string;
+                };
+                trial: {
+                    fromDateString: string;
+                    toDateString: string;
+                };
+                computedAt: import("../../types").Timestamp;
+                outcome?: {
+                    metricId: string;
+                    baselineMean: number;
+                    trialMean: number;
+                    baselineReadings: number;
+                    trialReadings: number;
+                } | undefined;
+            } | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "trial_verdict";
+        userId: string;
+        sessionId: string;
+        dateString: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            title: string;
+            targetDateString: string;
+            strategyId: string;
+            trialId: string;
+            answeredAt?: import("../../types").Timestamp | undefined;
+            answer?: "extend" | "keep" | "adjust" | "drop" | undefined;
+            comparison?: {
+                confidence: "low" | "high" | "cant_tell" | "moderate";
+                behaviors: {
+                    behaviorId: string;
+                    baselineDailyMean: number;
+                    trialDailyMean: number;
+                }[];
+                baseline: {
+                    fromDateString: string;
+                    toDateString: string;
+                };
+                trial: {
+                    fromDateString: string;
+                    toDateString: string;
+                };
+                computedAt: import("../../types").Timestamp;
+                outcome?: {
+                    metricId: string;
+                    baselineMean: number;
+                    trialMean: number;
+                    baselineReadings: number;
+                    trialReadings: number;
+                } | undefined;
+            } | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "trial_verdict";
+        userId: string;
+        sessionId: string;
+        dateString: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            title: string;
+            targetDateString: string;
+            strategyId: string;
+            trialId: string;
+            answeredAt?: import("../../types").Timestamp | undefined;
+            answer?: "extend" | "keep" | "adjust" | "drop" | undefined;
+            comparison?: {
+                confidence: "low" | "high" | "cant_tell" | "moderate";
+                behaviors: {
+                    behaviorId: string;
+                    baselineDailyMean: number;
+                    trialDailyMean: number;
+                }[];
+                baseline: {
+                    fromDateString: string;
+                    toDateString: string;
+                };
+                trial: {
+                    fromDateString: string;
+                    toDateString: string;
+                };
+                computedAt: import("../../types").Timestamp;
+                outcome?: {
+                    metricId: string;
+                    baselineMean: number;
+                    trialMean: number;
+                    baselineReadings: number;
+                    trialReadings: number;
+                } | undefined;
+            } | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
+    }>;
     week_overview: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -27754,8 +28035,8 @@ export declare const logSchemas: {
             status: "pending" | "accepted" | "declined";
             title: string;
             behaviorId: string;
-            toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
             evidence: string;
+            toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
             behaviorName?: string | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
@@ -27765,8 +28046,8 @@ export declare const logSchemas: {
         }, {
             title: string;
             behaviorId: string;
-            toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
             evidence: string;
+            toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
             status?: "pending" | "accepted" | "declined" | undefined;
             behaviorName?: string | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
@@ -27788,8 +28069,8 @@ export declare const logSchemas: {
             status: "pending" | "accepted" | "declined";
             title: string;
             behaviorId: string;
-            toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
             evidence: string;
+            toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
             behaviorName?: string | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
@@ -27814,8 +28095,8 @@ export declare const logSchemas: {
         data: {
             title: string;
             behaviorId: string;
-            toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
             evidence: string;
+            toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
             status?: "pending" | "accepted" | "declined" | undefined;
             behaviorName?: string | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
@@ -37059,16 +37340,16 @@ export declare const logSchemas: {
                 toDateString: z.ZodString;
             }, "strip", z.ZodTypeAny, {
                 behaviorId: string;
-                metDays: number;
-                totalDays: number;
                 fromDateString: string;
                 toDateString: string;
+                metDays: number;
+                totalDays: number;
             }, {
                 behaviorId: string;
-                metDays: number;
-                totalDays: number;
                 fromDateString: string;
                 toDateString: string;
+                metDays: number;
+                totalDays: number;
             }>, "many">>;
             weekOfDateString: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
@@ -37076,6 +37357,7 @@ export declare const logSchemas: {
             kind: "note" | "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined";
             behaviorIds?: string[] | undefined;
             planId?: string | undefined;
+            weekOfDateString?: string | undefined;
             planPath?: string | undefined;
             planName?: string | undefined;
             planLabel?: string | undefined;
@@ -37084,17 +37366,17 @@ export declare const logSchemas: {
             reflectionQuote?: string | undefined;
             winRateWhileActive?: {
                 behaviorId: string;
-                metDays: number;
-                totalDays: number;
                 fromDateString: string;
                 toDateString: string;
+                metDays: number;
+                totalDays: number;
             }[] | undefined;
-            weekOfDateString?: string | undefined;
         }, {
             note: string;
             kind: "note" | "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined";
             behaviorIds?: string[] | undefined;
             planId?: string | undefined;
+            weekOfDateString?: string | undefined;
             planPath?: string | undefined;
             planName?: string | undefined;
             planLabel?: string | undefined;
@@ -37103,12 +37385,11 @@ export declare const logSchemas: {
             reflectionQuote?: string | undefined;
             winRateWhileActive?: {
                 behaviorId: string;
-                metDays: number;
-                totalDays: number;
                 fromDateString: string;
                 toDateString: string;
+                metDays: number;
+                totalDays: number;
             }[] | undefined;
-            weekOfDateString?: string | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../../types").Timestamp;
@@ -37124,6 +37405,7 @@ export declare const logSchemas: {
             kind: "note" | "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined";
             behaviorIds?: string[] | undefined;
             planId?: string | undefined;
+            weekOfDateString?: string | undefined;
             planPath?: string | undefined;
             planName?: string | undefined;
             planLabel?: string | undefined;
@@ -37132,12 +37414,11 @@ export declare const logSchemas: {
             reflectionQuote?: string | undefined;
             winRateWhileActive?: {
                 behaviorId: string;
-                metDays: number;
-                totalDays: number;
                 fromDateString: string;
                 toDateString: string;
+                metDays: number;
+                totalDays: number;
             }[] | undefined;
-            weekOfDateString?: string | undefined;
         };
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
@@ -37158,6 +37439,7 @@ export declare const logSchemas: {
             kind: "note" | "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined";
             behaviorIds?: string[] | undefined;
             planId?: string | undefined;
+            weekOfDateString?: string | undefined;
             planPath?: string | undefined;
             planName?: string | undefined;
             planLabel?: string | undefined;
@@ -37166,12 +37448,11 @@ export declare const logSchemas: {
             reflectionQuote?: string | undefined;
             winRateWhileActive?: {
                 behaviorId: string;
-                metDays: number;
-                totalDays: number;
                 fromDateString: string;
                 toDateString: string;
+                metDays: number;
+                totalDays: number;
             }[] | undefined;
-            weekOfDateString?: string | undefined;
         };
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
@@ -37470,7 +37751,7 @@ export declare const logSchemas: {
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | TacticChoiceLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ResumeRecapRemindersCtaLog | HumanSupportEscalationLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | StrategyCheckinLog | StrategyOfferLog | WeekOverviewLog | ProposedGoalChangeLog | StrategyProposalLog | ProposedChangeStageLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | ImageLog | PhotoLog | MergeBehaviorsProposalLog | MaskBehaviorProposalLog | ShortcutSetupIntroLog | TacticSuggestionsLog | CoachBookingPromptLog | DebriefQuestionLog | PlanHistoryEntryLog | ClosingReflectionLog | ProtectNextWindowOutcomeLog | VoiceOfferLog | ScheduledCheckInLog;
+export type Log = TacticLog | TacticChoiceLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ResumeRecapRemindersCtaLog | HumanSupportEscalationLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | StrategyCheckinLog | StrategyOfferLog | TrialVerdictLog | WeekOverviewLog | ProposedGoalChangeLog | StrategyProposalLog | ProposedChangeStageLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | ImageLog | PhotoLog | MergeBehaviorsProposalLog | MaskBehaviorProposalLog | ShortcutSetupIntroLog | TacticSuggestionsLog | CoachBookingPromptLog | DebriefQuestionLog | PlanHistoryEntryLog | ClosingReflectionLog | ProtectNextWindowOutcomeLog | VoiceOfferLog | ScheduledCheckInLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
@@ -37498,6 +37779,7 @@ export * from "./recapTimePreferenceLog";
 export * from "./dayTotalsPromptLog";
 export * from "./strategyCheckinLog";
 export * from "./strategyOfferLog";
+export * from "./trialVerdictLog";
 export * from "./weekOverviewLog";
 export * from "./proposedGoalChangeLog";
 export * from "./strategyProposalLog";
@@ -57313,6 +57595,285 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     impulseId: z.ZodOptional<z.ZodString>;
     respondingToLogId: z.ZodOptional<z.ZodString>;
 } & {
+    type: z.ZodLiteral<"trial_verdict">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        targetDateString: z.ZodString;
+        strategyId: z.ZodString;
+        trialId: z.ZodString;
+        title: z.ZodString;
+        comparison: z.ZodOptional<z.ZodObject<{
+            baseline: z.ZodObject<{
+                fromDateString: z.ZodString;
+                toDateString: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                fromDateString: string;
+                toDateString: string;
+            }, {
+                fromDateString: string;
+                toDateString: string;
+            }>;
+            trial: z.ZodObject<{
+                fromDateString: z.ZodString;
+                toDateString: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                fromDateString: string;
+                toDateString: string;
+            }, {
+                fromDateString: string;
+                toDateString: string;
+            }>;
+            behaviors: z.ZodArray<z.ZodObject<{
+                behaviorId: z.ZodString;
+                baselineDailyMean: z.ZodNumber;
+                trialDailyMean: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                behaviorId: string;
+                baselineDailyMean: number;
+                trialDailyMean: number;
+            }, {
+                behaviorId: string;
+                baselineDailyMean: number;
+                trialDailyMean: number;
+            }>, "many">;
+            outcome: z.ZodOptional<z.ZodObject<{
+                metricId: z.ZodString;
+                baselineMean: z.ZodNumber;
+                trialMean: z.ZodNumber;
+                baselineReadings: z.ZodNumber;
+                trialReadings: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                metricId: string;
+                baselineMean: number;
+                trialMean: number;
+                baselineReadings: number;
+                trialReadings: number;
+            }, {
+                metricId: string;
+                baselineMean: number;
+                trialMean: number;
+                baselineReadings: number;
+                trialReadings: number;
+            }>>;
+            confidence: z.ZodEnum<["cant_tell", "low", "moderate", "high"]>;
+            computedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        }, "strip", z.ZodTypeAny, {
+            confidence: "low" | "high" | "cant_tell" | "moderate";
+            behaviors: {
+                behaviorId: string;
+                baselineDailyMean: number;
+                trialDailyMean: number;
+            }[];
+            baseline: {
+                fromDateString: string;
+                toDateString: string;
+            };
+            trial: {
+                fromDateString: string;
+                toDateString: string;
+            };
+            computedAt: import("../../types").Timestamp;
+            outcome?: {
+                metricId: string;
+                baselineMean: number;
+                trialMean: number;
+                baselineReadings: number;
+                trialReadings: number;
+            } | undefined;
+        }, {
+            confidence: "low" | "high" | "cant_tell" | "moderate";
+            behaviors: {
+                behaviorId: string;
+                baselineDailyMean: number;
+                trialDailyMean: number;
+            }[];
+            baseline: {
+                fromDateString: string;
+                toDateString: string;
+            };
+            trial: {
+                fromDateString: string;
+                toDateString: string;
+            };
+            computedAt: import("../../types").Timestamp;
+            outcome?: {
+                metricId: string;
+                baselineMean: number;
+                trialMean: number;
+                baselineReadings: number;
+                trialReadings: number;
+            } | undefined;
+        }>>;
+        answer: z.ZodOptional<z.ZodEnum<["keep", "adjust", "drop", "extend"]>>;
+        answeredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    }, "strip", z.ZodTypeAny, {
+        title: string;
+        targetDateString: string;
+        strategyId: string;
+        trialId: string;
+        answeredAt?: import("../../types").Timestamp | undefined;
+        answer?: "extend" | "keep" | "adjust" | "drop" | undefined;
+        comparison?: {
+            confidence: "low" | "high" | "cant_tell" | "moderate";
+            behaviors: {
+                behaviorId: string;
+                baselineDailyMean: number;
+                trialDailyMean: number;
+            }[];
+            baseline: {
+                fromDateString: string;
+                toDateString: string;
+            };
+            trial: {
+                fromDateString: string;
+                toDateString: string;
+            };
+            computedAt: import("../../types").Timestamp;
+            outcome?: {
+                metricId: string;
+                baselineMean: number;
+                trialMean: number;
+                baselineReadings: number;
+                trialReadings: number;
+            } | undefined;
+        } | undefined;
+    }, {
+        title: string;
+        targetDateString: string;
+        strategyId: string;
+        trialId: string;
+        answeredAt?: import("../../types").Timestamp | undefined;
+        answer?: "extend" | "keep" | "adjust" | "drop" | undefined;
+        comparison?: {
+            confidence: "low" | "high" | "cant_tell" | "moderate";
+            behaviors: {
+                behaviorId: string;
+                baselineDailyMean: number;
+                trialDailyMean: number;
+            }[];
+            baseline: {
+                fromDateString: string;
+                toDateString: string;
+            };
+            trial: {
+                fromDateString: string;
+                toDateString: string;
+            };
+            computedAt: import("../../types").Timestamp;
+            outcome?: {
+                metricId: string;
+                baselineMean: number;
+                trialMean: number;
+                baselineReadings: number;
+                trialReadings: number;
+            } | undefined;
+        } | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "trial_verdict";
+    userId: string;
+    sessionId: string;
+    dateString: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        title: string;
+        targetDateString: string;
+        strategyId: string;
+        trialId: string;
+        answeredAt?: import("../../types").Timestamp | undefined;
+        answer?: "extend" | "keep" | "adjust" | "drop" | undefined;
+        comparison?: {
+            confidence: "low" | "high" | "cant_tell" | "moderate";
+            behaviors: {
+                behaviorId: string;
+                baselineDailyMean: number;
+                trialDailyMean: number;
+            }[];
+            baseline: {
+                fromDateString: string;
+                toDateString: string;
+            };
+            trial: {
+                fromDateString: string;
+                toDateString: string;
+            };
+            computedAt: import("../../types").Timestamp;
+            outcome?: {
+                metricId: string;
+                baselineMean: number;
+                trialMean: number;
+                baselineReadings: number;
+                trialReadings: number;
+            } | undefined;
+        } | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
+}, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "trial_verdict";
+    userId: string;
+    sessionId: string;
+    dateString: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        title: string;
+        targetDateString: string;
+        strategyId: string;
+        trialId: string;
+        answeredAt?: import("../../types").Timestamp | undefined;
+        answer?: "extend" | "keep" | "adjust" | "drop" | undefined;
+        comparison?: {
+            confidence: "low" | "high" | "cant_tell" | "moderate";
+            behaviors: {
+                behaviorId: string;
+                baselineDailyMean: number;
+                trialDailyMean: number;
+            }[];
+            baseline: {
+                fromDateString: string;
+                toDateString: string;
+            };
+            trial: {
+                fromDateString: string;
+                toDateString: string;
+            };
+            computedAt: import("../../types").Timestamp;
+            outcome?: {
+                metricId: string;
+                baselineMean: number;
+                trialMean: number;
+                baselineReadings: number;
+                trialReadings: number;
+            } | undefined;
+        } | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    sessionId: z.ZodString;
+    tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    impulseId: z.ZodOptional<z.ZodString>;
+    respondingToLogId: z.ZodOptional<z.ZodString>;
+} & {
     type: z.ZodLiteral<"week_overview">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
@@ -58031,8 +58592,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         status: "pending" | "accepted" | "declined";
         title: string;
         behaviorId: string;
-        toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
         evidence: string;
+        toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
         behaviorName?: string | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
@@ -58042,8 +58603,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     }, {
         title: string;
         behaviorId: string;
-        toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
         evidence: string;
+        toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
         status?: "pending" | "accepted" | "declined" | undefined;
         behaviorName?: string | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
@@ -58065,8 +58626,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         status: "pending" | "accepted" | "declined";
         title: string;
         behaviorId: string;
-        toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
         evidence: string;
+        toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
         behaviorName?: string | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
@@ -58091,8 +58652,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         title: string;
         behaviorId: string;
-        toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
         evidence: string;
+        toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
         status?: "pending" | "accepted" | "declined" | undefined;
         behaviorName?: string | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
@@ -67259,16 +67820,16 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             toDateString: z.ZodString;
         }, "strip", z.ZodTypeAny, {
             behaviorId: string;
-            metDays: number;
-            totalDays: number;
             fromDateString: string;
             toDateString: string;
+            metDays: number;
+            totalDays: number;
         }, {
             behaviorId: string;
-            metDays: number;
-            totalDays: number;
             fromDateString: string;
             toDateString: string;
+            metDays: number;
+            totalDays: number;
         }>, "many">>;
         weekOfDateString: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
@@ -67276,6 +67837,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         kind: "note" | "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined";
         behaviorIds?: string[] | undefined;
         planId?: string | undefined;
+        weekOfDateString?: string | undefined;
         planPath?: string | undefined;
         planName?: string | undefined;
         planLabel?: string | undefined;
@@ -67284,17 +67846,17 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         reflectionQuote?: string | undefined;
         winRateWhileActive?: {
             behaviorId: string;
-            metDays: number;
-            totalDays: number;
             fromDateString: string;
             toDateString: string;
+            metDays: number;
+            totalDays: number;
         }[] | undefined;
-        weekOfDateString?: string | undefined;
     }, {
         note: string;
         kind: "note" | "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined";
         behaviorIds?: string[] | undefined;
         planId?: string | undefined;
+        weekOfDateString?: string | undefined;
         planPath?: string | undefined;
         planName?: string | undefined;
         planLabel?: string | undefined;
@@ -67303,12 +67865,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         reflectionQuote?: string | undefined;
         winRateWhileActive?: {
             behaviorId: string;
-            metDays: number;
-            totalDays: number;
             fromDateString: string;
             toDateString: string;
+            metDays: number;
+            totalDays: number;
         }[] | undefined;
-        weekOfDateString?: string | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -67324,6 +67885,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         kind: "note" | "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined";
         behaviorIds?: string[] | undefined;
         planId?: string | undefined;
+        weekOfDateString?: string | undefined;
         planPath?: string | undefined;
         planName?: string | undefined;
         planLabel?: string | undefined;
@@ -67332,12 +67894,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         reflectionQuote?: string | undefined;
         winRateWhileActive?: {
             behaviorId: string;
-            metDays: number;
-            totalDays: number;
             fromDateString: string;
             toDateString: string;
+            metDays: number;
+            totalDays: number;
         }[] | undefined;
-        weekOfDateString?: string | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
@@ -67358,6 +67919,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         kind: "note" | "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined";
         behaviorIds?: string[] | undefined;
         planId?: string | undefined;
+        weekOfDateString?: string | undefined;
         planPath?: string | undefined;
         planName?: string | undefined;
         planLabel?: string | undefined;
@@ -67366,12 +67928,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         reflectionQuote?: string | undefined;
         winRateWhileActive?: {
             behaviorId: string;
-            metDays: number;
-            totalDays: number;
             fromDateString: string;
             toDateString: string;
+            metDays: number;
+            totalDays: number;
         }[] | undefined;
-        weekOfDateString?: string | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;

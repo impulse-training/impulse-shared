@@ -89,8 +89,8 @@ export declare const recapDayFactSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     behaviorId: string;
     behaviorName: string;
+    event: "relapse" | "none" | "slip" | "milestone" | "relapse_aftermath" | "over_goal" | "streak_continues";
     goalStatus: "unknown" | "missed" | "met" | "no_goal";
-    event: "relapse" | "none" | "milestone" | "slip" | "relapse_aftermath" | "over_goal" | "streak_continues";
     salience?: number | undefined;
     streakDays?: number | undefined;
     streakStartDate?: string | undefined;
@@ -102,8 +102,8 @@ export declare const recapDayFactSchema: z.ZodObject<{
 }, {
     behaviorId: string;
     behaviorName: string;
+    event: "relapse" | "none" | "slip" | "milestone" | "relapse_aftermath" | "over_goal" | "streak_continues";
     goalStatus: "unknown" | "missed" | "met" | "no_goal";
-    event: "relapse" | "none" | "milestone" | "slip" | "relapse_aftermath" | "over_goal" | "streak_continues";
     salience?: number | undefined;
     streakDays?: number | undefined;
     streakStartDate?: string | undefined;
@@ -5701,8 +5701,8 @@ export declare const recapSessionSchema: z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         behaviorId: string;
         behaviorName: string;
+        event: "relapse" | "none" | "slip" | "milestone" | "relapse_aftermath" | "over_goal" | "streak_continues";
         goalStatus: "unknown" | "missed" | "met" | "no_goal";
-        event: "relapse" | "none" | "milestone" | "slip" | "relapse_aftermath" | "over_goal" | "streak_continues";
         salience?: number | undefined;
         streakDays?: number | undefined;
         streakStartDate?: string | undefined;
@@ -5714,8 +5714,8 @@ export declare const recapSessionSchema: z.ZodObject<{
     }, {
         behaviorId: string;
         behaviorName: string;
+        event: "relapse" | "none" | "slip" | "milestone" | "relapse_aftermath" | "over_goal" | "streak_continues";
         goalStatus: "unknown" | "missed" | "met" | "no_goal";
-        event: "relapse" | "none" | "milestone" | "slip" | "relapse_aftermath" | "over_goal" | "streak_continues";
         salience?: number | undefined;
         streakDays?: number | undefined;
         streakStartDate?: string | undefined;
@@ -6490,7 +6490,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     recapPromptNotifiedAt?: import("../../types").Timestamp | null | undefined;
     pendingTaskResolution?: boolean | undefined;
     recapQuestionId?: string | null | undefined;
-    recapQuestionSource?: "trend" | "milestone" | "sequence" | "baseline" | "streak-progress" | "graph" | undefined;
+    recapQuestionSource?: "trend" | "baseline" | "milestone" | "sequence" | "streak-progress" | "graph" | undefined;
     recapQuestionTaskId?: string | null | undefined;
     focusBehaviorId?: string | undefined;
     focusBehaviorName?: string | undefined;
@@ -6505,8 +6505,8 @@ export declare const recapSessionSchema: z.ZodObject<{
     recapDayFacts?: {
         behaviorId: string;
         behaviorName: string;
+        event: "relapse" | "none" | "slip" | "milestone" | "relapse_aftermath" | "over_goal" | "streak_continues";
         goalStatus: "unknown" | "missed" | "met" | "no_goal";
-        event: "relapse" | "none" | "milestone" | "slip" | "relapse_aftermath" | "over_goal" | "streak_continues";
         salience?: number | undefined;
         streakDays?: number | undefined;
         streakStartDate?: string | undefined;
@@ -6713,7 +6713,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     recapPromptNotifiedAt?: import("../../types").Timestamp | null | undefined;
     pendingTaskResolution?: boolean | undefined;
     recapQuestionId?: string | null | undefined;
-    recapQuestionSource?: "trend" | "milestone" | "sequence" | "baseline" | "streak-progress" | "graph" | undefined;
+    recapQuestionSource?: "trend" | "baseline" | "milestone" | "sequence" | "streak-progress" | "graph" | undefined;
     recapQuestionTaskId?: string | null | undefined;
     focusBehaviorId?: string | undefined;
     focusBehaviorName?: string | undefined;
@@ -6728,8 +6728,8 @@ export declare const recapSessionSchema: z.ZodObject<{
     recapDayFacts?: {
         behaviorId: string;
         behaviorName: string;
+        event: "relapse" | "none" | "slip" | "milestone" | "relapse_aftermath" | "over_goal" | "streak_continues";
         goalStatus: "unknown" | "missed" | "met" | "no_goal";
-        event: "relapse" | "none" | "milestone" | "slip" | "relapse_aftermath" | "over_goal" | "streak_continues";
         salience?: number | undefined;
         streakDays?: number | undefined;
         streakStartDate?: string | undefined;
