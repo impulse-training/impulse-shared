@@ -57,6 +57,14 @@ export const recapDayEventSchema = z.enum([
   // slip) so the opener doesn't drift into "nice work / standard day." Awareness,
   // not a fresh event to lead with.
   "relapse_aftermath",
+  // Over goal again on a behavior with no run to break: the day before was a
+  // miss too, and no meaningful streak sits behind the stretch (that would be
+  // "relapse_aftermath"). Before this existed the day read as "none" and was
+  // dropped from the facts block, so a user over goal on their main behavior
+  // eight days in ten heard the recap talk about everything else (2026-10-10).
+  // Backdrop by default; the day's news only when it was clearly worse than
+  // usual (see overGoalWorseThanUsual).
+  "over_goal",
   // The streak reached a milestone rung today.
   "milestone",
   // An active streak continued today (no rung hit, no break).
@@ -109,8 +117,36 @@ export const recapDayFactSchema = z.object({
   relapseStartDate: z.string().optional(),
   /** For "milestone": the rung label reached today (e.g. "7 days"). */
   milestoneLabel: z.string().optional(),
+  /**
+   * For "over_goal": consecutive missed days ending today, inclusive. A missed
+   * recap (UNSPECIFIED_FOR_DAY) is skipped, as in the streak logic.
+   */
+  daysOverGoal: z.number().optional(),
+  /**
+   * For "over_goal": today's measured amount over their average on the days
+   * before it (the 14 with a goal comparison). Absent when there is no history
+   * to compare with.
+   */
+  amountVsUsual: z.number().optional(),
 });
 export type RecapDayFact = z.infer<typeof recapDayFactSchema>;
+
+/** An over-goal day at this multiple of their usual amount is the day's news. */
+export const OVER_GOAL_WORSE_THAN_USUAL_RATIO = 1.5;
+
+/**
+ * Whether an over-goal day was clearly worse than their usual. The one rule
+ * that decides when a chronic stretch leads the recap (opener, question) rather
+ * than sitting as backdrop: leading every day it is over goal makes the
+ * question a ritual, and never leading pretends the stretch isn't happening.
+ */
+export function overGoalWorseThanUsual(fact: RecapDayFact): boolean {
+  return (
+    fact.event === "over_goal" &&
+    typeof fact.amountVsUsual === "number" &&
+    fact.amountVsUsual >= OVER_GOAL_WORSE_THAN_USUAL_RATIO
+  );
+}
 
 /**
  * Why a logged instance of a behavior on the recap day is worth talking about.
