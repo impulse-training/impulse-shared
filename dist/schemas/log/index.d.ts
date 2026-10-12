@@ -27148,6 +27148,7 @@ export declare const logSchemas: {
                     trialReadings: number;
                 } | undefined;
             }>>;
+            canExtend: z.ZodOptional<z.ZodBoolean>;
             answer: z.ZodOptional<z.ZodEnum<["keep", "adjust", "drop", "extend"]>>;
             answeredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
@@ -27181,6 +27182,7 @@ export declare const logSchemas: {
                     trialReadings: number;
                 } | undefined;
             } | undefined;
+            canExtend?: boolean | undefined;
         }, {
             title: string;
             targetDateString: string;
@@ -27212,6 +27214,7 @@ export declare const logSchemas: {
                     trialReadings: number;
                 } | undefined;
             } | undefined;
+            canExtend?: boolean | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../../types").Timestamp;
@@ -27253,6 +27256,7 @@ export declare const logSchemas: {
                     trialReadings: number;
                 } | undefined;
             } | undefined;
+            canExtend?: boolean | undefined;
         };
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
@@ -27299,6 +27303,7 @@ export declare const logSchemas: {
                     trialReadings: number;
                 } | undefined;
             } | undefined;
+            canExtend?: boolean | undefined;
         };
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
@@ -57714,6 +57719,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 trialReadings: number;
             } | undefined;
         }>>;
+        canExtend: z.ZodOptional<z.ZodBoolean>;
         answer: z.ZodOptional<z.ZodEnum<["keep", "adjust", "drop", "extend"]>>;
         answeredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
@@ -57747,6 +57753,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 trialReadings: number;
             } | undefined;
         } | undefined;
+        canExtend?: boolean | undefined;
     }, {
         title: string;
         targetDateString: string;
@@ -57778,6 +57785,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 trialReadings: number;
             } | undefined;
         } | undefined;
+        canExtend?: boolean | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -57819,6 +57827,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 trialReadings: number;
             } | undefined;
         } | undefined;
+        canExtend?: boolean | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
@@ -57865,6 +57874,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 trialReadings: number;
             } | undefined;
         } | undefined;
+        canExtend?: boolean | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
