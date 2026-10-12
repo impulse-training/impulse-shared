@@ -134,6 +134,19 @@ export const boundaryBindingSchema = z
     weekdays: z.array(z.number().int().min(0).max(6)).optional(),
     behaviorIds: behaviorIdsField,
     tracksStreak: z.boolean().default(false),
+    /**
+     * A push at this local time on the days `reminderCadence` picks: daily
+     * at first, fewer as kept days add up, daily again after a miss.
+     */
+    reminder: z
+      .object({
+        time: clockTimeSchema,
+        /** The user turned it off. */
+        off: z.boolean().optional(),
+        /** "Back to daily": kept days count from this date. */
+        sinceDateString: z.string().optional(),
+      })
+      .optional(),
   })
   .refine((b) => b.start || b.end || b.context, {
     message: "A boundary needs a start, an end, or a context",
@@ -607,6 +620,86 @@ export function boundaryStreak(
   }
   return streak;
 }
+
+// ---------------------------------------------------------------------------
+// Reminders
+
+/**
+ * The adaptive reminder ladder. Kept days in a row (since the last miss)
+ * move a move down it; a partly or broken day puts it back on daily. Days
+ * with no answer change nothing. `every`: remind every Nth day of the stage
+ * (0 = no reminders; it has become a habit).
+ */
+export const REMINDER_LADDER = [
+  { stage: "daily", fromKept: 0, every: 1 },
+  { stage: "alternate", fromKept: 3, every: 2 },
+  { stage: "every_third", fromKept: 7, every: 3 },
+  { stage: "habit", fromKept: 14, every: 0 },
+] as const;
+export type ReminderStage = (typeof REMINDER_LADDER)[number]["stage"];
+
+/** Misses among the last answered days that put a move up for review. */
+export const REMINDER_REVIEW_MISSES = 3;
+export const REMINDER_REVIEW_WINDOW = 5;
+
+const dayNumber = (dateString: string) => Math.round(Date.parse(`${dateString}T12:00:00Z`) / 86_400_000);
+
+export interface ReminderCadence {
+  stage: ReminderStage;
+  keptInRow: number;
+  /** Whether the reminder goes out on `todayDateString`. */
+  firesToday: boolean;
+  /** Missed often lately: worth asking whether it still fits (weekly review). */
+  needsReview: boolean;
+}
+
+/**
+ * Where a move's reminder stands on `todayDateString`, from its answered days
+ * before today. Stateless: the app and the server compute the same thing.
+ */
+export function reminderCadence(
+  days: Pick<StrategyDay, "dateString" | "boundaries">[],
+  itemId: string,
+  todayDateString: string,
+  reminder?: Pick<NonNullable<BoundaryBinding["reminder"]>, "off" | "sinceDateString">,
+): ReminderCadence {
+  const since = reminder?.sinceDateString;
+  const answered = days
+    .filter((d) => d.dateString < todayDateString && (!since || d.dateString >= since))
+    .sort((a, b) => a.dateString.localeCompare(b.dateString))
+    .map((d) => ({ dateString: d.dateString, outcome: d.boundaries[itemId] }))
+    .filter((d) => d.outcome === "kept" || d.outcome === "partly" || d.outcome === "broken");
+
+  let keptInRow = 0;
+  let rung = 0;
+  let rungSince: string | undefined;
+  for (const d of answered) {
+    keptInRow = d.outcome === "kept" ? keptInRow + 1 : 0;
+    let next = 0;
+    REMINDER_LADDER.forEach((r, i) => {
+      if (keptInRow >= r.fromKept) next = i;
+    });
+    if (next !== rung) rungSince = d.dateString;
+    rung = next;
+  }
+
+  const { stage, every } = REMINDER_LADDER[rung];
+  const firesToday =
+    !reminder?.off &&
+    every > 0 &&
+    (every === 1 || !rungSince || (dayNumber(todayDateString) - dayNumber(rungSince)) % every === 0);
+  const recent = answered.slice(-REMINDER_REVIEW_WINDOW);
+  const needsReview = recent.filter((d) => d.outcome === "broken").length >= REMINDER_REVIEW_MISSES;
+  return { stage, keptInRow, firesToday, needsReview };
+}
+
+/** How often the reminder goes out at this stage, for the strategy screen. */
+export const REMINDER_STAGE_LABELS: Record<ReminderStage, string> = {
+  daily: "every day",
+  alternate: "every other day",
+  every_third: "every few days",
+  habit: "not needed now",
+};
 
 // ---------------------------------------------------------------------------
 // Negotiation
