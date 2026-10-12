@@ -4618,6 +4618,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             generationPrompt: z.ZodOptional<z.ZodString>;
             generationVoice: z.ZodOptional<z.ZodNullable<z.ZodEnum<["m", "f"]>>>;
             collectionTemplateIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            sourceRefPath: z.ZodOptional<z.ZodString>;
+            keptAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
             updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         }, "strip", z.ZodTypeAny, {
@@ -5235,6 +5237,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
             collectionTemplateIds?: string[] | undefined;
+            sourceRefPath?: string | undefined;
+            keptAt?: import("../../types").Timestamp | undefined;
         }, {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -5316,6 +5320,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
             collectionTemplateIds?: string[] | undefined;
+            sourceRefPath?: string | undefined;
+            keptAt?: import("../../types").Timestamp | undefined;
         }>;
         tacticRefPath: z.ZodString;
         planId: z.ZodOptional<z.ZodString>;
@@ -6159,6 +6165,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
             collectionTemplateIds?: string[] | undefined;
+            sourceRefPath?: string | undefined;
+            keptAt?: import("../../types").Timestamp | undefined;
         };
         completed?: boolean | undefined;
         planId?: string | undefined;
@@ -6293,6 +6301,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
             collectionTemplateIds?: string[] | undefined;
+            sourceRefPath?: string | undefined;
+            keptAt?: import("../../types").Timestamp | undefined;
         };
         completed?: boolean | undefined;
         planId?: string | undefined;
@@ -6971,6 +6981,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
             collectionTemplateIds?: string[] | undefined;
+            sourceRefPath?: string | undefined;
+            keptAt?: import("../../types").Timestamp | undefined;
         };
         completed?: boolean | undefined;
         planId?: string | undefined;
@@ -7120,6 +7132,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
             collectionTemplateIds?: string[] | undefined;
+            sourceRefPath?: string | undefined;
+            keptAt?: import("../../types").Timestamp | undefined;
         };
         completed?: boolean | undefined;
         planId?: string | undefined;

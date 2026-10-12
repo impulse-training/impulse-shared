@@ -157,6 +157,14 @@ exports.tacticSchema = zod_1.z.object({
     generationPrompt: zod_1.z.string().optional(),
     generationVoice: zod_1.z.enum(["m", "f"]).nullable().optional(),
     collectionTemplateIds: zod_1.z.array(zod_1.z.string()).optional(),
+    /** A library copy of a catalog tactic: the catalog doc it came from. */
+    sourceRefPath: zod_1.z.string().optional(),
+    /**
+     * When the user kept it into their library (it helped, or a move they
+     * accepted uses it). A library is built from experience; unset on tactics
+     * seeded before that, or made by the user.
+     */
+    keptAt: timestampSchema_1.timestampSchema.optional(),
     createdAt: timestampSchema_1.timestampSchema,
     updatedAt: timestampSchema_1.timestampSchema,
 });
