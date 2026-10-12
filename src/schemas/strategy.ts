@@ -903,8 +903,8 @@ export const TRIAL_EXTENSION_DAYS = 7;
  * Whether "run 7 more" is still on offer: a trial runs to at most twice its
  * window, so slipped days can be made up but it always ends.
  */
-export const trialCanExtend = (t: Pick<TrialClock, "windowDays" | "extendedDays">): boolean =>
-  (t.extendedDays ?? 0) + TRIAL_EXTENSION_DAYS <= t.windowDays;
+export const trialCanExtend = (t: { windowDays?: number; extendedDays?: number }): boolean =>
+  t.windowDays !== undefined && (t.extendedDays ?? 0) + TRIAL_EXTENSION_DAYS <= t.windowDays;
 
 /** "Day N": 1 on the first day. */
 export const trialDayNumber = (t: Pick<TrialClock, "startDateString">, todayDateString: string): number =>
