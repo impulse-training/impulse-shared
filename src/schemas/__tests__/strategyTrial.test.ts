@@ -183,3 +183,16 @@ describe("trial changes", () => {
     expect(parsed.success).toBe(false);
   });
 });
+
+describe("trialCanExtend", () => {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { trialCanExtend, TRIAL_EXTENSION_DAYS } = require("../strategy");
+  it("runs to at most twice its window", () => {
+    expect(TRIAL_EXTENSION_DAYS).toBe(7);
+    expect(trialCanExtend({ windowDays: 7 })).toBe(true);
+    expect(trialCanExtend({ windowDays: 7, extendedDays: 7 })).toBe(false);
+    expect(trialCanExtend({ windowDays: 14, extendedDays: 7 })).toBe(true);
+    expect(trialCanExtend({ windowDays: 14, extendedDays: 14 })).toBe(false);
+    expect(trialCanExtend({ windowDays: 5 })).toBe(false);
+  });
+});
