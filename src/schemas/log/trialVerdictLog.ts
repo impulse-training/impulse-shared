@@ -17,6 +17,8 @@ export const trialVerdictLogSchema = logBaseSchema.extend({
     trialId: z.string(),
     title: z.string(),
     comparison: trialComparisonSchema.optional(),
+    /** "Run 7 more" is offered: the trial has not reached twice its window. */
+    canExtend: z.boolean().optional(),
     answer: trialDecisionSchema.optional(),
     answeredAt: timestampSchema.optional(),
   }),
