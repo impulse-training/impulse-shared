@@ -101,7 +101,7 @@ export const triggerPlanBindingSchema = z.object({
   existingTriggerId: z.string().optional(),
   triggerText: z.string().optional(),
   /** tagGroupId -> optionId: the feeling or situation a created trigger matches on. */
-  tags: z.record(z.string(), z.string()).default({}),
+  tags: z.record(z.string(), z.string()).optional(),
   /**
    * The user's plan before the strategy carried it: shown and tracked, never
    * changed by compiling or undone by uncompiling.
