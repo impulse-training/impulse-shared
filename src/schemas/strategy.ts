@@ -85,15 +85,28 @@ export const goalBindingSchema = z.object({
 });
 
 /**
- * "When I notice X, do Y". Compiles to a trigger (existing, or created from
- * `triggerText`) whose "Next up" agreement is the first library tactic: the
- * one in-the-moment mechanism that is delivered deterministically. Scoped
- * steps have no tactic doc; impulse sessions read them from the strategy.
+ * An impulse plan: "when X, I will Y". X is the urge for a behavior
+ * (`urgeOf`: the plan is that behavior's own agreement) or a feeling or
+ * situation (a trigger: existing, or created from `triggerText` and `tags`).
+ * Compiling sets the "Next up" agreement to the first library tactic: the one
+ * in-the-moment mechanism that is delivered deterministically. An agreement is
+ * a "next time" promise and is used up when started, so the plan's "when"
+ * outlives its tactic; the screen reads the live agreement. Scoped steps have
+ * no tactic doc; impulse sessions read them from the strategy.
  */
 export const triggerPlanBindingSchema = z.object({
   type: z.literal("trigger_plan"),
+  /** The urge for this behavior: compiles to behaviors/{urgeOf}.agreement. */
+  urgeOf: z.string().optional(),
   existingTriggerId: z.string().optional(),
   triggerText: z.string().optional(),
+  /** tagGroupId -> optionId: the feeling or situation a created trigger matches on. */
+  tags: z.record(z.string(), z.string()).optional(),
+  /**
+   * The user's plan before the strategy carried it: shown and tracked, never
+   * changed by compiling or undone by uncompiling.
+   */
+  linked: z.boolean().optional(),
   behaviorIds: behaviorIdsField,
   tacticIds: z.array(z.string()).default([]),
   scopedSteps: z.array(scopedStepSchema).default([]),
