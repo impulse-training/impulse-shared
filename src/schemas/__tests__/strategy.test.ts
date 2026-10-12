@@ -298,5 +298,9 @@ describe("experiments in strategies", () => {
   it("tells the starter strategy apart", () => {
     expect(isStarterStrategy({ source: { authoredBy: "system" } })).toBe(true);
     expect(isStarterStrategy({ source: { authoredBy: "ai" } })).toBe(false);
+    // An experiment the app wrote ("a week without coffee") is not the starter once it runs.
+    expect(isStarterStrategy({ source: { authoredBy: "system" }, phase: "baseline" })).toBe(true);
+    expect(isStarterStrategy({ source: { authoredBy: "system" }, phase: "trial" })).toBe(false);
+    expect(isStarterStrategy({ source: { authoredBy: "system" }, phase: "kept" })).toBe(false);
   });
 });
