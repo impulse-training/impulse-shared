@@ -3963,6 +3963,7 @@ export declare const daySummarySchema: z.ZodObject<{
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
     userId: string;
+    dayTotalsConfirmedAt: import("../types").Timestamp | null;
     summaryText: string | null;
     impulseSessionOutcomesById: Record<string, "success" | "partial" | "setback">;
     behaviorDataTotalByBehaviorId: Record<string, {
@@ -3980,7 +3981,6 @@ export declare const daySummarySchema: z.ZodObject<{
         outcome?: "success" | "partial" | "setback" | undefined;
     }>;
     sharedWithUserIds: string[];
-    dayTotalsConfirmedAt: import("../types").Timestamp | null;
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
@@ -4258,6 +4258,7 @@ export declare const daySummarySchema: z.ZodObject<{
     supportGroupNotificationSentAtById?: Record<string, import("../types").Timestamp> | undefined;
 }, {
     userId: string;
+    dayTotalsConfirmedAt: import("../types").Timestamp | null;
     summaryText: string | null;
     impulseSessionOutcomesById: Record<string, "success" | "partial" | "setback">;
     behaviorDataTotalByBehaviorId: Record<string, {
@@ -4274,7 +4275,6 @@ export declare const daySummarySchema: z.ZodObject<{
         outcome?: "success" | "partial" | "setback" | undefined;
     }>;
     sharedWithUserIds: string[];
-    dayTotalsConfirmedAt: import("../types").Timestamp | null;
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;

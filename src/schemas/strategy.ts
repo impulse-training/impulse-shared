@@ -2,6 +2,7 @@ import { z } from "zod";
 import { goalSchema } from "./goal";
 import { tacticAgreementSchema } from "./agreement";
 import { timestampSchema } from "../utils/timestampSchema";
+import { getDateString } from "../utils/dates";
 
 /**
  * A strategy: one coherent answer to "what do I do about this?", built with
@@ -699,9 +700,48 @@ export const DAILY_STRATEGY_KINDS = ["boundary", "routine", "moment", "fallback"
  * The moves of a running strategy to check for a day: accepted lines,
  * routines and in-the-moment plans that apply on that weekday (0 = Sunday).
  */
-export function dailyStrategyItems(strategy: Pick<Strategy, "items">, weekday: number): StrategyItem[] {
+/** Milliseconds of a Firestore timestamp, from either SDK or as serialized. */
+function timestampMs(ts: unknown): number | undefined {
+  if (!ts || typeof ts !== "object") return undefined;
+  const t = ts as { toMillis?: () => number; seconds?: number; _seconds?: number };
+  if (typeof t.toMillis === "function") return t.toMillis();
+  const seconds = t.seconds ?? t._seconds;
+  return typeof seconds === "number" ? seconds * 1000 : undefined;
+}
+
+/**
+ * The user's day a move started on: the later of the strategy going live and
+ * the move being accepted. Undefined when neither is recorded (older docs),
+ * which counts as always in force.
+ */
+export function strategyItemStartDate(
+  strategy: Pick<Strategy, "activatedAt">,
+  item: Pick<StrategyItem, "userReviewedAt">,
+  timezone: string,
+): string | undefined {
+  const starts = [timestampMs(strategy.activatedAt), timestampMs(item.userReviewedAt)].filter(
+    (ms): ms is number => ms !== undefined,
+  );
+  return starts.length ? getDateString(new Date(Math.max(...starts)), timezone) : undefined;
+}
+
+/**
+ * The accepted moves that apply on a weekday. With `on`, only the moves
+ * already in force that day: a strategy accepted this morning has nothing to
+ * ask about yesterday (2026-10-11, a recap asked whether the phone had slept
+ * outside the bedroom the night before the user agreed to it).
+ */
+export function dailyStrategyItems(
+  strategy: Pick<Strategy, "items"> & Partial<Pick<Strategy, "activatedAt">>,
+  weekday: number,
+  on?: { dateString: string; timezone: string },
+): StrategyItem[] {
   return acceptedStrategyItems(strategy).filter((item) => {
     if (!(DAILY_STRATEGY_KINDS as readonly string[]).includes(item.kind)) return false;
+    if (on) {
+      const start = strategyItemStartDate(strategy, item, on.timezone);
+      if (start && start > on.dateString) return false;
+    }
     const days = item.bindings.flatMap((b) =>
       b.type === "boundary" || b.type === "scheduled_plan" ? [b.weekdays ?? null] : [],
     );
