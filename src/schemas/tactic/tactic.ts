@@ -171,6 +171,14 @@ export const tacticSchema = z.object({
   generationPrompt: z.string().optional(),
   generationVoice: z.enum(["m", "f"]).nullable().optional(),
   collectionTemplateIds: z.array(z.string()).optional(),
+  /** A library copy of a catalog tactic: the catalog doc it came from. */
+  sourceRefPath: z.string().optional(),
+  /**
+   * When the user kept it into their library (it helped, or a move they
+   * accepted uses it). A library is built from experience; unset on tactics
+   * seeded before that, or made by the user.
+   */
+  keptAt: timestampSchema.optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });
