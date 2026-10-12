@@ -797,8 +797,10 @@ export function strategyExperimentBinding(
 }
 
 /** The starter strategy made with an experiment, before a real one exists. */
-export const isStarterStrategy = (strategy: Pick<Strategy, "source">) =>
-  strategy.source.authoredBy === "system";
+export const isStarterStrategy = (strategy: Pick<Strategy, "source"> & Partial<Pick<Strategy, "phase">>) =>
+  // The app also writes experiments ("a week without coffee"); once one runs
+  // (or its moves were kept) it is a strategy like any other, not the starter.
+  strategy.source.authoredBy === "system" && strategy.phase !== "trial" && strategy.phase !== "kept";
 
 // ---------------------------------------------------------------------------
 // Daily check-off
