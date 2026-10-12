@@ -103,9 +103,14 @@ export const triggerPlanBindingSchema = z.object({
   appliedAt: timestampSchema.optional(),
 });
 
-/** A routine prompted at a fixed time. Compiles to a scheduled plan. */
+/**
+ * A routine prompted at a fixed time. Compiles to a scheduled plan, or points
+ * at one the user already had (`existingPlanId`), which the strategy shows
+ * but never deletes.
+ */
 export const scheduledPlanBindingSchema = z.object({
   type: z.literal("scheduled_plan"),
+  existingPlanId: z.string().optional(),
   hour: z.number().int().min(0).max(23),
   minute: z.number().int().min(0).max(59),
   weekdays: z.array(z.number().int().min(0).max(6)).min(1),
