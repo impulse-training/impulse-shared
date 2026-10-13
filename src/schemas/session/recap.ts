@@ -278,6 +278,13 @@ export const recapSessionSchema = sessionBaseSchema.extend({
    */
   weeklyReviewVersion: z.number().optional(),
   /**
+   * Which review token this weekly-mode session claimed: "early" (day 3 of a
+   * running trial, framed as three days in) or "weekly" (the Sunday review).
+   * Absent on sessions from before early reviews, and on forced weekly mode;
+   * readers treat absent as "weekly".
+   */
+  weeklyReviewKind: z.enum(["early", "weekly"]).optional(),
+  /**
    * Set when this session hosts a weekly review that was started, but not
    * finished, in an earlier session (the review's unfinished behavior beats
    * were carried forward within the token's resume window). Points at that
