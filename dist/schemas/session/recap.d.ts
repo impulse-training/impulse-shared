@@ -5786,6 +5786,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     recapPresentableProposalLogIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     recapUserRaisedIdeas: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     weeklyReviewVersion: z.ZodOptional<z.ZodNumber>;
+    weeklyReviewKind: z.ZodOptional<z.ZodEnum<["early", "weekly"]>>;
     weeklyReviewResumedFromSessionId: z.ZodOptional<z.ZodString>;
     recapReviewedBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
 }, "strip", z.ZodTypeAny, {
@@ -6545,6 +6546,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     recapPresentableProposalLogIds?: string[] | undefined;
     recapUserRaisedIdeas?: string[] | undefined;
     weeklyReviewVersion?: number | undefined;
+    weeklyReviewKind?: "weekly" | "early" | undefined;
     weeklyReviewResumedFromSessionId?: string | undefined;
     recapReviewedBehaviorIds?: string[] | undefined;
 }, {
@@ -6770,6 +6772,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     recapPresentableProposalLogIds?: string[] | undefined;
     recapUserRaisedIdeas?: string[] | undefined;
     weeklyReviewVersion?: number | undefined;
+    weeklyReviewKind?: "weekly" | "early" | undefined;
     weeklyReviewResumedFromSessionId?: string | undefined;
     recapReviewedBehaviorIds?: string[] | undefined;
 }>;

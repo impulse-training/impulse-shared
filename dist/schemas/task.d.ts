@@ -4274,6 +4274,9 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     claimedBySessionId: z.ZodOptional<z.ZodString>;
     resumeUntilDateString: z.ZodOptional<z.ZodString>;
     resumedFromSessionId: z.ZodOptional<z.ZodString>;
+    kind: z.ZodOptional<z.ZodEnum<["early", "weekly"]>>;
+    strategyId: z.ZodOptional<z.ZodString>;
+    trialId: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -4286,8 +4289,11 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     weekAnchorDateString: string;
     id?: string | undefined;
     ordinal?: number | undefined;
+    kind?: "weekly" | "early" | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    strategyId?: string | undefined;
     context?: string | undefined;
+    trialId?: string | undefined;
     expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
@@ -4318,8 +4324,11 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     id?: string | undefined;
     status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
+    kind?: "weekly" | "early" | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    strategyId?: string | undefined;
     context?: string | undefined;
+    trialId?: string | undefined;
     category?: "zara" | "deterministic" | undefined;
     expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
@@ -8869,6 +8878,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     claimedBySessionId: z.ZodOptional<z.ZodString>;
     resumeUntilDateString: z.ZodOptional<z.ZodString>;
     resumedFromSessionId: z.ZodOptional<z.ZodString>;
+    kind: z.ZodOptional<z.ZodEnum<["early", "weekly"]>>;
+    strategyId: z.ZodOptional<z.ZodString>;
+    trialId: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -8881,8 +8893,11 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     weekAnchorDateString: string;
     id?: string | undefined;
     ordinal?: number | undefined;
+    kind?: "weekly" | "early" | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    strategyId?: string | undefined;
     context?: string | undefined;
+    trialId?: string | undefined;
     expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;
     createdBy?: string | undefined;
@@ -8913,8 +8928,11 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
+    kind?: "weekly" | "early" | undefined;
     completedAt?: import("../types").Timestamp | undefined;
+    strategyId?: string | undefined;
     context?: string | undefined;
+    trialId?: string | undefined;
     category?: "zara" | "deterministic" | undefined;
     expiresAt?: import("../types").Timestamp | undefined;
     minAppVersion?: string | undefined;

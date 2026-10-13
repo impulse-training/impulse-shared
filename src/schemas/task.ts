@@ -414,6 +414,15 @@ export const weeklyReviewTaskSchema = taskBaseSchema.extend({
   resumeUntilDateString: z.string().optional(),
   /** Set when the review moved sessions: the session that first claimed it. */
   resumedFromSessionId: z.string().optional(),
+  /**
+   * "early": minted on day 3 of a running trial (anchor = that day, not a
+   * Sunday), so a strategy's first review comes three days in. Absent on the
+   * regular Sunday token.
+   */
+  kind: z.enum(["early", "weekly"]).optional(),
+  /** Early tokens: the strategy and trial whose day 3 minted it. */
+  strategyId: z.string().optional(),
+  trialId: z.string().optional(),
 });
 
 /**

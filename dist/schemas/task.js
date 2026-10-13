@@ -390,6 +390,15 @@ exports.weeklyReviewTaskSchema = exports.taskBaseSchema.extend({
     resumeUntilDateString: zod_1.z.string().optional(),
     /** Set when the review moved sessions: the session that first claimed it. */
     resumedFromSessionId: zod_1.z.string().optional(),
+    /**
+     * "early": minted on day 3 of a running trial (anchor = that day, not a
+     * Sunday), so a strategy's first review comes three days in. Absent on the
+     * regular Sunday token.
+     */
+    kind: zod_1.z.enum(["early", "weekly"]).optional(),
+    /** Early tokens: the strategy and trial whose day 3 minted it. */
+    strategyId: zod_1.z.string().optional(),
+    trialId: zod_1.z.string().optional(),
 });
 /**
  * The user-authored beat that closes a recap (see userData
