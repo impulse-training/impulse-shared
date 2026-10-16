@@ -40,6 +40,16 @@ export const toolCallLogSchema = logBaseSchema.extend({
     message: chatCompletionMessageSchema,
     // Array of tool result messages (we keep permissive typing; they follow role: "tool")
     toolCallResults: z.array(z.any()),
+    /**
+     * Server-side time a call's tool webhook spent before answering, in ms
+     * (ElevenLabs calls). `beforeToolMs`: request received to the tool
+     * starting (consent and session reads). `toolMs`: the tool itself. What
+     * ElevenLabs reports as the tool's latency minus these is network and
+     * whatever ran after the result was recorded.
+     */
+    webhookTimings: z
+      .object({ beforeToolMs: z.number(), toolMs: z.number() })
+      .optional(),
   }),
 });
 
