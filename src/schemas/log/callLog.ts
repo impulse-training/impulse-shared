@@ -190,6 +190,13 @@ export const callModelUsageSchema = z.object({
    */
   inputCachedTextTokens: z.number().optional(),
   inputCachedAudioTokens: z.number().optional(),
+  /**
+   * Input written to the prompt cache, as a subset of `inputTextTokens` (like
+   * the cached figures above). Anthropic models bill a cache write at a premium
+   * over plain input, so without this an ElevenLabs call's input cannot be
+   * priced from its counts. Absent for providers that do not bill writes.
+   */
+  inputCacheWriteTextTokens: z.number().optional(),
   outputTextTokens: z.number().optional(),
   outputAudioTokens: z.number().optional(),
 });
@@ -208,8 +215,75 @@ export const callUsageSchema = z.object({
    * priced by the wrong one.
    */
   ratesVersion: z.string().optional(),
+  /**
+   * What the provider debited from the account for this call, in its own
+   * credits, when it bills that way (ElevenLabs does: LLM plus platform
+   * credits). Kept beside `costUsd` because the plan's quota is in credits.
+   */
+  credits: z.number().optional(),
 });
 export type CallUsage = z.infer<typeof callUsageSchema>;
+
+/**
+ * How an ElevenLabs call ran, as ElevenLabs reported it once the conversation
+ * was processed (the post-call webhook, or the app's finishCall fallback).
+ *
+ * A summary, not a trace: medians and maxima over the call, so a slow call can
+ * be spotted from the log alone, and the conversation id is there to pull the
+ * per-turn detail from ElevenLabs when one needs explaining. Separate from
+ * `timings`, which the device measures while the call comes up; these are
+ * ElevenLabs' own server-side figures for the call as a whole.
+ *
+ * Every field is optional: absent means ElevenLabs did not report it.
+ */
+export const callVoiceMetricsSchema = z.object({
+  /**
+   * The LLMs that actually produced agent turns, in order of first use (each
+   * turn's `producing_llm`). Read from the turns rather than the agent config,
+   * so it is right whether or not the call overrode the model.
+   */
+  models: z.array(z.string()).optional(),
+  /** The agent version that ran the call, so a regression can be bisected to a publish. */
+  agentVersionId: z.string().optional(),
+  /** Call length in seconds (`metadata.call_duration_secs`). */
+  durationSecs: z.number().optional(),
+  /** ElevenLabs' reason the call ended, verbatim (e.g. "Client disconnected: 1000"). */
+  terminationReason: z.string().optional(),
+
+  /**
+   * Agent replies the response latency below was measured over: turns that
+   * went through the LLM and spoke. The scripted first message is excluded, as
+   * it has no LLM step and its figure measures nothing the caller waits for.
+   */
+  respondedTurns: z.number().optional(),
+  /**
+   * THE number the caller feels: from the end of their speech to the agent's
+   * first audio (`convai_ttf_audio_since_silence`), median and worst, in ms.
+   */
+  responseLatencyMedianMs: z.number().optional(),
+  responseLatencyMaxMs: z.number().optional(),
+
+  /**
+   * LLM requests the ttfb below was measured over: every agent turn with
+   * `convai_llm_service_ttfb`, including ones that only requested a tool, so it
+   * can exceed `respondedTurns`.
+   */
+  llmTurns: z.number().optional(),
+  /** LLM time to first byte (`convai_llm_service_ttfb`), median and worst, in ms. */
+  llmTtfbMedianMs: z.number().optional(),
+  llmTtfbMaxMs: z.number().optional(),
+
+  /**
+   * Tool calls the agent made that ran outside ElevenLabs (webhook and client
+   * tools). ElevenLabs' own system events, such as a contextual update, are
+   * not counted: they cost the caller no wait.
+   */
+  toolCalls: z.number().optional(),
+  /** Tool round-trip (`tool_latency_secs`), median and worst, in ms, over `toolCalls`. */
+  toolLatencyMedianMs: z.number().optional(),
+  toolLatencyMaxMs: z.number().optional(),
+});
+export type CallVoiceMetrics = z.infer<typeof callVoiceMetricsSchema>;
 
 export const callLogSchema = logBaseSchema.extend({
   type: z.literal("call"),
@@ -284,6 +358,10 @@ export const callLogSchema = logBaseSchema.extend({
      * afterwards, over calls that have already happened.
      */
     usage: callUsageSchema.optional(),
+    // See callVoiceMetricsSchema. ElevenLabs calls only. Written with update()
+    // and dotted paths ("data.voiceMetrics"), like `timings`: the call log has
+    // several writers and a set({merge:true}) of a nested object is unsafe.
+    voiceMetrics: callVoiceMetricsSchema.optional(),
     summary: z.string().optional(),
     // True once the call's turns are written as user_message /
     // assistant_message logs in the session (each carrying `voice.callLogId`).

@@ -6056,6 +6056,7 @@ export declare const logSchemas: {
                     inputCachedTokens: z.ZodOptional<z.ZodNumber>;
                     inputCachedTextTokens: z.ZodOptional<z.ZodNumber>;
                     inputCachedAudioTokens: z.ZodOptional<z.ZodNumber>;
+                    inputCacheWriteTextTokens: z.ZodOptional<z.ZodNumber>;
                     outputTextTokens: z.ZodOptional<z.ZodNumber>;
                     outputAudioTokens: z.ZodOptional<z.ZodNumber>;
                 }, "strip", z.ZodTypeAny, {
@@ -6066,6 +6067,7 @@ export declare const logSchemas: {
                     inputCachedTokens?: number | undefined;
                     inputCachedTextTokens?: number | undefined;
                     inputCachedAudioTokens?: number | undefined;
+                    inputCacheWriteTextTokens?: number | undefined;
                     outputTextTokens?: number | undefined;
                     outputAudioTokens?: number | undefined;
                 }, {
@@ -6076,11 +6078,13 @@ export declare const logSchemas: {
                     inputCachedTokens?: number | undefined;
                     inputCachedTextTokens?: number | undefined;
                     inputCachedAudioTokens?: number | undefined;
+                    inputCacheWriteTextTokens?: number | undefined;
                     outputTextTokens?: number | undefined;
                     outputAudioTokens?: number | undefined;
                 }>, "many">;
                 costUsd: z.ZodOptional<z.ZodNumber>;
                 ratesVersion: z.ZodOptional<z.ZodString>;
+                credits: z.ZodOptional<z.ZodNumber>;
             }, "strip", z.ZodTypeAny, {
                 models: {
                     provider: string;
@@ -6090,11 +6094,13 @@ export declare const logSchemas: {
                     inputCachedTokens?: number | undefined;
                     inputCachedTextTokens?: number | undefined;
                     inputCachedAudioTokens?: number | undefined;
+                    inputCacheWriteTextTokens?: number | undefined;
                     outputTextTokens?: number | undefined;
                     outputAudioTokens?: number | undefined;
                 }[];
                 costUsd?: number | undefined;
                 ratesVersion?: string | undefined;
+                credits?: number | undefined;
             }, {
                 models: {
                     provider: string;
@@ -6104,11 +6110,56 @@ export declare const logSchemas: {
                     inputCachedTokens?: number | undefined;
                     inputCachedTextTokens?: number | undefined;
                     inputCachedAudioTokens?: number | undefined;
+                    inputCacheWriteTextTokens?: number | undefined;
                     outputTextTokens?: number | undefined;
                     outputAudioTokens?: number | undefined;
                 }[];
                 costUsd?: number | undefined;
                 ratesVersion?: string | undefined;
+                credits?: number | undefined;
+            }>>;
+            voiceMetrics: z.ZodOptional<z.ZodObject<{
+                models: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                agentVersionId: z.ZodOptional<z.ZodString>;
+                durationSecs: z.ZodOptional<z.ZodNumber>;
+                terminationReason: z.ZodOptional<z.ZodString>;
+                respondedTurns: z.ZodOptional<z.ZodNumber>;
+                responseLatencyMedianMs: z.ZodOptional<z.ZodNumber>;
+                responseLatencyMaxMs: z.ZodOptional<z.ZodNumber>;
+                llmTurns: z.ZodOptional<z.ZodNumber>;
+                llmTtfbMedianMs: z.ZodOptional<z.ZodNumber>;
+                llmTtfbMaxMs: z.ZodOptional<z.ZodNumber>;
+                toolCalls: z.ZodOptional<z.ZodNumber>;
+                toolLatencyMedianMs: z.ZodOptional<z.ZodNumber>;
+                toolLatencyMaxMs: z.ZodOptional<z.ZodNumber>;
+            }, "strip", z.ZodTypeAny, {
+                models?: string[] | undefined;
+                agentVersionId?: string | undefined;
+                durationSecs?: number | undefined;
+                terminationReason?: string | undefined;
+                respondedTurns?: number | undefined;
+                responseLatencyMedianMs?: number | undefined;
+                responseLatencyMaxMs?: number | undefined;
+                llmTurns?: number | undefined;
+                llmTtfbMedianMs?: number | undefined;
+                llmTtfbMaxMs?: number | undefined;
+                toolCalls?: number | undefined;
+                toolLatencyMedianMs?: number | undefined;
+                toolLatencyMaxMs?: number | undefined;
+            }, {
+                models?: string[] | undefined;
+                agentVersionId?: string | undefined;
+                durationSecs?: number | undefined;
+                terminationReason?: string | undefined;
+                respondedTurns?: number | undefined;
+                responseLatencyMedianMs?: number | undefined;
+                responseLatencyMaxMs?: number | undefined;
+                llmTurns?: number | undefined;
+                llmTtfbMedianMs?: number | undefined;
+                llmTtfbMaxMs?: number | undefined;
+                toolCalls?: number | undefined;
+                toolLatencyMedianMs?: number | undefined;
+                toolLatencyMaxMs?: number | undefined;
             }>>;
             summary: z.ZodOptional<z.ZodString>;
             transcriptInSession: z.ZodOptional<z.ZodBoolean>;
@@ -6800,11 +6851,28 @@ export declare const logSchemas: {
                     inputCachedTokens?: number | undefined;
                     inputCachedTextTokens?: number | undefined;
                     inputCachedAudioTokens?: number | undefined;
+                    inputCacheWriteTextTokens?: number | undefined;
                     outputTextTokens?: number | undefined;
                     outputAudioTokens?: number | undefined;
                 }[];
                 costUsd?: number | undefined;
                 ratesVersion?: string | undefined;
+                credits?: number | undefined;
+            } | undefined;
+            voiceMetrics?: {
+                models?: string[] | undefined;
+                agentVersionId?: string | undefined;
+                durationSecs?: number | undefined;
+                terminationReason?: string | undefined;
+                respondedTurns?: number | undefined;
+                responseLatencyMedianMs?: number | undefined;
+                responseLatencyMaxMs?: number | undefined;
+                llmTurns?: number | undefined;
+                llmTtfbMedianMs?: number | undefined;
+                llmTtfbMaxMs?: number | undefined;
+                toolCalls?: number | undefined;
+                toolLatencyMedianMs?: number | undefined;
+                toolLatencyMaxMs?: number | undefined;
             } | undefined;
             summary?: string | undefined;
             transcriptInSession?: boolean | undefined;
@@ -6950,11 +7018,28 @@ export declare const logSchemas: {
                     inputCachedTokens?: number | undefined;
                     inputCachedTextTokens?: number | undefined;
                     inputCachedAudioTokens?: number | undefined;
+                    inputCacheWriteTextTokens?: number | undefined;
                     outputTextTokens?: number | undefined;
                     outputAudioTokens?: number | undefined;
                 }[];
                 costUsd?: number | undefined;
                 ratesVersion?: string | undefined;
+                credits?: number | undefined;
+            } | undefined;
+            voiceMetrics?: {
+                models?: string[] | undefined;
+                agentVersionId?: string | undefined;
+                durationSecs?: number | undefined;
+                terminationReason?: string | undefined;
+                respondedTurns?: number | undefined;
+                responseLatencyMedianMs?: number | undefined;
+                responseLatencyMaxMs?: number | undefined;
+                llmTurns?: number | undefined;
+                llmTtfbMedianMs?: number | undefined;
+                llmTtfbMaxMs?: number | undefined;
+                toolCalls?: number | undefined;
+                toolLatencyMedianMs?: number | undefined;
+                toolLatencyMaxMs?: number | undefined;
             } | undefined;
             summary?: string | undefined;
             transcriptInSession?: boolean | undefined;
@@ -7644,11 +7729,28 @@ export declare const logSchemas: {
                     inputCachedTokens?: number | undefined;
                     inputCachedTextTokens?: number | undefined;
                     inputCachedAudioTokens?: number | undefined;
+                    inputCacheWriteTextTokens?: number | undefined;
                     outputTextTokens?: number | undefined;
                     outputAudioTokens?: number | undefined;
                 }[];
                 costUsd?: number | undefined;
                 ratesVersion?: string | undefined;
+                credits?: number | undefined;
+            } | undefined;
+            voiceMetrics?: {
+                models?: string[] | undefined;
+                agentVersionId?: string | undefined;
+                durationSecs?: number | undefined;
+                terminationReason?: string | undefined;
+                respondedTurns?: number | undefined;
+                responseLatencyMedianMs?: number | undefined;
+                responseLatencyMaxMs?: number | undefined;
+                llmTurns?: number | undefined;
+                llmTtfbMedianMs?: number | undefined;
+                llmTtfbMaxMs?: number | undefined;
+                toolCalls?: number | undefined;
+                toolLatencyMedianMs?: number | undefined;
+                toolLatencyMaxMs?: number | undefined;
             } | undefined;
             summary?: string | undefined;
             transcriptInSession?: boolean | undefined;
@@ -7809,11 +7911,28 @@ export declare const logSchemas: {
                     inputCachedTokens?: number | undefined;
                     inputCachedTextTokens?: number | undefined;
                     inputCachedAudioTokens?: number | undefined;
+                    inputCacheWriteTextTokens?: number | undefined;
                     outputTextTokens?: number | undefined;
                     outputAudioTokens?: number | undefined;
                 }[];
                 costUsd?: number | undefined;
                 ratesVersion?: string | undefined;
+                credits?: number | undefined;
+            } | undefined;
+            voiceMetrics?: {
+                models?: string[] | undefined;
+                agentVersionId?: string | undefined;
+                durationSecs?: number | undefined;
+                terminationReason?: string | undefined;
+                respondedTurns?: number | undefined;
+                responseLatencyMedianMs?: number | undefined;
+                responseLatencyMaxMs?: number | undefined;
+                llmTurns?: number | undefined;
+                llmTtfbMedianMs?: number | undefined;
+                llmTtfbMaxMs?: number | undefined;
+                toolCalls?: number | undefined;
+                toolLatencyMedianMs?: number | undefined;
+                toolLatencyMaxMs?: number | undefined;
             } | undefined;
             summary?: string | undefined;
             transcriptInSession?: boolean | undefined;
@@ -43876,6 +43995,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 inputCachedTokens: z.ZodOptional<z.ZodNumber>;
                 inputCachedTextTokens: z.ZodOptional<z.ZodNumber>;
                 inputCachedAudioTokens: z.ZodOptional<z.ZodNumber>;
+                inputCacheWriteTextTokens: z.ZodOptional<z.ZodNumber>;
                 outputTextTokens: z.ZodOptional<z.ZodNumber>;
                 outputAudioTokens: z.ZodOptional<z.ZodNumber>;
             }, "strip", z.ZodTypeAny, {
@@ -43886,6 +44006,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 inputCachedTokens?: number | undefined;
                 inputCachedTextTokens?: number | undefined;
                 inputCachedAudioTokens?: number | undefined;
+                inputCacheWriteTextTokens?: number | undefined;
                 outputTextTokens?: number | undefined;
                 outputAudioTokens?: number | undefined;
             }, {
@@ -43896,11 +44017,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 inputCachedTokens?: number | undefined;
                 inputCachedTextTokens?: number | undefined;
                 inputCachedAudioTokens?: number | undefined;
+                inputCacheWriteTextTokens?: number | undefined;
                 outputTextTokens?: number | undefined;
                 outputAudioTokens?: number | undefined;
             }>, "many">;
             costUsd: z.ZodOptional<z.ZodNumber>;
             ratesVersion: z.ZodOptional<z.ZodString>;
+            credits: z.ZodOptional<z.ZodNumber>;
         }, "strip", z.ZodTypeAny, {
             models: {
                 provider: string;
@@ -43910,11 +44033,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 inputCachedTokens?: number | undefined;
                 inputCachedTextTokens?: number | undefined;
                 inputCachedAudioTokens?: number | undefined;
+                inputCacheWriteTextTokens?: number | undefined;
                 outputTextTokens?: number | undefined;
                 outputAudioTokens?: number | undefined;
             }[];
             costUsd?: number | undefined;
             ratesVersion?: string | undefined;
+            credits?: number | undefined;
         }, {
             models: {
                 provider: string;
@@ -43924,11 +44049,56 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 inputCachedTokens?: number | undefined;
                 inputCachedTextTokens?: number | undefined;
                 inputCachedAudioTokens?: number | undefined;
+                inputCacheWriteTextTokens?: number | undefined;
                 outputTextTokens?: number | undefined;
                 outputAudioTokens?: number | undefined;
             }[];
             costUsd?: number | undefined;
             ratesVersion?: string | undefined;
+            credits?: number | undefined;
+        }>>;
+        voiceMetrics: z.ZodOptional<z.ZodObject<{
+            models: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            agentVersionId: z.ZodOptional<z.ZodString>;
+            durationSecs: z.ZodOptional<z.ZodNumber>;
+            terminationReason: z.ZodOptional<z.ZodString>;
+            respondedTurns: z.ZodOptional<z.ZodNumber>;
+            responseLatencyMedianMs: z.ZodOptional<z.ZodNumber>;
+            responseLatencyMaxMs: z.ZodOptional<z.ZodNumber>;
+            llmTurns: z.ZodOptional<z.ZodNumber>;
+            llmTtfbMedianMs: z.ZodOptional<z.ZodNumber>;
+            llmTtfbMaxMs: z.ZodOptional<z.ZodNumber>;
+            toolCalls: z.ZodOptional<z.ZodNumber>;
+            toolLatencyMedianMs: z.ZodOptional<z.ZodNumber>;
+            toolLatencyMaxMs: z.ZodOptional<z.ZodNumber>;
+        }, "strip", z.ZodTypeAny, {
+            models?: string[] | undefined;
+            agentVersionId?: string | undefined;
+            durationSecs?: number | undefined;
+            terminationReason?: string | undefined;
+            respondedTurns?: number | undefined;
+            responseLatencyMedianMs?: number | undefined;
+            responseLatencyMaxMs?: number | undefined;
+            llmTurns?: number | undefined;
+            llmTtfbMedianMs?: number | undefined;
+            llmTtfbMaxMs?: number | undefined;
+            toolCalls?: number | undefined;
+            toolLatencyMedianMs?: number | undefined;
+            toolLatencyMaxMs?: number | undefined;
+        }, {
+            models?: string[] | undefined;
+            agentVersionId?: string | undefined;
+            durationSecs?: number | undefined;
+            terminationReason?: string | undefined;
+            respondedTurns?: number | undefined;
+            responseLatencyMedianMs?: number | undefined;
+            responseLatencyMaxMs?: number | undefined;
+            llmTurns?: number | undefined;
+            llmTtfbMedianMs?: number | undefined;
+            llmTtfbMaxMs?: number | undefined;
+            toolCalls?: number | undefined;
+            toolLatencyMedianMs?: number | undefined;
+            toolLatencyMaxMs?: number | undefined;
         }>>;
         summary: z.ZodOptional<z.ZodString>;
         transcriptInSession: z.ZodOptional<z.ZodBoolean>;
@@ -44620,11 +44790,28 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 inputCachedTokens?: number | undefined;
                 inputCachedTextTokens?: number | undefined;
                 inputCachedAudioTokens?: number | undefined;
+                inputCacheWriteTextTokens?: number | undefined;
                 outputTextTokens?: number | undefined;
                 outputAudioTokens?: number | undefined;
             }[];
             costUsd?: number | undefined;
             ratesVersion?: string | undefined;
+            credits?: number | undefined;
+        } | undefined;
+        voiceMetrics?: {
+            models?: string[] | undefined;
+            agentVersionId?: string | undefined;
+            durationSecs?: number | undefined;
+            terminationReason?: string | undefined;
+            respondedTurns?: number | undefined;
+            responseLatencyMedianMs?: number | undefined;
+            responseLatencyMaxMs?: number | undefined;
+            llmTurns?: number | undefined;
+            llmTtfbMedianMs?: number | undefined;
+            llmTtfbMaxMs?: number | undefined;
+            toolCalls?: number | undefined;
+            toolLatencyMedianMs?: number | undefined;
+            toolLatencyMaxMs?: number | undefined;
         } | undefined;
         summary?: string | undefined;
         transcriptInSession?: boolean | undefined;
@@ -44770,11 +44957,28 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 inputCachedTokens?: number | undefined;
                 inputCachedTextTokens?: number | undefined;
                 inputCachedAudioTokens?: number | undefined;
+                inputCacheWriteTextTokens?: number | undefined;
                 outputTextTokens?: number | undefined;
                 outputAudioTokens?: number | undefined;
             }[];
             costUsd?: number | undefined;
             ratesVersion?: string | undefined;
+            credits?: number | undefined;
+        } | undefined;
+        voiceMetrics?: {
+            models?: string[] | undefined;
+            agentVersionId?: string | undefined;
+            durationSecs?: number | undefined;
+            terminationReason?: string | undefined;
+            respondedTurns?: number | undefined;
+            responseLatencyMedianMs?: number | undefined;
+            responseLatencyMaxMs?: number | undefined;
+            llmTurns?: number | undefined;
+            llmTtfbMedianMs?: number | undefined;
+            llmTtfbMaxMs?: number | undefined;
+            toolCalls?: number | undefined;
+            toolLatencyMedianMs?: number | undefined;
+            toolLatencyMaxMs?: number | undefined;
         } | undefined;
         summary?: string | undefined;
         transcriptInSession?: boolean | undefined;
@@ -45464,11 +45668,28 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 inputCachedTokens?: number | undefined;
                 inputCachedTextTokens?: number | undefined;
                 inputCachedAudioTokens?: number | undefined;
+                inputCacheWriteTextTokens?: number | undefined;
                 outputTextTokens?: number | undefined;
                 outputAudioTokens?: number | undefined;
             }[];
             costUsd?: number | undefined;
             ratesVersion?: string | undefined;
+            credits?: number | undefined;
+        } | undefined;
+        voiceMetrics?: {
+            models?: string[] | undefined;
+            agentVersionId?: string | undefined;
+            durationSecs?: number | undefined;
+            terminationReason?: string | undefined;
+            respondedTurns?: number | undefined;
+            responseLatencyMedianMs?: number | undefined;
+            responseLatencyMaxMs?: number | undefined;
+            llmTurns?: number | undefined;
+            llmTtfbMedianMs?: number | undefined;
+            llmTtfbMaxMs?: number | undefined;
+            toolCalls?: number | undefined;
+            toolLatencyMedianMs?: number | undefined;
+            toolLatencyMaxMs?: number | undefined;
         } | undefined;
         summary?: string | undefined;
         transcriptInSession?: boolean | undefined;
@@ -45629,11 +45850,28 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 inputCachedTokens?: number | undefined;
                 inputCachedTextTokens?: number | undefined;
                 inputCachedAudioTokens?: number | undefined;
+                inputCacheWriteTextTokens?: number | undefined;
                 outputTextTokens?: number | undefined;
                 outputAudioTokens?: number | undefined;
             }[];
             costUsd?: number | undefined;
             ratesVersion?: string | undefined;
+            credits?: number | undefined;
+        } | undefined;
+        voiceMetrics?: {
+            models?: string[] | undefined;
+            agentVersionId?: string | undefined;
+            durationSecs?: number | undefined;
+            terminationReason?: string | undefined;
+            respondedTurns?: number | undefined;
+            responseLatencyMedianMs?: number | undefined;
+            responseLatencyMaxMs?: number | undefined;
+            llmTurns?: number | undefined;
+            llmTtfbMedianMs?: number | undefined;
+            llmTtfbMaxMs?: number | undefined;
+            toolCalls?: number | undefined;
+            toolLatencyMedianMs?: number | undefined;
+            toolLatencyMaxMs?: number | undefined;
         } | undefined;
         summary?: string | undefined;
         transcriptInSession?: boolean | undefined;
