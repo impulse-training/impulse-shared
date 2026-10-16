@@ -257,8 +257,12 @@ export const callVoiceMetricsSchema = z.object({
    */
   respondedTurns: z.number().optional(),
   /**
-   * THE number the caller feels: from the end of their speech to the agent's
-   * first audio (`convai_ttf_audio_since_silence`), median and worst, in ms.
+   * The agent's delay in replying: from the agent taking its turn to its first
+   * audio (`convai_ttf_audio_since_silence` minus
+   * `convai_turn_silence_before_initiation`), median and worst, in ms. The
+   * wait for the caller to finish is left out, so a mid-thought pause is not
+   * counted as the agent's delay (2026-10-16: a 13.8s "response" was a 12.6s
+   * "Uh-"). Calls saved before then include that wait.
    */
   responseLatencyMedianMs: z.number().optional(),
   responseLatencyMaxMs: z.number().optional(),
