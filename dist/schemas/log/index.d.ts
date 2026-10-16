@@ -8027,6 +8027,16 @@ export declare const logSchemas: {
                 }[] | undefined;
             }>;
             toolCallResults: z.ZodArray<z.ZodAny, "many">;
+            webhookTimings: z.ZodOptional<z.ZodObject<{
+                beforeToolMs: z.ZodNumber;
+                toolMs: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                beforeToolMs: number;
+                toolMs: number;
+            }, {
+                beforeToolMs: number;
+                toolMs: number;
+            }>>;
         }, "strip", z.ZodTypeAny, {
             message: {
                 role: "user" | "assistant" | "system" | "tool";
@@ -8043,6 +8053,10 @@ export declare const logSchemas: {
                 }[] | undefined;
             };
             toolCallResults: any[];
+            webhookTimings?: {
+                beforeToolMs: number;
+                toolMs: number;
+            } | undefined;
         }, {
             message: {
                 role: "user" | "assistant" | "system" | "tool";
@@ -8059,6 +8073,10 @@ export declare const logSchemas: {
                 }[] | undefined;
             };
             toolCallResults: any[];
+            webhookTimings?: {
+                beforeToolMs: number;
+                toolMs: number;
+            } | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../../types").Timestamp;
@@ -8085,6 +8103,10 @@ export declare const logSchemas: {
                 }[] | undefined;
             };
             toolCallResults: any[];
+            webhookTimings?: {
+                beforeToolMs: number;
+                toolMs: number;
+            } | undefined;
         };
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
@@ -8116,6 +8138,10 @@ export declare const logSchemas: {
                 }[] | undefined;
             };
             toolCallResults: any[];
+            webhookTimings?: {
+                beforeToolMs: number;
+                toolMs: number;
+            } | undefined;
         };
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
@@ -45965,6 +45991,16 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }[] | undefined;
         }>;
         toolCallResults: z.ZodArray<z.ZodAny, "many">;
+        webhookTimings: z.ZodOptional<z.ZodObject<{
+            beforeToolMs: z.ZodNumber;
+            toolMs: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            beforeToolMs: number;
+            toolMs: number;
+        }, {
+            beforeToolMs: number;
+            toolMs: number;
+        }>>;
     }, "strip", z.ZodTypeAny, {
         message: {
             role: "user" | "assistant" | "system" | "tool";
@@ -45981,6 +46017,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }[] | undefined;
         };
         toolCallResults: any[];
+        webhookTimings?: {
+            beforeToolMs: number;
+            toolMs: number;
+        } | undefined;
     }, {
         message: {
             role: "user" | "assistant" | "system" | "tool";
@@ -45997,6 +46037,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }[] | undefined;
         };
         toolCallResults: any[];
+        webhookTimings?: {
+            beforeToolMs: number;
+            toolMs: number;
+        } | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -46023,6 +46067,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }[] | undefined;
         };
         toolCallResults: any[];
+        webhookTimings?: {
+            beforeToolMs: number;
+            toolMs: number;
+        } | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
@@ -46054,6 +46102,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }[] | undefined;
         };
         toolCallResults: any[];
+        webhookTimings?: {
+            beforeToolMs: number;
+            toolMs: number;
+        } | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
