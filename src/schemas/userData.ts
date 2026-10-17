@@ -202,6 +202,18 @@ export const userDataSchema = z.object({
     })
     .optional(),
 
+  /**
+   * Check-ins the coach sets on its own: the evening check-in after a morning
+   * slip, or one to anchor the rest of a hard day. The coach sets these without
+   * asking, so this is the user's way to say no to all of them. Absent = on.
+   * A check-in the user asks for ("check on me at 3") is always set.
+   */
+  coachCheckIns: z
+    .object({
+      enabled: z.boolean(),
+    })
+    .optional(),
+
   // If true, this user will be added to the tech support group for all new signups
   isImpulseTeam: z.boolean().optional(),
 
