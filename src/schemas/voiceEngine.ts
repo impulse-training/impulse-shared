@@ -4,13 +4,17 @@ import { z } from "zod";
  * Which voice engine runs a call.
  *
  * - `livekit`: a LiveKit room joined by impulse-voice-agent (OpenAI Realtime).
+ *   Retired 2026-10-10; kept so old call logs still parse.
  * - `elevenlabs`: an ElevenLabs Agents conversation, tools reached by webhook.
+ * - `openai`: an OpenAI Realtime session the app connects to directly over
+ *   WebRTC (speech to speech, no LiveKit), with an ephemeral key the server
+ *   mints; the app relays tool calls to the server (2026-10-18).
  *
  * Stamped on every call log (`data.engine`), so the app routes an answered
  * ring or a press from the call itself, and every metric or transcript query
  * can split by engine.
  */
-export const voiceEngineSchema = z.enum(["livekit", "elevenlabs"]);
+export const voiceEngineSchema = z.enum(["livekit", "elevenlabs", "openai"]);
 export type VoiceEngine = z.infer<typeof voiceEngineSchema>;
 
 /**

@@ -342,6 +342,10 @@ export const callLogSchema = logBaseSchema.extend({
     livekitRoomName: z.string().optional(),
     elevenlabsAgentId: z.string().optional(),
     elevenlabsConversationId: z.string().optional(),
+    /** The OpenAI Realtime model a direct call ran on (engine "openai"). */
+    openaiRealtimeModel: z.string().optional(),
+    /** OpenAI's id for the call, from the SDP answer's Location header. */
+    openaiCallId: z.string().optional(),
     /**
      * When the conversation's final transcript was reconciled into the session
      * (the post-call webhook or the app's finishCall, whichever came first).
