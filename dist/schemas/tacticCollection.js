@@ -4,6 +4,7 @@ exports.tacticCollectionSchema = exports.tacticCollectionSourceSchema = void 0;
 const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
 const timestampSchema_1 = require("../utils/timestampSchema");
+const behavior_1 = require("./behavior");
 /**
  * Where a generated collection came from. The Tactics screen builds
  * collections from evidence (a feeling's mix, "what's working") and the user
@@ -15,6 +16,18 @@ exports.tacticCollectionSourceSchema = zod_1.z.discriminatedUnion("kind", [
     zod_1.z.object({ kind: zod_1.z.literal("feeling"), optionId: zod_1.z.string() }),
     // "What's working": tactics ranked by resisted outcomes across contexts
     zod_1.z.object({ kind: zod_1.z.literal("working") }),
+    // "What helps you relax": the user's own answers to a benefit question,
+    // gathered by the build_collection task when a feeling keeps recurring in
+    // their impulse moments. `feelingOptionId` (+ its tag group) is the state
+    // the collection answers: an impulse moment tagged with it is offered the
+    // collection first (matchPlansForSession).
+    zod_1.z.object({
+        kind: zod_1.z.literal("benefit"),
+        need: behavior_1.benefitNeedSchema,
+        question: zod_1.z.string().min(1),
+        feelingGroupId: zod_1.z.string().optional(),
+        feelingOptionId: zod_1.z.string().optional(),
+    }),
 ]);
 exports.tacticCollectionSchema = zod_1.z.object({
     id: zod_1.z.string().optional(),
@@ -34,6 +47,12 @@ exports.tacticCollectionSchema = zod_1.z.object({
     // tacticCollectionSourceSchema). Absent on hand-made and seeded collections.
     source: exports.tacticCollectionSourceSchema.optional(),
     ordinal: zod_1.z.number().optional(),
+    // Benefit collections only: the catalog tactics added AFTER the user's own
+    // ideas were explored, so "yours" and "ideas to add" stay distinguishable.
+    // Every other member of tacticIds came from the user.
+    toppedUpTacticIds: zod_1.z.array(zod_1.z.string()).optional(),
+    // Benefit collections only: when the top-up ran (it runs once per collection).
+    toppedUpAt: timestampSchema_1.timestampSchema.optional(),
     createdAt: timestampSchema_1.timestampSchema.optional(),
     updatedAt: timestampSchema_1.timestampSchema.optional(),
 });

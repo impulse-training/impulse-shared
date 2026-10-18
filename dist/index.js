@@ -74,6 +74,7 @@ __exportStar(require("./utils/tacticScoring"), exports);
 __exportStar(require("./utils/planScoring"), exports);
 __exportStar(require("./utils/tacticOrdering"), exports);
 __exportStar(require("./utils/tacticPairing"), exports);
+__exportStar(require("./utils/benefitCollections"), exports);
 __exportStar(require("./utils/resolveAgreement"), exports);
 __exportStar(require("./utils/behaviorColors"), exports);
 __exportStar(require("./utils/llmPricing"), exports);

@@ -20,6 +20,24 @@ export declare const tacticCollectionSourceSchema: z.ZodDiscriminatedUnion<"kind
     kind: "working";
 }, {
     kind: "working";
+}>, z.ZodObject<{
+    kind: z.ZodLiteral<"benefit">;
+    need: z.ZodEnum<["relaxation", "stimulation", "escape", "connection", "control", "pleasure", "achievement", "boredom_relief", "comfort", "focus"]>;
+    question: z.ZodString;
+    feelingGroupId: z.ZodOptional<z.ZodString>;
+    feelingOptionId: z.ZodOptional<z.ZodString>;
+}, "strip", z.ZodTypeAny, {
+    need: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus";
+    question: string;
+    kind: "benefit";
+    feelingGroupId?: string | undefined;
+    feelingOptionId?: string | undefined;
+}, {
+    need: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus";
+    question: string;
+    kind: "benefit";
+    feelingGroupId?: string | undefined;
+    feelingOptionId?: string | undefined;
 }>]>;
 export type TacticCollectionSource = z.infer<typeof tacticCollectionSourceSchema>;
 export declare const tacticCollectionSchema: z.ZodObject<{
@@ -46,8 +64,28 @@ export declare const tacticCollectionSchema: z.ZodObject<{
         kind: "working";
     }, {
         kind: "working";
+    }>, z.ZodObject<{
+        kind: z.ZodLiteral<"benefit">;
+        need: z.ZodEnum<["relaxation", "stimulation", "escape", "connection", "control", "pleasure", "achievement", "boredom_relief", "comfort", "focus"]>;
+        question: z.ZodString;
+        feelingGroupId: z.ZodOptional<z.ZodString>;
+        feelingOptionId: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        need: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus";
+        question: string;
+        kind: "benefit";
+        feelingGroupId?: string | undefined;
+        feelingOptionId?: string | undefined;
+    }, {
+        need: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus";
+        question: string;
+        kind: "benefit";
+        feelingGroupId?: string | undefined;
+        feelingOptionId?: string | undefined;
     }>]>>;
     ordinal: z.ZodOptional<z.ZodNumber>;
+    toppedUpTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    toppedUpAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
@@ -63,11 +101,19 @@ export declare const tacticCollectionSchema: z.ZodObject<{
         optionId: string;
     } | {
         kind: "working";
+    } | {
+        need: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus";
+        question: string;
+        kind: "benefit";
+        feelingGroupId?: string | undefined;
+        feelingOptionId?: string | undefined;
     } | undefined;
     createdByUid?: string | undefined;
     emoji?: string | undefined;
     items?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
     userHiddenTactics?: Record<string, string[]> | undefined;
+    toppedUpTacticIds?: string[] | undefined;
+    toppedUpAt?: import("../types").Timestamp | undefined;
 }, {
     name: string;
     id?: string | undefined;
@@ -80,11 +126,19 @@ export declare const tacticCollectionSchema: z.ZodObject<{
         optionId: string;
     } | {
         kind: "working";
+    } | {
+        need: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus";
+        question: string;
+        kind: "benefit";
+        feelingGroupId?: string | undefined;
+        feelingOptionId?: string | undefined;
     } | undefined;
     createdByUid?: string | undefined;
     tacticIds?: string[] | undefined;
     emoji?: string | undefined;
     items?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
     userHiddenTactics?: Record<string, string[]> | undefined;
+    toppedUpTacticIds?: string[] | undefined;
+    toppedUpAt?: import("../types").Timestamp | undefined;
 }>;
 export type TacticCollection = z.infer<typeof tacticCollectionSchema>;
