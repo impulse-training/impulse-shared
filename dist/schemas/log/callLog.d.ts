@@ -393,8 +393,12 @@ export declare const callVoiceMetricsSchema: z.ZodObject<{
      */
     respondedTurns: z.ZodOptional<z.ZodNumber>;
     /**
-     * THE number the caller feels: from the end of their speech to the agent's
-     * first audio (`convai_ttf_audio_since_silence`), median and worst, in ms.
+     * The agent's delay in replying: from the agent taking its turn to its first
+     * audio (`convai_ttf_audio_since_silence` minus
+     * `convai_turn_silence_before_initiation`), median and worst, in ms. The
+     * wait for the caller to finish is left out, so a mid-thought pause is not
+     * counted as the agent's delay (2026-10-16: a 13.8s "response" was a 12.6s
+     * "Uh-"). Calls saved before then include that wait.
      */
     responseLatencyMedianMs: z.ZodOptional<z.ZodNumber>;
     responseLatencyMaxMs: z.ZodOptional<z.ZodNumber>;
@@ -5993,11 +5997,15 @@ export declare const callLogSchema: z.ZodObject<{
          * answered ring from it. Absent on calls from before the switch; read it
          * through `callLogEngine`, which recognises those by their vendor fields.
          */
-        engine: z.ZodOptional<z.ZodEnum<["livekit", "elevenlabs"]>>;
+        engine: z.ZodOptional<z.ZodEnum<["livekit", "elevenlabs", "openai"]>>;
         livekitSessionId: z.ZodOptional<z.ZodString>;
         livekitRoomName: z.ZodOptional<z.ZodString>;
         elevenlabsAgentId: z.ZodOptional<z.ZodString>;
         elevenlabsConversationId: z.ZodOptional<z.ZodString>;
+        /** The OpenAI Realtime model a direct call ran on (engine "openai"). */
+        openaiRealtimeModel: z.ZodOptional<z.ZodString>;
+        /** OpenAI's id for the call, from the SDP answer's Location header. */
+        openaiCallId: z.ZodOptional<z.ZodString>;
         /**
          * When the conversation's final transcript was reconciled into the session
          * (the post-call webhook or the app's finishCall, whichever came first).
@@ -6134,8 +6142,12 @@ export declare const callLogSchema: z.ZodObject<{
              */
             respondedTurns: z.ZodOptional<z.ZodNumber>;
             /**
-             * THE number the caller feels: from the end of their speech to the agent's
-             * first audio (`convai_ttf_audio_since_silence`), median and worst, in ms.
+             * The agent's delay in replying: from the agent taking its turn to its first
+             * audio (`convai_ttf_audio_since_silence` minus
+             * `convai_turn_silence_before_initiation`), median and worst, in ms. The
+             * wait for the caller to finish is left out, so a mid-thought pause is not
+             * counted as the agent's delay (2026-10-16: a 13.8s "response" was a 12.6s
+             * "Uh-"). Calls saved before then include that wait.
              */
             responseLatencyMedianMs: z.ZodOptional<z.ZodNumber>;
             responseLatencyMaxMs: z.ZodOptional<z.ZodNumber>;
@@ -6210,7 +6222,7 @@ export declare const callLogSchema: z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         endedAt?: import("../../types").Timestamp | undefined;
         answeredAt?: import("../../types").Timestamp | undefined;
-        engine?: "livekit" | "elevenlabs" | undefined;
+        engine?: "livekit" | "elevenlabs" | "openai" | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -6865,6 +6877,8 @@ export declare const callLogSchema: z.ZodObject<{
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
+        openaiRealtimeModel?: string | undefined;
+        openaiCallId?: string | undefined;
         elevenlabsTranscriptSavedAt?: import("../../types").Timestamp | undefined;
         token?: string | undefined;
         usage?: {
@@ -6911,7 +6925,7 @@ export declare const callLogSchema: z.ZodObject<{
     }, {
         endedAt?: import("../../types").Timestamp | undefined;
         answeredAt?: import("../../types").Timestamp | undefined;
-        engine?: "livekit" | "elevenlabs" | undefined;
+        engine?: "livekit" | "elevenlabs" | "openai" | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -7032,6 +7046,8 @@ export declare const callLogSchema: z.ZodObject<{
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
+        openaiRealtimeModel?: string | undefined;
+        openaiCallId?: string | undefined;
         elevenlabsTranscriptSavedAt?: import("../../types").Timestamp | undefined;
         token?: string | undefined;
         usage?: {
@@ -7088,7 +7104,7 @@ export declare const callLogSchema: z.ZodObject<{
     data: {
         endedAt?: import("../../types").Timestamp | undefined;
         answeredAt?: import("../../types").Timestamp | undefined;
-        engine?: "livekit" | "elevenlabs" | undefined;
+        engine?: "livekit" | "elevenlabs" | "openai" | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -7743,6 +7759,8 @@ export declare const callLogSchema: z.ZodObject<{
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
+        openaiRealtimeModel?: string | undefined;
+        openaiCallId?: string | undefined;
         elevenlabsTranscriptSavedAt?: import("../../types").Timestamp | undefined;
         token?: string | undefined;
         usage?: {
@@ -7804,7 +7822,7 @@ export declare const callLogSchema: z.ZodObject<{
     data: {
         endedAt?: import("../../types").Timestamp | undefined;
         answeredAt?: import("../../types").Timestamp | undefined;
-        engine?: "livekit" | "elevenlabs" | undefined;
+        engine?: "livekit" | "elevenlabs" | "openai" | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -7925,6 +7943,8 @@ export declare const callLogSchema: z.ZodObject<{
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
+        openaiRealtimeModel?: string | undefined;
+        openaiCallId?: string | undefined;
         elevenlabsTranscriptSavedAt?: import("../../types").Timestamp | undefined;
         token?: string | undefined;
         usage?: {

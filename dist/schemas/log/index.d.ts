@@ -6040,11 +6040,13 @@ export declare const logSchemas: {
             answered: z.ZodOptional<z.ZodBoolean>;
             answeredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             declinedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-            engine: z.ZodOptional<z.ZodEnum<["livekit", "elevenlabs"]>>;
+            engine: z.ZodOptional<z.ZodEnum<["livekit", "elevenlabs", "openai"]>>;
             livekitSessionId: z.ZodOptional<z.ZodString>;
             livekitRoomName: z.ZodOptional<z.ZodString>;
             elevenlabsAgentId: z.ZodOptional<z.ZodString>;
             elevenlabsConversationId: z.ZodOptional<z.ZodString>;
+            openaiRealtimeModel: z.ZodOptional<z.ZodString>;
+            openaiCallId: z.ZodOptional<z.ZodString>;
             elevenlabsTranscriptSavedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             token: z.ZodOptional<z.ZodString>;
             usage: z.ZodOptional<z.ZodObject<{
@@ -6185,7 +6187,7 @@ export declare const logSchemas: {
         }, "strip", z.ZodTypeAny, {
             endedAt?: import("../../types").Timestamp | undefined;
             answeredAt?: import("../../types").Timestamp | undefined;
-            engine?: "livekit" | "elevenlabs" | undefined;
+            engine?: "livekit" | "elevenlabs" | "openai" | undefined;
             tactic?: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
@@ -6840,6 +6842,8 @@ export declare const logSchemas: {
             livekitRoomName?: string | undefined;
             elevenlabsAgentId?: string | undefined;
             elevenlabsConversationId?: string | undefined;
+            openaiRealtimeModel?: string | undefined;
+            openaiCallId?: string | undefined;
             elevenlabsTranscriptSavedAt?: import("../../types").Timestamp | undefined;
             token?: string | undefined;
             usage?: {
@@ -6886,7 +6890,7 @@ export declare const logSchemas: {
         }, {
             endedAt?: import("../../types").Timestamp | undefined;
             answeredAt?: import("../../types").Timestamp | undefined;
-            engine?: "livekit" | "elevenlabs" | undefined;
+            engine?: "livekit" | "elevenlabs" | "openai" | undefined;
             tactic?: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
@@ -7007,6 +7011,8 @@ export declare const logSchemas: {
             livekitRoomName?: string | undefined;
             elevenlabsAgentId?: string | undefined;
             elevenlabsConversationId?: string | undefined;
+            openaiRealtimeModel?: string | undefined;
+            openaiCallId?: string | undefined;
             elevenlabsTranscriptSavedAt?: import("../../types").Timestamp | undefined;
             token?: string | undefined;
             usage?: {
@@ -7063,7 +7069,7 @@ export declare const logSchemas: {
         data: {
             endedAt?: import("../../types").Timestamp | undefined;
             answeredAt?: import("../../types").Timestamp | undefined;
-            engine?: "livekit" | "elevenlabs" | undefined;
+            engine?: "livekit" | "elevenlabs" | "openai" | undefined;
             tactic?: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
@@ -7718,6 +7724,8 @@ export declare const logSchemas: {
             livekitRoomName?: string | undefined;
             elevenlabsAgentId?: string | undefined;
             elevenlabsConversationId?: string | undefined;
+            openaiRealtimeModel?: string | undefined;
+            openaiCallId?: string | undefined;
             elevenlabsTranscriptSavedAt?: import("../../types").Timestamp | undefined;
             token?: string | undefined;
             usage?: {
@@ -7779,7 +7787,7 @@ export declare const logSchemas: {
         data: {
             endedAt?: import("../../types").Timestamp | undefined;
             answeredAt?: import("../../types").Timestamp | undefined;
-            engine?: "livekit" | "elevenlabs" | undefined;
+            engine?: "livekit" | "elevenlabs" | "openai" | undefined;
             tactic?: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
@@ -7900,6 +7908,8 @@ export declare const logSchemas: {
             livekitRoomName?: string | undefined;
             elevenlabsAgentId?: string | undefined;
             elevenlabsConversationId?: string | undefined;
+            openaiRealtimeModel?: string | undefined;
+            openaiCallId?: string | undefined;
             elevenlabsTranscriptSavedAt?: import("../../types").Timestamp | undefined;
             token?: string | undefined;
             usage?: {
@@ -27287,6 +27297,16 @@ export declare const logSchemas: {
                     trialReadings: number;
                 }>>;
                 confidence: z.ZodEnum<["cant_tell", "low", "moderate", "high"]>;
+                days: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    dateString: z.ZodString;
+                    outcome: z.ZodEnum<["kept", "broken"]>;
+                }, "strip", z.ZodTypeAny, {
+                    dateString: string;
+                    outcome: "kept" | "broken";
+                }, {
+                    dateString: string;
+                    outcome: "kept" | "broken";
+                }>, "many">>;
                 computedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
             }, "strip", z.ZodTypeAny, {
                 confidence: "low" | "high" | "cant_tell" | "moderate";
@@ -27304,6 +27324,10 @@ export declare const logSchemas: {
                     toDateString: string;
                 };
                 computedAt: import("../../types").Timestamp;
+                days?: {
+                    dateString: string;
+                    outcome: "kept" | "broken";
+                }[] | undefined;
                 outcome?: {
                     metricId: string;
                     baselineMean: number;
@@ -27327,6 +27351,10 @@ export declare const logSchemas: {
                     toDateString: string;
                 };
                 computedAt: import("../../types").Timestamp;
+                days?: {
+                    dateString: string;
+                    outcome: "kept" | "broken";
+                }[] | undefined;
                 outcome?: {
                     metricId: string;
                     baselineMean: number;
@@ -27361,6 +27389,10 @@ export declare const logSchemas: {
                     toDateString: string;
                 };
                 computedAt: import("../../types").Timestamp;
+                days?: {
+                    dateString: string;
+                    outcome: "kept" | "broken";
+                }[] | undefined;
                 outcome?: {
                     metricId: string;
                     baselineMean: number;
@@ -27393,6 +27425,10 @@ export declare const logSchemas: {
                     toDateString: string;
                 };
                 computedAt: import("../../types").Timestamp;
+                days?: {
+                    dateString: string;
+                    outcome: "kept" | "broken";
+                }[] | undefined;
                 outcome?: {
                     metricId: string;
                     baselineMean: number;
@@ -27435,6 +27471,10 @@ export declare const logSchemas: {
                     toDateString: string;
                 };
                 computedAt: import("../../types").Timestamp;
+                days?: {
+                    dateString: string;
+                    outcome: "kept" | "broken";
+                }[] | undefined;
                 outcome?: {
                     metricId: string;
                     baselineMean: number;
@@ -27482,6 +27522,10 @@ export declare const logSchemas: {
                     toDateString: string;
                 };
                 computedAt: import("../../types").Timestamp;
+                days?: {
+                    dateString: string;
+                    outcome: "kept" | "broken";
+                }[] | undefined;
                 outcome?: {
                     metricId: string;
                     baselineMean: number;
@@ -44005,11 +44049,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         answered: z.ZodOptional<z.ZodBoolean>;
         answeredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         declinedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-        engine: z.ZodOptional<z.ZodEnum<["livekit", "elevenlabs"]>>;
+        engine: z.ZodOptional<z.ZodEnum<["livekit", "elevenlabs", "openai"]>>;
         livekitSessionId: z.ZodOptional<z.ZodString>;
         livekitRoomName: z.ZodOptional<z.ZodString>;
         elevenlabsAgentId: z.ZodOptional<z.ZodString>;
         elevenlabsConversationId: z.ZodOptional<z.ZodString>;
+        openaiRealtimeModel: z.ZodOptional<z.ZodString>;
+        openaiCallId: z.ZodOptional<z.ZodString>;
         elevenlabsTranscriptSavedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         token: z.ZodOptional<z.ZodString>;
         usage: z.ZodOptional<z.ZodObject<{
@@ -44150,7 +44196,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         endedAt?: import("../../types").Timestamp | undefined;
         answeredAt?: import("../../types").Timestamp | undefined;
-        engine?: "livekit" | "elevenlabs" | undefined;
+        engine?: "livekit" | "elevenlabs" | "openai" | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -44805,6 +44851,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
+        openaiRealtimeModel?: string | undefined;
+        openaiCallId?: string | undefined;
         elevenlabsTranscriptSavedAt?: import("../../types").Timestamp | undefined;
         token?: string | undefined;
         usage?: {
@@ -44851,7 +44899,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     }, {
         endedAt?: import("../../types").Timestamp | undefined;
         answeredAt?: import("../../types").Timestamp | undefined;
-        engine?: "livekit" | "elevenlabs" | undefined;
+        engine?: "livekit" | "elevenlabs" | "openai" | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -44972,6 +45020,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
+        openaiRealtimeModel?: string | undefined;
+        openaiCallId?: string | undefined;
         elevenlabsTranscriptSavedAt?: import("../../types").Timestamp | undefined;
         token?: string | undefined;
         usage?: {
@@ -45028,7 +45078,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         endedAt?: import("../../types").Timestamp | undefined;
         answeredAt?: import("../../types").Timestamp | undefined;
-        engine?: "livekit" | "elevenlabs" | undefined;
+        engine?: "livekit" | "elevenlabs" | "openai" | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -45683,6 +45733,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
+        openaiRealtimeModel?: string | undefined;
+        openaiCallId?: string | undefined;
         elevenlabsTranscriptSavedAt?: import("../../types").Timestamp | undefined;
         token?: string | undefined;
         usage?: {
@@ -45744,7 +45796,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         endedAt?: import("../../types").Timestamp | undefined;
         answeredAt?: import("../../types").Timestamp | undefined;
-        engine?: "livekit" | "elevenlabs" | undefined;
+        engine?: "livekit" | "elevenlabs" | "openai" | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -45865,6 +45917,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
         elevenlabsConversationId?: string | undefined;
+        openaiRealtimeModel?: string | undefined;
+        openaiCallId?: string | undefined;
         elevenlabsTranscriptSavedAt?: import("../../types").Timestamp | undefined;
         token?: string | undefined;
         usage?: {
@@ -58049,6 +58103,16 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 trialReadings: number;
             }>>;
             confidence: z.ZodEnum<["cant_tell", "low", "moderate", "high"]>;
+            days: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                dateString: z.ZodString;
+                outcome: z.ZodEnum<["kept", "broken"]>;
+            }, "strip", z.ZodTypeAny, {
+                dateString: string;
+                outcome: "kept" | "broken";
+            }, {
+                dateString: string;
+                outcome: "kept" | "broken";
+            }>, "many">>;
             computedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         }, "strip", z.ZodTypeAny, {
             confidence: "low" | "high" | "cant_tell" | "moderate";
@@ -58066,6 +58130,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 toDateString: string;
             };
             computedAt: import("../../types").Timestamp;
+            days?: {
+                dateString: string;
+                outcome: "kept" | "broken";
+            }[] | undefined;
             outcome?: {
                 metricId: string;
                 baselineMean: number;
@@ -58089,6 +58157,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 toDateString: string;
             };
             computedAt: import("../../types").Timestamp;
+            days?: {
+                dateString: string;
+                outcome: "kept" | "broken";
+            }[] | undefined;
             outcome?: {
                 metricId: string;
                 baselineMean: number;
@@ -58123,6 +58195,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 toDateString: string;
             };
             computedAt: import("../../types").Timestamp;
+            days?: {
+                dateString: string;
+                outcome: "kept" | "broken";
+            }[] | undefined;
             outcome?: {
                 metricId: string;
                 baselineMean: number;
@@ -58155,6 +58231,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 toDateString: string;
             };
             computedAt: import("../../types").Timestamp;
+            days?: {
+                dateString: string;
+                outcome: "kept" | "broken";
+            }[] | undefined;
             outcome?: {
                 metricId: string;
                 baselineMean: number;
@@ -58197,6 +58277,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 toDateString: string;
             };
             computedAt: import("../../types").Timestamp;
+            days?: {
+                dateString: string;
+                outcome: "kept" | "broken";
+            }[] | undefined;
             outcome?: {
                 metricId: string;
                 baselineMean: number;
@@ -58244,6 +58328,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 toDateString: string;
             };
             computedAt: import("../../types").Timestamp;
+            days?: {
+                dateString: string;
+                outcome: "kept" | "broken";
+            }[] | undefined;
             outcome?: {
                 metricId: string;
                 baselineMean: number;

@@ -246,8 +246,12 @@ exports.callVoiceMetricsSchema = zod_1.z.object({
      */
     respondedTurns: zod_1.z.number().optional(),
     /**
-     * THE number the caller feels: from the end of their speech to the agent's
-     * first audio (`convai_ttf_audio_since_silence`), median and worst, in ms.
+     * The agent's delay in replying: from the agent taking its turn to its first
+     * audio (`convai_ttf_audio_since_silence` minus
+     * `convai_turn_silence_before_initiation`), median and worst, in ms. The
+     * wait for the caller to finish is left out, so a mid-thought pause is not
+     * counted as the agent's delay (2026-10-16: a 13.8s "response" was a 12.6s
+     * "Uh-"). Calls saved before then include that wait.
      */
     responseLatencyMedianMs: zod_1.z.number().optional(),
     responseLatencyMaxMs: zod_1.z.number().optional(),
@@ -323,6 +327,10 @@ exports.callLogSchema = base_1.logBaseSchema.extend({
         livekitRoomName: zod_1.z.string().optional(),
         elevenlabsAgentId: zod_1.z.string().optional(),
         elevenlabsConversationId: zod_1.z.string().optional(),
+        /** The OpenAI Realtime model a direct call ran on (engine "openai"). */
+        openaiRealtimeModel: zod_1.z.string().optional(),
+        /** OpenAI's id for the call, from the SDP answer's Location header. */
+        openaiCallId: zod_1.z.string().optional(),
         /**
          * When the conversation's final transcript was reconciled into the session
          * (the post-call webhook or the app's finishCall, whichever came first).
