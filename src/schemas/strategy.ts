@@ -367,6 +367,13 @@ export const strategySchema = z.object({
 });
 export type Strategy = z.infer<typeof strategySchema>;
 
+/** One day of an experiment against its lines (see trialDayOutcomes). */
+export const trialDaySchema = z.object({
+  dateString: z.string(),
+  outcome: z.enum(["kept", "broken"]),
+});
+export type TrialDay = z.infer<typeof trialDaySchema>;
+
 /**
  * Baseline vs trial, as computed when the verdict was offered: what the user
  * saw. Per behavior in the strategy's scope, plus its outcome measure.
@@ -392,6 +399,11 @@ export const trialComparisonSchema = z.object({
     })
     .optional(),
   confidence: z.enum(["cant_tell", "low", "moderate", "high"]),
+  /**
+   * The experiment's days against its lines, when it tests any. The outcome
+   * measure is read on the kept days only; behaviors on every day.
+   */
+  days: z.array(trialDaySchema).optional(),
   computedAt: timestampSchema,
 });
 export type TrialComparison = z.infer<typeof trialComparisonSchema>;
@@ -915,3 +927,58 @@ export const trialDayNumber = (t: Pick<TrialClock, "startDateString">, todayDate
 /** From the last day on, the verdict is due: it lands in that evening's recap. */
 export const isTrialDue = (t: TrialClock, todayDateString: string): boolean =>
   todayDateString >= trialEndDateString(t);
+
+// ---------------------------------------------------------------------------
+// Eligible days. An experiment's lines ("no coffee, all day") are what it
+// tests, so only the days they held say anything about it: a coffee day in "a
+// week without coffee" is not a day without coffee, whatever the calendar says.
+
+/** The boundaries an experiment tests: the strategy's accepted lines that came with the trial. */
+export function trialBoundaries(strategy: Pick<Strategy, "items">, trial: Pick<StrategyTrial, "items">) {
+  const ids = new Set(trial.items.map((i) => i.id));
+  return activeBoundaries(strategy).filter((b) => ids.has(b.item.id));
+}
+
+/**
+ * How each day of an experiment went against its lines, start through today:
+ *
+ *   broken  a line was answered broken or partly in a recap, or the behavior
+ *           an all-day line rules out was logged (on a day the line applies)
+ *   kept    a day that's over with neither
+ *
+ * Today is listed only once it's broken; until then it's still open. A line
+ * with a start or end ("until work") can't be read from a log's day, so only
+ * its recap answer counts. Null when the experiment tests no line: every day
+ * of it is a day of the experiment.
+ */
+export function trialDayOutcomes(input: {
+  trial: TrialClock;
+  boundaries: { item: Pick<StrategyItem, "id">; binding: BoundaryBinding }[];
+  days: Pick<StrategyDay, "dateString" | "boundaries">[];
+  /** dateString -> behavior ids with any log that day. */
+  loggedBehaviorIds: Record<string, string[]>;
+  todayDateString: string;
+}): TrialDay[] | null {
+  const { trial, boundaries, todayDateString } = input;
+  if (boundaries.length === 0) return null;
+  const answers = new Map(input.days.map((d) => [d.dateString, d.boundaries]));
+  const end = trialEndDateString(trial) < todayDateString ? trialEndDateString(trial) : todayDateString;
+  const out: TrialDay[] = [];
+  for (let date = trial.startDateString; date <= end; date = addDays(date, 1)) {
+    const weekday = new Date(`${date}T00:00:00Z`).getUTCDay();
+    const answered = answers.get(date) ?? {};
+    const logged = input.loggedBehaviorIds[date] ?? [];
+    const broken = boundaries.some(
+      ({ item, binding }) =>
+        answered[item.id] === "broken" ||
+        answered[item.id] === "partly" ||
+        (!binding.start &&
+          !binding.end &&
+          boundaryAppliesOn(binding, weekday) &&
+          binding.behaviorIds.some((id) => logged.includes(id))),
+    );
+    if (broken) out.push({ dateString: date, outcome: "broken" });
+    else if (date < todayDateString) out.push({ dateString: date, outcome: "kept" });
+  }
+  return out;
+}
