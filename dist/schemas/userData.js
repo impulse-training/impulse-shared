@@ -183,6 +183,17 @@ exports.userDataSchema = zod_1.z.object({
         lastOfferedDateString: zod_1.z.string().optional(),
     })
         .optional(),
+    /**
+     * Check-ins the coach sets on its own: the evening check-in after a morning
+     * slip, or one to anchor the rest of a hard day. The coach sets these without
+     * asking, so this is the user's way to say no to all of them. Absent = on.
+     * A check-in the user asks for ("check on me at 3") is always set.
+     */
+    coachCheckIns: zod_1.z
+        .object({
+        enabled: zod_1.z.boolean(),
+    })
+        .optional(),
     // If true, this user will be added to the tech support group for all new signups
     isImpulseTeam: zod_1.z.boolean().optional(),
     // If true, this user will be auto-added as a default member of new accountability support groups

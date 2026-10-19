@@ -229,6 +229,19 @@ export declare const userDataSchema: z.ZodObject<{
         enabled?: boolean | undefined;
         lastOfferedDateString?: string | undefined;
     }>>;
+    /**
+     * Check-ins the coach sets on its own: the evening check-in after a morning
+     * slip, or one to anchor the rest of a hard day. The coach sets these without
+     * asking, so this is the user's way to say no to all of them. Absent = on.
+     * A check-in the user asks for ("check on me at 3") is always set.
+     */
+    coachCheckIns: z.ZodOptional<z.ZodObject<{
+        enabled: z.ZodBoolean;
+    }, "strip", z.ZodTypeAny, {
+        enabled: boolean;
+    }, {
+        enabled: boolean;
+    }>>;
     isImpulseTeam: z.ZodOptional<z.ZodBoolean>;
     addToAccountabilitySupportGroups: z.ZodOptional<z.ZodBoolean>;
     hasSetupExperiment: z.ZodOptional<z.ZodBoolean>;
@@ -266,17 +279,17 @@ export declare const userDataSchema: z.ZodObject<{
     recoveryKeySaved: z.ZodOptional<z.ZodBoolean>;
     disclaimerAcceptedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     voiceEngineOverrides: z.ZodOptional<z.ZodObject<{
-        morningCheckIn: z.ZodOptional<z.ZodEnum<["livekit", "elevenlabs"]>>;
-        impulse: z.ZodOptional<z.ZodEnum<["livekit", "elevenlabs"]>>;
-        general: z.ZodOptional<z.ZodEnum<["livekit", "elevenlabs"]>>;
+        morningCheckIn: z.ZodOptional<z.ZodEnum<["livekit", "elevenlabs", "openai"]>>;
+        impulse: z.ZodOptional<z.ZodEnum<["livekit", "elevenlabs", "openai"]>>;
+        general: z.ZodOptional<z.ZodEnum<["livekit", "elevenlabs", "openai"]>>;
     }, "strip", z.ZodTypeAny, {
-        morningCheckIn?: "livekit" | "elevenlabs" | undefined;
-        impulse?: "livekit" | "elevenlabs" | undefined;
-        general?: "livekit" | "elevenlabs" | undefined;
+        morningCheckIn?: "livekit" | "elevenlabs" | "openai" | undefined;
+        impulse?: "livekit" | "elevenlabs" | "openai" | undefined;
+        general?: "livekit" | "elevenlabs" | "openai" | undefined;
     }, {
-        morningCheckIn?: "livekit" | "elevenlabs" | undefined;
-        impulse?: "livekit" | "elevenlabs" | undefined;
-        general?: "livekit" | "elevenlabs" | undefined;
+        morningCheckIn?: "livekit" | "elevenlabs" | "openai" | undefined;
+        impulse?: "livekit" | "elevenlabs" | "openai" | undefined;
+        general?: "livekit" | "elevenlabs" | "openai" | undefined;
     }>>;
     aiDataConsent: z.ZodOptional<z.ZodObject<{
         acceptedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -443,6 +456,9 @@ export declare const userDataSchema: z.ZodObject<{
         enabled: boolean;
         lastOfferedDateString?: string | undefined;
     } | undefined;
+    coachCheckIns?: {
+        enabled: boolean;
+    } | undefined;
     isImpulseTeam?: boolean | undefined;
     addToAccountabilitySupportGroups?: boolean | undefined;
     hasSetupExperiment?: boolean | undefined;
@@ -463,9 +479,9 @@ export declare const userDataSchema: z.ZodObject<{
     recoveryKeySaved?: boolean | undefined;
     disclaimerAcceptedAt?: import("../types").Timestamp | undefined;
     voiceEngineOverrides?: {
-        morningCheckIn?: "livekit" | "elevenlabs" | undefined;
-        impulse?: "livekit" | "elevenlabs" | undefined;
-        general?: "livekit" | "elevenlabs" | undefined;
+        morningCheckIn?: "livekit" | "elevenlabs" | "openai" | undefined;
+        impulse?: "livekit" | "elevenlabs" | "openai" | undefined;
+        general?: "livekit" | "elevenlabs" | "openai" | undefined;
     } | undefined;
     aiDataConsent?: {
         acceptedAt: import("../types").Timestamp;
@@ -580,6 +596,9 @@ export declare const userDataSchema: z.ZodObject<{
         enabled?: boolean | undefined;
         lastOfferedDateString?: string | undefined;
     } | undefined;
+    coachCheckIns?: {
+        enabled: boolean;
+    } | undefined;
     isImpulseTeam?: boolean | undefined;
     addToAccountabilitySupportGroups?: boolean | undefined;
     hasSetupExperiment?: boolean | undefined;
@@ -600,9 +619,9 @@ export declare const userDataSchema: z.ZodObject<{
     recoveryKeySaved?: boolean | undefined;
     disclaimerAcceptedAt?: import("../types").Timestamp | undefined;
     voiceEngineOverrides?: {
-        morningCheckIn?: "livekit" | "elevenlabs" | undefined;
-        impulse?: "livekit" | "elevenlabs" | undefined;
-        general?: "livekit" | "elevenlabs" | undefined;
+        morningCheckIn?: "livekit" | "elevenlabs" | "openai" | undefined;
+        impulse?: "livekit" | "elevenlabs" | "openai" | undefined;
+        general?: "livekit" | "elevenlabs" | "openai" | undefined;
     } | undefined;
     aiDataConsent?: {
         acceptedAt: import("../types").Timestamp;
