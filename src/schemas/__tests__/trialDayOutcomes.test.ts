@@ -1,4 +1,4 @@
-import { trialBoundaries, trialDayOutcomes, type BoundaryBinding } from "../index";
+import { isAllDayLine, trialBoundaries, trialDayOutcomes, type BoundaryBinding } from "../index";
 
 const allDay = (behaviorIds: string[], extra: Partial<BoundaryBinding> = {}): BoundaryBinding => ({
   type: "boundary",
@@ -67,6 +67,19 @@ describe("trialDayOutcomes", () => {
     expect(trialDayOutcomes({ ...opts, boundaries: untilWork })?.[5].outcome).toBe("kept");
   });
 
+  it("ignores a log for a line that holds only in a context", () => {
+    // A coffee at home says nothing about "no coffee at cafés": only the recap answer counts.
+    const atCafes = [{ item: { id: "i1" }, binding: allDay(["coffee"], { context: "At cafés" }) }];
+    const days = trialDayOutcomes({
+      trial,
+      boundaries: atCafes,
+      days: [{ dateString: "2026-10-13", boundaries: { i1: "broken" } }],
+      loggedBehaviorIds: { "2026-10-12": ["coffee"] },
+      todayDateString: "2026-10-14",
+    });
+    expect(days?.map((d) => d.outcome)).toEqual(["kept", "broken"]);
+  });
+
   it("stops at the window's end", () => {
     const days = trialDayOutcomes({ trial, boundaries: coffee, days: [], loggedBehaviorIds: {}, todayDateString: "2026-10-30" });
     expect(days).toHaveLength(7);
@@ -93,5 +106,20 @@ describe("trialBoundaries", () => {
     const strategy = { items: [item("i1", "accepted"), item("old", "accepted"), item("i3", "proposed")] };
     const found = trialBoundaries(strategy, { items: [item("i1", "proposed"), item("i3", "proposed")] });
     expect(found.map((b) => b.item.id)).toEqual(["i1"]);
+  });
+});
+
+describe("isAllDayLine", () => {
+  it("is a line with no start or end whose context is absent or all day", () => {
+    expect(isAllDayLine(allDay(["coffee"]))).toBe(true);
+    expect(isAllDayLine(allDay(["coffee"], { context: "All Day" }))).toBe(true);
+    expect(isAllDayLine(allDay(["coffee"], { context: " all day " }))).toBe(true);
+    expect(isAllDayLine({ context: undefined })).toBe(true);
+  });
+
+  it("is not a line with a window or another context", () => {
+    expect(isAllDayLine(allDay(["coffee"], { context: "At cafés" }))).toBe(false);
+    expect(isAllDayLine(allDay(["coffee"], { context: undefined, end: { kind: "clock", time: "09:00" } }))).toBe(false);
+    expect(isAllDayLine(allDay(["coffee"], { start: { kind: "clock", time: "18:00" } }))).toBe(false);
   });
 });

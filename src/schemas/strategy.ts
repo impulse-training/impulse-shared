@@ -584,6 +584,18 @@ export type StrategyRequest = z.infer<typeof strategyRequestSchema>;
 export const boundaryAppliesOn = (binding: Pick<BoundaryBinding, "weekdays">, weekday: number) =>
   !binding.weekdays || binding.weekdays.includes(weekday);
 
+/**
+ * A line that holds the whole day ("No coffee, all day."): no start, no end,
+ * and no context beyond "all day". Only such a line is settled by the day's
+ * totals: any amount of its behavior breaks it, none keeps it. A line with a
+ * window ("until work") or a context ("at cafés") covers part of the day, so a
+ * logged amount says nothing about it on its own.
+ */
+export const isAllDayLine = (binding: Pick<BoundaryBinding, "start" | "end" | "context">): boolean =>
+  !binding.start &&
+  !binding.end &&
+  (binding.context === undefined || binding.context.trim() === "" || binding.context.trim().toLowerCase() === "all day");
+
 /** "until you start work (~08:30)" — human wording for an anchor. */
 export function describeBoundaryAnchor(anchor: BoundaryAnchor): string {
   if (anchor.kind === "clock") return anchor.time;
@@ -947,9 +959,10 @@ export function trialBoundaries(strategy: Pick<Strategy, "items">, trial: Pick<S
  *   kept    a day that's over with neither
  *
  * Today is listed only once it's broken; until then it's still open. A line
- * with a start or end ("until work") can't be read from a log's day, so only
- * its recap answer counts. Null when the experiment tests no line: every day
- * of it is a day of the experiment.
+ * with a start, an end or a context ("until work", "at cafés") can't be read
+ * from a log's day, so only its recap answer counts (see isAllDayLine). Null
+ * when the experiment tests no line: every day of it is a day of the
+ * experiment.
  */
 export function trialDayOutcomes(input: {
   trial: TrialClock;
@@ -972,8 +985,7 @@ export function trialDayOutcomes(input: {
       ({ item, binding }) =>
         answered[item.id] === "broken" ||
         answered[item.id] === "partly" ||
-        (!binding.start &&
-          !binding.end &&
+        (isAllDayLine(binding) &&
           boundaryAppliesOn(binding, weekday) &&
           binding.behaviorIds.some((id) => logged.includes(id))),
     );
