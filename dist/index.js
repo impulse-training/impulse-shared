@@ -79,6 +79,7 @@ __exportStar(require("./utils/resolveAgreement"), exports);
 __exportStar(require("./utils/behaviorColors"), exports);
 __exportStar(require("./utils/llmPricing"), exports);
 __exportStar(require("./utils/walkthroughTasks"), exports);
+__exportStar(require("./utils/trialMootTasks"), exports);
 __exportStar(require("./utils/selfHarmKeywords"), exports);
 __exportStar(require("./utils/milestoneLadder"), exports);
 __exportStar(require("./utils/engagement"), exports);

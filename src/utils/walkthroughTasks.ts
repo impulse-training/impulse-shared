@@ -21,6 +21,23 @@ export const WALKTHROUGH_TASK_ID = "setup_walkthrough";
 export const WALKTHROUGH_SESSION_ID = `task_${WALKTHROUGH_TASK_ID}`;
 
 /**
+ * The walkthrough is one durable task but not one durable conversation. A
+ * session opened days ago (the day-1 baseline chat) is the wrong place to land
+ * a user who taps "Let's get set up" on day 5, so the ensureTask endpoint
+ * starts a fresh conversation once the last one has gone stale, dated by the
+ * user's local day it was started on. WALKTHROUGH_SESSION_ID stays the id of
+ * every conversation started before that rule.
+ */
+export const walkthroughSessionIdFor = (dateString: string): string =>
+  `${WALKTHROUGH_SESSION_ID}_${dateString}`;
+
+/** Any walkthrough conversation, the legacy undated one included. */
+export const isWalkthroughSessionId = (sessionId: unknown): boolean =>
+  typeof sessionId === "string" &&
+  (sessionId === WALKTHROUGH_SESSION_ID ||
+    sessionId.startsWith(`${WALKTHROUGH_SESSION_ID}_`));
+
+/**
  * Below this, a task is better surfaced as its own specific card ("Understand
  * doomscrolling") than hidden behind a generic "let's get set up". The
  * walkthrough only earns its place once there's an actual sequence.
@@ -115,7 +132,7 @@ export const isWalkthroughEligibleTask = (
   if (isTaskAwaitingApproval(task)) return false;
 
   const claimedBy = task.claimedBySessionId;
-  if (typeof claimedBy === "string" && claimedBy !== WALKTHROUGH_SESSION_ID) {
+  if (typeof claimedBy === "string" && !isWalkthroughSessionId(claimedBy)) {
     return false;
   }
 

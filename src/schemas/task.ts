@@ -19,8 +19,11 @@ export const taskStatusSchema = z.enum(["open", "completed", "dismissed"]);
  *   (an unfinished weekly-review beat picked up the next day). Not a decision
  *   about the task at all: the live copy lives in `resumedInSessionId`, and
  *   the source-task status sync must ignore it.
+ * - `superseded` — the program moved past the point where it made sense
+ *   (a collect_baseline once the behavior's strategy is in a trial; see
+ *   isTaskMootedByStrategies). Not a decision by the user either.
  */
-export const dismissedReasonSchema = z.enum(["ignored", "declined", "resumed", "expired"]);
+export const dismissedReasonSchema = z.enum(["ignored", "declined", "resumed", "expired", "superseded"]);
 
 export const taskCategorySchema = z.enum(["zara", "deterministic"]);
 
