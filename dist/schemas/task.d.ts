@@ -12,8 +12,11 @@ export declare const taskStatusSchema: z.ZodEnum<["open", "completed", "dismisse
  *   (an unfinished weekly-review beat picked up the next day). Not a decision
  *   about the task at all: the live copy lives in `resumedInSessionId`, and
  *   the source-task status sync must ignore it.
+ * - `superseded` — the program moved past the point where it made sense
+ *   (a collect_baseline once the behavior's strategy is in a trial; see
+ *   isTaskMootedByStrategies). Not a decision by the user either.
  */
-export declare const dismissedReasonSchema: z.ZodEnum<["ignored", "declined", "resumed", "expired"]>;
+export declare const dismissedReasonSchema: z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>;
 export declare const taskCategorySchema: z.ZodEnum<["zara", "deterministic"]>;
 export declare const claimableSessionTypeSchema: z.ZodEnum<["recap", "general", "toolkitPlanning"]>;
 export declare const taskBaseSchema: z.ZodObject<{
@@ -85,7 +88,7 @@ export declare const taskBaseSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -137,7 +140,7 @@ export declare const taskBaseSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -167,7 +170,7 @@ export declare const taskBaseSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -243,7 +246,7 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -322,7 +325,7 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -360,7 +363,7 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -436,7 +439,7 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -1039,7 +1042,7 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -1138,7 +1141,7 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -1223,7 +1226,7 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -1460,7 +1463,7 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -1520,7 +1523,7 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -1627,7 +1630,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -1751,7 +1754,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -1794,7 +1797,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -1878,7 +1881,7 @@ export declare const proposeChangeStageTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -1950,7 +1953,7 @@ export declare const proposeChangeStageTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -1986,7 +1989,7 @@ export declare const proposeChangeStageTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -2062,7 +2065,7 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -2119,7 +2122,7 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -2151,7 +2154,7 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -2227,7 +2230,7 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -2394,7 +2397,7 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -2448,7 +2451,7 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -2485,7 +2488,7 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     approvalReason: z.ZodOptional<z.ZodString>;
     showOnHome: z.ZodOptional<z.ZodBoolean>;
@@ -2527,7 +2530,7 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -2562,7 +2565,7 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -2638,7 +2641,7 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -2747,7 +2750,7 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -2792,7 +2795,7 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -2868,7 +2871,7 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -2923,7 +2926,7 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -2954,7 +2957,7 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -3030,7 +3033,7 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -3103,7 +3106,7 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -3139,7 +3142,7 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -3215,7 +3218,7 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -3289,7 +3292,7 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -3327,7 +3330,7 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -3405,7 +3408,7 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -3462,7 +3465,7 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -3494,7 +3497,7 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -3585,7 +3588,7 @@ export declare const understandBehaviorTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -3644,7 +3647,7 @@ export declare const understandBehaviorTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -3677,7 +3680,7 @@ export declare const understandBehaviorTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -3770,7 +3773,7 @@ export declare const buildCollectionTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -3840,7 +3843,7 @@ export declare const buildCollectionTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -3879,7 +3882,7 @@ export declare const buildCollectionTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -3966,7 +3969,7 @@ export declare const containLapseTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -4034,7 +4037,7 @@ export declare const containLapseTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -4068,7 +4071,7 @@ export declare const containLapseTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -4153,7 +4156,7 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -4214,7 +4217,7 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -4247,7 +4250,7 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -4331,7 +4334,7 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -4386,7 +4389,7 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -4417,7 +4420,7 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -4500,7 +4503,7 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -4558,7 +4561,7 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -4590,7 +4593,7 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -4632,7 +4635,7 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     approvalReason: z.ZodOptional<z.ZodString>;
     showOnHome: z.ZodOptional<z.ZodBoolean>;
@@ -4675,7 +4678,7 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -4712,7 +4715,7 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -4807,7 +4810,7 @@ export declare const closingReflectionTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -4865,7 +4868,7 @@ export declare const closingReflectionTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -4897,7 +4900,7 @@ export declare const closingReflectionTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -5013,7 +5016,7 @@ export declare const protectNextWindowTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -5070,7 +5073,7 @@ export declare const protectNextWindowTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -5102,7 +5105,7 @@ export declare const protectNextWindowTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -5188,7 +5191,7 @@ export declare const pressImpulseButtonTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -5251,7 +5254,7 @@ export declare const pressImpulseButtonTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -5283,7 +5286,7 @@ export declare const pressImpulseButtonTaskSchema: z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -5362,7 +5365,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -5441,7 +5444,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -5479,7 +5482,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -5554,7 +5557,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -6157,7 +6160,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -6256,7 +6259,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -6331,7 +6334,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -6568,7 +6571,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -6628,7 +6631,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -6703,7 +6706,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -6827,7 +6830,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -6870,7 +6873,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -6945,7 +6948,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -7002,7 +7005,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -7034,7 +7037,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -7109,7 +7112,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -7181,7 +7184,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -7217,7 +7220,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -7292,7 +7295,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -7459,7 +7462,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -7513,7 +7516,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -7549,7 +7552,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     approvalReason: z.ZodOptional<z.ZodString>;
     showOnHome: z.ZodOptional<z.ZodBoolean>;
@@ -7591,7 +7594,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -7626,7 +7629,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -7701,7 +7704,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -7810,7 +7813,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -7855,7 +7858,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -7930,7 +7933,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -7985,7 +7988,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -8016,7 +8019,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -8091,7 +8094,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -8164,7 +8167,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -8200,7 +8203,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -8275,7 +8278,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -8349,7 +8352,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -8387,7 +8390,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -8464,7 +8467,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -8521,7 +8524,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -8553,7 +8556,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -8628,7 +8631,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -8687,7 +8690,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -8720,7 +8723,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -8795,7 +8798,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -8863,7 +8866,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -8897,7 +8900,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -8972,7 +8975,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -9033,7 +9036,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -9066,7 +9069,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -9141,7 +9144,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -9196,7 +9199,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -9227,7 +9230,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -9302,7 +9305,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -9360,7 +9363,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -9392,7 +9395,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -9422,7 +9425,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     approvalReason: z.ZodOptional<z.ZodString>;
     showOnHome: z.ZodOptional<z.ZodBoolean>;
@@ -9465,7 +9468,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -9502,7 +9505,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -9579,7 +9582,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -9637,7 +9640,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -9669,7 +9672,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -9744,7 +9747,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -9801,7 +9804,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -9833,7 +9836,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -9908,7 +9911,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -9971,7 +9974,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -10003,7 +10006,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -10081,7 +10084,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
-    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired"]>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined", "resumed", "expired", "superseded"]>>;
     /**
      * Human sign-off for task types in TASK_TYPES_REQUIRING_APPROVAL: absent
      * means "awaiting coach review" and no claim path may present the task to
@@ -10151,7 +10154,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;
@@ -10190,7 +10193,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     availableAt?: import("../types").Timestamp | undefined;
     presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
-    dismissedReason?: "resumed" | "declined" | "ignored" | "expired" | undefined;
+    dismissedReason?: "resumed" | "declined" | "superseded" | "ignored" | "expired" | undefined;
     approvedAt?: import("../types").Timestamp | undefined;
     approvalReason?: string | undefined;
     showOnHome?: boolean | undefined;

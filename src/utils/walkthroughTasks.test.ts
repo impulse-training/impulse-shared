@@ -3,6 +3,8 @@ import {
   isWalkthroughEligibleTask,
   walkthroughSubtitle,
   WALKTHROUGH_SESSION_ID,
+  isWalkthroughSessionId,
+  walkthroughSessionIdFor,
 } from "./walkthroughTasks";
 
 const APP_VERSION = "0.1.13";
@@ -155,5 +157,25 @@ describe("walkthroughSubtitle", () => {
   it("does not say 1 things", () => {
     expect(walkthroughSubtitle(1)).toBe("1 thing to work through");
     expect(walkthroughSubtitle(5)).toBe("5 things to work through");
+  });
+});
+
+describe("walkthrough session ids", () => {
+  it("keeps the legacy id and dates each fresh conversation", () => {
+    expect(walkthroughSessionIdFor("2026-10-26")).toBe("task_setup_walkthrough_2026-10-26");
+    expect(isWalkthroughSessionId(WALKTHROUGH_SESSION_ID)).toBe(true);
+    expect(isWalkthroughSessionId("task_setup_walkthrough_2026-10-26")).toBe(true);
+    expect(isWalkthroughSessionId("task_understand_behavior_b1")).toBe(false);
+    expect(isWalkthroughSessionId("2026-10-26")).toBe(false);
+    expect(isWalkthroughSessionId(undefined)).toBe(false);
+  });
+
+  it("keeps a task claimed by a dated walkthrough conversation eligible", () => {
+    expect(
+      isWalkthroughEligibleTask(
+        open({ claimedBySessionId: "task_setup_walkthrough_2026-10-26" }),
+        APP_VERSION,
+      ),
+    ).toBe(true);
   });
 });

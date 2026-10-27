@@ -40,6 +40,7 @@ export * from "./utils/resolveAgreement";
 export * from "./utils/behaviorColors";
 export * from "./utils/llmPricing";
 export * from "./utils/walkthroughTasks";
+export * from "./utils/trialMootTasks";
 export * from "./utils/selfHarmKeywords";
 export * from "./utils/milestoneLadder";
 export * from "./utils/engagement";
