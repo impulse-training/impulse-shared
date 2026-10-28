@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { documentReferenceSchema } from "../utils/documentReferenceSchema";
 import { timestampSchema } from "../utils/timestampSchema";
-import { tacticAgreementSchema } from "./agreement";
+import { tacticAgreementSchema, usedTacticAgreementSchema } from "./agreement";
 import { goalSchema } from "./goal";
 import { behaviorTrackingDataSchema } from "./behaviorTrackingData";
 import { behaviorTemplateBase } from "./behaviorTemplate";
@@ -424,6 +424,8 @@ export const behaviorSchema = behaviorTemplateBase
      * reopen that. See tacticAgreementSchema.
      */
     agreement: tacticAgreementSchema.optional(),
+    /** The last agreement used up here, and when. See usedTacticAgreementSchema. */
+    lastUsedAgreement: usedTacticAgreementSchema.optional(),
     /**
      * @deprecated The ordered go-to list. Superseded by `agreement`: a list
      * invites sequencing, and the impulse moment is no longer a playlist.

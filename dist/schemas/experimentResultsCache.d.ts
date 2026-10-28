@@ -138,14 +138,17 @@ declare const metricResultSchema: z.ZodObject<{
         word: z.ZodString;
         low: z.ZodString;
         high: z.ZodString;
+        lowWord: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         low: string;
         high: string;
         word: string;
+        lowWord?: string | undefined;
     }, {
         low: string;
         high: string;
         word: string;
+        lowWord?: string | undefined;
     }>>;
     summary: z.ZodOptional<z.ZodObject<{
         /** Count of observations in each state, low → high */
@@ -222,6 +225,7 @@ declare const metricResultSchema: z.ZodObject<{
         low: string;
         high: string;
         word: string;
+        lowWord?: string | undefined;
     } | undefined;
     confidence?: "low" | "high" | "moderate" | undefined;
     summary?: {
@@ -247,6 +251,7 @@ declare const metricResultSchema: z.ZodObject<{
         low: string;
         high: string;
         word: string;
+        lowWord?: string | undefined;
     } | undefined;
     confidence?: "low" | "high" | "moderate" | undefined;
     summary?: {
@@ -564,14 +569,17 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
             word: z.ZodString;
             low: z.ZodString;
             high: z.ZodString;
+            lowWord: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
             low: string;
             high: string;
             word: string;
+            lowWord?: string | undefined;
         }, {
             low: string;
             high: string;
             word: string;
+            lowWord?: string | undefined;
         }>>;
         summary: z.ZodOptional<z.ZodObject<{
             /** Count of observations in each state, low → high */
@@ -648,6 +656,7 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
             low: string;
             high: string;
             word: string;
+            lowWord?: string | undefined;
         } | undefined;
         confidence?: "low" | "high" | "moderate" | undefined;
         summary?: {
@@ -673,6 +682,7 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
             low: string;
             high: string;
             word: string;
+            lowWord?: string | undefined;
         } | undefined;
         confidence?: "low" | "high" | "moderate" | undefined;
         summary?: {
@@ -827,6 +837,7 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
             low: string;
             high: string;
             word: string;
+            lowWord?: string | undefined;
         } | undefined;
         confidence?: "low" | "high" | "moderate" | undefined;
         summary?: {
@@ -905,6 +916,7 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
             low: string;
             high: string;
             word: string;
+            lowWord?: string | undefined;
         } | undefined;
         confidence?: "low" | "high" | "moderate" | undefined;
         summary?: {

@@ -6,14 +6,17 @@ export declare const proposedExperimentMetricSchema: z.ZodObject<{
         word: z.ZodString;
         low: z.ZodString;
         high: z.ZodString;
+        lowWord: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         low: string;
         high: string;
         word: string;
+        lowWord?: string | undefined;
     }, {
         low: string;
         high: string;
         word: string;
+        lowWord?: string | undefined;
     }>>;
 }, "strip", z.ZodTypeAny, {
     name: string;
@@ -21,6 +24,7 @@ export declare const proposedExperimentMetricSchema: z.ZodObject<{
         low: string;
         high: string;
         word: string;
+        lowWord?: string | undefined;
     } | undefined;
 }, {
     name: string;
@@ -28,6 +32,7 @@ export declare const proposedExperimentMetricSchema: z.ZodObject<{
         low: string;
         high: string;
         word: string;
+        lowWord?: string | undefined;
     } | undefined;
 }>;
 export declare const proposedExperimentLogSchema: z.ZodObject<{
@@ -53,14 +58,17 @@ export declare const proposedExperimentLogSchema: z.ZodObject<{
             word: z.ZodString;
             low: z.ZodString;
             high: z.ZodString;
+            lowWord: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
             low: string;
             high: string;
             word: string;
+            lowWord?: string | undefined;
         }, {
             low: string;
             high: string;
             word: string;
+            lowWord?: string | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
         name: string;
@@ -68,6 +76,7 @@ export declare const proposedExperimentLogSchema: z.ZodObject<{
             low: string;
             high: string;
             word: string;
+            lowWord?: string | undefined;
         } | undefined;
     }, {
         name: string;
@@ -75,6 +84,7 @@ export declare const proposedExperimentLogSchema: z.ZodObject<{
             low: string;
             high: string;
             word: string;
+            lowWord?: string | undefined;
         } | undefined;
     }>, "many">>;
     metricLabels: z.ZodArray<z.ZodString, "many">;
@@ -116,6 +126,7 @@ export declare const proposedExperimentLogSchema: z.ZodObject<{
             low: string;
             high: string;
             word: string;
+            lowWord?: string | undefined;
         } | undefined;
     }[] | undefined;
     experimentQuestion?: string | undefined;
@@ -148,6 +159,7 @@ export declare const proposedExperimentLogSchema: z.ZodObject<{
             low: string;
             high: string;
             word: string;
+            lowWord?: string | undefined;
         } | undefined;
     }[] | undefined;
     experimentQuestion?: string | undefined;

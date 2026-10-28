@@ -35,6 +35,19 @@ describe("metric word scale", () => {
     expect(normalizeMetricScale(null)).toBeUndefined();
   });
 
+  it("names the low state with lowWord when the scale has one", () => {
+    const scale = { word: "clear-headed", low: "somewhat", high: "very", lowWord: "foggy" };
+    expect(metricScaleLabels(scale)).toEqual(["foggy", "clear-headed", "very clear-headed"]);
+    expect(metricValueLabel(1, scale)).toBe("foggy");
+    expect(normalizeMetricScale({ ...scale, lowWord: " Foggy " })).toEqual(scale);
+  });
+
+  it("records a low Mental clarity and Energy as their own low states", () => {
+    const byId = Object.fromEntries(METRIC_REGISTRY.map((m) => [m.id, m]));
+    expect(metricValueLabel(1, byId["mental-clarity"].scale)).toBe("foggy");
+    expect(metricValueLabel(1, byId["energy"].scale)).toBe("drained");
+  });
+
   it("gives every registry metric a valid scale", () => {
     for (const def of METRIC_REGISTRY) {
       expect(normalizeMetricScale(def.scale)).toEqual(def.scale);

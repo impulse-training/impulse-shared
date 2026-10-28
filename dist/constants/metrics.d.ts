@@ -8,7 +8,9 @@ export type MetricDefinition = {
      * ("somewhat rested / rested / well rested"). One-ended: the word names the
      * state and the value says how much of it — high Anxiety is "very anxious"
      * just as high Energy is "very energetic", and only `desiredDirection` says
-     * whether more is welcome.
+     * whether more is welcome. A metric whose low end is a state of its own names
+     * it with `lowWord` ("foggy", "drained"), so a low answer records as what the
+     * person said rather than as a little of what they lacked.
      */
     scale: MetricScale;
     minContiguousTransitionDays: number;
