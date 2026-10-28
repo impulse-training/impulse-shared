@@ -1,3 +1,4 @@
+export * from "./accountMergeRequest";
 export * from "./adminDashboardCache";
 export * from "./analyticsSession";
 export * from "./answeredRecapQuestion";

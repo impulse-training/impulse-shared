@@ -16,6 +16,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isQuestionStepMode = void 0;
 // Export all schema types and validation functions
+__exportStar(require("./accountMergeRequest"), exports);
 __exportStar(require("./adminDashboardCache"), exports);
 __exportStar(require("./analyticsSession"), exports);
 __exportStar(require("./answeredRecapQuestion"), exports);

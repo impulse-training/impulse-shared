@@ -106,10 +106,10 @@ export declare const proposedExperimentLogSchema: z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "proposed_experiment";
+    behaviorIds: string[];
     userId: string;
     sessionId: string;
     dateString: string;
-    behaviorIds: string[];
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     metricLabels: string[];
@@ -139,10 +139,10 @@ export declare const proposedExperimentLogSchema: z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "proposed_experiment";
+    behaviorIds: string[];
     userId: string;
     sessionId: string;
     dateString: string;
-    behaviorIds: string[];
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     metricLabels: string[];

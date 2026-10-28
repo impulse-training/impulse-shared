@@ -5,6 +5,10 @@ import { timestampSchema } from "../utils/timestampSchema";
 import { supportGroupTypeSchema } from "./supportGroup";
 import { firstsSchema } from "./first";
 import { tacticPreferencesSchema } from "./tacticPreferences";
+import {
+  userAccountMergePointerSchema,
+  userMergedIntoSchema,
+} from "./accountMergeRequest";
 
 // Inline recap trigger schema (time-based). Recaps are daily — they fire
 // every day at this time (Sunday additionally runs the weekly review). There
@@ -86,6 +90,13 @@ export const userDataSchema = z.object({
 
   // Authentication
   recoveryKeyHash: z.string().optional(),
+
+  // Account merge (see accountMergeRequest.ts). On the account in use: the
+  // request an admin started for it, for the app to show. On an abandoned
+  // account merged into another: where it went (it is read-only from then on,
+  // and its recovery key signs in to that account).
+  accountMergeRequest: userAccountMergePointerSchema.optional(),
+  mergedInto: userMergedIntoSchema.optional(),
 
   defaultSessionMode: z.enum(["text", "voice"]).default("text"),
   llmProvider: z.enum(["openai", "anthropic"]).optional(),

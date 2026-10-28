@@ -1347,16 +1347,16 @@ export declare const behaviorSchema: z.ZodObject<{
             0: number;
             1: number;
             2: number;
-            3: number;
             5: number;
+            3: number;
             6: number;
             4: number;
         }, {
             0: number;
             1: number;
             2: number;
-            3: number;
             5: number;
+            3: number;
             6: number;
             4: number;
         }>;
@@ -1366,8 +1366,8 @@ export declare const behaviorSchema: z.ZodObject<{
             0: number;
             1: number;
             2: number;
-            3: number;
             5: number;
+            3: number;
             6: number;
             4: number;
         };
@@ -1377,8 +1377,8 @@ export declare const behaviorSchema: z.ZodObject<{
             0: number;
             1: number;
             2: number;
-            3: number;
             5: number;
+            3: number;
             6: number;
             4: number;
         };
@@ -2494,8 +2494,8 @@ export declare const behaviorSchema: z.ZodObject<{
             0: number;
             1: number;
             2: number;
-            3: number;
             5: number;
+            3: number;
             6: number;
             4: number;
         };
@@ -2552,7 +2552,7 @@ export declare const behaviorSchema: z.ZodObject<{
     askRecapFirstLast?: boolean | undefined;
     changeStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
     changeStageUpdatedAt?: import("../types").Timestamp | undefined;
-    changeStageSource?: "onboarding" | "user" | "proposal" | "auto" | undefined;
+    changeStageSource?: "user" | "onboarding" | "proposal" | "auto" | undefined;
     customMilestoneRungs?: {
         days: number;
         label: string;
@@ -2745,8 +2745,8 @@ export declare const behaviorSchema: z.ZodObject<{
             0: number;
             1: number;
             2: number;
-            3: number;
             5: number;
+            3: number;
             6: number;
             4: number;
         };
@@ -2811,7 +2811,7 @@ export declare const behaviorSchema: z.ZodObject<{
     askRecapFirstLast?: boolean | undefined;
     changeStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
     changeStageUpdatedAt?: import("../types").Timestamp | undefined;
-    changeStageSource?: "onboarding" | "user" | "proposal" | "auto" | undefined;
+    changeStageSource?: "user" | "onboarding" | "proposal" | "auto" | undefined;
     customMilestoneRungs?: {
         days: number;
         label: string;

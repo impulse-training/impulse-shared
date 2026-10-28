@@ -65,13 +65,13 @@ export declare const tacticLogSchema: z.ZodObject<{
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             }, "strip", z.ZodTypeAny, {
                 updatedAt?: import("../../types").Timestamp | undefined;
-                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 note?: string | undefined;
+                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 avoidWhen?: string | undefined;
             }, {
                 updatedAt?: import("../../types").Timestamp | undefined;
-                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 note?: string | undefined;
+                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 avoidWhen?: string | undefined;
             }>>;
             createdByUid: z.ZodOptional<z.ZodString>;
@@ -4493,30 +4493,30 @@ export declare const tacticLogSchema: z.ZodObject<{
                     optionLabels: string[];
                 }>, "many">>;
             }, "strip", z.ZodTypeAny, {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
                     behaviorTopicId: string;
                 }[] | undefined;
             }, {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -4561,30 +4561,30 @@ export declare const tacticLogSchema: z.ZodObject<{
                     optionLabels: string[];
                 }>, "many">>;
             }, "strip", z.ZodTypeAny, {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
                     behaviorTopicId: string;
                 }[] | undefined;
             }, {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -5177,8 +5177,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             understanding?: {
                 updatedAt?: import("../../types").Timestamp | undefined;
-                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 note?: string | undefined;
+                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 avoidWhen?: string | undefined;
             } | undefined;
             createdByUid?: string | undefined;
@@ -5187,15 +5187,15 @@ export declare const tacticLogSchema: z.ZodObject<{
             modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
             isMultiStep?: boolean | undefined;
             indications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -5203,15 +5203,15 @@ export declare const tacticLogSchema: z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -5230,7 +5230,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -5260,8 +5260,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             understanding?: {
                 updatedAt?: import("../../types").Timestamp | undefined;
-                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 note?: string | undefined;
+                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 avoidWhen?: string | undefined;
             } | undefined;
             createdByUid?: string | undefined;
@@ -5270,15 +5270,15 @@ export declare const tacticLogSchema: z.ZodObject<{
             modality?: unknown;
             isMultiStep?: boolean | undefined;
             indications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -5286,15 +5286,15 @@ export declare const tacticLogSchema: z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -5313,7 +5313,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -6105,8 +6105,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             understanding?: {
                 updatedAt?: import("../../types").Timestamp | undefined;
-                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 note?: string | undefined;
+                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 avoidWhen?: string | undefined;
             } | undefined;
             createdByUid?: string | undefined;
@@ -6115,15 +6115,15 @@ export declare const tacticLogSchema: z.ZodObject<{
             modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
             isMultiStep?: boolean | undefined;
             indications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -6131,15 +6131,15 @@ export declare const tacticLogSchema: z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -6158,7 +6158,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -6241,8 +6241,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             understanding?: {
                 updatedAt?: import("../../types").Timestamp | undefined;
-                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 note?: string | undefined;
+                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 avoidWhen?: string | undefined;
             } | undefined;
             createdByUid?: string | undefined;
@@ -6251,15 +6251,15 @@ export declare const tacticLogSchema: z.ZodObject<{
             modality?: unknown;
             isMultiStep?: boolean | undefined;
             indications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -6267,15 +6267,15 @@ export declare const tacticLogSchema: z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -6294,7 +6294,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -6921,8 +6921,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             understanding?: {
                 updatedAt?: import("../../types").Timestamp | undefined;
-                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 note?: string | undefined;
+                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 avoidWhen?: string | undefined;
             } | undefined;
             createdByUid?: string | undefined;
@@ -6931,15 +6931,15 @@ export declare const tacticLogSchema: z.ZodObject<{
             modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
             isMultiStep?: boolean | undefined;
             indications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -6947,15 +6947,15 @@ export declare const tacticLogSchema: z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -6974,7 +6974,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -7072,8 +7072,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             understanding?: {
                 updatedAt?: import("../../types").Timestamp | undefined;
-                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 note?: string | undefined;
+                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 avoidWhen?: string | undefined;
             } | undefined;
             createdByUid?: string | undefined;
@@ -7082,15 +7082,15 @@ export declare const tacticLogSchema: z.ZodObject<{
             modality?: unknown;
             isMultiStep?: boolean | undefined;
             indications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -7098,15 +7098,15 @@ export declare const tacticLogSchema: z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -7125,7 +7125,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;

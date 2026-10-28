@@ -43,25 +43,25 @@ export declare const behaviorLogSchema: z.ZodObject<{
         withinAllowedWindow: z.ZodOptional<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
         value?: number | undefined;
+        source?: "scheduled" | "manual" | undefined;
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
         trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
-        source?: "scheduled" | "manual" | undefined;
         debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
         withinAllowedWindow?: boolean | undefined;
     }, {
         value?: number | undefined;
+        source?: "scheduled" | "manual" | undefined;
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
         trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
-        source?: "scheduled" | "manual" | undefined;
         debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
         withinAllowedWindow?: boolean | undefined;
@@ -78,13 +78,13 @@ export declare const behaviorLogSchema: z.ZodObject<{
     isAdjustment: boolean;
     data: {
         value?: number | undefined;
+        source?: "scheduled" | "manual" | undefined;
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
         trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
-        source?: "scheduled" | "manual" | undefined;
         debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
         withinAllowedWindow?: boolean | undefined;
@@ -106,13 +106,13 @@ export declare const behaviorLogSchema: z.ZodObject<{
     isDisplayable: true;
     data: {
         value?: number | undefined;
+        source?: "scheduled" | "manual" | undefined;
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
         trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
-        source?: "scheduled" | "manual" | undefined;
         debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
         withinAllowedWindow?: boolean | undefined;

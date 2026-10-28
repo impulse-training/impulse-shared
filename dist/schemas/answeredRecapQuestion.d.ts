@@ -16,13 +16,13 @@ export declare const answeredRecapQuestionSchema: z.ZodObject<{
     answeredAt: import("../types").Timestamp;
     sessionId: string;
     dateString: string;
-    answerSummary?: string | undefined;
     behaviorIds?: string[] | undefined;
+    answerSummary?: string | undefined;
 }, {
     answeredAt: import("../types").Timestamp;
     sessionId: string;
     dateString: string;
-    answerSummary?: string | undefined;
     behaviorIds?: string[] | undefined;
+    answerSummary?: string | undefined;
 }>;
 export type AnsweredRecapQuestion = z.infer<typeof answeredRecapQuestionSchema>;
