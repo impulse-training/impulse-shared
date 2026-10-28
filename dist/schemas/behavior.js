@@ -351,6 +351,8 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
      * reopen that. See tacticAgreementSchema.
      */
     agreement: agreement_1.tacticAgreementSchema.optional(),
+    /** The last agreement used up here, and when. See usedTacticAgreementSchema. */
+    lastUsedAgreement: agreement_1.usedTacticAgreementSchema.optional(),
     /**
      * @deprecated The ordered go-to list. Superseded by `agreement`: a list
      * invites sequencing, and the impulse moment is no longer a playlist.

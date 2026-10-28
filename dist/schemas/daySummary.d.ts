@@ -247,6 +247,47 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             lastDeliveredAt?: import("../types").Timestamp | undefined;
             lastDeliveredSessionId?: string | undefined;
         }>>;
+        lastUsedAgreement: z.ZodOptional<z.ZodObject<{
+            tacticId: z.ZodString;
+            tacticRefPath: z.ZodString;
+            tacticTitle: z.ZodString;
+            agreedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+            agreedInSessionId: z.ZodOptional<z.ZodString>;
+            lastHonouredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+            honouredCount: z.ZodOptional<z.ZodNumber>;
+            lastPassedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+            passedCount: z.ZodOptional<z.ZodNumber>;
+            lastDeliveredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+            lastDeliveredSessionId: z.ZodOptional<z.ZodString>;
+        } & {
+            usedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+        }, "strip", z.ZodTypeAny, {
+            tacticId: string;
+            tacticRefPath: string;
+            tacticTitle: string;
+            agreedAt: import("../types").Timestamp;
+            usedAt: import("../types").Timestamp;
+            agreedInSessionId?: string | undefined;
+            lastHonouredAt?: import("../types").Timestamp | undefined;
+            honouredCount?: number | undefined;
+            lastPassedAt?: import("../types").Timestamp | undefined;
+            passedCount?: number | undefined;
+            lastDeliveredAt?: import("../types").Timestamp | undefined;
+            lastDeliveredSessionId?: string | undefined;
+        }, {
+            tacticId: string;
+            tacticRefPath: string;
+            tacticTitle: string;
+            agreedAt: import("../types").Timestamp;
+            usedAt: import("../types").Timestamp;
+            agreedInSessionId?: string | undefined;
+            lastHonouredAt?: import("../types").Timestamp | undefined;
+            honouredCount?: number | undefined;
+            lastPassedAt?: import("../types").Timestamp | undefined;
+            passedCount?: number | undefined;
+            lastDeliveredAt?: import("../types").Timestamp | undefined;
+            lastDeliveredSessionId?: string | undefined;
+        }>>;
         tactics: z.ZodOptional<z.ZodArray<z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>, "many">>;
         tacticsAgreedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         suppressedTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -1274,6 +1315,20 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             lastDeliveredAt?: import("../types").Timestamp | undefined;
             lastDeliveredSessionId?: string | undefined;
         } | undefined;
+        lastUsedAgreement?: {
+            tacticId: string;
+            tacticRefPath: string;
+            tacticTitle: string;
+            agreedAt: import("../types").Timestamp;
+            usedAt: import("../types").Timestamp;
+            agreedInSessionId?: string | undefined;
+            lastHonouredAt?: import("../types").Timestamp | undefined;
+            honouredCount?: number | undefined;
+            lastPassedAt?: import("../types").Timestamp | undefined;
+            passedCount?: number | undefined;
+            lastDeliveredAt?: import("../types").Timestamp | undefined;
+            lastDeliveredSessionId?: string | undefined;
+        } | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
         tacticsAgreedAt?: import("../types").Timestamp | undefined;
         suppressedTacticIds?: string[] | undefined;
@@ -1509,6 +1564,20 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             tacticRefPath: string;
             tacticTitle: string;
             agreedAt: import("../types").Timestamp;
+            agreedInSessionId?: string | undefined;
+            lastHonouredAt?: import("../types").Timestamp | undefined;
+            honouredCount?: number | undefined;
+            lastPassedAt?: import("../types").Timestamp | undefined;
+            passedCount?: number | undefined;
+            lastDeliveredAt?: import("../types").Timestamp | undefined;
+            lastDeliveredSessionId?: string | undefined;
+        } | undefined;
+        lastUsedAgreement?: {
+            tacticId: string;
+            tacticRefPath: string;
+            tacticTitle: string;
+            agreedAt: import("../types").Timestamp;
+            usedAt: import("../types").Timestamp;
             agreedInSessionId?: string | undefined;
             lastHonouredAt?: import("../types").Timestamp | undefined;
             honouredCount?: number | undefined;
@@ -1779,6 +1848,20 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             lastDeliveredAt?: import("../types").Timestamp | undefined;
             lastDeliveredSessionId?: string | undefined;
         } | undefined;
+        lastUsedAgreement?: {
+            tacticId: string;
+            tacticRefPath: string;
+            tacticTitle: string;
+            agreedAt: import("../types").Timestamp;
+            usedAt: import("../types").Timestamp;
+            agreedInSessionId?: string | undefined;
+            lastHonouredAt?: import("../types").Timestamp | undefined;
+            honouredCount?: number | undefined;
+            lastPassedAt?: import("../types").Timestamp | undefined;
+            passedCount?: number | undefined;
+            lastDeliveredAt?: import("../types").Timestamp | undefined;
+            lastDeliveredSessionId?: string | undefined;
+        } | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
         tacticsAgreedAt?: import("../types").Timestamp | undefined;
         suppressedTacticIds?: string[] | undefined;
@@ -2029,6 +2112,20 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             tacticRefPath: string;
             tacticTitle: string;
             agreedAt: import("../types").Timestamp;
+            agreedInSessionId?: string | undefined;
+            lastHonouredAt?: import("../types").Timestamp | undefined;
+            honouredCount?: number | undefined;
+            lastPassedAt?: import("../types").Timestamp | undefined;
+            passedCount?: number | undefined;
+            lastDeliveredAt?: import("../types").Timestamp | undefined;
+            lastDeliveredSessionId?: string | undefined;
+        } | undefined;
+        lastUsedAgreement?: {
+            tacticId: string;
+            tacticRefPath: string;
+            tacticTitle: string;
+            agreedAt: import("../types").Timestamp;
+            usedAt: import("../types").Timestamp;
             agreedInSessionId?: string | undefined;
             lastHonouredAt?: import("../types").Timestamp | undefined;
             honouredCount?: number | undefined;
@@ -2424,6 +2521,47 @@ export declare const daySummarySchema: z.ZodObject<{
             lastDeliveredAt?: import("../types").Timestamp | undefined;
             lastDeliveredSessionId?: string | undefined;
         }>>;
+        lastUsedAgreement: z.ZodOptional<z.ZodObject<{
+            tacticId: z.ZodString;
+            tacticRefPath: z.ZodString;
+            tacticTitle: z.ZodString;
+            agreedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+            agreedInSessionId: z.ZodOptional<z.ZodString>;
+            lastHonouredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+            honouredCount: z.ZodOptional<z.ZodNumber>;
+            lastPassedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+            passedCount: z.ZodOptional<z.ZodNumber>;
+            lastDeliveredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+            lastDeliveredSessionId: z.ZodOptional<z.ZodString>;
+        } & {
+            usedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+        }, "strip", z.ZodTypeAny, {
+            tacticId: string;
+            tacticRefPath: string;
+            tacticTitle: string;
+            agreedAt: import("../types").Timestamp;
+            usedAt: import("../types").Timestamp;
+            agreedInSessionId?: string | undefined;
+            lastHonouredAt?: import("../types").Timestamp | undefined;
+            honouredCount?: number | undefined;
+            lastPassedAt?: import("../types").Timestamp | undefined;
+            passedCount?: number | undefined;
+            lastDeliveredAt?: import("../types").Timestamp | undefined;
+            lastDeliveredSessionId?: string | undefined;
+        }, {
+            tacticId: string;
+            tacticRefPath: string;
+            tacticTitle: string;
+            agreedAt: import("../types").Timestamp;
+            usedAt: import("../types").Timestamp;
+            agreedInSessionId?: string | undefined;
+            lastHonouredAt?: import("../types").Timestamp | undefined;
+            honouredCount?: number | undefined;
+            lastPassedAt?: import("../types").Timestamp | undefined;
+            passedCount?: number | undefined;
+            lastDeliveredAt?: import("../types").Timestamp | undefined;
+            lastDeliveredSessionId?: string | undefined;
+        }>>;
         tactics: z.ZodOptional<z.ZodArray<z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>, "many">>;
         tacticsAgreedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         suppressedTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -3451,6 +3589,20 @@ export declare const daySummarySchema: z.ZodObject<{
             lastDeliveredAt?: import("../types").Timestamp | undefined;
             lastDeliveredSessionId?: string | undefined;
         } | undefined;
+        lastUsedAgreement?: {
+            tacticId: string;
+            tacticRefPath: string;
+            tacticTitle: string;
+            agreedAt: import("../types").Timestamp;
+            usedAt: import("../types").Timestamp;
+            agreedInSessionId?: string | undefined;
+            lastHonouredAt?: import("../types").Timestamp | undefined;
+            honouredCount?: number | undefined;
+            lastPassedAt?: import("../types").Timestamp | undefined;
+            passedCount?: number | undefined;
+            lastDeliveredAt?: import("../types").Timestamp | undefined;
+            lastDeliveredSessionId?: string | undefined;
+        } | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
         tacticsAgreedAt?: import("../types").Timestamp | undefined;
         suppressedTacticIds?: string[] | undefined;
@@ -3686,6 +3838,20 @@ export declare const daySummarySchema: z.ZodObject<{
             tacticRefPath: string;
             tacticTitle: string;
             agreedAt: import("../types").Timestamp;
+            agreedInSessionId?: string | undefined;
+            lastHonouredAt?: import("../types").Timestamp | undefined;
+            honouredCount?: number | undefined;
+            lastPassedAt?: import("../types").Timestamp | undefined;
+            passedCount?: number | undefined;
+            lastDeliveredAt?: import("../types").Timestamp | undefined;
+            lastDeliveredSessionId?: string | undefined;
+        } | undefined;
+        lastUsedAgreement?: {
+            tacticId: string;
+            tacticRefPath: string;
+            tacticTitle: string;
+            agreedAt: import("../types").Timestamp;
+            usedAt: import("../types").Timestamp;
             agreedInSessionId?: string | undefined;
             lastHonouredAt?: import("../types").Timestamp | undefined;
             honouredCount?: number | undefined;
@@ -4052,6 +4218,20 @@ export declare const daySummarySchema: z.ZodObject<{
             lastDeliveredAt?: import("../types").Timestamp | undefined;
             lastDeliveredSessionId?: string | undefined;
         } | undefined;
+        lastUsedAgreement?: {
+            tacticId: string;
+            tacticRefPath: string;
+            tacticTitle: string;
+            agreedAt: import("../types").Timestamp;
+            usedAt: import("../types").Timestamp;
+            agreedInSessionId?: string | undefined;
+            lastHonouredAt?: import("../types").Timestamp | undefined;
+            honouredCount?: number | undefined;
+            lastPassedAt?: import("../types").Timestamp | undefined;
+            passedCount?: number | undefined;
+            lastDeliveredAt?: import("../types").Timestamp | undefined;
+            lastDeliveredSessionId?: string | undefined;
+        } | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
         tacticsAgreedAt?: import("../types").Timestamp | undefined;
         suppressedTacticIds?: string[] | undefined;
@@ -4336,6 +4516,20 @@ export declare const daySummarySchema: z.ZodObject<{
             tacticRefPath: string;
             tacticTitle: string;
             agreedAt: import("../types").Timestamp;
+            agreedInSessionId?: string | undefined;
+            lastHonouredAt?: import("../types").Timestamp | undefined;
+            honouredCount?: number | undefined;
+            lastPassedAt?: import("../types").Timestamp | undefined;
+            passedCount?: number | undefined;
+            lastDeliveredAt?: import("../types").Timestamp | undefined;
+            lastDeliveredSessionId?: string | undefined;
+        } | undefined;
+        lastUsedAgreement?: {
+            tacticId: string;
+            tacticRefPath: string;
+            tacticTitle: string;
+            agreedAt: import("../types").Timestamp;
+            usedAt: import("../types").Timestamp;
             agreedInSessionId?: string | undefined;
             lastHonouredAt?: import("../types").Timestamp | undefined;
             honouredCount?: number | undefined;

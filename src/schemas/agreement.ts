@@ -73,6 +73,21 @@ export const tacticAgreementSchema = z.object({
 export type TacticAgreement = z.infer<typeof tacticAgreementSchema>;
 
 /**
+ * The agreement as it stood when the user STARTED it, kept on the behavior or
+ * trigger after the live `agreement` is cleared (consumeAgreementsForTactic).
+ *
+ * An agreement is one-use, so starting it empties the "Next time" slot. Without
+ * this the slot cannot tell "you kept it today" from "never set", and the plan
+ * reads as unset right after the user honoured it. Display only: nothing
+ * delivers it, and a new `agreement` supersedes it. Overwritten on each use.
+ */
+export const usedTacticAgreementSchema = tacticAgreementSchema.extend({
+  usedAt: timestampSchema,
+});
+
+export type UsedTacticAgreement = z.infer<typeof usedTacticAgreementSchema>;
+
+/**
  * An agreement the user has passed over more often than they have kept, with
  * enough attempts to mean something. Worth raising with them; never auto-removed.
  */

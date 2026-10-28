@@ -34,6 +34,8 @@ exports.triggerSchema = zod_1.z.object({
      * surfaces when a model remembers it is not an agreement.
      */
     agreement: agreement_1.tacticAgreementSchema.optional(),
+    /** The last agreement used up here, and when. See usedTacticAgreementSchema. */
+    lastUsedAgreement: agreement_1.usedTacticAgreementSchema.optional(),
     /**
      * @deprecated The ordered go-to list, read by the AI as evidence only.
      * Superseded by `agreement`. Read only by the migration that collapses it
