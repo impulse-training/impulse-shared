@@ -26850,7 +26850,7 @@ export declare const logSchemas: {
                 word: string;
                 lowWord?: string | undefined;
             } | undefined;
-            level?: 1 | 2 | 3 | 5 | 4 | null | undefined;
+            level?: 1 | 2 | 5 | 3 | 4 | null | undefined;
             levels?: [string, string, "normal", string, string] | undefined;
             quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
         }, {
@@ -26864,7 +26864,7 @@ export declare const logSchemas: {
                 word: string;
                 lowWord?: string | undefined;
             } | undefined;
-            level?: 1 | 2 | 3 | 5 | 4 | null | undefined;
+            level?: 1 | 2 | 5 | 3 | 4 | null | undefined;
             levels?: [string, string, "normal", string, string] | undefined;
             quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
         }>;
@@ -26888,7 +26888,7 @@ export declare const logSchemas: {
                 word: string;
                 lowWord?: string | undefined;
             } | undefined;
-            level?: 1 | 2 | 3 | 5 | 4 | null | undefined;
+            level?: 1 | 2 | 5 | 3 | 4 | null | undefined;
             levels?: [string, string, "normal", string, string] | undefined;
             quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
         };
@@ -26918,7 +26918,7 @@ export declare const logSchemas: {
                 word: string;
                 lowWord?: string | undefined;
             } | undefined;
-            level?: 1 | 2 | 3 | 5 | 4 | null | undefined;
+            level?: 1 | 2 | 5 | 3 | 4 | null | undefined;
             levels?: [string, string, "normal", string, string] | undefined;
             quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
         };
@@ -57708,7 +57708,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             word: string;
             lowWord?: string | undefined;
         } | undefined;
-        level?: 1 | 2 | 3 | 5 | 4 | null | undefined;
+        level?: 1 | 2 | 5 | 3 | 4 | null | undefined;
         levels?: [string, string, "normal", string, string] | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     }, {
@@ -57722,7 +57722,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             word: string;
             lowWord?: string | undefined;
         } | undefined;
-        level?: 1 | 2 | 3 | 5 | 4 | null | undefined;
+        level?: 1 | 2 | 5 | 3 | 4 | null | undefined;
         levels?: [string, string, "normal", string, string] | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     }>;
@@ -57746,7 +57746,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             word: string;
             lowWord?: string | undefined;
         } | undefined;
-        level?: 1 | 2 | 3 | 5 | 4 | null | undefined;
+        level?: 1 | 2 | 5 | 3 | 4 | null | undefined;
         levels?: [string, string, "normal", string, string] | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     };
@@ -57776,7 +57776,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             word: string;
             lowWord?: string | undefined;
         } | undefined;
-        level?: 1 | 2 | 3 | 5 | 4 | null | undefined;
+        level?: 1 | 2 | 5 | 3 | 4 | null | undefined;
         levels?: [string, string, "normal", string, string] | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     };
