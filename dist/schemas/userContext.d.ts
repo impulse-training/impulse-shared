@@ -883,12 +883,6 @@ export declare const userContextSchema: z.ZodObject<{
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
-    tactics: Record<string, {
-        title: string;
-        tacticId: string;
-        description?: string | undefined;
-        instructions?: string | undefined;
-    }>;
     behaviors: Record<string, {
         behaviorId: string;
         behaviorName: string;
@@ -901,6 +895,12 @@ export declare const userContextSchema: z.ZodObject<{
             need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
         }[] | undefined;
         drawbacks?: string[] | undefined;
+    }>;
+    tactics: Record<string, {
+        title: string;
+        tacticId: string;
+        description?: string | undefined;
+        instructions?: string | undefined;
     }>;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
@@ -966,12 +966,6 @@ export declare const userContextSchema: z.ZodObject<{
     communicationProfile?: string | undefined;
     communicationProfileVersion?: number | undefined;
 }, {
-    tactics: Record<string, {
-        title: string;
-        tacticId: string;
-        description?: string | undefined;
-        instructions?: string | undefined;
-    }>;
     behaviors: Record<string, {
         behaviorId: string;
         behaviorName: string;
@@ -984,6 +978,12 @@ export declare const userContextSchema: z.ZodObject<{
             need?: "relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus" | undefined;
         })[] | undefined;
         drawbacks?: string[] | undefined;
+    }>;
+    tactics: Record<string, {
+        title: string;
+        tacticId: string;
+        description?: string | undefined;
+        instructions?: string | undefined;
     }>;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;

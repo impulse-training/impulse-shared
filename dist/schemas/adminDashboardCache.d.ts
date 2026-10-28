@@ -27,12 +27,12 @@ declare const usersByCountryRowSchema: z.ZodObject<{
     count: z.ZodNumber;
     pct: z.ZodNumber;
 }, "strip", z.ZodTypeAny, {
-    country: string;
     count: number;
+    country: string;
     pct: number;
 }, {
-    country: string;
     count: number;
+    country: string;
     pct: number;
 }>;
 /**
@@ -73,12 +73,12 @@ export declare const adminDashboardCacheSchema: z.ZodObject<{
         count: z.ZodNumber;
         pct: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
-        country: string;
         count: number;
+        country: string;
         pct: number;
     }, {
-        country: string;
         count: number;
+        country: string;
         pct: number;
     }>, "many">;
     /** Set by the admin frontend each time the dashboard is viewed */
@@ -97,8 +97,8 @@ export declare const adminDashboardCacheSchema: z.ZodObject<{
         active_users: number;
     }[];
     usersByCountry: {
-        country: string;
         count: number;
+        country: string;
         pct: number;
     }[];
     requestedAt: import("../types").Timestamp;
@@ -115,8 +115,8 @@ export declare const adminDashboardCacheSchema: z.ZodObject<{
         active_users: number;
     }[];
     usersByCountry: {
-        country: string;
         count: number;
+        country: string;
         pct: number;
     }[];
     requestedAt: import("../types").Timestamp;

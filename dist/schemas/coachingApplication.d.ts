@@ -21,8 +21,8 @@ export declare const coachingApplicationSchema: z.ZodObject<{
     status: "declined" | "new" | "reviewed" | "contacted" | "enrolled";
     name: string;
     email: string;
-    userId?: string | undefined;
     note?: string | undefined;
+    userId?: string | undefined;
     reviewedAt?: Timestamp | undefined;
     urgePattern?: string | undefined;
     timezone?: string | undefined;
@@ -35,8 +35,8 @@ export declare const coachingApplicationSchema: z.ZodObject<{
     name: string;
     email: string;
     status?: "declined" | "new" | "reviewed" | "contacted" | "enrolled" | undefined;
-    userId?: string | undefined;
     note?: string | undefined;
+    userId?: string | undefined;
     reviewedAt?: Timestamp | undefined;
     urgePattern?: string | undefined;
     timezone?: string | undefined;

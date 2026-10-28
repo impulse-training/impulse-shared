@@ -1041,7 +1041,7 @@ export declare const supportGroupSchema: z.ZodObject<{
         timezone: string;
     }>>>;
 }, "strip", z.ZodTypeAny, {
-    type: "onboarding" | "system" | "coach" | "alignment" | "social";
+    type: "system" | "onboarding" | "coach" | "alignment" | "social";
     name: string;
     membersById: Record<string, {
         userId: string;
@@ -1256,7 +1256,7 @@ export declare const supportGroupSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
-    type?: "onboarding" | "system" | "coach" | "alignment" | "social" | undefined;
+    type?: "system" | "onboarding" | "coach" | "alignment" | "social" | undefined;
     image?: {
         uri: string;
         storagePath: string;

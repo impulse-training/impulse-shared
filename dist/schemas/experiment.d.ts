@@ -80,8 +80,8 @@ export declare const experimentSchema: z.ZodObject<{
         heading: string;
     }>, "many">>;
 }, "strip", z.ZodTypeAny, {
-    name: string;
     behaviorIds: string[];
+    name: string;
     experimentQuestion: string;
     stage: "observe" | "intervene" | "maintain";
     metricIds: string[];
@@ -115,8 +115,8 @@ export declare const experimentSchema: z.ZodObject<{
     hypothesis?: string | undefined;
     chartUnlocked?: boolean | undefined;
 }, {
-    name: string;
     behaviorIds: string[];
+    name: string;
     experimentQuestion: string;
     startedAt?: import("../types").Timestamp | undefined;
     goal?: {
@@ -165,18 +165,18 @@ export declare const experimentProposalSchema: z.ZodObject<{
     respondedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     declineNote: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    status: "pending" | "accepted" | "declined" | "superseded";
+    status: "pending" | "declined" | "accepted" | "superseded";
     changes: Record<string, unknown>;
-    proposedBy: "ai" | "admin";
+    proposedBy: "admin" | "ai";
     proposedAt: import("../types").Timestamp;
     respondedAt?: import("../types").Timestamp | undefined;
     rationale?: string | undefined;
     proposedByUid?: string | undefined;
     declineNote?: string | undefined;
 }, {
-    status: "pending" | "accepted" | "declined" | "superseded";
+    status: "pending" | "declined" | "accepted" | "superseded";
     changes: Record<string, unknown>;
-    proposedBy: "ai" | "admin";
+    proposedBy: "admin" | "ai";
     proposedAt: import("../types").Timestamp;
     respondedAt?: import("../types").Timestamp | undefined;
     rationale?: string | undefined;

@@ -333,16 +333,16 @@ export declare const setBehaviorGoalStrategyOperationSchema: z.ZodObject<{
             0: number;
             1: number;
             2: number;
-            3: number;
             5: number;
+            3: number;
             6: number;
             4: number;
         }, {
             0: number;
             1: number;
             2: number;
-            3: number;
             5: number;
+            3: number;
             6: number;
             4: number;
         }>;
@@ -352,8 +352,8 @@ export declare const setBehaviorGoalStrategyOperationSchema: z.ZodObject<{
             0: number;
             1: number;
             2: number;
-            3: number;
             5: number;
+            3: number;
             6: number;
             4: number;
         };
@@ -363,8 +363,8 @@ export declare const setBehaviorGoalStrategyOperationSchema: z.ZodObject<{
             0: number;
             1: number;
             2: number;
-            3: number;
             5: number;
+            3: number;
             6: number;
             4: number;
         };
@@ -412,8 +412,8 @@ export declare const setBehaviorGoalStrategyOperationSchema: z.ZodObject<{
             0: number;
             1: number;
             2: number;
-            3: number;
             5: number;
+            3: number;
             6: number;
             4: number;
         };
@@ -439,8 +439,8 @@ export declare const setBehaviorGoalStrategyOperationSchema: z.ZodObject<{
             0: number;
             1: number;
             2: number;
-            3: number;
             5: number;
+            3: number;
             6: number;
             4: number;
         };
@@ -675,16 +675,16 @@ export declare const strategyModificationOperationSchema: z.ZodDiscriminatedUnio
             0: number;
             1: number;
             2: number;
-            3: number;
             5: number;
+            3: number;
             6: number;
             4: number;
         }, {
             0: number;
             1: number;
             2: number;
-            3: number;
             5: number;
+            3: number;
             6: number;
             4: number;
         }>;
@@ -694,8 +694,8 @@ export declare const strategyModificationOperationSchema: z.ZodDiscriminatedUnio
             0: number;
             1: number;
             2: number;
-            3: number;
             5: number;
+            3: number;
             6: number;
             4: number;
         };
@@ -705,8 +705,8 @@ export declare const strategyModificationOperationSchema: z.ZodDiscriminatedUnio
             0: number;
             1: number;
             2: number;
-            3: number;
             5: number;
+            3: number;
             6: number;
             4: number;
         };
@@ -754,8 +754,8 @@ export declare const strategyModificationOperationSchema: z.ZodDiscriminatedUnio
             0: number;
             1: number;
             2: number;
-            3: number;
             5: number;
+            3: number;
             6: number;
             4: number;
         };
@@ -781,8 +781,8 @@ export declare const strategyModificationOperationSchema: z.ZodDiscriminatedUnio
             0: number;
             1: number;
             2: number;
-            3: number;
             5: number;
+            3: number;
             6: number;
             4: number;
         };
@@ -1036,16 +1036,16 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 }, {
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 }>;
@@ -1055,8 +1055,8 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -1066,8 +1066,8 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -1115,8 +1115,8 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -1142,8 +1142,8 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -1178,7 +1178,7 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
         createdPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         updatedBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     }, "strip", z.ZodTypeAny, {
-        status: "pending" | "accepted" | "declined" | "superseded";
+        status: "pending" | "declined" | "accepted" | "superseded";
         title: string;
         operations: ({
             type: "create_trigger";
@@ -1230,8 +1230,8 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -1307,8 +1307,8 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -1321,7 +1321,7 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                 }[];
             };
         })[];
-        status?: "pending" | "accepted" | "declined" | "superseded" | undefined;
+        status?: "pending" | "declined" | "accepted" | "superseded" | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
@@ -1344,7 +1344,7 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        status: "pending" | "accepted" | "declined" | "superseded";
+        status: "pending" | "declined" | "accepted" | "superseded";
         title: string;
         operations: ({
             type: "create_trigger";
@@ -1396,8 +1396,8 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -1488,8 +1488,8 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -1502,7 +1502,7 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                 }[];
             };
         })[];
-        status?: "pending" | "accepted" | "declined" | "superseded" | undefined;
+        status?: "pending" | "declined" | "accepted" | "superseded" | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;

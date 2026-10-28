@@ -694,13 +694,13 @@ export declare const logSchemas: {
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 }, "strip", z.ZodTypeAny, {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 }, {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 }>>;
                 createdByUid: z.ZodOptional<z.ZodString>;
@@ -5122,30 +5122,30 @@ export declare const logSchemas: {
                         optionLabels: string[];
                     }>, "many">>;
                 }, "strip", z.ZodTypeAny, {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
                         behaviorTopicId: string;
                     }[] | undefined;
                 }, {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -5190,30 +5190,30 @@ export declare const logSchemas: {
                         optionLabels: string[];
                     }>, "many">>;
                 }, "strip", z.ZodTypeAny, {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
                         behaviorTopicId: string;
                     }[] | undefined;
                 }, {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -5806,8 +5806,8 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -5816,15 +5816,15 @@ export declare const logSchemas: {
                 modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -5832,15 +5832,15 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -5859,7 +5859,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -5889,8 +5889,8 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -5899,15 +5899,15 @@ export declare const logSchemas: {
                 modality?: unknown;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -5915,15 +5915,15 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -5942,7 +5942,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -6743,8 +6743,8 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -6753,15 +6753,15 @@ export declare const logSchemas: {
                 modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -6769,15 +6769,15 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -6796,7 +6796,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -6912,8 +6912,8 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -6922,15 +6922,15 @@ export declare const logSchemas: {
                 modality?: unknown;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -6938,15 +6938,15 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -6965,7 +6965,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -7625,8 +7625,8 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -7635,15 +7635,15 @@ export declare const logSchemas: {
                 modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -7651,15 +7651,15 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -7678,7 +7678,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -7809,8 +7809,8 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -7819,15 +7819,15 @@ export declare const logSchemas: {
                 modality?: unknown;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -7835,15 +7835,15 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -7862,7 +7862,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -8010,7 +8010,7 @@ export declare const logSchemas: {
                 }>, "many">>;
                 name: z.ZodOptional<z.ZodString>;
             }, "strip", z.ZodTypeAny, {
-                role: "user" | "assistant" | "system" | "tool";
+                role: "user" | "system" | "assistant" | "tool";
                 name?: string | undefined;
                 content?: string | any[] | null | undefined;
                 tool_call_id?: string | undefined;
@@ -8023,7 +8023,7 @@ export declare const logSchemas: {
                     type: "function";
                 }[] | undefined;
             }, {
-                role: "user" | "assistant" | "system" | "tool";
+                role: "user" | "system" | "assistant" | "tool";
                 name?: string | undefined;
                 content?: string | any[] | null | undefined;
                 tool_call_id?: string | undefined;
@@ -8049,7 +8049,7 @@ export declare const logSchemas: {
             }>>;
         }, "strip", z.ZodTypeAny, {
             message: {
-                role: "user" | "assistant" | "system" | "tool";
+                role: "user" | "system" | "assistant" | "tool";
                 name?: string | undefined;
                 content?: string | any[] | null | undefined;
                 tool_call_id?: string | undefined;
@@ -8069,7 +8069,7 @@ export declare const logSchemas: {
             } | undefined;
         }, {
             message: {
-                role: "user" | "assistant" | "system" | "tool";
+                role: "user" | "system" | "assistant" | "tool";
                 name?: string | undefined;
                 content?: string | any[] | null | undefined;
                 tool_call_id?: string | undefined;
@@ -8099,7 +8099,7 @@ export declare const logSchemas: {
         isDisplayable: false;
         data: {
             message: {
-                role: "user" | "assistant" | "system" | "tool";
+                role: "user" | "system" | "assistant" | "tool";
                 name?: string | undefined;
                 content?: string | any[] | null | undefined;
                 tool_call_id?: string | undefined;
@@ -8134,7 +8134,7 @@ export declare const logSchemas: {
         isDisplayable: false;
         data: {
             message: {
-                role: "user" | "assistant" | "system" | "tool";
+                role: "user" | "system" | "assistant" | "tool";
                 name?: string | undefined;
                 content?: string | any[] | null | undefined;
                 tool_call_id?: string | undefined;
@@ -8210,13 +8210,13 @@ export declare const logSchemas: {
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 }, "strip", z.ZodTypeAny, {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 }, {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 }>>;
                 createdByUid: z.ZodOptional<z.ZodString>;
@@ -12638,30 +12638,30 @@ export declare const logSchemas: {
                         optionLabels: string[];
                     }>, "many">>;
                 }, "strip", z.ZodTypeAny, {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
                         behaviorTopicId: string;
                     }[] | undefined;
                 }, {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -12706,30 +12706,30 @@ export declare const logSchemas: {
                         optionLabels: string[];
                     }>, "many">>;
                 }, "strip", z.ZodTypeAny, {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
                         behaviorTopicId: string;
                     }[] | undefined;
                 }, {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -13322,8 +13322,8 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -13332,15 +13332,15 @@ export declare const logSchemas: {
                 modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -13348,15 +13348,15 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -13375,7 +13375,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -13405,8 +13405,8 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -13415,15 +13415,15 @@ export declare const logSchemas: {
                 modality?: unknown;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -13431,15 +13431,15 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -13458,7 +13458,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -14250,8 +14250,8 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -14260,15 +14260,15 @@ export declare const logSchemas: {
                 modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -14276,15 +14276,15 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -14303,7 +14303,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -14386,8 +14386,8 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -14396,15 +14396,15 @@ export declare const logSchemas: {
                 modality?: unknown;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -14412,15 +14412,15 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -14439,7 +14439,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -15066,8 +15066,8 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -15076,15 +15076,15 @@ export declare const logSchemas: {
                 modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -15092,15 +15092,15 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -15119,7 +15119,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -15217,8 +15217,8 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -15227,15 +15227,15 @@ export declare const logSchemas: {
                 modality?: unknown;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -15243,15 +15243,15 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -15270,7 +15270,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -15388,13 +15388,13 @@ export declare const logSchemas: {
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 }, "strip", z.ZodTypeAny, {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 }, {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 }>>;
                 createdByUid: z.ZodOptional<z.ZodString>;
@@ -19816,30 +19816,30 @@ export declare const logSchemas: {
                         optionLabels: string[];
                     }>, "many">>;
                 }, "strip", z.ZodTypeAny, {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
                         behaviorTopicId: string;
                     }[] | undefined;
                 }, {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -19884,30 +19884,30 @@ export declare const logSchemas: {
                         optionLabels: string[];
                     }>, "many">>;
                 }, "strip", z.ZodTypeAny, {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
                         behaviorTopicId: string;
                     }[] | undefined;
                 }, {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -20500,8 +20500,8 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -20510,15 +20510,15 @@ export declare const logSchemas: {
                 modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -20526,15 +20526,15 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -20553,7 +20553,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -20583,8 +20583,8 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -20593,15 +20593,15 @@ export declare const logSchemas: {
                 modality?: unknown;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -20609,15 +20609,15 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -20636,7 +20636,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -21428,8 +21428,8 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -21438,15 +21438,15 @@ export declare const logSchemas: {
                 modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -21454,15 +21454,15 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -21481,7 +21481,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -21564,8 +21564,8 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -21574,15 +21574,15 @@ export declare const logSchemas: {
                 modality?: unknown;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -21590,15 +21590,15 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -21617,7 +21617,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -22244,8 +22244,8 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -22254,15 +22254,15 @@ export declare const logSchemas: {
                 modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -22270,15 +22270,15 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -22297,7 +22297,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -22395,8 +22395,8 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -22405,15 +22405,15 @@ export declare const logSchemas: {
                 modality?: unknown;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -22421,15 +22421,15 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -22448,7 +22448,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -22630,7 +22630,7 @@ export declare const logSchemas: {
             planId?: string | undefined;
             chosenTacticId?: string | undefined;
             chosenAt?: import("../../types").Timestamp | undefined;
-            chosenVia?: "tap" | "spoken" | "typed" | undefined;
+            chosenVia?: "typed" | "tap" | "spoken" | undefined;
             tacticLogId?: string | undefined;
             declinedBoth?: boolean | undefined;
             declineOutcome?: "reshuffled" | "voiceOffered" | undefined;
@@ -22663,7 +22663,7 @@ export declare const logSchemas: {
             planId?: string | undefined;
             chosenTacticId?: string | undefined;
             chosenAt?: import("../../types").Timestamp | undefined;
-            chosenVia?: "tap" | "spoken" | "typed" | undefined;
+            chosenVia?: "typed" | "tap" | "spoken" | undefined;
             tacticLogId?: string | undefined;
             declinedBoth?: boolean | undefined;
             declineOutcome?: "reshuffled" | "voiceOffered" | undefined;
@@ -22706,7 +22706,7 @@ export declare const logSchemas: {
             planId?: string | undefined;
             chosenTacticId?: string | undefined;
             chosenAt?: import("../../types").Timestamp | undefined;
-            chosenVia?: "tap" | "spoken" | "typed" | undefined;
+            chosenVia?: "typed" | "tap" | "spoken" | undefined;
             tacticLogId?: string | undefined;
             declinedBoth?: boolean | undefined;
             declineOutcome?: "reshuffled" | "voiceOffered" | undefined;
@@ -22754,7 +22754,7 @@ export declare const logSchemas: {
             planId?: string | undefined;
             chosenTacticId?: string | undefined;
             chosenAt?: import("../../types").Timestamp | undefined;
-            chosenVia?: "tap" | "spoken" | "typed" | undefined;
+            chosenVia?: "typed" | "tap" | "spoken" | undefined;
             tacticLogId?: string | undefined;
             declinedBoth?: boolean | undefined;
             declineOutcome?: "reshuffled" | "voiceOffered" | undefined;
@@ -22799,25 +22799,25 @@ export declare const logSchemas: {
             withinAllowedWindow: z.ZodOptional<z.ZodBoolean>;
         }, "strip", z.ZodTypeAny, {
             value?: number | undefined;
+            source?: "scheduled" | "manual" | undefined;
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
             trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
-            source?: "scheduled" | "manual" | undefined;
             debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
             resolvedAt?: import("../../types").Timestamp | undefined;
             withinAllowedWindow?: boolean | undefined;
         }, {
             value?: number | undefined;
+            source?: "scheduled" | "manual" | undefined;
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
             trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
-            source?: "scheduled" | "manual" | undefined;
             debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
             resolvedAt?: import("../../types").Timestamp | undefined;
             withinAllowedWindow?: boolean | undefined;
@@ -22834,13 +22834,13 @@ export declare const logSchemas: {
         isAdjustment: boolean;
         data: {
             value?: number | undefined;
+            source?: "scheduled" | "manual" | undefined;
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
             trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
-            source?: "scheduled" | "manual" | undefined;
             debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
             resolvedAt?: import("../../types").Timestamp | undefined;
             withinAllowedWindow?: boolean | undefined;
@@ -22862,13 +22862,13 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             value?: number | undefined;
+            source?: "scheduled" | "manual" | undefined;
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
             trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
-            source?: "scheduled" | "manual" | undefined;
             debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
             resolvedAt?: import("../../types").Timestamp | undefined;
             withinAllowedWindow?: boolean | undefined;
@@ -25954,10 +25954,10 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "proposed_experiment";
+        behaviorIds: string[];
         userId: string;
         sessionId: string;
         dateString: string;
-        behaviorIds: string[];
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         metricLabels: string[];
@@ -25987,10 +25987,10 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "proposed_experiment";
+        behaviorIds: string[];
         userId: string;
         sessionId: string;
         dateString: string;
-        behaviorIds: string[];
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         metricLabels: string[];
@@ -26258,16 +26258,16 @@ export declare const logSchemas: {
                         0: number;
                         1: number;
                         2: number;
-                        3: number;
                         5: number;
+                        3: number;
                         6: number;
                         4: number;
                     }, {
                         0: number;
                         1: number;
                         2: number;
-                        3: number;
                         5: number;
+                        3: number;
                         6: number;
                         4: number;
                     }>;
@@ -26277,8 +26277,8 @@ export declare const logSchemas: {
                         0: number;
                         1: number;
                         2: number;
-                        3: number;
                         5: number;
+                        3: number;
                         6: number;
                         4: number;
                     };
@@ -26288,8 +26288,8 @@ export declare const logSchemas: {
                         0: number;
                         1: number;
                         2: number;
-                        3: number;
                         5: number;
+                        3: number;
                         6: number;
                         4: number;
                     };
@@ -26337,8 +26337,8 @@ export declare const logSchemas: {
                         0: number;
                         1: number;
                         2: number;
-                        3: number;
                         5: number;
+                        3: number;
                         6: number;
                         4: number;
                     };
@@ -26364,8 +26364,8 @@ export declare const logSchemas: {
                         0: number;
                         1: number;
                         2: number;
-                        3: number;
                         5: number;
+                        3: number;
                         6: number;
                         4: number;
                     };
@@ -26389,7 +26389,7 @@ export declare const logSchemas: {
             createdPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             updatedBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         }, "strip", z.ZodTypeAny, {
-            status: "pending" | "accepted" | "declined" | "superseded";
+            status: "pending" | "declined" | "accepted" | "superseded";
             title: string;
             operations: ({
                 type: "create_trigger";
@@ -26441,8 +26441,8 @@ export declare const logSchemas: {
                         0: number;
                         1: number;
                         2: number;
-                        3: number;
                         5: number;
+                        3: number;
                         6: number;
                         4: number;
                     };
@@ -26518,8 +26518,8 @@ export declare const logSchemas: {
                         0: number;
                         1: number;
                         2: number;
-                        3: number;
                         5: number;
+                        3: number;
                         6: number;
                         4: number;
                     };
@@ -26532,7 +26532,7 @@ export declare const logSchemas: {
                     }[];
                 };
             })[];
-            status?: "pending" | "accepted" | "declined" | "superseded" | undefined;
+            status?: "pending" | "declined" | "accepted" | "superseded" | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
             summary?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
@@ -26555,7 +26555,7 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
-            status: "pending" | "accepted" | "declined" | "superseded";
+            status: "pending" | "declined" | "accepted" | "superseded";
             title: string;
             operations: ({
                 type: "create_trigger";
@@ -26607,8 +26607,8 @@ export declare const logSchemas: {
                         0: number;
                         1: number;
                         2: number;
-                        3: number;
                         5: number;
+                        3: number;
                         6: number;
                         4: number;
                     };
@@ -26699,8 +26699,8 @@ export declare const logSchemas: {
                         0: number;
                         1: number;
                         2: number;
-                        3: number;
                         5: number;
+                        3: number;
                         6: number;
                         4: number;
                     };
@@ -26713,7 +26713,7 @@ export declare const logSchemas: {
                     }[];
                 };
             })[];
-            status?: "pending" | "accepted" | "declined" | "superseded" | undefined;
+            status?: "pending" | "declined" | "accepted" | "superseded" | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
             summary?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
@@ -27323,12 +27323,12 @@ export declare const logSchemas: {
                 }>, "many">>;
                 computedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
             }, "strip", z.ZodTypeAny, {
-                confidence: "low" | "high" | "cant_tell" | "moderate";
                 behaviors: {
                     behaviorId: string;
                     baselineDailyMean: number;
                     trialDailyMean: number;
                 }[];
+                confidence: "low" | "high" | "cant_tell" | "moderate";
                 baseline: {
                     fromDateString: string;
                     toDateString: string;
@@ -27350,12 +27350,12 @@ export declare const logSchemas: {
                     trialReadings: number;
                 } | undefined;
             }, {
-                confidence: "low" | "high" | "cant_tell" | "moderate";
                 behaviors: {
                     behaviorId: string;
                     baselineDailyMean: number;
                     trialDailyMean: number;
                 }[];
+                confidence: "low" | "high" | "cant_tell" | "moderate";
                 baseline: {
                     fromDateString: string;
                     toDateString: string;
@@ -27388,12 +27388,12 @@ export declare const logSchemas: {
             answeredAt?: import("../../types").Timestamp | undefined;
             answer?: "extend" | "keep" | "adjust" | "drop" | undefined;
             comparison?: {
-                confidence: "low" | "high" | "cant_tell" | "moderate";
                 behaviors: {
                     behaviorId: string;
                     baselineDailyMean: number;
                     trialDailyMean: number;
                 }[];
+                confidence: "low" | "high" | "cant_tell" | "moderate";
                 baseline: {
                     fromDateString: string;
                     toDateString: string;
@@ -27424,12 +27424,12 @@ export declare const logSchemas: {
             answeredAt?: import("../../types").Timestamp | undefined;
             answer?: "extend" | "keep" | "adjust" | "drop" | undefined;
             comparison?: {
-                confidence: "low" | "high" | "cant_tell" | "moderate";
                 behaviors: {
                     behaviorId: string;
                     baselineDailyMean: number;
                     trialDailyMean: number;
                 }[];
+                confidence: "low" | "high" | "cant_tell" | "moderate";
                 baseline: {
                     fromDateString: string;
                     toDateString: string;
@@ -27470,12 +27470,12 @@ export declare const logSchemas: {
             answeredAt?: import("../../types").Timestamp | undefined;
             answer?: "extend" | "keep" | "adjust" | "drop" | undefined;
             comparison?: {
-                confidence: "low" | "high" | "cant_tell" | "moderate";
                 behaviors: {
                     behaviorId: string;
                     baselineDailyMean: number;
                     trialDailyMean: number;
                 }[];
+                confidence: "low" | "high" | "cant_tell" | "moderate";
                 baseline: {
                     fromDateString: string;
                     toDateString: string;
@@ -27521,12 +27521,12 @@ export declare const logSchemas: {
             answeredAt?: import("../../types").Timestamp | undefined;
             answer?: "extend" | "keep" | "adjust" | "drop" | undefined;
             comparison?: {
-                confidence: "low" | "high" | "cant_tell" | "moderate";
                 behaviors: {
                     behaviorId: string;
                     baselineDailyMean: number;
                     trialDailyMean: number;
                 }[];
+                confidence: "low" | "high" | "cant_tell" | "moderate";
                 baseline: {
                     fromDateString: string;
                     toDateString: string;
@@ -27749,16 +27749,16 @@ export declare const logSchemas: {
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 }, {
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 }>;
@@ -27768,8 +27768,8 @@ export declare const logSchemas: {
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -27779,8 +27779,8 @@ export declare const logSchemas: {
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -27847,16 +27847,16 @@ export declare const logSchemas: {
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 }, {
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 }>;
@@ -27866,8 +27866,8 @@ export declare const logSchemas: {
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -27877,8 +27877,8 @@ export declare const logSchemas: {
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -27914,7 +27914,7 @@ export declare const logSchemas: {
             }>]>>;
             appliedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
-            status: "pending" | "accepted" | "declined";
+            status: "pending" | "declined" | "accepted";
             title: string;
             behaviorId: string;
             goal: {
@@ -27928,8 +27928,8 @@ export declare const logSchemas: {
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -27957,8 +27957,8 @@ export declare const logSchemas: {
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -27985,8 +27985,8 @@ export declare const logSchemas: {
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -27998,7 +27998,7 @@ export declare const logSchemas: {
                     endTime: string;
                 }[];
             };
-            status?: "pending" | "accepted" | "declined" | undefined;
+            status?: "pending" | "declined" | "accepted" | undefined;
             behaviorName?: string | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
             summary?: string | undefined;
@@ -28015,8 +28015,8 @@ export declare const logSchemas: {
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -28040,7 +28040,7 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
-            status: "pending" | "accepted" | "declined";
+            status: "pending" | "declined" | "accepted";
             title: string;
             behaviorId: string;
             goal: {
@@ -28054,8 +28054,8 @@ export declare const logSchemas: {
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -28083,8 +28083,8 @@ export declare const logSchemas: {
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -28126,8 +28126,8 @@ export declare const logSchemas: {
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -28139,7 +28139,7 @@ export declare const logSchemas: {
                     endTime: string;
                 }[];
             };
-            status?: "pending" | "accepted" | "declined" | undefined;
+            status?: "pending" | "declined" | "accepted" | undefined;
             behaviorName?: string | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
             summary?: string | undefined;
@@ -28156,8 +28156,8 @@ export declare const logSchemas: {
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -28287,7 +28287,7 @@ export declare const logSchemas: {
             declinedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             appliedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
-            status: "pending" | "accepted" | "declined";
+            status: "pending" | "declined" | "accepted";
             title: string;
             behaviorId: string;
             evidence: string;
@@ -28303,7 +28303,7 @@ export declare const logSchemas: {
             behaviorId: string;
             evidence: string;
             toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
-            status?: "pending" | "accepted" | "declined" | undefined;
+            status?: "pending" | "declined" | "accepted" | undefined;
             behaviorName?: string | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
@@ -28321,7 +28321,7 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
-            status: "pending" | "accepted" | "declined";
+            status: "pending" | "declined" | "accepted";
             title: string;
             behaviorId: string;
             evidence: string;
@@ -28352,7 +28352,7 @@ export declare const logSchemas: {
             behaviorId: string;
             evidence: string;
             toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
-            status?: "pending" | "accepted" | "declined" | undefined;
+            status?: "pending" | "declined" | "accepted" | undefined;
             behaviorName?: string | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
@@ -28604,13 +28604,13 @@ export declare const logSchemas: {
                         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     }, "strip", z.ZodTypeAny, {
                         updatedAt?: import("../../types").Timestamp | undefined;
-                        satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                         note?: string | undefined;
+                        satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                         avoidWhen?: string | undefined;
                     }, {
                         updatedAt?: import("../../types").Timestamp | undefined;
-                        satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                         note?: string | undefined;
+                        satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                         avoidWhen?: string | undefined;
                     }>>;
                     createdByUid: z.ZodOptional<z.ZodString>;
@@ -33032,30 +33032,30 @@ export declare const logSchemas: {
                             optionLabels: string[];
                         }>, "many">>;
                     }, "strip", z.ZodTypeAny, {
-                        tags?: {
-                            weight: number;
-                            tagGroupName: string;
-                            optionLabels: string[];
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
                             weight: number;
+                        }[] | undefined;
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
                         }[] | undefined;
                         behaviorTopics?: {
                             weight: number;
                             behaviorTopicId: string;
                         }[] | undefined;
                     }, {
-                        tags?: {
-                            weight: number;
-                            tagGroupName: string;
-                            optionLabels: string[];
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
                             weight: number;
+                        }[] | undefined;
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
                         }[] | undefined;
                         behaviorTopics?: {
                             weight: number;
@@ -33100,30 +33100,30 @@ export declare const logSchemas: {
                             optionLabels: string[];
                         }>, "many">>;
                     }, "strip", z.ZodTypeAny, {
-                        tags?: {
-                            weight: number;
-                            tagGroupName: string;
-                            optionLabels: string[];
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
                             weight: number;
+                        }[] | undefined;
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
                         }[] | undefined;
                         behaviorTopics?: {
                             weight: number;
                             behaviorTopicId: string;
                         }[] | undefined;
                     }, {
-                        tags?: {
-                            weight: number;
-                            tagGroupName: string;
-                            optionLabels: string[];
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
                             weight: number;
+                        }[] | undefined;
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
                         }[] | undefined;
                         behaviorTopics?: {
                             weight: number;
@@ -33716,8 +33716,8 @@ export declare const logSchemas: {
                     aiInstructions?: string | undefined;
                     understanding?: {
                         updatedAt?: import("../../types").Timestamp | undefined;
-                        satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                         note?: string | undefined;
+                        satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                         avoidWhen?: string | undefined;
                     } | undefined;
                     createdByUid?: string | undefined;
@@ -33726,15 +33726,15 @@ export declare const logSchemas: {
                     modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
                     isMultiStep?: boolean | undefined;
                     indications?: {
-                        tags?: {
-                            weight: number;
-                            tagGroupName: string;
-                            optionLabels: string[];
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
                             weight: number;
+                        }[] | undefined;
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
                         }[] | undefined;
                         behaviorTopics?: {
                             weight: number;
@@ -33742,15 +33742,15 @@ export declare const logSchemas: {
                         }[] | undefined;
                     } | undefined;
                     contraindications?: {
-                        tags?: {
-                            weight: number;
-                            tagGroupName: string;
-                            optionLabels: string[];
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
                             weight: number;
+                        }[] | undefined;
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
                         }[] | undefined;
                         behaviorTopics?: {
                             weight: number;
@@ -33769,7 +33769,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
-                    generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                    generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                     generationError?: string | undefined;
                     generationProvider?: string | undefined;
                     generationProviderJobId?: string | undefined;
@@ -33799,8 +33799,8 @@ export declare const logSchemas: {
                     aiInstructions?: string | undefined;
                     understanding?: {
                         updatedAt?: import("../../types").Timestamp | undefined;
-                        satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                         note?: string | undefined;
+                        satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                         avoidWhen?: string | undefined;
                     } | undefined;
                     createdByUid?: string | undefined;
@@ -33809,15 +33809,15 @@ export declare const logSchemas: {
                     modality?: unknown;
                     isMultiStep?: boolean | undefined;
                     indications?: {
-                        tags?: {
-                            weight: number;
-                            tagGroupName: string;
-                            optionLabels: string[];
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
                             weight: number;
+                        }[] | undefined;
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
                         }[] | undefined;
                         behaviorTopics?: {
                             weight: number;
@@ -33825,15 +33825,15 @@ export declare const logSchemas: {
                         }[] | undefined;
                     } | undefined;
                     contraindications?: {
-                        tags?: {
-                            weight: number;
-                            tagGroupName: string;
-                            optionLabels: string[];
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
                             weight: number;
+                        }[] | undefined;
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
                         }[] | undefined;
                         behaviorTopics?: {
                             weight: number;
@@ -33852,7 +33852,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
-                    generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                    generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                     generationError?: string | undefined;
                     generationProvider?: string | undefined;
                     generationProviderJobId?: string | undefined;
@@ -34421,8 +34421,8 @@ export declare const logSchemas: {
                     aiInstructions?: string | undefined;
                     understanding?: {
                         updatedAt?: import("../../types").Timestamp | undefined;
-                        satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                         note?: string | undefined;
+                        satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                         avoidWhen?: string | undefined;
                     } | undefined;
                     createdByUid?: string | undefined;
@@ -34431,15 +34431,15 @@ export declare const logSchemas: {
                     modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
                     isMultiStep?: boolean | undefined;
                     indications?: {
-                        tags?: {
-                            weight: number;
-                            tagGroupName: string;
-                            optionLabels: string[];
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
                             weight: number;
+                        }[] | undefined;
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
                         }[] | undefined;
                         behaviorTopics?: {
                             weight: number;
@@ -34447,15 +34447,15 @@ export declare const logSchemas: {
                         }[] | undefined;
                     } | undefined;
                     contraindications?: {
-                        tags?: {
-                            weight: number;
-                            tagGroupName: string;
-                            optionLabels: string[];
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
                             weight: number;
+                        }[] | undefined;
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
                         }[] | undefined;
                         behaviorTopics?: {
                             weight: number;
@@ -34474,7 +34474,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
-                    generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                    generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                     generationError?: string | undefined;
                     generationProvider?: string | undefined;
                     generationProviderJobId?: string | undefined;
@@ -34509,8 +34509,8 @@ export declare const logSchemas: {
                     aiInstructions?: string | undefined;
                     understanding?: {
                         updatedAt?: import("../../types").Timestamp | undefined;
-                        satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                         note?: string | undefined;
+                        satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                         avoidWhen?: string | undefined;
                     } | undefined;
                     createdByUid?: string | undefined;
@@ -34519,15 +34519,15 @@ export declare const logSchemas: {
                     modality?: unknown;
                     isMultiStep?: boolean | undefined;
                     indications?: {
-                        tags?: {
-                            weight: number;
-                            tagGroupName: string;
-                            optionLabels: string[];
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
                             weight: number;
+                        }[] | undefined;
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
                         }[] | undefined;
                         behaviorTopics?: {
                             weight: number;
@@ -34535,15 +34535,15 @@ export declare const logSchemas: {
                         }[] | undefined;
                     } | undefined;
                     contraindications?: {
-                        tags?: {
-                            weight: number;
-                            tagGroupName: string;
-                            optionLabels: string[];
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
                             weight: number;
+                        }[] | undefined;
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
                         }[] | undefined;
                         behaviorTopics?: {
                             weight: number;
@@ -34562,7 +34562,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
-                    generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                    generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                     generationError?: string | undefined;
                     generationProvider?: string | undefined;
                     generationProviderJobId?: string | undefined;
@@ -35134,8 +35134,8 @@ export declare const logSchemas: {
                     aiInstructions?: string | undefined;
                     understanding?: {
                         updatedAt?: import("../../types").Timestamp | undefined;
-                        satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                         note?: string | undefined;
+                        satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                         avoidWhen?: string | undefined;
                     } | undefined;
                     createdByUid?: string | undefined;
@@ -35144,15 +35144,15 @@ export declare const logSchemas: {
                     modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
                     isMultiStep?: boolean | undefined;
                     indications?: {
-                        tags?: {
-                            weight: number;
-                            tagGroupName: string;
-                            optionLabels: string[];
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
                             weight: number;
+                        }[] | undefined;
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
                         }[] | undefined;
                         behaviorTopics?: {
                             weight: number;
@@ -35160,15 +35160,15 @@ export declare const logSchemas: {
                         }[] | undefined;
                     } | undefined;
                     contraindications?: {
-                        tags?: {
-                            weight: number;
-                            tagGroupName: string;
-                            optionLabels: string[];
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
                             weight: number;
+                        }[] | undefined;
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
                         }[] | undefined;
                         behaviorTopics?: {
                             weight: number;
@@ -35187,7 +35187,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
-                    generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                    generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                     generationError?: string | undefined;
                     generationProvider?: string | undefined;
                     generationProviderJobId?: string | undefined;
@@ -35225,8 +35225,8 @@ export declare const logSchemas: {
                     aiInstructions?: string | undefined;
                     understanding?: {
                         updatedAt?: import("../../types").Timestamp | undefined;
-                        satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                         note?: string | undefined;
+                        satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                         avoidWhen?: string | undefined;
                     } | undefined;
                     createdByUid?: string | undefined;
@@ -35235,15 +35235,15 @@ export declare const logSchemas: {
                     modality?: unknown;
                     isMultiStep?: boolean | undefined;
                     indications?: {
-                        tags?: {
-                            weight: number;
-                            tagGroupName: string;
-                            optionLabels: string[];
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
                             weight: number;
+                        }[] | undefined;
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
                         }[] | undefined;
                         behaviorTopics?: {
                             weight: number;
@@ -35251,15 +35251,15 @@ export declare const logSchemas: {
                         }[] | undefined;
                     } | undefined;
                     contraindications?: {
-                        tags?: {
-                            weight: number;
-                            tagGroupName: string;
-                            optionLabels: string[];
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
                             weight: number;
+                        }[] | undefined;
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
                         }[] | undefined;
                         behaviorTopics?: {
                             weight: number;
@@ -35278,7 +35278,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
-                    generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                    generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                     generationError?: string | undefined;
                     generationProvider?: string | undefined;
                     generationProviderJobId?: string | undefined;
@@ -35860,8 +35860,8 @@ export declare const logSchemas: {
                     aiInstructions?: string | undefined;
                     understanding?: {
                         updatedAt?: import("../../types").Timestamp | undefined;
-                        satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                         note?: string | undefined;
+                        satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                         avoidWhen?: string | undefined;
                     } | undefined;
                     createdByUid?: string | undefined;
@@ -35870,15 +35870,15 @@ export declare const logSchemas: {
                     modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
                     isMultiStep?: boolean | undefined;
                     indications?: {
-                        tags?: {
-                            weight: number;
-                            tagGroupName: string;
-                            optionLabels: string[];
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
                             weight: number;
+                        }[] | undefined;
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
                         }[] | undefined;
                         behaviorTopics?: {
                             weight: number;
@@ -35886,15 +35886,15 @@ export declare const logSchemas: {
                         }[] | undefined;
                     } | undefined;
                     contraindications?: {
-                        tags?: {
-                            weight: number;
-                            tagGroupName: string;
-                            optionLabels: string[];
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
                             weight: number;
+                        }[] | undefined;
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
                         }[] | undefined;
                         behaviorTopics?: {
                             weight: number;
@@ -35913,7 +35913,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
-                    generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                    generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                     generationError?: string | undefined;
                     generationProvider?: string | undefined;
                     generationProviderJobId?: string | undefined;
@@ -35966,8 +35966,8 @@ export declare const logSchemas: {
                     aiInstructions?: string | undefined;
                     understanding?: {
                         updatedAt?: import("../../types").Timestamp | undefined;
-                        satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                         note?: string | undefined;
+                        satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                         avoidWhen?: string | undefined;
                     } | undefined;
                     createdByUid?: string | undefined;
@@ -35976,15 +35976,15 @@ export declare const logSchemas: {
                     modality?: unknown;
                     isMultiStep?: boolean | undefined;
                     indications?: {
-                        tags?: {
-                            weight: number;
-                            tagGroupName: string;
-                            optionLabels: string[];
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
                             weight: number;
+                        }[] | undefined;
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
                         }[] | undefined;
                         behaviorTopics?: {
                             weight: number;
@@ -35992,15 +35992,15 @@ export declare const logSchemas: {
                         }[] | undefined;
                     } | undefined;
                     contraindications?: {
-                        tags?: {
-                            weight: number;
-                            tagGroupName: string;
-                            optionLabels: string[];
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
                             weight: number;
+                        }[] | undefined;
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
                         }[] | undefined;
                         behaviorTopics?: {
                             weight: number;
@@ -36019,7 +36019,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
-                    generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                    generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                     generationError?: string | undefined;
                     generationProvider?: string | undefined;
                     generationProviderJobId?: string | undefined;
@@ -38717,13 +38717,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             }, "strip", z.ZodTypeAny, {
                 updatedAt?: import("../../types").Timestamp | undefined;
-                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 note?: string | undefined;
+                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 avoidWhen?: string | undefined;
             }, {
                 updatedAt?: import("../../types").Timestamp | undefined;
-                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 note?: string | undefined;
+                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 avoidWhen?: string | undefined;
             }>>;
             createdByUid: z.ZodOptional<z.ZodString>;
@@ -43145,30 +43145,30 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     optionLabels: string[];
                 }>, "many">>;
             }, "strip", z.ZodTypeAny, {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
                     behaviorTopicId: string;
                 }[] | undefined;
             }, {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -43213,30 +43213,30 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     optionLabels: string[];
                 }>, "many">>;
             }, "strip", z.ZodTypeAny, {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
                     behaviorTopicId: string;
                 }[] | undefined;
             }, {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -43829,8 +43829,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions?: string | undefined;
             understanding?: {
                 updatedAt?: import("../../types").Timestamp | undefined;
-                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 note?: string | undefined;
+                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 avoidWhen?: string | undefined;
             } | undefined;
             createdByUid?: string | undefined;
@@ -43839,15 +43839,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
             isMultiStep?: boolean | undefined;
             indications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -43855,15 +43855,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -43882,7 +43882,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -43912,8 +43912,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions?: string | undefined;
             understanding?: {
                 updatedAt?: import("../../types").Timestamp | undefined;
-                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 note?: string | undefined;
+                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 avoidWhen?: string | undefined;
             } | undefined;
             createdByUid?: string | undefined;
@@ -43922,15 +43922,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             modality?: unknown;
             isMultiStep?: boolean | undefined;
             indications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -43938,15 +43938,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -43965,7 +43965,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -44766,8 +44766,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions?: string | undefined;
             understanding?: {
                 updatedAt?: import("../../types").Timestamp | undefined;
-                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 note?: string | undefined;
+                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 avoidWhen?: string | undefined;
             } | undefined;
             createdByUid?: string | undefined;
@@ -44776,15 +44776,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
             isMultiStep?: boolean | undefined;
             indications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -44792,15 +44792,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -44819,7 +44819,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -44935,8 +44935,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions?: string | undefined;
             understanding?: {
                 updatedAt?: import("../../types").Timestamp | undefined;
-                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 note?: string | undefined;
+                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 avoidWhen?: string | undefined;
             } | undefined;
             createdByUid?: string | undefined;
@@ -44945,15 +44945,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             modality?: unknown;
             isMultiStep?: boolean | undefined;
             indications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -44961,15 +44961,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -44988,7 +44988,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -45648,8 +45648,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions?: string | undefined;
             understanding?: {
                 updatedAt?: import("../../types").Timestamp | undefined;
-                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 note?: string | undefined;
+                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 avoidWhen?: string | undefined;
             } | undefined;
             createdByUid?: string | undefined;
@@ -45658,15 +45658,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
             isMultiStep?: boolean | undefined;
             indications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -45674,15 +45674,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -45701,7 +45701,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -45832,8 +45832,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions?: string | undefined;
             understanding?: {
                 updatedAt?: import("../../types").Timestamp | undefined;
-                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 note?: string | undefined;
+                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 avoidWhen?: string | undefined;
             } | undefined;
             createdByUid?: string | undefined;
@@ -45842,15 +45842,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             modality?: unknown;
             isMultiStep?: boolean | undefined;
             indications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -45858,15 +45858,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -45885,7 +45885,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -46032,7 +46032,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }>, "many">>;
             name: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
-            role: "user" | "assistant" | "system" | "tool";
+            role: "user" | "system" | "assistant" | "tool";
             name?: string | undefined;
             content?: string | any[] | null | undefined;
             tool_call_id?: string | undefined;
@@ -46045,7 +46045,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 type: "function";
             }[] | undefined;
         }, {
-            role: "user" | "assistant" | "system" | "tool";
+            role: "user" | "system" | "assistant" | "tool";
             name?: string | undefined;
             content?: string | any[] | null | undefined;
             tool_call_id?: string | undefined;
@@ -46071,7 +46071,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }>>;
     }, "strip", z.ZodTypeAny, {
         message: {
-            role: "user" | "assistant" | "system" | "tool";
+            role: "user" | "system" | "assistant" | "tool";
             name?: string | undefined;
             content?: string | any[] | null | undefined;
             tool_call_id?: string | undefined;
@@ -46091,7 +46091,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } | undefined;
     }, {
         message: {
-            role: "user" | "assistant" | "system" | "tool";
+            role: "user" | "system" | "assistant" | "tool";
             name?: string | undefined;
             content?: string | any[] | null | undefined;
             tool_call_id?: string | undefined;
@@ -46121,7 +46121,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: false;
     data: {
         message: {
-            role: "user" | "assistant" | "system" | "tool";
+            role: "user" | "system" | "assistant" | "tool";
             name?: string | undefined;
             content?: string | any[] | null | undefined;
             tool_call_id?: string | undefined;
@@ -46156,7 +46156,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: false;
     data: {
         message: {
-            role: "user" | "assistant" | "system" | "tool";
+            role: "user" | "system" | "assistant" | "tool";
             name?: string | undefined;
             content?: string | any[] | null | undefined;
             tool_call_id?: string | undefined;
@@ -46231,13 +46231,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             }, "strip", z.ZodTypeAny, {
                 updatedAt?: import("../../types").Timestamp | undefined;
-                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 note?: string | undefined;
+                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 avoidWhen?: string | undefined;
             }, {
                 updatedAt?: import("../../types").Timestamp | undefined;
-                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 note?: string | undefined;
+                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 avoidWhen?: string | undefined;
             }>>;
             createdByUid: z.ZodOptional<z.ZodString>;
@@ -50659,30 +50659,30 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     optionLabels: string[];
                 }>, "many">>;
             }, "strip", z.ZodTypeAny, {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
                     behaviorTopicId: string;
                 }[] | undefined;
             }, {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -50727,30 +50727,30 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     optionLabels: string[];
                 }>, "many">>;
             }, "strip", z.ZodTypeAny, {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
                     behaviorTopicId: string;
                 }[] | undefined;
             }, {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -51343,8 +51343,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions?: string | undefined;
             understanding?: {
                 updatedAt?: import("../../types").Timestamp | undefined;
-                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 note?: string | undefined;
+                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 avoidWhen?: string | undefined;
             } | undefined;
             createdByUid?: string | undefined;
@@ -51353,15 +51353,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
             isMultiStep?: boolean | undefined;
             indications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -51369,15 +51369,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -51396,7 +51396,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -51426,8 +51426,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions?: string | undefined;
             understanding?: {
                 updatedAt?: import("../../types").Timestamp | undefined;
-                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 note?: string | undefined;
+                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 avoidWhen?: string | undefined;
             } | undefined;
             createdByUid?: string | undefined;
@@ -51436,15 +51436,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             modality?: unknown;
             isMultiStep?: boolean | undefined;
             indications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -51452,15 +51452,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -51479,7 +51479,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -52271,8 +52271,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions?: string | undefined;
             understanding?: {
                 updatedAt?: import("../../types").Timestamp | undefined;
-                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 note?: string | undefined;
+                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 avoidWhen?: string | undefined;
             } | undefined;
             createdByUid?: string | undefined;
@@ -52281,15 +52281,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
             isMultiStep?: boolean | undefined;
             indications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -52297,15 +52297,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -52324,7 +52324,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -52407,8 +52407,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions?: string | undefined;
             understanding?: {
                 updatedAt?: import("../../types").Timestamp | undefined;
-                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 note?: string | undefined;
+                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 avoidWhen?: string | undefined;
             } | undefined;
             createdByUid?: string | undefined;
@@ -52417,15 +52417,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             modality?: unknown;
             isMultiStep?: boolean | undefined;
             indications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -52433,15 +52433,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -52460,7 +52460,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -53087,8 +53087,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions?: string | undefined;
             understanding?: {
                 updatedAt?: import("../../types").Timestamp | undefined;
-                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 note?: string | undefined;
+                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 avoidWhen?: string | undefined;
             } | undefined;
             createdByUid?: string | undefined;
@@ -53097,15 +53097,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
             isMultiStep?: boolean | undefined;
             indications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -53113,15 +53113,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -53140,7 +53140,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -53238,8 +53238,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions?: string | undefined;
             understanding?: {
                 updatedAt?: import("../../types").Timestamp | undefined;
-                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 note?: string | undefined;
+                satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                 avoidWhen?: string | undefined;
             } | undefined;
             createdByUid?: string | undefined;
@@ -53248,15 +53248,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             modality?: unknown;
             isMultiStep?: boolean | undefined;
             indications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -53264,15 +53264,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
-                tags?: {
-                    weight: number;
-                    tagGroupName: string;
-                    optionLabels: string[];
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
                     weight: number;
+                }[] | undefined;
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
                 }[] | undefined;
                 behaviorTopics?: {
                     weight: number;
@@ -53291,7 +53291,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -53472,7 +53472,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         planId?: string | undefined;
         chosenTacticId?: string | undefined;
         chosenAt?: import("../../types").Timestamp | undefined;
-        chosenVia?: "tap" | "spoken" | "typed" | undefined;
+        chosenVia?: "typed" | "tap" | "spoken" | undefined;
         tacticLogId?: string | undefined;
         declinedBoth?: boolean | undefined;
         declineOutcome?: "reshuffled" | "voiceOffered" | undefined;
@@ -53505,7 +53505,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         planId?: string | undefined;
         chosenTacticId?: string | undefined;
         chosenAt?: import("../../types").Timestamp | undefined;
-        chosenVia?: "tap" | "spoken" | "typed" | undefined;
+        chosenVia?: "typed" | "tap" | "spoken" | undefined;
         tacticLogId?: string | undefined;
         declinedBoth?: boolean | undefined;
         declineOutcome?: "reshuffled" | "voiceOffered" | undefined;
@@ -53548,7 +53548,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         planId?: string | undefined;
         chosenTacticId?: string | undefined;
         chosenAt?: import("../../types").Timestamp | undefined;
-        chosenVia?: "tap" | "spoken" | "typed" | undefined;
+        chosenVia?: "typed" | "tap" | "spoken" | undefined;
         tacticLogId?: string | undefined;
         declinedBoth?: boolean | undefined;
         declineOutcome?: "reshuffled" | "voiceOffered" | undefined;
@@ -53596,7 +53596,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         planId?: string | undefined;
         chosenTacticId?: string | undefined;
         chosenAt?: import("../../types").Timestamp | undefined;
-        chosenVia?: "tap" | "spoken" | "typed" | undefined;
+        chosenVia?: "typed" | "tap" | "spoken" | undefined;
         tacticLogId?: string | undefined;
         declinedBoth?: boolean | undefined;
         declineOutcome?: "reshuffled" | "voiceOffered" | undefined;
@@ -53640,25 +53640,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         withinAllowedWindow: z.ZodOptional<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
         value?: number | undefined;
+        source?: "scheduled" | "manual" | undefined;
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
         trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
-        source?: "scheduled" | "manual" | undefined;
         debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
         withinAllowedWindow?: boolean | undefined;
     }, {
         value?: number | undefined;
+        source?: "scheduled" | "manual" | undefined;
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
         trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
-        source?: "scheduled" | "manual" | undefined;
         debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
         withinAllowedWindow?: boolean | undefined;
@@ -53675,13 +53675,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isAdjustment: boolean;
     data: {
         value?: number | undefined;
+        source?: "scheduled" | "manual" | undefined;
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
         trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
-        source?: "scheduled" | "manual" | undefined;
         debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
         withinAllowedWindow?: boolean | undefined;
@@ -53703,13 +53703,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: true;
     data: {
         value?: number | undefined;
+        source?: "scheduled" | "manual" | undefined;
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
         trackingType?: "counter" | "timer" | "scale" | "occurrence" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
-        source?: "scheduled" | "manual" | undefined;
         debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
         withinAllowedWindow?: boolean | undefined;
@@ -56782,10 +56782,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "proposed_experiment";
+    behaviorIds: string[];
     userId: string;
     sessionId: string;
     dateString: string;
-    behaviorIds: string[];
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     metricLabels: string[];
@@ -56815,10 +56815,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "proposed_experiment";
+    behaviorIds: string[];
     userId: string;
     sessionId: string;
     dateString: string;
-    behaviorIds: string[];
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     metricLabels: string[];
@@ -57085,16 +57085,16 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 }, {
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 }>;
@@ -57104,8 +57104,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -57115,8 +57115,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -57164,8 +57164,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -57191,8 +57191,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -57216,7 +57216,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         createdPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         updatedBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     }, "strip", z.ZodTypeAny, {
-        status: "pending" | "accepted" | "declined" | "superseded";
+        status: "pending" | "declined" | "accepted" | "superseded";
         title: string;
         operations: ({
             type: "create_trigger";
@@ -57268,8 +57268,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -57345,8 +57345,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -57359,7 +57359,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[];
             };
         })[];
-        status?: "pending" | "accepted" | "declined" | "superseded" | undefined;
+        status?: "pending" | "declined" | "accepted" | "superseded" | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
@@ -57382,7 +57382,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        status: "pending" | "accepted" | "declined" | "superseded";
+        status: "pending" | "declined" | "accepted" | "superseded";
         title: string;
         operations: ({
             type: "create_trigger";
@@ -57434,8 +57434,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -57526,8 +57526,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     0: number;
                     1: number;
                     2: number;
-                    3: number;
                     5: number;
+                    3: number;
                     6: number;
                     4: number;
                 };
@@ -57540,7 +57540,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[];
             };
         })[];
-        status?: "pending" | "accepted" | "declined" | "superseded" | undefined;
+        status?: "pending" | "declined" | "accepted" | "superseded" | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
@@ -58143,12 +58143,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }>, "many">>;
             computedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         }, "strip", z.ZodTypeAny, {
-            confidence: "low" | "high" | "cant_tell" | "moderate";
             behaviors: {
                 behaviorId: string;
                 baselineDailyMean: number;
                 trialDailyMean: number;
             }[];
+            confidence: "low" | "high" | "cant_tell" | "moderate";
             baseline: {
                 fromDateString: string;
                 toDateString: string;
@@ -58170,12 +58170,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 trialReadings: number;
             } | undefined;
         }, {
-            confidence: "low" | "high" | "cant_tell" | "moderate";
             behaviors: {
                 behaviorId: string;
                 baselineDailyMean: number;
                 trialDailyMean: number;
             }[];
+            confidence: "low" | "high" | "cant_tell" | "moderate";
             baseline: {
                 fromDateString: string;
                 toDateString: string;
@@ -58208,12 +58208,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         answeredAt?: import("../../types").Timestamp | undefined;
         answer?: "extend" | "keep" | "adjust" | "drop" | undefined;
         comparison?: {
-            confidence: "low" | "high" | "cant_tell" | "moderate";
             behaviors: {
                 behaviorId: string;
                 baselineDailyMean: number;
                 trialDailyMean: number;
             }[];
+            confidence: "low" | "high" | "cant_tell" | "moderate";
             baseline: {
                 fromDateString: string;
                 toDateString: string;
@@ -58244,12 +58244,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         answeredAt?: import("../../types").Timestamp | undefined;
         answer?: "extend" | "keep" | "adjust" | "drop" | undefined;
         comparison?: {
-            confidence: "low" | "high" | "cant_tell" | "moderate";
             behaviors: {
                 behaviorId: string;
                 baselineDailyMean: number;
                 trialDailyMean: number;
             }[];
+            confidence: "low" | "high" | "cant_tell" | "moderate";
             baseline: {
                 fromDateString: string;
                 toDateString: string;
@@ -58290,12 +58290,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         answeredAt?: import("../../types").Timestamp | undefined;
         answer?: "extend" | "keep" | "adjust" | "drop" | undefined;
         comparison?: {
-            confidence: "low" | "high" | "cant_tell" | "moderate";
             behaviors: {
                 behaviorId: string;
                 baselineDailyMean: number;
                 trialDailyMean: number;
             }[];
+            confidence: "low" | "high" | "cant_tell" | "moderate";
             baseline: {
                 fromDateString: string;
                 toDateString: string;
@@ -58341,12 +58341,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         answeredAt?: import("../../types").Timestamp | undefined;
         answer?: "extend" | "keep" | "adjust" | "drop" | undefined;
         comparison?: {
-            confidence: "low" | "high" | "cant_tell" | "moderate";
             behaviors: {
                 behaviorId: string;
                 baselineDailyMean: number;
                 trialDailyMean: number;
             }[];
+            confidence: "low" | "high" | "cant_tell" | "moderate";
             baseline: {
                 fromDateString: string;
                 toDateString: string;
@@ -58567,16 +58567,16 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                3: number;
                 5: number;
+                3: number;
                 6: number;
                 4: number;
             }, {
                 0: number;
                 1: number;
                 2: number;
-                3: number;
                 5: number;
+                3: number;
                 6: number;
                 4: number;
             }>;
@@ -58586,8 +58586,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                3: number;
                 5: number;
+                3: number;
                 6: number;
                 4: number;
             };
@@ -58597,8 +58597,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                3: number;
                 5: number;
+                3: number;
                 6: number;
                 4: number;
             };
@@ -58665,16 +58665,16 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                3: number;
                 5: number;
+                3: number;
                 6: number;
                 4: number;
             }, {
                 0: number;
                 1: number;
                 2: number;
-                3: number;
                 5: number;
+                3: number;
                 6: number;
                 4: number;
             }>;
@@ -58684,8 +58684,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                3: number;
                 5: number;
+                3: number;
                 6: number;
                 4: number;
             };
@@ -58695,8 +58695,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                3: number;
                 5: number;
+                3: number;
                 6: number;
                 4: number;
             };
@@ -58732,7 +58732,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }>]>>;
         appliedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
-        status: "pending" | "accepted" | "declined";
+        status: "pending" | "declined" | "accepted";
         title: string;
         behaviorId: string;
         goal: {
@@ -58746,8 +58746,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                3: number;
                 5: number;
+                3: number;
                 6: number;
                 4: number;
             };
@@ -58775,8 +58775,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                3: number;
                 5: number;
+                3: number;
                 6: number;
                 4: number;
             };
@@ -58803,8 +58803,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                3: number;
                 5: number;
+                3: number;
                 6: number;
                 4: number;
             };
@@ -58816,7 +58816,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 endTime: string;
             }[];
         };
-        status?: "pending" | "accepted" | "declined" | undefined;
+        status?: "pending" | "declined" | "accepted" | undefined;
         behaviorName?: string | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -58833,8 +58833,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                3: number;
                 5: number;
+                3: number;
                 6: number;
                 4: number;
             };
@@ -58858,7 +58858,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        status: "pending" | "accepted" | "declined";
+        status: "pending" | "declined" | "accepted";
         title: string;
         behaviorId: string;
         goal: {
@@ -58872,8 +58872,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                3: number;
                 5: number;
+                3: number;
                 6: number;
                 4: number;
             };
@@ -58901,8 +58901,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                3: number;
                 5: number;
+                3: number;
                 6: number;
                 4: number;
             };
@@ -58944,8 +58944,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                3: number;
                 5: number;
+                3: number;
                 6: number;
                 4: number;
             };
@@ -58957,7 +58957,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 endTime: string;
             }[];
         };
-        status?: "pending" | "accepted" | "declined" | undefined;
+        status?: "pending" | "declined" | "accepted" | undefined;
         behaviorName?: string | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -58974,8 +58974,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                3: number;
                 5: number;
+                3: number;
                 6: number;
                 4: number;
             };
@@ -59103,7 +59103,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         declinedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         appliedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
-        status: "pending" | "accepted" | "declined";
+        status: "pending" | "declined" | "accepted";
         title: string;
         behaviorId: string;
         evidence: string;
@@ -59119,7 +59119,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorId: string;
         evidence: string;
         toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
-        status?: "pending" | "accepted" | "declined" | undefined;
+        status?: "pending" | "declined" | "accepted" | undefined;
         behaviorName?: string | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
@@ -59137,7 +59137,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        status: "pending" | "accepted" | "declined";
+        status: "pending" | "declined" | "accepted";
         title: string;
         behaviorId: string;
         evidence: string;
@@ -59168,7 +59168,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorId: string;
         evidence: string;
         toStage: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse";
-        status?: "pending" | "accepted" | "declined" | undefined;
+        status?: "pending" | "declined" | "accepted" | undefined;
         behaviorName?: string | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
@@ -59417,13 +59417,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 }, "strip", z.ZodTypeAny, {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 }, {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 }>>;
                 createdByUid: z.ZodOptional<z.ZodString>;
@@ -63845,30 +63845,30 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         optionLabels: string[];
                     }>, "many">>;
                 }, "strip", z.ZodTypeAny, {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
                         behaviorTopicId: string;
                     }[] | undefined;
                 }, {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -63913,30 +63913,30 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         optionLabels: string[];
                     }>, "many">>;
                 }, "strip", z.ZodTypeAny, {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
                         behaviorTopicId: string;
                     }[] | undefined;
                 }, {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -64529,8 +64529,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -64539,15 +64539,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -64555,15 +64555,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -64582,7 +64582,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -64612,8 +64612,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -64622,15 +64622,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 modality?: unknown;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -64638,15 +64638,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -64665,7 +64665,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -65234,8 +65234,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -65244,15 +65244,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -65260,15 +65260,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -65287,7 +65287,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -65322,8 +65322,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -65332,15 +65332,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 modality?: unknown;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -65348,15 +65348,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -65375,7 +65375,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -65947,8 +65947,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -65957,15 +65957,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -65973,15 +65973,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -66000,7 +66000,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -66038,8 +66038,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -66048,15 +66048,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 modality?: unknown;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -66064,15 +66064,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -66091,7 +66091,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -66673,8 +66673,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -66683,15 +66683,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 modality?: "move" | "still" | "sense" | "reflect" | "connect" | "environment" | undefined;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -66699,15 +66699,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -66726,7 +66726,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -66779,8 +66779,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 aiInstructions?: string | undefined;
                 understanding?: {
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     note?: string | undefined;
+                    satisfies?: ("relaxation" | "stimulation" | "escape" | "connection" | "control" | "pleasure" | "achievement" | "boredom_relief" | "comfort" | "focus")[] | undefined;
                     avoidWhen?: string | undefined;
                 } | undefined;
                 createdByUid?: string | undefined;
@@ -66789,15 +66789,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 modality?: unknown;
                 isMultiStep?: boolean | undefined;
                 indications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -66805,15 +66805,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
-                    tags?: {
-                        weight: number;
-                        tagGroupName: string;
-                        optionLabels: string[];
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
                         weight: number;
+                    }[] | undefined;
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
                     }[] | undefined;
                     behaviorTopics?: {
                         weight: number;
@@ -66832,7 +66832,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "pending" | "completed" | "failed" | "processing" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;

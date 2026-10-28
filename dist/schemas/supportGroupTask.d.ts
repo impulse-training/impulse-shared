@@ -15,9 +15,9 @@ export declare const supportGroupTaskBaseSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     status: "completed" | "open";
+    createdBy: string;
     title: string;
     groupId: string;
-    createdBy: string;
     assignedTo: string;
     id?: string | undefined;
     completedAt?: import("../types").Timestamp | undefined;
@@ -25,9 +25,9 @@ export declare const supportGroupTaskBaseSchema: z.ZodObject<{
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
+    createdBy: string;
     title: string;
     groupId: string;
-    createdBy: string;
     assignedTo: string;
     id?: string | undefined;
     status?: "completed" | "open" | undefined;
@@ -108,6 +108,7 @@ export declare const coachBookingTaskSchema: z.ZodObject<{
     updatedAt: import("../types").Timestamp;
     type: "coach_booking";
     status: "completed" | "open";
+    createdBy: string;
     title: string;
     data: {
         slots: {
@@ -124,7 +125,6 @@ export declare const coachBookingTaskSchema: z.ZodObject<{
         } | null | undefined;
     };
     groupId: string;
-    createdBy: string;
     assignedTo: string;
     id?: string | undefined;
     completedAt?: import("../types").Timestamp | undefined;
@@ -133,6 +133,7 @@ export declare const coachBookingTaskSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "coach_booking";
+    createdBy: string;
     title: string;
     data: {
         slots: {
@@ -149,7 +150,6 @@ export declare const coachBookingTaskSchema: z.ZodObject<{
         } | null | undefined;
     };
     groupId: string;
-    createdBy: string;
     assignedTo: string;
     id?: string | undefined;
     status?: "completed" | "open" | undefined;
@@ -230,6 +230,7 @@ export declare const supportGroupTaskSchema: z.ZodDiscriminatedUnion<"type", [z.
     updatedAt: import("../types").Timestamp;
     type: "coach_booking";
     status: "completed" | "open";
+    createdBy: string;
     title: string;
     data: {
         slots: {
@@ -246,7 +247,6 @@ export declare const supportGroupTaskSchema: z.ZodDiscriminatedUnion<"type", [z.
         } | null | undefined;
     };
     groupId: string;
-    createdBy: string;
     assignedTo: string;
     id?: string | undefined;
     completedAt?: import("../types").Timestamp | undefined;
@@ -255,6 +255,7 @@ export declare const supportGroupTaskSchema: z.ZodDiscriminatedUnion<"type", [z.
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     type: "coach_booking";
+    createdBy: string;
     title: string;
     data: {
         slots: {
@@ -271,7 +272,6 @@ export declare const supportGroupTaskSchema: z.ZodDiscriminatedUnion<"type", [z.
         } | null | undefined;
     };
     groupId: string;
-    createdBy: string;
     assignedTo: string;
     id?: string | undefined;
     status?: "completed" | "open" | undefined;

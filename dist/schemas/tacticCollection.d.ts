@@ -94,8 +94,6 @@ export declare const tacticCollectionSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
-    description?: string | undefined;
-    ordinal?: number | undefined;
     source?: {
         kind: "feeling";
         optionId: string;
@@ -108,6 +106,8 @@ export declare const tacticCollectionSchema: z.ZodObject<{
         feelingGroupId?: string | undefined;
         feelingOptionId?: string | undefined;
     } | undefined;
+    description?: string | undefined;
+    ordinal?: number | undefined;
     createdByUid?: string | undefined;
     emoji?: string | undefined;
     items?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
@@ -119,8 +119,6 @@ export declare const tacticCollectionSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
-    description?: string | undefined;
-    ordinal?: number | undefined;
     source?: {
         kind: "feeling";
         optionId: string;
@@ -133,6 +131,8 @@ export declare const tacticCollectionSchema: z.ZodObject<{
         feelingGroupId?: string | undefined;
         feelingOptionId?: string | undefined;
     } | undefined;
+    description?: string | undefined;
+    ordinal?: number | undefined;
     createdByUid?: string | undefined;
     tacticIds?: string[] | undefined;
     emoji?: string | undefined;

@@ -7,6 +7,7 @@ const timestampSchema_1 = require("../utils/timestampSchema");
 const supportGroup_1 = require("./supportGroup");
 const first_1 = require("./first");
 const tacticPreferences_1 = require("./tacticPreferences");
+const accountMergeRequest_1 = require("./accountMergeRequest");
 // Inline recap trigger schema (time-based). Recaps are daily — they fire
 // every day at this time (Sunday additionally runs the weekly review). There
 // is no per-weekday cadence; any legacy `weekdays` on old docs is ignored.
@@ -79,6 +80,12 @@ exports.userDataSchema = zod_1.z.object({
     hasEverEngaged: zod_1.z.boolean().optional(),
     // Authentication
     recoveryKeyHash: zod_1.z.string().optional(),
+    // Account merge (see accountMergeRequest.ts). On the account in use: the
+    // request an admin started for it, for the app to show. On an abandoned
+    // account merged into another: where it went (it is read-only from then on,
+    // and its recovery key signs in to that account).
+    accountMergeRequest: accountMergeRequest_1.userAccountMergePointerSchema.optional(),
+    mergedInto: accountMergeRequest_1.userMergedIntoSchema.optional(),
     defaultSessionMode: zod_1.z.enum(["text", "voice"]).default("text"),
     llmProvider: zod_1.z.enum(["openai", "anthropic"]).optional(),
     // Account creation metadata

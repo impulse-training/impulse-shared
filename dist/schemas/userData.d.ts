@@ -58,6 +58,32 @@ export declare const userDataSchema: z.ZodObject<{
     lastVisit: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     hasEverEngaged: z.ZodOptional<z.ZodBoolean>;
     recoveryKeyHash: z.ZodOptional<z.ZodString>;
+    accountMergeRequest: z.ZodOptional<z.ZodObject<{
+        id: z.ZodString;
+        status: z.ZodEnum<["pending", "queued", "running", "completed", "failed", "declined", "cancelled", "expired", "locked"]>;
+        updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    }, "strip", z.ZodTypeAny, {
+        id: string;
+        updatedAt: import("../types").Timestamp;
+        status: "pending" | "queued" | "running" | "completed" | "failed" | "declined" | "cancelled" | "expired" | "locked";
+    }, {
+        id: string;
+        updatedAt: import("../types").Timestamp;
+        status: "pending" | "queued" | "running" | "completed" | "failed" | "declined" | "cancelled" | "expired" | "locked";
+    }>>;
+    mergedInto: z.ZodOptional<z.ZodObject<{
+        uid: z.ZodString;
+        requestId: z.ZodString;
+        at: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    }, "strip", z.ZodTypeAny, {
+        at: import("../types").Timestamp;
+        uid: string;
+        requestId: string;
+    }, {
+        at: import("../types").Timestamp;
+        uid: string;
+        requestId: string;
+    }>>;
     defaultSessionMode: z.ZodDefault<z.ZodEnum<["text", "voice"]>>;
     llmProvider: z.ZodOptional<z.ZodEnum<["openai", "anthropic"]>>;
     createdViaSimulator: z.ZodOptional<z.ZodBoolean>;
@@ -396,6 +422,10 @@ export declare const userDataSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
+    firsts?: Partial<Record<"impulseButton" | "triedTactic" | "voiceSession" | "resistedUrge", {
+        achievedAt: import("../types").Timestamp;
+        sessionId?: string | undefined;
+    }>> | undefined;
     country?: string | undefined;
     appVersion?: string | undefined;
     morningCheckIn?: {
@@ -427,6 +457,16 @@ export declare const userDataSchema: z.ZodObject<{
     lastVisit?: import("../types").Timestamp | undefined;
     hasEverEngaged?: boolean | undefined;
     recoveryKeyHash?: string | undefined;
+    accountMergeRequest?: {
+        id: string;
+        updatedAt: import("../types").Timestamp;
+        status: "pending" | "queued" | "running" | "completed" | "failed" | "declined" | "cancelled" | "expired" | "locked";
+    } | undefined;
+    mergedInto?: {
+        at: import("../types").Timestamp;
+        uid: string;
+        requestId: string;
+    } | undefined;
     llmProvider?: "openai" | "anthropic" | undefined;
     createdViaSimulator?: boolean | undefined;
     notifyOnSignUp?: boolean | undefined;
@@ -451,7 +491,7 @@ export declare const userDataSchema: z.ZodObject<{
     } | undefined;
     isAppEnabled?: boolean | undefined;
     deletionRequestedAt?: import("../types").Timestamp | undefined;
-    deletionRequestedBy?: "user" | "system" | "admin" | undefined;
+    deletionRequestedBy?: "admin" | "user" | "system" | undefined;
     protectNextWindow?: {
         enabled: boolean;
         lastOfferedDateString?: string | undefined;
@@ -471,7 +511,7 @@ export declare const userDataSchema: z.ZodObject<{
         notifyOnReturn: boolean;
         armedAt: import("../types").Timestamp;
     } | undefined;
-    latestSupportGroupMessages?: Partial<Record<"onboarding" | "system" | "coach" | "alignment" | "social", {
+    latestSupportGroupMessages?: Partial<Record<"system" | "onboarding" | "coach" | "alignment" | "social", {
         message: string;
         sentAt: import("../types").Timestamp;
         senderId: string;
@@ -491,10 +531,6 @@ export declare const userDataSchema: z.ZodObject<{
         recommendedLibraryDone?: boolean | undefined;
         starterLibraryDone?: boolean | undefined;
     } | undefined;
-    firsts?: Partial<Record<"impulseButton" | "triedTactic" | "voiceSession" | "resistedUrge", {
-        achievedAt: import("../types").Timestamp;
-        sessionId?: string | undefined;
-    }>> | undefined;
     seenRoadmapItemIds?: string[] | undefined;
     roadmapNotificationsEnabled?: boolean | undefined;
     zaraVoiceId?: "alloy" | "shimmer" | "echo" | undefined;
@@ -524,6 +560,10 @@ export declare const userDataSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
+    firsts?: Partial<Record<"impulseButton" | "triedTactic" | "voiceSession" | "resistedUrge", {
+        achievedAt: import("../types").Timestamp;
+        sessionId?: string | undefined;
+    }>> | undefined;
     country?: string | undefined;
     appVersion?: string | undefined;
     role?: "user" | "coach" | "support" | undefined;
@@ -558,6 +598,16 @@ export declare const userDataSchema: z.ZodObject<{
     lastVisit?: import("../types").Timestamp | undefined;
     hasEverEngaged?: boolean | undefined;
     recoveryKeyHash?: string | undefined;
+    accountMergeRequest?: {
+        id: string;
+        updatedAt: import("../types").Timestamp;
+        status: "pending" | "queued" | "running" | "completed" | "failed" | "declined" | "cancelled" | "expired" | "locked";
+    } | undefined;
+    mergedInto?: {
+        at: import("../types").Timestamp;
+        uid: string;
+        requestId: string;
+    } | undefined;
     defaultSessionMode?: "text" | "voice" | undefined;
     llmProvider?: "openai" | "anthropic" | undefined;
     createdViaSimulator?: boolean | undefined;
@@ -590,7 +640,7 @@ export declare const userDataSchema: z.ZodObject<{
     } | undefined;
     isAppEnabled?: boolean | undefined;
     deletionRequestedAt?: import("../types").Timestamp | undefined;
-    deletionRequestedBy?: "user" | "system" | "admin" | undefined;
+    deletionRequestedBy?: "admin" | "user" | "system" | undefined;
     weekStartsOn?: 0 | 1 | undefined;
     protectNextWindow?: {
         enabled?: boolean | undefined;
@@ -611,7 +661,7 @@ export declare const userDataSchema: z.ZodObject<{
         notifyOnReturn: boolean;
         armedAt: import("../types").Timestamp;
     } | undefined;
-    latestSupportGroupMessages?: Partial<Record<"onboarding" | "system" | "coach" | "alignment" | "social", {
+    latestSupportGroupMessages?: Partial<Record<"system" | "onboarding" | "coach" | "alignment" | "social", {
         message: string;
         sentAt: import("../types").Timestamp;
         senderId: string;
@@ -631,10 +681,6 @@ export declare const userDataSchema: z.ZodObject<{
         recommendedLibraryDone?: boolean | undefined;
         starterLibraryDone?: boolean | undefined;
     } | undefined;
-    firsts?: Partial<Record<"impulseButton" | "triedTactic" | "voiceSession" | "resistedUrge", {
-        achievedAt: import("../types").Timestamp;
-        sessionId?: string | undefined;
-    }>> | undefined;
     seenRoadmapItemIds?: string[] | undefined;
     roadmapNotificationsEnabled?: boolean | undefined;
     zaraVoiceId?: "alloy" | "shimmer" | "echo" | undefined;
