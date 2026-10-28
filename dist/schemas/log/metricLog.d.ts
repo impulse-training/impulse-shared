@@ -44,14 +44,17 @@ export declare const metricLogSchema: z.ZodObject<{
             word: z.ZodString;
             low: z.ZodString;
             high: z.ZodString;
+            lowWord: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
             low: string;
             high: string;
             word: string;
+            lowWord?: string | undefined;
         }, {
             low: string;
             high: string;
             word: string;
+            lowWord?: string | undefined;
         }>>;
         /** Optional supporting text / note */
         text: z.ZodOptional<z.ZodString>;
@@ -66,6 +69,7 @@ export declare const metricLogSchema: z.ZodObject<{
             low: string;
             high: string;
             word: string;
+            lowWord?: string | undefined;
         } | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     }, {
@@ -77,6 +81,7 @@ export declare const metricLogSchema: z.ZodObject<{
             low: string;
             high: string;
             word: string;
+            lowWord?: string | undefined;
         } | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     }>;
@@ -98,6 +103,7 @@ export declare const metricLogSchema: z.ZodObject<{
             low: string;
             high: string;
             word: string;
+            lowWord?: string | undefined;
         } | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     };
@@ -125,6 +131,7 @@ export declare const metricLogSchema: z.ZodObject<{
             low: string;
             high: string;
             word: string;
+            lowWord?: string | undefined;
         } | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     };

@@ -9,7 +9,9 @@ export type MetricDefinition = {
    * ("somewhat rested / rested / well rested"). One-ended: the word names the
    * state and the value says how much of it — high Anxiety is "very anxious"
    * just as high Energy is "very energetic", and only `desiredDirection` says
-   * whether more is welcome.
+   * whether more is welcome. A metric whose low end is a state of its own names
+   * it with `lowWord` ("foggy", "drained"), so a low answer records as what the
+   * person said rather than as a little of what they lacked.
    */
   scale: MetricScale;
   minContiguousTransitionDays: number;
@@ -37,7 +39,7 @@ export const METRIC_REGISTRY: MetricDefinition[] = [
     id: "mental-clarity",
     label: "Mental clarity",
     description: "How clear is your thinking?",
-    scale: { word: "clear-headed", low: "somewhat", high: "very" },
+    scale: { word: "clear-headed", low: "somewhat", high: "very", lowWord: "foggy" },
     minContiguousTransitionDays: 7,
     desiredDirection: "higher",
   },
@@ -53,7 +55,7 @@ export const METRIC_REGISTRY: MetricDefinition[] = [
     id: "energy",
     label: "Energy",
     description: "How energetic do you feel?",
-    scale: { word: "energetic", low: "a little", high: "very" },
+    scale: { word: "energetic", low: "a little", high: "very", lowWord: "drained" },
     minContiguousTransitionDays: 7,
     desiredDirection: "higher",
   },

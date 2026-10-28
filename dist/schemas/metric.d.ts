@@ -27,11 +27,22 @@ export declare const METRIC_SCALE_ADJECTIVE_MAX_LENGTH = 12;
  * thing to say, and the adjective is an optional refinement of it, so the UI
  * records the word first and lets the user modify it.
  *
- * Every metric is one-ended — it names a single state and measures how much of
- * it there is (Energy is "energetic", not Low/Okay/High). Adjectives are chosen
- * per word, because "very" does not fit everything ("well rested").
+ * Most metrics are one-ended — they name a single state and measure how much
+ * of it there is (Energy is "energetic", not Low/Okay/High). Adjectives are
+ * chosen per word, because "very" does not fit everything ("well rested").
  *
- * All three strings are stored lowercase; capitalize at render.
+ * A metric whose low end has a word of its own sets `lowWord`, and value 1 is
+ * that word alone:
+ *
+ *   { word: "clear-headed", low: "somewhat", high: "very", lowWord: "foggy" }
+ *   → 1 "foggy"   2 "clear-headed"   3 "very clear-headed"
+ *
+ * Without it, someone who felt foggy could only be recorded as "somewhat
+ * clear-headed", a little of the state they did not have (SSB BXPAoy). Still
+ * three ordered states, still higher = more of the named state; `low` stays
+ * on the doc but is not shown while `lowWord` is set.
+ *
+ * All strings are stored lowercase; capitalize at render.
  */
 export declare const metricScaleSchema: z.ZodObject<{
     /** The state itself, e.g. "bored". The middle value, unmodified. */
@@ -40,14 +51,21 @@ export declare const metricScaleSchema: z.ZodObject<{
     low: z.ZodString;
     /** Prefix for value 3, e.g. "very", "well" */
     high: z.ZodString;
+    /**
+     * The low state's own word, e.g. "foggy" for "clear-headed". When set, value
+     * 1 reads as this word alone instead of `low` + `word`.
+     */
+    lowWord: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     low: string;
     high: string;
     word: string;
+    lowWord?: string | undefined;
 }, {
     low: string;
     high: string;
     word: string;
+    lowWord?: string | undefined;
 }>;
 export type MetricScale = z.infer<typeof metricScaleSchema>;
 /** The three rendered state labels, ordered low → high. Index = value - 1. */
@@ -611,14 +629,21 @@ export declare const metricSchema: z.ZodObject<{
         low: z.ZodString;
         /** Prefix for value 3, e.g. "very", "well" */
         high: z.ZodString;
+        /**
+         * The low state's own word, e.g. "foggy" for "clear-headed". When set, value
+         * 1 reads as this word alone instead of `low` + `word`.
+         */
+        lowWord: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         low: string;
         high: string;
         word: string;
+        lowWord?: string | undefined;
     }, {
         low: string;
         high: string;
         word: string;
+        lowWord?: string | undefined;
     }>>;
     /** If created from METRIC_REGISTRY, stores the registry id for dedup */
     metricRegistryId: z.ZodOptional<z.ZodString>;
@@ -1039,6 +1064,7 @@ export declare const metricSchema: z.ZodObject<{
         low: string;
         high: string;
         word: string;
+        lowWord?: string | undefined;
     } | undefined;
     description?: string | undefined;
     state?: {
@@ -1109,6 +1135,7 @@ export declare const metricSchema: z.ZodObject<{
         low: string;
         high: string;
         word: string;
+        lowWord?: string | undefined;
     } | undefined;
     description?: string | undefined;
     state?: {

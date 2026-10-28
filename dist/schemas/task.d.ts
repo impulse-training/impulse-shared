@@ -1537,14 +1537,17 @@ export declare const proposedMetricSchema: z.ZodObject<{
         word: z.ZodString;
         low: z.ZodString;
         high: z.ZodString;
+        lowWord: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         low: string;
         high: string;
         word: string;
+        lowWord?: string | undefined;
     }, {
         low: string;
         high: string;
         word: string;
+        lowWord?: string | undefined;
     }>>;
 }, "strip", z.ZodTypeAny, {
     name: string;
@@ -1552,6 +1555,7 @@ export declare const proposedMetricSchema: z.ZodObject<{
         low: string;
         high: string;
         word: string;
+        lowWord?: string | undefined;
     } | undefined;
 }, {
     name: string;
@@ -1559,6 +1563,7 @@ export declare const proposedMetricSchema: z.ZodObject<{
         low: string;
         high: string;
         word: string;
+        lowWord?: string | undefined;
     } | undefined;
 }>;
 export declare const proposeExperimentTaskSchema: z.ZodObject<{
@@ -1669,14 +1674,17 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
                 word: z.ZodString;
                 low: z.ZodString;
                 high: z.ZodString;
+                lowWord: z.ZodOptional<z.ZodString>;
             }, "strip", z.ZodTypeAny, {
                 low: string;
                 high: string;
                 word: string;
+                lowWord?: string | undefined;
             }, {
                 low: string;
                 high: string;
                 word: string;
+                lowWord?: string | undefined;
             }>>;
         }, "strip", z.ZodTypeAny, {
             name: string;
@@ -1684,6 +1692,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
                 low: string;
                 high: string;
                 word: string;
+                lowWord?: string | undefined;
             } | undefined;
         }, {
             name: string;
@@ -1691,6 +1700,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
                 low: string;
                 high: string;
                 word: string;
+                lowWord?: string | undefined;
             } | undefined;
         }>, "many">;
         experimentQuestion: z.ZodString;
@@ -1702,6 +1712,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
                 low: string;
                 high: string;
                 word: string;
+                lowWord?: string | undefined;
             } | undefined;
         }[];
         experimentQuestion: string;
@@ -1713,6 +1724,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
                 low: string;
                 high: string;
                 word: string;
+                lowWord?: string | undefined;
             } | undefined;
         }[];
         experimentQuestion: string;
@@ -1734,6 +1746,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
                 low: string;
                 high: string;
                 word: string;
+                lowWord?: string | undefined;
             } | undefined;
         }[];
         experimentQuestion: string;
@@ -1775,6 +1788,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
                 low: string;
                 high: string;
                 word: string;
+                lowWord?: string | undefined;
             } | undefined;
         }[];
         experimentQuestion: string;
@@ -6745,14 +6759,17 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 word: z.ZodString;
                 low: z.ZodString;
                 high: z.ZodString;
+                lowWord: z.ZodOptional<z.ZodString>;
             }, "strip", z.ZodTypeAny, {
                 low: string;
                 high: string;
                 word: string;
+                lowWord?: string | undefined;
             }, {
                 low: string;
                 high: string;
                 word: string;
+                lowWord?: string | undefined;
             }>>;
         }, "strip", z.ZodTypeAny, {
             name: string;
@@ -6760,6 +6777,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 low: string;
                 high: string;
                 word: string;
+                lowWord?: string | undefined;
             } | undefined;
         }, {
             name: string;
@@ -6767,6 +6785,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 low: string;
                 high: string;
                 word: string;
+                lowWord?: string | undefined;
             } | undefined;
         }>, "many">;
         experimentQuestion: z.ZodString;
@@ -6778,6 +6797,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 low: string;
                 high: string;
                 word: string;
+                lowWord?: string | undefined;
             } | undefined;
         }[];
         experimentQuestion: string;
@@ -6789,6 +6809,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 low: string;
                 high: string;
                 word: string;
+                lowWord?: string | undefined;
             } | undefined;
         }[];
         experimentQuestion: string;
@@ -6810,6 +6831,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 low: string;
                 high: string;
                 word: string;
+                lowWord?: string | undefined;
             } | undefined;
         }[];
         experimentQuestion: string;
@@ -6851,6 +6873,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 low: string;
                 high: string;
                 word: string;
+                lowWord?: string | undefined;
             } | undefined;
         }[];
         experimentQuestion: string;
