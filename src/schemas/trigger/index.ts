@@ -2,7 +2,7 @@ import { z } from "zod";
 import { documentReferenceSchema } from "../../utils/documentReferenceSchema";
 import { timestampSchema } from "../../utils/timestampSchema";
 import { withIdSchema } from "../../utils/withId";
-import { tacticAgreementSchema } from "../agreement";
+import { tacticAgreementSchema, usedTacticAgreementSchema } from "../agreement";
 
 // Optional location reference for location-based triggers. Coordinates and
 // addresses live only on the user's device.
@@ -35,6 +35,8 @@ export const triggerSchema = z.object({
    * surfaces when a model remembers it is not an agreement.
    */
   agreement: tacticAgreementSchema.optional(),
+  /** The last agreement used up here, and when. See usedTacticAgreementSchema. */
+  lastUsedAgreement: usedTacticAgreementSchema.optional(),
   /**
    * @deprecated The ordered go-to list, read by the AI as evidence only.
    * Superseded by `agreement`. Read only by the migration that collapses it
