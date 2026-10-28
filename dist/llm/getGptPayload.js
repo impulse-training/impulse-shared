@@ -5,6 +5,7 @@ const log_1 = require("../schemas/log");
 const buildPlansLogPayload_1 = require("./buildPlansLogPayload");
 const constants_1 = require("../constants");
 const metric_1 = require("../schemas/metric");
+const metrics_1 = require("../constants/metrics");
 const phase_1 = require("../schemas/session/phase");
 const clock_1 = require("../utils/clock");
 const changeStage_1 = require("../utils/changeStage");
@@ -568,11 +569,13 @@ function getGptPayload(log, isFinalLogInSession, options) {
     }
     // Handle MetricLog
     if ((0, log_1.logIsMetricLog)(log)) {
-        const { metricName, value, scale, quadrant } = log.data;
-        // Metrics are ordered states, so give the AI the state's NAME. "2/3" invites
-        // it to talk in scores; "very bored" is what the user actually chose.
-        const scaleDesc = ` (${(0, metric_1.metricScaleLabels)(scale).join(" / ")})`;
-        if (value == null) {
+        const { metricName, quadrant } = log.data;
+        // Metrics are ordered states, so give the AI the state's NAME. "4/5" invites
+        // it to talk in scores; "clear" is what the user actually chose.
+        const labels = (0, metrics_1.metricLevelLabelsFor)({ levels: log.data.levels, name: metricName });
+        const scaleDesc = ` (${labels.join(" / ")})`;
+        const level = (0, metric_1.metricLogLevel)(log.data);
+        if (level == null) {
             return [
                 {
                     role: "user",
@@ -580,7 +583,7 @@ function getGptPayload(log, isFinalLogInSession, options) {
                 },
             ];
         }
-        const stateLabel = (0, metric_1.metricValueLabel)(value, scale);
+        const stateLabel = (0, metric_1.metricLevelLabel)(level, labels);
         // Feeling metric (has quadrant) — use feeling-specific wording
         if (quadrant) {
             if (isFinalLogInSession && log.shouldZaraRespond) {

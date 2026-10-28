@@ -25918,6 +25918,7 @@ export declare const logSchemas: {
                 word: string;
                 lowWord?: string | undefined;
             }>>;
+            levels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodLiteral<"normal">, z.ZodString, z.ZodString], null>>;
         }, "strip", z.ZodTypeAny, {
             name: string;
             scale?: {
@@ -25926,6 +25927,7 @@ export declare const logSchemas: {
                 word: string;
                 lowWord?: string | undefined;
             } | undefined;
+            levels?: [string, string, "normal", string, string] | undefined;
         }, {
             name: string;
             scale?: {
@@ -25934,6 +25936,7 @@ export declare const logSchemas: {
                 word: string;
                 lowWord?: string | undefined;
             } | undefined;
+            levels?: [string, string, "normal", string, string] | undefined;
         }>, "many">>;
         metricLabels: z.ZodArray<z.ZodString, "many">;
         experimentQuestion: z.ZodOptional<z.ZodString>;
@@ -25976,6 +25979,7 @@ export declare const logSchemas: {
                 word: string;
                 lowWord?: string | undefined;
             } | undefined;
+            levels?: [string, string, "normal", string, string] | undefined;
         }[] | undefined;
         experimentQuestion?: string | undefined;
         confirmedAt?: import("../../types").Timestamp | undefined;
@@ -26009,6 +26013,7 @@ export declare const logSchemas: {
                 word: string;
                 lowWord?: string | undefined;
             } | undefined;
+            levels?: [string, string, "normal", string, string] | undefined;
         }[] | undefined;
         experimentQuestion?: string | undefined;
         confirmedAt?: import("../../types").Timestamp | undefined;
@@ -26814,6 +26819,8 @@ export declare const logSchemas: {
             metricId: z.ZodString;
             metricName: z.ZodString;
             value: z.ZodNullable<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>>;
+            level: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>, z.ZodLiteral<4>, z.ZodLiteral<5>]>>>;
+            levels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodLiteral<"normal">, z.ZodString, z.ZodString], null>>;
             scale: z.ZodOptional<z.ZodObject<{
                 word: z.ZodString;
                 low: z.ZodString;
@@ -26843,6 +26850,8 @@ export declare const logSchemas: {
                 word: string;
                 lowWord?: string | undefined;
             } | undefined;
+            level?: 1 | 2 | 3 | 5 | 4 | null | undefined;
+            levels?: [string, string, "normal", string, string] | undefined;
             quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
         }, {
             value: 1 | 2 | 3 | null;
@@ -26855,6 +26864,8 @@ export declare const logSchemas: {
                 word: string;
                 lowWord?: string | undefined;
             } | undefined;
+            level?: 1 | 2 | 3 | 5 | 4 | null | undefined;
+            levels?: [string, string, "normal", string, string] | undefined;
             quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
@@ -26877,6 +26888,8 @@ export declare const logSchemas: {
                 word: string;
                 lowWord?: string | undefined;
             } | undefined;
+            level?: 1 | 2 | 3 | 5 | 4 | null | undefined;
+            levels?: [string, string, "normal", string, string] | undefined;
             quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
         };
         id?: string | undefined;
@@ -26905,6 +26918,8 @@ export declare const logSchemas: {
                 word: string;
                 lowWord?: string | undefined;
             } | undefined;
+            level?: 1 | 2 | 3 | 5 | 4 | null | undefined;
+            levels?: [string, string, "normal", string, string] | undefined;
             quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
         };
         id?: string | undefined;
@@ -27295,6 +27310,8 @@ export declare const logSchemas: {
                     metricId: z.ZodString;
                     baselineMean: z.ZodNumber;
                     trialMean: z.ZodNumber;
+                    baselineLevelMean: z.ZodOptional<z.ZodNumber>;
+                    trialLevelMean: z.ZodOptional<z.ZodNumber>;
                     baselineReadings: z.ZodNumber;
                     trialReadings: z.ZodNumber;
                 }, "strip", z.ZodTypeAny, {
@@ -27303,12 +27320,16 @@ export declare const logSchemas: {
                     trialMean: number;
                     baselineReadings: number;
                     trialReadings: number;
+                    baselineLevelMean?: number | undefined;
+                    trialLevelMean?: number | undefined;
                 }, {
                     metricId: string;
                     baselineMean: number;
                     trialMean: number;
                     baselineReadings: number;
                     trialReadings: number;
+                    baselineLevelMean?: number | undefined;
+                    trialLevelMean?: number | undefined;
                 }>>;
                 confidence: z.ZodEnum<["cant_tell", "low", "moderate", "high"]>;
                 days: z.ZodOptional<z.ZodArray<z.ZodObject<{
@@ -27348,6 +27369,8 @@ export declare const logSchemas: {
                     trialMean: number;
                     baselineReadings: number;
                     trialReadings: number;
+                    baselineLevelMean?: number | undefined;
+                    trialLevelMean?: number | undefined;
                 } | undefined;
             }, {
                 confidence: "low" | "high" | "cant_tell" | "moderate";
@@ -27375,6 +27398,8 @@ export declare const logSchemas: {
                     trialMean: number;
                     baselineReadings: number;
                     trialReadings: number;
+                    baselineLevelMean?: number | undefined;
+                    trialLevelMean?: number | undefined;
                 } | undefined;
             }>>;
             canExtend: z.ZodOptional<z.ZodBoolean>;
@@ -27413,6 +27438,8 @@ export declare const logSchemas: {
                     trialMean: number;
                     baselineReadings: number;
                     trialReadings: number;
+                    baselineLevelMean?: number | undefined;
+                    trialLevelMean?: number | undefined;
                 } | undefined;
             } | undefined;
             canExtend?: boolean | undefined;
@@ -27449,6 +27476,8 @@ export declare const logSchemas: {
                     trialMean: number;
                     baselineReadings: number;
                     trialReadings: number;
+                    baselineLevelMean?: number | undefined;
+                    trialLevelMean?: number | undefined;
                 } | undefined;
             } | undefined;
             canExtend?: boolean | undefined;
@@ -27495,6 +27524,8 @@ export declare const logSchemas: {
                     trialMean: number;
                     baselineReadings: number;
                     trialReadings: number;
+                    baselineLevelMean?: number | undefined;
+                    trialLevelMean?: number | undefined;
                 } | undefined;
             } | undefined;
             canExtend?: boolean | undefined;
@@ -27546,6 +27577,8 @@ export declare const logSchemas: {
                     trialMean: number;
                     baselineReadings: number;
                     trialReadings: number;
+                    baselineLevelMean?: number | undefined;
+                    trialLevelMean?: number | undefined;
                 } | undefined;
             } | undefined;
             canExtend?: boolean | undefined;
@@ -56746,6 +56779,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             word: string;
             lowWord?: string | undefined;
         }>>;
+        levels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodLiteral<"normal">, z.ZodString, z.ZodString], null>>;
     }, "strip", z.ZodTypeAny, {
         name: string;
         scale?: {
@@ -56754,6 +56788,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             word: string;
             lowWord?: string | undefined;
         } | undefined;
+        levels?: [string, string, "normal", string, string] | undefined;
     }, {
         name: string;
         scale?: {
@@ -56762,6 +56797,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             word: string;
             lowWord?: string | undefined;
         } | undefined;
+        levels?: [string, string, "normal", string, string] | undefined;
     }>, "many">>;
     metricLabels: z.ZodArray<z.ZodString, "many">;
     experimentQuestion: z.ZodOptional<z.ZodString>;
@@ -56804,6 +56840,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             word: string;
             lowWord?: string | undefined;
         } | undefined;
+        levels?: [string, string, "normal", string, string] | undefined;
     }[] | undefined;
     experimentQuestion?: string | undefined;
     confirmedAt?: import("../../types").Timestamp | undefined;
@@ -56837,6 +56874,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             word: string;
             lowWord?: string | undefined;
         } | undefined;
+        levels?: [string, string, "normal", string, string] | undefined;
     }[] | undefined;
     experimentQuestion?: string | undefined;
     confirmedAt?: import("../../types").Timestamp | undefined;
@@ -57639,6 +57677,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         metricId: z.ZodString;
         metricName: z.ZodString;
         value: z.ZodNullable<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>>;
+        level: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>, z.ZodLiteral<4>, z.ZodLiteral<5>]>>>;
+        levels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodLiteral<"normal">, z.ZodString, z.ZodString], null>>;
         scale: z.ZodOptional<z.ZodObject<{
             word: z.ZodString;
             low: z.ZodString;
@@ -57668,6 +57708,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             word: string;
             lowWord?: string | undefined;
         } | undefined;
+        level?: 1 | 2 | 3 | 5 | 4 | null | undefined;
+        levels?: [string, string, "normal", string, string] | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     }, {
         value: 1 | 2 | 3 | null;
@@ -57680,6 +57722,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             word: string;
             lowWord?: string | undefined;
         } | undefined;
+        level?: 1 | 2 | 3 | 5 | 4 | null | undefined;
+        levels?: [string, string, "normal", string, string] | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -57702,6 +57746,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             word: string;
             lowWord?: string | undefined;
         } | undefined;
+        level?: 1 | 2 | 3 | 5 | 4 | null | undefined;
+        levels?: [string, string, "normal", string, string] | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     };
     id?: string | undefined;
@@ -57730,6 +57776,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             word: string;
             lowWord?: string | undefined;
         } | undefined;
+        level?: 1 | 2 | 3 | 5 | 4 | null | undefined;
+        levels?: [string, string, "normal", string, string] | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     };
     id?: string | undefined;
@@ -58115,6 +58163,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 metricId: z.ZodString;
                 baselineMean: z.ZodNumber;
                 trialMean: z.ZodNumber;
+                baselineLevelMean: z.ZodOptional<z.ZodNumber>;
+                trialLevelMean: z.ZodOptional<z.ZodNumber>;
                 baselineReadings: z.ZodNumber;
                 trialReadings: z.ZodNumber;
             }, "strip", z.ZodTypeAny, {
@@ -58123,12 +58173,16 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 trialMean: number;
                 baselineReadings: number;
                 trialReadings: number;
+                baselineLevelMean?: number | undefined;
+                trialLevelMean?: number | undefined;
             }, {
                 metricId: string;
                 baselineMean: number;
                 trialMean: number;
                 baselineReadings: number;
                 trialReadings: number;
+                baselineLevelMean?: number | undefined;
+                trialLevelMean?: number | undefined;
             }>>;
             confidence: z.ZodEnum<["cant_tell", "low", "moderate", "high"]>;
             days: z.ZodOptional<z.ZodArray<z.ZodObject<{
@@ -58168,6 +58222,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 trialMean: number;
                 baselineReadings: number;
                 trialReadings: number;
+                baselineLevelMean?: number | undefined;
+                trialLevelMean?: number | undefined;
             } | undefined;
         }, {
             confidence: "low" | "high" | "cant_tell" | "moderate";
@@ -58195,6 +58251,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 trialMean: number;
                 baselineReadings: number;
                 trialReadings: number;
+                baselineLevelMean?: number | undefined;
+                trialLevelMean?: number | undefined;
             } | undefined;
         }>>;
         canExtend: z.ZodOptional<z.ZodBoolean>;
@@ -58233,6 +58291,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 trialMean: number;
                 baselineReadings: number;
                 trialReadings: number;
+                baselineLevelMean?: number | undefined;
+                trialLevelMean?: number | undefined;
             } | undefined;
         } | undefined;
         canExtend?: boolean | undefined;
@@ -58269,6 +58329,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 trialMean: number;
                 baselineReadings: number;
                 trialReadings: number;
+                baselineLevelMean?: number | undefined;
+                trialLevelMean?: number | undefined;
             } | undefined;
         } | undefined;
         canExtend?: boolean | undefined;
@@ -58315,6 +58377,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 trialMean: number;
                 baselineReadings: number;
                 trialReadings: number;
+                baselineLevelMean?: number | undefined;
+                trialLevelMean?: number | undefined;
             } | undefined;
         } | undefined;
         canExtend?: boolean | undefined;
@@ -58366,6 +58430,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 trialMean: number;
                 baselineReadings: number;
                 trialReadings: number;
+                baselineLevelMean?: number | undefined;
+                trialLevelMean?: number | undefined;
             } | undefined;
         } | undefined;
         canExtend?: boolean | undefined;

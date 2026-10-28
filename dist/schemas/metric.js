@@ -1,10 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isMetric = exports.metricSchema = exports.metricStateSchema = exports.metricRecentSliceSchema = exports.metricWindowSchema = exports.METRIC_NAME_MAX_LENGTH = exports.DEFAULT_METRIC_SCALE_ADJECTIVES = exports.DEFAULT_METRIC_SCALE_LABELS = exports.metricScaleSchema = exports.METRIC_SCALE_ADJECTIVE_MAX_LENGTH = exports.METRIC_SCALE_WORD_MAX_LENGTH = exports.metricValueSchema = void 0;
+exports.isMetric = exports.metricSchema = exports.metricStateSchema = exports.metricRecentSliceSchema = exports.metricWindowSchema = exports.METRIC_NAME_MAX_LENGTH = exports.metricLevelCountsSchema = exports.GENERIC_METRIC_LEVEL_LABELS = exports.metricLevelLabelsSchema = exports.METRIC_LEVEL_LABEL_MAX_LENGTH = exports.METRIC_NORMAL_LABEL = exports.METRIC_NORMAL_LEVEL = exports.METRIC_LEVELS = exports.metricLevelSchema = exports.DEFAULT_METRIC_SCALE_ADJECTIVES = exports.DEFAULT_METRIC_SCALE_LABELS = exports.metricScaleSchema = exports.METRIC_SCALE_ADJECTIVE_MAX_LENGTH = exports.METRIC_SCALE_WORD_MAX_LENGTH = exports.metricValueSchema = void 0;
 exports.defaultMetricScale = defaultMetricScale;
 exports.metricScaleLabels = metricScaleLabels;
 exports.metricValueLabel = metricValueLabel;
 exports.normalizeMetricScale = normalizeMetricScale;
+exports.levelFromValue = levelFromValue;
+exports.valueFromLevel = valueFromLevel;
+exports.metricLogLevel = metricLogLevel;
+exports.metricReadingFields = metricReadingFields;
+exports.metricLevelLabel = metricLevelLabel;
+exports.normalizeMetricLevelLabels = normalizeMetricLevelLabels;
+exports.countMetricLevels = countMetricLevels;
+exports.valueDistributionFromLevelCounts = valueDistributionFromLevelCounts;
+exports.nearestMetricLevel = nearestMetricLevel;
 exports.resolveDesiredDirection = resolveDesiredDirection;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../utils/timestampSchema");
@@ -124,6 +133,176 @@ function normalizeMetricScale(input) {
     const parsed = exports.metricScaleSchema.safeParse(candidate);
     return parsed.success ? parsed.data : undefined;
 }
+// ─── The 5-point level scale ──────────────────────────────────────────────────
+/**
+ * A metric reading on the five-point scale every metric uses, centred on the
+ * user's usual:
+ *
+ *   1 very low end   2 low end   3 normal   4 high end   5 very high end
+ *
+ *   Mental clarity: very foggy / foggy / normal / clear / very clear
+ *   Energy:         drained / low / normal / energetic / very energetic
+ *
+ * "Normal" means the user's usual day, so a baseline settles what normal is and
+ * a trial shows movement away from it. Higher still always means MORE of the
+ * named metric, never better: high Anxiety is 5 ("very anxious") and only
+ * `desiredDirection` says whether rising is welcome.
+ *
+ * Stored beside the 3-point `value`, not instead of it. Every field that held a
+ * 3-point value keeps that meaning, so app builds and functions that predate
+ * the level keep reading and writing correctly; see `metricLogLevel` for how a
+ * reading's level is resolved.
+ */
+exports.metricLevelSchema = zod_1.z.union([
+    zod_1.z.literal(1),
+    zod_1.z.literal(2),
+    zod_1.z.literal(3),
+    zod_1.z.literal(4),
+    zod_1.z.literal(5),
+]);
+exports.METRIC_LEVELS = [1, 2, 3, 4, 5];
+/** The middle level, the user's usual. Its label is always this word. */
+exports.METRIC_NORMAL_LEVEL = 3;
+exports.METRIC_NORMAL_LABEL = "normal";
+/** Longest level label ("very unproductive"); they render on one chip. */
+exports.METRIC_LEVEL_LABEL_MAX_LENGTH = 20;
+const metricLevelLabelSchema = zod_1.z
+    .string()
+    .min(1)
+    .max(exports.METRIC_LEVEL_LABEL_MAX_LENGTH);
+/**
+ * The five labels of a metric's levels, lowest first. The middle one is always
+ * "normal"; the others are worded per metric so each reads the way a person
+ * would say it ("foggy", "drained", "very energetic"). Lowercase; capitalize at
+ * render.
+ */
+exports.metricLevelLabelsSchema = zod_1.z.tuple([
+    metricLevelLabelSchema,
+    metricLevelLabelSchema,
+    zod_1.z.literal(exports.METRIC_NORMAL_LABEL),
+    metricLevelLabelSchema,
+    metricLevelLabelSchema,
+]);
+/** Labels for a metric that has none of its own and no registry entry. */
+exports.GENERIC_METRIC_LEVEL_LABELS = [
+    "very low",
+    "low",
+    "normal",
+    "high",
+    "very high",
+];
+/**
+ * A 3-point value as a level: low → low, okay → normal, high → high. Nothing
+ * becomes an extreme, because a 3-point reading never said "very".
+ */
+function levelFromValue(value) {
+    return (value + 1);
+}
+/**
+ * A level as the 3-point value older readers understand: both low levels are
+ * 1, normal is 2, both high levels are 3.
+ */
+function valueFromLevel(level) {
+    if (level <= 2)
+        return 1;
+    if (level === 3)
+        return 2;
+    return 3;
+}
+const isLevel = (v) => v === 1 || v === 2 || v === 3 || v === 4 || v === 5;
+const isValue = (v) => v === 1 || v === 2 || v === 3;
+/**
+ * The level of a reading, or null while it waits for an answer.
+ *
+ * A stored `level` is trusted only while it agrees with `value`. An app build
+ * that predates levels edits a reading by rewriting `data.value` alone, which
+ * would leave a stale level behind; when they disagree the value is the newer
+ * answer, and it maps to a level as `levelFromValue` does. A reading without a
+ * level (every one written before the five-point scale) maps the same way.
+ */
+function metricLogLevel(data) {
+    if (!data)
+        return null;
+    const { value, level } = data;
+    if (isLevel(level) && (value == null || (isValue(value) && valueFromLevel(level) === value))) {
+        return level;
+    }
+    return isValue(value) ? levelFromValue(value) : null;
+}
+/** The fields a writer stores for a level: the level and its 3-point value. */
+function metricReadingFields(level) {
+    return { level, value: valueFromLevel(level) };
+}
+/** The label of one level, e.g. 2 → "foggy". */
+function metricLevelLabel(level, labels) {
+    return (labels !== null && labels !== void 0 ? labels : exports.GENERIC_METRIC_LEVEL_LABELS)[level - 1];
+}
+/**
+ * Coerce untrusted input (an AI tool argument, a coach form) into level
+ * labels, or undefined if anything is missing, too long, repeated or "normal".
+ * Accepts the four end words as an object `{ veryLow, low, high, veryHigh }`
+ * or the five labels as an array. Lowercases and trims; the middle is always
+ * written as "normal" whatever was passed.
+ */
+function normalizeMetricLevelLabels(input) {
+    if (!input || typeof input !== "object")
+        return undefined;
+    const clean = (v) => typeof v === "string" ? v.trim().replace(/\s+/g, " ").toLowerCase() : "";
+    let ends;
+    if (Array.isArray(input)) {
+        if (input.length !== 5)
+            return undefined;
+        ends = [input[0], input[1], input[3], input[4]].map(clean);
+    }
+    else {
+        const o = input;
+        ends = [o.veryLow, o.low, o.high, o.veryHigh].map(clean);
+    }
+    if (ends.some((e) => !e || e === exports.METRIC_NORMAL_LABEL))
+        return undefined;
+    if (new Set(ends).size !== 4)
+        return undefined;
+    const parsed = exports.metricLevelLabelsSchema.safeParse([
+        ends[0],
+        ends[1],
+        exports.METRIC_NORMAL_LABEL,
+        ends[2],
+        ends[3],
+    ]);
+    return parsed.success ? parsed.data : undefined;
+}
+/**
+ * Counts of readings at each level, lowest first. Index = level - 1. A
+ * distribution rather than a mean, for the same reason as the 3-point one.
+ */
+exports.metricLevelCountsSchema = zod_1.z.tuple([
+    zod_1.z.number().int().min(0),
+    zod_1.z.number().int().min(0),
+    zod_1.z.number().int().min(0),
+    zod_1.z.number().int().min(0),
+    zod_1.z.number().int().min(0),
+]);
+/** Count readings by level. Nulls (unanswered) are skipped. */
+function countMetricLevels(levels) {
+    const counts = [0, 0, 0, 0, 0];
+    for (const l of levels)
+        if (l)
+            counts[l - 1]++;
+    return counts;
+}
+/** The 3-point distribution a set of level counts collapses to. */
+function valueDistributionFromLevelCounts(counts) {
+    return { low: counts[0] + counts[1], okay: counts[2], high: counts[3] + counts[4] };
+}
+/**
+ * The level label nearest a mean of levels, for showing an average as words
+ * ("normal", "clear") rather than as "3.4". Rounds half away from normal.
+ */
+function nearestMetricLevel(mean) {
+    const clamped = Math.min(5, Math.max(1, mean));
+    const r = clamped >= 3 ? Math.floor(clamped + 0.5) : Math.ceil(clamped - 0.5);
+    return r;
+}
 /**
  * Longest metric name that still fits the Home matrix's fixed label column
  * without truncation. Enforced at creation rather than truncated at render, so
@@ -149,8 +328,12 @@ exports.metricWindowSchema = zod_1.z.object({
         high: zod_1.z.number().int().min(0),
     })
         .optional(),
+    /** Readings at each of the five levels, lowest first (see metricLevelSchema). */
+    levelCounts: exports.metricLevelCountsSchema.optional(),
     /** The most frequently observed state in the window, if any. */
     modal: exports.metricValueSchema.optional(),
+    /** The most frequently observed level in the window, if any. */
+    modalLevel: exports.metricLevelSchema.optional(),
     /**
      * Direction of change over the window (IMPROVING = rising score,
      * DECLINING = falling score). Note: whether rising is "good" depends
@@ -170,6 +353,8 @@ exports.metricRecentSliceSchema = zod_1.z.object({
         .array(zod_1.z.object({
         offset: zod_1.z.number().int().min(0),
         value: exports.metricValueSchema,
+        /** The reading's level; absent on slices written before levels. */
+        level: exports.metricLevelSchema.optional(),
     }))
         .max(5),
     /** Direction of change across this slice */
@@ -221,11 +406,18 @@ exports.metricSchema = zod_1.z.object({
     /** Prompt shown when tracking, e.g. "How clear is your thinking?" */
     description: zod_1.z.string().optional(),
     /**
-     * How the three states are worded, e.g. { word: "rested", low: "somewhat",
-     * high: "well" }. Optional only for metrics created before the word scale;
-     * read it through `metricValueLabel` / `metricScaleLabels`.
+     * LEGACY 3-point wording, e.g. { word: "rested", low: "somewhat", high:
+     * "well" }. Kept for app builds that predate the five-point `levels` and
+     * read `value`; current readers use `levels`.
      */
     scale: exports.metricScaleSchema.optional(),
+    /**
+     * The five level labels, e.g. ["very foggy", "foggy", "normal", "clear",
+     * "very clear"]. What every current reader shows; read it through
+     * `metricLevelLabelsFor`, which falls back to the registry for a metric that
+     * predates levels. `scale` stays beside it for app builds that predate levels.
+     */
+    levels: exports.metricLevelLabelsSchema.optional(),
     /** If created from METRIC_REGISTRY, stores the registry id for dedup */
     metricRegistryId: zod_1.z.string().optional(),
     /** Circumplex quadrant — present only on pre-seeded feeling metrics */

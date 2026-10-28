@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { timestampSchema } from "../utils/timestampSchema";
-import { metricScaleSchema } from "./metric";
+import { metricLevelCountsSchema, metricLevelLabelsSchema, metricScaleSchema } from "./metric";
 
 /**
  * Overall behavior summary from BigQuery (impulse session counts).
@@ -37,8 +37,12 @@ const metricSummarySchema = z.object({
       high: z.number().int().min(0),
     })
     .optional(),
+  /** Readings at each of the five levels, lowest first */
+  levelCounts: metricLevelCountsSchema.optional(),
   /** Mean of the ordinal values — for analysis only, not for display */
   average: z.number(),
+  /** Mean level (1-5) — for analysis only; show `nearestMetricLevel`'s label */
+  levelAverage: z.number().optional(),
   /** Number of individual observations recorded */
   count: z.number(),
 });
@@ -50,6 +54,12 @@ const dailyDataPointSchema = z.object({
   date: z.string(),
   value: z.number(),
   rollingAvg7d: z.number().optional(),
+  /**
+   * Metric series only: the day's mean LEVEL (1-5). `value` stays on the
+   * 3-point scale for app builds that chart it.
+   */
+  level: z.number().optional(),
+  rollingLevelAvg7d: z.number().optional(),
 });
 
 /**
@@ -132,6 +142,8 @@ const metricResultSchema = z.object({
   metricName: z.string(),
   /** The metric's word scale (see metricScaleSchema) */
   scale: metricScaleSchema.optional(),
+  /** The metric's five level labels (see metricLevelLabelsSchema) */
+  levels: metricLevelLabelsSchema.optional(),
   summary: metricSummarySchema.optional(),
   /** Daily time series for charts */
   dailySeries: z.array(dailyDataPointSchema).optional(),

@@ -53,8 +53,12 @@ declare const metricSummarySchema: z.ZodObject<{
         high: number;
         okay: number;
     }>>;
+    /** Readings at each of the five levels, lowest first */
+    levelCounts: z.ZodOptional<z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>>;
     /** Mean of the ordinal values — for analysis only, not for display */
     average: z.ZodNumber;
+    /** Mean level (1-5) — for analysis only; show `nearestMetricLevel`'s label */
+    levelAverage: z.ZodOptional<z.ZodNumber>;
     /** Number of individual observations recorded */
     count: z.ZodNumber;
 }, "strip", z.ZodTypeAny, {
@@ -65,6 +69,8 @@ declare const metricSummarySchema: z.ZodObject<{
         high: number;
         okay: number;
     } | undefined;
+    levelCounts?: [number, number, number, number, number] | undefined;
+    levelAverage?: number | undefined;
 }, {
     count: number;
     average: number;
@@ -73,6 +79,8 @@ declare const metricSummarySchema: z.ZodObject<{
         high: number;
         okay: number;
     } | undefined;
+    levelCounts?: [number, number, number, number, number] | undefined;
+    levelAverage?: number | undefined;
 }>;
 /**
  * A single day's data point for time series charts.
@@ -81,14 +89,24 @@ declare const dailyDataPointSchema: z.ZodObject<{
     date: z.ZodString;
     value: z.ZodNumber;
     rollingAvg7d: z.ZodOptional<z.ZodNumber>;
+    /**
+     * Metric series only: the day's mean LEVEL (1-5). `value` stays on the
+     * 3-point scale for app builds that chart it.
+     */
+    level: z.ZodOptional<z.ZodNumber>;
+    rollingLevelAvg7d: z.ZodOptional<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
     value: number;
     date: string;
+    level?: number | undefined;
     rollingAvg7d?: number | undefined;
+    rollingLevelAvg7d?: number | undefined;
 }, {
     value: number;
     date: string;
+    level?: number | undefined;
     rollingAvg7d?: number | undefined;
+    rollingLevelAvg7d?: number | undefined;
 }>;
 /**
  * Confidence level based on data quantity.
@@ -150,6 +168,8 @@ declare const metricResultSchema: z.ZodObject<{
         word: string;
         lowWord?: string | undefined;
     }>>;
+    /** The metric's five level labels (see metricLevelLabelsSchema) */
+    levels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodLiteral<"normal">, z.ZodString, z.ZodString], null>>;
     summary: z.ZodOptional<z.ZodObject<{
         /** Count of observations in each state, low → high */
         distribution: z.ZodOptional<z.ZodObject<{
@@ -165,8 +185,12 @@ declare const metricResultSchema: z.ZodObject<{
             high: number;
             okay: number;
         }>>;
+        /** Readings at each of the five levels, lowest first */
+        levelCounts: z.ZodOptional<z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>>;
         /** Mean of the ordinal values — for analysis only, not for display */
         average: z.ZodNumber;
+        /** Mean level (1-5) — for analysis only; show `nearestMetricLevel`'s label */
+        levelAverage: z.ZodOptional<z.ZodNumber>;
         /** Number of individual observations recorded */
         count: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
@@ -177,6 +201,8 @@ declare const metricResultSchema: z.ZodObject<{
             high: number;
             okay: number;
         } | undefined;
+        levelCounts?: [number, number, number, number, number] | undefined;
+        levelAverage?: number | undefined;
     }, {
         count: number;
         average: number;
@@ -185,20 +211,32 @@ declare const metricResultSchema: z.ZodObject<{
             high: number;
             okay: number;
         } | undefined;
+        levelCounts?: [number, number, number, number, number] | undefined;
+        levelAverage?: number | undefined;
     }>>;
     /** Daily time series for charts */
     dailySeries: z.ZodOptional<z.ZodArray<z.ZodObject<{
         date: z.ZodString;
         value: z.ZodNumber;
         rollingAvg7d: z.ZodOptional<z.ZodNumber>;
+        /**
+         * Metric series only: the day's mean LEVEL (1-5). `value` stays on the
+         * 3-point scale for app builds that chart it.
+         */
+        level: z.ZodOptional<z.ZodNumber>;
+        rollingLevelAvg7d: z.ZodOptional<z.ZodNumber>;
     }, "strip", z.ZodTypeAny, {
         value: number;
         date: string;
+        level?: number | undefined;
         rollingAvg7d?: number | undefined;
+        rollingLevelAvg7d?: number | undefined;
     }, {
         value: number;
         date: string;
+        level?: number | undefined;
         rollingAvg7d?: number | undefined;
+        rollingLevelAvg7d?: number | undefined;
     }>, "many">>;
     /**
      * Confidence in inferences about THIS metric. Derived from before/after
@@ -236,13 +274,18 @@ declare const metricResultSchema: z.ZodObject<{
             high: number;
             okay: number;
         } | undefined;
+        levelCounts?: [number, number, number, number, number] | undefined;
+        levelAverage?: number | undefined;
     } | undefined;
+    levels?: [string, string, "normal", string, string] | undefined;
     hasBaseline?: boolean | undefined;
     postMilestoneReadings?: number | undefined;
     dailySeries?: {
         value: number;
         date: string;
+        level?: number | undefined;
         rollingAvg7d?: number | undefined;
+        rollingLevelAvg7d?: number | undefined;
     }[] | undefined;
 }, {
     metricId: string;
@@ -262,13 +305,18 @@ declare const metricResultSchema: z.ZodObject<{
             high: number;
             okay: number;
         } | undefined;
+        levelCounts?: [number, number, number, number, number] | undefined;
+        levelAverage?: number | undefined;
     } | undefined;
+    levels?: [string, string, "normal", string, string] | undefined;
     hasBaseline?: boolean | undefined;
     postMilestoneReadings?: number | undefined;
     dailySeries?: {
         value: number;
         date: string;
+        level?: number | undefined;
         rollingAvg7d?: number | undefined;
+        rollingLevelAvg7d?: number | undefined;
     }[] | undefined;
 }>;
 /**
@@ -312,14 +360,24 @@ declare const behaviorResultSchema: z.ZodObject<{
         date: z.ZodString;
         value: z.ZodNumber;
         rollingAvg7d: z.ZodOptional<z.ZodNumber>;
+        /**
+         * Metric series only: the day's mean LEVEL (1-5). `value` stays on the
+         * 3-point scale for app builds that chart it.
+         */
+        level: z.ZodOptional<z.ZodNumber>;
+        rollingLevelAvg7d: z.ZodOptional<z.ZodNumber>;
     }, "strip", z.ZodTypeAny, {
         value: number;
         date: string;
+        level?: number | undefined;
         rollingAvg7d?: number | undefined;
+        rollingLevelAvg7d?: number | undefined;
     }, {
         value: number;
         date: string;
+        level?: number | undefined;
         rollingAvg7d?: number | undefined;
+        rollingLevelAvg7d?: number | undefined;
     }>, "many">>;
 }, "strip", z.ZodTypeAny, {
     behaviorId: string;
@@ -337,7 +395,9 @@ declare const behaviorResultSchema: z.ZodObject<{
     dailySeries?: {
         value: number;
         date: string;
+        level?: number | undefined;
         rollingAvg7d?: number | undefined;
+        rollingLevelAvg7d?: number | undefined;
     }[] | undefined;
 }, {
     behaviorId: string;
@@ -355,7 +415,9 @@ declare const behaviorResultSchema: z.ZodObject<{
     dailySeries?: {
         value: number;
         date: string;
+        level?: number | undefined;
         rollingAvg7d?: number | undefined;
+        rollingLevelAvg7d?: number | undefined;
     }[] | undefined;
 }>;
 /**
@@ -416,14 +478,24 @@ declare const discoveredInsightSchema: z.ZodObject<{
         date: z.ZodString;
         value: z.ZodNumber;
         rollingAvg7d: z.ZodOptional<z.ZodNumber>;
+        /**
+         * Metric series only: the day's mean LEVEL (1-5). `value` stays on the
+         * 3-point scale for app builds that chart it.
+         */
+        level: z.ZodOptional<z.ZodNumber>;
+        rollingLevelAvg7d: z.ZodOptional<z.ZodNumber>;
     }, "strip", z.ZodTypeAny, {
         value: number;
         date: string;
+        level?: number | undefined;
         rollingAvg7d?: number | undefined;
+        rollingLevelAvg7d?: number | undefined;
     }, {
         value: number;
         date: string;
+        level?: number | undefined;
         rollingAvg7d?: number | undefined;
+        rollingLevelAvg7d?: number | undefined;
     }>, "many">>;
 }, "strip", z.ZodTypeAny, {
     behaviorId: string;
@@ -440,7 +512,9 @@ declare const discoveredInsightSchema: z.ZodObject<{
     dailySeries?: {
         value: number;
         date: string;
+        level?: number | undefined;
         rollingAvg7d?: number | undefined;
+        rollingLevelAvg7d?: number | undefined;
     }[] | undefined;
 }, {
     behaviorId: string;
@@ -457,7 +531,9 @@ declare const discoveredInsightSchema: z.ZodObject<{
     dailySeries?: {
         value: number;
         date: string;
+        level?: number | undefined;
         rollingAvg7d?: number | undefined;
+        rollingLevelAvg7d?: number | undefined;
     }[] | undefined;
 }>;
 /**
@@ -514,14 +590,24 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
             date: z.ZodString;
             value: z.ZodNumber;
             rollingAvg7d: z.ZodOptional<z.ZodNumber>;
+            /**
+             * Metric series only: the day's mean LEVEL (1-5). `value` stays on the
+             * 3-point scale for app builds that chart it.
+             */
+            level: z.ZodOptional<z.ZodNumber>;
+            rollingLevelAvg7d: z.ZodOptional<z.ZodNumber>;
         }, "strip", z.ZodTypeAny, {
             value: number;
             date: string;
+            level?: number | undefined;
             rollingAvg7d?: number | undefined;
+            rollingLevelAvg7d?: number | undefined;
         }, {
             value: number;
             date: string;
+            level?: number | undefined;
             rollingAvg7d?: number | undefined;
+            rollingLevelAvg7d?: number | undefined;
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         behaviorId: string;
@@ -539,7 +625,9 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
         dailySeries?: {
             value: number;
             date: string;
+            level?: number | undefined;
             rollingAvg7d?: number | undefined;
+            rollingLevelAvg7d?: number | undefined;
         }[] | undefined;
     }, {
         behaviorId: string;
@@ -557,7 +645,9 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
         dailySeries?: {
             value: number;
             date: string;
+            level?: number | undefined;
             rollingAvg7d?: number | undefined;
+            rollingLevelAvg7d?: number | undefined;
         }[] | undefined;
     }>, "many">;
     /** Metric results */
@@ -581,6 +671,8 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
             word: string;
             lowWord?: string | undefined;
         }>>;
+        /** The metric's five level labels (see metricLevelLabelsSchema) */
+        levels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodLiteral<"normal">, z.ZodString, z.ZodString], null>>;
         summary: z.ZodOptional<z.ZodObject<{
             /** Count of observations in each state, low → high */
             distribution: z.ZodOptional<z.ZodObject<{
@@ -596,8 +688,12 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             }>>;
+            /** Readings at each of the five levels, lowest first */
+            levelCounts: z.ZodOptional<z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>>;
             /** Mean of the ordinal values — for analysis only, not for display */
             average: z.ZodNumber;
+            /** Mean level (1-5) — for analysis only; show `nearestMetricLevel`'s label */
+            levelAverage: z.ZodOptional<z.ZodNumber>;
             /** Number of individual observations recorded */
             count: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
@@ -608,6 +704,8 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             } | undefined;
+            levelCounts?: [number, number, number, number, number] | undefined;
+            levelAverage?: number | undefined;
         }, {
             count: number;
             average: number;
@@ -616,20 +714,32 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             } | undefined;
+            levelCounts?: [number, number, number, number, number] | undefined;
+            levelAverage?: number | undefined;
         }>>;
         /** Daily time series for charts */
         dailySeries: z.ZodOptional<z.ZodArray<z.ZodObject<{
             date: z.ZodString;
             value: z.ZodNumber;
             rollingAvg7d: z.ZodOptional<z.ZodNumber>;
+            /**
+             * Metric series only: the day's mean LEVEL (1-5). `value` stays on the
+             * 3-point scale for app builds that chart it.
+             */
+            level: z.ZodOptional<z.ZodNumber>;
+            rollingLevelAvg7d: z.ZodOptional<z.ZodNumber>;
         }, "strip", z.ZodTypeAny, {
             value: number;
             date: string;
+            level?: number | undefined;
             rollingAvg7d?: number | undefined;
+            rollingLevelAvg7d?: number | undefined;
         }, {
             value: number;
             date: string;
+            level?: number | undefined;
             rollingAvg7d?: number | undefined;
+            rollingLevelAvg7d?: number | undefined;
         }>, "many">>;
         /**
          * Confidence in inferences about THIS metric. Derived from before/after
@@ -667,13 +777,18 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             } | undefined;
+            levelCounts?: [number, number, number, number, number] | undefined;
+            levelAverage?: number | undefined;
         } | undefined;
+        levels?: [string, string, "normal", string, string] | undefined;
         hasBaseline?: boolean | undefined;
         postMilestoneReadings?: number | undefined;
         dailySeries?: {
             value: number;
             date: string;
+            level?: number | undefined;
             rollingAvg7d?: number | undefined;
+            rollingLevelAvg7d?: number | undefined;
         }[] | undefined;
     }, {
         metricId: string;
@@ -693,13 +808,18 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             } | undefined;
+            levelCounts?: [number, number, number, number, number] | undefined;
+            levelAverage?: number | undefined;
         } | undefined;
+        levels?: [string, string, "normal", string, string] | undefined;
         hasBaseline?: boolean | undefined;
         postMilestoneReadings?: number | undefined;
         dailySeries?: {
             value: number;
             date: string;
+            level?: number | undefined;
             rollingAvg7d?: number | undefined;
+            rollingLevelAvg7d?: number | undefined;
         }[] | undefined;
     }>, "many">;
     /** Lagged-effect insights (yesterday's behavior -> today's metric). Only populated at high confidence (14+ days). */
@@ -757,14 +877,24 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
             date: z.ZodString;
             value: z.ZodNumber;
             rollingAvg7d: z.ZodOptional<z.ZodNumber>;
+            /**
+             * Metric series only: the day's mean LEVEL (1-5). `value` stays on the
+             * 3-point scale for app builds that chart it.
+             */
+            level: z.ZodOptional<z.ZodNumber>;
+            rollingLevelAvg7d: z.ZodOptional<z.ZodNumber>;
         }, "strip", z.ZodTypeAny, {
             value: number;
             date: string;
+            level?: number | undefined;
             rollingAvg7d?: number | undefined;
+            rollingLevelAvg7d?: number | undefined;
         }, {
             value: number;
             date: string;
+            level?: number | undefined;
             rollingAvg7d?: number | undefined;
+            rollingLevelAvg7d?: number | undefined;
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         behaviorId: string;
@@ -781,7 +911,9 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
         dailySeries?: {
             value: number;
             date: string;
+            level?: number | undefined;
             rollingAvg7d?: number | undefined;
+            rollingLevelAvg7d?: number | undefined;
         }[] | undefined;
     }, {
         behaviorId: string;
@@ -798,7 +930,9 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
         dailySeries?: {
             value: number;
             date: string;
+            level?: number | undefined;
             rollingAvg7d?: number | undefined;
+            rollingLevelAvg7d?: number | undefined;
         }[] | undefined;
     }>, "many">>;
     /** Set by the frontend each time the screen is viewed */
@@ -827,7 +961,9 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
         dailySeries?: {
             value: number;
             date: string;
+            level?: number | undefined;
             rollingAvg7d?: number | undefined;
+            rollingLevelAvg7d?: number | undefined;
         }[] | undefined;
     }[];
     metricResults: {
@@ -848,13 +984,18 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             } | undefined;
+            levelCounts?: [number, number, number, number, number] | undefined;
+            levelAverage?: number | undefined;
         } | undefined;
+        levels?: [string, string, "normal", string, string] | undefined;
         hasBaseline?: boolean | undefined;
         postMilestoneReadings?: number | undefined;
         dailySeries?: {
             value: number;
             date: string;
+            level?: number | undefined;
             rollingAvg7d?: number | undefined;
+            rollingLevelAvg7d?: number | undefined;
         }[] | undefined;
     }[];
     fetchedAt?: import("../types").Timestamp | undefined;
@@ -881,7 +1022,9 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
         dailySeries?: {
             value: number;
             date: string;
+            level?: number | undefined;
             rollingAvg7d?: number | undefined;
+            rollingLevelAvg7d?: number | undefined;
         }[] | undefined;
     }[] | undefined;
 }, {
@@ -906,7 +1049,9 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
         dailySeries?: {
             value: number;
             date: string;
+            level?: number | undefined;
             rollingAvg7d?: number | undefined;
+            rollingLevelAvg7d?: number | undefined;
         }[] | undefined;
     }[];
     metricResults: {
@@ -927,13 +1072,18 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             } | undefined;
+            levelCounts?: [number, number, number, number, number] | undefined;
+            levelAverage?: number | undefined;
         } | undefined;
+        levels?: [string, string, "normal", string, string] | undefined;
         hasBaseline?: boolean | undefined;
         postMilestoneReadings?: number | undefined;
         dailySeries?: {
             value: number;
             date: string;
+            level?: number | undefined;
             rollingAvg7d?: number | undefined;
+            rollingLevelAvg7d?: number | undefined;
         }[] | undefined;
     }[];
     fetchedAt?: import("../types").Timestamp | undefined;
@@ -960,7 +1110,9 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
         dailySeries?: {
             value: number;
             date: string;
+            level?: number | undefined;
             rollingAvg7d?: number | undefined;
+            rollingLevelAvg7d?: number | undefined;
         }[] | undefined;
     }[] | undefined;
 }>;

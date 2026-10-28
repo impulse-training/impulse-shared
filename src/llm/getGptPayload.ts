@@ -23,10 +23,8 @@ import {
 } from "../schemas/log";
 import { buildPlansLogPayload } from "./buildPlansLogPayload";
 import { DEFAULT_RECAP_TIME_LABEL } from "../constants";
-import {
-  metricScaleLabels,
-  metricValueLabel,
-} from "../schemas/metric";
+import { metricLevelLabel, metricLogLevel } from "../schemas/metric";
+import { metricLevelLabelsFor } from "../constants/metrics";
 import { isPostDebriefPhase, SessionPhase } from "../schemas/session/phase";
 import { nowMs } from "../utils/clock";
 import { getChangeStageLabel } from "../utils/changeStage";
@@ -717,11 +715,13 @@ export function getGptPayload(
 
   // Handle MetricLog
   if (logIsMetricLog(log)) {
-    const { metricName, value, scale, quadrant } = log.data;
-    // Metrics are ordered states, so give the AI the state's NAME. "2/3" invites
-    // it to talk in scores; "very bored" is what the user actually chose.
-    const scaleDesc = ` (${metricScaleLabels(scale).join(" / ")})`;
-    if (value == null) {
+    const { metricName, quadrant } = log.data;
+    // Metrics are ordered states, so give the AI the state's NAME. "4/5" invites
+    // it to talk in scores; "clear" is what the user actually chose.
+    const labels = metricLevelLabelsFor({ levels: log.data.levels, name: metricName });
+    const scaleDesc = ` (${labels.join(" / ")})`;
+    const level = metricLogLevel(log.data);
+    if (level == null) {
       return [
         {
           role: "user",
@@ -729,7 +729,7 @@ export function getGptPayload(
         },
       ];
     }
-    const stateLabel = metricValueLabel(value, scale);
+    const stateLabel = metricLevelLabel(level, labels);
     // Feeling metric (has quadrant) — use feeling-specific wording
     if (quadrant) {
       if (isFinalLogInSession && log.shouldZaraRespond) {
