@@ -34,12 +34,22 @@ export declare const metricLogSchema: z.ZodObject<{
         metricId: z.ZodString;
         /** Denormalized metric name for display */
         metricName: z.ZodString;
-        /** Ordered 3-point observation, null when awaiting user input */
+        /**
+         * The reading on the LEGACY 3-point scale, null when awaiting user input.
+         * Always written beside `level` (as `valueFromLevel(level)`) so app builds
+         * that predate levels keep showing a reading. Read the level through
+         * `metricLogLevel`, never this field directly.
+         */
         value: z.ZodNullable<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>>;
         /**
-         * Denormalized word scale, so a log renders ("Energy: very energetic")
-         * without loading the metric document.
+         * The reading on the five-point scale centred on normal. Absent on
+         * readings written before it, and on readings an older app build wrote;
+         * `metricLogLevel` maps those from `value`.
          */
+        level: z.ZodOptional<z.ZodNullable<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>, z.ZodLiteral<4>, z.ZodLiteral<5>]>>>;
+        /** Denormalized level labels (see Metric.levels). */
+        levels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodLiteral<"normal">, z.ZodString, z.ZodString], null>>;
+        /** Denormalized LEGACY word scale, for app builds that read `value`. */
         scale: z.ZodOptional<z.ZodObject<{
             word: z.ZodString;
             low: z.ZodString;
@@ -71,6 +81,8 @@ export declare const metricLogSchema: z.ZodObject<{
             word: string;
             lowWord?: string | undefined;
         } | undefined;
+        level?: 1 | 2 | 3 | 5 | 4 | null | undefined;
+        levels?: [string, string, "normal", string, string] | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     }, {
         value: 1 | 2 | 3 | null;
@@ -83,6 +95,8 @@ export declare const metricLogSchema: z.ZodObject<{
             word: string;
             lowWord?: string | undefined;
         } | undefined;
+        level?: 1 | 2 | 3 | 5 | 4 | null | undefined;
+        levels?: [string, string, "normal", string, string] | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -105,6 +119,8 @@ export declare const metricLogSchema: z.ZodObject<{
             word: string;
             lowWord?: string | undefined;
         } | undefined;
+        level?: 1 | 2 | 3 | 5 | 4 | null | undefined;
+        levels?: [string, string, "normal", string, string] | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     };
     id?: string | undefined;
@@ -133,6 +149,8 @@ export declare const metricLogSchema: z.ZodObject<{
             word: string;
             lowWord?: string | undefined;
         } | undefined;
+        level?: 1 | 2 | 3 | 5 | 4 | null | undefined;
+        levels?: [string, string, "normal", string, string] | undefined;
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     };
     id?: string | undefined;

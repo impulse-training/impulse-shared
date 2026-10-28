@@ -392,8 +392,12 @@ export const trialComparisonSchema = z.object({
   outcome: z
     .object({
       metricId: z.string(),
+      /** Mean reading on the 3-point value scale (older app builds show it) */
       baselineMean: z.number(),
       trialMean: z.number(),
+      /** Mean LEVEL (1-5), centred on normal (3). Absent on comparisons computed before levels. */
+      baselineLevelMean: z.number().optional(),
+      trialLevelMean: z.number().optional(),
       baselineReadings: z.number().int().nonnegative(),
       trialReadings: z.number().int().nonnegative(),
     })

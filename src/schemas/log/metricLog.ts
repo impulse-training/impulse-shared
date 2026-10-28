@@ -1,6 +1,11 @@
 import { z } from "zod";
 import { logBaseSchema } from "./base";
-import { metricScaleSchema, metricValueSchema } from "../metric";
+import {
+  metricLevelLabelsSchema,
+  metricLevelSchema,
+  metricScaleSchema,
+  metricValueSchema,
+} from "../metric";
 
 /**
  * A metric observation log — one ordered day-scoped state observation.
@@ -25,12 +30,22 @@ export const metricLogSchema = logBaseSchema.extend({
     metricId: z.string(),
     /** Denormalized metric name for display */
     metricName: z.string(),
-    /** Ordered 3-point observation, null when awaiting user input */
+    /**
+     * The reading on the LEGACY 3-point scale, null when awaiting user input.
+     * Always written beside `level` (as `valueFromLevel(level)`) so app builds
+     * that predate levels keep showing a reading. Read the level through
+     * `metricLogLevel`, never this field directly.
+     */
     value: metricValueSchema.nullable(),
     /**
-     * Denormalized word scale, so a log renders ("Energy: very energetic")
-     * without loading the metric document.
+     * The reading on the five-point scale centred on normal. Absent on
+     * readings written before it, and on readings an older app build wrote;
+     * `metricLogLevel` maps those from `value`.
      */
+    level: metricLevelSchema.nullable().optional(),
+    /** Denormalized level labels (see Metric.levels). */
+    levels: metricLevelLabelsSchema.optional(),
+    /** Denormalized LEGACY word scale, for app builds that read `value`. */
     scale: metricScaleSchema.optional(),
     /** Optional supporting text / note */
     text: z.string().optional(),

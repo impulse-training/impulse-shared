@@ -42,8 +42,12 @@ const metricSummarySchema = zod_1.z.object({
         high: zod_1.z.number().int().min(0),
     })
         .optional(),
+    /** Readings at each of the five levels, lowest first */
+    levelCounts: metric_1.metricLevelCountsSchema.optional(),
     /** Mean of the ordinal values — for analysis only, not for display */
     average: zod_1.z.number(),
+    /** Mean level (1-5) — for analysis only; show `nearestMetricLevel`'s label */
+    levelAverage: zod_1.z.number().optional(),
     /** Number of individual observations recorded */
     count: zod_1.z.number(),
 });
@@ -54,6 +58,12 @@ const dailyDataPointSchema = zod_1.z.object({
     date: zod_1.z.string(),
     value: zod_1.z.number(),
     rollingAvg7d: zod_1.z.number().optional(),
+    /**
+     * Metric series only: the day's mean LEVEL (1-5). `value` stays on the
+     * 3-point scale for app builds that chart it.
+     */
+    level: zod_1.z.number().optional(),
+    rollingLevelAvg7d: zod_1.z.number().optional(),
 });
 /**
  * Confidence level based on data quantity.
@@ -121,6 +131,8 @@ const metricResultSchema = zod_1.z.object({
     metricName: zod_1.z.string(),
     /** The metric's word scale (see metricScaleSchema) */
     scale: metric_1.metricScaleSchema.optional(),
+    /** The metric's five level labels (see metricLevelLabelsSchema) */
+    levels: metric_1.metricLevelLabelsSchema.optional(),
     summary: metricSummarySchema.optional(),
     /** Daily time series for charts */
     dailySeries: zod_1.z.array(dailyDataPointSchema).optional(),

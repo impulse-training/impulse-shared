@@ -95,6 +95,100 @@ export declare function metricValueLabel(value: MetricValue, scale?: MetricScale
  */
 export declare function normalizeMetricScale(input: unknown): MetricScale | undefined;
 /**
+ * A metric reading on the five-point scale every metric uses, centred on the
+ * user's usual:
+ *
+ *   1 very low end   2 low end   3 normal   4 high end   5 very high end
+ *
+ *   Mental clarity: very foggy / foggy / normal / clear / very clear
+ *   Energy:         drained / low / normal / energetic / very energetic
+ *
+ * "Normal" means the user's usual day, so a baseline settles what normal is and
+ * a trial shows movement away from it. Higher still always means MORE of the
+ * named metric, never better: high Anxiety is 5 ("very anxious") and only
+ * `desiredDirection` says whether rising is welcome.
+ *
+ * Stored beside the 3-point `value`, not instead of it. Every field that held a
+ * 3-point value keeps that meaning, so app builds and functions that predate
+ * the level keep reading and writing correctly; see `metricLogLevel` for how a
+ * reading's level is resolved.
+ */
+export declare const metricLevelSchema: z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>, z.ZodLiteral<4>, z.ZodLiteral<5>]>;
+export type MetricLevel = z.infer<typeof metricLevelSchema>;
+export declare const METRIC_LEVELS: readonly MetricLevel[];
+/** The middle level, the user's usual. Its label is always this word. */
+export declare const METRIC_NORMAL_LEVEL: MetricLevel;
+export declare const METRIC_NORMAL_LABEL = "normal";
+/** Longest level label ("very unproductive"); they render on one chip. */
+export declare const METRIC_LEVEL_LABEL_MAX_LENGTH = 20;
+/**
+ * The five labels of a metric's levels, lowest first. The middle one is always
+ * "normal"; the others are worded per metric so each reads the way a person
+ * would say it ("foggy", "drained", "very energetic"). Lowercase; capitalize at
+ * render.
+ */
+export declare const metricLevelLabelsSchema: z.ZodTuple<[z.ZodString, z.ZodString, z.ZodLiteral<"normal">, z.ZodString, z.ZodString], null>;
+export type MetricLevelLabels = z.infer<typeof metricLevelLabelsSchema>;
+/** Labels for a metric that has none of its own and no registry entry. */
+export declare const GENERIC_METRIC_LEVEL_LABELS: MetricLevelLabels;
+/**
+ * A 3-point value as a level: low → low, okay → normal, high → high. Nothing
+ * becomes an extreme, because a 3-point reading never said "very".
+ */
+export declare function levelFromValue(value: MetricValue): MetricLevel;
+/**
+ * A level as the 3-point value older readers understand: both low levels are
+ * 1, normal is 2, both high levels are 3.
+ */
+export declare function valueFromLevel(level: MetricLevel): MetricValue;
+/**
+ * The level of a reading, or null while it waits for an answer.
+ *
+ * A stored `level` is trusted only while it agrees with `value`. An app build
+ * that predates levels edits a reading by rewriting `data.value` alone, which
+ * would leave a stale level behind; when they disagree the value is the newer
+ * answer, and it maps to a level as `levelFromValue` does. A reading without a
+ * level (every one written before the five-point scale) maps the same way.
+ */
+export declare function metricLogLevel(data: {
+    value?: unknown;
+    level?: unknown;
+} | null | undefined): MetricLevel | null;
+/** The fields a writer stores for a level: the level and its 3-point value. */
+export declare function metricReadingFields(level: MetricLevel): {
+    level: MetricLevel;
+    value: MetricValue;
+};
+/** The label of one level, e.g. 2 → "foggy". */
+export declare function metricLevelLabel(level: MetricLevel, labels?: MetricLevelLabels | null): string;
+/**
+ * Coerce untrusted input (an AI tool argument, a coach form) into level
+ * labels, or undefined if anything is missing, too long, repeated or "normal".
+ * Accepts the four end words as an object `{ veryLow, low, high, veryHigh }`
+ * or the five labels as an array. Lowercases and trims; the middle is always
+ * written as "normal" whatever was passed.
+ */
+export declare function normalizeMetricLevelLabels(input: unknown): MetricLevelLabels | undefined;
+/**
+ * Counts of readings at each level, lowest first. Index = level - 1. A
+ * distribution rather than a mean, for the same reason as the 3-point one.
+ */
+export declare const metricLevelCountsSchema: z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>;
+export type MetricLevelCounts = z.infer<typeof metricLevelCountsSchema>;
+/** Count readings by level. Nulls (unanswered) are skipped. */
+export declare function countMetricLevels(levels: Array<MetricLevel | null | undefined>): MetricLevelCounts;
+/** The 3-point distribution a set of level counts collapses to. */
+export declare function valueDistributionFromLevelCounts(counts: MetricLevelCounts): {
+    low: number;
+    okay: number;
+    high: number;
+};
+/**
+ * The level label nearest a mean of levels, for showing an average as words
+ * ("normal", "clear") rather than as "3.4". Rounds half away from normal.
+ */
+export declare function nearestMetricLevel(mean: number): MetricLevel;
+/**
  * Longest metric name that still fits the Home matrix's fixed label column
  * without truncation. Enforced at creation rather than truncated at render, so
  * the constraint is visible once instead of degrading every surface.
@@ -124,8 +218,12 @@ export declare const metricWindowSchema: z.ZodObject<{
         high: number;
         okay: number;
     }>>;
+    /** Readings at each of the five levels, lowest first (see metricLevelSchema). */
+    levelCounts: z.ZodOptional<z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>>;
     /** The most frequently observed state in the window, if any. */
     modal: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>>;
+    /** The most frequently observed level in the window, if any. */
+    modalLevel: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>, z.ZodLiteral<4>, z.ZodLiteral<5>]>>;
     /**
      * Direction of change over the window (IMPROVING = rising score,
      * DECLINING = falling score). Note: whether rising is "good" depends
@@ -144,7 +242,9 @@ export declare const metricWindowSchema: z.ZodObject<{
         high: number;
         okay: number;
     } | undefined;
+    levelCounts?: [number, number, number, number, number] | undefined;
     modal?: 1 | 2 | 3 | undefined;
+    modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
 }, {
     windowSizeDays: 7 | 30 | 90;
     trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
@@ -155,7 +255,9 @@ export declare const metricWindowSchema: z.ZodObject<{
         high: number;
         okay: number;
     } | undefined;
+    levelCounts?: [number, number, number, number, number] | undefined;
     modal?: 1 | 2 | 3 | undefined;
+    modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
 }>;
 export type MetricWindow = z.infer<typeof metricWindowSchema>;
 /**
@@ -167,12 +269,16 @@ export declare const metricRecentSliceSchema: z.ZodObject<{
     days: z.ZodArray<z.ZodObject<{
         offset: z.ZodNumber;
         value: z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>;
+        /** The reading's level; absent on slices written before levels. */
+        level: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>, z.ZodLiteral<4>, z.ZodLiteral<5>]>>;
     }, "strip", z.ZodTypeAny, {
         value: 1 | 2 | 3;
         offset: number;
+        level?: 1 | 2 | 3 | 5 | 4 | undefined;
     }, {
         value: 1 | 2 | 3;
         offset: number;
+        level?: 1 | 2 | 3 | 5 | 4 | undefined;
     }>, "many">;
     /** Direction of change across this slice */
     direction: z.ZodEnum<["IMPROVING", "DECLINING", "FLAT", "MIXED"]>;
@@ -184,6 +290,7 @@ export declare const metricRecentSliceSchema: z.ZodObject<{
     days: {
         value: 1 | 2 | 3;
         offset: number;
+        level?: 1 | 2 | 3 | 5 | 4 | undefined;
     }[];
     direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
     contrast: "LOW" | "MODERATE" | "STRONG";
@@ -192,6 +299,7 @@ export declare const metricRecentSliceSchema: z.ZodObject<{
     days: {
         value: 1 | 2 | 3;
         offset: number;
+        level?: 1 | 2 | 3 | 5 | 4 | undefined;
     }[];
     direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
     contrast: "LOW" | "MODERATE" | "STRONG";
@@ -226,8 +334,12 @@ export declare const metricStateSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             }>>;
+            /** Readings at each of the five levels, lowest first (see metricLevelSchema). */
+            levelCounts: z.ZodOptional<z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>>;
             /** The most frequently observed state in the window, if any. */
             modal: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>>;
+            /** The most frequently observed level in the window, if any. */
+            modalLevel: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>, z.ZodLiteral<4>, z.ZodLiteral<5>]>>;
             /**
              * Direction of change over the window (IMPROVING = rising score,
              * DECLINING = falling score). Note: whether rising is "good" depends
@@ -246,7 +358,9 @@ export declare const metricStateSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             } | undefined;
+            levelCounts?: [number, number, number, number, number] | undefined;
             modal?: 1 | 2 | 3 | undefined;
+            modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
         }, {
             windowSizeDays: 7 | 30 | 90;
             trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
@@ -257,7 +371,9 @@ export declare const metricStateSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             } | undefined;
+            levelCounts?: [number, number, number, number, number] | undefined;
             modal?: 1 | 2 | 3 | undefined;
+            modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
         }>;
         medium: z.ZodObject<{
             windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
@@ -279,8 +395,12 @@ export declare const metricStateSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             }>>;
+            /** Readings at each of the five levels, lowest first (see metricLevelSchema). */
+            levelCounts: z.ZodOptional<z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>>;
             /** The most frequently observed state in the window, if any. */
             modal: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>>;
+            /** The most frequently observed level in the window, if any. */
+            modalLevel: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>, z.ZodLiteral<4>, z.ZodLiteral<5>]>>;
             /**
              * Direction of change over the window (IMPROVING = rising score,
              * DECLINING = falling score). Note: whether rising is "good" depends
@@ -299,7 +419,9 @@ export declare const metricStateSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             } | undefined;
+            levelCounts?: [number, number, number, number, number] | undefined;
             modal?: 1 | 2 | 3 | undefined;
+            modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
         }, {
             windowSizeDays: 7 | 30 | 90;
             trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
@@ -310,7 +432,9 @@ export declare const metricStateSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             } | undefined;
+            levelCounts?: [number, number, number, number, number] | undefined;
             modal?: 1 | 2 | 3 | undefined;
+            modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
         }>;
         long: z.ZodObject<{
             windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
@@ -332,8 +456,12 @@ export declare const metricStateSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             }>>;
+            /** Readings at each of the five levels, lowest first (see metricLevelSchema). */
+            levelCounts: z.ZodOptional<z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>>;
             /** The most frequently observed state in the window, if any. */
             modal: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>>;
+            /** The most frequently observed level in the window, if any. */
+            modalLevel: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>, z.ZodLiteral<4>, z.ZodLiteral<5>]>>;
             /**
              * Direction of change over the window (IMPROVING = rising score,
              * DECLINING = falling score). Note: whether rising is "good" depends
@@ -352,7 +480,9 @@ export declare const metricStateSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             } | undefined;
+            levelCounts?: [number, number, number, number, number] | undefined;
             modal?: 1 | 2 | 3 | undefined;
+            modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
         }, {
             windowSizeDays: 7 | 30 | 90;
             trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
@@ -363,7 +493,9 @@ export declare const metricStateSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             } | undefined;
+            levelCounts?: [number, number, number, number, number] | undefined;
             modal?: 1 | 2 | 3 | undefined;
+            modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         short: {
@@ -376,7 +508,9 @@ export declare const metricStateSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             } | undefined;
+            levelCounts?: [number, number, number, number, number] | undefined;
             modal?: 1 | 2 | 3 | undefined;
+            modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
         };
         medium: {
             windowSizeDays: 7 | 30 | 90;
@@ -388,7 +522,9 @@ export declare const metricStateSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             } | undefined;
+            levelCounts?: [number, number, number, number, number] | undefined;
             modal?: 1 | 2 | 3 | undefined;
+            modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
         };
         long: {
             windowSizeDays: 7 | 30 | 90;
@@ -400,7 +536,9 @@ export declare const metricStateSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             } | undefined;
+            levelCounts?: [number, number, number, number, number] | undefined;
             modal?: 1 | 2 | 3 | undefined;
+            modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
         };
     }, {
         short: {
@@ -413,7 +551,9 @@ export declare const metricStateSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             } | undefined;
+            levelCounts?: [number, number, number, number, number] | undefined;
             modal?: 1 | 2 | 3 | undefined;
+            modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
         };
         medium: {
             windowSizeDays: 7 | 30 | 90;
@@ -425,7 +565,9 @@ export declare const metricStateSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             } | undefined;
+            levelCounts?: [number, number, number, number, number] | undefined;
             modal?: 1 | 2 | 3 | undefined;
+            modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
         };
         long: {
             windowSizeDays: 7 | 30 | 90;
@@ -437,7 +579,9 @@ export declare const metricStateSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             } | undefined;
+            levelCounts?: [number, number, number, number, number] | undefined;
             modal?: 1 | 2 | 3 | undefined;
+            modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
         };
     }>;
     recentSlice: z.ZodOptional<z.ZodObject<{
@@ -445,12 +589,16 @@ export declare const metricStateSchema: z.ZodObject<{
         days: z.ZodArray<z.ZodObject<{
             offset: z.ZodNumber;
             value: z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>;
+            /** The reading's level; absent on slices written before levels. */
+            level: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>, z.ZodLiteral<4>, z.ZodLiteral<5>]>>;
         }, "strip", z.ZodTypeAny, {
             value: 1 | 2 | 3;
             offset: number;
+            level?: 1 | 2 | 3 | 5 | 4 | undefined;
         }, {
             value: 1 | 2 | 3;
             offset: number;
+            level?: 1 | 2 | 3 | 5 | 4 | undefined;
         }>, "many">;
         /** Direction of change across this slice */
         direction: z.ZodEnum<["IMPROVING", "DECLINING", "FLAT", "MIXED"]>;
@@ -462,6 +610,7 @@ export declare const metricStateSchema: z.ZodObject<{
         days: {
             value: 1 | 2 | 3;
             offset: number;
+            level?: 1 | 2 | 3 | 5 | 4 | undefined;
         }[];
         direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
         contrast: "LOW" | "MODERATE" | "STRONG";
@@ -470,6 +619,7 @@ export declare const metricStateSchema: z.ZodObject<{
         days: {
             value: 1 | 2 | 3;
             offset: number;
+            level?: 1 | 2 | 3 | 5 | 4 | undefined;
         }[];
         direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
         contrast: "LOW" | "MODERATE" | "STRONG";
@@ -504,7 +654,9 @@ export declare const metricStateSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             } | undefined;
+            levelCounts?: [number, number, number, number, number] | undefined;
             modal?: 1 | 2 | 3 | undefined;
+            modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
         };
         medium: {
             windowSizeDays: 7 | 30 | 90;
@@ -516,7 +668,9 @@ export declare const metricStateSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             } | undefined;
+            levelCounts?: [number, number, number, number, number] | undefined;
             modal?: 1 | 2 | 3 | undefined;
+            modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
         };
         long: {
             windowSizeDays: 7 | 30 | 90;
@@ -528,7 +682,9 @@ export declare const metricStateSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             } | undefined;
+            levelCounts?: [number, number, number, number, number] | undefined;
             modal?: 1 | 2 | 3 | undefined;
+            modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
         };
     };
     meta: {
@@ -541,6 +697,7 @@ export declare const metricStateSchema: z.ZodObject<{
         days: {
             value: 1 | 2 | 3;
             offset: number;
+            level?: 1 | 2 | 3 | 5 | 4 | undefined;
         }[];
         direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
         contrast: "LOW" | "MODERATE" | "STRONG";
@@ -558,7 +715,9 @@ export declare const metricStateSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             } | undefined;
+            levelCounts?: [number, number, number, number, number] | undefined;
             modal?: 1 | 2 | 3 | undefined;
+            modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
         };
         medium: {
             windowSizeDays: 7 | 30 | 90;
@@ -570,7 +729,9 @@ export declare const metricStateSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             } | undefined;
+            levelCounts?: [number, number, number, number, number] | undefined;
             modal?: 1 | 2 | 3 | undefined;
+            modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
         };
         long: {
             windowSizeDays: 7 | 30 | 90;
@@ -582,7 +743,9 @@ export declare const metricStateSchema: z.ZodObject<{
                 high: number;
                 okay: number;
             } | undefined;
+            levelCounts?: [number, number, number, number, number] | undefined;
             modal?: 1 | 2 | 3 | undefined;
+            modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
         };
     };
     meta: {
@@ -595,6 +758,7 @@ export declare const metricStateSchema: z.ZodObject<{
         days: {
             value: 1 | 2 | 3;
             offset: number;
+            level?: 1 | 2 | 3 | 5 | 4 | undefined;
         }[];
         direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
         contrast: "LOW" | "MODERATE" | "STRONG";
@@ -618,9 +782,9 @@ export declare const metricSchema: z.ZodObject<{
     /** Prompt shown when tracking, e.g. "How clear is your thinking?" */
     description: z.ZodOptional<z.ZodString>;
     /**
-     * How the three states are worded, e.g. { word: "rested", low: "somewhat",
-     * high: "well" }. Optional only for metrics created before the word scale;
-     * read it through `metricValueLabel` / `metricScaleLabels`.
+     * LEGACY 3-point wording, e.g. { word: "rested", low: "somewhat", high:
+     * "well" }. Kept for app builds that predate the five-point `levels` and
+     * read `value`; current readers use `levels`.
      */
     scale: z.ZodOptional<z.ZodObject<{
         /** The state itself, e.g. "bored". The middle value, unmodified. */
@@ -645,6 +809,13 @@ export declare const metricSchema: z.ZodObject<{
         word: string;
         lowWord?: string | undefined;
     }>>;
+    /**
+     * The five level labels, e.g. ["very foggy", "foggy", "normal", "clear",
+     * "very clear"]. What every current reader shows; read it through
+     * `metricLevelLabelsFor`, which falls back to the registry for a metric that
+     * predates levels. `scale` stays beside it for app builds that predate levels.
+     */
+    levels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodLiteral<"normal">, z.ZodString, z.ZodString], null>>;
     /** If created from METRIC_REGISTRY, stores the registry id for dedup */
     metricRegistryId: z.ZodOptional<z.ZodString>;
     /** Circumplex quadrant — present only on pre-seeded feeling metrics */
@@ -680,8 +851,12 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 }>>;
+                /** Readings at each of the five levels, lowest first (see metricLevelSchema). */
+                levelCounts: z.ZodOptional<z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>>;
                 /** The most frequently observed state in the window, if any. */
                 modal: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>>;
+                /** The most frequently observed level in the window, if any. */
+                modalLevel: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>, z.ZodLiteral<4>, z.ZodLiteral<5>]>>;
                 /**
                  * Direction of change over the window (IMPROVING = rising score,
                  * DECLINING = falling score). Note: whether rising is "good" depends
@@ -700,7 +875,9 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 } | undefined;
+                levelCounts?: [number, number, number, number, number] | undefined;
                 modal?: 1 | 2 | 3 | undefined;
+                modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
             }, {
                 windowSizeDays: 7 | 30 | 90;
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
@@ -711,7 +888,9 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 } | undefined;
+                levelCounts?: [number, number, number, number, number] | undefined;
                 modal?: 1 | 2 | 3 | undefined;
+                modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
             }>;
             medium: z.ZodObject<{
                 windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
@@ -733,8 +912,12 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 }>>;
+                /** Readings at each of the five levels, lowest first (see metricLevelSchema). */
+                levelCounts: z.ZodOptional<z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>>;
                 /** The most frequently observed state in the window, if any. */
                 modal: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>>;
+                /** The most frequently observed level in the window, if any. */
+                modalLevel: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>, z.ZodLiteral<4>, z.ZodLiteral<5>]>>;
                 /**
                  * Direction of change over the window (IMPROVING = rising score,
                  * DECLINING = falling score). Note: whether rising is "good" depends
@@ -753,7 +936,9 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 } | undefined;
+                levelCounts?: [number, number, number, number, number] | undefined;
                 modal?: 1 | 2 | 3 | undefined;
+                modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
             }, {
                 windowSizeDays: 7 | 30 | 90;
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
@@ -764,7 +949,9 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 } | undefined;
+                levelCounts?: [number, number, number, number, number] | undefined;
                 modal?: 1 | 2 | 3 | undefined;
+                modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
             }>;
             long: z.ZodObject<{
                 windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
@@ -786,8 +973,12 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 }>>;
+                /** Readings at each of the five levels, lowest first (see metricLevelSchema). */
+                levelCounts: z.ZodOptional<z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>>;
                 /** The most frequently observed state in the window, if any. */
                 modal: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>>;
+                /** The most frequently observed level in the window, if any. */
+                modalLevel: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>, z.ZodLiteral<4>, z.ZodLiteral<5>]>>;
                 /**
                  * Direction of change over the window (IMPROVING = rising score,
                  * DECLINING = falling score). Note: whether rising is "good" depends
@@ -806,7 +997,9 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 } | undefined;
+                levelCounts?: [number, number, number, number, number] | undefined;
                 modal?: 1 | 2 | 3 | undefined;
+                modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
             }, {
                 windowSizeDays: 7 | 30 | 90;
                 trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
@@ -817,7 +1010,9 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 } | undefined;
+                levelCounts?: [number, number, number, number, number] | undefined;
                 modal?: 1 | 2 | 3 | undefined;
+                modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
             }>;
         }, "strip", z.ZodTypeAny, {
             short: {
@@ -830,7 +1025,9 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 } | undefined;
+                levelCounts?: [number, number, number, number, number] | undefined;
                 modal?: 1 | 2 | 3 | undefined;
+                modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
             };
             medium: {
                 windowSizeDays: 7 | 30 | 90;
@@ -842,7 +1039,9 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 } | undefined;
+                levelCounts?: [number, number, number, number, number] | undefined;
                 modal?: 1 | 2 | 3 | undefined;
+                modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
             };
             long: {
                 windowSizeDays: 7 | 30 | 90;
@@ -854,7 +1053,9 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 } | undefined;
+                levelCounts?: [number, number, number, number, number] | undefined;
                 modal?: 1 | 2 | 3 | undefined;
+                modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
             };
         }, {
             short: {
@@ -867,7 +1068,9 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 } | undefined;
+                levelCounts?: [number, number, number, number, number] | undefined;
                 modal?: 1 | 2 | 3 | undefined;
+                modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
             };
             medium: {
                 windowSizeDays: 7 | 30 | 90;
@@ -879,7 +1082,9 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 } | undefined;
+                levelCounts?: [number, number, number, number, number] | undefined;
                 modal?: 1 | 2 | 3 | undefined;
+                modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
             };
             long: {
                 windowSizeDays: 7 | 30 | 90;
@@ -891,7 +1096,9 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 } | undefined;
+                levelCounts?: [number, number, number, number, number] | undefined;
                 modal?: 1 | 2 | 3 | undefined;
+                modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
             };
         }>;
         recentSlice: z.ZodOptional<z.ZodObject<{
@@ -899,12 +1106,16 @@ export declare const metricSchema: z.ZodObject<{
             days: z.ZodArray<z.ZodObject<{
                 offset: z.ZodNumber;
                 value: z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>]>;
+                /** The reading's level; absent on slices written before levels. */
+                level: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<1>, z.ZodLiteral<2>, z.ZodLiteral<3>, z.ZodLiteral<4>, z.ZodLiteral<5>]>>;
             }, "strip", z.ZodTypeAny, {
                 value: 1 | 2 | 3;
                 offset: number;
+                level?: 1 | 2 | 3 | 5 | 4 | undefined;
             }, {
                 value: 1 | 2 | 3;
                 offset: number;
+                level?: 1 | 2 | 3 | 5 | 4 | undefined;
             }>, "many">;
             /** Direction of change across this slice */
             direction: z.ZodEnum<["IMPROVING", "DECLINING", "FLAT", "MIXED"]>;
@@ -916,6 +1127,7 @@ export declare const metricSchema: z.ZodObject<{
             days: {
                 value: 1 | 2 | 3;
                 offset: number;
+                level?: 1 | 2 | 3 | 5 | 4 | undefined;
             }[];
             direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
             contrast: "LOW" | "MODERATE" | "STRONG";
@@ -924,6 +1136,7 @@ export declare const metricSchema: z.ZodObject<{
             days: {
                 value: 1 | 2 | 3;
                 offset: number;
+                level?: 1 | 2 | 3 | 5 | 4 | undefined;
             }[];
             direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
             contrast: "LOW" | "MODERATE" | "STRONG";
@@ -958,7 +1171,9 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 } | undefined;
+                levelCounts?: [number, number, number, number, number] | undefined;
                 modal?: 1 | 2 | 3 | undefined;
+                modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
             };
             medium: {
                 windowSizeDays: 7 | 30 | 90;
@@ -970,7 +1185,9 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 } | undefined;
+                levelCounts?: [number, number, number, number, number] | undefined;
                 modal?: 1 | 2 | 3 | undefined;
+                modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
             };
             long: {
                 windowSizeDays: 7 | 30 | 90;
@@ -982,7 +1199,9 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 } | undefined;
+                levelCounts?: [number, number, number, number, number] | undefined;
                 modal?: 1 | 2 | 3 | undefined;
+                modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
             };
         };
         meta: {
@@ -995,6 +1214,7 @@ export declare const metricSchema: z.ZodObject<{
             days: {
                 value: 1 | 2 | 3;
                 offset: number;
+                level?: 1 | 2 | 3 | 5 | 4 | undefined;
             }[];
             direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
             contrast: "LOW" | "MODERATE" | "STRONG";
@@ -1012,7 +1232,9 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 } | undefined;
+                levelCounts?: [number, number, number, number, number] | undefined;
                 modal?: 1 | 2 | 3 | undefined;
+                modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
             };
             medium: {
                 windowSizeDays: 7 | 30 | 90;
@@ -1024,7 +1246,9 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 } | undefined;
+                levelCounts?: [number, number, number, number, number] | undefined;
                 modal?: 1 | 2 | 3 | undefined;
+                modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
             };
             long: {
                 windowSizeDays: 7 | 30 | 90;
@@ -1036,7 +1260,9 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 } | undefined;
+                levelCounts?: [number, number, number, number, number] | undefined;
                 modal?: 1 | 2 | 3 | undefined;
+                modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
             };
         };
         meta: {
@@ -1049,6 +1275,7 @@ export declare const metricSchema: z.ZodObject<{
             days: {
                 value: 1 | 2 | 3;
                 offset: number;
+                level?: 1 | 2 | 3 | 5 | 4 | undefined;
             }[];
             direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
             contrast: "LOW" | "MODERATE" | "STRONG";
@@ -1079,7 +1306,9 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 } | undefined;
+                levelCounts?: [number, number, number, number, number] | undefined;
                 modal?: 1 | 2 | 3 | undefined;
+                modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
             };
             medium: {
                 windowSizeDays: 7 | 30 | 90;
@@ -1091,7 +1320,9 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 } | undefined;
+                levelCounts?: [number, number, number, number, number] | undefined;
                 modal?: 1 | 2 | 3 | undefined;
+                modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
             };
             long: {
                 windowSizeDays: 7 | 30 | 90;
@@ -1103,7 +1334,9 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 } | undefined;
+                levelCounts?: [number, number, number, number, number] | undefined;
                 modal?: 1 | 2 | 3 | undefined;
+                modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
             };
         };
         meta: {
@@ -1116,12 +1349,14 @@ export declare const metricSchema: z.ZodObject<{
             days: {
                 value: 1 | 2 | 3;
                 offset: number;
+                level?: 1 | 2 | 3 | 5 | 4 | undefined;
             }[];
             direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
             contrast: "LOW" | "MODERATE" | "STRONG";
             salience: "HIGH" | "MEDIUM" | "LOW";
         } | undefined;
     } | undefined;
+    levels?: [string, string, "normal", string, string] | undefined;
     metricRegistryId?: string | undefined;
     quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     desiredDirection?: "higher" | "lower" | undefined;
@@ -1150,7 +1385,9 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 } | undefined;
+                levelCounts?: [number, number, number, number, number] | undefined;
                 modal?: 1 | 2 | 3 | undefined;
+                modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
             };
             medium: {
                 windowSizeDays: 7 | 30 | 90;
@@ -1162,7 +1399,9 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 } | undefined;
+                levelCounts?: [number, number, number, number, number] | undefined;
                 modal?: 1 | 2 | 3 | undefined;
+                modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
             };
             long: {
                 windowSizeDays: 7 | 30 | 90;
@@ -1174,7 +1413,9 @@ export declare const metricSchema: z.ZodObject<{
                     high: number;
                     okay: number;
                 } | undefined;
+                levelCounts?: [number, number, number, number, number] | undefined;
                 modal?: 1 | 2 | 3 | undefined;
+                modalLevel?: 1 | 2 | 3 | 5 | 4 | undefined;
             };
         };
         meta: {
@@ -1187,12 +1428,14 @@ export declare const metricSchema: z.ZodObject<{
             days: {
                 value: 1 | 2 | 3;
                 offset: number;
+                level?: 1 | 2 | 3 | 5 | 4 | undefined;
             }[];
             direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
             contrast: "LOW" | "MODERATE" | "STRONG";
             salience: "HIGH" | "MEDIUM" | "LOW";
         } | undefined;
     } | undefined;
+    levels?: [string, string, "normal", string, string] | undefined;
     metricRegistryId?: string | undefined;
     quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     desiredDirection?: "higher" | "lower" | undefined;

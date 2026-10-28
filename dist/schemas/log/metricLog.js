@@ -27,12 +27,22 @@ exports.metricLogSchema = base_1.logBaseSchema.extend({
         metricId: zod_1.z.string(),
         /** Denormalized metric name for display */
         metricName: zod_1.z.string(),
-        /** Ordered 3-point observation, null when awaiting user input */
+        /**
+         * The reading on the LEGACY 3-point scale, null when awaiting user input.
+         * Always written beside `level` (as `valueFromLevel(level)`) so app builds
+         * that predate levels keep showing a reading. Read the level through
+         * `metricLogLevel`, never this field directly.
+         */
         value: metric_1.metricValueSchema.nullable(),
         /**
-         * Denormalized word scale, so a log renders ("Energy: very energetic")
-         * without loading the metric document.
+         * The reading on the five-point scale centred on normal. Absent on
+         * readings written before it, and on readings an older app build wrote;
+         * `metricLogLevel` maps those from `value`.
          */
+        level: metric_1.metricLevelSchema.nullable().optional(),
+        /** Denormalized level labels (see Metric.levels). */
+        levels: metric_1.metricLevelLabelsSchema.optional(),
+        /** Denormalized LEGACY word scale, for app builds that read `value`. */
         scale: metric_1.metricScaleSchema.optional(),
         /** Optional supporting text / note */
         text: zod_1.z.string().optional(),

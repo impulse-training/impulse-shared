@@ -1532,7 +1532,7 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
 }>;
 export declare const proposedMetricSchema: z.ZodObject<{
     name: z.ZodString;
-    /** The word and adjectives the metric should use (see metricScaleSchema) */
+    /** LEGACY word scale (see metricScaleSchema); still accepted from older writers */
     scale: z.ZodOptional<z.ZodObject<{
         word: z.ZodString;
         low: z.ZodString;
@@ -1549,6 +1549,8 @@ export declare const proposedMetricSchema: z.ZodObject<{
         word: string;
         lowWord?: string | undefined;
     }>>;
+    /** The five level labels the metric should use (see metricLevelLabelsSchema) */
+    levels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodLiteral<"normal">, z.ZodString, z.ZodString], null>>;
 }, "strip", z.ZodTypeAny, {
     name: string;
     scale?: {
@@ -1557,6 +1559,7 @@ export declare const proposedMetricSchema: z.ZodObject<{
         word: string;
         lowWord?: string | undefined;
     } | undefined;
+    levels?: [string, string, "normal", string, string] | undefined;
 }, {
     name: string;
     scale?: {
@@ -1565,6 +1568,7 @@ export declare const proposedMetricSchema: z.ZodObject<{
         word: string;
         lowWord?: string | undefined;
     } | undefined;
+    levels?: [string, string, "normal", string, string] | undefined;
 }>;
 export declare const proposeExperimentTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -1669,7 +1673,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
         behaviorId: z.ZodString;
         metrics: z.ZodArray<z.ZodObject<{
             name: z.ZodString;
-            /** The word and adjectives the metric should use (see metricScaleSchema) */
+            /** LEGACY word scale (see metricScaleSchema); still accepted from older writers */
             scale: z.ZodOptional<z.ZodObject<{
                 word: z.ZodString;
                 low: z.ZodString;
@@ -1686,6 +1690,8 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
                 word: string;
                 lowWord?: string | undefined;
             }>>;
+            /** The five level labels the metric should use (see metricLevelLabelsSchema) */
+            levels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodLiteral<"normal">, z.ZodString, z.ZodString], null>>;
         }, "strip", z.ZodTypeAny, {
             name: string;
             scale?: {
@@ -1694,6 +1700,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
                 word: string;
                 lowWord?: string | undefined;
             } | undefined;
+            levels?: [string, string, "normal", string, string] | undefined;
         }, {
             name: string;
             scale?: {
@@ -1702,6 +1709,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
                 word: string;
                 lowWord?: string | undefined;
             } | undefined;
+            levels?: [string, string, "normal", string, string] | undefined;
         }>, "many">;
         experimentQuestion: z.ZodString;
     }, "strip", z.ZodTypeAny, {
@@ -1714,6 +1722,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
                 word: string;
                 lowWord?: string | undefined;
             } | undefined;
+            levels?: [string, string, "normal", string, string] | undefined;
         }[];
         experimentQuestion: string;
     }, {
@@ -1726,6 +1735,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
                 word: string;
                 lowWord?: string | undefined;
             } | undefined;
+            levels?: [string, string, "normal", string, string] | undefined;
         }[];
         experimentQuestion: string;
     }>;
@@ -1748,6 +1758,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
                 word: string;
                 lowWord?: string | undefined;
             } | undefined;
+            levels?: [string, string, "normal", string, string] | undefined;
         }[];
         experimentQuestion: string;
     };
@@ -1790,6 +1801,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
                 word: string;
                 lowWord?: string | undefined;
             } | undefined;
+            levels?: [string, string, "normal", string, string] | undefined;
         }[];
         experimentQuestion: string;
     };
@@ -6754,7 +6766,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorId: z.ZodString;
         metrics: z.ZodArray<z.ZodObject<{
             name: z.ZodString;
-            /** The word and adjectives the metric should use (see metricScaleSchema) */
+            /** LEGACY word scale (see metricScaleSchema); still accepted from older writers */
             scale: z.ZodOptional<z.ZodObject<{
                 word: z.ZodString;
                 low: z.ZodString;
@@ -6771,6 +6783,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 word: string;
                 lowWord?: string | undefined;
             }>>;
+            /** The five level labels the metric should use (see metricLevelLabelsSchema) */
+            levels: z.ZodOptional<z.ZodTuple<[z.ZodString, z.ZodString, z.ZodLiteral<"normal">, z.ZodString, z.ZodString], null>>;
         }, "strip", z.ZodTypeAny, {
             name: string;
             scale?: {
@@ -6779,6 +6793,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 word: string;
                 lowWord?: string | undefined;
             } | undefined;
+            levels?: [string, string, "normal", string, string] | undefined;
         }, {
             name: string;
             scale?: {
@@ -6787,6 +6802,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 word: string;
                 lowWord?: string | undefined;
             } | undefined;
+            levels?: [string, string, "normal", string, string] | undefined;
         }>, "many">;
         experimentQuestion: z.ZodString;
     }, "strip", z.ZodTypeAny, {
@@ -6799,6 +6815,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 word: string;
                 lowWord?: string | undefined;
             } | undefined;
+            levels?: [string, string, "normal", string, string] | undefined;
         }[];
         experimentQuestion: string;
     }, {
@@ -6811,6 +6828,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 word: string;
                 lowWord?: string | undefined;
             } | undefined;
+            levels?: [string, string, "normal", string, string] | undefined;
         }[];
         experimentQuestion: string;
     }>;
@@ -6833,6 +6851,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 word: string;
                 lowWord?: string | undefined;
             } | undefined;
+            levels?: [string, string, "normal", string, string] | undefined;
         }[];
         experimentQuestion: string;
     };
@@ -6875,6 +6894,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 word: string;
                 lowWord?: string | undefined;
             } | undefined;
+            levels?: [string, string, "normal", string, string] | undefined;
         }[];
         experimentQuestion: string;
     };
