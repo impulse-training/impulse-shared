@@ -28,3 +28,20 @@ export const getChangeStageLabel = (stage: ChangeStage): string =>
 
 export const getChangeStageHint = (stage: ChangeStage): string =>
   OPTION_BY_STAGE[stage].hint;
+
+const SOUNDS_LIKE: Record<ChangeStage, (name: string) => string> = {
+  precontemplation: (name) => `${name} isn't something you're looking to change right now`,
+  contemplation: (name) => `you're thinking about whether to change ${name}`,
+  preparation: (name) => `you're getting ready to change ${name}`,
+  action: (name) => `you're actively working on ${name}`,
+  maintenance: (name) => `you're protecting the change you've made with ${name}`,
+  relapse: (name) => `you're bouncing back after a slip with ${name}`,
+};
+
+/**
+ * What a stage sounds like, said back to the user in the second person:
+ * "you're getting ready to change Vaping". For a proposal whose evidence is
+ * something they said rather than a streak.
+ */
+export const changeStageSoundsLike = (stage: ChangeStage, behaviorName: string): string =>
+  SOUNDS_LIKE[stage](behaviorName);

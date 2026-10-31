@@ -180,11 +180,13 @@ exports.proposeExperimentTaskSchema = exports.taskBaseSchema.extend({
 });
 /**
  * Asks the user to confirm moving one behavior to a different Stage of Change,
- * raised by the change-stage reconciliation (impulse-functions
- * reconcileChangeStage) when tracking disagrees with the declared stage.
- * Deterministic: a recap claims it and renders a proposed_change_stage card;
- * accepting writes the stage server-side. Only upward moves are proposed —
- * a setback moves the stage to "relapse" automatically, without a task.
+ * raised either by the change-stage reconciliation (impulse-functions
+ * reconcileChangeStage) when tracking supports a later stage, or by what the
+ * user said in a session (evaluateStageFromSpeech, with `said`): the early
+ * stages live in their words, not in logs. Deterministic: a recap claims it
+ * and renders a proposed_change_stage card, or a call asks it; accepting
+ * writes the stage server-side. A setback moves an active behavior to
+ * "relapse" automatically, without a task.
  */
 exports.proposeChangeStageTaskSchema = exports.taskBaseSchema.extend({
     type: zod_1.z.literal("propose_change_stage"),
@@ -194,6 +196,17 @@ exports.proposeChangeStageTaskSchema = exports.taskBaseSchema.extend({
     toStage: behavior_1.changeStageSchema,
     /** The current streak (days) at evaluation time, for the card's evidence. */
     streakDays: zod_1.z.number().int().min(0),
+    /**
+     * Present when the proposal comes from the user's own words: their sentence,
+     * verbatim, and the session they said it in. The evidence is then the quote,
+     * not the streak.
+     */
+    said: zod_1.z
+        .object({
+        quote: zod_1.z.string().min(1),
+        sessionId: zod_1.z.string().min(1),
+    })
+        .optional(),
     /**
      * effectiveBehaviorSalience at evaluation time. Ranks proposals for the
      * recap claim, and a behavior below DEFAULT_BEHAVIOR_SALIENCE is never paired
