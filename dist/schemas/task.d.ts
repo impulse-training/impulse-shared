@@ -1832,11 +1832,13 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
 }>;
 /**
  * Asks the user to confirm moving one behavior to a different Stage of Change,
- * raised by the change-stage reconciliation (impulse-functions
- * reconcileChangeStage) when tracking disagrees with the declared stage.
- * Deterministic: a recap claims it and renders a proposed_change_stage card;
- * accepting writes the stage server-side. Only upward moves are proposed —
- * a setback moves the stage to "relapse" automatically, without a task.
+ * raised either by the change-stage reconciliation (impulse-functions
+ * reconcileChangeStage) when tracking supports a later stage, or by what the
+ * user said in a session (evaluateStageFromSpeech, with `said`): the early
+ * stages live in their words, not in logs. Deterministic: a recap claims it
+ * and renders a proposed_change_stage card, or a call asks it; accepting
+ * writes the stage server-side. A setback moves an active behavior to
+ * "relapse" automatically, without a task.
  */
 export declare const proposeChangeStageTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -1944,6 +1946,21 @@ export declare const proposeChangeStageTaskSchema: z.ZodObject<{
     /** The current streak (days) at evaluation time, for the card's evidence. */
     streakDays: z.ZodNumber;
     /**
+     * Present when the proposal comes from the user's own words: their sentence,
+     * verbatim, and the session they said it in. The evidence is then the quote,
+     * not the streak.
+     */
+    said: z.ZodOptional<z.ZodObject<{
+        quote: z.ZodString;
+        sessionId: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        sessionId: string;
+        quote: string;
+    }, {
+        sessionId: string;
+        quote: string;
+    }>>;
+    /**
      * effectiveBehaviorSalience at evaluation time. Ranks proposals for the
      * recap claim, and a behavior below DEFAULT_BEHAVIOR_SALIENCE is never paired
      * into a combined question. Absent on proposals raised before it existed.
@@ -1985,6 +2002,10 @@ export declare const proposeChangeStageTaskSchema: z.ZodObject<{
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
     claimedBySessionId?: string | undefined;
+    said?: {
+        sessionId: string;
+        quote: string;
+    } | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2021,6 +2042,10 @@ export declare const proposeChangeStageTaskSchema: z.ZodObject<{
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
     claimedBySessionId?: string | undefined;
+    said?: {
+        sessionId: string;
+        quote: string;
+    } | undefined;
 }>;
 export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -7192,6 +7217,21 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     /** The current streak (days) at evaluation time, for the card's evidence. */
     streakDays: z.ZodNumber;
     /**
+     * Present when the proposal comes from the user's own words: their sentence,
+     * verbatim, and the session they said it in. The evidence is then the quote,
+     * not the streak.
+     */
+    said: z.ZodOptional<z.ZodObject<{
+        quote: z.ZodString;
+        sessionId: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        sessionId: string;
+        quote: string;
+    }, {
+        sessionId: string;
+        quote: string;
+    }>>;
+    /**
      * effectiveBehaviorSalience at evaluation time. Ranks proposals for the
      * recap claim, and a behavior below DEFAULT_BEHAVIOR_SALIENCE is never paired
      * into a combined question. Absent on proposals raised before it existed.
@@ -7233,6 +7273,10 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
     claimedBySessionId?: string | undefined;
+    said?: {
+        sessionId: string;
+        quote: string;
+    } | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -7269,6 +7313,10 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     showOnHome?: boolean | undefined;
     homeSubtitle?: string | undefined;
     claimedBySessionId?: string | undefined;
+    said?: {
+        sessionId: string;
+        quote: string;
+    } | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
