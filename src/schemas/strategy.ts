@@ -338,6 +338,21 @@ export const strategySchema = z.object({
   retiredAt: timestampSchema.optional(),
   retiredReason: z.string().optional(),
   /**
+   * Set aside by the user for now, to come back to: still theirs and still
+   * active, but its lines aren't held, asked about or reminded of until they
+   * pick it back up (which clears this). A review note saying "on hold" left
+   * the coach holding them to a strategy they had paused (2026-11-01).
+   */
+  onHold: z
+    .object({
+      sinceDateString: z.string(),
+      sessionId: z.string(),
+      /** Why, close to their words. */
+      note: z.string().optional(),
+      at: timestampSchema,
+    })
+    .optional(),
+  /**
    * A proposal waiting for the user, offered in an evening recap: each offer
    * and their answer. "go_through" put it in front of them in that recap;
    * "not_now" left it waiting. A second "not now" retires it.
@@ -812,6 +827,14 @@ export function applyStrategyRevision<T extends Pick<Strategy, "items" | "revisi
 
 export const isStrategy = (value: unknown): value is Strategy =>
   strategySchema.safeParse(value).success;
+
+/**
+ * Running: active and not on hold. Its lines apply, get asked about and get
+ * reminders. A held strategy is still active (it is theirs, in their list),
+ * just not running.
+ */
+export const strategyIsRunning = (strategy: Pick<Strategy, "status"> & { onHold?: Strategy["onHold"] | null }): boolean =>
+  strategy.status === "active" && !strategy.onHold;
 
 /** The experiment binding of the strategy's accepted moves, if it runs one. */
 export function strategyExperimentBinding(
