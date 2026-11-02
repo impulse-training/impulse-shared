@@ -19,17 +19,28 @@ import { timestampSchema } from "../utils/timestampSchema";
  * `relevantUntil` runs one day past the event so the next conversation can
  * ask how it went. Nothing sweeps them: the window is the lifecycle, and
  * `closed` exists for the user or the coach to end one early.
+ *
+ * Two kinds. An `occasion` is a dated thing on a later day (the meeting on
+ * Friday). A `situation` is something going on in their life now, over a
+ * stretch of days ("I'm in Chihuahua with my wife's family", "my mum is
+ * staying with us", "crunch week at work"): it has no event date, its window
+ * runs to the end they gave or a few days past the last time they mentioned
+ * it, and each new mention extends or closes it. Absent `kind` is an
+ * occasion (every thread written before situations existed).
  */
 export const threadStatusSchema = z.enum(["open", "closed"]);
+export const threadKindSchema = z.enum(["occasion", "situation"]);
 
 export const threadSchema = z.object({
   id: z.string().optional(),
   userId: z.string(),
+  /** Absent means "occasion". */
+  kind: threadKindSchema.optional(),
   /** What is coming up, in the user's own terms: "a meeting with her manager". */
   what: z.string().min(1),
   /** How they said they felt about it, if they did: "stressed", "looking forward to it". */
   feeling: z.string().optional(),
-  /** The user's local date they said it (YYYY-MM-DD). */
+  /** The user's local date they said it (YYYY-MM-DD). For a situation, the first mention. */
   saidOn: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   /** The session it was said in. Re-summarising that session replaces its threads. */
   sourceSessionId: z.string(),
@@ -39,6 +50,10 @@ export const threadSchema = z.object({
   relevantUntil: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   /** The event's own local date, when the user gave one; absent for "sometime next week". */
   eventDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+  /** Situation only: the last local date they spoke of it as still going on. */
+  lastMentionedOn: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+  /** Situation only: the end date they gave ("until Thursday"), when they gave one. */
+  endsOn: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
   status: threadStatusSchema,
   closedAt: timestampSchema.nullable().optional(),
   createdAt: timestampSchema,
@@ -47,3 +62,4 @@ export const threadSchema = z.object({
 
 export type Thread = z.infer<typeof threadSchema>;
 export type ThreadStatus = z.infer<typeof threadStatusSchema>;
+export type ThreadKind = z.infer<typeof threadKindSchema>;
