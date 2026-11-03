@@ -6040,6 +6040,19 @@ export declare const logSchemas: {
             answered: z.ZodOptional<z.ZodBoolean>;
             answeredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             declinedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            startFailure: z.ZodOptional<z.ZodObject<{
+                at: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+                cause: z.ZodString;
+                reachability: z.ZodNullable<z.ZodEnum<["online", "offline"]>>;
+            }, "strip", z.ZodTypeAny, {
+                at: import("../../types").Timestamp;
+                cause: string;
+                reachability: "online" | "offline" | null;
+            }, {
+                at: import("../../types").Timestamp;
+                cause: string;
+                reachability: "online" | "offline" | null;
+            }>>;
             engine: z.ZodOptional<z.ZodEnum<["livekit", "elevenlabs", "openai"]>>;
             livekitSessionId: z.ZodOptional<z.ZodString>;
             livekitRoomName: z.ZodOptional<z.ZodString>;
@@ -6838,6 +6851,11 @@ export declare const logSchemas: {
             endedBy?: "user" | undefined;
             answered?: boolean | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
+            startFailure?: {
+                at: import("../../types").Timestamp;
+                cause: string;
+                reachability: "online" | "offline" | null;
+            } | undefined;
             livekitSessionId?: string | undefined;
             livekitRoomName?: string | undefined;
             elevenlabsAgentId?: string | undefined;
@@ -7007,6 +7025,11 @@ export declare const logSchemas: {
             endedBy?: "user" | undefined;
             answered?: boolean | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
+            startFailure?: {
+                at: import("../../types").Timestamp;
+                cause: string;
+                reachability: "online" | "offline" | null;
+            } | undefined;
             livekitSessionId?: string | undefined;
             livekitRoomName?: string | undefined;
             elevenlabsAgentId?: string | undefined;
@@ -7720,6 +7743,11 @@ export declare const logSchemas: {
             endedBy?: "user" | undefined;
             answered?: boolean | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
+            startFailure?: {
+                at: import("../../types").Timestamp;
+                cause: string;
+                reachability: "online" | "offline" | null;
+            } | undefined;
             livekitSessionId?: string | undefined;
             livekitRoomName?: string | undefined;
             elevenlabsAgentId?: string | undefined;
@@ -7904,6 +7932,11 @@ export declare const logSchemas: {
             endedBy?: "user" | undefined;
             answered?: boolean | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
+            startFailure?: {
+                at: import("../../types").Timestamp;
+                cause: string;
+                reachability: "online" | "offline" | null;
+            } | undefined;
             livekitSessionId?: string | undefined;
             livekitRoomName?: string | undefined;
             elevenlabsAgentId?: string | undefined;
@@ -44096,6 +44129,19 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         answered: z.ZodOptional<z.ZodBoolean>;
         answeredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         declinedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        startFailure: z.ZodOptional<z.ZodObject<{
+            at: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            cause: z.ZodString;
+            reachability: z.ZodNullable<z.ZodEnum<["online", "offline"]>>;
+        }, "strip", z.ZodTypeAny, {
+            at: import("../../types").Timestamp;
+            cause: string;
+            reachability: "online" | "offline" | null;
+        }, {
+            at: import("../../types").Timestamp;
+            cause: string;
+            reachability: "online" | "offline" | null;
+        }>>;
         engine: z.ZodOptional<z.ZodEnum<["livekit", "elevenlabs", "openai"]>>;
         livekitSessionId: z.ZodOptional<z.ZodString>;
         livekitRoomName: z.ZodOptional<z.ZodString>;
@@ -44894,6 +44940,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         endedBy?: "user" | undefined;
         answered?: boolean | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
+        startFailure?: {
+            at: import("../../types").Timestamp;
+            cause: string;
+            reachability: "online" | "offline" | null;
+        } | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
@@ -45063,6 +45114,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         endedBy?: "user" | undefined;
         answered?: boolean | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
+        startFailure?: {
+            at: import("../../types").Timestamp;
+            cause: string;
+            reachability: "online" | "offline" | null;
+        } | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
@@ -45776,6 +45832,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         endedBy?: "user" | undefined;
         answered?: boolean | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
+        startFailure?: {
+            at: import("../../types").Timestamp;
+            cause: string;
+            reachability: "online" | "offline" | null;
+        } | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
@@ -45960,6 +46021,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         endedBy?: "user" | undefined;
         answered?: boolean | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
+        startFailure?: {
+            at: import("../../types").Timestamp;
+            cause: string;
+            reachability: "online" | "offline" | null;
+        } | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
