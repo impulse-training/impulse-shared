@@ -314,6 +314,23 @@ exports.callLogSchema = base_1.logBaseSchema.extend({
         /** The user rejected the ring (the phone reported ending it unanswered). */
         declinedAt: timestampSchema_1.timestampSchema.optional(),
         /**
+         * The app saw this call fail to start: the agent never showed up (a
+         * refused call connects and then the agent leaves at once, as on
+         * 2026-11-03 with the ElevenLabs workspace unpaid), the connection never
+         * came up, or the server could not prepare it. Set by the call driver as
+         * it tells the caller, so the session can keep a "Call didn't connect"
+         * row with a way to try again, instead of a toast that is gone in 4s.
+         * `reachability` is the phone's internet at the time: "offline" means the
+         * phone, anything else the service.
+         */
+        startFailure: zod_1.z
+            .object({
+            at: timestampSchema_1.timestampSchema,
+            cause: zod_1.z.string(),
+            reachability: zod_1.z.enum(["online", "offline"]).nullable(),
+        })
+            .optional(),
+        /**
          * Which engine runs this call, chosen by the engine switch
          * (config/voiceEngine) when the call is prepared. The app routes an
          * answered ring from it. Absent on calls from before the switch; read it

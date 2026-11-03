@@ -5992,6 +5992,29 @@ export declare const callLogSchema: z.ZodObject<{
         /** The user rejected the ring (the phone reported ending it unanswered). */
         declinedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         /**
+         * The app saw this call fail to start: the agent never showed up (a
+         * refused call connects and then the agent leaves at once, as on
+         * 2026-11-03 with the ElevenLabs workspace unpaid), the connection never
+         * came up, or the server could not prepare it. Set by the call driver as
+         * it tells the caller, so the session can keep a "Call didn't connect"
+         * row with a way to try again, instead of a toast that is gone in 4s.
+         * `reachability` is the phone's internet at the time: "offline" means the
+         * phone, anything else the service.
+         */
+        startFailure: z.ZodOptional<z.ZodObject<{
+            at: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            cause: z.ZodString;
+            reachability: z.ZodNullable<z.ZodEnum<["online", "offline"]>>;
+        }, "strip", z.ZodTypeAny, {
+            at: import("../../types").Timestamp;
+            cause: string;
+            reachability: "online" | "offline" | null;
+        }, {
+            at: import("../../types").Timestamp;
+            cause: string;
+            reachability: "online" | "offline" | null;
+        }>>;
+        /**
          * Which engine runs this call, chosen by the engine switch
          * (config/voiceEngine) when the call is prepared. The app routes an
          * answered ring from it. Absent on calls from before the switch; read it
@@ -6873,6 +6896,11 @@ export declare const callLogSchema: z.ZodObject<{
         endedBy?: "user" | undefined;
         answered?: boolean | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
+        startFailure?: {
+            at: import("../../types").Timestamp;
+            cause: string;
+            reachability: "online" | "offline" | null;
+        } | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
@@ -7042,6 +7070,11 @@ export declare const callLogSchema: z.ZodObject<{
         endedBy?: "user" | undefined;
         answered?: boolean | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
+        startFailure?: {
+            at: import("../../types").Timestamp;
+            cause: string;
+            reachability: "online" | "offline" | null;
+        } | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
@@ -7755,6 +7788,11 @@ export declare const callLogSchema: z.ZodObject<{
         endedBy?: "user" | undefined;
         answered?: boolean | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
+        startFailure?: {
+            at: import("../../types").Timestamp;
+            cause: string;
+            reachability: "online" | "offline" | null;
+        } | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
@@ -7939,6 +7977,11 @@ export declare const callLogSchema: z.ZodObject<{
         endedBy?: "user" | undefined;
         answered?: boolean | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
+        startFailure?: {
+            at: import("../../types").Timestamp;
+            cause: string;
+            reachability: "online" | "offline" | null;
+        } | undefined;
         livekitSessionId?: string | undefined;
         livekitRoomName?: string | undefined;
         elevenlabsAgentId?: string | undefined;
