@@ -21,6 +21,15 @@ const debriefQuestionObjectSchema = z.object({
   // How the user answers — shared with tactic question steps.
   answerSpec: answerSpecSchema,
   enabled: z.boolean().default(true),
+  /**
+   * When to ask, beyond the outcome. "aboveUsual": only in the recap of a day
+   * the behavior was clearly worse than usual (overGoalWorseThanUsual), and
+   * never after a log in the moment. "What led to it?" is worth asking about
+   * a day that stood out, not about every log (2026-11-10). A field, not an
+   * askOn value: installed apps parse askOn strictly, and an unknown enum
+   * value would break their Questions screen; an unknown field is dropped.
+   */
+  askWhen: z.enum(["aboveUsual"]).optional(),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
 });
@@ -62,3 +71,8 @@ export const debriefQuestionSchema = z.preprocess(
 );
 
 export type DebriefQuestion = z.infer<typeof debriefQuestionSchema>;
+
+/** Whether a question is asked after a log in the moment (not one pinned to a day worse than usual). */
+export function debriefQuestionAsksInTheMoment(q: Pick<DebriefQuestion, "askWhen">): boolean {
+  return q.askWhen !== "aboveUsual";
+}
