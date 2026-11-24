@@ -35,6 +35,13 @@ describe("withdrawalRisk", () => {
     expect(note).toMatch(/withdrawal/i);
   });
 
+  it("keeps each step small and asks how their body feels the day after one", () => {
+    const note = withdrawalSafetyNote(["Beer"]);
+    expect(note).toMatch(/one or two fewer/);
+    expect(note).toMatch(/bigger cut in one day .* is one a doctor guides/);
+    expect(note).toMatch(/how their body feels/);
+  });
+
   it("has a short caution for the screen, with no em dash", () => {
     expect(WITHDRAWAL_CAUTION).toMatch(/doctor/i);
     expect(WITHDRAWAL_CAUTION).not.toContain("—");

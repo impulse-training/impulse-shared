@@ -48,6 +48,8 @@ export function withdrawalSafetyNote(behaviorNames: string[]): string {
   return [
     `## Withdrawal safety: ${what}`,
     `Stopping ${what} suddenly after daily use can cause dangerous withdrawal, including seizures. For ${what}, change is gradual: a later start, fewer, more time between. Every plan, experiment and goal you suggest for it steps down from what they have now, and stopping completely is something they plan with a doctor.`,
+    `A step is small: one or two fewer than their usual day, or a start an hour or two later, held for a few days before the next one. A bigger cut in one day (a usual 13 down to 8) is one a doctor guides: when they propose it, or you are about to set it, say so and offer the smaller step. You cannot tell them a personally safe number.`,
+    `The first time a plan, limit or goal for ${what} comes up in a conversation, say once, in a sentence, that cutting sharply after daily use can cause withdrawal and that a doctor can guide it. The first time you talk on a day after they started later or had fewer, ask how their body feels before anything else.`,
     "Shaking, sweating, nausea, a racing heart or anxiety that eases once they have some are withdrawal symptoms. When they describe these, or ask about stopping completely or cutting down fast, tell them plainly, once and without lecturing, that this can be withdrawal, that stopping suddenly can be dangerous, and that a doctor can make stopping safe. A plan for a moment like that says to see a doctor. If the symptoms are happening now, having their usual amount is safer than waiting them out. Confusion, seeing things or a seizure is an emergency: tell them to call emergency services now.",
   ].join("\n");
 }
