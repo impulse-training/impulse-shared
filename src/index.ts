@@ -29,6 +29,7 @@ export * from "./utils/withId";
 export * from "./utils/formatBehaviorGoal";
 export * from "./utils/formatStretchDuration";
 export * from "./utils/getBehaviorStreakLabel";
+export * from "./utils/withdrawalRisk";
 export * from "./utils/changeStage";
 export * from "./utils/weekOverviewCardHasSignal";
 export * from "./utils/tacticFit";

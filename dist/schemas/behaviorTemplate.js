@@ -21,6 +21,11 @@ const behaviorTemplateBase = zod_1.z.object({
     // "Pornography"). Used to mask masked behaviors when the AI uses variant wording in chat.
     synonyms: zod_1.z.array(zod_1.z.string()).optional(),
     streakLabel: zod_1.z.enum(exports.streakLabels).optional(),
+    // Stopping suddenly after daily use can be medically dangerous (alcohol,
+    // benzodiazepines, opioids). Copied onto the behavior at creation; the app
+    // then offers a step-down instead of "a week without it" and every coach
+    // prompt carries the withdrawal rule. See utils/withdrawalRisk.
+    withdrawalRisk: zod_1.z.boolean().optional(),
     // Default grace band (in the behavior's measured unit — minutes for timers,
     // raw count for counters) copied onto a behavior's `tolerance` at creation.
     // 0 for abstinence-style templates (e.g. pornography); a small allowance for

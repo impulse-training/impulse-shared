@@ -85,6 +85,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         baselinePeriod: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
         synonyms: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         streakLabel: z.ZodOptional<z.ZodEnum<["clean", "free", "sober"]>>;
+        withdrawalRisk: z.ZodOptional<z.ZodBoolean>;
         defaultTolerance: z.ZodOptional<z.ZodNumber>;
         recapQuestionSequence: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -1274,6 +1275,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         color?: string | undefined;
         synonyms?: string[] | undefined;
         streakLabel?: "clean" | "free" | "sober" | undefined;
+        withdrawalRisk?: boolean | undefined;
         defaultTolerance?: number | undefined;
         recapQuestionSequence?: string[] | undefined;
         importance?: number | undefined;
@@ -1525,6 +1527,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         color?: string | undefined;
         synonyms?: string[] | undefined;
         streakLabel?: "clean" | "free" | "sober" | undefined;
+        withdrawalRisk?: boolean | undefined;
         defaultTolerance?: number | undefined;
         recapQuestionSequence?: string[] | undefined;
         importance?: number | undefined;
@@ -1807,6 +1810,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         color?: string | undefined;
         synonyms?: string[] | undefined;
         streakLabel?: "clean" | "free" | "sober" | undefined;
+        withdrawalRisk?: boolean | undefined;
         defaultTolerance?: number | undefined;
         recapQuestionSequence?: string[] | undefined;
         importance?: number | undefined;
@@ -2073,6 +2077,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         color?: string | undefined;
         synonyms?: string[] | undefined;
         streakLabel?: "clean" | "free" | "sober" | undefined;
+        withdrawalRisk?: boolean | undefined;
         defaultTolerance?: number | undefined;
         recapQuestionSequence?: string[] | undefined;
         importance?: number | undefined;
@@ -2359,6 +2364,7 @@ export declare const daySummarySchema: z.ZodObject<{
         baselinePeriod: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
         synonyms: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         streakLabel: z.ZodOptional<z.ZodEnum<["clean", "free", "sober"]>>;
+        withdrawalRisk: z.ZodOptional<z.ZodBoolean>;
         defaultTolerance: z.ZodOptional<z.ZodNumber>;
         recapQuestionSequence: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -3548,6 +3554,7 @@ export declare const daySummarySchema: z.ZodObject<{
         color?: string | undefined;
         synonyms?: string[] | undefined;
         streakLabel?: "clean" | "free" | "sober" | undefined;
+        withdrawalRisk?: boolean | undefined;
         defaultTolerance?: number | undefined;
         recapQuestionSequence?: string[] | undefined;
         importance?: number | undefined;
@@ -3799,6 +3806,7 @@ export declare const daySummarySchema: z.ZodObject<{
         color?: string | undefined;
         synonyms?: string[] | undefined;
         streakLabel?: "clean" | "free" | "sober" | undefined;
+        withdrawalRisk?: boolean | undefined;
         defaultTolerance?: number | undefined;
         recapQuestionSequence?: string[] | undefined;
         importance?: number | undefined;
@@ -4177,6 +4185,7 @@ export declare const daySummarySchema: z.ZodObject<{
         color?: string | undefined;
         synonyms?: string[] | undefined;
         streakLabel?: "clean" | "free" | "sober" | undefined;
+        withdrawalRisk?: boolean | undefined;
         defaultTolerance?: number | undefined;
         recapQuestionSequence?: string[] | undefined;
         importance?: number | undefined;
@@ -4477,6 +4486,7 @@ export declare const daySummarySchema: z.ZodObject<{
         color?: string | undefined;
         synonyms?: string[] | undefined;
         streakLabel?: "clean" | "free" | "sober" | undefined;
+        withdrawalRisk?: boolean | undefined;
         defaultTolerance?: number | undefined;
         recapQuestionSequence?: string[] | undefined;
         importance?: number | undefined;

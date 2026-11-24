@@ -69,6 +69,7 @@ __exportStar(require("./slot"), exports);
 __exportStar(require("./supportGroup"), exports);
 __exportStar(require("./supportGroupTask"), exports);
 __exportStar(require("./supportRequest"), exports);
+__exportStar(require("./userIssue"), exports);
 __exportStar(require("./systemUpdate"), exports);
 __exportStar(require("./task"), exports);
 __exportStar(require("./strategySnapshot"), exports);

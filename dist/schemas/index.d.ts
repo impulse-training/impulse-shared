@@ -51,6 +51,7 @@ export * from "./slot";
 export * from "./supportGroup";
 export * from "./supportGroupTask";
 export * from "./supportRequest";
+export * from "./userIssue";
 export * from "./systemUpdate";
 export * from "./task";
 export * from "./strategySnapshot";

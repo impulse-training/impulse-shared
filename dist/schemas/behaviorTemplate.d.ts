@@ -13,6 +13,7 @@ declare const behaviorTemplateBase: z.ZodObject<{
     color: z.ZodOptional<z.ZodString>;
     synonyms: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     streakLabel: z.ZodOptional<z.ZodEnum<["clean", "free", "sober"]>>;
+    withdrawalRisk: z.ZodOptional<z.ZodBoolean>;
     defaultTolerance: z.ZodOptional<z.ZodNumber>;
     recapQuestionSequence: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -27,6 +28,7 @@ declare const behaviorTemplateBase: z.ZodObject<{
     color?: string | undefined;
     synonyms?: string[] | undefined;
     streakLabel?: "clean" | "free" | "sober" | undefined;
+    withdrawalRisk?: boolean | undefined;
     defaultTolerance?: number | undefined;
     recapQuestionSequence?: string[] | undefined;
 }, {
@@ -39,6 +41,7 @@ declare const behaviorTemplateBase: z.ZodObject<{
     color?: string | undefined;
     synonyms?: string[] | undefined;
     streakLabel?: "clean" | "free" | "sober" | undefined;
+    withdrawalRisk?: boolean | undefined;
     defaultTolerance?: number | undefined;
     recapQuestionSequence?: string[] | undefined;
 }>;
@@ -50,6 +53,7 @@ export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
     color: z.ZodOptional<z.ZodString>;
     synonyms: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     streakLabel: z.ZodOptional<z.ZodEnum<["clean", "free", "sober"]>>;
+    withdrawalRisk: z.ZodOptional<z.ZodBoolean>;
     defaultTolerance: z.ZodOptional<z.ZodNumber>;
     recapQuestionSequence: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -64,6 +68,7 @@ export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
     color?: string | undefined;
     synonyms?: string[] | undefined;
     streakLabel?: "clean" | "free" | "sober" | undefined;
+    withdrawalRisk?: boolean | undefined;
     defaultTolerance?: number | undefined;
     recapQuestionSequence?: string[] | undefined;
 }, {
@@ -76,6 +81,7 @@ export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
     color?: string | undefined;
     synonyms?: string[] | undefined;
     streakLabel?: "clean" | "free" | "sober" | undefined;
+    withdrawalRisk?: boolean | undefined;
     defaultTolerance?: number | undefined;
     recapQuestionSequence?: string[] | undefined;
 }>, {
@@ -88,6 +94,7 @@ export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
     color?: string | undefined;
     synonyms?: string[] | undefined;
     streakLabel?: "clean" | "free" | "sober" | undefined;
+    withdrawalRisk?: boolean | undefined;
     defaultTolerance?: number | undefined;
     recapQuestionSequence?: string[] | undefined;
 }, {
@@ -100,6 +107,7 @@ export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
     color?: string | undefined;
     synonyms?: string[] | undefined;
     streakLabel?: "clean" | "free" | "sober" | undefined;
+    withdrawalRisk?: boolean | undefined;
     defaultTolerance?: number | undefined;
     recapQuestionSequence?: string[] | undefined;
 }>;
