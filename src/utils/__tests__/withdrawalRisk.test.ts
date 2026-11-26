@@ -42,6 +42,16 @@ describe("withdrawalRisk", () => {
     expect(note).toMatch(/how their body feels/);
   });
 
+  // On the 2026-11-26 all-day-beer run the caution came back in every session
+  // for four days, on a plan the coach itself had set, and read as filler.
+  it("says the caution when a plan is first made and leaves it to the plan's page after", () => {
+    const note = withdrawalSafetyNote(["Beer"]);
+    expect(note).toMatch(/is first being made, say once/);
+    expect(note).toMatch(/leave the caution to the page/);
+    expect(note).toMatch(/comes back into the conversation when a bigger cut, stopping completely or symptoms come up/);
+    expect(note).not.toMatch(/comes up in a conversation, say once/);
+  });
+
   it("has a short caution for the screen, with no em dash", () => {
     expect(WITHDRAWAL_CAUTION).toMatch(/doctor/i);
     expect(WITHDRAWAL_CAUTION).not.toContain("—");
