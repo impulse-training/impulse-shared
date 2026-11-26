@@ -401,6 +401,39 @@ export const streakForgivenessEntrySchema = z.object({
 });
 export type StreakForgivenessEntry = z.infer<typeof streakForgivenessEntrySchema>;
 
+// What the user said about a day that was never recapped, when the coach asked
+// about the gap afterwards ("we haven't recapped since the 16th, anything on X
+// since then?"). The day's daySummary stays untouched and unconfirmed: nothing
+// was measured, so nothing is written where measurements live, and analytics
+// that read daySummaries never see a remembered day as a recorded one. Only
+// the streak math reads these, through `applyStreakAttestations` in
+// impulse-functions, and only for a day with no real goal comparison: a logged
+// slip or a late recap of the same day always wins.
+export const streakAttestationStatusSchema = z.enum([
+  // "Nothing on it that day": counts toward the streak like a met day.
+  "clean",
+  // "I slipped that day": breaks the streak like a missed day.
+  "slipped",
+  // Asked, and the user could not say. The day stays frozen (neither counts
+  // nor breaks), and is recorded so the same day is never asked about twice.
+  "unknown",
+]);
+export type StreakAttestationStatus = z.infer<
+  typeof streakAttestationStatusSchema
+>;
+
+export const streakAttestationEntrySchema = z.object({
+  /** Local ISO date (YYYY-MM-DD) of the un-recapped day. */
+  date: z.string(),
+  status: streakAttestationStatusSchema,
+  /** The session the user said it in. */
+  sessionId: z.string().optional(),
+  at: timestampSchema,
+});
+export type StreakAttestationEntry = z.infer<
+  typeof streakAttestationEntrySchema
+>;
+
 export const behaviorSchema = behaviorTemplateBase
   .extend({
     id: z.string().optional(),
@@ -484,6 +517,9 @@ export const behaviorSchema = behaviorTemplateBase
     // usage/logs are untouched. Complementary to `tolerance` (prospective by
     // design and unable to rescue a past break).
     streakForgiveness: z.array(streakForgivenessEntrySchema).optional(),
+    // The user's own after-the-fact account of un-recapped days (per-day),
+    // gathered by the recap's gap check-in. See streakAttestationEntrySchema.
+    streakAttestations: z.array(streakAttestationEntrySchema).optional(),
     // Grace band for win-day streaks, in the same unit as the day's measured
     // total (minutes for timers, raw count for counters). A day still counts
     // toward the streak when its total stays within goal target + tolerance.

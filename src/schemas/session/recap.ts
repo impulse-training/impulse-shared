@@ -194,6 +194,36 @@ export const recapMomentSchema = z.object({
 });
 export type RecapMoment = z.infer<typeof recapMomentSchema>;
 
+/**
+ * Un-recapped days before the recap day that the coach should ask about once,
+ * for one behavior ("anything on X since we last recapped?"). Computed and
+ * pinned at day-totals confirmation (computeRecapGap in impulse-functions);
+ * the recordGapDays tool stamps `answer` when the user has said how it went.
+ */
+export const recapGapBehaviorSchema = z.object({
+  behaviorId: z.string(),
+  behaviorName: z.string(),
+  /** The un-recapped days still open for this behavior, oldest first. */
+  openDates: z.array(z.string()),
+  /** The current streak through the recap day, before the gap is settled. */
+  streakDays: z.number(),
+  /** What the user said, once recorded. Absent = still to ask. */
+  answer: z.enum(["clean", "slipped", "not_sure"]).optional(),
+  answeredAt: timestampSchema.optional(),
+});
+export type RecapGapBehavior = z.infer<typeof recapGapBehaviorSchema>;
+
+export const recapGapSchema = z.object({
+  /** The latest recapped day before the first open day. */
+  lastRecappedDate: z.string().optional(),
+  /** Contiguous runs of open days across the listed behaviors, oldest first. */
+  ranges: z.array(z.object({ startDate: z.string(), endDate: z.string() })),
+  dayCount: z.number(),
+  /** Most salient first. */
+  behaviors: z.array(recapGapBehaviorSchema),
+});
+export type RecapGap = z.infer<typeof recapGapSchema>;
+
 export const recapSessionSchema = sessionBaseSchema.extend({
   type: z.literal("recap"),
   /**
@@ -240,6 +270,11 @@ export const recapSessionSchema = sessionBaseSchema.extend({
    * nobody has talked through yet.
    */
   recapMoments: z.array(recapMomentSchema).optional(),
+  /**
+   * Un-recapped days worth asking about, pinned at day-totals confirmation
+   * beside recapDayFacts. Absent when there is no gap to settle.
+   */
+  recapGap: recapGapSchema.optional(),
   /**
    * The question chosen from the recap question graph at confirmation (source
    * "graph"), pinned with its text so the prompt builder renders it without a
